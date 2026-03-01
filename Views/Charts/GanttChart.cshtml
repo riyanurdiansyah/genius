@@ -1,0 +1,297 @@
+@{
+    ViewData["Title"] = "Gantt Chart";
+}
+
+@section Styles {
+    <!-- Frappe Gantt CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/0.6.1/frappe-gantt.min.css">
+    
+    <style>
+        .custom-chart-container {
+            padding: 30px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+            border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+
+        .chart-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .chart-header-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chart-icon {
+            background: var(--green-light);
+            color: var(--green-accent);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        /* Customizing Frappe Gantt to match our organic theme */
+        .gantt .bar-wrapper { cursor: pointer; }
+        .gantt .bar-progress { fill: var(--green-accent) !important; }
+        .gantt .bar-wrapper:hover .bar-progress { fill: var(--sidebar-green) !important; }
+        .gantt .bar-label { font-family: var(--font-family-primary) !important; font-size: 12px; font-weight: 500; fill: #fff; }
+        
+        .gantt-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Color Variations for tasks */
+        .bar-warning .bar-progress { fill: #f5c342 !important; }
+        .bar-warning .bar-wrapper:hover .bar-progress { fill: #d4a326 !important; }
+        .bar-danger .bar-progress { fill: #dc3545 !important; }
+        .bar-danger .bar-wrapper:hover .bar-progress { fill: #b02a37 !important; }
+        .bar-info .bar-progress { fill: #0dcaf0 !important; }
+        .bar-info .bar-wrapper:hover .bar-progress { fill: #0aaccc !important; }
+        .bar-dark .bar-progress { fill: #0B2B26 !important; }
+        .bar-dark .bar-wrapper:hover .bar-progress { fill: #061c18 !important; }
+
+        .gantt .grid-header { fill: #f9fafb; stroke: #e5e7eb; }
+        .gantt .grid-row { fill: #ffffff; }
+        .gantt .grid-row:nth-child(even) { fill: #f9fafb; }
+        .gantt .grid-line { stroke: #e5e7eb; }
+        .gantt .tick { stroke: #e5e7eb; }
+        .gantt .lower-text, .gantt .upper-text { font-family: var(--font-family-primary) !important; fill: var(--text-gray); }
+
+        .view-modes {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-12" id="demo-gantt">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-stream"></i></div>
+                    Project Roadmap (Gantt)
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="view-modes">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeView('Quarter Day')">Q-Day</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeView('Half Day')">H-Day</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeView('Day')">Day</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeView('Week')">Week</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeView('Month')">Month</button>
+                    </div>
+                    <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+                </div>
+            </div>
+            
+            <div class="gantt-target"></div>
+        </div>
+    </div>
+
+    <!-- Marketing Campaign Gantt -->
+    <div class="col-12" id="demo-gantt-marketing">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon" style="background: rgba(245, 195, 66, 0.2); color: #f5c342;"><i class="fa-solid fa-bullhorn"></i></div>
+                    Marketing Campaign Roadmap
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="view-modes">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeViewGantt2('Day')">Day</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeViewGantt2('Week')">Week</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeViewGantt2('Month')">Month</button>
+                    </div>
+                    <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+                </div>
+            </div>
+            <div class="gantt-target-marketing"></div>
+        </div>
+    </div>
+
+    <!-- Agile Sprint Gantt -->
+    <div class="col-12" id="demo-gantt-agile">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon" style="background: rgba(13, 202, 240, 0.2); color: #0dcaf0;"><i class="fa-solid fa-code-branch"></i></div>
+                    Agile Sprint Tracker
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="view-modes">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeViewGantt3('Day')">Day</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeViewGantt3('Week')">Week</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeViewGantt3('Month')">Month</button>
+                    </div>
+                    <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+                </div>
+            </div>
+            <div class="gantt-target-agile"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Simple Toast Notification HTML for HTML Copied event -->
+<div id="copyToast" style="display:none; position: fixed; bottom: 30px; right: 30px; background: var(--green-accent); color: white; padding: 12px 24px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 9999; font-weight: 500;">
+    <i class="fa-solid fa-circle-check me-2"></i> HTML Component Copied!
+</div>
+
+@section Scripts {
+    <!-- Frappe Gantt JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/0.6.1/frappe-gantt.min.js"></script>
+    
+    <script>
+        var gantt, gantt2, gantt3;
+        
+        $(document).ready(function() {
+            var tasks = [
+                {
+                    id: 'Task 1',
+                    name: 'Redesign UI Wireframes',
+                    start: '2023-10-01',
+                    end: '2023-10-05',
+                    progress: 100,
+                    custom_class: 'bar-milestone'
+                },
+                {
+                    id: 'Task 2',
+                    name: 'Develop Organic Theme',
+                    start: '2023-10-04',
+                    end: '2023-10-10',
+                    progress: 80,
+                    dependencies: 'Task 1'
+                },
+                {
+                    id: 'Task 3',
+                    name: 'API Integrations',
+                    start: '2023-10-10',
+                    end: '2023-10-15',
+                    progress: 40,
+                    dependencies: 'Task 2'
+                },
+                {
+                    id: 'Task 4',
+                    name: 'QA & Testing Phase',
+                    start: '2023-10-14',
+                    end: '2023-10-20',
+                    progress: 10,
+                    dependencies: 'Task 3'
+                },
+                {
+                    id: 'Task 5',
+                    name: 'Deployment to Production',
+                    start: '2023-10-21',
+                    end: '2023-10-23',
+                    progress: 0,
+                    dependencies: 'Task 4'
+                }
+            ];
+
+            // Initialize Gantt Chart
+            gantt = new Gantt(".gantt-target", tasks, {
+                header_height: 50,
+                column_width: 30,
+                step: 24,
+                view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
+                bar_height: 30,
+                bar_corner_radius: 8,
+                arrow_curve: 5,
+                padding: 18,
+                view_mode: 'Day',   
+                date_format: 'YYYY-MM-DD',
+                custom_popup_html: function(task) {
+                    const end_date = task._end.format('MMM D');
+                    return `
+                        <div class="details-container" style="padding: 15px; border-radius: 8px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; font-family: var(--font-family-primary);">
+                            <h6 style="margin-top: 0; margin-bottom: 5px; color: var(--text-dark);">${task.name}</h6>
+                            <p style="margin: 0; font-size: 13px; color: var(--text-gray);">Expected to finish by ${end_date}</p>
+                            <p style="margin: 5px 0 0 0; font-size: 13px; font-weight: 600; color: var(--green-accent);">${task.progress}% completed!</p>
+                        </div>
+                    `;
+                }
+            });
+
+            // Marketing Campaign Gantt
+            var tasksMarketing = [
+                { id: 'M1', name: 'Market Research', start: '2023-11-01', end: '2023-11-07', progress: 100, custom_class: 'bar-warning' },
+                { id: 'M2', name: 'Content Creation', start: '2023-11-05', end: '2023-11-15', progress: 60, dependencies: 'M1', custom_class: 'bar-info' },
+                { id: 'M3', name: 'Social Media Strategy', start: '2023-11-10', end: '2023-11-20', progress: 30, dependencies: 'M2', custom_class: 'bar-dark' },
+                { id: 'M4', name: 'Ad Campaign Launch', start: '2023-11-20', end: '2023-11-25', progress: 0, dependencies: 'M3', custom_class: 'bar-danger' }
+            ];
+
+            gantt2 = new Gantt(".gantt-target-marketing", tasksMarketing, {
+                header_height: 50, column_width: 30, step: 24,
+                view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
+                bar_height: 30, bar_corner_radius: 8, arrow_curve: 5, padding: 18,
+                view_mode: 'Week', date_format: 'YYYY-MM-DD'
+            });
+
+            // Agile Sprint Gantt
+            var tasksAgile = [
+                { id: 'S1', name: 'Sprint Planning', start: '2023-12-01', end: '2023-12-02', progress: 100, custom_class: 'bar-info' },
+                { id: 'S2', name: 'Frontend Features', start: '2023-12-02', end: '2023-12-08', progress: 75, dependencies: 'S1' },
+                { id: 'S3', name: 'Backend API Setup', start: '2023-12-02', end: '2023-12-10', progress: 50, dependencies: 'S1', custom_class: 'bar-dark' },
+                { id: 'S4', name: 'Integration Tests', start: '2023-12-09', end: '2023-12-12', progress: 10, dependencies: 'S2, S3', custom_class: 'bar-warning' },
+                { id: 'S5', name: 'Sprint Retrospective', start: '2023-12-13', end: '2023-12-14', progress: 0, dependencies: 'S4', custom_class: 'bar-danger' }
+            ];
+
+            gantt3 = new Gantt(".gantt-target-agile", tasksAgile, {
+                header_height: 50, column_width: 30, step: 24,
+                view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
+                bar_height: 30, bar_corner_radius: 8, arrow_curve: 5, padding: 18,
+                view_mode: 'Day', date_format: 'YYYY-MM-DD'
+            });
+
+            // STEP 1: CACHE RAW HTML FOR COPY BUTTONS
+            // Cache before saving states so we don't copy the JS mutated version
+            $('.custom-chart-container').each(function() {
+                var btn = $(this).find('.btn-copyHtml');
+                if (btn.length) {
+                    var containerClone = $(this).clone();
+                    // Clean injected SVG by Gantt
+                    containerClone.find('.gantt-target').empty(); 
+                    containerClone.find('.gantt-target-marketing').empty(); 
+                    containerClone.find('.gantt-target-agile').empty(); 
+                    
+                    var rawHtml = containerClone.prop('outerHTML');
+                    btn.data('raw-html', rawHtml);
+                }
+            });
+
+            $('.btn-copyHtml').on('click', function() {
+                var rawHtml = $(this).data('raw-html');
+                var $temp = $("<textarea>");
+                $("body").append($temp);
+                $temp.val(rawHtml).select();
+                document.execCommand("copy");
+                $temp.remove();
+
+                const toast = $('#copyToast');
+                toast.fadeIn(300);
+                setTimeout(function(){ toast.fadeOut(500); }, 3000);
+            });
+        });
+
+        function changeView(mode) {
+            gantt.change_view_mode(mode);
+        }
+        function changeViewGantt2(mode) { gantt2.change_view_mode(mode); }
+        function changeViewGantt3(mode) { gantt3.change_view_mode(mode); }
+    </script>
+}

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Genius")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2c481d719fc82c8881cf350c4f4a1624876b997")]
 [assembly: System.Reflection.AssemblyProductAttribute("Genius")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Genius")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

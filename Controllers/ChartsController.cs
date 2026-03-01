@@ -6,4 +6,5 @@ public class ChartsController : Controller
 {
     public IActionResult ApexCharts() => View();
     public IActionResult ChartJS() => View();
+    public IActionResult GanttChart() => View();
 }

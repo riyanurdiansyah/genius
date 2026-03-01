@@ -22,6 +22,9 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="wrapper">
         <div class="dashboard-container">
             <!-- Sidebar Navigation -->
@@ -52,13 +55,42 @@
         // Sidebar Toggle Script
         document.getElementById('toggleSidebar').addEventListener('click', function() {
             var wrapper = document.querySelector('.sidebar-wrapper');
-            wrapper.classList.toggle('collapsed');
+            if (window.innerWidth <= 991) {
+                // Mobile open sidebar overlay
+                console.log('Mobile toggle sidebar');
+                wrapper.classList.toggle('mobile-open');
+                document.getElementById('sidebarOverlay').classList.toggle('show');
+            } else {
+                // Desktop toggle collapse
+                console.log('Desktop toggle collapse');
+                var isCollapsed = wrapper.classList.toggle('collapsed');
+                localStorage.setItem('sidebar-collapsed', isCollapsed);
+            }
+        });
+
+        // Overlay Click Script (Mobile)
+        document.getElementById('sidebarOverlay').addEventListener('click', function() {
+            document.querySelector('.sidebar-wrapper').classList.remove('mobile-open');
+            this.classList.remove('show');
+        });
+
+        // Auto-assign data-title for CSS tooltips
+        document.querySelectorAll('.sidebar-menu > li > a').forEach(link => {
+            let text = link.innerText.trim();
+            if(text) link.setAttribute('data-title', text);
         });
 
         // Submenu Toggle Script
         document.querySelectorAll('.sidebar-toggle-menu').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
+                var wrapper = document.querySelector('.sidebar-wrapper');
+                
+                // If collapsed on desktop, don't execute JS toggle (css hover handles it)
+                if (wrapper.classList.contains('collapsed') && window.innerWidth > 991) {
+                    return;
+                }
+
                 const parentLi = this.parentElement;
                 const submenu = parentLi.querySelector('.sidebar-submenu');
                 
@@ -67,8 +99,66 @@
                         parentLi.classList.remove('open');
                     });
                 } else {
+                    // Close other open submenus first (Accordion effect)
+                    const AllOpenParents = document.querySelectorAll('.sidebar-menu > li.open');
+                    AllOpenParents.forEach(openParent => {
+                        if(openParent !== parentLi) {
+                           const otherSubmenu = openParent.querySelector('.sidebar-submenu');
+                           $(otherSubmenu).slideUp(200, function() {
+                               openParent.classList.remove('open');
+                           });
+                        }
+                    });
+
                     parentLi.classList.add('open');
                     $(submenu).slideDown(200);
+                }
+            });
+        });
+
+        // Active State logic (Auto-detect from URL)
+        document.addEventListener("DOMContentLoaded", function () {
+            var currentPath = window.location.pathname;
+            if (currentPath === '/' || currentPath.toLowerCase() === '/home/index') {
+                currentPath = '/Home/Index';
+            }
+            
+            document.querySelectorAll('.sidebar-menu a').forEach(function(link) {
+                var href = link.getAttribute('href');
+                var activePrefix = link.getAttribute('data-active-prefix');
+                
+                var isActive = false;
+                if (href && href !== '#' && currentPath.toLowerCase() === href.toLowerCase()) {
+                    isActive = true;
+                } else if (activePrefix && currentPath.toLowerCase().startsWith(activePrefix.toLowerCase())) {
+                    isActive = true;
+                }
+
+                if (isActive) {
+                    var parentLi = link.parentElement;
+                    var wrapper = document.querySelector('.sidebar-wrapper');
+                    var isCollapsed = wrapper.classList.contains('collapsed') && window.innerWidth > 991;
+
+                    var parentSubmenu = link.closest('.sidebar-submenu');
+                    
+                    if (parentSubmenu) {
+                        var menuToggleLi = parentSubmenu.parentElement;
+                        
+                        if (isCollapsed) {
+                            // If collapsed, make the parent toggle the active one visually
+                            menuToggleLi.classList.add('active');
+                            // But also keep the child active internally 
+                            parentLi.classList.add('active');
+                        } else {
+                            // If expanded, open the parent menu and assign active to child
+                            parentLi.classList.add('active');
+                            menuToggleLi.classList.add('open');
+                            parentSubmenu.style.display = 'block';
+                        }
+                    } else {
+                        // Regular menu item
+                        parentLi.classList.add('active');
+                    }
                 }
             });
         });
@@ -80,6 +170,76 @@
         function closeModal(id) {
             document.getElementById(id).classList.remove('show');
         }
+
+        // Floating Menu Logic for Collapsed Sidebar
+        let floatingMenu = null;
+
+        function hideFloatingMenu() {
+            if (floatingMenu) {
+                floatingMenu.remove();
+                floatingMenu = null;
+            }
+        }
+
+        document.querySelectorAll('.sidebar-menu > li').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                var wrapper = document.querySelector('.sidebar-wrapper');
+                if (!wrapper.classList.contains('collapsed') || window.innerWidth <= 991) return;
+
+                hideFloatingMenu();
+
+                var submenu = this.querySelector('.sidebar-submenu');
+                var rect = this.getBoundingClientRect();
+                
+                floatingMenu = document.createElement('div');
+                floatingMenu.className = 'floating-sidebar-menu';
+                floatingMenu.style.position = 'fixed';
+                floatingMenu.style.top = rect.top + 'px';
+                floatingMenu.style.left = rect.right + 10 + 'px';
+                floatingMenu.style.zIndex = '9999';
+                
+                if (submenu) {
+                    var clone = submenu.cloneNode(true);
+                    clone.style.display = 'block';
+                    clone.style.position = 'static';
+                    floatingMenu.appendChild(clone);
+                } else {
+                    var aTag = this.querySelector('a');
+                    var title = aTag.getAttribute('data-title') || aTag.innerText.trim();
+                    var tooltip = document.createElement('div');
+                    tooltip.className = 'floating-tooltip';
+                    tooltip.innerText = title;
+                    floatingMenu.appendChild(tooltip);
+                }
+
+                document.body.appendChild(floatingMenu);
+
+                floatingMenu.addEventListener('mouseenter', function() {
+                    floatingMenu.isHovered = true;
+                });
+                
+                floatingMenu.addEventListener('mouseleave', function() {
+                    floatingMenu.isHovered = false;
+                    hideFloatingMenu();
+                });
+            });
+
+            item.addEventListener('mouseleave', function(e) {
+                setTimeout(() => {
+                    if (floatingMenu && !floatingMenu.isHovered) {
+                        hideFloatingMenu();
+                    }
+                }, 50);
+            });
+        });
+        
+        // Hide floating menu on scroll or outside click
+        document.querySelector('.sidebar-menu').addEventListener('scroll', hideFloatingMenu);
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.sidebar-wrapper') && !e.target.closest('.floating-sidebar-menu')) {
+                hideFloatingMenu();
+            }
+        });
     </script>
     
     @await RenderSectionAsync("Scripts", required: false)

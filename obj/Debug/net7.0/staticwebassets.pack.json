@@ -9,6 +9,278 @@
       "PackagePath": "staticwebassets/css/theme.css"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Black.woff2",
+      "PackagePath": "staticwebassets/font/geometric/KalbeGeometric-Black.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Bold.woff2",
+      "PackagePath": "staticwebassets/font/geometric/KalbeGeometric-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/geometric/KalbeGeometric-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Medium.woff2",
+      "PackagePath": "staticwebassets/font/geometric/KalbeGeometric-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Regular.woff2",
+      "PackagePath": "staticwebassets/font/geometric/KalbeGeometric-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/geometric/KalbeGeometric-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric[wght].woff2",
+      "PackagePath": "staticwebassets/font/geometric/KalbeGeometric[wght].woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Bold.woff2",
+      "PackagePath": "staticwebassets/font/helix/KalbeHelix-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/helix/KalbeHelix-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-ExtraLight.woff2",
+      "PackagePath": "staticwebassets/font/helix/KalbeHelix-ExtraLight.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Light.woff2",
+      "PackagePath": "staticwebassets/font/helix/KalbeHelix-Light.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Medium.woff2",
+      "PackagePath": "staticwebassets/font/helix/KalbeHelix-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Regular.woff2",
+      "PackagePath": "staticwebassets/font/helix/KalbeHelix-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/helix/KalbeHelix-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Bold.woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-ExtraLight.woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded-ExtraLight.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Light.woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded-Light.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Medium.woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Regular.woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded[wght].woff2",
+      "PackagePath": "staticwebassets/font/rounded/KalbeRounded[wght].woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Bold.woff2",
+      "PackagePath": "staticwebassets/font/serif/KalbeSerif-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/serif/KalbeSerif-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Light.woff2",
+      "PackagePath": "staticwebassets/font/serif/KalbeSerif-Light.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Medium.woff2",
+      "PackagePath": "staticwebassets/font/serif/KalbeSerif-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Regular.woff2",
+      "PackagePath": "staticwebassets/font/serif/KalbeSerif-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/serif/KalbeSerif-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif[wght].woff2",
+      "PackagePath": "staticwebassets/font/serif/KalbeSerif[wght].woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-Bold.woff2",
+      "PackagePath": "staticwebassets/font/squarenarrow/KalbeSquareNarrow-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/squarenarrow/KalbeSquareNarrow-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-Medium.woff2",
+      "PackagePath": "staticwebassets/font/squarenarrow/KalbeSquareNarrow-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-Regular.woff2",
+      "PackagePath": "staticwebassets/font/squarenarrow/KalbeSquareNarrow-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/squarenarrow/KalbeSquareNarrow-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-Bold.woff2",
+      "PackagePath": "staticwebassets/font/squarewide/KalbeSquareWide-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/squarewide/KalbeSquareWide-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-Medium.woff2",
+      "PackagePath": "staticwebassets/font/squarewide/KalbeSquareWide-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-Regular.woff2",
+      "PackagePath": "staticwebassets/font/squarewide/KalbeSquareWide-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/squarewide/KalbeSquareWide-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Bold.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-BoldItalic.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-BoldItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraBoldItalic.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-ExtraBoldItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraLight.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-ExtraLight.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraLightItalic.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-ExtraLightItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Italic.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-Italic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Light.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-Light.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-LightItalic.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-LightItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Medium.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-MediumItalic.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-MediumItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Regular.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-SemiBoldItalic.woff2",
+      "PackagePath": "staticwebassets/font/system/KalbeSystem-SemiBoldItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Bold.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-Bold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-BoldItalic.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-BoldItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraBold.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-ExtraBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraBoldItalic.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-ExtraBoldItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraLight.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-ExtraLight.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraLightItalic.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-ExtraLightItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Italic.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-Italic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Light.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-Light.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-LightItalic.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-LightItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Medium.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-Medium.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-MediumItalic.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-MediumItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Regular.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-Regular.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-SemiBold.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-SemiBold.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-SemiBoldItalic.woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed-SemiBoldItalic.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed[wght].woff2",
+      "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed[wght].woff2"
+    },
+    {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Genius.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

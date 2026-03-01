@@ -13,6 +13,7 @@
 /Users/kn/Documents/project/UIUX/Genius/obj/Debug/net7.0/Genius.MvcApplicationPartsAssemblyInfo.cache
 /Users/kn/Documents/project/UIUX/Genius/obj/Debug/net7.0/Genius.RazorAssemblyInfo.cache
 /Users/kn/Documents/project/UIUX/Genius/obj/Debug/net7.0/Genius.RazorAssemblyInfo.cs
+/Users/kn/Documents/project/UIUX/Genius/obj/Debug/net7.0/Genius.sourcelink.json
 /Users/kn/Documents/project/UIUX/Genius/obj/Debug/net7.0/scopedcss/bundle/Genius.styles.css
 /Users/kn/Documents/project/UIUX/Genius/obj/Debug/net7.0/staticwebassets.build.json
 /Users/kn/Documents/project/UIUX/Genius/obj/Debug/net7.0/staticwebassets.development.json

@@ -1,5 +1,50 @@
 /* theme.css - Core variables and utility classes */
+@font-face {
+    font-family: 'KalbeGeometric';
+    src: url('../font/geometric/KalbeGeometric-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KalbeGeometric';
+    src: url('../font/geometric/KalbeGeometric-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KalbeGeometric';
+    src: url('../font/geometric/KalbeGeometric-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KalbeGeometric';
+    src: url('../font/geometric/KalbeGeometric-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KalbeGeometric';
+    src: url('../font/geometric/KalbeGeometric-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KalbeGeometric';
+    src: url('../font/geometric/KalbeGeometric-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
 :root {
+    /* Fonts */
+    --font-family-primary: 'KalbeGeometric', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
     /* Color Palette from Image */
     --color-1: #051F20;
     --color-2: #0B2B26;
@@ -72,7 +117,7 @@
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-family-primary);
     background-color: var(--bg-body);
     color: var(--text-primary);
     line-height: 1.5;

@@ -1,11 +1,712 @@
 @{
-    ViewData["Title"] = "ChartJS";
+    ViewData["Title"] = "Chart";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-chart-pie fa-3x text-muted mb-3"></i>
-        <h4>ChartJS</h4>
-        <p class="text-muted">This is an empty page placeholder for ChartJS.</p>
+@section Styles {
+    <style>
+        .custom-chart-container {
+            padding: 30px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+            border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .chart-header-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chart-icon {
+            background: var(--green-light);
+            color: var(--green-accent);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .chart-canvas-wrapper {
+            position: relative;
+            height: 320px;
+            width: 100%;
+            flex-grow: 1;
+        }
+    </style>
+}
+
+<div class="row">
+    <!-- Line Chart -->
+    <div class="col-lg-6 mb-4" id="demo-line-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    Line Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="col-lg-6 mb-4" id="demo-bar-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-chart-column"></i></div>
+                    Bar Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Area Chart -->
+    <div class="col-lg-6 mb-4" id="demo-area-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-chart-area"></i></div>
+                    Area Chart (Filled)
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="areaChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stacked Bar Chart -->
+    <div class="col-lg-6 mb-4" id="demo-stacked-bar-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-bars-progress"></i></div>
+                    Stacked Bar Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="stackedBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-lg-6 mb-4" id="demo-pie-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    Pie Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doughnut Chart -->
+    <div class="col-lg-6 mb-4" id="demo-doughnut-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-circle-notch"></i></div>
+                    Doughnut Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="doughnutChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Radar Chart -->
+    <div class="col-lg-6 mb-4" id="demo-radar-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-spider"></i></div>
+                    Radar Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Polar Area Chart -->
+    <div class="col-lg-6 mb-4" id="demo-polar-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    Polar Area Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="polarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bubble Chart -->
+    <div class="col-lg-6 mb-4" id="demo-bubble-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-circle-dot"></i></div>
+                    Bubble Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="bubbleChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scatter Chart -->
+    <div class="col-lg-6 mb-4" id="demo-scatter-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-braille"></i></div>
+                    Scatter Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="scatterChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mixed Chart -->
+    <div class="col-lg-6 mb-4" id="demo-mixed-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-chart-column"></i></div>
+                    Mixed Chart (Bar & Line)
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="mixedChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Horizontal Bar Chart -->
+    <div class="col-lg-6 mb-4" id="demo-horizontal-bar-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-align-left"></i></div>
+                    Horizontal Bar Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="horizontalBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step Line Chart -->
+    <div class="col-lg-6 mb-4" id="demo-stepline-chart">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-stairs"></i></div>
+                    Step Line Chart
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="stepLineChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Curved Area Chart -->
+    <div class="col-lg-6 mb-4" id="demo-curved-area">
+        <div class="custom-chart-container">
+            <div class="chart-header-flex">
+                <div class="chart-header-title">
+                    <div class="chart-icon"><i class="fa-solid fa-waves"></i></div>
+                    Curved Gradient Area
+                </div>
+                <button class="btn btn-outline-primary btn-sm btn-copyHtml"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="curvedAreaChart"></canvas>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Simple Toast Notification HTML for HTML Copied event -->
+<div id="copyToast" style="display:none; position: fixed; bottom: 30px; right: 30px; background: var(--green-accent); color: white; padding: 12px 24px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 9999; font-weight: 500;">
+    <i class="fa-solid fa-circle-check me-2"></i> HTML Component Copied!
+</div>
+
+@section Scripts {
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // STEP 1: CACHE RAW HTML FOR COPY BUTTONS
+            // Done before Chart.js changes the DOM
+            $('.custom-chart-container').each(function() {
+                var btn = $(this).find('.btn-copyHtml');
+                if (btn.length) {
+                    var containerClone = $(this).clone();
+                    // Reset canvas tag purely so the copied HTML is clean (no auto-injected widths/heights)
+                    var canvasId = containerClone.find('canvas').attr('id');
+                    if (canvasId) {
+                        containerClone.find('.chart-canvas-wrapper').html('<canvas id="'+canvasId+'"></canvas>');
+                    }
+                    
+                    var rawHtml = containerClone.prop('outerHTML');
+                    btn.data('raw-html', rawHtml);
+                }
+            });
+
+            // Copy HTML functionality
+            $('.btn-copyHtml').on('click', function() {
+                var rawHtml = $(this).data('raw-html');
+                
+                var $temp = $("<textarea>");
+                $("body").append($temp);
+                $temp.val(rawHtml).select();
+                document.execCommand("copy");
+                $temp.remove();
+
+                const toast = $('#copyToast');
+                toast.fadeIn(300);
+                setTimeout(function(){ toast.fadeOut(500); }, 3000);
+            });
+
+            // Set global font family
+            Chart.defaults.font.family = "var(--font-family-primary)";
+            Chart.defaults.color = "#9ca3af";
+
+            // Colors mapping from theme
+            const primaryColor = '#3b9d82';
+            const primaryLight = '#e8f5f1';
+            const secondaryColor = '#f5c342';
+            const secondaryLight = 'rgba(245, 195, 66, 0.2)';
+            const infoColor = '#0dcaf0';
+            const dangerColor = '#dc3545';
+            const darkColor = '#0B2B26';
+            
+            // Common Options Configuration
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        titleColor: '#1a1a1a',
+                        bodyColor: '#6b7280',
+                        borderColor: '#e5e7eb',
+                        borderWidth: 1,
+                        padding: 12,
+                        boxPadding: 6
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false, drawBorder: false }
+                    },
+                    y: {
+                        grid: { color: '#f3f4f6', drawBorder: false }
+                    }
+                }
+            };
+
+            // 1. Line Chart
+            new Chart(document.getElementById('lineChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        label: 'Organic Traffic',
+                        data: [65, 59, 80, 81, 56, 55, 70],
+                        borderColor: primaryColor,
+                        backgroundColor: primaryColor,
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: primaryColor,
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    }, {
+                        label: 'Paid Social',
+                        data: [28, 48, 40, 19, 86, 27, 90],
+                        borderColor: secondaryColor,
+                        backgroundColor: secondaryColor,
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: secondaryColor,
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 2. Bar Chart
+            new Chart(document.getElementById('barChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'App Usage (Hrs)',
+                        data: [120, 190, 130, 250, 220, 130],
+                        backgroundColor: primaryColor,
+                        borderRadius: 8,
+                        barPercentage: 0.6
+                    }, {
+                        label: 'Web Usage (Hrs)',
+                        data: [80, 150, 150, 140, 160, 220],
+                        backgroundColor: secondaryColor,
+                        borderRadius: 8,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 3. Area Chart
+            new Chart(document.getElementById('areaChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Active Users',
+                        data: [1000, 2500, 2000, 4500, 3000, 5000],
+                        borderColor: primaryColor,
+                        backgroundColor: 'rgba(59, 157, 130, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 2,
+                        pointRadius: 0 // Hide points for clean area
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 4. Stacked Bar Chart
+            const stackedOptions = Object.assign({}, commonOptions);
+            stackedOptions.scales = {
+                x: { stacked: true, grid: { display: false } },
+                y: { stacked: true, grid: { color: '#f3f4f6' } }
+            };
+            
+            new Chart(document.getElementById('stackedBarChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [{
+                        label: 'Electronics',
+                        data: [300, 400, 500, 450],
+                        backgroundColor: primaryColor,
+                        borderRadius: {topLeft: 0, topRight: 0, bottomLeft: 8, bottomRight: 8}
+                    }, {
+                        label: 'Fashion',
+                        data: [200, 300, 400, 350],
+                        backgroundColor: secondaryColor,
+                        borderRadius: 0
+                    }, {
+                        label: 'Groceries',
+                        data: [100, 150, 200, 250],
+                        backgroundColor: darkColor,
+                        borderRadius: {topLeft: 8, topRight: 8, bottomLeft: 0, bottomRight: 0}
+                    }]
+                },
+                options: stackedOptions
+            });
+
+            // Prepare common radial options (No X/Y scales)
+            const radialOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } }
+                }
+            };
+
+            // 5. Pie Chart
+            new Chart(document.getElementById('pieChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Direct', 'Social', 'Search', 'Referral'],
+                    datasets: [{
+                        data: [35, 25, 20, 20],
+                        backgroundColor: [primaryColor, secondaryColor, infoColor, darkColor],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: radialOptions
+            });
+
+            // 6. Doughnut Chart
+            new Chart(document.getElementById('doughnutChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'Pending', 'Canceled'],
+                    datasets: [{
+                        data: [70, 20, 10],
+                        backgroundColor: [primaryColor, secondaryColor, dangerColor],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: { ...radialOptions, cutout: '75%' }
+            });
+
+            // 7. Radar Chart
+            new Chart(document.getElementById('radarChart'), {
+                type: 'radar',
+                data: {
+                    labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling'],
+                    datasets: [{
+                        label: 'Current Week',
+                        data: [65, 59, 90, 81, 56, 55],
+                        fill: true,
+                        backgroundColor: 'rgba(59, 157, 130, 0.2)',
+                        borderColor: primaryColor,
+                        pointBackgroundColor: primaryColor,
+                    }, {
+                        label: 'Last Week',
+                        data: [28, 48, 40, 19, 96, 27],
+                        fill: true,
+                        backgroundColor: 'rgba(245, 195, 66, 0.2)',
+                        borderColor: secondaryColor,
+                        pointBackgroundColor: secondaryColor,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: { angleLines: { color: 'rgba(0, 0, 0, 0.05)' }, grid: { color: 'rgba(0, 0, 0, 0.05)' } }
+                    }
+                }
+            });
+
+            // 8. Polar Area Chart
+            new Chart(document.getElementById('polarChart'), {
+                type: 'polarArea',
+                data: {
+                    labels: ['America', 'Europe', 'Asia', 'Africa'],
+                    datasets: [{
+                        data: [11, 16, 7, 14],
+                        backgroundColor: [
+                            'rgba(59, 157, 130, 0.7)',
+                            'rgba(245, 195, 66, 0.7)',
+                            'rgba(11, 43, 38, 0.7)',
+                            'rgba(13, 202, 240, 0.7)'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: radialOptions
+            });
+
+            // 9. Bubble Chart
+            new Chart(document.getElementById('bubbleChart'), {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Dataset 1',
+                        data: [
+                            {x: 20, y: 30, r: 15}, {x: 40, y: 10, r: 10},
+                            {x: 25, y: 20, r: 8}, {x: 35, y: 15, r: 20}
+                        ],
+                        backgroundColor: 'rgba(59, 157, 130, 0.6)',
+                        borderColor: primaryColor,
+                        borderWidth: 2
+                    },{
+                        label: 'Dataset 2',
+                        data: [
+                            {x: 10, y: 25, r: 12}, {x: 30, y: 35, r: 18},
+                            {x: 15, y: 15, r: 10}, {x: 45, y: 25, r: 15}
+                        ],
+                        backgroundColor: 'rgba(245, 195, 66, 0.6)',
+                        borderColor: secondaryColor,
+                        borderWidth: 2
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 10. Scatter Chart
+            new Chart(document.getElementById('scatterChart'), {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Test Group A',
+                        data: [{x: -10, y: 0}, {x: 0, y: 10}, {x: 10, y: 5}, {x: 0.5, y: 5.5}],
+                        backgroundColor: primaryColor,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }, {
+                        label: 'Test Group B',
+                        data: [{x: -5, y: -5}, {x: 5, y: -10}, {x: 8, y: 0}, {x: -8, y: 8}],
+                        backgroundColor: secondaryColor,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { type: 'linear', position: 'bottom', grid: { color: '#f3f4f6' } },
+                        y: { grid: { color: '#f3f4f6' } }
+                    }
+                }
+            });
+
+            // 11. Mixed Chart (Bar + Line)
+            new Chart(document.getElementById('mixedChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Sales (Target)',
+                        data: [500, 600, 700, 800, 700, 900],
+                        type: 'line',
+                        borderColor: dangerColor,
+                        backgroundColor: dangerColor,
+                        borderWidth: 3,
+                        tension: 0.4
+                    }, {
+                        label: 'Gross Profit',
+                        data: [400, 500, 600, 700, 550, 800],
+                        backgroundColor: primaryColor,
+                        borderRadius: 6
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 12. Horizontal Bar Chart
+            new Chart(document.getElementById('horizontalBarChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Mobile', 'Desktop', 'Tablet'],
+                    datasets: [{
+                        label: 'Traffic Source',
+                        data: [65, 30, 5],
+                        backgroundColor: [primaryColor, secondaryColor, infoColor],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // This makes it horizontal!
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#f3f4f6' } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // 13. Step Line Chart
+            new Chart(document.getElementById('stepLineChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+                    datasets: [{
+                        label: 'Subscription Tier',
+                        data: [1, 1, 2, 3, 3],
+                        borderColor: infoColor,
+                        backgroundColor: 'transparent',
+                        stepped: true, // This enables step-line!
+                        borderWidth: 3
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 14. Curved Gradient Area
+            const ctxArea = document.getElementById('curvedAreaChart').getContext('2d');
+            const gradientBg = ctxArea.createLinearGradient(0, 0, 0, 300);
+            gradientBg.addColorStop(0, 'rgba(245, 195, 66, 0.5)'); // Secondary Color Light
+            gradientBg.addColorStop(1, 'rgba(245, 195, 66, 0)');
+
+            new Chart(ctxArea, {
+                type: 'line',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [35000, 42000, 58000, 65000],
+                        borderColor: secondaryColor,
+                        backgroundColor: gradientBg, // Smooth gradient
+                        fill: true,
+                        tension: 0.5, // Curvy lines
+                        pointRadius: 5,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: secondaryColor,
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: commonOptions
+            });
+
+        });
+    </script>
+}

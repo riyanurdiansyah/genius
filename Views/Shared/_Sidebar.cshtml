@@ -1,12 +1,17 @@
 <!-- Views/Shared/_Sidebar.cshtml -->
-<div class="sidebar-wrapper">
+<div class="sidebar-wrapper" id="mainSidebar">
+    <script>
+        if (localStorage.getItem('sidebar-collapsed') === 'true' && window.innerWidth > 991) {
+            document.getElementById('mainSidebar').classList.add('collapsed');
+        }
+    </script>
     <div class="logo-area">
-        <i class="fa-brands fa-buffer logo-icon"></i>
+        <h2 class="logo-text">Genius</h2>
     </div>
 
     <aside class="sidebar">
         <ul class="sidebar-menu">
-        <li class="active">
+        <li>
             <a href="/Home/Index"><i class="nav-icon fas fa-home"></i> Dashboard</a>
         </li>
         <li>
@@ -81,8 +86,9 @@
         <li>
             <a href="#" class="sidebar-toggle-menu"><i class="nav-icon fas fa-chart-pie"></i> Charts <i class="fas fa-chevron-right toggle-icon"></i></a>
             <ul class="sidebar-submenu">
-                <li><a href="/Charts/ApexCharts">Apex Charts</a></li>
-                <li><a href="/Charts/ChartJS">ChartJS</a></li>
+                <li><a href="/Charts/ApexCharts">ApexChart</a></li>
+                <li><a href="/Charts/ChartJS">ChartJs</a></li>
+                <li><a href="/Charts/GanttChart">GanttChart</a></li>
             </ul>
         </li>
     </ul>
