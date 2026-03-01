@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Genius/css/components.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-EsQFf6YWo\u002BNKHbzqvVmaHrDiF3Mk5\u002BcoDsnUPqZEyLs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"11368"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022EsQFf6YWo\u002BNKHbzqvVmaHrDiF3Mk5\u002BcoDsnUPqZEyLs=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Feb 2026 20:03:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Genius/css/components.e9wnhkk0f8.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"e9wnhkk0f8"},{"Name":"integrity","Value":"sha256-EsQFf6YWo\u002BNKHbzqvVmaHrDiF3Mk5\u002BcoDsnUPqZEyLs="},{"Name":"label","Value":"_content/Genius/css/components.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"11368"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022EsQFf6YWo\u002BNKHbzqvVmaHrDiF3Mk5\u002BcoDsnUPqZEyLs=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Feb 2026 20:03:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Genius/css/theme.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\theme.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6596"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Feb 2026 19:44:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Genius/css/theme.nbcb1hnnpf.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\theme.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nbcb1hnnpf"},{"Name":"integrity","Value":"sha256-I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg="},{"Name":"label","Value":"_content/Genius/css/theme.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6596"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Feb 2026 19:44:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

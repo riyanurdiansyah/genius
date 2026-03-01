@@ -1,0 +1,95 @@
+@{
+    ViewData["Title"] = "Modals";
+}
+
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header">Modal Examples</div>
+            <div class="card-body">
+                <p class="text-muted mb-4">Use modals to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+                
+                <!-- Buttons to trigger modals -->
+                <button type="button" class="btn btn-primary" onclick="openModal('standardModal')">
+                    Launch Standard Modal
+                </button>
+                
+                <button type="button" class="btn btn-secondary ms-2" onclick="openModal('formModal')">
+                    Launch Form Modal
+                </button>
+                
+                <button type="button" class="btn btn-danger ms-2" onclick="openModal('alertModal')">
+                    Launch Alert Modal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure 1: Standard -->
+<div class="modal" id="standardModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Standard Modal</h5>
+                <button type="button" class="btn-close" onclick="closeModal('standardModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Woohoo, you're reading this text in a modal! You can add paragraphs, tables, or generic UI elements inside the modal body securely.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('standardModal')">Close</button>
+                <button type="button" class="btn btn-primary" onclick="closeModal('standardModal')">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure 2: Form -->
+<div class="modal" id="formModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quick Settings</h5>
+                <button type="button" class="btn-close" onclick="closeModal('formModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group mb-3">
+                        <label class="form-label">System Name</label>
+                        <input type="text" class="form-control" value="Genius Admin">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Admin Email</label>
+                        <input type="email" class="form-control" value="admin@genius.com">
+                    </div>
+                    <div class="form-check form-switch mt-3">
+                        <input class="form-check-input" type="checkbox" id="maintenanceMode">
+                        <label class="form-check-label" for="maintenanceMode">Maintenance Mode</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('formModal')">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="closeModal('formModal')">Apply Settings</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure 3: Alert -->
+<div class="modal" id="alertModal">
+    <div class="modal-dialog" style="max-width: 400px;">
+        <div class="modal-content">
+            <div class="modal-body text-center p-5">
+                <i class="fas fa-exclamation-circle fa-4x text-danger mb-4"></i>
+                <h4 class="mb-3">Are you sure?</h4>
+                <p class="text-muted mb-4">Do you really want to delete these records? This process cannot be undone.</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('alertModal')">Cancel</button>
+                    <button type="button" class="btn btn-danger" onclick="closeModal('alertModal')">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Notifications";
+}
+
+<div class="row">
+    <!-- Alerts -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">Alerts</div>
+            <div class="card-body">
+                <div class="alert alert-primary" role="alert">
+                    A simple primary alert—check it out!
+                </div>
+                <div class="alert alert-secondary" role="alert" style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;">
+                    A simple secondary alert—check it out!
+                </div>
+                <div class="alert alert-success" role="alert">
+                    A simple success alert—check it out!
+                </div>
+                <div class="alert alert-danger" role="alert">
+                    A simple danger alert—check it out!
+                </div>
+                <div class="alert alert-warning" role="alert" style="background-color: #fff3cd; color: #664d03; border-color: #ffecb5;">
+                    A simple warning alert—check it out!
+                </div>
+                <div class="alert alert-info" role="alert" style="background-color: #cff4fc; color: #055160; border-color: #b6effb;">
+                    A simple info alert—check it out!
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dismissible Alerts & Badges -->
+    <div class="col-md-6 mb-4">
+        <div class="card mb-4">
+            <div class="card-header">Dismissible Alerts</div>
+            <div class="card-body">
+                <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert" style="background-color: #fff3cd; color: #664d03; border-color: #ffecb5;">
+                    <div>
+                        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    </div>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Badges</div>
+            <div class="card-body">
+                <p class="text-muted">Badges scale to match the size of the immediate parent element by using relative font sizing and em units.</p>
+                <h1>Example heading <span class="badge bg-secondary">New</span></h1>
+                <h2>Example heading <span class="badge bg-secondary">New</span></h2>
+                <h3>Example heading <span class="badge bg-secondary">New</span></h3>
+                
+                <hr class="my-3">
+                
+                <h6 class="mb-3">Contextual Variations</h6>
+                <span class="badge bg-primary">Primary</span>
+                <span class="badge bg-secondary">Secondary</span>
+                <span class="badge bg-success">Success</span>
+                <span class="badge bg-danger">Danger</span>
+                <span class="badge bg-warning text-dark">Warning</span>
+                <span class="badge bg-info text-dark">Info</span>
+                <span class="badge bg-dark">Dark</span>
+            </div>
+        </div>
+    </div>
+</div>

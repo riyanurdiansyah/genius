@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "PackagePath": "staticwebassets/css/components.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
+      "PackagePath": "staticwebassets/css/theme.css"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Genius.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Genius.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.Genius.props",
+      "PackagePath": "build\\Genius.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Genius.props",
+      "PackagePath": "buildMultiTargeting\\Genius.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Genius.props",
+      "PackagePath": "buildTransitive\\Genius.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

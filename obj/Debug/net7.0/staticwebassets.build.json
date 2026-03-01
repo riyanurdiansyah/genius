@@ -1,0 +1,228 @@
+{
+  "Version": 1,
+  "Hash": "eNMIO7UFq62Ih4AXOm/TPe/tmEFKSLSyhRHP2YZc+Sk=",
+  "Source": "Genius",
+  "BasePath": "_content/Genius",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Genius/wwwroot",
+      "Source": "Genius",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Genius",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "SourceId": "Genius",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Genius",
+      "RelativePath": "css/components#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e9wnhkk0f8",
+      "Integrity": "EsQFf6YWo+NKHbzqvVmaHrDiF3Mk5+coDsnUPqZEyLs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/components.css"
+    },
+    {
+      "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
+      "SourceId": "Genius",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Genius",
+      "RelativePath": "css/theme#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "nbcb1hnnpf",
+      "Integrity": "I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/theme.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/components.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11368"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EsQFf6YWo+NKHbzqvVmaHrDiF3Mk5+coDsnUPqZEyLs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Feb 2026 20:03:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-EsQFf6YWo+NKHbzqvVmaHrDiF3Mk5+coDsnUPqZEyLs="
+        }
+      ]
+    },
+    {
+      "Route": "css/components.e9wnhkk0f8.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11368"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EsQFf6YWo+NKHbzqvVmaHrDiF3Mk5+coDsnUPqZEyLs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Feb 2026 20:03:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e9wnhkk0f8"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-EsQFf6YWo+NKHbzqvVmaHrDiF3Mk5+coDsnUPqZEyLs="
+        }
+      ]
+    },
+    {
+      "Route": "css/theme.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6596"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Feb 2026 19:44:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg="
+        }
+      ]
+    },
+    {
+      "Route": "css/theme.nbcb1hnnpf.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6596"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Feb 2026 19:44:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nbcb1hnnpf"
+        },
+        {
+          "Name": "label",
+          "Value": "css/theme.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-I8gdSf7gqfJFnjHnM1pRVjA79927JZALdjvyZDIu6Vg="
+        }
+      ]
+    }
+  ]
+}

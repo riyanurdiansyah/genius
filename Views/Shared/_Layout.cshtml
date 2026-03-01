@@ -1,0 +1,87 @@
+<!-- Views/Shared/_Layout.cshtml -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Genius Admin Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    
+    <!-- Core Theme and Component Styles -->
+    <link rel="stylesheet" href="~/css/theme.css" />
+    <link rel="stylesheet" href="~/css/components.css" />
+    
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <div class="wrapper">
+        <div class="dashboard-container">
+            <!-- Sidebar Navigation -->
+            @Html.Partial("_Sidebar")
+            
+            <div class="main-content">
+                <!-- Top Header -->
+                @Html.Partial("_Header")
+                
+                <!-- Page Content -->
+                <main class="pb-3" style="flex:1;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="mb-0 text-dark">@ViewData["Title"]</h2>
+                        @await RenderSectionAsync("PageActions", required: false)
+                    </div>
+                    
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+        // Sidebar Toggle Script
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
+            var wrapper = document.querySelector('.sidebar-wrapper');
+            wrapper.classList.toggle('collapsed');
+        });
+
+        // Submenu Toggle Script
+        document.querySelectorAll('.sidebar-toggle-menu').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const parentLi = this.parentElement;
+                const submenu = parentLi.querySelector('.sidebar-submenu');
+                
+                if (parentLi.classList.contains('open')) {
+                    $(submenu).slideUp(200, function() {
+                        parentLi.classList.remove('open');
+                    });
+                } else {
+                    parentLi.classList.add('open');
+                    $(submenu).slideDown(200);
+                }
+            });
+        });
+        
+        // Modals Script
+        function openModal(id) {
+            document.getElementById(id).classList.add('show');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,148 @@
+@{
+    ViewData["Title"] = "Forms & Inputs";
+}
+
+<div class="row">
+    <!-- Basic Forms -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">Basic Form</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Validation States -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">Validation States</div>
+            <div class="card-body">
+                <form class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="validationCustom01">First name</label>
+                        <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="validationCustomUsername">Username</label>
+                        <input type="text" class="form-control is-invalid" id="validationCustomUsername" required>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3" type="submit">Submit form</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Input Types -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header">Different Input Types</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Search Input</label>
+                            <input type="search" class="form-control" placeholder="Search...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Select Option</label>
+                            <select class="form-control">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Textarea</label>
+                            <textarea class="form-control" rows="3" placeholder="Type your message"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Date Picker</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Color Picker</label>
+                            <input type="color" class="form-control form-control-color" value="#051F20">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">File Upload</label>
+                            <input type="file" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Switches and Checks -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">Checkboxes & Radios</div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6 class="mb-2">Inline Checkboxes</h6>
+                    <div class="form-check form-check-inline d-inline-block me-3">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline d-inline-block me-3">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
+                        <label class="form-check-label" for="inlineCheckbox2">2 (Checked)</label>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <h6 class="mb-2">Radios</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">Default radio</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">Second default radio</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">Switches</div>
+            <div class="card-body">
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                </div>
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
+                    <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

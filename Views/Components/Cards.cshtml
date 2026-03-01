@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Cards";
+}
+
+<div class="row">
+    <!-- Basic Card -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                Basic Card
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    
+    <!-- Image Card -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600&h=400" class="card-img-top" alt="Card Image" style="border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); height: 200px; object-fit: cover;">
+            <div class="card-body">
+                <h5 class="card-title">Image Card</h5>
+                <p class="card-text">This card features an image at the top with supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+                <button class="btn btn-primary btn-sm">Read More</button>
+                <span class="text-muted small align-self-center"><i class="fas fa-eye text-primary"></i> 2.4k views</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stat Card -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 bg-primary text-white">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <i class="fas fa-trophy fa-3x mb-3 text-warning"></i>
+                <h3 class="mb-1">Achievement Unlocked!</h3>
+                <p class="mb-0">You have completed all your tasks for this week.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" style="border-bottom: 0; margin-bottom: -1.25rem;">
+                    <li class="nav-item d-inline-block me-2">
+                        <a class="nav-link active rounded-top border px-3 py-2" style="background: var(--bg-card); color: var(--primary); border-bottom-color: transparent!important;" href="#">Active Tab</a>
+                    </li>
+                    <li class="nav-item d-inline-block">
+                        <a class="nav-link px-3 py-2 text-muted" href="#">Link</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body mt-2">
+                <h5 class="card-title">Navigable Card Content</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content. This demonstrates a tabbed interface within a card structure.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-header">
+                Featured Content
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer text-muted">
+                Last updated 3 mins ago
+            </div>
+        </div>
+    </div>
+</div>
