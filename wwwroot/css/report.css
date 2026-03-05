@@ -1,0 +1,637 @@
+/* ═══════════════════════════════════════════════════════════
+   Report Generator — Varied Corporate Report Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.report-page {
+    padding: 24px 0;
+}
+
+/* ── Toolbar ─────────────────────────── */
+.report-toolbar {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+}
+
+.report-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.report-toolbar-left h5 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.report-toolbar .btn {
+    font-size: 13px;
+    padding: 7px 18px;
+}
+
+.design-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.design-pill {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #64748b;
+    transition: all .2s;
+    user-select: none;
+}
+
+.design-pill:hover {
+    border-color: #3b9d82;
+    color: #3b9d82;
+}
+
+.design-pill.active {
+    background: #3b9d82;
+    color: #fff;
+    border-color: #3b9d82;
+}
+
+/* ── Preview ─────────────────────────── */
+.report-preview-area {
+    background: #cbd5e1;
+    border-radius: 10px;
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ── Paper ────────────────────────────── */
+.report-paper {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, .15);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    color: #1e293b;
+    line-height: 1.5;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Common table & element styles shared across designs */
+.rpt-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin: 8px 0 4px;
+}
+
+.rpt-table th {
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+}
+
+.rpt-table td {
+    padding: 7px 12px;
+}
+
+.rpt-table td.num,
+.rpt-table th.num {
+    text-align: right;
+}
+
+.rpt-summary-row {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0 20px;
+}
+
+.rpt-summary-card {
+    flex: 1;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+.rpt-summary-card .sc-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.rpt-summary-card .sc-value {
+    font-size: 18px;
+    font-weight: 800;
+    margin-top: 2px;
+}
+
+.rpt-note {
+    font-size: 10px;
+    color: #94a3b8;
+    font-style: italic;
+    margin-top: 6px;
+}
+
+/* ════════════════════════════════════════
+   DESIGN 1 — Standard Corporate (Left aligned)
+   ════════════════════════════════════════ */
+.design-standard .rpt-header {
+    padding: 32px 48px 24px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid #0f172a;
+}
+
+.design-standard .rpt-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.design-standard .rpt-company-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.design-standard .rpt-company-sub {
+    font-size: 10px;
+    color: #64748b;
+    letter-spacing: .5px;
+}
+
+.design-standard .rpt-header-right {
+    text-align: right;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.design-standard .rpt-title-bar {
+    padding: 20px 48px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.design-standard .rpt-title-bar h1 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 4px;
+}
+
+.design-standard .rpt-title-bar .rpt-subtitle {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.design-standard .rpt-body {
+    padding: 28px 48px 20px;
+}
+
+.design-standard .rpt-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #0f172a;
+    text-transform: uppercase;
+}
+
+.design-standard .rpt-table th {
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+}
+
+.design-standard .rpt-table td {
+    border: 1px solid #e2e8f0;
+}
+
+.design-standard .rpt-summary-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
+
+.design-standard .rpt-summary-card .sc-label {
+    color: #94a3b8;
+}
+
+.design-standard .rpt-summary-card .sc-value {
+    color: #0f172a;
+}
+
+/* ════════════════════════════════════════
+   DESIGN 2 — Centered Formal (Logo & Title Centered)
+   ════════════════════════════════════════ */
+.design-centered {
+    padding: 36px 48px;
+    border: 8px solid double #e2e8f0;
+}
+
+.design-centered .rpt-header-centered {
+    text-align: center;
+    border-bottom: 2px solid #cbd5e1;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.design-centered .rpt-logo-icon {
+    width: 60px;
+    height: 60px;
+    background: #064e3b;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 900;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+
+.design-centered .rpt-company-name {
+    font-size: 24px;
+    font-weight: 900;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.design-centered .rpt-address {
+    font-size: 11px;
+    color: #475569;
+    margin-top: 6px;
+}
+
+.design-centered .rpt-report-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 24px;
+    text-decoration: underline;
+}
+
+.design-centered .rpt-report-meta {
+    font-size: 12px;
+    color: #0f172a;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.design-centered .rpt-section {
+    margin-bottom: 24px;
+}
+
+.design-centered .rpt-section-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 16px;
+    background: #f1f5f9;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+.design-centered .rpt-table th {
+    border-top: 2px solid #0f172a;
+    border-bottom: 2px solid #0f172a;
+    color: #0f172a;
+}
+
+.design-centered .rpt-table td {
+    border-bottom: 1px dashed #cbd5e1;
+}
+
+.design-centered .rpt-summary-card {
+    border: 2px solid #0f172a;
+}
+
+.design-centered .rpt-summary-card .sc-label {
+    color: #475569;
+    font-weight: 700;
+}
+
+.design-centered .rpt-summary-card .sc-value {
+    color: #064e3b;
+}
+
+/* ════════════════════════════════════════
+   DESIGN 3 — Left Sidebar / Band Accent
+   ════════════════════════════════════════ */
+.design-sidebar {
+    display: flex;
+    flex-direction: row;
+}
+
+.design-sidebar .rpt-sidebar-band {
+    width: 220px;
+    background: linear-gradient(180deg, #1e3a8a, #1e40af);
+    padding: 40px 24px;
+    color: white;
+    border-right: 4px solid #3b82f6;
+    display: flex;
+    flex-direction: column;
+}
+
+.design-sidebar .rpt-main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.design-sidebar .rpt-logo-text {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+}
+
+.design-sidebar .rpt-meta-group {
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    padding-bottom: 16px;
+}
+
+.design-sidebar .rpt-meta-label {
+    font-size: 10px;
+    color: #bfdbfe;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.design-sidebar .rpt-meta-value {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.design-sidebar .rpt-main-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 32px;
+    line-height: 1.2;
+}
+
+.design-sidebar .rpt-section {
+    margin-bottom: 28px;
+}
+
+.design-sidebar .rpt-section-title {
+    color: #1e40af;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.design-sidebar .rpt-section-title::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #3b82f6;
+    border-radius: 50%;
+}
+
+.design-sidebar .rpt-table th {
+    background: #eff6ff;
+    color: #1e3a8a;
+    border-bottom: 2px solid #bfdbfe;
+}
+
+.design-sidebar .rpt-table td {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.design-sidebar .rpt-summary-card {
+    background: #eff6ff;
+    border: none;
+    border-left: 4px solid #3b82f6;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.design-sidebar .rpt-summary-card .sc-label {
+    color: #1e40af;
+    font-weight: 700;
+}
+
+.design-sidebar .rpt-summary-card .sc-value {
+    color: #1e3a8a;
+}
+
+/* ════════════════════════════════════════
+   DESIGN 4 — Split Top (Modern Layout)
+   ════════════════════════════════════════ */
+.design-split .rpt-top-split {
+    display: flex;
+    height: 160px;
+}
+
+.design-split .rpt-top-left {
+    background: #0f172a;
+    color: white;
+    width: 40%;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.design-split .rpt-top-right {
+    background: #f8fafc;
+    width: 60%;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 4px solid #0f172a;
+}
+
+.design-split .rpt-logo-main {
+    font-size: 28px;
+    font-weight: 900;
+    color: #3b9d82;
+}
+
+.design-split .rpt-address-light {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 12px;
+}
+
+.design-split .rpt-title-large {
+    font-size: 22px;
+    font-weight: 900;
+    color: #0f172a;
+    text-transform: uppercase;
+}
+
+.design-split .rpt-title-sub {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.design-split .rpt-body {
+    padding: 32px 40px;
+}
+
+.design-split .rpt-section-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.design-split .rpt-table th {
+    background: #0f172a;
+    color: white;
+}
+
+.design-split .rpt-table td {
+    border: 1px solid #e2e8f0;
+}
+
+.design-split .rpt-summary-row {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.design-split .rpt-summary-card {
+    border: none;
+    border-right: 1px dashed #cbd5e1;
+}
+
+.design-split .rpt-summary-card:last-child {
+    border-right: none;
+}
+
+.design-split .rpt-summary-card .sc-label {
+    color: #64748b;
+}
+
+.design-split .rpt-summary-card .sc-value {
+    color: #0f172a;
+}
+
+/* ════════════════════════════════════════
+   Signatures
+   ════════════════════════════════════════ */
+.rpt-signatures-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+}
+
+.rpt-sig-col {
+    text-align: center;
+    width: 150px;
+}
+
+.rpt-sig-line {
+    border-top: 1px solid #0f172a;
+    margin-top: 60px;
+    margin-bottom: 4px;
+}
+
+.rpt-sig-name {
+    font-weight: 800;
+    font-size: 11px;
+    color: #0f172a;
+    text-transform: uppercase;
+}
+
+.rpt-sig-role {
+    font-size: 9px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* ════════════════════════════════════════
+   Print — ONLY report paper, nothing else
+   ════════════════════════════════════════ */
+@@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Hide everything related to app layout */
+    header,
+    nav,
+    .sidebar-wrapper,
+    .page-header-bar,
+    .report-toolbar,
+    .topbar {
+        display: none !important;
+    }
+
+    /* Reset all container constraints to let the paper fill the page */
+    body,
+    html,
+    .wrapper,
+    .dashboard-container,
+    .main-content,
+    main,
+    .pb-3,
+    .report-page {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        display: block !important;
+        background: white !important;
+    }
+
+    .report-preview-area {
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    .report-paper {
+        margin: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        page-break-inside: avoid;
+        border: none !important;
+    }
+
+    /* Force break page on long tables if needed */
+    .rpt-section {
+        page-break-inside: avoid;
+    }
+
+    /* Elegant border fixes for PDF printers */
+    .design-centered {
+        border: none !important;
+    }
+}

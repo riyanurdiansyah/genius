@@ -4,6 +4,11 @@ namespace Kuda.Controllers;
 
 public class HomeController : Controller
 {
+    public IActionResult Landing()
+    {
+        return View();
+    }
+
     public IActionResult Index()
     {
         return View();

@@ -2,11 +2,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kuda.Controllers
 {
-    public class AuthController : Controller
-    {
-        public IActionResult LoginV1()
+        [Route("/Login")]
+        public class AuthController : Controller
         {
-            return View();
+            [HttpGet("")]
+            public IActionResult Login()
+            {
+                return View("LoginV1");
+            }
+            
+            [HttpGet("/Auth/LoginV1")]
+            public IActionResult LoginV1()
+            {
+                return View();
+            }
         }
-    }
 }

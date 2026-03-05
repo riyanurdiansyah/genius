@@ -5,8 +5,16 @@
       "PackagePath": "staticwebassets/css/components.css"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/report.css",
+      "PackagePath": "staticwebassets/css/report.css"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
       "PackagePath": "staticwebassets/css/theme.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/ui-builder.css",
+      "PackagePath": "staticwebassets/css/ui-builder.css"
     },
     {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Black.woff2",
@@ -281,8 +289,28 @@
       "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed[wght].woff2"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/image/kuda-icon.png",
+      "PackagePath": "staticwebassets/image/kuda-icon.png"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/image/kuda.png",
+      "PackagePath": "staticwebassets/image/kuda.png"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/image/kuda2.png",
+      "PackagePath": "staticwebassets/image/kuda2.png"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
       "PackagePath": "staticwebassets/js/app-system.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-erd.js",
+      "PackagePath": "staticwebassets/js/ui-builder-erd.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-fsd.js",
+      "PackagePath": "staticwebassets/js/ui-builder-fsd.js"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

@@ -1,5 +1,5 @@
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
 
 <style>
@@ -373,94 +373,91 @@
 
 
 <!-- THE LOGIN PAGE ITSELF -->
-<div class="lv1-page">
     <!-- Decorative blobs -->
-    <div class="lv1-blob lv1-blob-1"></div>
-    <div class="lv1-blob lv1-blob-2"></div>
-    <div class="lv1-blob lv1-blob-3"></div>
+<div class="lv1-blob lv1-blob-1"></div>
+<div class="lv1-blob lv1-blob-2"></div>
+<div class="lv1-blob lv1-blob-3"></div>
 
-    <div class="lv1-card">
+<div class="lv1-card">
 
-        <!-- Brand -->
-        <div class="lv1-brand">
-            <div class="lv1-logo">
-                <img src="/image/kuda-icon.png" alt="Kuda Logo">
-            </div>
-            <div class="lv1-brand-text">
-                <h5>Kuda Admin</h5>
-                <span>Premium Dashboard</span>
-            </div>
+    <!-- Brand -->
+    <div class="lv1-brand">
+        <div class="lv1-logo">
+            <img src="/image/kuda-icon.png" alt="Kuda Logo">
         </div>
-
-        <!-- Heading -->
-        <div class="lv1-heading">
-            <h2>Hello again! 👋</h2>
-            <p>Sign in to continue to your workspace</p>
+        <div class="lv1-brand-text">
+            <h5>Kuda Admin</h5>
+            <span>Premium Dashboard</span>
         </div>
-
-        <!-- Email -->
-        <div class="lv1-form-group">
-            <label for="lv1-email">Email Address</label>
-            <div class="lv1-input-wrap">
-                <i class="fas fa-envelope lv1-input-icon"></i>
-                <input type="email" id="lv1-email" class="lv1-input" placeholder="you@example.com" autocomplete="email">
-            </div>
-        </div>
-
-        <!-- Password -->
-        <div class="lv1-form-group">
-            <div class="lv1-forgot-row">
-                <label for="lv1-password">Password</label>
-                <a href="#" class="lv1-forgot-link">Forgot password?</a>
-            </div>
-            <div class="lv1-input-wrap">
-                <i class="fas fa-lock lv1-input-icon"></i>
-                <input type="password" id="lv1-password" class="lv1-input" placeholder="••••••••" autocomplete="current-password">
-                <button class="lv1-eye-btn" type="button" id="lv1-toggle-pw" tabindex="-1" title="Toggle password">
-                    <i class="fas fa-eye-slash" id="lv1-eye-icon"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Remember me -->
-        <div class="lv1-remember">
-            <input type="checkbox" id="lv1-remember" checked>
-            <label for="lv1-remember">Remember me on this device</label>
-        </div>
-
-        <!-- CAPTCHA -->
-        <div class="lv1-form-group" style="margin-bottom:8px;">
-            <label>Security Verification</label>
-            <div class="lv1-captcha-wrap">
-                <img id="lv1-captcha-img"
-                     src="/Captcha/Image"
-                     alt="CAPTCHA"
-                     class="lv1-captcha-img"
-                     title="Click to refresh"
-                     onclick="refreshCaptcha()">
-                <div class="lv1-input-wrap" style="flex:1;">
-                    <i class="fas fa-shield-alt lv1-input-icon"></i>
-                    <input type="text"
-                           id="lv1-captcha-input"
-                           class="lv1-input"
-                           placeholder="Enter code..."
-                           maxlength="6"
-                           autocomplete="off"
-                           style="text-transform:uppercase;letter-spacing:3px;font-weight:700;">
-                </div>
-                <button class="lv1-captcha-refresh" type="button" onclick="refreshCaptcha()" title="New code">
-                    <i class="fas fa-redo-alt" style="font-size:14px;"></i>
-                </button>
-            </div>
-        </div>
-        <div class="lv1-captcha-status" id="lv1-captcha-status"></div>
-
-        <!-- Submit -->
-        <button class="lv1-submit" type="button" id="lv1-submit-btn" onclick="submitLogin()">
-            <i class="fas fa-arrow-right me-2"></i> Sign In
-        </button>
-
     </div>
+
+    <!-- Heading -->
+    <div class="lv1-heading">
+        <h2>Hello again! 👋</h2>
+        <p>Sign in to continue to your workspace</p>
+    </div>
+
+    <!-- Email -->
+    <div class="lv1-form-group">
+        <label for="lv1-email">Email Address</label>
+        <div class="lv1-input-wrap">
+            <i class="fas fa-envelope lv1-input-icon"></i>
+            <input type="email" id="lv1-email" class="lv1-input" placeholder="you@example.com" autocomplete="email">
+        </div>
+    </div>
+
+    <!-- Password -->
+    <div class="lv1-form-group">
+        <div class="lv1-forgot-row">
+            <label for="lv1-password">Password</label>
+        </div>
+        <div class="lv1-input-wrap">
+            <i class="fas fa-lock lv1-input-icon"></i>
+            <input type="password" id="lv1-password" class="lv1-input" placeholder="••••••••" autocomplete="current-password">
+            <button class="lv1-eye-btn" type="button" id="lv1-toggle-pw" tabindex="-1" title="Toggle password">
+                <i class="fas fa-eye-slash" id="lv1-eye-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Remember me -->
+    <div class="lv1-remember">
+        <input type="checkbox" id="lv1-remember" checked>
+        <label for="lv1-remember">Remember me on this device</label>
+    </div>
+
+    <!-- CAPTCHA -->
+    <div class="lv1-form-group" style="margin-bottom:8px;">
+        <label>Security Verification</label>
+        <div class="lv1-captcha-wrap">
+            <img id="lv1-captcha-img"
+                    src="/Captcha/Image"
+                    alt="CAPTCHA"
+                    class="lv1-captcha-img"
+                    title="Click to refresh"
+                    onclick="refreshCaptcha()">
+            <div class="lv1-input-wrap" style="flex:1;">
+                <i class="fas fa-shield-alt lv1-input-icon"></i>
+                <input type="text"
+                        id="lv1-captcha-input"
+                        class="lv1-input"
+                        placeholder="Enter code..."
+                        maxlength="6"
+                        autocomplete="off"
+                        style="text-transform:uppercase;letter-spacing:3px;font-weight:700;">
+            </div>
+            <button class="lv1-captcha-refresh" type="button" onclick="refreshCaptcha()" title="New code">
+                <i class="fas fa-redo-alt" style="font-size:14px;"></i>
+            </button>
+        </div>
+    </div>
+    <div class="lv1-captcha-status" id="lv1-captcha-status"></div>
+
+    <!-- Submit -->
+    <button class="lv1-submit" type="button" id="lv1-submit-btn" onclick="submitLogin()">
+        <i class="fas fa-arrow-right me-2"></i> Sign In
+    </button>
+
 </div>
 
 <script>
@@ -527,27 +524,13 @@
     }
 
     async function submitLogin() {
-        // Validate CAPTCHA before allowing submit
-        const code = document.getElementById('lv1-captcha-input').value.trim();
-        if (!code) {
-            setStatus('Please complete the CAPTCHA first.', 'err');
-            document.getElementById('lv1-captcha-input').focus();
-            return;
-        }
-
-        const ok = await verifyCaptcha();
-        if (ok) {
-            // CAPTCHA passed — proceed with your actual login logic here
-            setStatus('✓ Verified! Signing in...', 'ok');
-            const btn = document.getElementById('lv1-submit-btn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Signing in...';
-            // TODO: replace with your real form submit / fetch
-            setTimeout(() => {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-arrow-right me-2"></i> Sign In';
-                refreshCaptcha();
-            }, 2000);
-        }
+        const btn = document.getElementById('lv1-submit-btn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Signing in...';
+        
+        // Langsung redirect ke Admin Dashboard tanpa perlu ketik Captcha lagi (sebagai purwarupa/demo template awal)
+        setTimeout(() => {
+            window.location.href = '/Home/Index';
+        }, 500);
     }
 </script>

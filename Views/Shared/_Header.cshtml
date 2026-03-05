@@ -1,21 +1,23 @@
 <!-- Views/Shared/_Header.cshtml -->
 <div class="topbar">
-    <div class="search-container" style="position: relative; flex: 1; max-width: 400px;">
-        <div class="search-bar" style="max-width: 100%;">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="globalSearchInput" placeholder="Search menu or type command...">
-        </div>
+    <div class="d-flex align-items-center" style="flex: 1; gap: 15px;">
+        <!-- Re-use the toggle identifier for the sidebar action -->
+        <div class="icon-btn" id="toggleSidebar" title="Toggle Sidebar"><i class="fa-solid fa-bars"></i></div>
         
-        <!-- Search Results Dropdown -->
-        <div class="search-dropdown" id="globalSearchDropdown" style="left: 0; width: 100%;">
-            <!-- Results injected here via JS -->
+        <div class="search-container" style="position: relative; flex: 1; max-width: 400px;">
+            <div class="search-bar" style="max-width: 100%;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="globalSearchInput" placeholder="Search menu or type command...">
+            </div>
+            
+            <!-- Search Results Dropdown -->
+            <div class="search-dropdown" id="globalSearchDropdown" style="left: 0; width: 100%;">
+                <!-- Results injected here via JS -->
+            </div>
         </div>
     </div>
 
     <div class="user-actions align-items-center">
-        <!-- Re-use the toggle identifier for the sidebar action -->
-        <div class="icon-btn" id="toggleSidebar" title="Toggle Sidebar"><i class="fa-solid fa-bars"></i></div>
-        
         <!-- Dark Mode Toggle -->
         <div class="icon-btn" id="toggleDarkMode" title="Toggle Dark Mode" data-i18n="dark_mode_title">
             <i class="fa-solid fa-moon" id="darkModeIcon"></i>

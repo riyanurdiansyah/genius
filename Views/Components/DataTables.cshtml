@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
     <!-- Select CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+    <!-- FixedColumns CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.3.0/css/fixedColumns.dataTables.min.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
     
     <style>
         .custom-dt-container {
@@ -579,6 +583,90 @@
         </div>
     </div>
 
+    <!-- 6. Fixed/Frozen Columns DataTable -->
+    <div class="col-12" id="demo-dt-fixed">
+        <div class="custom-dt-container">
+            <div class="dt-header-flex">
+                <div class="dt-header-title">
+                    <div class="dt-icon"><i class="fa-solid fa-lock"></i></div>
+                    Frozen Columns DataTable
+                </div>
+                <div class="dt-header-actions">
+                     <span class="text-muted me-3" style="font-size: 13px; background: #f9fafb; padding: 6px 12px; border-radius: 20px;"><i class="fa-solid fa-arrows-left-right me-1 text-primary"></i> Scroll horizontally</span>
+                     <button class="btn btn-outline-primary btn-sm btn-copyHtml" data-target="#demo-dt-fixed"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+                </div>
+            </div>
+            
+            <table id="table-fixed-cols" class="stripe row-border order-column nowrap table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                        <th>Extn.</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tiger</td><td>Nixon</td><td>System Architect</td><td>Edinburgh</td><td>61</td><td>2011/04/25</td><td>$320,800</td><td>5421</td><td>t.nixon@datatables.net</td></tr>
+                    <tr><td>Garrett</td><td>Winters</td><td>Accountant</td><td>Tokyo</td><td>63</td><td>2011/07/25</td><td>$170,750</td><td>8422</td><td>g.winters@datatables.net</td></tr>
+                    <tr><td>Ashton</td><td>Cox</td><td>Junior Technical Author</td><td>San Francisco</td><td>66</td><td>2009/01/12</td><td>$86,000</td><td>1562</td><td>a.cox@datatables.net</td></tr>
+                    <tr><td>Cedric</td><td>Kelly</td><td>Senior Javascript Developer</td><td>Edinburgh</td><td>22</td><td>2012/03/29</td><td>$433,060</td><td>6224</td><td>c.kelly@datatables.net</td></tr>
+                    <tr><td>Airi</td><td>Satou</td><td>Accountant</td><td>Tokyo</td><td>33</td><td>2008/11/28</td><td>$162,700</td><td>5407</td><td>a.satou@datatables.net</td></tr>
+                    <tr><td>Brielle</td><td>Williamson</td><td>Integration Specialist</td><td>New York</td><td>61</td><td>2012/12/02</td><td>$372,000</td><td>4804</td><td>b.williamson@datatables.net</td></tr>
+                    <tr><td>Herrod</td><td>Chandler</td><td>Sales Assistant</td><td>San Francisco</td><td>59</td><td>2012/08/06</td><td>$137,500</td><td>9608</td><td>h.chandler@datatables.net</td></tr>
+                    <tr><td>Rhona</td><td>Davidson</td><td>Integration Specialist</td><td>Tokyo</td><td>55</td><td>2010/10/14</td><td>$327,900</td><td>6200</td><td>r.davidson@datatables.net</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 7. Responsive DataTable -->
+    <div class="col-12" id="demo-dt-responsive">
+        <div class="custom-dt-container">
+            <div class="dt-header-flex">
+                <div class="dt-header-title">
+                    <div class="dt-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    Responsive DataTable (Auto Scale)
+                </div>
+                <div class="dt-header-actions">
+                     <span class="text-muted me-3" style="font-size: 13px; background: #f9fafb; padding: 6px 12px; border-radius: 20px;"><i class="fa-solid fa-compress me-1 text-primary"></i> Shrink browser to test</span>
+                     <button class="btn btn-outline-primary btn-sm btn-copyHtml" data-target="#demo-dt-responsive"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+                </div>
+            </div>
+            
+            <table id="table-responsive" class="display responsive nowrap table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="all">First name</th>
+                        <th class="all">Last name</th>
+                        <th class="desktop">Position</th>
+                        <th class="desktop">Office</th>
+                        <th class="none">Age (Hidden on mobile)</th>
+                        <th class="none">Start date (Hidden on mobile)</th>
+                        <th class="desktop">Salary</th>
+                        <th class="none">Extn. (Hidden on mobile)</th>
+                        <th class="all">E-mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tiger</td><td>Nixon</td><td>System Architect</td><td>Edinburgh</td><td>61</td><td>2011/04/25</td><td>$320,800</td><td>5421</td><td>t.nixon@datatables.net</td></tr>
+                    <tr><td>Garrett</td><td>Winters</td><td>Accountant</td><td>Tokyo</td><td>63</td><td>2011/07/25</td><td>$170,750</td><td>8422</td><td>g.winters@datatables.net</td></tr>
+                    <tr><td>Ashton</td><td>Cox</td><td>Junior Technical Author</td><td>San Francisco</td><td>66</td><td>2009/01/12</td><td>$86,000</td><td>1562</td><td>a.cox@datatables.net</td></tr>
+                    <tr><td>Cedric</td><td>Kelly</td><td>Senior Javascript Developer</td><td>Edinburgh</td><td>22</td><td>2012/03/29</td><td>$433,060</td><td>6224</td><td>c.kelly@datatables.net</td></tr>
+                    <tr><td>Airi</td><td>Satou</td><td>Accountant</td><td>Tokyo</td><td>33</td><td>2008/11/28</td><td>$162,700</td><td>5407</td><td>a.satou@datatables.net</td></tr>
+                    <tr><td>Brielle</td><td>Williamson</td><td>Integration Specialist</td><td>New York</td><td>61</td><td>2012/12/02</td><td>$372,000</td><td>4804</td><td>b.williamson@datatables.net</td></tr>
+                    <tr><td>Herrod</td><td>Chandler</td><td>Sales Assistant</td><td>San Francisco</td><td>59</td><td>2012/08/06</td><td>$137,500</td><td>9608</td><td>h.chandler@datatables.net</td></tr>
+                    <tr><td>Rhona</td><td>Davidson</td><td>Integration Specialist</td><td>Tokyo</td><td>55</td><td>2010/10/14</td><td>$327,900</td><td>6200</td><td>r.davidson@datatables.net</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 <!-- Simple Toast Notification HTML for HTML Copied event -->
@@ -595,6 +683,8 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/4.3.0/js/dataTables.fixedColumns.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -745,6 +835,26 @@
                     rows.show();
                     icon.removeClass('fa-angle-right').addClass('fa-angle-down');
                 }
+            });
+
+            // 6. Frozen / Fixed Columns DataTable
+            $('#table-fixed-cols').DataTable({
+                pageLength: 5,
+                scrollX: true,
+                fixedColumns: {
+                    leftColumns: 1,  // Freeze first 1 column (First name)
+                    rightColumns: 1  // Freeze last 1 column (E-mail)
+                }
+            });
+
+            // 7. Responsive Auto-hide columns DataTable
+            $('#table-responsive').DataTable({
+                responsive: true,
+                pageLength: 5,
+                columnDefs: [
+                    { responsivePriority: 1, targets: 0 },
+                    { responsivePriority: 2, targets: -1 }
+                ]
             });
 
             // Adjust buttons styling manually
