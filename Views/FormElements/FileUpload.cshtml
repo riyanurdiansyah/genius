@@ -2,10 +2,406 @@
     ViewData["Title"] = "File Upload";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>File Upload Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the File Upload form elements.</p>
+@section Styles {
+    <style>
+        .upload-card { margin-bottom: 25px; }
+
+        /* Dropzone Styling */
+        .dropzone-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            text-align: center;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .dropzone-area:hover, .dropzone-area.dragover {
+            border-color: var(--primary-color);
+            background: rgba(59, 157, 130, 0.05);
+        }
+        .dropzone-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            transition: transform 0.3s;
+        }
+        .dropzone-area:hover .dropzone-icon {
+            transform: translateY(-5px);
+        }
+        
+        /* Avatar Uploader mockup */
+        .avatar-upload {
+            position: relative;
+            max-width: 150px;
+            margin: auto;
+        }
+        .avatar-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: url("https://ui-avatars.com/api/?name=Kuda+App&background=3b9d82&color=fff") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+        .avatar-edit {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            z-index: 1;
+        }
+        .avatar-edit input {
+            display: none;
+        }
+        .avatar-edit label {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            margin-bottom: 0;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 2px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all .2s ease-in-out;
+            color: white;
+            text-align: center;
+            line-height: 31px;
+        }
+        .avatar-edit label:hover {
+            background: #fff;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* File Item List UI */
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            margin-top: 10px;
+            background: #fff;
+        }
+        .file-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(59, 157, 130, 0.1);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        .file-item-info { flex-grow: 1; overflow: hidden; }
+        .file-item-info h6 {
+            margin: 0 0 2px 0;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-item-info p {
+            margin: 0;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .file-item-actions { margin-left: 10px; }
+
+        /* Datatable Upload Styling */
+        .preview-table-container {
+            max-height: 400px;
+            overflow: auto;
+            border: 1px solid #dee2e6;
+            margin-top: 20px;
+            display: none;
+        }
+        #importTable tbody tr.selected {
+            background-color: rgba(13, 110, 253, 0.1) !important;
+        }
+    </style>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.bootstrap5.min.css" />
+}
+
+<div class="row">
+    <!-- 1. Avatar Uploader -->
+    <div class="col-lg-4 mb-4">
+        <div class="card upload-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Profile Picture</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="avatar-ui"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body text-center" id="avatar-ui">
+                <div class="avatar-upload mt-4 mb-4">
+                    <div class="avatar-edit">
+                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label for="imageUpload"><i class="fa-solid fa-camera"></i></label>
+                    </div>
+                    <div class="avatar-preview">
+                    </div>
+                </div>
+                <h6 class="font-weight-bold">Upload new photo</h6>
+                <p class="text-muted small">Allowed JPG, GIF or PNG. Max size of 800kB</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Dropzone UI -->
+    <div class="col-lg-8 mb-4">
+        <div class="card upload-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Advanced File Dropzone</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="dropzone-ui"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="dropzone-ui">
+                <div class="dropzone-area" onclick="document.getElementById('hiddenFile').click()">
+                    <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+                    <h5 class="fw-bold text-dark">Drop files here or click to upload</h5>
+                    <p class="text-muted mb-4">You can upload multiple files at once. (Max 5MB each)</p>
+                    <button class="btn btn-primary px-4"><i class="fa-solid fa-folder-open me-2"></i> Browse Files</button>
+                    <input type="file" id="hiddenFile" style="display: none;" multiple>
+                </div>
+                
+                <!-- Mockup List of Uploaded Files -->
+                <div class="mt-4">
+                    <h6 class="text-muted text-uppercase fw-bold" style="font-size:0.75rem;">Uploading Files (Mockup)</h6>
+                    
+                    <div class="file-item">
+                        <div class="file-item-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div class="file-item-info">
+                            <h6>annual-report-2026.pdf</h6>
+                            <p>2.4 MB</p>
+                            <div class="progress mt-2" style="height: 4px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="file-item-actions">
+                            <button class="btn btn-sm btn-text text-danger"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="file-item">
+                        <div class="file-item-icon" style="background: rgba(234, 179, 8, 0.1); color: #eab308;">
+                            <i class="fa-solid fa-file-image"></i>
+                        </div>
+                        <div class="file-item-info">
+                            <h6>dashboard-preview.png</h6>
+                            <p>1.2 MB <span class="ms-2 text-warning">Uploading 65%...</span></p>
+                            <div class="progress mt-2" style="height: 4px;">
+                                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="file-item-actions">
+                            <button class="btn btn-sm btn-text text-muted"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Interaction drag mockup
+            const dZone = document.querySelector('.dropzone-area');
+            if(dZone) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dZone.addEventListener(eventName, preventDefaults, false);
+                });
+                function preventDefaults (e) { e.preventDefault(); e.stopPropagation(); }
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dZone.addEventListener(eventName, () => dZone.classList.add('dragover'), false);
+                });
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dZone.addEventListener(eventName, () => dZone.classList.remove('dragover'), false);
+                });
+            // Upload to Datatable Logic
+            const importFileInput = document.getElementById('importFile');
+            let mainDataTable = null;
+            let importDataTable = null;
+            
+            // Initialize main table
+            mainDataTable = $('#mainTable').DataTable({
+                responsive: true,
+                pageLength: 5,
+                lengthMenu: [5, 10, 25, 50]
+            });
+
+            importFileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                $('#importFileInfo').removeClass('d-none');
+                $('#importFileName').text(file.name);
+                $('#previewEmptyState').hide();
+                $('#previewTableContainer').show();
+                $('#btnImportSelected').removeClass('d-none');
+                
+                const isCsv = file.name.toLowerCase().endsWith('.csv');
+                
+                if (isCsv) {
+                    processCSV(file);
+                } else {
+                    processExcel(file);
+                }
+            });
+
+            function renderImportTable(data) {
+                // Destroy if already exists
+                if (importDataTable !== null) {
+                    importDataTable.destroy();
+                    $('#importTable').empty();
+                }
+
+                // Make sure we have enough columns to map
+                if(data.length === 0) return;
+                
+                const headers = data[0];
+                let thead = '<thead><tr><th><input type="checkbox" id="selectAll"></th>';
+                headers.forEach((h, i) => {
+                    thead += `<th>${h || 'Col ' + (i+1)}</th>`;
+                });
+                thead += '</tr></thead><tbody>';
+
+                const rows = data.slice(1);
+                let tbody = '';
+                rows.forEach((row, rowIndex) => {
+                    // skip fully empty rows
+                    if(!row || row.length === 0 || row.every(val => val === undefined || val === null || val === '')) return;
+
+                    tbody += `<tr><td></td>`; // Checkbox col
+                    // Pad or truncate row to exactly match headers length to prevent DataTables crash
+                    for (let i = 0; i < headers.length; i++) {
+                        tbody += `<td>${row[i] !== undefined && row[i] !== null ? row[i] : ''}</td>`;
+                    }
+                    tbody += '</tr>';
+                });
+                tbody += '</tbody>';
+
+                $('#importTable').html(thead + tbody);
+
+                importDataTable = $('#importTable').DataTable({
+                    columnDefs: [ {
+                        orderable: false,
+                        className: 'select-checkbox text-center',
+                        targets:   0
+                    } ],
+                    select: {
+                        style:    'multi',
+                        selector: 'td:first-child'
+                    },
+                    order: [[ 1, 'asc' ]],
+                    pageLength: 10,
+                    scrollY: "300px",
+                    scrollCollapse: true
+                });
+
+                // Update selected count dynamically
+                importDataTable.on('select deselect', function () {
+                    const count = importDataTable.rows({ selected: true }).count();
+                    $('#selectedCount').text(count);
+                });
+
+                // Select All Checkbox
+                $('#selectAll').on('click', function() {
+                    if (this.checked) {
+                        importDataTable.rows().select();
+                    } else {
+                        importDataTable.rows().deselect();
+                    }
+                });
+            }
+
+            function processCSV(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const text = e.target.result;
+                    const rows = text.split('\\n');
+                    const data = rows.map(r => r.split(',').map(c => c.trim()));
+                    renderImportTable(data);
+                };
+                reader.readAsText(file);
+            }
+
+            function processExcel(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const dataUrl = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(dataUrl, {type: 'array'});
+                        const firstSheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[firstSheetName];
+                        
+                        // Parse explicitly as JSON array of arrays
+                        const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                        renderImportTable(data);
+                    } catch(err) {
+                        $('#previewEmptyState').html(`<div class="text-danger"><i class="fas fa-exclamation-triangle fa-2x mb-2"></i><br>Error parsing excel file: ${err.message}</div>`).show();
+                        $('#previewTableContainer').hide();
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            }
+
+            // Handle Import from Preview to Main DB
+            $('#btnImportSelected').click(function() {
+                if(!importDataTable) return;
+                
+                const selectedData = importDataTable.rows({ selected: true }).data();
+                
+                if (selectedData.length === 0) {
+                    alert("Please select at least one row to import.");
+                    return;
+                }
+
+                // Add to main table (assuming the Excel columns map linearly to the 5 columns for demo purposes)
+                for(let i = 0; i < selectedData.length; i++) {
+                    const rowData = selectedData[i];
+                    
+                    // rowData[0] is checkbox, start from index 1.
+                    // Fallback to "Unknown" if column is missing.
+                    const fn = rowData[1] || "Unknown";
+                    const ln = rowData[2] || "Unknown";
+                    const em = rowData[3] || "Unknown";
+                    const ro = rowData[4] || "User";
+                    const st = rowData[5] || '<span class="badge bg-secondary">New</span>';
+
+                    mainDataTable.row.add([fn, ln, em, ro, st]).draw(false);
+                }
+
+                // Visual confirmation
+                const btn = $(this);
+                const originalHtml = btn.html();
+                btn.html('<i class="fas fa-check"></i> Imported!').removeClass('btn-success').addClass('btn-primary');
+                
+                setTimeout(() => {
+                    btn.html(originalHtml).removeClass('btn-primary').addClass('btn-success');
+                    importDataTable.rows().deselect();
+                }, 2000);
+            });
+        });
+    </script>
+    
+    <!-- DataTables & SheetJS Scripts -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+}

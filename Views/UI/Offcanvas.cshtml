@@ -1,0 +1,75 @@
+@{ ViewData["Title"] = "Offcanvas"; }
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Offcanvas Positions</h5></div>
+            <div class="card-body">
+                <p class="text-muted">Use the buttons below to trigger offcanvas components sliding in from different directions.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasStart" aria-controls="offcanvasStart">Toggle Left Sidebar</button>
+                    <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle Right Sidebar</button>
+                    <button class="btn btn-info text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Toggle Top Area</button>
+                    <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle Bottom Area</button>
+                </div>
+
+                <!-- Left -->
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasStart" aria-labelledby="offcanvasStartLabel">
+                  <div class="offcanvas-header bg-light">
+                    <h5 class="offcanvas-title fw-bold" id="offcanvasStartLabel"><i class="fas fa-sliders-h me-2"></i> Filters</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <p class="text-muted">Filter your search results here.</p>
+                    <hr>
+                    <h6>Categories</h6>
+                    <div class="form-check"><input class="form-check-input" type="checkbox"><label class="form-check-label">Electronics</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox"><label class="form-check-label">Clothing</label></div>
+                  </div>
+                </div>
+
+                <!-- Right (Usually for Shopping Cart or Info) -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                  <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title fw-bold" id="offcanvasRightLabel"><i class="fas fa-shopping-cart me-2"></i> Shopping Cart</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary text-white rounded p-2 me-2"><i class="fas fa-box"></i></div>
+                            <div><h6 class="mb-0">Product 1</h6><small class="text-muted">1 x $20.00</small></div>
+                        </div>
+                        <span class="text-danger cursor-pointer"><i class="fas fa-times"></i></span>
+                    </div>
+                  </div>
+                  <div class="offcanvas-footer p-3 border-top">
+                    <button class="btn btn-primary w-100">Checkout Now</button>
+                  </div>
+                </div>
+
+                <!-- Top -->
+                <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                  <div class="offcanvas-header">
+                    <h5 id="offcanvasTopLabel">Top Offcanvas</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body text-center">
+                     <h3>Welcome to Kuda UI Settings</h3>
+                     <p>Quick action bar that slides down from top.</p>
+                  </div>
+                </div>
+
+                <!-- Bottom -->
+                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                  <div class="offcanvas-header bg-dark text-white">
+                    <h5 id="offcanvasBottomLabel">Cookie Policy Notification</h5>
+                    <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body bg-light">
+                    This website uses cookies to ensure you get the best experience on our website. <button class="btn btn-sm btn-primary ms-3">Accept All</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

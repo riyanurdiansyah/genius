@@ -2,10 +2,705 @@
     ViewData["Title"] = "Select & Tags";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Select & Tags Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Select & Tags form elements.</p>
+@section Styles {
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        /* ─── Select2 Custom Theme ─────────────────────────────────── */
+        .select2-container--default .select2-selection--single,
+        .select2-container--default .select2-selection--multiple {
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius-md, 8px);
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            background: #fff;
+            transition: border-color .15s ease, box-shadow .15s ease;
+        }
+
+        .select2-container--default.select2-container--focus .select2-selection--single,
+        .select2-container--default.select2-container--focus .select2-selection--multiple,
+        .select2-container--default.select2-container--open .select2-selection--single {
+            border-color: var(--primary, #3b9d82);
+            box-shadow: 0 0 0 3px rgba(59,157,130,.15);
+            outline: none;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #2d3748;
+            line-height: 42px;
+            padding-left: 14px;
+            padding-right: 36px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 42px;
+            right: 10px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow b {
+            border-color: #94a3b8 transparent transparent transparent;
+        }
+
+        .select2-container--default.select2-container--open
+            .select2-selection--single .select2-selection__arrow b {
+            border-color: transparent transparent var(--primary, #3b9d82) transparent;
+        }
+
+        /* Multiple selection pills */
+        .select2-container--default .select2-selection--multiple {
+            padding: 4px 8px;
+            min-height: 42px;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background: var(--primary, #3b9d82);
+            border: none;
+            color: #fff;
+            border-radius: 6px;
+            padding: 3px 10px 3px 8px;
+            font-size: 12.5px;
+            font-weight: 500;
+            margin: 3px 4px 3px 0;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            color: rgba(255,255,255,.8);
+            margin-right: 5px;
+            font-size: 13px;
+            /* Reset default button styles */
+            background: transparent;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            padding: 0 2px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+            color: #fff;
+            background: rgba(255,255,255,.2) !important;
+            border-radius: 3px;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-search__field {
+            color: #2d3748;
+        }
+
+        /* Dropdown panel */
+        .select2-dropdown {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.1);
+            overflow: hidden;
+        }
+
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 7px 12px;
+            margin: 8px;
+            width: calc(100% - 16px);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .select2-results__option {
+            padding: 8px 14px;
+            font-size: 13.5px;
+            color: #374151;
+            transition: background .15s;
+        }
+
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background: rgba(59,157,130,.12);
+            color: var(--primary, #3b9d82);
+        }
+
+        .select2-container--default .select2-results__option[aria-selected="true"] {
+            background: rgba(59,157,130,.06);
+            color: var(--primary, #3b9d82);
+            font-weight: 600;
+        }
+
+        .select2-results__group {
+            padding: 8px 14px 4px;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        /* Light-pill variant for multi-select */
+        .select2-light .select2-selection--multiple .select2-selection__choice {
+            background: rgba(59,157,130,.12);
+            color: var(--primary, #3b9d82);
+            border: 1px solid rgba(59,157,130,.2);
+        }
+
+        .select2-light .select2-selection--multiple .select2-selection__choice__remove {
+            color: var(--primary, #3b9d82);
+            background: transparent;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .select2-light .select2-selection--multiple .select2-selection__choice__remove:hover {
+            background: rgba(59,157,130,.2) !important;
+            border-radius: 3px;
+        }
+
+        /* Danger variant */
+        .select2-danger.select2-container--focus .select2-selection--multiple,
+        .select2-danger.select2-container--focus .select2-selection--single {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239,68,68,.15);
+        }
+
+        .select2-danger .select2-selection--multiple .select2-selection__choice {
+            background: #ef4444;
+        }
+
+        /* Dark mode */
+        [data-theme="dark"] .select2-container--default .select2-selection--single,
+        [data-theme="dark"] .select2-container--default .select2-selection--multiple {
+            background: #162032;
+            border-color: rgba(255,255,255,.12);
+        }
+
+        [data-theme="dark"] .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #e2e8f0;
+        }
+
+        [data-theme="dark"] .select2-dropdown {
+            background: #1a2d40;
+            border-color: rgba(255,255,255,.1);
+        }
+
+        [data-theme="dark"] .select2-results__option {
+            color: #cbd5e1;
+        }
+
+        [data-theme="dark"] .select2-container--default .select2-search--dropdown .select2-search__field {
+            background: #0f2030;
+            border-color: rgba(255,255,255,.1);
+            color: #e2e8f0;
+        }
+
+        /* ─── Tags demo card ───────────────────────────────────────── */
+        .tag-input-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius-md, 8px);
+            background: #fff;
+            min-height: 48px;
+            align-items: center;
+        }
+        .tag-input-wrapper:focus-within {
+            border-color: var(--primary, #3b9d82);
+            box-shadow: 0 0 0 3px rgba(59,157,130,.15);
+        }
+        .tag-badge {
+            background: var(--primary, #3b9d82);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: .85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tag-badge-light {
+            background: rgba(59,157,130,.1);
+            color: var(--primary, #3b9d82);
+        }
+        .tag-badge .remove-tag { cursor: pointer; opacity: .7; }
+        .tag-badge .remove-tag:hover { opacity: 1; }
+        .tag-input-wrapper input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            min-width: 120px;
+            padding: 4px;
+            background: transparent;
+        }
+
+        [data-theme="dark"] .tag-input-wrapper { background: #162032; border-color: rgba(255,255,255,.12); }
+    </style>
+}
+
+<div class="row">
+
+    <!-- ══════════════════════════════════════════════════
+         1. Default Single Select (Select2)
+    ══════════════════════════════════════════════════ -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0 fw-bold">Single Select — Select2</h6>
+                <button class="btn btn-sm btn-outline-primary copy-html-btn" data-target="body-single-select">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+            <div class="card-body d-flex flex-column gap-4" id="body-single-select">
+
+                <div>
+                    <label class="form-label">Basic Single Select</label>
+                    <select id="s2-basic" class="w-100">
+                        <option value="">Choose an option…</option>
+                        <option value="1">Option One</option>
+                        <option value="2">Option Two</option>
+                        <option value="3">Option Three</option>
+                        <option value="4">Option Four</option>
+                    </select>
+                    <div class="form-text">Single-select with search box</div>
+                </div>
+
+                <div>
+                    <label class="form-label">Country / Region</label>
+                    <select id="s2-country" class="w-100">
+                        <option value="">Search a country…</option>
+                        <option value="id">🇮🇩 Indonesia</option>
+                        <option value="us">🇺🇸 United States</option>
+                        <option value="gb">🇬🇧 United Kingdom</option>
+                        <option value="jp">🇯🇵 Japan</option>
+                        <option value="sg">🇸🇬 Singapore</option>
+                        <option value="au">🇦🇺 Australia</option>
+                        <option value="de">🇩🇪 Germany</option>
+                        <option value="fr">🇫🇷 France</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="form-label">Grouped Options</label>
+                    <select id="s2-grouped" class="w-100">
+                        <option value="">Select framework…</option>
+                        <optgroup label="Front-end">
+                            <option value="react">React.js</option>
+                            <option value="vue">Vue.js</option>
+                            <option value="angular">Angular</option>
+                            <option value="svelte">Svelte</option>
+                        </optgroup>
+                        <optgroup label="Back-end">
+                            <option value="node">Node.js</option>
+                            <option value="django">Django</option>
+                            <option value="rails">Ruby on Rails</option>
+                            <option value="dotnet">.NET / C#</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+            </div>
+        </div>
     </div>
+
+    <!-- ══════════════════════════════════════════════════
+         2. Multiple Select (Select2)
+    ══════════════════════════════════════════════════ -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0 fw-bold">Multi-Select — Select2</h6>
+                <button class="btn btn-sm btn-outline-primary copy-html-btn" data-target="body-multi-select">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+            <div class="card-body d-flex flex-column gap-4" id="body-multi-select">
+
+                <div>
+                    <label class="form-label">Solid Pills (Default)</label>
+                    <select id="s2-multi-solid" class="w-100" multiple>
+                        <option value="html" selected>HTML5</option>
+                        <option value="css" selected>CSS3</option>
+                        <option value="js">JavaScript</option>
+                        <option value="ts">TypeScript</option>
+                        <option value="sass">Sass/SCSS</option>
+                        <option value="tailwind">TailwindCSS</option>
+                    </select>
+                    <div class="form-text">Search &amp; click to add/remove items</div>
+                </div>
+
+                <div>
+                    <label class="form-label">Light Pills Variant</label>
+                    <select id="s2-multi-light" class="w-100" multiple>
+                        <option value="design" selected>Design</option>
+                        <option value="ux" selected>UI/UX</option>
+                        <option value="proto">Prototyping</option>
+                        <option value="motion">Motion</option>
+                        <option value="brand">Branding</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="form-label">Roles (Multi — Grouped)</label>
+                    <select id="s2-multi-roles" class="w-100" multiple>
+                        <optgroup label="Management">
+                            <option value="admin">Administrator</option>
+                            <option value="pm">Project Manager</option>
+                        </optgroup>
+                        <optgroup label="Technical">
+                            <option value="dev" selected>Developer</option>
+                            <option value="qa">QA Engineer</option>
+                            <option value="devops">DevOps</option>
+                        </optgroup>
+                        <optgroup label="Creative">
+                            <option value="ui">UI Designer</option>
+                            <option value="content">Content Writer</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         3. Advanced / Special Use-cases
+    ══════════════════════════════════════════════════ -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0 fw-bold">Advanced Select2</h6>
+                <button class="btn btn-sm btn-outline-primary copy-html-btn" data-target="body-advanced-select">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+            <div class="card-body d-flex flex-column gap-4" id="body-advanced-select">
+
+                <div>
+                    <label class="form-label">No-Search (Dropdown only)</label>
+                    <select id="s2-nosearch" class="w-100">
+                        <option value="">-- Choose status --</option>
+                        <option value="active">✅ Active</option>
+                        <option value="inactive">⛔ Inactive</option>
+                        <option value="pending">⏳ Pending</option>
+                        <option value="archived">📦 Archived</option>
+                    </select>
+                    <div class="form-text">Search box hidden (minimumResultsForSearch: Infinity)</div>
+                </div>
+
+                <div>
+                    <label class="form-label">Allow Clearing Selection</label>
+                    <select id="s2-clearable" class="w-100">
+                        <option value="">Select a priority…</option>
+                        <option value="critical">🔴 Critical</option>
+                        <option value="high">🟠 High</option>
+                        <option value="medium">🟡 Medium</option>
+                        <option value="low">🟢 Low</option>
+                    </select>
+                    <div class="form-text">Click × to clear selection</div>
+                </div>
+
+                <div>
+                    <label class="form-label">Max Selections = 3</label>
+                    <select id="s2-maxsel" class="w-100" multiple>
+                        <option value="mon">Monday</option>
+                        <option value="tue">Tuesday</option>
+                        <option value="wed">Wednesday</option>
+                        <option value="thu">Thursday</option>
+                        <option value="fri">Friday</option>
+                        <option value="sat">Saturday</option>
+                        <option value="sun">Sunday</option>
+                    </select>
+                    <div class="form-text">Maximum 3 items can be selected</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         4. Tags Input (Select2 tags mode)
+    ══════════════════════════════════════════════════ -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0 fw-bold">Tag Input — Select2 Tags</h6>
+                <button class="btn btn-sm btn-outline-primary copy-html-btn" data-target="body-tag-input">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+            <div class="card-body d-flex flex-column gap-4" id="body-tag-input">
+
+                <div>
+                    <label class="form-label">Free-type Tags (Solid)</label>
+                    <select id="s2-tags-solid" class="w-100" multiple>
+                        <option value="html" selected>HTML5</option>
+                        <option value="css" selected>CSS3</option>
+                        <option value="javascript" selected>JavaScript</option>
+                    </select>
+                    <div class="form-text">Type anything &amp; press Enter to add custom tags</div>
+                </div>
+
+                <div>
+                    <label class="form-label">Keywords / Interests (Light)</label>
+                    <select id="s2-tags-light" class="w-100" multiple>
+                        <option value="design" selected>Design</option>
+                        <option value="uiux" selected>UI/UX</option>
+                        <option value="prototypes" selected>Prototypes</option>
+                    </select>
+                    <div class="form-text">Light variant — great for keywords</div>
+                </div>
+
+                <div>
+                    <label class="form-label">Static Tag Badges (non-Select2)</label>
+                    <div class="tag-input-wrapper">
+                        <div class="tag-badge">HTML5 <i class="fa-solid fa-xmark remove-tag"></i></div>
+                        <div class="tag-badge">CSS3 <i class="fa-solid fa-xmark remove-tag"></i></div>
+                        <div class="tag-badge tag-badge-light">Design <i class="fa-solid fa-xmark remove-tag"></i></div>
+                        <div class="tag-badge tag-badge-light">UI/UX <i class="fa-solid fa-xmark remove-tag"></i></div>
+                        <input type="text" placeholder="Add a tag…">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         5. Disabled & States
+    ══════════════════════════════════════════════════ -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0 fw-bold">States — Disabled, Read-only, Error</h6>
+                <button class="btn btn-sm btn-outline-primary copy-html-btn" data-target="body-states">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+            <div class="card-body" id="body-states">
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Disabled Single Select</label>
+                        <select id="s2-disabled" class="w-100" disabled>
+                            <option value="fixed">Fixed Value (disabled)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Disabled Multi-Select</label>
+                        <select id="s2-disabled-multi" class="w-100" multiple disabled>
+                            <option value="html" selected>HTML5</option>
+                            <option value="css" selected>CSS3</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Error State (Danger focus)</label>
+                        <select id="s2-error" class="w-100 s2-danger-input">
+                            <option value="">Select a value…</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                        <div class="text-danger small mt-1"><i class="fa-solid fa-circle-exclamation me-1"></i>This field is required</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+@section Scripts {
+    <!-- jQuery (Select2 needs it) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            const s2defaults = { width: '100%', theme: 'default' };
+
+            // 1. Basic single
+            $('#s2-basic').select2({ ...s2defaults, placeholder: 'Choose an option…' });
+
+            // 2. Country
+            $('#s2-country').select2({ ...s2defaults, placeholder: '🔍 Search a country…' });
+
+            // 3. Grouped
+            $('#s2-grouped').select2({ ...s2defaults, placeholder: 'Select framework…' });
+
+            // 4. Multi solid
+            $('#s2-multi-solid').select2({ ...s2defaults, placeholder: 'Select technologies…' });
+
+            // 5. Multi light
+            $('#s2-multi-light').select2({ ...s2defaults, placeholder: 'Select skills…' });
+            // Add light class to container
+            $('#s2-multi-light').on('select2:open select2:close', function () {
+                $(this).data('select2').$container.addClass('select2-light');
+            }).trigger('select2:close');
+            // Apply immediately
+            setTimeout(() => {
+                $('#s2-multi-light').data('select2').$container.addClass('select2-light');
+            }, 50);
+
+            // 6. Multi grouped
+            $('#s2-multi-roles').select2({ ...s2defaults, placeholder: 'Assign roles…' });
+
+            // 7. No search
+            $('#s2-nosearch').select2({
+                ...s2defaults,
+                placeholder: '-- Choose status --',
+                minimumResultsForSearch: Infinity
+            });
+
+            // 8. Clearable
+            $('#s2-clearable').select2({
+                ...s2defaults,
+                placeholder: 'Select a priority…',
+                allowClear: true
+            });
+
+            // 9. Max selections = 3
+            $('#s2-maxsel').select2({
+                ...s2defaults,
+                placeholder: 'Pick up to 3 days…',
+                maximumSelectionLength: 3
+            });
+            $('#s2-maxsel').on('select2:select', function () {
+                const max = 3;
+                if ($(this).val() && $(this).val().length >= max) {
+                    // Show subtle warning
+                    const $info = $(this).closest('.col-md-4, div').find('.form-text');
+                    $info.addClass('text-warning').text('Maximum 3 items reached!');
+                    setTimeout(() => $info.removeClass('text-warning').text('Maximum 3 items can be selected'), 2000);
+                }
+            });
+
+            // 10. Tags solid (free-type)
+            $('#s2-tags-solid').select2({
+                ...s2defaults,
+                tags: true,
+                placeholder: 'Type & press Enter…',
+                tokenSeparators: [',', ' ']
+            });
+
+            // 11. Tags light
+            $('#s2-tags-light').select2({
+                ...s2defaults,
+                tags: true,
+                placeholder: 'Add keywords…',
+                tokenSeparators: [',', ' ']
+            });
+            setTimeout(() => {
+                $('#s2-tags-light').data('select2').$container.addClass('select2-light');
+            }, 50);
+
+            // 12. Disabled states (Select2 respects HTML `disabled` attribute natively)
+            $('#s2-disabled').select2({ ...s2defaults });
+            $('#s2-disabled-multi').select2({ ...s2defaults });
+
+            // 13. Error state
+            $('#s2-error').select2({ ...s2defaults, placeholder: 'Select a value…' });
+            setTimeout(() => {
+                $('#s2-error').data('select2').$container.addClass('select2-danger');
+                $('#s2-error').data('select2').$container
+                    .find('.select2-selection')
+                    .css({ borderColor: '#ef4444', boxShadow: '0 0 0 3px rgba(239,68,68,.15)' });
+            }, 50);
+
+            // Static tag badge removal
+            document.querySelectorAll('.remove-tag').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    this.parentElement.remove();
+                });
+            });
+
+            // ─── Copy HTML buttons ───────────────────────────────────────
+            document.querySelectorAll('.copy-html-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const targetId = this.dataset.target;
+                    const el = document.getElementById(targetId);
+                    if (!el) return;
+
+                    // Get inner HTML, pretty-print with basic indent cleanup
+                    const raw = el.innerHTML.trim();
+
+                    navigator.clipboard.writeText(raw).then(() => {
+                        // Success feedback
+                        const original = this.innerHTML;
+                        this.innerHTML = '<i class="fa-solid fa-check me-1"></i> Copied!';
+                        this.classList.replace('btn-outline-primary', 'btn-success');
+                        this.disabled = true;
+
+                        setTimeout(() => {
+                            this.innerHTML = original;
+                            this.classList.replace('btn-success', 'btn-outline-primary');
+                            this.disabled = false;
+                        }, 2000);
+
+                        // Toast notification
+                        showCopyToast();
+                    }).catch(() => {
+                        // Fallback for older browsers
+                        const ta = document.createElement('textarea');
+                        ta.value = raw;
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        showCopyToast();
+                    });
+                });
+            });
+
+            function showCopyToast() {
+                const existing = document.getElementById('copy-toast');
+                if (existing) existing.remove();
+
+                const toast = document.createElement('div');
+                toast.id = 'copy-toast';
+                toast.innerHTML = '<i class="fa-solid fa-clipboard-check me-2"></i> HTML copied to clipboard!';
+                toast.style.cssText = `
+                    position: fixed;
+                    bottom: 28px;
+                    right: 28px;
+                    background: #3b9d82;
+                    color: #fff;
+                    padding: 12px 20px;
+                    border-radius: 10px;
+                    font-size: 13.5px;
+                    font-weight: 600;
+                    box-shadow: 0 6px 20px rgba(59,157,130,.4);
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    opacity: 0;
+                    transform: translateY(10px);
+                    transition: all .25s ease;
+                `;
+                document.body.appendChild(toast);
+
+                // Animate in
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        toast.style.opacity = '1';
+                        toast.style.transform = 'translateY(0)';
+                    });
+                });
+
+                // Animate out
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(10px)';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2500);
+            }
+        });
+    </script>
+}

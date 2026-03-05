@@ -1,0 +1,49 @@
+@{ ViewData["Title"] = "Collapse"; }
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Basic Collapse</h5></div>
+            <div class="card-body">
+                <p>
+                  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Toggle details <i class="fas fa-chevron-down ms-2"></i>
+                  </a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-body bg-light border-0 text-muted shadow-sm">
+                    This is some placeholder content for a custom collapse component. It is hidden by default and shown when triggered.
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Multiple Targets</h5></div>
+            <div class="card-body">
+                <p>
+                  <a class="btn btn-primary mb-2" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+                  <button class="btn btn-primary mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+                  <button class="btn btn-dark mb-2" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+                </p>
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                      <div class="card card-body border-primary shadow-sm">
+                        First content area expanded successfully.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                      <div class="card card-body border-success shadow-sm">
+                        Second content area expanded. These can be toggled independently or together.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

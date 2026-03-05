@@ -6,62 +6,89 @@
     <!-- Basic Forms -->
     <div class="col-md-6 mb-4">
         <div class="card h-100">
-            <div class="card-header">Basic Form</div>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Basic Form</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="basicFormHTML"></button>
+            </div>
             <div class="card-body">
-                <form>
-                    <div class="form-group">
+                <form id="basicFormHTML">
+                    <div class="form-group mb-3">
                         <label class="form-label" for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label class="form-label" for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
-                    <div class="form-group form-check">
+                    <div class="form-group form-check mb-3">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Remember me</label>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Validation States -->
+    <!-- Horizontal Form -->
     <div class="col-md-6 mb-4">
         <div class="card h-100">
-            <div class="card-header">Validation States</div>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Horizontal Form</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="horizontalFormHTML"></button>
+            </div>
             <div class="card-body">
-                <form class="needs-validation" novalidate>
-                    <div class="form-group">
-                        <label class="form-label" for="validationCustom01">First name</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="validationCustomUsername">Username</label>
-                        <input type="text" class="form-control is-invalid" id="validationCustomUsername" required>
-                        <div class="invalid-feedback">
-                            Please choose a username.
+                <form id="horizontalFormHTML">
+                    <div class="row mb-3 align-items-center">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label mb-0">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                         </div>
                     </div>
-                    <button class="btn btn-primary mt-3" type="submit">Submit form</button>
+                    <div class="row mb-3 align-items-center">
+                        <label for="inputPassword3" class="col-sm-3 col-form-label mb-0">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                        </div>
+                    </div>
+                    <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-3 pt-0 mb-0">Radios</legend>
+                        <div class="col-sm-9">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                <label class="form-check-label" for="gridRadios1">First radio</label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <label class="form-check-label" for="gridRadios2">Second radio</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <button type="button" class="btn btn-primary">Sign in</button>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <!-- Input Types -->
     <div class="col-12 mb-4">
         <div class="card">
-            <div class="card-header">Different Input Types</div>
-            <div class="card-body">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Different Input Types</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="inputTypesHTML"></button>
+            </div>
+            <div class="card-body" id="inputTypesHTML">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Text Input</label>
+                            <input type="text" class="form-control" placeholder="Simple text...">
+                        </div>
+                        <div class="form-group mb-3">
                             <label class="form-label">Search Input</label>
                             <input type="search" class="form-control" placeholder="Search...">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="form-label">Select Option</label>
                             <select class="form-control">
                                 <option>Option 1</option>
@@ -69,24 +96,38 @@
                                 <option>Option 3</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Textarea</label>
-                            <textarea class="form-control" rows="3" placeholder="Type your message"></textarea>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Readonly Input</label>
+                            <input class="form-control" type="text" placeholder="Readonly input here..." readonly>
                         </div>
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="form-label">Date Picker</label>
                             <input type="date" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Color Picker</label>
-                            <input type="color" class="form-control form-control-color" value="#051F20">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Time Picker</label>
+                            <input type="time" class="form-control">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Color Picker</label>
+                            <div class="d-flex align-items-center gap-3">
+                                <input type="color" class="form-control form-control-color" value="#3b9d82" style="width: 60px;">
+                                <span class="text-muted small">Choose your brand color</span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
                             <label class="form-label">File Upload</label>
                             <input type="file" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 mt-2">
+                        <div class="form-group">
+                            <label class="form-label">Textarea message</label>
+                            <textarea class="form-control" rows="3" placeholder="Type your message"></textarea>
                         </div>
                     </div>
                 </div>
@@ -94,13 +135,84 @@
         </div>
     </div>
     
-    <!-- Switches and Checks -->
+    <!-- Input Sizes -->
     <div class="col-md-6 mb-4">
         <div class="card h-100">
-            <div class="card-header">Checkboxes & Radios</div>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Input Sizing</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="inputSizesHTML"></button>
+            </div>
+            <div class="card-body" id="inputSizesHTML">
+                <div class="form-group mb-4">
+                    <label class="form-label text-muted small">Large Input (.form-control-lg)</label>
+                    <input class="form-control" style="font-size: 1.125rem; padding: 0.75rem 1rem; border-radius: var(--radius-md);" type="text" placeholder=".form-control-lg">
+                </div>
+                <div class="form-group mb-4">
+                    <label class="form-label text-muted small">Default Input (.form-control)</label>
+                    <input class="form-control" type="text" placeholder="Default input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label text-muted small">Small Input (.form-control-sm)</label>
+                    <input class="form-control" style="font-size: 0.875rem; padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);" type="text" placeholder=".form-control-sm">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Labels -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Auto-width & Inline Form</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="inlineFormHTML"></button>
+            </div>
             <div class="card-body">
-                <div class="mb-3">
-                    <h6 class="mb-2">Inline Checkboxes</h6>
+                <form class="row gy-2 gx-3 align-items-center" id="inlineFormHTML">
+                    <div class="col-auto mb-3">
+                        <label class="visually-hidden" for="autoSizingInput" style="display:none;">Name</label>
+                        <input type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
+                    </div>
+                    <div class="col-auto mb-3">
+                        <label class="visually-hidden" for="autoSizingInputGroup" style="display:none;">Username</label>
+                        <div class="input-group" style="display: flex;">
+                            <div class="input-group-text bg-light border-end-0" style="padding: 0.5rem 0.75rem; border: 1px solid var(--border-dark); border-radius: var(--radius-md) 0 0 var(--radius-md);">@@</div>
+                            <input type="text" class="form-control" style="border-radius: 0 var(--radius-md) var(--radius-md) 0;" id="autoSizingInputGroup" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="col-auto mb-3">
+                        <label class="visually-hidden" for="autoSizingSelect" style="display:none;">Preference</label>
+                        <select class="form-select form-control" id="autoSizingSelect">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-auto mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                            <label class="form-check-label" for="autoSizingCheck">Remember me</label>
+                        </div>
+                    </div>
+                    <div class="col-auto mb-3">
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Checks & Switches -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Checkboxes & Radios</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="checksHTML"></button>
+            </div>
+            <div class="card-body" id="checksHTML">
+                <div class="mb-4">
+                    <h6 class="mb-3 text-dark fw-bold">Inline Checkboxes</h6>
                     <div class="form-check form-check-inline d-inline-block me-3">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                         <label class="form-check-label" for="inlineCheckbox1">1</label>
@@ -109,17 +221,25 @@
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
                         <label class="form-check-label" for="inlineCheckbox2">2 (Checked)</label>
                     </div>
+                    <div class="form-check form-check-inline d-inline-block me-3">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                        <label class="form-check-label" for="inlineCheckbox3">3 (Disabled)</label>
+                    </div>
                 </div>
                 
                 <div class="mb-3">
-                    <h6 class="mb-2">Radios</h6>
-                    <div class="form-check">
+                    <h6 class="mb-3 text-dark fw-bold">Radios Group</h6>
+                    <div class="form-check mb-2">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                        <label class="form-check-label" for="exampleRadios1">Default radio</label>
+                        <label class="form-check-label" for="exampleRadios1">Default radio selected</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">Second radio unselected</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                        <label class="form-check-label" for="exampleRadios2">Second default radio</label>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
+                        <label class="form-check-label" for="exampleRadios3">Disabled radio</label>
                     </div>
                 </div>
             </div>
@@ -128,20 +248,65 @@
     
     <div class="col-md-6 mb-4">
         <div class="card h-100">
-            <div class="card-header">Switches</div>
-            <div class="card-body">
-                <div class="form-check form-switch mb-2">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Toggle Switches</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="switchesHTML"></button>
+            </div>
+            <div class="card-body" id="switchesHTML">
+                <div class="form-check form-switch mb-3">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch input</label>
                 </div>
-                <div class="form-check form-switch mb-2">
+                <div class="form-check form-switch mb-3">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch input</label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
+                    <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch input</label>
                 </div>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
-                    <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch</label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
+                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch</label>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Validation States -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Validation States</span>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="validationHTML"></button>
+            </div>
+            <div class="card-body">
+                <form class="needs-validation row" id="validationHTML" novalidate>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label" for="validationCustom01">First name</label>
+                        <input type="text" class="form-control is-valid" id="validationCustom01" value="Mark" required style="border-color: var(--success);">
+                        <div class="valid-feedback d-block text-success" style="font-size: 0.875em; margin-top: 0.25rem;">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label" for="validationCustom02">Last name</label>
+                        <input type="text" class="form-control is-valid" id="validationCustom02" value="Otto" required style="border-color: var(--success);">
+                        <div class="valid-feedback d-block text-success" style="font-size: 0.875em; margin-top: 0.25rem;">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label" for="validationCustomUsername">Username</label>
+                        <input type="text" class="form-control is-invalid" id="validationCustomUsername" required>
+                        <div class="invalid-feedback d-block text-danger" style="font-size: 0.875em; margin-top: 0.25rem;">
+                            Please choose a username.
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button class="btn btn-primary" type="button">Submit form</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

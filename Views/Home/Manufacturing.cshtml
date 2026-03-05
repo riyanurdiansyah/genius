@@ -1,0 +1,300 @@
+@{
+    ViewData["Title"] = "Manufacturing Dashboard";
+}
+
+<style>
+    .kpi-card {
+        border-left: 4px solid var(--primary);
+    }
+    .kpi-warning {
+        border-left: 4px solid var(--warning);
+    }
+    .kpi-danger {
+        border-left: 4px solid var(--danger);
+    }
+    .machine-status {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .status-running { background-color: var(--success); }
+    .status-stopped { background-color: var(--danger); }
+    .status-maintenance { background-color: var(--warning); }
+</style>
+
+<!-- Date filter placeholder -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-0">Plant Overview</h4>
+        <p class="text-muted mb-0"><small>Real-time manufacturing metrics</small></p>
+    </div>
+    <div>
+        <select class="form-select form-select-sm" style="width: auto; display: inline-block;">
+            <option>Today</option>
+            <option>Yesterday</option>
+            <option>Last 7 Days</option>
+            <option>This Month</option>
+        </select>
+        <button class="btn btn-sm btn-primary ms-2"><i class="fas fa-file-export"></i> Export Report</button>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <!-- OEE Score -->
+    <div class="col-md-3">
+        <div class="card h-100 kpi-card">
+            <div class="card-body">
+                <h6 class="text-muted mb-3">OEE (Overall Equip. Effectiveness)</h6>
+                <div class="d-flex justify-content-between align-items-end">
+                    <h2 class="mb-0 fw-bold">78.5%</h2>
+                </div>
+                <!-- Progress bar mimicking the score -->
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 78.5%" aria-valuenow="78.5" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <small class="text-success mt-2 d-block"><i class="fas fa-arrow-up"></i> +2.1% from last week</small>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Availability -->
+    <div class="col-md-3">
+        <div class="card h-100 kpi-card">
+            <div class="card-body">
+                <h6 class="text-muted mb-3">Equipment Availability</h6>
+                <div class="d-flex justify-content-between align-items-end">
+                    <h2 class="mb-0 fw-bold">92.0%</h2>
+                </div>
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <small class="text-secondary mt-2 d-block">Target: 95.0%</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance -->
+    <div class="col-md-3">
+        <div class="card h-100 kpi-warning">
+            <div class="card-body">
+                <h6 class="text-muted mb-3">Performance Rate</h6>
+                <div class="d-flex justify-content-between align-items-end">
+                    <h2 class="mb-0 fw-bold text-warning">87.3%</h2>
+                </div>
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 87.3%" aria-valuenow="87.3" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <small class="text-danger mt-2 d-block"><i class="fas fa-arrow-down"></i> -1.5% from last week</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quality -->
+    <div class="col-md-3">
+        <div class="card h-100 kpi-card">
+            <div class="card-body">
+                <h6 class="text-muted mb-3">Quality Yield</h6>
+                <div class="d-flex justify-content-between align-items-end">
+                    <h2 class="mb-0 fw-bold text-success">98.1%</h2>
+                </div>
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 98.1%" aria-valuenow="98.1" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <small class="text-secondary mt-2 d-block">Defect rate: 1.9%</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <!-- Production Output Chart -->
+    <div class="col-lg-8">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Production Volume (Units)</span>
+                <span class="badge bg-light text-dark border">Line 1 & Line 2</span>
+            </div>
+            <div class="card-body p-0">
+                <div id="productionChart" style="min-height: 350px; padding: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Machine Status / Downtime -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header fw-bold">
+                Machine Status
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <div>
+                            <h6 class="mb-1"><span class="machine-status status-running"></span> CNC Router A</h6>
+                            <small class="text-muted">Running flawlessly (Temp: 68°C)</small>
+                        </div>
+                        <span class="badge bg-success rounded-pill">Active</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <div>
+                            <h6 class="mb-1"><span class="machine-status status-running"></span> Injection Mold #3</h6>
+                            <small class="text-muted">Running (Temp: 210°C)</small>
+                        </div>
+                        <span class="badge bg-success rounded-pill">Active</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center py-3" style="background-color: var(--danger-light);">
+                        <div>
+                            <h6 class="mb-1"><span class="machine-status status-stopped"></span> Packaging Line B</h6>
+                            <small class="text-danger">Sensor error detected</small>
+                        </div>
+                        <span class="badge bg-danger rounded-pill">Down: 24m</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                        <div>
+                            <h6 class="mb-1"><span class="machine-status status-maintenance"></span> Conveyor Belt 1</h6>
+                            <small class="text-warning">Scheduled PM</small>
+                        </div>
+                        <span class="badge bg-warning text-dark rounded-pill">Maint.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <a href="#" class="text-decoration-none small">View all 24 machines <i class="fas fa-chevron-right ms-1"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Defect Pareto -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header fw-bold">Top Defect Reasons</div>
+            <div class="card-body">
+                <div id="defectChart" style="min-height: 250px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Operator Efficiency -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header fw-bold">Shift Supervisor Analytics</div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Supervisor</th>
+                                <th>Shift</th>
+                                <th>Output</th>
+                                <th>OEE</th>
+                                <th>Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A. Rahman</td>
+                                <td>Morning</td>
+                                <td>1,420</td>
+                                <td>82%</td>
+                                <td><i class="fas fa-level-up-alt text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>J. Smith</td>
+                                <td>Afternoon</td>
+                                <td>1,305</td>
+                                <td>76%</td>
+                                <td><i class="fas fa-level-down-alt text-danger"></i></td>
+                            </tr>
+                            <tr>
+                                <td>D. Lee</td>
+                                <td>Night</td>
+                                <td>1,390</td>
+                                <td>79%</td>
+                                <td><i class="fas fa-minus text-secondary"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Production Volume Chart
+        var prodOptions = {
+            series: [{
+                name: 'Line 1 Formulated',
+                data: [44, 55, 57, 56, 61, 58, 63, 60]
+            }, {
+                name: 'Line 2 Formulated',
+                data: [76, 85, 101, 98, 87, 105, 91, 114]
+            }],
+            chart: {
+                type: 'area',
+                height: 350,
+                toolbar: { show: false }
+            },
+            colors: ['#235347', '#10b981'],
+            stroke: {
+                curve: 'smooth',
+                width: 2
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.4,
+                    opacityTo: 0.05,
+                    stops: [0, 90, 100]
+                }
+            },
+            dataLabels: { enabled: false },
+            xaxis: {
+                categories: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+            },
+            tooltip: {
+                y: { formatter: function (val) { return val + " units" } }
+            }
+        };
+
+        var prodChart = new ApexCharts(document.querySelector("#productionChart"), prodOptions);
+        prodChart.render();
+
+
+        // Defect Pareto Chart (Bar)
+        var defectOptions = {
+            series: [{
+                name: 'Defect Count',
+                data: [400, 310, 220, 150, 90, 30]
+            }],
+            chart: {
+                type: 'bar',
+                height: 250,
+                toolbar: { show: false }
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                }
+            },
+            colors: ['#ef4444'],
+            dataLabels: {
+                enabled: true
+            },
+            xaxis: {
+                categories: ['Dimensional Error', 'Surface Scratches', 'Material Impurity', 'Assembly Gap', 'Color Fade', 'Other'],
+            }
+        };
+
+        var defectChart = new ApexCharts(document.querySelector("#defectChart"), defectOptions);
+        defectChart.render();
+    });
+</script>

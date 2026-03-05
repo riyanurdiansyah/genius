@@ -1,0 +1,136 @@
+@{ ViewData["Title"] = "Navbar"; }
+<div class="row">
+    <!-- 1. Floating Pill Navbar (Modern & Clean) -->
+    <div class="col-12 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header border-0 bg-white"><h5 class="mb-0 fw-bold">Floating Pill Navbar</h5></div>
+            <div class="card-body bg-light rounded" style="padding: 2.5rem;">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 py-2" style="border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                  <div class="container-fluid">
+                    <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="#">
+                        <i class="fas fa-layer-group me-2"></i> KUDA
+                    </a>
+                    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPill" aria-controls="navbarPill" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarPill">
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-medium">
+                            <li class="nav-item px-2"><a class="nav-link text-primary" aria-current="page" href="#">Home</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" href="#">Discover</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" href="#">Projects</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" href="#">About Us</a></li>
+                        </ul>
+                        <div class="d-flex">
+                            <button class="btn btn-primary rounded-pill px-4 shadow-sm">Get Started</button>
+                        </div>
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Dark Modern Navbar (Deep & Professional) -->
+    <div class="col-12 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header border-0 bg-white"><h5 class="mb-0 fw-bold">Dark Executive Navbar</h5></div>
+            <div class="card-body p-0">
+                <nav class="navbar navbar-expand-lg navbar-dark px-4 py-3" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                    <a class="navbar-brand d-flex align-items-center fw-bold text-white tracking-wide" href="#">
+                        <div class="bg-primary rounded p-2 me-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                            <i class="fas fa-bolt text-white fa-sm"></i>
+                        </div>
+                        STUDIO
+                    </a>
+                    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDark" aria-controls="navbarNavDark" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDark">
+                        <ul class="navbar-nav ms-5 me-auto">
+                            <li class="nav-item"><a class="nav-link px-3 text-white border-bottom border-2 border-primary" href="#">Dashboard</a></li>
+                            <li class="nav-item"><a class="nav-link px-3 text-light opacity-75 hover-opacity-100" href="#">Analytics</a></li>
+                            <li class="nav-item"><a class="nav-link px-3 text-light opacity-75 hover-opacity-100" href="#">Reports</a></li>
+                            <li class="nav-item"><a class="nav-link px-3 text-light opacity-75 hover-opacity-100" href="#">Settings</a></li>
+                        </ul>
+                        <div class="d-flex align-items-center gap-3">
+                            <a href="#" class="text-light opacity-75 hover-opacity-100 position-relative"><i class="fas fa-bell fa-lg"></i><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-dark rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
+                            <a href="#" class="text-light opacity-75 hover-opacity-100"><i class="fas fa-cog fa-lg"></i></a>
+                            <div class="ps-2 ms-2 border-start border-secondary">
+                                <img src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff" class="rounded-circle" style="width: 38px; height: 38px;">
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Glassmorphism Navbar (Trendy Frost Effect) -->
+    <div class="col-12 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header border-0 bg-white"><h5 class="mb-0 fw-bold">Glassmorphism Navbar</h5></div>
+            <div class="card-body rounded position-relative" style="padding: 3rem 2rem; background: url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2000&auto=format&fit=crop') center/cover; min-height: 250px;">
+                <nav class="navbar navbar-expand-lg navbar-dark px-4 py-2 w-100 shadow" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px;">
+                  <div class="container-fluid">
+                    <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="#">
+                        <i class="fas fa-cube me-2 text-white"></i> GLASS UI
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGlass" aria-controls="navbarGlass" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarGlass">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-medium gap-2">
+                            <li class="nav-item"><a class="nav-link text-white fw-semibold" href="#">Home</a></li>
+                            <li class="nav-item"><a class="nav-link text-white opacity-75" href="#">Features</a></li>
+                            <li class="nav-item"><a class="nav-link text-white opacity-75" href="#">Pricing</a></li>
+                            <li class="nav-item ms-2">
+                                <button class="btn btn-light rounded-pill px-4 fw-medium text-primary">Login</button>
+                            </li>
+                        </ul>
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Clean Underline Navbar (Minimalist Profile) -->
+    <div class="col-12 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header border-0 bg-white"><h5 class="mb-0 fw-bold">Clean Minimalist Navbar</h5></div>
+            <div class="card-body bg-light rounded" style="padding: 2rem;">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm px-4 py-0">
+                  <div class="container-fluid">
+                    <a class="navbar-brand fw-bolder fs-4" href="#" style="letter-spacing: -0.5px; color: #111827;">
+                        MINIMAL.
+                    </a>
+                    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMinimal" aria-controls="navbarMinimal">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarMinimal">
+                      <ul class="navbar-nav me-auto mb-0" style="min-height: 60px;">
+                        <li class="nav-item d-flex align-items-center">
+                          <a class="nav-link active px-3 h-100 d-flex align-items-center text-primary" style="border-bottom: 2px solid var(--bs-primary);" href="#">Overview</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                          <a class="nav-link px-3 h-100 d-flex align-items-center" href="#">Components</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                          <a class="nav-link px-3 h-100 d-flex align-items-center" href="#">Templates</a>
+                        </li>
+                      </ul>
+                      <div class="d-flex align-items-center gap-3 py-2">
+                        <div class="input-group input-group-sm" style="width: 200px;">
+                            <span class="input-group-text bg-light border-end-0 text-muted"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control bg-light border-start-0 ps-0" placeholder="Search...">
+                        </div>
+                        <a href="#" class="text-muted"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-twitter fa-lg"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

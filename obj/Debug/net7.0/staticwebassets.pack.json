@@ -281,24 +281,28 @@
       "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed[wght].woff2"
     },
     {
-      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Genius.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
+      "PackagePath": "staticwebassets/js/app-system.js"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
-      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Genius.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.Genius.props",
-      "PackagePath": "build\\Genius.props"
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.Kuda.props",
+      "PackagePath": "build\\Kuda.props"
     },
     {
-      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Genius.props",
-      "PackagePath": "buildMultiTargeting\\Genius.props"
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.Kuda.props",
+      "PackagePath": "buildMultiTargeting\\Kuda.props"
     },
     {
-      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Genius.props",
-      "PackagePath": "buildTransitive\\Genius.props"
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.Kuda.props",
+      "PackagePath": "buildTransitive\\Kuda.props"
     }
   ],
   "ElementsToRemove": []

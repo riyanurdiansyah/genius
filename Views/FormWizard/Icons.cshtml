@@ -2,10 +2,524 @@
     ViewData["Title"] = "Icons Wizard";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-magic fa-3x text-muted mb-3"></i>
-        <h4>Icons Form Wizard</h4>
-        <p class="text-muted">This is an empty page placeholder for the Icons Form Wizard.</p>
+@section Styles {
+    <style>
+        /* Shared Wizard Styles */
+        .wizard-container {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .wizard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .wizard-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* 1. Horizontal Icon Wizard */
+        .wizard-icons-hz {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .wizard-icons-hz::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+
+        .w-step-icon {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 25%;
+        }
+
+        .w-step-icon .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transform: rotate(-10deg);
+        }
+
+        .w-step-icon .icon-box i {
+            transform: rotate(10deg); /* Counter rotate icon */
+        }
+
+        .w-step-icon.active .icon-box {
+            border-color: var(--primary-color);
+            background: #fff;
+            color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(59, 157, 130, 0.3);
+            transform: rotate(0deg);
+        }
+        .w-step-icon.active .icon-box i {
+            transform: rotate(0deg);
+        }
+
+        .w-step-icon.completed .icon-box {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: rgba(59, 157, 130, 0.1);
+            transform: rotate(0deg);
+        }
+        .w-step-icon.completed .icon-box i {
+            transform: rotate(0deg);
+        }
+
+
+        .w-step-icon .step-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-gray);
+        }
+
+        .w-step-icon.active .step-title {
+            color: var(--text-dark);
+        }
+
+        /* 2. Vertical Timeline Icon Wizard */
+        .wizard-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .wizard-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -50px;
+            top: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .timeline-step.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(59, 157, 130, 0.08);
+        }
+
+        .timeline-step.active .timeline-icon {
+            background: #fff;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 0 0 5px rgba(59, 157, 130, 0.15);
+        }
+
+        .timeline-step.completed .timeline-icon {
+            background: rgba(59, 157, 130, 0.1);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .timeline-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .timeline-body {
+            display: none;
+        }
+
+        .timeline-step.active .timeline-body {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* 3. Stepper Pills */
+        .stepper-pills {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stepper-pill {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: #f8fafc;
+            border-radius: 50px;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .stepper-pill i {
+            font-size: 1.2rem;
+            margin-right: 12px;
+            opacity: 0.7;
+        }
+
+        .stepper-pill.active {
+            background: #fff;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(59, 157, 130, 0.15);
+        }
+
+        .stepper-pill.completed {
+            background: rgba(59, 157, 130, 0.1);
+            color: var(--primary-color);
+            border-color: rgba(59, 157, 130, 0.2);
+        }
+
+        .stepper-pill.completed i, .stepper-pill.active i {
+            opacity: 1;
+        }
+
+        /* Shared Utilities */
+        .wizard-content-area {
+            min-height: 150px;
+            padding: 10px 0;
+        }
+
+        .wizard-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px dashed var(--border-color);
+        }
+        
+        .wizard-pane {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Horizontal Icon Wizard -->
+    <div class="col-12">
+        <div class="wizard-container" id="wizard-icon-hz">
+            <div class="wizard-header">
+                <div class="wizard-title">Icon Box Wizard</div>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-icon-hz"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+
+            <!-- Steps Indicator -->
+            <div class="wizard-icons-hz" id="icon-hz-steps">
+                <div class="w-step-icon active" data-step="1">
+                    <div class="icon-box"><i class="fa-regular fa-user"></i></div>
+                    <div class="step-title">Profile</div>
+                </div>
+                <div class="w-step-icon" data-step="2">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="step-title">Business Info</div>
+                </div>
+                <div class="w-step-icon" data-step="3">
+                    <div class="icon-box"><i class="fa-regular fa-file-lines"></i></div>
+                    <div class="step-title">Documents</div>
+                </div>
+                <div class="w-step-icon" data-step="4">
+                    <div class="icon-box"><i class="fa-solid fa-check-double"></i></div>
+                    <div class="step-title">Verification</div>
+                </div>
+            </div>
+
+            <!-- Wizard Content -->
+            <div class="wizard-content-area" id="icon-hz-panes">
+                <!-- Pane 1 -->
+                <div class="wizard-pane active" data-pane="1">
+                    <h5 class="mb-4 text-center">User Profile Setup</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" placeholder="johndoe123">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" placeholder="+1 234 567 890">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 2 -->
+                <div class="wizard-pane" data-pane="2" style="display:none;">
+                    <h5 class="mb-4 text-center">Business Information</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-control" placeholder="Acme Corp">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Industry</label>
+                        <select class="form-select">
+                            <option>Technology</option>
+                            <option>Healthcare</option>
+                            <option>Finance</option>
+                            <option>Retail</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Pane 3 -->
+                <div class="wizard-pane" data-pane="3" style="display:none;">
+                    <div class="text-center py-4">
+                        <i class="fa-solid fa-cloud-arrow-up text-muted fa-4x mb-3 opacity-50"></i>
+                        <h5>Upload Required Documents</h5>
+                        <p class="text-muted w-75 mx-auto">Please upload your ID Card and Business Registration proofs. Accepted formats: PDF, JPG, PNG.</p>
+                        <button class="btn btn-primary mt-2"><i class="fa-solid fa-paperclip"></i> Browse Files</button>
+                    </div>
+                </div>
+
+                <!-- Pane 4 -->
+                <div class="wizard-pane" data-pane="4" style="display:none;">
+                    <div class="text-center py-4">
+                        <i class="fas fa-shield-check fa-4x text-success mb-3"></i>
+                        <h5>Ready for Verification</h5>
+                        <p class="text-muted">Thanks! Our team will review your submitted documents shortly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="wizard-actions">
+                <button class="btn btn-outline-secondary" id="icon-hz-prev" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+                <button class="btn btn-primary" id="icon-hz-next">Next Step <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Timeline Icon Wizard -->
+    <div class="col-md-6 mb-4">
+        <div class="wizard-container h-100 mb-0" id="wizard-icon-timeline">
+            <div class="wizard-header pb-3 border-bottom">
+                <div class="wizard-title">Vertical Timeline Wizard</div>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-icon-timeline"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+
+            <div class="wizard-timeline mt-4">
+                <!-- Step 1 -->
+                <div class="timeline-step completed">
+                    <div class="timeline-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <div class="timeline-title">
+                        Cart Summary <span class="badge bg-success"><i class="fa-solid fa-check"></i></span>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-step active">
+                    <div class="timeline-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="timeline-title">Shipping Address</div>
+                    <div class="timeline-body">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" value="John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Delivery Address</label>
+                            <textarea class="form-control" rows="2">123 Street Name, City</textarea>
+                        </div>
+                        <button class="btn btn-primary btn-sm w-100 mt-2">Save Address</button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-step">
+                    <div class="timeline-icon"><i class="fa-regular fa-credit-card"></i></div>
+                    <div class="timeline-title">Payment Method</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Pill Stepper Wizard -->
+    <div class="col-md-6 mb-4">
+        <div class="wizard-container h-100 mb-0" id="wizard-icon-pill">
+            <div class="wizard-header pb-3 border-bottom">
+                <div class="wizard-title">Pill Stepper</div>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-icon-pill"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+
+            <div class="stepper-pills mt-4">
+                <div class="stepper-pill completed">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </div>
+                <div class="stepper-pill active">
+                    <i class="fa-solid fa-palette"></i> Design
+                </div>
+                <div class="stepper-pill">
+                    <i class="fa-solid fa-rocket"></i> Publish
+                </div>
+            </div>
+
+            <div class="wizard-content-area">
+                <h5 class="mb-3">Theme Selection</h5>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="border rounded p-3 text-center border-primary bg-primary bg-opacity-10 cursor-pointer">
+                            <i class="fa-solid fa-leaf text-primary fa-2x mb-2"></i>
+                            <h6 class="mb-0">Organic</h6>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border rounded p-3 text-center cursor-pointer">
+                            <i class="fa-solid fa-moon text-muted fa-2x mb-2"></i>
+                            <h6 class="mb-0">Dark Mode</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wizard-actions">
+                <button class="btn btn-light text-muted">Skip</button>
+                <button class="btn btn-primary">Apply Design</button>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Horizontal Icon Wizard Logic
+            const steps = document.querySelectorAll('#icon-hz-steps .w-step-icon');
+            const panes = document.querySelectorAll('#icon-hz-panes .wizard-pane');
+            const btnNext = document.getElementById('icon-hz-next');
+            const btnPrev = document.getElementById('icon-hz-prev');
+            let currentStep = 1;
+            const totalSteps = steps.length;
+
+            function updateWizard() {
+                // Update Steps UI
+                steps.forEach((step, index) => {
+                    const stepNum = index + 1;
+                    step.classList.remove('active', 'completed');
+                    if (stepNum === currentStep) {
+                        step.classList.add('active');
+                    } else if (stepNum < currentStep) {
+                        step.classList.add('completed');
+                    }
+                });
+
+                // Update Panes UI
+                panes.forEach(pane => {
+                    if (parseInt(pane.getAttribute('data-pane')) === currentStep) {
+                        pane.style.display = 'block';
+                    } else {
+                        pane.style.display = 'none';
+                    }
+                });
+
+                // Update Buttons
+                if (currentStep === 1) {
+                    btnPrev.disabled = true;
+                } else {
+                    btnPrev.disabled = false;
+                }
+
+                if (currentStep === totalSteps) {
+                    btnNext.innerHTML = 'Complete Verification <i class="fas fa-check"></i>';
+                    btnNext.classList.remove('btn-primary');
+                    btnNext.classList.add('btn-success');
+                } else {
+                    btnNext.innerHTML = 'Next Step <i class="fas fa-arrow-right"></i>';
+                    btnNext.classList.add('btn-primary');
+                    btnNext.classList.remove('btn-success');
+                }
+            }
+
+            btnNext.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateWizard();
+                } else {
+                    alert('Documents successfully submitted for verification!');
+                    currentStep = 1;
+                    updateWizard();
+                }
+            });
+
+            btnPrev.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateWizard();
+                }
+            });
+            
+            // Allow clicking steps
+            steps.forEach((step, idx) => {
+               step.addEventListener('click', function() {
+                   if(idx + 1 < currentStep || step.classList.contains('completed')) {
+                       currentStep = idx + 1;
+                       updateWizard();
+                   }
+               }); 
+            });
+        });
+    </script>
+}

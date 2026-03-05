@@ -1,0 +1,75 @@
+@{ ViewData["Title"] = "Buttons"; }
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Solid & Outline Buttons</h5></div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-secondary">Secondary</button>
+                    <button type="button" class="btn btn-success">Success</button>
+                    <button type="button" class="btn btn-danger">Danger</button>
+                    <button type="button" class="btn btn-warning">Warning</button>
+                    <button type="button" class="btn btn-info">Info</button>
+                    <button type="button" class="btn btn-dark">Dark</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-primary">Primary</button>
+                    <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                    <button type="button" class="btn btn-outline-success">Success</button>
+                    <button type="button" class="btn btn-outline-danger">Danger</button>
+                    <button type="button" class="btn btn-outline-warning">Warning</button>
+                    <button type="button" class="btn btn-outline-info">Info</button>
+                    <button type="button" class="btn btn-outline-dark">Dark</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Modern Gradient & Icon Buttons</h5></div>
+            <div class="card-body">
+                <style>
+                    .btn-gradient-primary { background: linear-gradient(45deg, var(--primary-color), #20c997); color: white; border: none; }
+                    .btn-gradient-danger { background: linear-gradient(45deg, #f5365c, #f56036); color: white; border: none; }
+                </style>
+                <div class="mb-4">
+                    <button class="btn btn-gradient-primary px-4 py-2 rounded-pill shadow-sm">Gradient Primary</button>
+                    <button class="btn btn-gradient-danger px-4 py-2 rounded-pill shadow-sm">Gradient Danger</button>
+                </div>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-download me-2"></i> Download</button>
+                    <button class="btn btn-danger"><i class="fas fa-trash me-2"></i> Delete</button>
+                    <button class="btn btn-white border shadow-sm"><i class="fas fa-cog"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Button Groups & Dropdowns</h5></div>
+            <div class="card-body">
+                <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-primary">Left</button>
+                  <button type="button" class="btn btn-primary">Middle</button>
+                  <button type="button" class="btn btn-primary">Right</button>
+                </div>
+                <br>
+                <div class="btn-group mt-2">
+                  <button type="button" class="btn btn-success">Action</button>
+                  <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

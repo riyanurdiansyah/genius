@@ -1,0 +1,336 @@
+@{ ViewData["Title"] = "Accordion Variations"; }
+
+@section Styles {
+    <style>
+        /* 1. Floating Separated Accordion */
+        .floating-accordion .accordion-item { 
+            border: none; 
+            margin-bottom: 20px; 
+            border-radius: 16px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.03); 
+            overflow: hidden; 
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+        .floating-accordion .accordion-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+        .floating-accordion .accordion-button { background-color: transparent; font-weight: 700; color: var(--text-dark); padding: 1.5rem; font-size: 1.05rem; box-shadow: none; border-radius: 16px !important; }
+        .floating-accordion .accordion-button:not(.collapsed) { background-color: #f8fafc; color: var(--primary-color); box-shadow: none; }
+        .floating-accordion .accordion-button::after { background-size: 1rem; width: 1.5rem; height: 1.5rem; background-position: center; border-radius: 50%; background-color: #f1f5f9; padding: 1rem; }
+        .floating-accordion .accordion-button:not(.collapsed)::after { background-color: rgba(59, 157, 130, 0.1); filter: none; }
+        .floating-accordion .accordion-body { background: #f8fafc; color: var(--text-gray); padding: 0 1.5rem 1.5rem; }
+
+        /* 2. Minimal Left-Border Accordion */
+        .minimal-accordion .accordion-item { border: none; border-bottom: 1px solid #e2e8f0; margin-bottom: 0; background: transparent; }
+        .minimal-accordion .accordion-item:last-child { border-bottom: none; }
+        .minimal-accordion .accordion-button { background-color: transparent; font-weight: 600; font-size: 1.05rem; padding: 1.5rem 0; color: var(--text-dark); box-shadow: none; }
+        .minimal-accordion .accordion-button:not(.collapsed) { color: var(--primary-color); background-color: transparent; box-shadow: none; border-left: 4px solid var(--primary-color); padding-left: 1.5rem; }
+        .minimal-accordion .accordion-button:focus { box-shadow: none; }
+        .minimal-accordion .accordion-body { padding: 0 0 1.5rem 1.7rem; color: var(--text-muted); }
+
+        /* 3. Modern Solid Action Accordion */
+        .custom-accordion .accordion-item { border: none; margin-bottom: 12px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; }
+        .custom-accordion .accordion-button { background-color: #fff; font-weight: 600; padding: 1.25rem 1.5rem; transition: all 0.3s ease; color: var(--text-dark); }
+        .custom-accordion .accordion-button:not(.collapsed) { background-color: var(--primary-color); color: white; box-shadow: 0 4px 15px rgba(59, 157, 130, 0.2); }
+        .custom-accordion .accordion-button:not(.collapsed) i { color: white !important; }
+        .custom-accordion .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
+        .custom-accordion .accordion-body { background: #fff; color: var(--text-muted); padding: 1.5rem; }
+
+        /* 4. Glassmorphism Concept */
+        .glass-bg {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            padding: 2.5rem;
+            border-radius: 20px;
+        }
+        .glass-accordion .accordion-item { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            margin-bottom: 15px; 
+            border-radius: 16px; 
+            overflow: hidden; 
+        }
+        .glass-accordion .accordion-button { background-color: transparent; font-weight: 600; color: #f8fafc; padding: 1.25rem 1.5rem; box-shadow: none; }
+        .glass-accordion .accordion-button::after { filter: brightness(0) invert(1); }
+        .glass-accordion .accordion-button:not(.collapsed) { background-color: rgba(255, 255, 255, 0.1); color: #fff; box-shadow: none; }
+        .glass-accordion .accordion-body { background: transparent; color: rgba(255, 255, 255, 0.7); padding: 1.5rem; }
+
+        /* 5. Gradient Border UI Accordion */
+        .gradient-accordion .accordion-item { 
+            border: none; 
+            margin-bottom: 15px; 
+            border-radius: 14px; 
+            background: #fff;
+            position: relative;
+        }
+        .gradient-accordion .accordion-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 14px;
+            padding: 2px; /* thickness of border */
+            background: linear-gradient(45deg, var(--primary-color), #3b82f6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+        .gradient-accordion .accordion-item:hover::before { opacity: 1; }
+        .gradient-accordion .accordion-button { background: transparent; font-weight: 600; box-shadow: none; padding: 1.25rem; z-index: 1;}
+        .gradient-accordion .accordion-button:not(.collapsed) { color: var(--primary-color); background: transparent; }
+        .gradient-accordion .accordion-body { padding: 1.25rem; padding-top: 0; z-index: 1; position: relative;}
+    </style>
+}
+
+<div class="row">
+
+    <!-- 1. Floating Separated Accordion -->
+    <div class="col-12 mb-5">
+        <h5 class="mb-3 fw-bold">1. Floating Cards Structure</h5>
+        <div class="card bg-transparent border-0 shadow-none">
+            <div class="card-body p-0">
+                <div class="accordion floating-accordion" id="accordionFloating">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="floatingHeadingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#floatingCollapseOne" aria-expanded="true" aria-controls="floatingCollapseOne">
+                        <i class="fas fa-gem text-primary me-3"></i> Premium Integrations
+                      </button>
+                    </h2>
+                    <div id="floatingCollapseOne" class="accordion-collapse collapse show" aria-labelledby="floatingHeadingOne" data-bs-parent="#accordionFloating">
+                      <div class="accordion-body">
+                        <strong>Seamlessly connect your tools.</strong> Our platform natively integrates with Slack, Salesforce, and Google Workspace. This means you can sync data automatically without relying on third-party services like Zapier. Ensure your workflow remains uninterrupted while maintaining strict data governance.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="floatingHeadingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#floatingCollapseTwo" aria-expanded="false" aria-controls="floatingCollapseTwo">
+                        <i class="fas fa-lock text-primary me-3"></i> Advanced Security
+                      </button>
+                    </h2>
+                    <div id="floatingCollapseTwo" class="accordion-collapse collapse" aria-labelledby="floatingHeadingTwo" data-bs-parent="#accordionFloating">
+                      <div class="accordion-body">
+                        <strong>Your data is encrypted.</strong> We use military-grade AES-256 encryption at rest and TLS 1.3 during transit. Our compliance with SOC2 Type II, HIPAA, and GDPR guarantees that your customer information is always protected against unauthorized accesses.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="floatingHeadingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#floatingCollapseThree" aria-expanded="false" aria-controls="floatingCollapseThree">
+                        <i class="fas fa-bolt text-primary me-3"></i> Scalable Infrastructure
+                      </button>
+                    </h2>
+                    <div id="floatingCollapseThree" class="accordion-collapse collapse" aria-labelledby="floatingHeadingThree" data-bs-parent="#accordionFloating">
+                      <div class="accordion-body">
+                        <strong>Grow without limits.</strong> Built on top of AWS, our auto-scaling infrastructure handles traffic spikes smoothly. Whether you have 100 or 1,000,000 concurrent users, the response times remain lightning fast.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Minimalist Left Border -->
+    <div class="col-md-6 mb-5">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header border-0 pb-0 bg-white pt-4 px-4"><h5 class="mb-0 fw-bold">2. Minimal Left-Border</h5><p class="text-muted small">Clean, typography focused design</p></div>
+            <div class="card-body px-4">
+                <div class="accordion minimal-accordion" id="accordionMinimal">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="minimalHeadingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#minimalCollapseOne" aria-expanded="true" aria-controls="minimalCollapseOne">
+                        01. Phase: Research & Analysis
+                      </button>
+                    </h2>
+                    <div id="minimalCollapseOne" class="accordion-collapse collapse show" aria-labelledby="minimalHeadingOne" data-bs-parent="#accordionMinimal">
+                      <div class="accordion-body">
+                        We start by understanding your business goals, conducting competitor analysis, and defining your target demographic. This foundation ensures decisions are data-driven.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="minimalHeadingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#minimalCollapseTwo" aria-expanded="false" aria-controls="minimalCollapseTwo">
+                        02. Phase: Wireframing
+                      </button>
+                    </h2>
+                    <div id="minimalCollapseTwo" class="accordion-collapse collapse" aria-labelledby="minimalHeadingTwo" data-bs-parent="#accordionMinimal">
+                      <div class="accordion-body">
+                        Next, we create low-fidelity wireframes to map out the user journey, followed by interactive prototypes to test usability early on with stakeholders.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="minimalHeadingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#minimalCollapseThree" aria-expanded="false" aria-controls="minimalCollapseThree">
+                        03. Phase: UI Handoff
+                      </button>
+                    </h2>
+                    <div id="minimalCollapseThree" class="accordion-collapse collapse" aria-labelledby="minimalHeadingThree" data-bs-parent="#accordionMinimal">
+                      <div class="accordion-body">
+                        Finally, we apply visual styles, component libraries, and detailed spacing rules to create high-fidelity designs ready to be implemented by engineers.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Modern Solid Style -->
+    <div class="col-md-6 mb-5">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header border-0 pb-0 bg-white pt-4 px-4"><h5 class="mb-0 fw-bold">3. Modern Solid Style</h5><p class="text-muted small">Elevated with primary backgrounds</p></div>
+            <div class="card-body bg-light rounded m-3" style="padding: 1.5rem;">
+                <div class="accordion custom-accordion" id="accordionCustom">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="customHeadingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#customCollapseOne" aria-expanded="true" aria-controls="customCollapseOne">
+                        <i class="fas fa-server text-muted me-3 fs-5"></i> Server Configuration
+                      </button>
+                    </h2>
+                    <div id="customCollapseOne" class="accordion-collapse collapse show" aria-labelledby="customHeadingOne" data-bs-parent="#accordionCustom">
+                      <div class="accordion-body">
+                         Set up your deployment pipelines and CI/CD actions. Connect your GitHub repository to enable automatic branches deployment upon pull requests.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="customHeadingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#customCollapseTwo" aria-expanded="false" aria-controls="customCollapseTwo">
+                        <i class="fas fa-database text-muted me-3 fs-5"></i> Database Migrations
+                      </button>
+                    </h2>
+                    <div id="customCollapseTwo" class="accordion-collapse collapse" aria-labelledby="customHeadingTwo" data-bs-parent="#accordionCustom">
+                      <div class="accordion-body">
+                        Manage your PostgreSQL or MongoDB instances. Schedule automated backups every 24 hours and monitor slow queries from the database dashboard.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="customHeadingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#customCollapseThree" aria-expanded="false" aria-controls="customCollapseThree">
+                        <i class="fas fa-globe text-muted me-3 fs-5"></i> Custom Domains
+                      </button>
+                    </h2>
+                    <div id="customCollapseThree" class="accordion-collapse collapse" aria-labelledby="customHeadingThree" data-bs-parent="#accordionCustom">
+                      <div class="accordion-body">
+                        Attach your own domain to the project. Manage DNS records directly and let us automatically provision your free SSL certificates for secure HTTPS.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Glassmorphism -->
+    <div class="col-md-6 mb-5">
+        <div class="card h-100 shadow-sm border-0 bg-transparent">
+            <div class="card-body glass-bg border-0">
+                <h5 class="text-white mb-4 fw-bold">4. Glassmorphism Effect Theme</h5>
+                <div class="accordion glass-accordion" id="accordionGlass">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="glassHeadingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#glassCollapseOne" aria-expanded="true" aria-controls="glassCollapseOne">
+                        Is there a data export feature?
+                      </button>
+                    </h2>
+                    <div id="glassCollapseOne" class="accordion-collapse collapse show" aria-labelledby="glassHeadingOne" data-bs-parent="#accordionGlass">
+                      <div class="accordion-body">
+                        Yes, users can export all their raw account data into a single encrypted ZIP file containing CSVs and JSON structures at any given time.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="glassHeadingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#glassCollapseTwo" aria-expanded="false" aria-controls="glassCollapseTwo">
+                        Is multi-factor authentication (MFA) supported?
+                      </button>
+                    </h2>
+                    <div id="glassCollapseTwo" class="accordion-collapse collapse" aria-labelledby="glassHeadingTwo" data-bs-parent="#accordionGlass">
+                      <div class="accordion-body">
+                        We highly recommend MFA. You can configure it using SMS codes or authenticator apps (like Google Authenticator or Authy) in the Settings -> Security tab.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="glassHeadingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#glassCollapseThree" aria-expanded="false" aria-controls="glassCollapseThree">
+                        What happens to disabled accounts?
+                      </button>
+                    </h2>
+                    <div id="glassCollapseThree" class="accordion-collapse collapse" aria-labelledby="glassHeadingThree" data-bs-parent="#accordionGlass">
+                      <div class="accordion-body">
+                        Disabled accounts are kept in our archive servers for 90 days before permanent deletion, allowing full account restoration during that timeframe.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Gradient Border UI -->
+    <div class="col-md-6 mb-5">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header border-0 pb-0 bg-white pt-4 px-4"><h5 class="mb-0 fw-bold">5. Gradient Box & Outline</h5><p class="text-muted small">Highlighted with CSS mask clipping</p></div>
+            <div class="card-body px-4">
+                <div class="accordion gradient-accordion" id="accordionGradient">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="gradientHeadingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#gradientCollapseOne" aria-expanded="true" aria-controls="gradientCollapseOne">
+                        Team Workspace Limits
+                      </button>
+                    </h2>
+                    <div id="gradientCollapseOne" class="accordion-collapse collapse show" aria-labelledby="gradientHeadingOne" data-bs-parent="#accordionGradient">
+                      <div class="accordion-body text-muted">
+                        Free tier covers up to 5 members per workspace. If your team scales beyond that, you will be prompted to upgrade to the Starter Pack suitable for up to 25 members.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="gradientHeadingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gradientCollapseTwo" aria-expanded="false" aria-controls="gradientCollapseTwo">
+                        API Rate Limiting
+                      </button>
+                    </h2>
+                    <div id="gradientCollapseTwo" class="accordion-collapse collapse" aria-labelledby="gradientHeadingTwo" data-bs-parent="#accordionGradient">
+                      <div class="accordion-body text-muted">
+                        By default, any API token generated is restricted to 100 requests per minute to prevent system abuses. Contact support to raise this ceiling for production apps.
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="gradientHeadingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gradientCollapseThree" aria-expanded="false" aria-controls="gradientCollapseThree">
+                        Refund Policies
+                      </button>
+                    </h2>
+                    <div id="gradientCollapseThree" class="accordion-collapse collapse" aria-labelledby="gradientHeadingThree" data-bs-parent="#accordionGradient">
+                      <div class="accordion-body text-muted">
+                        We issue no questions asked refunds within the first 14 days of any purchase. Beyond 14 days, refunds are evaluated strictly on a case-by-case basis.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

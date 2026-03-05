@@ -1,0 +1,497 @@
+@{
+    ViewData["Title"] = "Kanban Board";
+}
+
+@section Styles {
+    <style>
+        .kanban-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            min-height: calc(100vh - 200px); /* Fill screen */
+            
+            /* Custom Scrollbar for horizontal scrolling */
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        .kanban-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        .kanban-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .kanban-wrapper::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .kanban-board {
+            min-width: 320px;
+            width: 320px;
+            background: #f8fafc;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2e8f0;
+            padding: 0;
+            flex-shrink: 0;
+            max-height: calc(100vh - 200px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        .kanban-board-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+            z-index: 1;
+        }
+
+        .kanban-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+        
+        .kanban-badge {
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .kanban-tasks {
+            flex: 1;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            overflow-y: auto;
+            padding: 20px;
+            /* Scrollbar */
+            scrollbar-width: none; /* Firefox */
+        }
+        .kanban-tasks::-webkit-scrollbar { display: none; } /* Chrome */
+
+        .kanban-task {
+            background: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            cursor: grab;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        
+        .kanban-task:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+
+        .kanban-task:active, .kanban-task.sortable-ghost {
+            opacity: 0.5;
+            transform: scale(0.97);
+            cursor: grabbing !important;
+        }
+
+        .task-labels {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .task-label {
+            font-size: 0.65rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .task-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.3;
+        }
+
+        .task-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 12px;
+        }
+
+        .task-users img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            margin-left: -10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .task-users img:first-child { margin-left: 0; }
+        .task-users img:hover { transform: translateY(-2px); z-index: 10; position: relative; }
+
+        .task-meta {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .task-meta i {
+            font-size: 0.85rem;
+        }
+
+        .add-task-btn {
+            background: transparent;
+            color: #64748b;
+            border: 2px dashed #e2e8f0;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 0 20px 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-task-btn:hover {
+            background: #f8fafc;
+            color: var(--bs-primary, #0d6efd);
+            border-color: #cbd5e1;
+        }
+        
+        /* Dragging styles */
+        .sortable-drag {
+            cursor: grabbing !important;
+            opacity: 1 !important;
+            background: #fff !important;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+            transform: rotate(2deg) scale(1.02);
+            z-index: 10;
+        }
+    </style>
+}
+
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <div>
+            <h4 class="mb-1 fw-bold">Sprint Board <span class="badge bg-primary bg-opacity-10 text-primary ms-2" style="position:relative; top:-2px;">Agile</span></h4>
+            <p class="text-muted mb-0">Drag and drop tasks. Create agile boards with custom columns.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-users me-2"></i> Members</button>
+            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-2"></i> New Board</button>
+        </div>
+    </div>
+</div>
+
+<div class="kanban-wrapper">
+    <!-- TODO COLUMN -->
+    <div class="kanban-board border-secondary border-opacity-10" style="background: rgba(108, 117, 125, 0.01)">
+        <div class="kanban-board-header">
+            <h6 class="kanban-title"><div class="circle-indicator bg-secondary" style="width:10px;height:10px;border-radius:50%;box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.2);"></div> To Do <span class="kanban-badge" id="todo-count">3</span></h6>
+            <div class="dropdown">
+                <i class="fa-solid fa-ellipsis text-muted cursor-pointer" data-bs-toggle="dropdown"></i>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                    <li><a class="dropdown-item" href="#">Edit Column</a></li>
+                    <li><a class="dropdown-item" href="#">Sort Alphabetically</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="kanban-tasks" id="todo-list">
+            
+            <div class="kanban-task" data-id="1">
+                <div class="task-labels">
+                    <span class="task-label bg-danger bg-opacity-10 text-danger">Bug</span>
+                    <span class="task-label bg-warning bg-opacity-10 text-dark">High</span>
+                </div>
+                <div class="task-title">Fix mobile navigation glitch</div>
+                <div class="task-desc">The hamburger menu fails to open on iOS Safari.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="User 1">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="User 2">
+                    </div>
+                    <div class="task-meta">
+                        <span><i class="fa-regular fa-comment"></i> 3</span>
+                        <span><i class="fa-solid fa-paperclip"></i> 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kanban-task" data-id="2">
+                <div class="task-labels">
+                    <span class="task-label bg-primary bg-opacity-10 text-primary">Feature</span>
+                </div>
+                <div class="task-title">Add dark mode support</div>
+                <div class="task-desc">Implement a toggle for dark mode in the main header.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=14" alt="User 3">
+                    </div>
+                    <div class="task-meta">
+                        <span><i class="fa-regular fa-comment"></i> 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kanban-task" data-id="3">
+                <div class="task-labels">
+                    <span class="task-label bg-info bg-opacity-10 text-info">Design</span>
+                </div>
+                <div class="task-title">Redesign Dashboard Cards</div>
+                <div class="task-desc">Modernize the stat cards with charts and organic gradients according to new guidelines.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=5" alt="User 4">
+                        <img src="https://i.pravatar.cc/150?img=8" alt="User 5">
+                    </div>
+                    <div class="task-meta">
+                        <span><i class="fa-regular fa-comment"></i> 8</span>
+                        <span><i class="fa-solid fa-paperclip"></i> 2</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="add-task-btn">
+            <i class="fa-solid fa-plus me-1"></i> Add Task
+        </div>
+    </div>
+
+    <!-- IN PROGRESS COLUMN -->
+    <div class="kanban-board border-primary border-opacity-10" style="background: rgba(13, 110, 253, 0.01)">
+        <div class="kanban-board-header">
+            <h6 class="kanban-title"><div class="circle-indicator bg-primary" style="width:10px;height:10px;border-radius:50%;box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);"></div> In Progress <span class="kanban-badge" id="inprogress-count">2</span></h6>
+            <div class="dropdown">
+                <i class="fa-solid fa-ellipsis text-muted cursor-pointer" data-bs-toggle="dropdown"></i>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="kanban-tasks" id="inprogress-list">
+            
+            <div class="kanban-task" data-id="4">
+                <div class="task-labels">
+                    <span class="task-label bg-primary bg-opacity-10 text-primary">Feature</span>
+                </div>
+                <div class="task-title">Kanban Board Implementation</div>
+                <div class="task-desc">Create a modern drag-and-drop Kanban board layout using SortableJS.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Admin">
+                    </div>
+                    <div class="task-meta">
+                        <span><i class="fa-solid fa-tasks text-muted"></i> 2/5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kanban-task" data-id="5">
+                <div class="task-labels">
+                    <span class="task-label bg-info bg-opacity-10 text-info">Doc</span>
+                </div>
+                <div class="task-title">API Documentation</div>
+                <div class="task-desc">Update Swagger API endpoints for V2 release.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=41" alt="QA">
+                    </div>
+                    <div class="task-meta">
+                        <span class="text-danger fw-bold"><i class="fa-regular fa-clock"></i> Today</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="add-task-btn">
+            <i class="fa-solid fa-plus me-1"></i> Add Task
+        </div>
+    </div>
+
+    <!-- IN REVIEW COLUMN -->
+    <div class="kanban-board border-warning border-opacity-10" style="background: rgba(255, 193, 7, 0.01)">
+        <div class="kanban-board-header">
+            <h6 class="kanban-title"><div class="circle-indicator bg-warning" style="width:10px;height:10px;border-radius:50%;box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);"></div> Review <span class="kanban-badge" id="review-count">1</span></h6>
+            <div class="dropdown">
+                <i class="fa-solid fa-ellipsis text-muted cursor-pointer" data-bs-toggle="dropdown"></i>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="kanban-tasks" id="review-list">
+            
+            <div class="kanban-task" data-id="6">
+                <div class="task-labels">
+                    <span class="task-label bg-success bg-opacity-10 text-success">Update</span>
+                </div>
+                <div class="task-title">Upgrade to .NET 8</div>
+                <div class="task-desc">Migrate current backend infrastructure and remove obsolete packages.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="User">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Reviewer">
+                    </div>
+                    <div class="task-meta">
+                        <span><i class="fa-solid fa-check-double text-warning"></i> Needs Review</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="add-task-btn">
+            <i class="fa-solid fa-plus me-1"></i> Add Task
+        </div>
+    </div>
+
+    <!-- DONE COLUMN -->
+    <div class="kanban-board border-success border-opacity-25" style="background: rgba(25, 135, 84, 0.02)">
+        <div class="kanban-board-header">
+            <h6 class="kanban-title"><div class="circle-indicator bg-success" style="width:10px;height:10px;border-radius:50%;box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2);"></div> Done <span class="kanban-badge" id="done-count">2</span></h6>
+            <div class="dropdown">
+                <i class="fa-solid fa-ellipsis text-muted cursor-pointer" data-bs-toggle="dropdown"></i>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                    <li><a class="dropdown-item" href="#">Archive All Done</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="kanban-tasks" id="done-list">
+            
+            <div class="kanban-task" style="opacity: 0.65; box-shadow: none;" data-id="7">
+                <div class="task-labels">
+                    <span class="task-label bg-primary bg-opacity-10 text-primary">Feature</span>
+                </div>
+                <div class="task-title text-decoration-line-through text-muted">Authentication UI</div>
+                <div class="task-desc">Create Login, Register, and Forgot Password screens.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=60" alt="Completed" style="filter: grayscale(1);">
+                    </div>
+                    <div class="task-meta">
+                        <span class="text-success fw-bold"><i class="fa-solid fa-check"></i> Done</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kanban-task" style="opacity: 0.65; box-shadow: none;" data-id="8">
+                <div class="task-labels">
+                    <span class="task-label bg-danger bg-opacity-10 text-danger">Bug</span>
+                </div>
+                <div class="task-title text-decoration-line-through text-muted">Fix memory leak</div>
+                <div class="task-desc">Resolved memory consumption issue on data-heavy tables.</div>
+                <div class="task-footer">
+                    <div class="task-users">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Admin" style="filter: grayscale(1);">
+                    </div>
+                    <div class="task-meta">
+                        <span class="text-success fw-bold"><i class="fa-solid fa-check"></i> Done</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="add-task-btn">
+            <i class="fa-solid fa-plus me-1"></i> Add Task
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Include SortableJS for Drag and Drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Function to update badge counts dynamically
+            function updateCounts() {
+                document.getElementById('todo-count').textContent = document.getElementById('todo-list').children.length;
+                document.getElementById('inprogress-count').textContent = document.getElementById('inprogress-list').children.length;
+                document.getElementById('review-count').textContent = document.getElementById('review-list').children.length;
+                document.getElementById('done-count').textContent = document.getElementById('done-list').children.length;
+            }
+
+            // Optional styling updates when dropped in Done
+            function styleBasedOnColumn(item, listId) {
+                const title = item.querySelector('.task-title');
+                const users = item.querySelectorAll('.task-users img');
+                
+                if(listId === 'done-list') {
+                    item.style.opacity = '0.65';
+                    item.style.boxShadow = 'none';
+                    title.classList.add('text-decoration-line-through', 'text-muted');
+                    users.forEach(img => img.style.filter = 'grayscale(1)');
+                } else {
+                    item.style.opacity = '1';
+                    item.style.boxShadow = '0 2px 5px rgba(0,0,0,0.02)';
+                    title.classList.remove('text-decoration-line-through', 'text-muted');
+                    users.forEach(img => img.style.filter = 'none');
+                }
+            }
+
+            // Initialize Sortable for all columns
+            const columns = ['todo-list', 'inprogress-list', 'review-list', 'done-list'];
+            
+            columns.forEach(id => {
+                var el = document.getElementById(id);
+                if(el) {
+                    new Sortable(el, {
+                        group: 'kanban', // set both lists to same group
+                        animation: 150,
+                        ghostClass: 'sortable-ghost',
+                        dragClass: 'sortable-drag',
+                        easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+                        onEnd: function (evt) {
+                            var itemEl = evt.item;  // dragged HTMLElement
+                            
+                            // Update counts
+                            updateCounts();
+                            
+                            // Update styling if moved to/from 'Done'
+                            styleBasedOnColumn(itemEl, evt.to.id);
+                        },
+                    });
+                }
+            });
+            
+        });
+    </script>
+}

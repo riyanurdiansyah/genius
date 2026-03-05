@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Kuda Dashboard</title>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Core Theme and Component Styles -->
+    <link rel="stylesheet" href="~/css/theme.css" />
+    <link rel="stylesheet" href="~/css/components.css" />
+    
+    <style>
+        body {
+            font-family: var(--font-family-primary);
+            color: var(--text-dark);
+            background: #eef2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animated Background Blobs for Glassmorphism */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            z-index: -1;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        body::before {
+            width: 50vw;
+            height: 50vw;
+            background: rgba(59, 157, 130, 0.25);
+            top: -10vw;
+            right: -10vw;
+            animation-delay: -5s;
+        }
+        body::after {
+            width: 40vw;
+            height: 40vw;
+            background: rgba(13, 202, 240, 0.15); /* light blue/info tint */
+            bottom: -5vw;
+            left: -10vw;
+        }
+
+        /* The Glassmorphic / Polymorphic Container */
+        .auth-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.05),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -2px 0 rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            width: 100%;
+            max-width: 950px;
+            display: flex;
+            margin: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Left cover (Optional) */
+        .auth-cover {
+            background: linear-gradient(135deg, rgba(59, 157, 130, 0.8), rgba(35, 83, 71, 0.9));
+            color: #fff;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            flex: 0 0 42%;
+            max-width: 42%;
+        }
+        .auth-cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: pulse 15s infinite linear;
+            pointer-events: none;
+        }
+
+        /* Right Form wrapper */
+        .auth-form-wrapper {
+            padding: 3.5rem 4rem;
+            width: 100%;
+            background: transparent; /* transparent to let glass show through */
+            flex: 0 0 58%;
+            max-width: 58%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Form Element Overrides for Polymorphism Look */
+        .auth-form-wrapper .form-control, .auth-form-wrapper .input-group-text {
+            background: rgba(255, 255, 255, 0.75) !important;
+            border: 1px solid rgba(255, 255, 255, 0.9) !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            color: var(--text-dark);
+        }
+        .auth-form-wrapper .form-control:focus {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 4px rgba(59, 157, 130, 0.15), inset 0 1px 2px rgba(0,0,0,0.02) !important;
+        }
+        .auth-form-wrapper .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #235347);
+            border: none;
+            box-shadow: 0 8px 20px rgba(59, 157, 130, 0.25), inset 0 2px 0 rgba(255,255,255,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .auth-form-wrapper .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(59, 157, 130, 0.35), inset 0 2px 0 rgba(255,255,255,0.2);
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        @@media (max-width: 768px) {
+            .auth-card {
+                flex-direction: column;
+                margin: 1rem;
+            }
+            .auth-cover {
+                padding: 2.5rem;
+                flex: 0 0 100%;
+                max-width: 100%;
+                border-radius: 24px 24px 0 0;
+            }
+            .auth-form-wrapper {
+                padding: 2.5rem;
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            body::before { width: 80vw; height: 80vw; }
+            body::after { width: 70vw; height: 70vw; }
+        }
+
+        @@keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @@keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5vw, 5vh) scale(1.05); }
+            100% { transform: translate(-2vw, -3vh) scale(0.95); }
+        }
+    </style>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    
+    @RenderBody()
+
+    <!-- Core Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

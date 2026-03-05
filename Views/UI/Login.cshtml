@@ -1,0 +1,936 @@
+@{ ViewData["Title"] = "Login Pages"; }
+
+<style>
+    /* ── Login Showcase Global Styles ─────────────────────────── */
+    .login-preview-wrap {
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* -- Shared mini-form styles inside preview cards -- */
+    .lp-input {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        outline: none;
+        transition: all 0.25s;
+        font-family: inherit;
+    }
+    .lp-btn {
+        display: block;
+        width: 100%;
+        padding: 11px;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .lp-btn:hover { transform: translateY(-2px); opacity: .92; }
+    .lp-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .6px;
+        margin-bottom: 5px;
+    }
+    .lp-link { font-size: 12px; text-decoration: none; }
+    .lp-divider { display: flex; align-items: center; gap: 8px; margin: 12px 0; }
+    .lp-divider::before, .lp-divider::after {
+        content: ''; flex: 1; height: 1px;
+    }
+    .lp-divider span { font-size: 11px; white-space: nowrap; }
+    .lp-social-btn {
+        flex: 1;
+        padding: 8px 6px;
+        border-radius: 8px;
+        border: none;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.2s;
+    }
+    .lp-social-btn:hover { transform: translateY(-1px); }
+    .variant-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0,0,0,0.55);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 9px;
+        border-radius: 50px;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        backdrop-filter: blur(4px);
+        z-index: 10;
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* VARIANT 1 — Aurora Mesh Gradient                            */
+    /* ─────────────────────────────────────────────────────────── */
+    .lp-aurora-bg {
+        background: #0d0d1a;
+        padding: 40px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 460px;
+        position: relative;
+        overflow: hidden;
+    }
+    .lp-aurora-bg::before {
+        content: '';
+        position: absolute; inset: 0;
+        background:
+            radial-gradient(ellipse 60% 50% at 20% 20%, rgba(120,80,255,0.55) 0%, transparent 60%),
+            radial-gradient(ellipse 50% 60% at 80% 70%, rgba(0,210,180,0.4) 0%, transparent 60%),
+            radial-gradient(ellipse 40% 40% at 60% 10%, rgba(255,100,180,0.35) 0%, transparent 55%);
+        animation: lp-aurora-shift 8s ease-in-out infinite alternate;
+    }
+    @@keyframes lp-aurora-shift {
+        0%   { opacity: 1; transform: scale(1) rotate(0deg); }
+        100% { opacity: 0.8; transform: scale(1.08) rotate(3deg); }
+    }
+    .lp-aurora-card {
+        background: rgba(255,255,255,0.07);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 24px;
+        padding: 32px 28px;
+        width: 100%; max-width: 320px;
+        position: relative; z-index: 2;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .lp-aurora-card .lp-input {
+        background: rgba(255,255,255,0.09);
+        border: 1px solid rgba(255,255,255,0.18);
+        color: #fff;
+    }
+    .lp-aurora-card .lp-input::placeholder { color: rgba(255,255,255,0.35); }
+    .lp-aurora-card .lp-input:focus {
+        background: rgba(255,255,255,0.14);
+        border-color: rgba(140,100,255,0.7);
+        box-shadow: 0 0 0 3px rgba(140,100,255,0.2);
+    }
+    .lp-aurora-card .lp-btn {
+        background: linear-gradient(135deg, #7c5ff5, #00d4b4);
+        color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 28px rgba(124,95,245,0.5);
+        font-size: 14px;
+    }
+    .lp-aurora-card .lp-label { color: rgba(200,180,255,0.7); }
+    .lp-aurora-card .lp-divider::before, .lp-aurora-card .lp-divider::after { background: rgba(255,255,255,0.12); }
+    .lp-aurora-card .lp-divider span { color: rgba(255,255,255,0.35); }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* VARIANT 2 — Split Layout                                    */
+    /* ─────────────────────────────────────────────────────────── */
+    .lp-split-wrap {
+        display: flex;
+        min-height: 460px;
+        overflow: hidden;
+    }
+    .lp-split-cover {
+        flex: 0 0 42%;
+        background: linear-gradient(160deg, #059669 0%, #065f46 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px 24px;
+        position: relative;
+        overflow: hidden;
+    }
+    .lp-split-cover::before {
+        content: '';
+        position: absolute;
+        width: 200px; height: 200px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        top: -60px; right: -60px;
+    }
+    .lp-split-cover::after {
+        content: '';
+        position: absolute;
+        width: 120px; height: 120px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.06);
+        bottom: 20px; left: -30px;
+    }
+    .lp-split-form {
+        flex: 1;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px 28px;
+    }
+    .lp-split-form .lp-input {
+        border: 1.5px solid #e5e7eb;
+        color: #111;
+        background: #fafafa;
+    }
+    .lp-split-form .lp-input:focus {
+        border-color: #059669;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(5,150,105,0.12);
+    }
+    .lp-split-form .lp-btn {
+        background: linear-gradient(135deg, #059669, #047857);
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(5,150,105,0.3);
+    }
+    .lp-split-form .lp-label { color: #6b7280; }
+    .lp-split-form .lp-divider::before, .lp-split-form .lp-divider::after { background: #e5e7eb; }
+    .lp-split-form .lp-divider span { color: #9ca3af; }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* VARIANT 3 — Minimal / Centered Clean                        */
+    /* ─────────────────────────────────────────────────────────── */
+    .lp-minimal-bg {
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        min-height: 460px;
+    }
+    .lp-minimal-card {
+        width: 100%;
+        max-width: 310px;
+    }
+    .lp-minimal-card .lp-input {
+        border: 2px solid #e2e8f0;
+        color: #1e293b;
+        background: #fff;
+        border-radius: 10px;
+    }
+    .lp-minimal-card .lp-input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+    .lp-minimal-card .lp-btn {
+        background: #1e293b;
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 14px rgba(30,41,59,0.25);
+    }
+    .lp-minimal-card .lp-btn:hover { background: #0f172a; }
+    .lp-minimal-card .lp-label { color: #64748b; }
+    .lp-minimal-card .lp-divider::before, .lp-minimal-card .lp-divider::after { background: #e2e8f0; }
+    .lp-minimal-card .lp-divider span { color: #94a3b8; }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* VARIANT 4 — Dark Luxury Gold                                */
+    /* ─────────────────────────────────────────────────────────── */
+    .lp-luxury-bg {
+        background: #0c0c0e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        min-height: 460px;
+        position: relative;
+        overflow: hidden;
+    }
+    .lp-luxury-bg::before {
+        content: '';
+        position: absolute;
+        width: 320px; height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 65%);
+        top: -80px; left: 50%; transform: translateX(-50%);
+    }
+    .lp-luxury-bg::after {
+        content: '';
+        position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+    }
+    .lp-luxury-card {
+        background: #141418;
+        border: 1px solid rgba(212,175,55,0.2);
+        border-radius: 20px;
+        padding: 34px 28px;
+        width: 100%; max-width: 320px;
+        position: relative; z-index: 2;
+        box-shadow: 0 0 0 1px rgba(212,175,55,0.06), 0 30px 60px rgba(0,0,0,0.5);
+    }
+    .lp-luxury-top-line {
+        position: absolute; top: 0; left: 24px; right: 24px; height: 2px;
+        background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        border-radius: 0 0 4px 4px;
+    }
+    .lp-luxury-card .lp-input {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(212,175,55,0.18);
+        color: #e8e0c8;
+    }
+    .lp-luxury-card .lp-input::placeholder { color: rgba(200,185,140,0.35); }
+    .lp-luxury-card .lp-input:focus {
+        border-color: rgba(212,175,55,0.55);
+        background: rgba(212,175,55,0.05);
+        box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+    }
+    .lp-luxury-card .lp-btn {
+        background: linear-gradient(135deg, #c8960c, #f0c040, #c8960c);
+        background-size: 200% auto;
+        color: #0c0c0e;
+        font-weight: 800;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(212,175,55,0.25);
+        transition: background-position 0.4s, transform 0.2s;
+    }
+    .lp-luxury-card .lp-btn:hover { background-position: right center; }
+    .lp-luxury-card .lp-label { color: rgba(212,175,55,0.55); font-size: 10px; letter-spacing: 1px; }
+    .lp-luxury-card .lp-divider::before, .lp-luxury-card .lp-divider::after { background: rgba(212,175,55,0.15); }
+    .lp-luxury-card .lp-divider span { color: rgba(212,175,55,0.4); }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* VARIANT 5 — Frosted Geometric Pattern                       */
+    /* ─────────────────────────────────────────────────────────── */
+    .lp-geo-bg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        min-height: 460px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #1a1035 0%, #2d1b69 40%, #11104e 100%);
+    }
+    .lp-geo-bg::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image:
+            linear-gradient(rgba(120,80,255,0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(120,80,255,0.12) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .lp-geo-dot {
+        position: absolute;
+        width: 200px; height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(167,139,250,0.3) 0%, transparent 65%);
+    }
+    .lp-geo-dot-1 { top: -40px; right: -30px; }
+    .lp-geo-dot-2 { bottom: -50px; left: -40px; width: 160px; height: 160px;
+        background: radial-gradient(circle, rgba(56,189,248,0.25) 0%, transparent 65%); }
+    .lp-geo-card {
+        background: rgba(255,255,255,0.07);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(167,139,250,0.25);
+        border-radius: 22px;
+        padding: 32px 26px;
+        width: 100%; max-width: 310px;
+        position: relative; z-index: 2;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+    .lp-geo-card .lp-input {
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(167,139,250,0.2);
+        color: #e2e0ff;
+    }
+    .lp-geo-card .lp-input::placeholder { color: rgba(180,160,255,0.35); }
+    .lp-geo-card .lp-input:focus {
+        border-color: rgba(167,139,250,0.6);
+        background: rgba(167,139,250,0.1);
+        box-shadow: 0 0 0 3px rgba(167,139,250,0.15);
+    }
+    .lp-geo-card .lp-btn {
+        background: linear-gradient(135deg, #7c5ff5, #38bdf8);
+        color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 28px rgba(124,95,245,0.4);
+    }
+    .lp-geo-card .lp-label { color: rgba(167,139,250,0.7); }
+    .lp-geo-card .lp-divider::before, .lp-geo-card .lp-divider::after { background: rgba(167,139,250,0.2); }
+    .lp-geo-card .lp-divider span { color: rgba(167,139,250,0.5); }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* VARIANT 6 — Neumorphism / Soft UI                           */
+    /* ─────────────────────────────────────────────────────────── */
+    .lp-neumorph-bg {
+        background: #e8ecf0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        min-height: 460px;
+    }
+    .lp-neumorph-card {
+        background: #e8ecf0;
+        border-radius: 24px;
+        padding: 36px 28px;
+        width: 100%;
+        max-width: 320px;
+        box-shadow: 10px 10px 30px rgba(166,180,200,0.7), -10px -10px 30px rgba(255,255,255,0.8);
+    }
+    .lp-neumorph-card .lp-input {
+        background: #e8ecf0;
+        border: none;
+        color: #394149;
+        box-shadow: inset 4px 4px 10px rgba(166,180,200,0.6), inset -4px -4px 10px rgba(255,255,255,0.8);
+    }
+    .lp-neumorph-card .lp-input::placeholder { color: #a0aec0; }
+    .lp-neumorph-card .lp-input:focus {
+        outline: none;
+        box-shadow: inset 4px 4px 10px rgba(166,180,200,0.7), inset -4px -4px 10px rgba(255,255,255,0.9), 0 0 0 2px rgba(59,157,130,0.25);
+    }
+    .lp-neumorph-card .lp-btn {
+        background: linear-gradient(135deg, #3b9d82, #2d7a65);
+        color: #fff;
+        border-radius: 12px;
+        box-shadow: 5px 5px 15px rgba(166,180,200,0.5), -2px -2px 8px rgba(255,255,255,0.6);
+    }
+    .lp-neumorph-card .lp-label { color: #718096; }
+    .lp-neumorph-card .lp-divider::before, .lp-neumorph-card .lp-divider::after { background: #c8d0da; }
+    .lp-neumorph-card .lp-divider span { color: #a0aec0; }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* VARIANT 7 — Sunset Panoramic (Split + Illustration)         */
+    /* ─────────────────────────────────────────────────────────── */
+    .lp-sunset-wrap {
+        display: flex;
+        min-height: 460px;
+        overflow: hidden;
+    }
+    .lp-sunset-cover {
+        flex: 0 0 44%;
+        background: linear-gradient(200deg, #fc4a1a 0%, #f7b733 50%, #fc4a1a 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 28px 22px;
+        position: relative;
+        overflow: hidden;
+    }
+    .lp-sunset-cover::before {
+        content: '';
+        position: absolute; inset: 0;
+        background:
+            radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,255,255,0.25) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 110% 110%, rgba(180,30,0,0.4) 0%, transparent 55%);
+    }
+    .lp-sunset-circles {
+        position: absolute;
+        top: 16px; left: 50%; transform: translateX(-50%);
+        display: flex; flex-direction: column; align-items: center; gap: 10px;
+        z-index: 2;
+    }
+    .lp-sun {
+        width: 52px; height: 52px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 50%;
+        box-shadow: 0 0 0 10px rgba(255,255,255,0.15), 0 0 0 22px rgba(255,255,255,0.07);
+    }
+    .lp-horizon { width: 80%; height: 1px; background: rgba(255,255,255,0.3); }
+    .lp-sunset-form {
+        flex: 1;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 28px 24px;
+    }
+    .lp-sunset-form .lp-input {
+        border: 1.5px solid #ffe4cc;
+        color: #1c1c1c;
+        background: #fff9f5;
+    }
+    .lp-sunset-form .lp-input:focus {
+        border-color: #fc4a1a;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(252,74,26,0.1);
+    }
+    .lp-sunset-form .lp-btn {
+        background: linear-gradient(135deg, #fc4a1a, #f7b733);
+        color: #fff;
+        font-weight: 800;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(252,74,26,0.3);
+    }
+    .lp-sunset-form .lp-label { color: #9ca3af; }
+    .lp-sunset-form .lp-divider::before, .lp-sunset-form .lp-divider::after { background: #ffe4cc; }
+    .lp-sunset-form .lp-divider span { color: #f7b733; font-weight: 600; }
+
+    /* Preview card wrapper */
+    .preview-card {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        height: 100%;
+    }
+    .preview-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+    .preview-card .card-header {
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        padding: 14px 18px;
+    }
+    .preview-card .card-header h6 { font-size: 13px; font-weight: 700; }
+    .preview-card .card-footer {
+        padding: 10px 18px;
+        background: transparent;
+        border-top: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .tag-badge {
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 50px;
+        font-weight: 600;
+        background: rgba(0,0,0,0.06);
+        color: #666;
+    }
+</style>
+
+<!-- Page Header Info -->
+<div class="d-flex align-items-center gap-3 mb-4">
+    <div>
+        <h2 class="mb-0 fw-bold" style="font-size: 1.35rem;">Login UI Variations</h2>
+        <p class="text-muted mb-0 small">7 variasi desain login modern — pilih sesuai kebutuhan project kamu.</p>
+    </div>
+    <div class="ms-auto d-flex gap-2 flex-wrap">
+        <a href="/Auth/Login" target="_blank" class="btn btn-sm btn-outline-secondary"><i class="fas fa-external-link-alt me-1"></i> Preview Live Login</a>
+    </div>
+</div>
+
+<div class="row g-4">
+
+    <!-- ───────────────────────────────────────── -->
+    <!-- 1. AURORA MESH GRADIENT                   -->
+    <!-- ───────────────────────────────────────── -->
+    <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="card preview-card">
+            <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">1. Aurora Mesh Gradient</h6>
+                <span class="tag-badge">✦ Premium</span>
+            </div>
+            <div id="lp-preview-1" class="login-preview-wrap">
+                <div class="variant-badge">Aurora</div>
+                <div class="lp-aurora-bg">
+                    <div class="lp-aurora-card">
+                        <div style="display:flex; align-items:center; gap:10px; margin-bottom:22px;">
+                            <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#7c5ff5,#00d4b4);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(124,95,245,0.4);">
+                                <i class="fas fa-bolt" style="color:#fff;font-size:14px;"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:10px;color:rgba(200,180,255,0.55);letter-spacing:.8px;text-transform:uppercase;">Kuda Admin</div>
+                                <div style="font-size:16px;font-weight:800;color:#fff;line-height:1.2;">Welcome back</div>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; gap:8px; margin-bottom:16px;">
+                            <button class="lp-social-btn" style="background:rgba(255,255,255,0.09);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:10px;">
+                                <i class="fab fa-google" style="color:#ea4335;"></i> Google
+                            </button>
+                            <button class="lp-social-btn" style="background:rgba(255,255,255,0.09);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:10px;">
+                                <i class="fab fa-github"></i> GitHub
+                            </button>
+                        </div>
+
+                        <div class="lp-divider"><span>or with email</span></div>
+
+                        <div style="margin-bottom:12px;">
+                            <label class="lp-label">Email</label>
+                            <input type="email" class="lp-input" placeholder="you@example.com" style="border-radius:10px;">
+                        </div>
+                        <div style="margin-bottom:20px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+                                <label class="lp-label" style="margin-bottom:0;">Password</label>
+                                <a href="#" style="font-size:11px;color:rgba(140,100,255,0.9);text-decoration:none;font-weight:600;">Forgot?</a>
+                            </div>
+                            <input type="password" class="lp-input" placeholder="••••••••" style="border-radius:10px;">
+                        </div>
+                        <button class="lp-btn">Sign In &rarr;</button>
+                        <p style="text-align:center;margin-top:14px;font-size:11px;color:rgba(255,255,255,0.35);">
+                            New user? <a href="#" style="color:#7c5ff5;font-weight:700;text-decoration:none;">Create account</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-2">
+                    <span class="tag-badge">Aurora</span>
+                    <span class="tag-badge">Animated</span>
+                    <span class="tag-badge">Dark Mesh</span>
+                </div>
+                <button class="btn btn-xs btn-light border" onclick="openModal('globalCopyHtmlModal'); document.getElementById('globalCopyHtmlTextarea').value = document.getElementById('lp-preview-1').innerHTML;" style="font-size:11px; padding:3px 10px;">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ───────────────────────────────────────── -->
+    <!-- 2. SPLIT LAYOUT                           -->
+    <!-- ───────────────────────────────────────── -->
+    <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="card preview-card">
+            <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">2. Split Panel Layout</h6>
+                <span class="tag-badge">Classic</span>
+            </div>
+            <div id="lp-preview-2" class="login-preview-wrap">
+                <div class="variant-badge">Split</div>
+                <div class="lp-split-wrap">
+                    <!-- Left cover -->
+                    <div class="lp-split-cover">
+                        <div style="position:relative; z-index:2;">
+                            <div style="width:36px; height:36px; background:rgba(255,255,255,0.2); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+                                <i class="fas fa-layer-group" style="color:#fff; font-size:15px;"></i>
+                            </div>
+                            <h3 style="color:#fff; font-weight:800; font-size:18px; line-height:1.3; margin-bottom:10px;">Selamat<br>Datang Kembali</h3>
+                            <p style="color:rgba(255,255,255,0.7); font-size:12px; line-height:1.6;">Masuk untuk melanjutkan ke dashboard admin Anda.</p>
+                            <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+                                <span style="background:rgba(255,255,255,0.15); color:#fff; font-size:10px; padding:3px 10px; border-radius:50px; font-weight:600;">✓ Aman</span>
+                                <span style="background:rgba(255,255,255,0.15); color:#fff; font-size:10px; padding:3px 10px; border-radius:50px; font-weight:600;">✓ Terenkripsi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right form -->
+                    <div class="lp-split-form">
+                        <h4 style="font-weight:800; color:#111; font-size:18px; margin-bottom:4px;">Sign In</h4>
+                        <p style="color:#9ca3af; font-size:12px; margin-bottom:20px;">Enter your credentials to continue.</p>
+
+                        <div style="margin-bottom:12px;">
+                            <label class="lp-label">Email Address</label>
+                            <input type="email" class="lp-input" placeholder="name@company.com">
+                        </div>
+                        <div style="margin-bottom:16px;">
+                            <label class="lp-label">Password</label>
+                            <input type="password" class="lp-input" placeholder="••••••••">
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                            <label style="font-size:12px; color:#6b7280; display:flex; align-items:center; gap:6px; cursor:pointer;">
+                                <input type="checkbox" style="accent-color:#059669;"> Remember me
+                            </label>
+                            <a href="#" class="lp-link" style="color:#059669; font-weight:600;">Forgot password?</a>
+                        </div>
+                        <button class="lp-btn">Login</button>
+                        <p style="text-align:center; margin-top:14px; font-size:11px; color:#9ca3af;">
+                            New here? <a href="#" style="color:#059669; font-weight:700; text-decoration:none;">Create account</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-2">
+                    <span class="tag-badge">Split</span>
+                    <span class="tag-badge">Green</span>
+                    <span class="tag-badge">Corporate</span>
+                </div>
+                <button class="btn btn-xs btn-light border" onclick="openModal('globalCopyHtmlModal'); document.getElementById('globalCopyHtmlTextarea').value = document.getElementById('lp-preview-2').innerHTML;" style="font-size:11px; padding:3px 10px;">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ───────────────────────────────────────── -->
+    <!-- 3. MINIMAL CLEAN                          -->
+    <!-- ───────────────────────────────────────── -->
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="card preview-card">
+            <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">3. Minimal Clean</h6>
+                <span class="tag-badge">Simple</span>
+            </div>
+            <div id="lp-preview-3" class="login-preview-wrap">
+                <div class="variant-badge">Minimal</div>
+                <div class="lp-minimal-bg">
+                    <div class="lp-minimal-card">
+                        <div style="text-align:center; margin-bottom:24px;">
+                            <div style="width:44px;height:44px;background:#1e293b;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+                                <i class="fas fa-bolt" style="color:#fff;"></i>
+                            </div>
+                            <h4 style="font-weight:800; color:#0f172a; font-size:18px; margin-bottom:4px;">Sign in to Kuda</h4>
+                            <p style="color:#94a3b8; font-size:12px;">No fluff. Just your credentials.</p>
+                        </div>
+
+                        <div style="margin-bottom:12px;">
+                            <label class="lp-label">Email</label>
+                            <input type="email" class="lp-input" placeholder="you@example.com">
+                        </div>
+                        <div style="margin-bottom:18px;">
+                            <label class="lp-label">Password</label>
+                            <input type="password" class="lp-input" placeholder="••••••••">
+                        </div>
+                        <button class="lp-btn">Continue</button>
+
+                        <div class="lp-divider" style="margin-top:16px;"><span>or</span></div>
+
+                        <div style="display:flex; gap:8px;">
+                            <button class="lp-social-btn" style="background:#f1f5f9; color:#374151; border:1px solid #e2e8f0;">
+                                <i class="fab fa-google" style="color:#ea4335; font-size:13px;"></i>
+                            </button>
+                            <button class="lp-social-btn" style="background:#f1f5f9; color:#374151; border:1px solid #e2e8f0;">
+                                <i class="fab fa-github" style="color:#111; font-size:13px;"></i>
+                            </button>
+                            <button class="lp-social-btn" style="background:#f1f5f9; color:#374151; border:1px solid #e2e8f0;">
+                                <i class="fab fa-microsoft" style="color:#00a4ef; font-size:13px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-2 flex-wrap">
+                    <span class="tag-badge">Minimal</span>
+                    <span class="tag-badge">Light</span>
+                </div>
+                <button class="btn btn-xs btn-light border" onclick="openModal('globalCopyHtmlModal'); document.getElementById('globalCopyHtmlTextarea').value = document.getElementById('lp-preview-3').innerHTML;" style="font-size:11px; padding:3px 10px;">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ───────────────────────────────────────── -->
+    <!-- 4. DARK LUXURY GOLD                       -->
+    <!-- ───────────────────────────────────────── -->
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="card preview-card">
+            <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">4. Dark Luxury Gold</h6>
+                <span class="tag-badge">Luxury</span>
+            </div>
+            <div id="lp-preview-4" class="login-preview-wrap">
+                <div class="variant-badge">Gold</div>
+                <div class="lp-luxury-bg">
+                    <div class="lp-luxury-card">
+                        <div class="lp-luxury-top-line"></div>
+                        <div style="text-align:center;margin-bottom:22px;">
+                            <div style="width:44px;height:44px;margin:0 auto 12px;border-radius:50%;border:1.5px solid rgba(212,175,55,0.35);display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.08);">
+                                <i class="fas fa-crown" style="color:#d4af37;font-size:16px;"></i>
+                            </div>
+                            <h4 style="font-weight:800;color:#e8dfc0;font-size:17px;margin-bottom:3px;">Premium Access</h4>
+                            <p style="color:rgba(212,175,55,0.45);font-size:11px;letter-spacing:.5px;text-transform:uppercase;">sign in to continue</p>
+                        </div>
+                        <div style="margin-bottom:12px;">
+                            <label class="lp-label">Email</label>
+                            <input type="email" class="lp-input" placeholder="you@example.com" style="border-radius:8px;">
+                        </div>
+                        <div style="margin-bottom:20px;">
+                            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                                <label class="lp-label" style="margin-bottom:0;">Password</label>
+                                <a href="#" style="font-size:11px;color:rgba(212,175,55,0.6);text-decoration:none;">Forgot?</a>
+                            </div>
+                            <input type="password" class="lp-input" placeholder="••••••••" style="border-radius:8px;">
+                        </div>
+                        <button class="lp-btn">Enter &rarr;</button>
+                        <div class="lp-divider"><span>or continue with</span></div>
+                        <div style="display:flex;gap:8px;">
+                            <button class="lp-social-btn" style="background:rgba(255,255,255,0.04);border:1px solid rgba(212,175,55,0.15);color:rgba(212,175,55,0.7);border-radius:8px;"><i class="fab fa-google" style="color:#ea4335;"></i></button>
+                            <button class="lp-social-btn" style="background:rgba(255,255,255,0.04);border:1px solid rgba(212,175,55,0.15);color:rgba(212,175,55,0.7);border-radius:8px;"><i class="fab fa-github"></i></button>
+                            <button class="lp-social-btn" style="background:rgba(255,255,255,0.04);border:1px solid rgba(212,175,55,0.15);color:rgba(212,175,55,0.7);border-radius:8px;"><i class="fab fa-apple"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-2 flex-wrap">
+                    <span class="tag-badge">Dark</span>
+                    <span class="tag-badge">Gold</span>
+                    <span class="tag-badge">Luxury</span>
+                </div>
+                <button class="btn btn-xs btn-light border" onclick="openModal('globalCopyHtmlModal'); document.getElementById('globalCopyHtmlTextarea').value = document.getElementById('lp-preview-4').innerHTML;" style="font-size:11px; padding:3px 10px;">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ───────────────────────────────────────── -->
+    <!-- 5. FROSTED GEOMETRIC                      -->
+    <!-- ───────────────────────────────────────── -->
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="card preview-card">
+            <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">5. Frosted Geometric</h6>
+                <span class="tag-badge">Grid</span>
+            </div>
+            <div id="lp-preview-5" class="login-preview-wrap">
+                <div class="variant-badge">Geo</div>
+                <div class="lp-geo-bg">
+                    <div class="lp-geo-dot lp-geo-dot-1"></div>
+                    <div class="lp-geo-dot lp-geo-dot-2"></div>
+                    <div class="lp-geo-card">
+                        <div style="margin-bottom:20px;">
+                            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.2);border-radius:50px;padding:4px 12px;margin-bottom:14px;">
+                                <span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;display:inline-block;"></span>
+                                <span style="font-size:10px;color:rgba(167,139,250,0.8);font-weight:700;letter-spacing:.5px;text-transform:uppercase;">Secure Login</span>
+                            </div>
+                            <h3 style="color:#e2e0ff;font-weight:800;font-size:19px;letter-spacing:-0.5px;margin-bottom:4px;">Sign In</h3>
+                            <p style="color:rgba(167,139,250,0.5);font-size:11px;">Access your workspace</p>
+                        </div>
+
+                        <div style="margin-bottom:12px;">
+                            <label class="lp-label">Email</label>
+                            <input type="email" class="lp-input" placeholder="you@example.com" style="border-radius:10px;">
+                        </div>
+                        <div style="margin-bottom:18px;">
+                            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                                <label class="lp-label" style="margin-bottom:0;">Password</label>
+                                <a href="#" style="font-size:11px;color:rgba(167,139,250,0.7);text-decoration:none;font-weight:600;">Reset</a>
+                            </div>
+                            <input type="password" class="lp-input" placeholder="••••••••" style="border-radius:10px;">
+                        </div>
+                        <button class="lp-btn">Continue &rarr;</button>
+                        <div class="lp-divider"><span>or</span></div>
+                        <div style="display:flex;gap:8px;">
+                            <button class="lp-social-btn" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:#c4b5fd;border-radius:8px;"><i class="fab fa-google" style="color:#ea4335;"></i></button>
+                            <button class="lp-social-btn" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:#c4b5fd;border-radius:8px;"><i class="fab fa-github"></i></button>
+                            <button class="lp-social-btn" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:#c4b5fd;border-radius:8px;"><i class="fab fa-microsoft" style="color:#00a4ef;"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-2 flex-wrap">
+                    <span class="tag-badge">Frosted</span>
+                    <span class="tag-badge">Grid Pattern</span>
+                    <span class="tag-badge">Dark</span>
+                </div>
+                <button class="btn btn-xs btn-light border" onclick="openModal('globalCopyHtmlModal'); document.getElementById('globalCopyHtmlTextarea').value = document.getElementById('lp-preview-5').innerHTML;" style="font-size:11px; padding:3px 10px;">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ───────────────────────────────────────── -->
+    <!-- 6. NEUMORPHISM                            -->
+    <!-- ───────────────────────────────────────── -->
+    <div class="col-xl-6 col-lg-6 col-md-6">
+        <div class="card preview-card">
+            <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">6. Neumorphism / Soft UI</h6>
+                <span class="tag-badge">Tactile</span>
+            </div>
+            <div id="lp-preview-6" class="login-preview-wrap">
+                <div class="variant-badge">Soft UI</div>
+                <div class="lp-neumorph-bg">
+                    <div class="lp-neumorph-card">
+                        <div style="text-align:center; margin-bottom:24px;">
+                            <div style="width:52px;height:52px;background:#e8ecf0;border-radius:15px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 12px rgba(166,180,200,0.6),-5px -5px 12px rgba(255,255,255,0.9);">
+                                <i class="fas fa-user" style="color:#3b9d82; font-size:18px;"></i>
+                            </div>
+                            <h4 style="font-weight:800; color:#2d3748; font-size:17px; margin-bottom:3px;">Hello again!</h4>
+                            <p style="color:#a0aec0; font-size:12px;">Sign in to your account</p>
+                        </div>
+
+                        <div style="margin-bottom:14px;">
+                            <label class="lp-label">Email</label>
+                            <input type="email" class="lp-input" placeholder="you@example.com">
+                        </div>
+                        <div style="margin-bottom:20px;">
+                            <label class="lp-label">Password</label>
+                            <input type="password" class="lp-input" placeholder="••••••••">
+                        </div>
+                        <button class="lp-btn">Sign In</button>
+                        <p style="text-align:center; margin-top:16px; font-size:11px; color:#a0aec0;">
+                            New user? <a href="#" style="color:#3b9d82; font-weight:700; text-decoration:none;">Register here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-2 flex-wrap">
+                    <span class="tag-badge">Neumorphism</span>
+                    <span class="tag-badge">Soft Shadow</span>
+                    <span class="tag-badge">Tactile</span>
+                </div>
+                <button class="btn btn-xs btn-light border" onclick="openModal('globalCopyHtmlModal'); document.getElementById('globalCopyHtmlTextarea').value = document.getElementById('lp-preview-6').innerHTML;" style="font-size:11px; padding:3px 10px;">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ───────────────────────────────────────── -->
+    <!-- 7. SUNSET PANORAMIC                       -->
+    <!-- ───────────────────────────────────────── -->
+    <div class="col-xl-6 col-lg-6 col-md-6">
+        <div class="card preview-card">
+            <div class="card-header bg-white d-flex align-items-center justify-content-between">
+                <h6 class="mb-0">7. Sunset Panoramic</h6>
+                <span class="tag-badge">Warm</span>
+            </div>
+            <div id="lp-preview-7" class="login-preview-wrap">
+                <div class="variant-badge">Sunset</div>
+                <div class="lp-sunset-wrap">
+                    <!-- Left cover -->
+                    <div class="lp-sunset-cover">
+                        <div class="lp-sunset-circles">
+                            <div class="lp-sun"></div>
+                            <div class="lp-horizon"></div>
+                        </div>
+                        <div style="position:relative;z-index:2;">
+                            <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;">
+                                <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:10px;padding:3px 10px;border-radius:50px;font-weight:600;">☀ Bright</span>
+                                <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:10px;padding:3px 10px;border-radius:50px;font-weight:600;">✦ Warm</span>
+                            </div>
+                            <h3 style="color:#fff;font-weight:900;font-size:17px;line-height:1.3;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.2);">Good to<br>see you!</h3>
+                            <p style="color:rgba(255,255,255,0.75);font-size:11px;line-height:1.5;">Sign in to your dashboard and start the day right.</p>
+                        </div>
+                    </div>
+                    <!-- Right form -->
+                    <div class="lp-sunset-form">
+                        <h4 style="font-weight:800;color:#1c1c1c;font-size:17px;margin-bottom:3px;">Sign In</h4>
+                        <p style="color:#9ca3af;font-size:11px;margin-bottom:18px;">Enter your credentials below</p>
+
+                        <div style="margin-bottom:12px;">
+                            <label class="lp-label">Email</label>
+                            <input type="email" class="lp-input" placeholder="you@example.com" style="border-radius:8px;">
+                        </div>
+                        <div style="margin-bottom:16px;">
+                            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                                <label class="lp-label" style="margin-bottom:0;">Password</label>
+                                <a href="#" style="font-size:11px;color:#fc4a1a;text-decoration:none;font-weight:600;">Forgot?</a>
+                            </div>
+                            <input type="password" class="lp-input" placeholder="••••••••" style="border-radius:8px;">
+                        </div>
+                        <button class="lp-btn">Login &rarr;</button>
+                        <div class="lp-divider"><span>or sign in with</span></div>
+                        <div style="display:flex;gap:8px;">
+                            <button class="lp-social-btn" style="background:#fff9f5;border:1.5px solid #ffe4cc;color:#fc4a1a;border-radius:8px;"><i class="fab fa-google" style="color:#ea4335;"></i> Google</button>
+                            <button class="lp-social-btn" style="background:#fff9f5;border:1.5px solid #ffe4cc;color:#fc4a1a;border-radius:8px;"><i class="fab fa-apple"></i> Apple</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-2 flex-wrap">
+                    <span class="tag-badge">Sunset</span>
+                    <span class="tag-badge">Orange</span>
+                    <span class="tag-badge">Split</span>
+                </div>
+                <button class="btn btn-xs btn-light border" onclick="openModal('globalCopyHtmlModal'); document.getElementById('globalCopyHtmlTextarea').value = document.getElementById('lp-preview-7').innerHTML;" style="font-size:11px; padding:3px 10px;">
+                    <i class="fa-regular fa-copy me-1"></i> Copy HTML
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,226 @@
+@{ ViewData["Title"] = "Sidebars"; }
+
+<style>
+    .example-sidebar {
+        width: 100%;
+        max-width: 250px;
+        height: 450px;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border-radius: 12px;
+        margin: 0 auto;
+    }
+    .example-sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .example-sidebar a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        transition: all 0.2s ease;
+    }
+    .example-sidebar i {
+        margin-right: 12px;
+        width: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="row">
+    <!-- 1. Default Essential Sidebar -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">1. Default App Mode</h6></div>
+            <div class="card-body bg-light rounded d-flex justify-content-center p-4">
+                <div class="sidebar-wrapper bg-white shadow pt-3" style="width: 250px; position: relative; border-radius: 8px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" class="sidebar-toggle-menu" style="background:var(--bs-primary);color:#fff"><i class="nav-icon fas fa-home"></i> Dashboards</a></li>
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase;">System</li>
+                            <li><a href="#"><i class="nav-icon fas fa-book-open"></i> Docs</a></li>
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase;">Apps</li>
+                            <li><a href="#"><i class="nav-icon fas fa-palette"></i> UI Designer</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Midnight Dark Mode Sidebar -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">2. Dark Mode Dashboard</h6></div>
+            <div class="card-body bg-light rounded d-flex justify-content-center p-4" style="background:#e9ecef!important">
+                <div class="sidebar-wrapper shadow pt-3" style="width: 250px; position: relative; background: #222e3c; border-radius: 8px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" style="color:#e9ecef; background: rgba(255,255,255,0.1);"><i class="nav-icon fas fa-desktop text-primary"></i> Analytics</a></li>
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase; color:#adb5bd;">Components</li>
+                            <li><a href="#" style="color:#ced4da"><i class="nav-icon fas fa-layer-group"></i> Interface</a></li>
+                            <li><a href="#" style="color:#ced4da"><i class="nav-icon fas fa-table"></i> Tables</a></li>
+                            <li><a href="#" style="color:#ced4da"><i class="nav-icon fas fa-chart-pie"></i> Metrics</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Minimal Soft Primary Sidebar -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">3. Soft Primary Hue</h6></div>
+            <div class="card-body bg-light rounded d-flex justify-content-center p-4">
+                <div class="sidebar-wrapper shadow-none pt-3 border-end" style="width: 250px; position: relative; background: var(--bs-primary-bg-subtle); border-radius: 8px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" class="text-primary fw-bold" style="background:#fff"><i class="nav-icon fas fa-compass"></i> Explore</a></li>
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase;">Library</li>
+                            <li><a href="#" class="text-primary"><i class="nav-icon fas fa-book opacity-75"></i> Resources</a></li>
+                            <li><a href="#" class="text-primary"><i class="nav-icon fas fa-bookmark opacity-75"></i> Bookmarks</a></li>
+                            <li><a href="#" class="text-primary"><i class="nav-icon fas fa-tag opacity-75"></i> Tags</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Collapsed / Compact Icon Menu -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">4. Collapsed Mode</h6></div>
+            <div class="card-body bg-light rounded d-flex justify-content-center p-4">
+                <div class="sidebar-wrapper bg-white shadow collapsed pt-2" style="width: 80px; position: relative; border-radius: 8px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu text-center px-2">
+                            <li><a href="#" class="justify-content-center px-0 mb-2 rounded bg-light text-primary"><i class="nav-icon fas fa-home mx-0 py-2"></i></a></li>
+                            <li><a href="#" class="justify-content-center px-0 mb-2 rounded text-secondary hover-bg-light"><i class="nav-icon fas fa-envelope mx-0 py-2"></i></a></li>
+                            <li><a href="#" class="justify-content-center px-0 mb-2 rounded text-secondary hover-bg-light"><i class="nav-icon fas fa-chart-bar mx-0 py-2"></i></a></li>
+                            <li><a href="#" class="justify-content-center px-0 mb-2 rounded text-secondary hover-bg-light"><i class="nav-icon fas fa-cog mx-0 py-2"></i></a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Glassmorphism Focus Sidebar -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">5. Glassmorphism</h6></div>
+            <div class="card-body rounded d-flex justify-content-center p-4 position-relative" style="background: url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80') center/cover;">
+                <div class="sidebar-wrapper pt-3" style="width: 250px; position: relative; background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.4); border-radius: 12px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" class="text-dark fw-bold" style="background: rgba(255,255,255,0.6)"><i class="nav-icon fas fa-layer-group"></i> Overview</a></li>
+                            <li class="sidebar-menu-header" style="color: rgba(0,0,0,0.6); padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase;">Management</li>
+                            <li><a href="#" class="text-dark"><i class="nav-icon fas fa-briefcase opacity-75"></i> Projects</a></li>
+                            <li><a href="#" class="text-dark"><i class="nav-icon fas fa-users opacity-75"></i> Team</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Bold Accent Template -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">6. Deep Gradient Accent</h6></div>
+            <div class="card-body rounded d-flex justify-content-center p-4" style="background:#f1f5f9;">
+                <div class="sidebar-wrapper shadow pt-3" style="width: 250px; position: relative; background: linear-gradient(180deg, var(--bs-indigo) 0%, #312e81 100%); border-radius: 8px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" style="background: rgba(255,255,255,0.15); color: #fff; border-left: 3px solid #fff;"><i class="nav-icon fas fa-home text-white"></i> Dashboard</a></li>
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase; color: #a5b4fc;">Operations</li>
+                            <li><a href="#" style="color:#e0e7ff"><i class="nav-icon fas fa-cogs opacity-75 text-white"></i> Config</a></li>
+                            <li><a href="#" style="color:#e0e7ff"><i class="nav-icon fas fa-shield-alt opacity-75 text-white"></i> Security</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Minimal Gray Transparent -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">7. Subtle Transparent Gray</h6></div>
+            <div class="card-body bg-white rounded d-flex justify-content-center p-4" style="border: 2px dashed #e9ecef;">
+                <div class="sidebar-wrapper pt-3" style="width: 250px; position: relative; background: transparent; border-right: 1px solid #dee2e6;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" class="text-dark fw-bold bg-light"><i class="nav-icon fas fa-inbox text-dark"></i> Inbox</a></li>
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase;">Labels</li>
+                            <li><a href="#" class="text-muted"><i class="nav-icon fas fa-circle text-danger" style="font-size:10px;"></i> Urgent</a></li>
+                            <li><a href="#" class="text-muted"><i class="nav-icon fas fa-circle text-success" style="font-size:10px;"></i> Completed</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Corporate Bordered Style -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">8. Corporate Professional</h6></div>
+            <div class="card-body bg-light rounded d-flex justify-content-center p-4">
+                <div class="sidebar-wrapper bg-white shadow-sm pt-3 border" style="width: 250px; position: relative; border-radius: 4px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase;">Main Nav</li>
+                            <li class="mb-1"><a href="#" class="text-dark border border-primary text-primary mx-2 rounded" style="background:#f8f9fa"><i class="nav-icon fas fa-chart-line"></i> Statistics</a></li>
+                            <li class="mb-1"><a href="#" class="text-secondary hover-bg-light mx-2 rounded border border-transparent"><i class="nav-icon fas fa-file-invoice"></i> Invoices</a></li>
+                            <li class="mb-1"><a href="#" class="text-secondary hover-bg-light mx-2 rounded border border-transparent"><i class="nav-icon fas fa-address-book"></i> Contacts</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Vibrant Teal eCommerce Sidebar -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">9. Trendy eCommerce (Teal)</h6></div>
+            <div class="card-body bg-light rounded d-flex justify-content-center p-4">
+                <div class="sidebar-wrapper pt-3 shadow" style="width: 250px; position: relative; background: #0d9488; border-radius: 8px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" style="background: rgba(255,255,255,0.2); color: #fff;"><i class="nav-icon fas fa-store"></i> Storefront</a></li>
+                            <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase; color: #ccfbf1;">Management</li>
+                            <li><a href="#" style="color:#f0fdfa"><i class="nav-icon fas fa-box opacity-75 text-white"></i> Products</a></li>
+                            <li><a href="#" style="color:#f0fdfa"><i class="nav-icon fas fa-shopping-cart opacity-75 text-white"></i> Orders</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Floating Pill Menu Variation -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0"><h6 class="mb-0 fw-bold">10. Floating Pill Wrapper</h6></div>
+            <div class="card-body bg-light rounded d-flex justify-content-center p-4">
+                <div class="sidebar-wrapper bg-white shadow-lg pt-4 pb-2" style="width: 250px; position: relative; border-radius: 30px;">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu px-2">
+                            <li class="mb-2"><a href="#" class="bg-dark text-white rounded-pill px-4 text-center justify-content-start"><i class="nav-icon fas fa-play-circle text-primary"></i> Get Started</a></li>
+                            <li class="mb-2"><a href="#" class="hover-bg-light rounded-pill px-4 text-secondary justify-content-start"><i class="nav-icon fas fa-search"></i> Search</a></li>
+                            <li class="mb-2"><a href="#" class="hover-bg-light rounded-pill px-4 text-secondary justify-content-start"><i class="nav-icon fas fa-bell"></i> Notifications</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

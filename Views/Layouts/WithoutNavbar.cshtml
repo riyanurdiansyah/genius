@@ -2,10 +2,51 @@
     ViewData["Title"] = "Without Navbar";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-columns fa-3x text-muted mb-3"></i>
-        <h4>Without Navbar Layout</h4>
-        <p class="text-muted">This is an empty page placeholder for the Without Navbar layout.</p>
+@section Styles {
+    <style>
+        /* Force Layout Change for this demo */
+        .top-header { display: none !important; }
+        .main-content { padding-top: 0 !important; }
+
+        /* Demo Styles */
+        .layout-demo { padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 1px dashed #cbd5e1; text-align: center; }
+        .wf-container { max-width: 700px; margin: 2rem auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #f8fafc; overflow: hidden; display: flex; height: 350px; border: 1px solid #e2e8f0; }
+        .wf-nav { width: 180px; background: var(--sidebar-bg); display: flex; flex-direction: column; padding: 20px 15px; gap: 12px; border-right: 1px solid rgba(255,255,255,0.05); }
+        .wf-menu-item { height: 25px; border-radius: 6px; background: rgba(255,255,255,0.05); }
+        .wf-menu-item.active { background: var(--primary-color); }
+        .wf-menu-item.circle { width: 40px; height: 40px; border-radius: 50%; margin-bottom: 20px; align-self: center; background: var(--primary-color); }
+        .wf-main { flex: 1; padding: 25px; }
+        .wf-content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; height: 100%; }
+        .wf-card { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; }
+    </style>
+}
+
+<div class="row pt-4">
+    <div class="col-12">
+        <div class="layout-demo">
+            <h2 class="fw-bold text-dark">Without Navbar Layout</h2>
+            <p class="text-muted w-75 mx-auto mb-4">Removes the top header completely. The application relies entirely on the left sidebar for both identity and navigation, freeing up vertical space.</p>
+            
+            <div class="wf-container">
+                <div class="wf-nav">
+                    <div class="wf-menu-item circle mt-2"></div>
+                    <div class="wf-menu-item active"></div>
+                    <div class="wf-menu-item" style="width: 80%;"></div>
+                    <div class="wf-menu-item" style="width: 90%;"></div>
+                    <div class="wf-menu-item mt-auto" style="width: 60%;"></div>
+                </div>
+                <div class="wf-main">
+                    <div class="wf-content">
+                        <div class="wf-card" style="grid-column: span 2; height: 120px;"></div>
+                        <div class="wf-card"></div>
+                        <div class="wf-card"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-primary bg-primary bg-opacity-10 text-primary border-0 text-start mt-4 d-inline-block text-center mx-auto" style="max-width: 700px;">
+                <i class="fa-solid fa-code me-2"></i> <strong>Live Demo:</strong> The top navbar above has been dynamically hidden. Look up and see that there is no header!
+            </div>
+        </div>
     </div>
 </div>

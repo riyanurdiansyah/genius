@@ -1,0 +1,856 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Kuda/css/components.3bchja7coo.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3bchja7coo"},{"Name":"integrity","Value":"sha256-cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE="},{"Name":"label","Value":"_content/Kuda/css/components.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"26055"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE=\u0022"},{"Name":"Last-Modified","Value":"Tue, 03 Mar 2026 21:27:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/css/components.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"26055"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE=\u0022"},{"Name":"Last-Modified","Value":"Tue, 03 Mar 2026 21:27:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/css/theme.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\theme.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BKWREtskYAtki58QLgtVlo86SKM\u002BIzdlfvu3SxOwdgE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"8663"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BKWREtskYAtki58QLgtVlo86SKM\u002BIzdlfvu3SxOwdgE=\u0022"},{"Name":"Last-Modified","Value":"Mon, 02 Mar 2026 07:05:47 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/css/theme.kkupynysw5.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\theme.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"kkupynysw5"},{"Name":"integrity","Value":"sha256-BKWREtskYAtki58QLgtVlo86SKM\u002BIzdlfvu3SxOwdgE="},{"Name":"label","Value":"_content/Kuda/css/theme.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"8663"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BKWREtskYAtki58QLgtVlo86SKM\u002BIzdlfvu3SxOwdgE=\u0022"},{"Name":"Last-Modified","Value":"Mon, 02 Mar 2026 07:05:47 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Black.ffihtbhjor.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Black.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ffihtbhjor"},{"Name":"integrity","Value":"sha256-i5A7gMkdCb9UA/WailtLlD1gJPttRE80qKJzD70ueGo="},{"Name":"label","Value":"_content/Kuda/font/geometric/KalbeGeometric-Black.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20024"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022i5A7gMkdCb9UA/WailtLlD1gJPttRE80qKJzD70ueGo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Black.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Black.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-i5A7gMkdCb9UA/WailtLlD1gJPttRE80qKJzD70ueGo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20024"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022i5A7gMkdCb9UA/WailtLlD1gJPttRE80qKJzD70ueGo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Bold.tpdwzsc8s0.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"tpdwzsc8s0"},{"Name":"integrity","Value":"sha256-jz/7J3uzdqWmZeLFLTzFB8R0n1nuua2RF/VpMiSGo9M="},{"Name":"label","Value":"_content/Kuda/font/geometric/KalbeGeometric-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20484"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022jz/7J3uzdqWmZeLFLTzFB8R0n1nuua2RF/VpMiSGo9M=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-jz/7J3uzdqWmZeLFLTzFB8R0n1nuua2RF/VpMiSGo9M="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20484"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022jz/7J3uzdqWmZeLFLTzFB8R0n1nuua2RF/VpMiSGo9M=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-ExtraBold.b6i2zxaifb.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"b6i2zxaifb"},{"Name":"integrity","Value":"sha256-gw9UyUln18kvyfO5feUfpjIldrCyQf7QiA6ul3/v538="},{"Name":"label","Value":"_content/Kuda/font/geometric/KalbeGeometric-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20492"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022gw9UyUln18kvyfO5feUfpjIldrCyQf7QiA6ul3/v538=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-gw9UyUln18kvyfO5feUfpjIldrCyQf7QiA6ul3/v538="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20492"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022gw9UyUln18kvyfO5feUfpjIldrCyQf7QiA6ul3/v538=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-mQkfoAIFK2e0F7WOa8vhMCzRrpvRinv9qfG88OmxB0c="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20520"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022mQkfoAIFK2e0F7WOa8vhMCzRrpvRinv9qfG88OmxB0c=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Medium.ztj8cphlmb.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ztj8cphlmb"},{"Name":"integrity","Value":"sha256-mQkfoAIFK2e0F7WOa8vhMCzRrpvRinv9qfG88OmxB0c="},{"Name":"label","Value":"_content/Kuda/font/geometric/KalbeGeometric-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20520"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022mQkfoAIFK2e0F7WOa8vhMCzRrpvRinv9qfG88OmxB0c=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Regular.52i64yiiqu.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"52i64yiiqu"},{"Name":"integrity","Value":"sha256-E3Npkd11kLzrg3887RI\u002BO89q1tSm3/IYpECz/tQ8k48="},{"Name":"label","Value":"_content/Kuda/font/geometric/KalbeGeometric-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"19972"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022E3Npkd11kLzrg3887RI\u002BO89q1tSm3/IYpECz/tQ8k48=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-E3Npkd11kLzrg3887RI\u002BO89q1tSm3/IYpECz/tQ8k48="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"19972"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022E3Npkd11kLzrg3887RI\u002BO89q1tSm3/IYpECz/tQ8k48=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-qQaW1k2oc0FrCqAmkMNUKOgxWdJdJVcGemz1\u002Bwy4MLg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20448"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qQaW1k2oc0FrCqAmkMNUKOgxWdJdJVcGemz1\u002Bwy4MLg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric-SemiBold.x6juyi2dmn.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x6juyi2dmn"},{"Name":"integrity","Value":"sha256-qQaW1k2oc0FrCqAmkMNUKOgxWdJdJVcGemz1\u002Bwy4MLg="},{"Name":"label","Value":"_content/Kuda/font/geometric/KalbeGeometric-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20448"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qQaW1k2oc0FrCqAmkMNUKOgxWdJdJVcGemz1\u002Bwy4MLg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric[wght].p0v422mz3p.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"p0v422mz3p"},{"Name":"integrity","Value":"sha256-CSDRZ331tm8X9DJs3jZcuahaVW1iPQKlPzeV9Um2r6M="},{"Name":"label","Value":"_content/Kuda/font/geometric/KalbeGeometric[wght].woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21796"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022CSDRZ331tm8X9DJs3jZcuahaVW1iPQKlPzeV9Um2r6M=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/geometric/KalbeGeometric[wght].woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\geometric\KalbeGeometric[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-CSDRZ331tm8X9DJs3jZcuahaVW1iPQKlPzeV9Um2r6M="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21796"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022CSDRZ331tm8X9DJs3jZcuahaVW1iPQKlPzeV9Um2r6M=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:05:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-xkNmdW4O87APhoSYmeEPqoV\u002Bcx13KoKaiA\u002BQL5\u002BsNdw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18420"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022xkNmdW4O87APhoSYmeEPqoV\u002Bcx13KoKaiA\u002BQL5\u002BsNdw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Bold.y9qzobnhg9.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"y9qzobnhg9"},{"Name":"integrity","Value":"sha256-xkNmdW4O87APhoSYmeEPqoV\u002Bcx13KoKaiA\u002BQL5\u002BsNdw="},{"Name":"label","Value":"_content/Kuda/font/helix/KalbeHelix-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18420"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022xkNmdW4O87APhoSYmeEPqoV\u002Bcx13KoKaiA\u002BQL5\u002BsNdw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-ExtraBold.8pb6ogobv4.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8pb6ogobv4"},{"Name":"integrity","Value":"sha256-ROekd3CkAwOG8uKwAX\u002BlKxQfQJAjj0ObpztdhR73/Oo="},{"Name":"label","Value":"_content/Kuda/font/helix/KalbeHelix-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18252"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022ROekd3CkAwOG8uKwAX\u002BlKxQfQJAjj0ObpztdhR73/Oo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ROekd3CkAwOG8uKwAX\u002BlKxQfQJAjj0ObpztdhR73/Oo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18252"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022ROekd3CkAwOG8uKwAX\u002BlKxQfQJAjj0ObpztdhR73/Oo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-ExtraLight.2iarcraurn.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2iarcraurn"},{"Name":"integrity","Value":"sha256-FpqQHJurtv6VGd3o4KyfBAaOAku7A/LbA0B95kjFU\u002BQ="},{"Name":"label","Value":"_content/Kuda/font/helix/KalbeHelix-ExtraLight.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17944"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FpqQHJurtv6VGd3o4KyfBAaOAku7A/LbA0B95kjFU\u002BQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-ExtraLight.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-FpqQHJurtv6VGd3o4KyfBAaOAku7A/LbA0B95kjFU\u002BQ="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17944"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FpqQHJurtv6VGd3o4KyfBAaOAku7A/LbA0B95kjFU\u002BQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Light.6auvdshlc2.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"6auvdshlc2"},{"Name":"integrity","Value":"sha256-DhgtU35Dttx52RQm154SSplWkxLXPeD/meXLOvCjH9M="},{"Name":"label","Value":"_content/Kuda/font/helix/KalbeHelix-Light.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18148"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022DhgtU35Dttx52RQm154SSplWkxLXPeD/meXLOvCjH9M=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Light.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-DhgtU35Dttx52RQm154SSplWkxLXPeD/meXLOvCjH9M="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18148"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022DhgtU35Dttx52RQm154SSplWkxLXPeD/meXLOvCjH9M=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Medium.9wf13yrp61.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9wf13yrp61"},{"Name":"integrity","Value":"sha256-uaG86B0WUg4UJEHtTY1mVZSKOuhrTTUNyBxVyk5pCRY="},{"Name":"label","Value":"_content/Kuda/font/helix/KalbeHelix-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18512"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022uaG86B0WUg4UJEHtTY1mVZSKOuhrTTUNyBxVyk5pCRY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-uaG86B0WUg4UJEHtTY1mVZSKOuhrTTUNyBxVyk5pCRY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18512"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022uaG86B0WUg4UJEHtTY1mVZSKOuhrTTUNyBxVyk5pCRY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Regular.tz0roahgco.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"tz0roahgco"},{"Name":"integrity","Value":"sha256-NzILe7cIbDnElDWIBoLIzlL6LTsB2f0fjjxL5nPnqrw="},{"Name":"label","Value":"_content/Kuda/font/helix/KalbeHelix-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18344"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022NzILe7cIbDnElDWIBoLIzlL6LTsB2f0fjjxL5nPnqrw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-NzILe7cIbDnElDWIBoLIzlL6LTsB2f0fjjxL5nPnqrw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18344"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022NzILe7cIbDnElDWIBoLIzlL6LTsB2f0fjjxL5nPnqrw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-SemiBold.d0ddmacn36.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"d0ddmacn36"},{"Name":"integrity","Value":"sha256-474g3SEfYNqP/cB7G7sLaGiCS0J616us6BpVeVe82Hw="},{"Name":"label","Value":"_content/Kuda/font/helix/KalbeHelix-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18720"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022474g3SEfYNqP/cB7G7sLaGiCS0J616us6BpVeVe82Hw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/helix/KalbeHelix-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\helix\KalbeHelix-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-474g3SEfYNqP/cB7G7sLaGiCS0J616us6BpVeVe82Hw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18720"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022474g3SEfYNqP/cB7G7sLaGiCS0J616us6BpVeVe82Hw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:06:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Bold.tn7y4i4xh5.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"tn7y4i4xh5"},{"Name":"integrity","Value":"sha256-txj6xHf0/LeoJLRhd0WfDzGVhfvULvXgx9aGWcLn64A="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20720"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022txj6xHf0/LeoJLRhd0WfDzGVhfvULvXgx9aGWcLn64A=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-txj6xHf0/LeoJLRhd0WfDzGVhfvULvXgx9aGWcLn64A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20720"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022txj6xHf0/LeoJLRhd0WfDzGVhfvULvXgx9aGWcLn64A=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-ExtraBold.suv7yvle6j.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"suv7yvle6j"},{"Name":"integrity","Value":"sha256-BKvMHciLitQ13Mv1/KDsbrxTnmGjgiRJy9NzPmCd\u002BOE="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20316"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022BKvMHciLitQ13Mv1/KDsbrxTnmGjgiRJy9NzPmCd\u002BOE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BKvMHciLitQ13Mv1/KDsbrxTnmGjgiRJy9NzPmCd\u002BOE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20316"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022BKvMHciLitQ13Mv1/KDsbrxTnmGjgiRJy9NzPmCd\u002BOE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-ExtraLight.e8up1jvzv6.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"e8up1jvzv6"},{"Name":"integrity","Value":"sha256-TuLyRjkflN0nYqEiaD0K4UDDabRNeWaVSEL0vow7W8U="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded-ExtraLight.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"19484"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022TuLyRjkflN0nYqEiaD0K4UDDabRNeWaVSEL0vow7W8U=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-ExtraLight.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-TuLyRjkflN0nYqEiaD0K4UDDabRNeWaVSEL0vow7W8U="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"19484"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022TuLyRjkflN0nYqEiaD0K4UDDabRNeWaVSEL0vow7W8U=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Light.uqillfh8jb.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"uqillfh8jb"},{"Name":"integrity","Value":"sha256-JjO6Sl3VC8sW0UnZbwNZoVz7dE7TsJLYQEwlA66Bvo4="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded-Light.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20060"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022JjO6Sl3VC8sW0UnZbwNZoVz7dE7TsJLYQEwlA66Bvo4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Light.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-JjO6Sl3VC8sW0UnZbwNZoVz7dE7TsJLYQEwlA66Bvo4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20060"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022JjO6Sl3VC8sW0UnZbwNZoVz7dE7TsJLYQEwlA66Bvo4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Medium.win00keoep.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"win00keoep"},{"Name":"integrity","Value":"sha256-GCcw7UNRIwwy0ORNcZQQoyYE4lhYEf5AhI629iBaHSE="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20212"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GCcw7UNRIwwy0ORNcZQQoyYE4lhYEf5AhI629iBaHSE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-GCcw7UNRIwwy0ORNcZQQoyYE4lhYEf5AhI629iBaHSE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20212"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GCcw7UNRIwwy0ORNcZQQoyYE4lhYEf5AhI629iBaHSE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Regular.91fgm68411.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"91fgm68411"},{"Name":"integrity","Value":"sha256-4yGa/KMMR8/90ZACULpGkZT9HFxn\u002B3LGPLDBImnoNXo="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20124"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00224yGa/KMMR8/90ZACULpGkZT9HFxn\u002B3LGPLDBImnoNXo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-4yGa/KMMR8/90ZACULpGkZT9HFxn\u002B3LGPLDBImnoNXo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20124"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00224yGa/KMMR8/90ZACULpGkZT9HFxn\u002B3LGPLDBImnoNXo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-SemiBold.cyaqardl56.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"cyaqardl56"},{"Name":"integrity","Value":"sha256-9F9eCYCIAJEBJWEaHu2ldvyO7JSDd70lP\u002BqknCtwyjY="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20444"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00229F9eCYCIAJEBJWEaHu2ldvyO7JSDd70lP\u002BqknCtwyjY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-9F9eCYCIAJEBJWEaHu2ldvyO7JSDd70lP\u002BqknCtwyjY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20444"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00229F9eCYCIAJEBJWEaHu2ldvyO7JSDd70lP\u002BqknCtwyjY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded[wght].nhf1lorq54.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nhf1lorq54"},{"Name":"integrity","Value":"sha256-q8nYWFJ160YBmsvx2XI9NSi60nutrx4sjmvjqNWeMzc="},{"Name":"label","Value":"_content/Kuda/font/rounded/KalbeRounded[wght].woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22680"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022q8nYWFJ160YBmsvx2XI9NSi60nutrx4sjmvjqNWeMzc=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/rounded/KalbeRounded[wght].woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\rounded\KalbeRounded[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-q8nYWFJ160YBmsvx2XI9NSi60nutrx4sjmvjqNWeMzc="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22680"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022q8nYWFJ160YBmsvx2XI9NSi60nutrx4sjmvjqNWeMzc=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Bold.nzy2m8k64n.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nzy2m8k64n"},{"Name":"integrity","Value":"sha256-XSxCpeeCIIrS6V0R7SBCbHnR8xz8ya4wXwlVTdWW3b0="},{"Name":"label","Value":"_content/Kuda/font/serif/KalbeSerif-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"27612"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022XSxCpeeCIIrS6V0R7SBCbHnR8xz8ya4wXwlVTdWW3b0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-XSxCpeeCIIrS6V0R7SBCbHnR8xz8ya4wXwlVTdWW3b0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"27612"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022XSxCpeeCIIrS6V0R7SBCbHnR8xz8ya4wXwlVTdWW3b0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-ExtraBold.nrihyherds.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nrihyherds"},{"Name":"integrity","Value":"sha256-vaCG9x1V8KOxztVa1UQygdD1mXeCKJOE6rVvyc2FMCA="},{"Name":"label","Value":"_content/Kuda/font/serif/KalbeSerif-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"27404"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022vaCG9x1V8KOxztVa1UQygdD1mXeCKJOE6rVvyc2FMCA=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-vaCG9x1V8KOxztVa1UQygdD1mXeCKJOE6rVvyc2FMCA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"27404"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022vaCG9x1V8KOxztVa1UQygdD1mXeCKJOE6rVvyc2FMCA=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Light.nppryqwk61.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nppryqwk61"},{"Name":"integrity","Value":"sha256-FTsHjQwfEZXS0I0uKwaqlzfnQ427gN161l2XjwlLyLQ="},{"Name":"label","Value":"_content/Kuda/font/serif/KalbeSerif-Light.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"26676"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FTsHjQwfEZXS0I0uKwaqlzfnQ427gN161l2XjwlLyLQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Light.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-FTsHjQwfEZXS0I0uKwaqlzfnQ427gN161l2XjwlLyLQ="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"26676"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FTsHjQwfEZXS0I0uKwaqlzfnQ427gN161l2XjwlLyLQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Medium.gibbyucjwb.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"gibbyucjwb"},{"Name":"integrity","Value":"sha256-CClewU9MxWc\u002ByudwEL9gVnxKhZVn5f/b1I72SuMXTp4="},{"Name":"label","Value":"_content/Kuda/font/serif/KalbeSerif-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"27792"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022CClewU9MxWc\u002ByudwEL9gVnxKhZVn5f/b1I72SuMXTp4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-CClewU9MxWc\u002ByudwEL9gVnxKhZVn5f/b1I72SuMXTp4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"27792"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022CClewU9MxWc\u002ByudwEL9gVnxKhZVn5f/b1I72SuMXTp4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Regular.jkuuzjpfy5.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"jkuuzjpfy5"},{"Name":"integrity","Value":"sha256-vYqqCO4dnpryAxmvnizDclo4nPY\u002BiCLzmrB9WuaZGSk="},{"Name":"label","Value":"_content/Kuda/font/serif/KalbeSerif-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"27516"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022vYqqCO4dnpryAxmvnizDclo4nPY\u002BiCLzmrB9WuaZGSk=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-vYqqCO4dnpryAxmvnizDclo4nPY\u002BiCLzmrB9WuaZGSk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"27516"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022vYqqCO4dnpryAxmvnizDclo4nPY\u002BiCLzmrB9WuaZGSk=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-SemiBold.9aa9foonde.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9aa9foonde"},{"Name":"integrity","Value":"sha256-r1QTGss8dzSOulOHTNnVTqZkhfEkid9qRlSNrgW7dOk="},{"Name":"label","Value":"_content/Kuda/font/serif/KalbeSerif-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"27528"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022r1QTGss8dzSOulOHTNnVTqZkhfEkid9qRlSNrgW7dOk=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-r1QTGss8dzSOulOHTNnVTqZkhfEkid9qRlSNrgW7dOk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"27528"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022r1QTGss8dzSOulOHTNnVTqZkhfEkid9qRlSNrgW7dOk=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif[wght].gg9l69dg4q.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"gg9l69dg4q"},{"Name":"integrity","Value":"sha256-IH3scmkX1Ihx2BjcV\u002B4cpDmj92R5kR7ebeNtOMt2pR0="},{"Name":"label","Value":"_content/Kuda/font/serif/KalbeSerif[wght].woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"29076"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022IH3scmkX1Ihx2BjcV\u002B4cpDmj92R5kR7ebeNtOMt2pR0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/serif/KalbeSerif[wght].woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\serif\KalbeSerif[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-IH3scmkX1Ihx2BjcV\u002B4cpDmj92R5kR7ebeNtOMt2pR0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"29076"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022IH3scmkX1Ihx2BjcV\u002B4cpDmj92R5kR7ebeNtOMt2pR0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Bold.eet2es81xs.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"eet2es81xs"},{"Name":"integrity","Value":"sha256-qoCFwWOohaPYHUnbc\u002Bd5e5pC0CFY5NxO3JnVeDTAh1E="},{"Name":"label","Value":"_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17716"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qoCFwWOohaPYHUnbc\u002Bd5e5pC0CFY5NxO3JnVeDTAh1E=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-qoCFwWOohaPYHUnbc\u002Bd5e5pC0CFY5NxO3JnVeDTAh1E="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17716"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qoCFwWOohaPYHUnbc\u002Bd5e5pC0CFY5NxO3JnVeDTAh1E=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-ExtraBold.oxp3hvogw0.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"oxp3hvogw0"},{"Name":"integrity","Value":"sha256-9ExSRzyJZke1FMVOdJUZKO1JciWXYBToK78UJXWXoE4="},{"Name":"label","Value":"_content/Kuda/font/squarenarrow/KalbeSquareNarrow-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17148"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00229ExSRzyJZke1FMVOdJUZKO1JciWXYBToK78UJXWXoE4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-9ExSRzyJZke1FMVOdJUZKO1JciWXYBToK78UJXWXoE4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17148"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00229ExSRzyJZke1FMVOdJUZKO1JciWXYBToK78UJXWXoE4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Medium.12nq8rs20y.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"12nq8rs20y"},{"Name":"integrity","Value":"sha256-x3S2UvOUu\u002BWQMgIRa2Ea6ikQ3sdvm0AOH1W\u002BaFqJ6iM="},{"Name":"label","Value":"_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17844"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022x3S2UvOUu\u002BWQMgIRa2Ea6ikQ3sdvm0AOH1W\u002BaFqJ6iM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-x3S2UvOUu\u002BWQMgIRa2Ea6ikQ3sdvm0AOH1W\u002BaFqJ6iM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17844"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022x3S2UvOUu\u002BWQMgIRa2Ea6ikQ3sdvm0AOH1W\u002BaFqJ6iM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Regular.sy4qsgoi30.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"sy4qsgoi30"},{"Name":"integrity","Value":"sha256-pHeHPE85E7FDSL99LBxYnmEMOCTOXcreDm0vZRIFhJ0="},{"Name":"label","Value":"_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17320"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022pHeHPE85E7FDSL99LBxYnmEMOCTOXcreDm0vZRIFhJ0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pHeHPE85E7FDSL99LBxYnmEMOCTOXcreDm0vZRIFhJ0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17320"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022pHeHPE85E7FDSL99LBxYnmEMOCTOXcreDm0vZRIFhJ0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-SemiBold.78jvpo0b60.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"78jvpo0b60"},{"Name":"integrity","Value":"sha256-6bPWbw28aDnyIwn/n0ZhjGn3f7\u002BWb5g64125f1NwE/U="},{"Name":"label","Value":"_content/Kuda/font/squarenarrow/KalbeSquareNarrow-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17788"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00226bPWbw28aDnyIwn/n0ZhjGn3f7\u002BWb5g64125f1NwE/U=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarenarrow/KalbeSquareNarrow-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarenarrow\KalbeSquareNarrow-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-6bPWbw28aDnyIwn/n0ZhjGn3f7\u002BWb5g64125f1NwE/U="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17788"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00226bPWbw28aDnyIwn/n0ZhjGn3f7\u002BWb5g64125f1NwE/U=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-Bold.4v0jwq21jk.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"4v0jwq21jk"},{"Name":"integrity","Value":"sha256-4Exqx/3KtovmMezrlDjywirGvCbUZnczyujDJtTvxIs="},{"Name":"label","Value":"_content/Kuda/font/squarewide/KalbeSquareWide-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18912"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00224Exqx/3KtovmMezrlDjywirGvCbUZnczyujDJtTvxIs=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-4Exqx/3KtovmMezrlDjywirGvCbUZnczyujDJtTvxIs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18912"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00224Exqx/3KtovmMezrlDjywirGvCbUZnczyujDJtTvxIs=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-ExtraBold.6yb3gttk22.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"6yb3gttk22"},{"Name":"integrity","Value":"sha256-PtOMm5nV/JptNnFw7uQG9nSN3UXVYrSIuqRV0uGZTSs="},{"Name":"label","Value":"_content/Kuda/font/squarewide/KalbeSquareWide-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18348"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022PtOMm5nV/JptNnFw7uQG9nSN3UXVYrSIuqRV0uGZTSs=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-PtOMm5nV/JptNnFw7uQG9nSN3UXVYrSIuqRV0uGZTSs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18348"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022PtOMm5nV/JptNnFw7uQG9nSN3UXVYrSIuqRV0uGZTSs=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-Medium.dob3q5xfsk.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"dob3q5xfsk"},{"Name":"integrity","Value":"sha256-3buUr6yEaKYcdhPS8havGxH9LricwEmFHafjq46inUE="},{"Name":"label","Value":"_content/Kuda/font/squarewide/KalbeSquareWide-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18900"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00223buUr6yEaKYcdhPS8havGxH9LricwEmFHafjq46inUE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-3buUr6yEaKYcdhPS8havGxH9LricwEmFHafjq46inUE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18900"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00223buUr6yEaKYcdhPS8havGxH9LricwEmFHafjq46inUE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-Regular.ro50ncyd2t.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ro50ncyd2t"},{"Name":"integrity","Value":"sha256-y6OM\u002BjbSVHMUPFjXuqSy2znWyS5BQefM8rmR8hPdbUU="},{"Name":"label","Value":"_content/Kuda/font/squarewide/KalbeSquareWide-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18096"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022y6OM\u002BjbSVHMUPFjXuqSy2znWyS5BQefM8rmR8hPdbUU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-y6OM\u002BjbSVHMUPFjXuqSy2znWyS5BQefM8rmR8hPdbUU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18096"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022y6OM\u002BjbSVHMUPFjXuqSy2znWyS5BQefM8rmR8hPdbUU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-SemiBold.l9a9wz2gn2.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"l9a9wz2gn2"},{"Name":"integrity","Value":"sha256-x7dP2Np3HWTZEbxoZDm7l2Zh5n6at7QR8XqjBOWIIW0="},{"Name":"label","Value":"_content/Kuda/font/squarewide/KalbeSquareWide-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"18816"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022x7dP2Np3HWTZEbxoZDm7l2Zh5n6at7QR8XqjBOWIIW0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/squarewide/KalbeSquareWide-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\squarewide\KalbeSquareWide-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-x7dP2Np3HWTZEbxoZDm7l2Zh5n6at7QR8XqjBOWIIW0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"18816"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022x7dP2Np3HWTZEbxoZDm7l2Zh5n6at7QR8XqjBOWIIW0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Bold.j9fw0d439t.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"j9fw0d439t"},{"Name":"integrity","Value":"sha256-R2mVrLd72DV1csGpHlw6UC/icgxqYrbn1L7TzLoS4PY="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21752"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022R2mVrLd72DV1csGpHlw6UC/icgxqYrbn1L7TzLoS4PY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-R2mVrLd72DV1csGpHlw6UC/icgxqYrbn1L7TzLoS4PY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21752"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022R2mVrLd72DV1csGpHlw6UC/icgxqYrbn1L7TzLoS4PY=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-BoldItalic.j09ltk8jy2.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-BoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"j09ltk8jy2"},{"Name":"integrity","Value":"sha256-423cfwRzlexlIAF/gu\u002Bgn9Sb2sZ5zVbQ2tzxNdpaGhU="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-BoldItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22504"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022423cfwRzlexlIAF/gu\u002Bgn9Sb2sZ5zVbQ2tzxNdpaGhU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-BoldItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-BoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-423cfwRzlexlIAF/gu\u002Bgn9Sb2sZ5zVbQ2tzxNdpaGhU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22504"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022423cfwRzlexlIAF/gu\u002Bgn9Sb2sZ5zVbQ2tzxNdpaGhU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraBold.v70ibucsr7.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"v70ibucsr7"},{"Name":"integrity","Value":"sha256-m7SgtHMB7NBHBmsvAIpYdfq7LSKgVEfmLXCjMHJuOzU="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21704"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022m7SgtHMB7NBHBmsvAIpYdfq7LSKgVEfmLXCjMHJuOzU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-m7SgtHMB7NBHBmsvAIpYdfq7LSKgVEfmLXCjMHJuOzU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21704"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022m7SgtHMB7NBHBmsvAIpYdfq7LSKgVEfmLXCjMHJuOzU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraBoldItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-1O7FDwe7G/fGYWpQsAE8jlLBDFrC4CfFa0UJYynf28g="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22648"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00221O7FDwe7G/fGYWpQsAE8jlLBDFrC4CfFa0UJYynf28g=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraBoldItalic.wv3uqqufcg.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wv3uqqufcg"},{"Name":"integrity","Value":"sha256-1O7FDwe7G/fGYWpQsAE8jlLBDFrC4CfFa0UJYynf28g="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-ExtraBoldItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22648"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u00221O7FDwe7G/fGYWpQsAE8jlLBDFrC4CfFa0UJYynf28g=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraLight.cmlazhv0g0.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"cmlazhv0g0"},{"Name":"integrity","Value":"sha256-DJ3PB77B84r810K\u002BQ6DZzRfZEAKuW4VI1dII9D1VYeE="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-ExtraLight.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20784"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022DJ3PB77B84r810K\u002BQ6DZzRfZEAKuW4VI1dII9D1VYeE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraLight.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-DJ3PB77B84r810K\u002BQ6DZzRfZEAKuW4VI1dII9D1VYeE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20784"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022DJ3PB77B84r810K\u002BQ6DZzRfZEAKuW4VI1dII9D1VYeE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraLightItalic.lazx6rdm69.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraLightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lazx6rdm69"},{"Name":"integrity","Value":"sha256-E21nTbvDYcXWYl0BtAWpusVh889/NjrmBPOMrhqetk0="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-ExtraLightItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21836"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022E21nTbvDYcXWYl0BtAWpusVh889/NjrmBPOMrhqetk0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-ExtraLightItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-ExtraLightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-E21nTbvDYcXWYl0BtAWpusVh889/NjrmBPOMrhqetk0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21836"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022E21nTbvDYcXWYl0BtAWpusVh889/NjrmBPOMrhqetk0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Italic.sknsdur3x5.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Italic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"sknsdur3x5"},{"Name":"integrity","Value":"sha256-pMQoda1paa3f5Iq1Y3DhpdmryNQt6ROA8xqFuyeLQt4="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-Italic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22196"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022pMQoda1paa3f5Iq1Y3DhpdmryNQt6ROA8xqFuyeLQt4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Italic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Italic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pMQoda1paa3f5Iq1Y3DhpdmryNQt6ROA8xqFuyeLQt4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22196"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022pMQoda1paa3f5Iq1Y3DhpdmryNQt6ROA8xqFuyeLQt4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Light.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-FcnYmSL0jAgt0u5uwZWj9Afk4BCFE90QJuIb/68TqtQ="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21252"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FcnYmSL0jAgt0u5uwZWj9Afk4BCFE90QJuIb/68TqtQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Light.x5kswt0702.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x5kswt0702"},{"Name":"integrity","Value":"sha256-FcnYmSL0jAgt0u5uwZWj9Afk4BCFE90QJuIb/68TqtQ="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-Light.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21252"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FcnYmSL0jAgt0u5uwZWj9Afk4BCFE90QJuIb/68TqtQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-LightItalic.gf4xifnkfx.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-LightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"gf4xifnkfx"},{"Name":"integrity","Value":"sha256-rPK\u002BPsNQKqkuCRWviFgnSTg1sgo6Jh81XXxknDLydXw="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-LightItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22204"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022rPK\u002BPsNQKqkuCRWviFgnSTg1sgo6Jh81XXxknDLydXw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-LightItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-LightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-rPK\u002BPsNQKqkuCRWviFgnSTg1sgo6Jh81XXxknDLydXw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22204"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022rPK\u002BPsNQKqkuCRWviFgnSTg1sgo6Jh81XXxknDLydXw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Medium.vm53rall6p.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vm53rall6p"},{"Name":"integrity","Value":"sha256-RzKCjibjQvIfOIk3FtWNg9/\u002B4Z2Odl1U0Nco\u002BF7tuL4="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21688"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022RzKCjibjQvIfOIk3FtWNg9/\u002B4Z2Odl1U0Nco\u002BF7tuL4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-RzKCjibjQvIfOIk3FtWNg9/\u002B4Z2Odl1U0Nco\u002BF7tuL4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21688"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022RzKCjibjQvIfOIk3FtWNg9/\u002B4Z2Odl1U0Nco\u002BF7tuL4=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-MediumItalic.ixobegum0x.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-MediumItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ixobegum0x"},{"Name":"integrity","Value":"sha256-Cj8lrpgZB/35\u002BoJKzmoQ17aDPZ7re5aUngnDAyjsiRA="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-MediumItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22604"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022Cj8lrpgZB/35\u002BoJKzmoQ17aDPZ7re5aUngnDAyjsiRA=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-MediumItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-MediumItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Cj8lrpgZB/35\u002BoJKzmoQ17aDPZ7re5aUngnDAyjsiRA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22604"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022Cj8lrpgZB/35\u002BoJKzmoQ17aDPZ7re5aUngnDAyjsiRA=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Regular.1yhrihahrj.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"1yhrihahrj"},{"Name":"integrity","Value":"sha256-malVFnrzwIMzgiUnDtVOsp52wRuw9Tr8mo5zkVl2f5c="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21400"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022malVFnrzwIMzgiUnDtVOsp52wRuw9Tr8mo5zkVl2f5c=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-malVFnrzwIMzgiUnDtVOsp52wRuw9Tr8mo5zkVl2f5c="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21400"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022malVFnrzwIMzgiUnDtVOsp52wRuw9Tr8mo5zkVl2f5c=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-SemiBold.tcyxl0oxw8.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"tcyxl0oxw8"},{"Name":"integrity","Value":"sha256-LSFST2QaWmQOnVGMB5TaxQQPFAF8Ur3zP54W0/po3zg="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21772"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022LSFST2QaWmQOnVGMB5TaxQQPFAF8Ur3zP54W0/po3zg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-LSFST2QaWmQOnVGMB5TaxQQPFAF8Ur3zP54W0/po3zg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21772"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022LSFST2QaWmQOnVGMB5TaxQQPFAF8Ur3zP54W0/po3zg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-SemiBoldItalic.qzgj7mx14m.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-SemiBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"qzgj7mx14m"},{"Name":"integrity","Value":"sha256-xqvGey8n7EtY3kpXeuBS9FJpfE\u002BdulB6MBbQTRHSuXU="},{"Name":"label","Value":"_content/Kuda/font/system/KalbeSystem-SemiBoldItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22764"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022xqvGey8n7EtY3kpXeuBS9FJpfE\u002BdulB6MBbQTRHSuXU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/system/KalbeSystem-SemiBoldItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\system\KalbeSystem-SemiBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-xqvGey8n7EtY3kpXeuBS9FJpfE\u002BdulB6MBbQTRHSuXU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22764"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022xqvGey8n7EtY3kpXeuBS9FJpfE\u002BdulB6MBbQTRHSuXU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:25:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Bold.2g8tk62bfr.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2g8tk62bfr"},{"Name":"integrity","Value":"sha256-Ahyre1hQR1Aofn6412UknIxXT/gdCOOydlgCgN7ntCw="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Bold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21092"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022Ahyre1hQR1Aofn6412UknIxXT/gdCOOydlgCgN7ntCw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Bold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Bold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Ahyre1hQR1Aofn6412UknIxXT/gdCOOydlgCgN7ntCw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21092"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022Ahyre1hQR1Aofn6412UknIxXT/gdCOOydlgCgN7ntCw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-BoldItalic.tnopghgc9n.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-BoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"tnopghgc9n"},{"Name":"integrity","Value":"sha256-GT0ClYC1cDJ6Av/AbmPcMfrBjiOMqjuGVKXMFz39R24="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-BoldItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22024"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GT0ClYC1cDJ6Av/AbmPcMfrBjiOMqjuGVKXMFz39R24=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-BoldItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-BoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-GT0ClYC1cDJ6Av/AbmPcMfrBjiOMqjuGVKXMFz39R24="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22024"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GT0ClYC1cDJ6Av/AbmPcMfrBjiOMqjuGVKXMFz39R24=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraBold.ngg0mo38ub.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ngg0mo38ub"},{"Name":"integrity","Value":"sha256-qUaDkYQRRubiuLHsyTPZ5cim4/vZdS1jADGm8GJMy10="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20876"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qUaDkYQRRubiuLHsyTPZ5cim4/vZdS1jADGm8GJMy10=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-qUaDkYQRRubiuLHsyTPZ5cim4/vZdS1jADGm8GJMy10="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20876"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qUaDkYQRRubiuLHsyTPZ5cim4/vZdS1jADGm8GJMy10=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraBoldItalic.inl8rw3az8.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"inl8rw3az8"},{"Name":"integrity","Value":"sha256-YrVyjZoBde/GCrMnn38q/CLtVx88\u002B7xbXOkfHNV487Q="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraBoldItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21852"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022YrVyjZoBde/GCrMnn38q/CLtVx88\u002B7xbXOkfHNV487Q=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraBoldItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-YrVyjZoBde/GCrMnn38q/CLtVx88\u002B7xbXOkfHNV487Q="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21852"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022YrVyjZoBde/GCrMnn38q/CLtVx88\u002B7xbXOkfHNV487Q=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraLight.0cj79g9uvi.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"0cj79g9uvi"},{"Name":"integrity","Value":"sha256-oFZQEQgU62kkALngSb2yKd1kFey6Pv1D/5xi5x0ryfo="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraLight.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20524"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022oFZQEQgU62kkALngSb2yKd1kFey6Pv1D/5xi5x0ryfo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraLight.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraLight.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-oFZQEQgU62kkALngSb2yKd1kFey6Pv1D/5xi5x0ryfo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20524"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022oFZQEQgU62kkALngSb2yKd1kFey6Pv1D/5xi5x0ryfo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraLightItalic.r4qhy2kvs7.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraLightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"r4qhy2kvs7"},{"Name":"integrity","Value":"sha256-dbfnjb4qqWaqspPYlttYritxhFn7EzUQgcla5/au\u002Bsc="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraLightItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21488"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022dbfnjb4qqWaqspPYlttYritxhFn7EzUQgcla5/au\u002Bsc=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-ExtraLightItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-ExtraLightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-dbfnjb4qqWaqspPYlttYritxhFn7EzUQgcla5/au\u002Bsc="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21488"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022dbfnjb4qqWaqspPYlttYritxhFn7EzUQgcla5/au\u002Bsc=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Italic.lp9q8zmzqb.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Italic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lp9q8zmzqb"},{"Name":"integrity","Value":"sha256-qUcIESLcnm9JKvTVm/wQ7G544\u002BTdlA6BfnzXt3j9MW0="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Italic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21712"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qUcIESLcnm9JKvTVm/wQ7G544\u002BTdlA6BfnzXt3j9MW0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Italic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Italic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-qUcIESLcnm9JKvTVm/wQ7G544\u002BTdlA6BfnzXt3j9MW0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21712"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022qUcIESLcnm9JKvTVm/wQ7G544\u002BTdlA6BfnzXt3j9MW0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Light.r0k6hj7vlp.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"r0k6hj7vlp"},{"Name":"integrity","Value":"sha256-27fe4Mm0lIEhvriwI18HqZabZvCZzIqlEkwUI\u002Boo/eM="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Light.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20684"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u002227fe4Mm0lIEhvriwI18HqZabZvCZzIqlEkwUI\u002Boo/eM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Light.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Light.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-27fe4Mm0lIEhvriwI18HqZabZvCZzIqlEkwUI\u002Boo/eM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20684"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u002227fe4Mm0lIEhvriwI18HqZabZvCZzIqlEkwUI\u002Boo/eM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-LightItalic.cjeizcwmrb.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-LightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"cjeizcwmrb"},{"Name":"integrity","Value":"sha256-GE0QGjuT698VdQ89AW7SawSrd/kbG6B7o1rVokk/EjM="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-LightItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21596"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GE0QGjuT698VdQ89AW7SawSrd/kbG6B7o1rVokk/EjM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-LightItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-LightItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-GE0QGjuT698VdQ89AW7SawSrd/kbG6B7o1rVokk/EjM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21596"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GE0QGjuT698VdQ89AW7SawSrd/kbG6B7o1rVokk/EjM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Medium.j212runeyn.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"j212runeyn"},{"Name":"integrity","Value":"sha256-FWtrlhdlv0Caomf41XzKp5Jv78/m3f/8Zt03/0b8NLo="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Medium.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20992"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FWtrlhdlv0Caomf41XzKp5Jv78/m3f/8Zt03/0b8NLo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Medium.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Medium.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-FWtrlhdlv0Caomf41XzKp5Jv78/m3f/8Zt03/0b8NLo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20992"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022FWtrlhdlv0Caomf41XzKp5Jv78/m3f/8Zt03/0b8NLo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-MediumItalic.rja0ms94a8.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-MediumItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"rja0ms94a8"},{"Name":"integrity","Value":"sha256-Z4sotpQi3Z0X8wzV5I2JlyDwxUcDpp/AexOd\u002BXWC47o="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-MediumItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21964"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022Z4sotpQi3Z0X8wzV5I2JlyDwxUcDpp/AexOd\u002BXWC47o=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-MediumItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-MediumItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Z4sotpQi3Z0X8wzV5I2JlyDwxUcDpp/AexOd\u002BXWC47o="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21964"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022Z4sotpQi3Z0X8wzV5I2JlyDwxUcDpp/AexOd\u002BXWC47o=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Regular.935r8o4gov.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"935r8o4gov"},{"Name":"integrity","Value":"sha256-ewVcNv1AzK/Gc4yy7cRmZzdCDPJwh4dYRqdO0kVNHrg="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Regular.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"20732"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022ewVcNv1AzK/Gc4yy7cRmZzdCDPJwh4dYRqdO0kVNHrg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-Regular.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-Regular.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ewVcNv1AzK/Gc4yy7cRmZzdCDPJwh4dYRqdO0kVNHrg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"20732"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022ewVcNv1AzK/Gc4yy7cRmZzdCDPJwh4dYRqdO0kVNHrg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-SemiBold.0fw3aaqib9.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"0fw3aaqib9"},{"Name":"integrity","Value":"sha256-JGf7YX2nOBrKKcrUJ\u002B4uQfvmu58N5bezDL0lAqYBfVs="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-SemiBold.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"21256"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022JGf7YX2nOBrKKcrUJ\u002B4uQfvmu58N5bezDL0lAqYBfVs=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-SemiBold.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-SemiBold.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-JGf7YX2nOBrKKcrUJ\u002B4uQfvmu58N5bezDL0lAqYBfVs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"21256"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022JGf7YX2nOBrKKcrUJ\u002B4uQfvmu58N5bezDL0lAqYBfVs=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-SemiBoldItalic.0wcwukt7w7.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-SemiBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"0wcwukt7w7"},{"Name":"integrity","Value":"sha256-wLjelGW0AaC\u002B7GOsTBg9\u002BXiAIGIOOm4PNMTgpCv3FtM="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed-SemiBoldItalic.woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"22172"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022wLjelGW0AaC\u002B7GOsTBg9\u002BXiAIGIOOm4PNMTgpCv3FtM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed-SemiBoldItalic.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed-SemiBoldItalic.woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-wLjelGW0AaC\u002B7GOsTBg9\u002BXiAIGIOOm4PNMTgpCv3FtM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"22172"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022wLjelGW0AaC\u002B7GOsTBg9\u002BXiAIGIOOm4PNMTgpCv3FtM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed[wght].cf4a15ugbo.woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"cf4a15ugbo"},{"Name":"integrity","Value":"sha256-GBanopRLAl2a8ybk2ZXRsx57wl9fEiKrtAWWXc2CvUk="},{"Name":"label","Value":"_content/Kuda/font/systemcondensed/KalbeSystemCondensed[wght].woff2"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"24356"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GBanopRLAl2a8ybk2ZXRsx57wl9fEiKrtAWWXc2CvUk=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/font/systemcondensed/KalbeSystemCondensed[wght].woff2">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\font\systemcondensed\KalbeSystemCondensed[wght].woff2'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-GBanopRLAl2a8ybk2ZXRsx57wl9fEiKrtAWWXc2CvUk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"24356"},{"Name":"Content-Type","Value":"font/woff2"},{"Name":"ETag","Value":"\u0022GBanopRLAl2a8ybk2ZXRsx57wl9fEiKrtAWWXc2CvUk=\u0022"},{"Name":"Last-Modified","Value":"Sun, 01 Mar 2026 02:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/js/app-system.igwt1fgyet.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\app-system.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"igwt1fgyet"},{"Name":"integrity","Value":"sha256-kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU="},{"Name":"label","Value":"_content/Kuda/js/app-system.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3435"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU=\u0022"},{"Name":"Last-Modified","Value":"Mon, 02 Mar 2026 07:07:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Kuda/js/app-system.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\app-system.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3435"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU=\u0022"},{"Name":"Last-Modified","Value":"Mon, 02 Mar 2026 07:07:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

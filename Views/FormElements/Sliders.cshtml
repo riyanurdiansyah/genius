@@ -2,10 +2,190 @@
     ViewData["Title"] = "Sliders";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Sliders Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Sliders form elements.</p>
+@section Styles {
+    <style>
+        .slider-card { margin-bottom: 25px; }
+
+        /* Custom Range Slider Styling */
+        .custom-range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            outline: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(59, 157, 130, 0.4);
+            transition: transform 0.1s;
+        }
+
+        .custom-range::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* Value Bubble Mockup */
+        .range-wrap {
+            position: relative;
+            width: 100%;
+            padding-top: 30px;
+        }
+        .range-value {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .range-value::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 4px 4px 0;
+            border-style: solid;
+            border-color: var(--primary-color) transparent transparent transparent;
+        }
+
+        /* Dual Slider Mockup */
+        .dual-slider-track {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            position: relative;
+            margin: 20px 0;
+        }
+        .dual-slider-fill {
+            position: absolute;
+            height: 100%;
+            background: var(--primary-color);
+            left: 20%;
+            right: 40%;
+            border-radius: 5px;
+        }
+        .dual-thumb {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            top: -7px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .dual-thumb.left { left: 20%; transform: translateX(-50%); }
+        .dual-thumb.right { right: 40%; transform: translateX(50%); border-color: var(--danger-color); }
+        .dual-slider-fill.danger-fill { background: var(--danger-color); right: 20%; left: 10%;}
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Default HTML5 Range -->
+    <div class="col-lg-6 mb-4">
+        <div class="card slider-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Basic HTML5 Range</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="basic-slider"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="basic-slider">
+                <div class="mb-4">
+                    <label for="customRange1" class="form-label">Example range</label>
+                    <input type="range" class="form-range" id="customRange1">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="disabledRange" class="form-label">Disabled range</label>
+                    <input type="range" class="form-range" id="disabledRange" disabled>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="customRange2" class="form-label">Min and max (0-5)</label>
+                    <input type="range" class="form-range" min="0" max="5" id="customRange2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Custom Advanced Mocks -->
+    <div class="col-lg-6 mb-4">
+        <div class="card slider-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Advanced Custom Sliders</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="adv-slider"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="adv-slider">
+                <div class="mb-4">
+                    <label class="form-label d-flex justify-content-between">
+                        <span>Tooltips Indicator</span>
+                    </label>
+                    <div class="range-wrap">
+                        <div class="range-value" style="left: 50%;">50</div>
+                        <input type="range" class="custom-range" min="0" max="100" value="50">
+                    </div>
+                </div>
+                
+                <div class="mb-4 pt-3">
+                    <label class="form-label d-flex justify-content-between">
+                        <span>Price Range (Dual Slider Mockup)</span>
+                        <span class="text-primary fw-bold">$20 - $60</span>
+                    </label>
+                    <div class="dual-slider-track">
+                        <div class="dual-slider-fill"></div>
+                        <div class="dual-thumb left"></div>
+                        <div class="dual-thumb right" style="border-color: var(--primary-color);"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-4 pt-3">
+                    <label class="form-label d-flex justify-content-between">
+                        <span>Danger Range Theme</span>
+                        <span class="text-danger fw-bold">10% - 80%</span>
+                    </label>
+                    <div class="dual-slider-track">
+                        <div class="dual-slider-fill danger-fill"></div>
+                        <div class="dual-thumb left" style="border-color: var(--danger-color); left: 10%;"></div>
+                        <div class="dual-thumb right" style="border-color: var(--danger-color); right: 20%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Simple mockup interaction for value tooltip
+            const ranges = document.querySelectorAll('.range-wrap input');
+            ranges.forEach(range => {
+                range.addEventListener('input', function() {
+                    const val = this.value;
+                    const min = this.min ? this.min : 0;
+                    const max = this.max ? this.max : 100;
+                    const percent = Number(((val - min) * 100) / (max - min));
+                    const bubble = this.previousElementSibling;
+                    bubble.innerHTML = val;
+                    bubble.style.left = `calc(${percent}% + (${8 - percent * 0.15}px))`;
+                });
+            });
+        });
+    </script>
+}

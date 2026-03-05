@@ -1,17 +1,150 @@
 <!-- Views/Shared/_Header.cshtml -->
 <div class="topbar">
-    <div class="search-bar">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Search or type command">
+    <div class="search-container" style="position: relative; flex: 1; max-width: 400px;">
+        <div class="search-bar" style="max-width: 100%;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="globalSearchInput" placeholder="Search menu or type command...">
+        </div>
+        
+        <!-- Search Results Dropdown -->
+        <div class="search-dropdown" id="globalSearchDropdown" style="left: 0; width: 100%;">
+            <!-- Results injected here via JS -->
+        </div>
     </div>
-    <div class="user-actions">
+
+    <div class="user-actions align-items-center">
         <!-- Re-use the toggle identifier for the sidebar action -->
         <div class="icon-btn" id="toggleSidebar" title="Toggle Sidebar"><i class="fa-solid fa-bars"></i></div>
-        <div class="icon-btn"><i class="fa-solid fa-gear"></i></div>
+        
+        <!-- Dark Mode Toggle -->
+        <div class="icon-btn" id="toggleDarkMode" title="Toggle Dark Mode" data-i18n="dark_mode_title">
+            <i class="fa-solid fa-moon" id="darkModeIcon"></i>
+        </div>
+
+        <!-- Language Dropdown -->
+        <div class="dropdown">
+            <div class="icon-btn" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Language" data-i18n="language_title" style="cursor: pointer;">
+                <i class="fa-solid fa-language"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2" aria-labelledby="langDropdown">
+                <li><a class="dropdown-item d-flex align-items-center lang-switch" href="#" data-lang="id">
+                    <img src="https://flagcdn.com/w20/id.png" alt="ID" class="me-2 rounded-1" style="width:20px;"> Bahasa Indonesia
+                </a></li>
+                <li><a class="dropdown-item d-flex align-items-center lang-switch" href="#" data-lang="en">
+                    <img src="https://flagcdn.com/w20/us.png" alt="EN" class="me-2 rounded-1" style="width:20px;"> English
+                </a></li>
+            </ul>
+        </div>
+        
         <div class="icon-btn"><i class="fa-regular fa-bell"></i></div>
         <div class="profile">
-            <span>Admin</span>
+            <span data-i18n="admin_user">Admin</span>
             <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff" alt="Profile">
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('globalSearchInput');
+        const searchDropdown = document.getElementById('globalSearchDropdown');
+
+        // ==== 1. DEFINE YOUR SEARCH DATA SOURCE ====
+        // Ini mudah disesuaikan. Anda bisa panggil AJAX/API Fetch di dalam logic `handleSearch`,
+        // atau gunakan data statis seperti di bawah ini untuk pencarian Menu + Data.
+        const searchData = [
+            // --- MENU PAGES ---
+            { title: "Dashboard", desc: "Main overview page", url: "/Home/Index", icon: "fa-solid fa-home", type: "Menu" },
+            { title: "Kanban Board", desc: "Manage tasks and projects", url: "/Apps/Kanban", icon: "fa-solid fa-table-columns", type: "Menu" },
+            { title: "Forms & Inputs", desc: "Basic form elements", url: "/Components/Forms", icon: "fa-solid fa-edit", type: "Menu" },
+            { title: "Form Validation", desc: "KTP, NPWP, No HP validator", url: "/Components/FormValidation", icon: "fa-solid fa-check-circle", type: "Menu" },
+            { title: "DataTables", desc: "Advanced tables with sorting", url: "/Components/DataTables", icon: "fa-solid fa-table", type: "Menu" },
+            { title: "ApexChart", desc: "Dynamic graphic charts", url: "/Charts/ApexCharts", icon: "fa-solid fa-chart-pie", type: "Menu" },
+            
+            // --- DATA / CONTENT (Simulasi Data Penjualan, User, dll) ---
+            { title: "Laporan Penjualan Q1", desc: "Data transaksi kuartal 1 2026", url: "/Reports/Sales?q=1", icon: "fa-solid fa-file-invoice-dollar", type: "Data Penjualan" },
+            { title: "Data Penjualan Tahunan", desc: "Rekap data penjualan", url: "/Reports/Sales?type=annual", icon: "fa-solid fa-chart-line", type: "Data Penjualan" },
+            { title: "User: Budi Santoso", desc: "budi@email.com", url: "/Users/Detail/1", icon: "fa-solid fa-user", type: "User Data" },
+        ];
+
+        // ==== 2. SEARCH LOGIC ====
+        function handleSearch(query) {
+            query = query.toLowerCase().trim();
+            if(query.length === 0) {
+                searchDropdown.classList.remove('show');
+                return;
+            }
+
+            // Filter data
+            const results = searchData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.desc.toLowerCase().includes(query) ||
+                item.type.toLowerCase().includes(query)
+            );
+
+            // Group by Type
+            const groupedResults = results.reduce((acc, obj) => {
+                let key = obj.type;
+                if (!acc[key]) acc[key] = [];
+                acc[key].push(obj);
+                return acc;
+            }, {});
+
+            // Render HTML
+            let html = '';
+            if (Object.keys(groupedResults).length === 0) {
+                html = `<div class="search-no-results">
+                            <i class="fa-solid fa-search fa-2x mb-2" style="color: #cbd5e1;"></i>
+                            <div>No results found for "<strong>${query}</strong>"</div>
+                        </div>`;
+            } else {
+                for (let type in groupedResults) {
+                    html += `<div class="search-section-title">${type}</div>`;
+                    groupedResults[type].forEach(item => {
+                        html += `
+                            <a href="${item.url}" class="search-result-item">
+                                <i class="${item.icon}"></i>
+                                <div class="search-result-text">
+                                    <div class="search-result-title">${highlightText(item.title, query)}</div>
+                                    <div class="search-result-desc">${highlightText(item.desc, query)}</div>
+                                </div>
+                            </a>
+                        `;
+                    });
+                }
+            }
+
+            searchDropdown.innerHTML = html;
+            searchDropdown.classList.add('show');
+        }
+
+        // Helper: Format text to bold matched query
+        function highlightText(text, keyword) {
+            if (!keyword) return text;
+            const regex = new RegExp(`(${keyword})`, 'gi');
+            return text.replace(regex, '<strong>$1</strong>');
+        }
+
+        // ==== 3. EVENT LISTENERS ====
+        // Listen to typing
+        searchInput.addEventListener('input', function(e) {
+            handleSearch(e.target.value);
+        });
+
+        // Show when focused if not empty
+        searchInput.addEventListener('focus', function(e) {
+            if(e.target.value.trim().length > 0) {
+                handleSearch(e.target.value);
+            }
+        });
+
+        // Hide when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                searchDropdown.classList.remove('show');
+            }
+        });
+
+        // Optional: Keyboard navigation (Up/Down/Enter) could be added here
+    });
+</script>

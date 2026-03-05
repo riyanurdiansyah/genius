@@ -2,18 +2,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        // Check local storage for dark mode before rendering anything to prevent flash
+        if (localStorage.getItem('app-theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Genius Admin Dashboard</title>
+    <title>@ViewData["Title"] - Kuda Admin Dashboard</title>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     
     <!-- Core Theme and Component Styles -->
     <link rel="stylesheet" href="~/css/theme.css" />
@@ -28,17 +35,26 @@
     <div class="wrapper">
         <div class="dashboard-container">
             <!-- Sidebar Navigation -->
-            @Html.Partial("_Sidebar")
+            <partial name="_Sidebar" />
             
             <div class="main-content">
                 <!-- Top Header -->
-                @Html.Partial("_Header")
+                <partial name="_Header" />
                 
                 <!-- Page Content -->
                 <main class="pb-3" style="flex:1;">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2 class="mb-0 text-dark">@ViewData["Title"]</h2>
-                        @await RenderSectionAsync("PageActions", required: false)
+                    <div class="page-header-bar mb-4">
+                        <div class="page-header-left">
+                            <h2 class="page-title mb-0">@ViewData["Title"]</h2>
+                        </div>
+                        <div class="page-header-right">
+                            <nav aria-label="breadcrumb" id="autoBreadcrumb">
+                                <ol class="breadcrumb-kuda mb-0">
+                                    <!-- auto-filled by JS -->
+                                </ol>
+                            </nav>
+                            @await RenderSectionAsync("PageActions", required: false)
+                        </div>
                     </div>
                     
                     @RenderBody()
@@ -47,8 +63,29 @@
         </div>
     </div>
 
+    <!-- Global Copy HTML Modal -->
+    <div class="modal" id="globalCopyHtmlModal">
+        <div class="modal-dialog" style="max-width: 800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">HTML Source Code</h5>
+                    <button type="button" class="btn-close" onclick="closeModal('globalCopyHtmlModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-2">You can select specific parts to copy, or click "Copy All" below.</p>
+                    <textarea id="globalCopyHtmlTextarea" class="form-control" rows="15" readonly style="font-family: monospace; font-size: 13px; background: #f8fafc; cursor: text; white-space: pre; border: 1px solid var(--border-color);"></textarea>
+                </div>
+                <div class="modal-footer" style="padding-top: 1rem;">
+                    <button type="button" class="btn btn-light" onclick="closeModal('globalCopyHtmlModal')">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnCopyAllHtml"><i class="fas fa-copy me-2"></i>Copy All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Core Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     
     <script>
@@ -240,8 +277,115 @@
                 hideFloatingMenu();
             }
         });
+
+        // Global Copy HTML logic
+        document.addEventListener('DOMContentLoaded', function() {
+            // Standardize button text on load and bind event
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy HTML';
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Fix: Some inner script blocks in individual files might also be running if not removed yet, 
+                    // but we will remove them.
+                    const targetId = this.getAttribute('data-target');
+                    if(targetId) {
+                        const targetEl = document.getElementById(targetId);
+                        if(targetEl) {
+                            // Beautify basic indentation visually (very simple)
+                            let htmlContent = targetEl.outerHTML;
+                            // Optionally trim wrapper container if it's card-body
+                            document.getElementById('globalCopyHtmlTextarea').value = htmlContent;
+                            openModal('globalCopyHtmlModal');
+                        }
+                    }
+                });
+            });
+
+            const copyAllBtn = document.getElementById('btnCopyAllHtml');
+            if(copyAllBtn) {
+                copyAllBtn.addEventListener('click', function() {
+                    const txtArea = document.getElementById('globalCopyHtmlTextarea');
+                    txtArea.select();
+                    navigator.clipboard.writeText(txtArea.value).then(() => {
+                        const origHtml = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        this.classList.replace('btn-primary', 'btn-success');
+                        setTimeout(() => {
+                            this.innerHTML = origHtml;
+                            this.classList.replace('btn-success', 'btn-primary');
+                        }, 2000);
+                    });
+                });
+            }
+        });
     </script>
     
+    <script src="~/js/app-system.js"></script>
+
+    <script>
+        // ── Auto Breadcrumb Builder ──────────────────────────────────────────────
+        (function buildBreadcrumb() {
+            const labelMap = {
+                'home': 'Home', 'index': 'Dashboard', 'manufacturing': 'Manufacturing',
+                'commercial': 'Commercial', 'documentation': 'Documentation',
+                'ui': 'User Interface', 'accordion': 'Accordion', 'alerts': 'Alerts',
+                'badges': 'Badges', 'buttons': 'Buttons', 'carousel': 'Carousel',
+                'collapse': 'Collapse', 'dropdowns': 'Dropdowns', 'footer': 'Footer',
+                'listgroups': 'List Groups', 'modals': 'Modals', 'navbar': 'Navbar',
+                'sidebar': 'Sidebar', 'offcanvas': 'Offcanvas',
+                'paginationbreadcrumbs': 'Pagination & Breadcrumbs', 'progress': 'Progress',
+                'spinners': 'Spinners', 'tabspills': 'Tabs & Pills', 'toasts': 'Toasts',
+                'tooltipspopovers': 'Tooltips & Popovers', 'typography': 'Typography',
+                'formelements': 'Form Elements', 'basicinputs': 'Basic Inputs',
+                'inputgroups': 'Input Groups', 'customoptions': 'Custom Options',
+                'editors': 'Editors', 'fileupload': 'File Upload', 'pickers': 'Pickers',
+                'selecttags': 'Select & Tags', 'sliders': 'Sliders', 'switches': 'Switches',
+                'extras': 'Extras', 'formvalidation': 'Form Validation',
+                'formlayouts': 'Form Layouts', 'horizontalform': 'Horizontal Form',
+                'verticalform': 'Vertical Form', 'stickyactions': 'Sticky Actions',
+                'formwizard': 'Form Wizard', 'icons': 'Icons', 'numbered': 'Numbered',
+                'charts': 'Charts', 'apexcharts': 'ApexCharts', 'chartjs': 'ChartJS',
+                'ganttchart': 'Gantt Chart', 'components': 'Components',
+                'datatables': 'DataTables', 'cards': 'Cards', 'notifications': 'Notifications',
+                'forms': 'Forms', 'layouts': 'Layouts', 'fluid': 'Fluid',
+                'container': 'Container', 'horizontal': 'Horizontal',
+                'collapsedmenu': 'Collapsed Menu', 'contentnavbar': 'Content Navbar',
+                'contentnavsidebar': 'Content Nav + Sidebar', 'blank': 'Blank',
+                'apps': 'Apps', 'kanban': 'Kanban Board',
+                'tools': 'Tools', 'design': 'UI Designer',
+                'frontend': 'Front Pages', 'companyprofile': 'Company Profile',
+                'seo': 'SEO', 'dashboard': 'Dashboard',
+                'filemanager': 'File Manager',
+            };
+
+            const ol = document.querySelector('.breadcrumb-kuda');
+            if (!ol) return;
+
+            const parts = window.location.pathname.split('/').filter(Boolean);
+
+            // Home crumb (always first)
+            const homeLi = document.createElement('li');
+            homeLi.className = 'bc-item';
+            homeLi.innerHTML = '<a href="/Home/Index" class="bc-link"><i class="fas fa-house"></i></a>';
+            ol.appendChild(homeLi);
+
+            // Segment crumbs
+            parts.forEach(function(seg, idx) {
+                var key = seg.toLowerCase();
+                var label = labelMap[key] || seg.replace(/([A-Z])/g, ' $1').trim();
+                var isLast = idx === parts.length - 1;
+                var href = '/' + parts.slice(0, idx + 1).join('/');
+
+                var li = document.createElement('li');
+                li.className = 'bc-item' + (isLast ? ' bc-active' : '');
+                li.innerHTML = isLast
+                    ? '<span class="bc-current">' + label + '</span>'
+                    : '<a href="' + href + '" class="bc-link">' + label + '</a>';
+                ol.appendChild(li);
+            });
+        })();
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -2,10 +2,209 @@
     ViewData["Title"] = "Switches";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Switches Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Switches form elements.</p>
+@section Styles {
+    <style>
+        .switch-card { margin-bottom: 25px; }
+
+        /* Custom Switch Master */
+        .form-switch .form-check-input {
+            width: 3em;
+            height: 1.5em;
+            margin-top: 0.15em;
+            cursor: pointer;
+        }
+        
+        /* 1. iOS Style Switch */
+        .switch-ios .form-check-input {
+            width: 3.5em;
+            height: 1.8em;
+            border-radius: 2em;
+            background-color: #e2e8f0;
+            border-color: transparent;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+            box-shadow: inset 0 0 0 1px #cbd5e1;
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .switch-ios .form-check-input:checked {
+            background-color: #34c759; /* iOS green */
+            box-shadow: none;
+        }
+
+        /* 2. Material Style Switch */
+        .switch-material .form-check-input {
+            width: 3em;
+            height: 1em;
+            background-color: #cbd5e1;
+            border: none;
+            border-radius: 1em;
+            position: relative;
+            background-image: none;
+        }
+        .switch-material .form-check-input::after {
+            content: '';
+            position: absolute;
+            top: -0.25em;
+            left: -0.1em;
+            width: 1.5em;
+            height: 1.5em;
+            background: grey;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .switch-material .form-check-input:checked {
+            background-color: rgba(59, 157, 130, 0.4);
+        }
+        .switch-material .form-check-input:checked::after {
+            transform: translateX(1.6em);
+            background: var(--primary-color);
+        }
+
+        /* 3. Square Switch */
+        .switch-square .form-check-input {
+            border-radius: 4px;
+        }
+        
+        /* 4. Sizes */
+        .switch-sm .form-check-input { width: 2.2em; height: 1.1em; }
+        .switch-lg .form-check-input { width: 4em; height: 2em; }
+
+        /* Color Variations */
+        .switch-danger .form-check-input:checked { background-color: var(--danger-color); border-color: var(--danger-color); }
+        .switch-warning .form-check-input:checked { background-color: var(--warning-color); border-color: var(--warning-color); }
+        .switch-info .form-check-input:checked { background-color: var(--info-color); border-color: var(--info-color); }
+        .switch-dark .form-check-input:checked { background-color: #1e293b; border-color: #1e293b; }
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Basic & iOS Switches -->
+    <div class="col-lg-6 mb-4">
+        <div class="card switch-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Basic & iOS Style</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="basic-switches"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="basic-switches">
+                <div class="mb-4">
+                    <label class="form-label text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Default Bootstrap</label>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled>
+                        <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch input</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">iOS Style</label>
+                    <div class="form-check form-switch switch-ios mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="iosSwitch1">
+                        <label class="form-check-label" for="iosSwitch1">Wi-Fi</label>
+                    </div>
+                    <div class="form-check form-switch switch-ios mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="iosSwitch2" checked>
+                        <label class="form-check-label" for="iosSwitch2">Bluetooth</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Material & Square -->
+    <div class="col-lg-6 mb-4">
+        <div class="card switch-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Material & Square Design</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="material-switches"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="material-switches">
+                <div class="mb-4">
+                    <label class="form-label text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Material Design Theme</label>
+                    <div class="form-check form-switch switch-material mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="matSwitch1">
+                        <label class="form-check-label ms-1" for="matSwitch1">Airplane Mode</label>
+                    </div>
+                    <div class="form-check form-switch switch-material mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="matSwitch2" checked>
+                        <label class="form-check-label ms-1" for="matSwitch2">Location Services</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Square Switch</label>
+                    <div class="form-check form-switch switch-square mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="sqSwitch1">
+                        <label class="form-check-label" for="sqSwitch1">Show Notifications</label>
+                    </div>
+                    <div class="form-check form-switch switch-square mb-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="sqSwitch2" checked>
+                        <label class="form-check-label" for="sqSwitch2">Auto Update</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Colors and Sizes -->
+    <div class="col-lg-12 mb-4">
+        <div class="card switch-card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Colors & Sizes</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="color-switches"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="color-switches">
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <label class="form-label text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Colors Variations</label>
+                        <div class="d-flex flex-wrap gap-4 mt-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                            <div class="form-check form-switch switch-danger">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                            <div class="form-check form-switch switch-warning">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                            <div class="form-check form-switch switch-info">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                            <div class="form-check form-switch switch-dark">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label class="form-label text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Sizing</label>
+                        <div class="d-flex align-items-center gap-4 mt-2">
+                            <div class="form-check form-switch switch-sm">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                            <div class="form-check form-switch switch-lg">
+                                <input class="form-check-input" type="checkbox" role="switch" checked>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        });
+    </script>
+}

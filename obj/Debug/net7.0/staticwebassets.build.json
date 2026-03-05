@@ -1,27 +1,27 @@
 {
   "Version": 1,
-  "Hash": "c4V8J7TQVouC83BeBFPlZlyy4qZ4o07Vn4d0cEjkprI=",
-  "Source": "Genius",
-  "BasePath": "_content/Genius",
+  "Hash": "fuKZYiHb7U0QPNnx89R03LzLIs3lOIhXlt+ck8FGa7Y=",
+  "Source": "Kuda",
+  "BasePath": "_content/Kuda",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "Genius/wwwroot",
-      "Source": "Genius",
+      "Name": "Kuda/wwwroot",
+      "Source": "Kuda",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "css/components#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -31,18 +31,18 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "tbhbobc5ob",
-      "Integrity": "h6/rXkgfQUrDIwLIfYT5ULMiXGicGsmLND+/Nmy79lQ=",
+      "Fingerprint": "3bchja7coo",
+      "Integrity": "cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/components.css"
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "css/theme#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -52,18 +52,18 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "l61hywcf03",
-      "Integrity": "PYKOq/q2bA9suVzLgRhtDlEEOXaHlFyUOpF2QYQWIjY=",
+      "Fingerprint": "kkupynysw5",
+      "Integrity": "BKWREtskYAtki58QLgtVlo86SKM+Izdlfvu3SxOwdgE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/theme.css"
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Black.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/geometric/KalbeGeometric-Black#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -81,10 +81,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/geometric/KalbeGeometric-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -102,10 +102,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/geometric/KalbeGeometric-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -123,10 +123,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/geometric/KalbeGeometric-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -144,10 +144,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/geometric/KalbeGeometric-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -165,10 +165,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/geometric/KalbeGeometric-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -186,10 +186,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/geometric/KalbeGeometric[wght].woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/geometric/KalbeGeometric[wght]#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -207,10 +207,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/helix/KalbeHelix-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -228,10 +228,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/helix/KalbeHelix-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -249,10 +249,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-ExtraLight.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/helix/KalbeHelix-ExtraLight#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -270,10 +270,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Light.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/helix/KalbeHelix-Light#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -291,10 +291,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/helix/KalbeHelix-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -312,10 +312,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/helix/KalbeHelix-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -333,10 +333,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/helix/KalbeHelix-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/helix/KalbeHelix-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -354,10 +354,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -375,10 +375,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -396,10 +396,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-ExtraLight.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded-ExtraLight#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -417,10 +417,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Light.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded-Light#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -438,10 +438,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -459,10 +459,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -480,10 +480,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -501,10 +501,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/rounded/KalbeRounded[wght].woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/rounded/KalbeRounded[wght]#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -522,10 +522,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/serif/KalbeSerif-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -543,10 +543,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/serif/KalbeSerif-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -564,10 +564,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Light.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/serif/KalbeSerif-Light#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -585,10 +585,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/serif/KalbeSerif-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -606,10 +606,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/serif/KalbeSerif-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -627,10 +627,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/serif/KalbeSerif-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -648,10 +648,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/serif/KalbeSerif[wght].woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/serif/KalbeSerif[wght]#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -669,10 +669,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarenarrow/KalbeSquareNarrow-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -690,10 +690,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarenarrow/KalbeSquareNarrow-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -711,10 +711,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarenarrow/KalbeSquareNarrow-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -732,10 +732,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarenarrow/KalbeSquareNarrow-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -753,10 +753,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarenarrow/KalbeSquareNarrow-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarenarrow/KalbeSquareNarrow-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -774,10 +774,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarewide/KalbeSquareWide-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -795,10 +795,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarewide/KalbeSquareWide-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -816,10 +816,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarewide/KalbeSquareWide-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -837,10 +837,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarewide/KalbeSquareWide-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -858,10 +858,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/squarewide/KalbeSquareWide-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/squarewide/KalbeSquareWide-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -879,10 +879,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -900,10 +900,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-BoldItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-BoldItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -921,10 +921,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -942,10 +942,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraBoldItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-ExtraBoldItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -963,10 +963,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraLight.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-ExtraLight#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -984,10 +984,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-ExtraLightItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-ExtraLightItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1005,10 +1005,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Italic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-Italic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1026,10 +1026,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Light.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-Light#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1047,10 +1047,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-LightItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-LightItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1068,10 +1068,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1089,10 +1089,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-MediumItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-MediumItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1110,10 +1110,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1131,10 +1131,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1152,10 +1152,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/system/KalbeSystem-SemiBoldItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/system/KalbeSystem-SemiBoldItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1173,10 +1173,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Bold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-Bold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1194,10 +1194,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-BoldItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-BoldItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1215,10 +1215,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-ExtraBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1236,10 +1236,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraBoldItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-ExtraBoldItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1257,10 +1257,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraLight.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-ExtraLight#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1278,10 +1278,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-ExtraLightItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-ExtraLightItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1299,10 +1299,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Italic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-Italic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1320,10 +1320,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Light.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-Light#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1341,10 +1341,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-LightItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-LightItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1362,10 +1362,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Medium.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-Medium#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1383,10 +1383,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-MediumItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-MediumItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1404,10 +1404,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-Regular.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-Regular#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1425,10 +1425,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-SemiBold.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-SemiBold#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1446,10 +1446,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed-SemiBoldItalic.woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed-SemiBoldItalic#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1467,10 +1467,10 @@
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed[wght].woff2",
-      "SourceId": "Genius",
+      "SourceId": "Kuda",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
-      "BasePath": "_content/Genius",
+      "BasePath": "_content/Kuda",
       "RelativePath": "font/systemcondensed/KalbeSystemCondensed[wght]#[.{fingerprint}]?.woff2",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -1485,9 +1485,75 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/font/systemcondensed/KalbeSystemCondensed[wght].woff2"
+    },
+    {
+      "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
+      "SourceId": "Kuda",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Kuda",
+      "RelativePath": "js/app-system#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "igwt1fgyet",
+      "Integrity": "kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/app-system.js"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "css/components.3bchja7coo.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26055"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Mar 2026 21:27:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3bchja7coo"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE="
+        }
+      ]
+    },
     {
       "Route": "css/components.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
@@ -1499,7 +1565,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19130"
+          "Value": "26055"
         },
         {
           "Name": "Content-Type",
@@ -1507,11 +1573,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"h6/rXkgfQUrDIwLIfYT5ULMiXGicGsmLND+/Nmy79lQ=\""
+          "Value": "\"cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Mar 2026 03:39:49 GMT"
+          "Value": "Tue, 03 Mar 2026 21:27:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1521,52 +1587,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-h6/rXkgfQUrDIwLIfYT5ULMiXGicGsmLND+/Nmy79lQ="
-        }
-      ]
-    },
-    {
-      "Route": "css/components.tbhbobc5ob.css",
-      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "19130"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"h6/rXkgfQUrDIwLIfYT5ULMiXGicGsmLND+/Nmy79lQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 01 Mar 2026 03:39:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "tbhbobc5ob"
-        },
-        {
-          "Name": "label",
-          "Value": "css/components.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-h6/rXkgfQUrDIwLIfYT5ULMiXGicGsmLND+/Nmy79lQ="
+          "Value": "sha256-cdwV8zqd0H3RBmNdYCX5iM3g1ER6wQKvxzqdMvJT3aE="
         }
       ]
     },
@@ -1581,7 +1602,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8160"
+          "Value": "8663"
         },
         {
           "Name": "Content-Type",
@@ -1589,11 +1610,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"PYKOq/q2bA9suVzLgRhtDlEEOXaHlFyUOpF2QYQWIjY=\""
+          "Value": "\"BKWREtskYAtki58QLgtVlo86SKM+Izdlfvu3SxOwdgE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Mar 2026 02:23:37 GMT"
+          "Value": "Mon, 02 Mar 2026 07:05:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1603,12 +1624,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-PYKOq/q2bA9suVzLgRhtDlEEOXaHlFyUOpF2QYQWIjY="
+          "Value": "sha256-BKWREtskYAtki58QLgtVlo86SKM+Izdlfvu3SxOwdgE="
         }
       ]
     },
     {
-      "Route": "css/theme.l61hywcf03.css",
+      "Route": "css/theme.kkupynysw5.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1618,7 +1639,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8160"
+          "Value": "8663"
         },
         {
           "Name": "Content-Type",
@@ -1626,11 +1647,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"PYKOq/q2bA9suVzLgRhtDlEEOXaHlFyUOpF2QYQWIjY=\""
+          "Value": "\"BKWREtskYAtki58QLgtVlo86SKM+Izdlfvu3SxOwdgE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Mar 2026 02:23:37 GMT"
+          "Value": "Mon, 02 Mar 2026 07:05:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1640,7 +1661,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "l61hywcf03"
+          "Value": "kkupynysw5"
         },
         {
           "Name": "label",
@@ -1648,7 +1669,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-PYKOq/q2bA9suVzLgRhtDlEEOXaHlFyUOpF2QYQWIjY="
+          "Value": "sha256-BKWREtskYAtki58QLgtVlo86SKM+Izdlfvu3SxOwdgE="
         }
       ]
     },
@@ -7225,6 +7246,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-GBanopRLAl2a8ybk2ZXRsx57wl9fEiKrtAWWXc2CvUk="
+        }
+      ]
+    },
+    {
+      "Route": "js/app-system.igwt1fgyet.js",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3435"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Mar 2026 07:07:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "igwt1fgyet"
+        },
+        {
+          "Name": "label",
+          "Value": "js/app-system.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU="
+        }
+      ]
+    },
+    {
+      "Route": "js/app-system.js",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3435"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Mar 2026 07:07:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kgamEceZcU1WmdX/BkZ5/NPPRYoCtjvdAON2UMpHcJU="
         }
       ]
     }

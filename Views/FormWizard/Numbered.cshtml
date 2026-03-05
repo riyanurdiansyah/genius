@@ -2,10 +2,520 @@
     ViewData["Title"] = "Numbered Wizard";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-magic fa-3x text-muted mb-3"></i>
-        <h4>Numbered Form Wizard</h4>
-        <p class="text-muted">This is an empty page placeholder for the Numbered Form Wizard.</p>
+@section Styles {
+    <style>
+        /* Shared Wizard Styles */
+        .wizard-container {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .wizard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .wizard-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* 1. Horizontal Classic Numbered */
+        .wizard-horizontal .wizard-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .wizard-horizontal .wizard-steps::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #f1f5f9;
+            z-index: 1;
+            border-radius: 3px;
+        }
+
+        .wizard-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 25%;
+        }
+
+        .wizard-step .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #f1f5f9;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            transition: all 0.3s ease;
+        }
+
+        .wizard-step.active .step-number {
+            border-color: var(--primary-color);
+            background: #fff;
+            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(59, 157, 130, 0.2);
+        }
+
+        .wizard-step.completed .step-number {
+            border-color: var(--primary-color);
+            background: #fff;
+            color: var(--primary-color);
+        }
+
+        .wizard-step.completed .step-number::after {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .wizard-step.completed .step-number span {
+            display: none;
+        }
+
+        .wizard-step .step-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+        }
+
+        .wizard-step.active .step-title {
+            color: var(--text-dark);
+        }
+
+        /* 2. Vertical Numbered Wizard */
+        .wizard-vertical {
+            display: flex;
+            gap: 40px;
+        }
+
+        .wizard-vertical .wizard-steps-v {
+            width: 250px;
+            position: relative;
+            flex-shrink: 0;
+            border-right: 2px solid #f1f5f9;
+        }
+
+        .wizard-step-v {
+            position: relative;
+            padding: 20px 20px 20px 40px;
+            margin-bottom: 25px; /* Added spacing */
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 12px 0 0 12px;
+        }
+
+        .wizard-step-v::before {
+            content: attr(data-step);
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .wizard-step-v.active {
+            background: rgba(59, 157, 130, 0.05);
+            border-right: 3px solid var(--primary-color);
+        }
+
+        .wizard-step-v.active::before {
+            background: #fff;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(59, 157, 130, 0.15);
+        }
+
+        .wizard-step-v.completed::before {
+            background: var(--primary-color);
+            color: #fff;
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+
+        .wizard-step-v .v-title {
+            font-weight: 600;
+            color: var(--text-gray);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .wizard-step-v.active .v-title {
+            color: var(--primary-color);
+        }
+
+        .wizard-step-v .v-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .wizard-content-v {
+            flex-grow: 1;
+            padding: 10px;
+        }
+
+        /* 3. Compact Progress Wizard */
+        .wizard-compact .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+        }
+        
+        .wizard-compact .step-badge {
+            background: rgba(59, 157, 130, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .wizard-content-area {
+            min-height: 200px;
+            padding: 30px 0;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .wizard-pane {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wizard-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+        }
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Horizontal Classic Numbered Wizard -->
+    <div class="col-12">
+        <div class="wizard-container wizard-horizontal" id="wizard-horizontal-num">
+            <div class="wizard-header">
+                <div class="wizard-title">Horizontal Numbered Wizard</div>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-horizontal-num"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+
+            <!-- Steps Indicator -->
+            <div class="wizard-steps pl-0 pr-0" id="num-hz-steps">
+                <div class="wizard-step active" data-step="1">
+                    <div class="step-number"><span>1</span></div>
+                    <div class="step-title">Account Info</div>
+                </div>
+                <div class="wizard-step" data-step="2">
+                    <div class="step-number"><span>2</span></div>
+                    <div class="step-title">Personal Data</div>
+                </div>
+                <div class="wizard-step" data-step="3">
+                    <div class="step-number"><span>3</span></div>
+                    <div class="step-title">Payment</div>
+                </div>
+                <div class="wizard-step" data-step="4">
+                    <div class="step-number"><span>4</span></div>
+                    <div class="step-title">Confirm</div>
+                </div>
+            </div>
+
+            <!-- Wizard Content -->
+            <div class="wizard-content-area" id="num-hz-panes">
+                <!-- Pane 1 -->
+                <div class="wizard-pane active" data-pane="1">
+                    <h5 class="mb-4">Setup your account</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="admin@kuda.com">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="••••••••">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 2 -->
+                <div class="wizard-pane" data-pane="2" style="display:none;">
+                    <h5 class="mb-4">Personal Details</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter first name">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter last name">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" rows="3" placeholder="Full address"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 3 -->
+                <div class="wizard-pane" data-pane="3" style="display:none;">
+                    <h5 class="mb-4">Payment Method</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" placeholder="MM/YY">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-control" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 4 -->
+                <div class="wizard-pane" data-pane="4" style="display:none;">
+                    <div class="text-center py-4">
+                        <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                        <h5>All done!</h5>
+                        <p class="text-muted">Please confirm your details to submit.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="wizard-actions">
+                <button class="btn btn-outline-secondary" id="num-hz-prev" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+                <button class="btn btn-primary" id="num-hz-next">Next Step <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Vertical Numbered Wizard -->
+    <div class="col-12">
+        <div class="wizard-container" id="wizard-vertical-num">
+            <div class="wizard-header">
+                <div class="wizard-title">Vertical Steps Wizard</div>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-vertical-num"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+
+            <div class="wizard-vertical">
+                <!-- Sidebar Steps -->
+                <div class="wizard-steps-v">
+                    <div class="wizard-step-v completed" data-step="1">
+                        <span class="v-title">Project Details</span>
+                        <span class="v-desc">Name & Scope</span>
+                    </div>
+                    <div class="wizard-step-v completed" data-step="2">
+                        <span class="v-title">Team Members</span>
+                        <span class="v-desc">Assign roles</span>
+                    </div>
+                    <div class="wizard-step-v active" data-step="3">
+                        <span class="v-title">Budget Setup</span>
+                        <span class="v-desc">Financial planning</span>
+                    </div>
+                    <div class="wizard-step-v" data-step="4">
+                        <span class="v-title">Review & Submit</span>
+                        <span class="v-desc">Final verification</span>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="wizard-content-v">
+                    <h5 class="mb-4">Budget Configuration</h5>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Allocated Budget ($)</label>
+                            <input type="number" class="form-control" placeholder="0.00">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Funding Source</label>
+                            <select class="form-select">
+                                <option>Internal</option>
+                                <option>External Investor</option>
+                                <option>Bank Loan</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Cost Center</label>
+                            <input type="text" class="form-control" placeholder="CC-001">
+                        </div>
+                    </div>
+
+                    <div class="wizard-actions mt-4">
+                        <button class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button class="btn btn-primary">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Compact Progress Wizard -->
+    <div class="col-lg-8 mx-auto">
+        <div class="wizard-container wizard-compact" id="wizard-compact-num">
+            <div class="wizard-header border-bottom pb-3 mb-4">
+                <div class="wizard-title">Compact Line Wizard</div>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-compact-num"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            
+            <div class="progress-header">
+                <div>
+                    <h6 class="mb-1">Security Setup</h6>
+                    <small class="text-muted">Step 2 of 3</small>
+                </div>
+                <div class="step-badge">66% Completed</div>
+            </div>
+            
+            <div class="progress mb-4" style="height: 8px;">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+            <div class="wizard-content-area">
+                <div class="alert alert-info mb-4" style="border-left: 4px solid var(--info-color);">
+                    <i class="fas fa-shield-alt me-2"></i> Enhance your account security by enabling 2-Factor Authentication.
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="2faSwitch" checked>
+                    <label class="form-check-label fw-bold" for="2faSwitch">Enable 2FA via Authenticator App</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="smsSwitch">
+                    <label class="form-check-label fw-bold" for="smsSwitch">Enable SMS Backup Codes</label>
+                </div>
+            </div>
+
+            <div class="wizard-actions">
+                <button class="btn btn-light">Cancel</button>
+                <div>
+                    <button class="btn btn-outline-secondary me-2">Back</button>
+                    <button class="btn btn-primary">Continue</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Horizontal Numbered Wizard Logic
+            const steps = document.querySelectorAll('#num-hz-steps .wizard-step');
+            const panes = document.querySelectorAll('#num-hz-panes .wizard-pane');
+            const btnNext = document.getElementById('num-hz-next');
+            const btnPrev = document.getElementById('num-hz-prev');
+            let currentStep = 1;
+            const totalSteps = steps.length;
+
+            function updateWizard() {
+                // Update Steps UI
+                steps.forEach((step, index) => {
+                    const stepNum = index + 1;
+                    step.classList.remove('active', 'completed');
+                    if (stepNum === currentStep) {
+                        step.classList.add('active');
+                    } else if (stepNum < currentStep) {
+                        step.classList.add('completed');
+                    }
+                });
+
+                // Update Panes UI
+                panes.forEach(pane => {
+                    if (parseInt(pane.getAttribute('data-pane')) === currentStep) {
+                        pane.style.display = 'block';
+                    } else {
+                        pane.style.display = 'none';
+                    }
+                });
+
+                // Update Buttons
+                if (currentStep === 1) {
+                    btnPrev.disabled = true;
+                } else {
+                    btnPrev.disabled = false;
+                }
+
+                if (currentStep === totalSteps) {
+                    btnNext.innerHTML = 'Submit <i class="fas fa-check"></i>';
+                    btnNext.classList.remove('btn-primary');
+                    btnNext.classList.add('btn-success');
+                } else {
+                    btnNext.innerHTML = 'Next Step <i class="fas fa-arrow-right"></i>';
+                    btnNext.classList.add('btn-primary');
+                    btnNext.classList.remove('btn-success');
+                }
+            }
+
+            btnNext.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateWizard();
+                } else {
+                    // Reset or submit here
+                    alert('Numbered Wizard Submitted Successfully!');
+                    currentStep = 1;
+                    updateWizard();
+                }
+            });
+
+            btnPrev.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateWizard();
+                }
+            });
+            
+            // Allow clicking steps
+            steps.forEach((step, idx) => {
+               step.addEventListener('click', function() {
+                   if(idx + 1 < currentStep || step.classList.contains('completed')) {
+                       currentStep = idx + 1;
+                       updateWizard();
+                   }
+               }); 
+            });
+        });
+    </script>
+}

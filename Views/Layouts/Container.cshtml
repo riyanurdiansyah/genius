@@ -2,10 +2,56 @@
     ViewData["Title"] = "Container";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-columns fa-3x text-muted mb-3"></i>
-        <h4>Container Layout</h4>
-        <p class="text-muted">This is an empty page placeholder for the Container layout.</p>
+@section Styles {
+    <style>
+        /* Force Layout Change for this demo */
+        body { background: #e2e8f0; } /* Darker body to contrast */
+        .dashboard-container { max-width: 1300px; margin: 0 auto; box-shadow: 0 0 50px rgba(0,0,0,0.1); background: #f8fafc;}
+        
+        /* Demo Styles */
+        .layout-demo { padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 1px dashed #cbd5e1; text-align: center; }
+        .wf-container { max-width: 700px; margin: 2rem auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #e2e8f0; overflow: hidden; display: flex; height: 350px; border: 1px solid #cbd5e1; justify-content: center; }
+        .wf-inner-container { width: 80%; background: #f8fafc; display: flex; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        .wf-nav { width: 120px; background: var(--sidebar-bg); display: flex; flex-direction: column; padding: 20px 15px; gap: 12px; border-right: 1px solid rgba(255,255,255,0.05); }
+        .wf-menu-item { height: 25px; border-radius: 6px; background: rgba(255,255,255,0.05); }
+        .wf-menu-item.active { background: var(--primary-color); }
+        .wf-main { flex: 1; display: flex; flex-direction: column; }
+        .wf-header { height: 60px; background: #fff; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; }
+        .wf-header-box { height: 16px; background: #e2e8f0; border-radius: 4px; }
+        .wf-content { flex: 1; padding: 25px; display: grid; gap: 20px; }
+        .wf-card { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; }
+    </style>
+}
+
+<div class="row pt-4">
+    <div class="col-12">
+        <div class="layout-demo">
+            <h2 class="fw-bold text-dark">Boxed Container Layout</h2>
+            <p class="text-muted w-75 mx-auto mb-4">Constrains the entire application interface into a fixed maximum-width container, centered on the screen. Great for ultra-wide monitors.</p>
+            
+            <div class="wf-container">
+                <div class="wf-inner-container">
+                    <div class="wf-nav">
+                        <div class="wf-menu-item active mt-4"></div>
+                        <div class="wf-menu-item" style="width: 80%;"></div>
+                        <div class="wf-menu-item mt-auto" style="width: 60%;"></div>
+                    </div>
+                    <div class="wf-main">
+                        <div class="wf-header">
+                            <div class="wf-header-box" style="width: 30px;"></div>
+                            <div class="wf-header-box" style="width: 100px;"></div>
+                        </div>
+                        <div class="wf-content">
+                            <div class="wf-card" style="height: 120px;"></div>
+                            <div class="wf-card"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-primary bg-primary bg-opacity-10 text-primary border-0 text-start mt-4 d-inline-block text-center mx-auto" style="max-width: 700px;">
+                <i class="fa-solid fa-code me-2"></i> <strong>Live Demo:</strong> Notice the dark gray margins on the extreme left and right of your monitor. The app is centered!
+            </div>
+        </div>
     </div>
 </div>

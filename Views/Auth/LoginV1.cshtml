@@ -1,0 +1,553 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* ═══════════════════════════════════════════════
+       LOGIN V1 — Neumorphism / Soft UI
+    ═══════════════════════════════════════════════ */
+
+    .lv1-page {
+        min-height: calc(100vh - 120px);
+        background: #e8ecf0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Decorative floating blobs */
+    .lv1-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.18;
+        pointer-events: none;
+    }
+    .lv1-blob-1 {
+        width: 380px; height: 380px;
+        background: #3b9d82;
+        top: -80px; left: -80px;
+    }
+    .lv1-blob-2 {
+        width: 300px; height: 300px;
+        background: #6366f1;
+        bottom: -60px; right: -40px;
+    }
+    .lv1-blob-3 {
+        width: 200px; height: 200px;
+        background: #f59e0b;
+        top: 40%; right: 10%;
+    }
+
+    /* Card */
+    .lv1-card {
+        position: relative;
+        z-index: 2;
+        background: #e8ecf0;
+        border-radius: 30px;
+        padding: 48px 44px;
+        width: 100%;
+        max-width: 430px;
+        box-shadow:
+            16px 16px 40px rgba(163,177,198,0.6),
+            -16px -16px 40px rgba(255,255,255,0.85);
+    }
+
+    /* Branding */
+    .lv1-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 36px;
+    }
+    .lv1-logo {
+        width: 54px; height: 54px;
+        background: linear-gradient(145deg, #0d1f2d, #0a1628);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+            6px 6px 14px rgba(163,177,198,0.55),
+            -4px -4px 10px rgba(255,255,255,0.75),
+            inset 0 0 12px rgba(0,220,220,0.06);
+        flex-shrink: 0;
+    }
+    .lv1-logo img { width: 36px; height: 36px; object-fit: contain; }
+    .lv1-brand-text h5 {
+        font-weight: 900;
+        color: #2d3748;
+        font-size: 18px;
+        margin: 0;
+        letter-spacing: -0.3px;
+    }
+    .lv1-brand-text span {
+        font-size: 12px;
+        color: #a0aec0;
+        font-weight: 500;
+    }
+
+    /* Heading */
+    .lv1-heading {
+        margin-bottom: 30px;
+    }
+    .lv1-heading h2 {
+        font-weight: 900;
+        color: #1a202c;
+        font-size: 28px;
+        letter-spacing: -0.5px;
+        margin-bottom: 6px;
+    }
+    .lv1-heading p {
+        color: #a0aec0;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    /* Social buttons */
+    .lv1-social-row {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+    .lv1-social-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px;
+        border: none;
+        border-radius: 14px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #4a5568;
+        cursor: pointer;
+        background: #e8ecf0;
+        box-shadow: 5px 5px 12px rgba(163,177,198,0.5), -5px -5px 12px rgba(255,255,255,0.8);
+        transition: all 0.2s ease;
+    }
+    .lv1-social-btn:hover {
+        box-shadow: 3px 3px 8px rgba(163,177,198,0.5), -3px -3px 8px rgba(255,255,255,0.8);
+        transform: translateY(1px);
+    }
+    .lv1-social-btn:active {
+        box-shadow: inset 3px 3px 8px rgba(163,177,198,0.5), inset -3px -3px 8px rgba(255,255,255,0.8);
+    }
+
+    /* Divider */
+    .lv1-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    .lv1-divider::before, .lv1-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #c8d0da;
+    }
+    .lv1-divider span {
+        font-size: 12px;
+        color: #a0aec0;
+        white-space: nowrap;
+        font-weight: 500;
+    }
+
+    /* Form group */
+    .lv1-form-group {
+        margin-bottom: 20px;
+    }
+    .lv1-form-group label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        color: #718096;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        margin-bottom: 10px;
+    }
+    .lv1-input-wrap {
+        position: relative;
+    }
+    .lv1-input-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #a0aec0;
+        font-size: 14px;
+        pointer-events: none;
+    }
+    .lv1-input {
+        width: 100%;
+        padding: 14px 16px 14px 42px;
+        border: none;
+        border-radius: 14px;
+        font-size: 14px;
+        color: #2d3748;
+        background: #e8ecf0;
+        box-shadow: inset 5px 5px 12px rgba(163,177,198,0.55), inset -5px -5px 12px rgba(255,255,255,0.8);
+        transition: box-shadow 0.2s ease;
+        outline: none;
+    }
+    .lv1-input::placeholder { color: #b2bcc8; }
+    .lv1-input:focus {
+        box-shadow:
+            inset 5px 5px 12px rgba(163,177,198,0.6),
+            inset -5px -5px 12px rgba(255,255,255,0.85),
+            0 0 0 2.5px rgba(59,157,130,0.3);
+    }
+
+    /* Password toggle */
+    .lv1-eye-btn {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #a0aec0;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 4px;
+    }
+    .lv1-eye-btn:hover { color: #3b9d82; }
+
+    /* Forgot row */
+    .lv1-forgot-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    .lv1-forgot-row label {
+        margin-bottom: 0 !important;
+    }
+    .lv1-forgot-link {
+        font-size: 12px;
+        color: #3b9d82;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0;
+        text-transform: none;
+    }
+    .lv1-forgot-link:hover { color: #2d7a65; text-decoration: underline; }
+
+    /* Remember me */
+    .lv1-remember {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+    }
+    .lv1-remember input[type="checkbox"] {
+        width: 18px; height: 18px;
+        border-radius: 6px;
+        accent-color: #3b9d82;
+        cursor: pointer;
+    }
+    .lv1-remember label {
+        font-size: 13px;
+        color: #718096;
+        font-weight: 500;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    /* Submit button */
+    .lv1-submit {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 16px;
+        font-size: 15px;
+        font-weight: 800;
+        color: #fff;
+        background: linear-gradient(135deg, #3b9d82 0%, #2d7a65 100%);
+        cursor: pointer;
+        box-shadow:
+            6px 6px 16px rgba(59,157,130,0.35),
+            -4px -4px 10px rgba(255,255,255,0.5);
+        transition: all 0.25s ease;
+        letter-spacing: 0.3px;
+        margin-bottom: 24px;
+    }
+    .lv1-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 8px 8px 20px rgba(59,157,130,0.4), -4px -4px 10px rgba(255,255,255,0.5);
+    }
+    .lv1-submit:active {
+        transform: translateY(0);
+        box-shadow: inset 4px 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Footer */
+    .lv1-footer {
+        text-align: center;
+        font-size: 13px;
+        color: #a0aec0;
+    }
+    .lv1-footer a {
+        color: #3b9d82;
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .lv1-footer a:hover { text-decoration: underline; }
+
+    /* Decorative pill tags */
+    .lv1-pill-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+    }
+    .lv1-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 14px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 700;
+        color: #718096;
+        background: #e8ecf0;
+        box-shadow: 3px 3px 8px rgba(163,177,198,0.45), -3px -3px 8px rgba(255,255,255,0.75);
+    }
+    .lv1-pill i { font-size: 10px; }
+
+    /* Input with no prefix icon */
+    .lv1-input.no-icon { padding-left: 16px; }
+
+    /* CAPTCHA */
+    .lv1-captcha-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+    .lv1-captcha-img {
+        border-radius: 12px;
+        box-shadow: 4px 4px 10px rgba(163,177,198,0.5), -4px -4px 10px rgba(255,255,255,0.8);
+        cursor: pointer;
+        flex-shrink: 0;
+        height: 50px;
+        transition: opacity 0.2s;
+    }
+    .lv1-captcha-img:hover { opacity: 0.85; }
+    .lv1-captcha-refresh {
+        background: #e8ecf0;
+        border: none;
+        border-radius: 10px;
+        width: 38px; height: 38px;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 4px 4px 10px rgba(163,177,198,0.5), -4px -4px 10px rgba(255,255,255,0.8);
+        cursor: pointer;
+        color: #718096;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .lv1-captcha-refresh:hover { color: #3b9d82; transform: rotate(90deg); }
+    .lv1-captcha-refresh:active {
+        box-shadow: inset 3px 3px 8px rgba(163,177,198,0.5), inset -3px -3px 8px rgba(255,255,255,0.8);
+        transform: rotate(180deg);
+    }
+    .lv1-captcha-status {
+        font-size: 11px;
+        font-weight: 700;
+        height: 18px;
+        margin-bottom: 18px;
+    }
+    .lv1-captcha-status.ok  { color: #3b9d82; }
+    .lv1-captcha-status.err { color: #e53e3e; }
+
+    @@media (max-width: 480px) {
+        .lv1-card { padding: 36px 24px; }
+        .lv1-social-row { flex-direction: column; }
+    }
+</style>
+
+
+<!-- THE LOGIN PAGE ITSELF -->
+<div class="lv1-page">
+    <!-- Decorative blobs -->
+    <div class="lv1-blob lv1-blob-1"></div>
+    <div class="lv1-blob lv1-blob-2"></div>
+    <div class="lv1-blob lv1-blob-3"></div>
+
+    <div class="lv1-card">
+
+        <!-- Brand -->
+        <div class="lv1-brand">
+            <div class="lv1-logo">
+                <img src="/image/kuda-icon.png" alt="Kuda Logo">
+            </div>
+            <div class="lv1-brand-text">
+                <h5>Kuda Admin</h5>
+                <span>Premium Dashboard</span>
+            </div>
+        </div>
+
+        <!-- Heading -->
+        <div class="lv1-heading">
+            <h2>Hello again! 👋</h2>
+            <p>Sign in to continue to your workspace</p>
+        </div>
+
+        <!-- Email -->
+        <div class="lv1-form-group">
+            <label for="lv1-email">Email Address</label>
+            <div class="lv1-input-wrap">
+                <i class="fas fa-envelope lv1-input-icon"></i>
+                <input type="email" id="lv1-email" class="lv1-input" placeholder="you@example.com" autocomplete="email">
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="lv1-form-group">
+            <div class="lv1-forgot-row">
+                <label for="lv1-password">Password</label>
+                <a href="#" class="lv1-forgot-link">Forgot password?</a>
+            </div>
+            <div class="lv1-input-wrap">
+                <i class="fas fa-lock lv1-input-icon"></i>
+                <input type="password" id="lv1-password" class="lv1-input" placeholder="••••••••" autocomplete="current-password">
+                <button class="lv1-eye-btn" type="button" id="lv1-toggle-pw" tabindex="-1" title="Toggle password">
+                    <i class="fas fa-eye-slash" id="lv1-eye-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Remember me -->
+        <div class="lv1-remember">
+            <input type="checkbox" id="lv1-remember" checked>
+            <label for="lv1-remember">Remember me on this device</label>
+        </div>
+
+        <!-- CAPTCHA -->
+        <div class="lv1-form-group" style="margin-bottom:8px;">
+            <label>Security Verification</label>
+            <div class="lv1-captcha-wrap">
+                <img id="lv1-captcha-img"
+                     src="/Captcha/Image"
+                     alt="CAPTCHA"
+                     class="lv1-captcha-img"
+                     title="Click to refresh"
+                     onclick="refreshCaptcha()">
+                <div class="lv1-input-wrap" style="flex:1;">
+                    <i class="fas fa-shield-alt lv1-input-icon"></i>
+                    <input type="text"
+                           id="lv1-captcha-input"
+                           class="lv1-input"
+                           placeholder="Enter code..."
+                           maxlength="6"
+                           autocomplete="off"
+                           style="text-transform:uppercase;letter-spacing:3px;font-weight:700;">
+                </div>
+                <button class="lv1-captcha-refresh" type="button" onclick="refreshCaptcha()" title="New code">
+                    <i class="fas fa-redo-alt" style="font-size:14px;"></i>
+                </button>
+            </div>
+        </div>
+        <div class="lv1-captcha-status" id="lv1-captcha-status"></div>
+
+        <!-- Submit -->
+        <button class="lv1-submit" type="button" id="lv1-submit-btn" onclick="submitLogin()">
+            <i class="fas fa-arrow-right me-2"></i> Sign In
+        </button>
+
+    </div>
+</div>
+
+<script>
+    // ─── Toggle password visibility ───
+    document.getElementById('lv1-toggle-pw').addEventListener('click', function () {
+        const input = document.getElementById('lv1-password');
+        const icon  = document.getElementById('lv1-eye-icon');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        }
+    });
+
+    // ─── CAPTCHA helpers ───
+    function refreshCaptcha() {
+        const img = document.getElementById('lv1-captcha-img');
+        img.style.opacity = '0.4';
+        img.src = '/Captcha/Image?t=' + Date.now();
+        img.onload = () => img.style.opacity = '1';
+        document.getElementById('lv1-captcha-input').value = '';
+        setStatus('', '');
+    }
+
+    function setStatus(msg, cls) {
+        const el = document.getElementById('lv1-captcha-status');
+        el.textContent = msg;
+        el.className = 'lv1-captcha-status ' + cls;
+    }
+
+    // Live-check once 6 chars typed
+    document.getElementById('lv1-captcha-input').addEventListener('input', function () {
+        const val = this.value.trim();
+        if (val.length === 6) verifyCaptcha();
+        else setStatus('', '');
+    });
+
+    document.getElementById('lv1-captcha-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') verifyCaptcha();
+    });
+
+    async function verifyCaptcha() {
+        const code = document.getElementById('lv1-captcha-input').value.trim();
+        if (!code) { setStatus('Please enter the code above.', 'err'); return false; }
+
+        const res  = await fetch('/Captcha/Validate', {
+            method : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body   : JSON.stringify({ code })
+        });
+        const json = await res.json();
+
+        if (json.success) {
+            setStatus('✓ Verified!', 'ok');
+            return true;
+        } else {
+            setStatus('✗ Wrong code — try again.', 'err');
+            document.getElementById('lv1-captcha-input').value = '';
+            refreshCaptcha();
+            return false;
+        }
+    }
+
+    async function submitLogin() {
+        // Validate CAPTCHA before allowing submit
+        const code = document.getElementById('lv1-captcha-input').value.trim();
+        if (!code) {
+            setStatus('Please complete the CAPTCHA first.', 'err');
+            document.getElementById('lv1-captcha-input').focus();
+            return;
+        }
+
+        const ok = await verifyCaptcha();
+        if (ok) {
+            // CAPTCHA passed — proceed with your actual login logic here
+            setStatus('✓ Verified! Signing in...', 'ok');
+            const btn = document.getElementById('lv1-submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Signing in...';
+            // TODO: replace with your real form submit / fetch
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-arrow-right me-2"></i> Sign In';
+                refreshCaptcha();
+            }, 2000);
+        }
+    }
+</script>

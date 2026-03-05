@@ -2,10 +2,208 @@
     ViewData["Title"] = "Input Groups";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Input Groups Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Input Groups form elements.</p>
+@section Styles {
+    <style>
+        .input-group-text {
+            background-color: #f8fafc;
+            color: var(--text-gray);
+            border-color: #cbd5e1;
+        }
+        
+        /* Modern icon style */
+        .input-group-text i {
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Solid Input Group override */
+        .ig-solid .form-control {
+            background-color: #f1f5f9;
+            border-color: #f1f5f9;
+        }
+        .ig-solid .input-group-text {
+            background-color: #f1f5f9;
+            border-color: #f1f5f9;
+            color: var(--primary-color);
+        }
+        .ig-solid .form-control:focus {
+            background-color: #fff;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(59, 157, 130, 0.15);
+        }
+        
+        /* Primary Highlighted Addon */
+        .ig-primary .input-group-text {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .component-card {
+            margin-bottom: 25px;
+        }
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Basic Icon Addons -->
+    <div class="col-lg-6">
+        <div class="card component-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Icon Addons</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="icon-addons"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="icon-addons">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2"><i class="fa-regular fa-envelope"></i></span>
+                </div>
+
+                <!-- Primary highlighted -->
+                <div class="input-group mb-3 ig-primary">
+                    <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Secret Token">
+                </div>
+
+                <!-- Solid style -->
+                <div class="input-group mb-3 ig-solid">
+                    <span class="input-group-text"><i class="fa-solid fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search everywhere...">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Text Addons -->
+    <div class="col-lg-6">
+        <div class="card component-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Text Addons</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="text-addons"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="text-addons">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text">First and last name</span>
+                    <input type="text" aria-label="First name" class="form-control">
+                    <input type="text" aria-label="Last name" class="form-control">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <span class="input-group-text">0.00</span>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-text">With textarea</span>
+                    <textarea class="form-control" aria-label="With textarea" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Button Addons -->
+    <div class="col-lg-6">
+        <div class="card component-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Button Addons</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="btn-addons"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="btn-addons">
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
+                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-primary" type="button" id="button-addon2">Subscribe</button>
+                </div>
+
+                <div class="input-group mb-3">
+                    <button class="btn btn-primary" type="button"><i class="fa-solid fa-copy"></i></button>
+                    <button class="btn btn-outline-primary" type="button"><i class="fa-solid fa-share"></i></button>
+                    <input type="text" class="form-control" placeholder="" aria-label="Example text with two button addons">
+                </div>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username with two button addons">
+                    <button class="btn btn-outline-secondary" type="button">Edit</button>
+                    <button class="btn btn-outline-danger" type="button">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Dropdowns & Controls -->
+    <div class="col-lg-6">
+        <div class="card component-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Dropdowns & Forms Controls</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="ctrl-addons"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="ctrl-addons">
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02">
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+        });
+    </script>
+}

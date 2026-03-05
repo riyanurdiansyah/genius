@@ -1,0 +1,421 @@
+@{
+    ViewData["Title"] = "File Manager";
+}
+
+@section Styles {
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css" />
+    <style>
+        .file-manager-container {
+            display: flex;
+            height: calc(100vh - 180px); /* Adjust based on navbar/footer */
+            border: 1px solid #dee2e6;
+            border-radius: var(--bs-border-radius);
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .file-tree-sidebar {
+            width: 300px;
+            min-width: 300px;
+            border-right: 1px solid #dee2e6;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-tree-header {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            background: #e9ecef;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-tree-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .file-tree-ul {
+            list-style: none;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .file-tree-ul.root-ul {
+            padding-left: 10px;
+        }
+
+        .file-tree-item {
+            padding: 4px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 4px;
+            user-select: none;
+            color: #333;
+            transition: background 0.1s;
+            white-space: nowrap;
+        }
+
+        .file-tree-item:hover {
+            background: #e9ecef;
+        }
+
+        .file-tree-item.active {
+            background: #0d6efd;
+            color: white;
+        }
+        
+        .file-tree-item.active i {
+            color: white !important;
+        }
+
+        .file-tree-icon {
+            width: 16px;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .file-editor-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            width: calc(100% - 300px);
+        }
+
+        .editor-header {
+            padding: 10px 15px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            min-height: 54px;
+        }
+
+        .editor-title {
+            font-weight: 500;
+            margin: 0;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .editor-container {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .CodeMirror {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #6c757d;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">File Manager & Editor</h4>
+            <div class="text-muted small">
+                <i class="fas fa-shield-alt text-warning me-1"></i> Developer Mode
+            </div>
+        </div>
+    </div>
+
+    <div class="file-manager-container shadow-sm">
+        <!-- Sidebar Tree -->
+        <div class="file-tree-sidebar">
+            <div class="file-tree-header">
+                <i class="fas fa-project-diagram text-primary"></i> 
+                <span>Project Files</span>
+                <button class="btn btn-sm btn-link ms-auto p-0" id="btnRefreshTree" title="Refresh">
+                    <i class="fas fa-sync-alt text-secondary"></i>
+                </button>
+            </div>
+            <div class="file-tree-content" id="fileTreeContainer">
+                <div class="text-center mt-4">
+                    <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                    <span class="ms-2 small text-muted">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editor Area -->
+        <div class="file-editor-area">
+            <div class="editor-header">
+                <div class="editor-title" id="editorTitle">
+                    <span class="text-muted">No file selected</span>
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-primary" id="btnSaveFile" disabled>
+                        <i class="fas fa-save me-1"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+            <div class="editor-container" id="editorContainer">
+                <div class="empty-state" id="editorEmptyState">
+                    <i class="fas fa-code"></i>
+                    <h5>Select a file to start editing</h5>
+                    <p class="small">Supports JS, CSS, HTML, CS, and other text formats.</p>
+                </div>
+                <textarea id="codeEditor" style="display: none;"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+
+    <script>
+        let editor = null;
+        let currentOpenFilePath = null;
+        let isEditorInit = false;
+
+        $(document).ready(function () {
+            // Load root directory
+            loadDirectory('', $('#fileTreeContainer'), true);
+
+            $('#btnRefreshTree').click(function() {
+                $('#fileTreeContainer').html(`
+                    <div class="text-center mt-4">
+                        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                        <span class="ms-2 small text-muted">Refreshing...</span>
+                    </div>
+                `);
+                loadDirectory('', $('#fileTreeContainer'), true);
+            });
+
+            $('#btnSaveFile').click(function() {
+                if(!currentOpenFilePath || !editor) return;
+
+                const content = editor.getValue();
+                const btn = $(this);
+                const originalHtml = btn.html();
+                
+                btn.html('<i class="fas fa-spinner fa-spin me-1"></i> Saving...').prop('disabled', true);
+
+                $.ajax({
+                    url: '/FileManager/SaveFileContent',
+                    type: 'POST',
+                    data: {
+                        path: currentOpenFilePath,
+                        content: content
+                    },
+                    success: function (res) {
+                        if (res.success) {
+                            showToast('Success', 'File saved successfully.', 'success');
+                        } else {
+                            showToast('Error', res.message || 'Error saving file.', 'danger');
+                        }
+                    },
+                    error: function () {
+                        showToast('Error', 'Server error while saving.', 'danger');
+                    },
+                    complete: function () {
+                        btn.html(originalHtml).prop('disabled', false);
+                    }
+                });
+            });
+        });
+
+        // Load Directory Contents
+        function loadDirectory(dirPath, containerElement, isRoot = false) {
+            $.ajax({
+                url: '/FileManager/GetFiles',
+                type: 'GET',
+                data: { dir: dirPath },
+                success: function (data) {
+                    let ul = $('<ul>').addClass('file-tree-ul').addClass(isRoot ? 'root-ul' : '');
+                    
+                    if (data && data.length > 0) {
+                        data.forEach(item => {
+                            let li = $('<li>');
+                            let itemDiv = $('<div>').addClass('file-tree-item').attr('data-path', item.path);
+                            
+                            let iconClass = 'fas fa-file text-secondary';
+                            if (item.isDirectory) {
+                                iconClass = 'fas fa-folder text-warning';
+                            } else {
+                                // Assign icons based on extension
+                                const ext = item.extension ? item.extension.toLowerCase() : '';
+                                if (ext === '.cs') iconClass = 'fas fa-code text-primary';
+                                else if (ext === '.cshtml' || ext === '.html') iconClass = 'fab fa-html5 text-danger';
+                                else if (ext === '.js') iconClass = 'fab fa-js text-warning';
+                                else if (ext === '.css') iconClass = 'fab fa-css3-alt text-info';
+                                else if (ext === '.json') iconClass = 'fas fa-brackets-curly text-success';
+                            }
+
+                            itemDiv.html(`
+                                <i class="file-tree-icon ${iconClass}"></i>
+                                <span class="file-name">${item.name}</span>
+                            `);
+
+                            if (item.isDirectory) {
+                                let subContainer = $('<div>').addClass('sub-tree').hide();
+                                itemDiv.click(function (e) {
+                                    e.stopPropagation();
+                                    
+                                    // Toggle folder icon
+                                    let icon = $(this).find('.file-tree-icon');
+                                    if (icon.hasClass('fa-folder')) {
+                                        icon.removeClass('fa-folder').addClass('fa-folder-open');
+                                    } else {
+                                        icon.removeClass('fa-folder-open').addClass('fa-folder');
+                                    }
+
+                                    if (subContainer.is(':empty')) {
+                                        // Load content first time
+                                        subContainer.html('<div class="ms-4 my-1 small text-muted"><i class="fas fa-circle-notch fa-spin me-1"></i>Loading...</div>').show();
+                                        loadDirectory(item.path, subContainer);
+                                    } else {
+                                        subContainer.slideToggle(150);
+                                    }
+                                });
+                                li.append(itemDiv).append(subContainer);
+                            } else {
+                                itemDiv.click(function (e) {
+                                    e.stopPropagation();
+                                    $('.file-tree-item.active').removeClass('active');
+                                    $(this).addClass('active');
+                                    openFile(item.path, item.name, item.extension);
+                                });
+                                li.append(itemDiv);
+                            }
+                            ul.append(li);
+                        });
+                    } else {
+                        ul.append('<li class="small text-muted fst-italic py-1 px-3">Empty folder</li>');
+                    }
+                    
+                    containerElement.html(ul);
+                },
+                error: function () {
+                    containerElement.html('<div class="text-danger small px-3">Failed to load directory</div>');
+                }
+            });
+        }
+
+        function getEditorMode(extension) {
+            extension = extension ? extension.toLowerCase() : '';
+            switch(extension) {
+                case '.js': return 'javascript';
+                case '.json': return 'application/json';
+                case '.css': return 'css';
+                case '.html': 
+                case '.cshtml': return 'htmlmixed';
+                case '.cs': return 'text/x-csharp';
+                default: return 'text/plain';
+            }
+        }
+
+        function openFile(path, name, extension) {
+            $('#editorEmptyState').hide();
+            
+            // Show loading in header
+            $('#editorTitle').html(`<i class="fas fa-spinner fa-spin text-primary"></i> <span class="ms-1">Loading ${name}...</span>`);
+            $('#btnSaveFile').prop('disabled', true);
+
+            $.ajax({
+                url: '/FileManager/GetFileContent',
+                type: 'GET',
+                data: { path: path },
+                success: function (content) {
+                    currentOpenFilePath = path;
+                    
+                    // Update Header
+                    $('#editorTitle').html(`<i class="fas fa-file-code text-primary"></i> <span class="ms-1 fw-bold">${name}</span> <span class="badge bg-light text-dark ms-2 border">${path}</span>`);
+                    $('#btnSaveFile').prop('disabled', false);
+
+                    if (!isEditorInit) {
+                        $('#codeEditor').show();
+                        editor = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
+                            lineNumbers: true,
+                            theme: 'dracula',
+                            matchBrackets: true,
+                            indentUnit: 4,
+                            indentWithTabs: false,
+                            lineWrapping: true
+                        });
+                        isEditorInit = true;
+                    }
+                    
+                    editor.setOption('mode', getEditorMode(extension));
+                    editor.setValue(content);
+                    
+                    // Optional: clear history so undo doesn't go back to empty
+                    editor.clearHistory();
+                },
+                error: function (xhr) {
+                    $('#editorTitle').html(`<i class="fas fa-exclamation-triangle text-danger"></i> <span class="ms-1 text-danger">Failed to load ${name}</span>`);
+                    if(isEditorInit) {
+                        editor.setValue("Error loading file content: " + (xhr.responseText || "Unknown error"));
+                    }
+                }
+            });
+        }
+
+        // Simple Toast Notification
+        function showToast(title, message, type = 'primary') {
+            const toastContainer = $('<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;"></div>');
+            if ($('.toast-container').length === 0) {
+                $('body').append(toastContainer);
+            }
+
+            const toastId = 'toast-' + Date.now();
+            const toastHtml = `
+                <div id="${toastId}" class="toast align-items-center text-white bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      <strong>${title}</strong>: ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>
+            `;
+            
+            $('.toast-container').append(toastHtml);
+            const toastElement = new bootstrap.Toast(document.getElementById(toastId), { delay: 3000 });
+            toastElement.show();
+
+            $(`#${toastId}`).on('hidden.bs.toast', function () {
+                $(this).remove();
+            });
+        }
+    </script>
+}

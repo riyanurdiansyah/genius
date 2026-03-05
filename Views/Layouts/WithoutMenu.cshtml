@@ -2,10 +2,52 @@
     ViewData["Title"] = "Without Menu";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-columns fa-3x text-muted mb-3"></i>
-        <h4>Without Menu Layout</h4>
-        <p class="text-muted">This is an empty page placeholder for the Without Menu layout.</p>
+@section Styles {
+    <style>
+        /* Force Layout Change for this demo */
+        .sidebar-wrapper { display: none !important; }
+        .main-content { margin-left: 0 !important; width: 100% !important; }
+        
+        /* Demo Styles */
+        .layout-demo { padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 1px dashed #cbd5e1; text-align: center; }
+        .wf-container { max-width: 700px; margin: 2rem auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #f8fafc; overflow: hidden; display: flex; flex-direction: column; height: 350px; border: 1px solid #e2e8f0; }
+        .wf-header-top { height: 60px; background: #fff; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; }
+        .wf-header-box { height: 16px; background: #e2e8f0; border-radius: 4px; }
+        .wf-main { flex: 1; padding: 25px; }
+        .wf-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; height: 100%; }
+        .wf-card { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; }
+    </style>
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="layout-demo">
+            <h2 class="fw-bold text-dark">Without Menu Layout</h2>
+            <p class="text-muted w-75 mx-auto mb-4">A complete removal of the side navigation menu. The layout focuses exclusively on the top navbar and full-width content.</p>
+            
+            <div class="wf-container">
+                <div class="wf-header-top">
+                    <div style="display:flex; align-items: center; gap: 10px;">
+                        <div class="wf-header-box" style="width: 25px; height: 25px; border-radius:50%; background: var(--primary-color);"></div>
+                        <div class="wf-header-box" style="width: 100px;"></div>
+                    </div>
+                    <div style="display:flex; gap: 15px;">
+                        <div class="wf-header-box" style="width: 150px;"></div>
+                        <div class="wf-header-box" style="width: 32px; height: 32px; border-radius: 50%; margin-top: -8px;"></div>
+                    </div>
+                </div>
+                <div class="wf-main">
+                    <div class="wf-content">
+                        <div class="wf-card" style="grid-column: span 4; height: 100px;"></div>
+                        <div class="wf-card" style="grid-column: span 2;"></div>
+                        <div class="wf-card" style="grid-column: span 2;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-primary bg-primary bg-opacity-10 text-primary border-0 text-start mt-4 d-inline-block text-center mx-auto" style="max-width: 700px;">
+                <i class="fa-solid fa-code me-2"></i> <strong>Live Demo:</strong> Notice how the sidebar has been dynamically hidden via CSS overrides on this page.
+            </div>
+        </div>
     </div>
 </div>

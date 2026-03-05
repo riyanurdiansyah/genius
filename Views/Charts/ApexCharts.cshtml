@@ -262,10 +262,7 @@
 
 </div>
 
-<!-- Simple Toast Notification -->
-<div id="copyToast" style="display:none; position: fixed; bottom: 30px; right: 30px; background: var(--green-accent); color: white; padding: 12px 24px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 9999; font-weight: 500;">
-    <i class="fa-solid fa-circle-check me-2"></i> HTML Component Copied!
-</div>
+
 
 @section Scripts {
     <!-- Include ApexCharts -->
@@ -286,16 +283,13 @@
                 }
             });
 
-            $('.btn-copyHtml').on('click', function() {
+            $('.btn-copyHtml').on('click', function(e) {
+                e.preventDefault();
                 var rawHtml = $(this).data('raw-html');
-                var $temp = $("<textarea>");
-                $("body").append($temp);
-                $temp.val(rawHtml).select();
-                document.execCommand("copy");
-                $temp.remove();
                 
-                $('#copyToast').fadeIn(300);
-                setTimeout(function(){ $('#copyToast').fadeOut(500); }, 3000);
+                // Use the Global Copy HTML Modal from _Layout.cshtml
+                document.getElementById('globalCopyHtmlTextarea').value = rawHtml;
+                openModal('globalCopyHtmlModal');
             });
 
             // Theme Colors

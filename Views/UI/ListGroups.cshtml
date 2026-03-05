@@ -1,0 +1,57 @@
+@{ ViewData["Title"] = "List Groups"; }
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Basic List Group</h5></div>
+            <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item active" aria-current="true">An active item</li>
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                  <li class="list-group-item">A fourth item</li>
+                  <li class="list-group-item disabled" aria-disabled="true">A disabled item</li>
+                </ul>
+                <br>
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">The current link item</a>
+                  <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+                  <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Custom Content List Group</h5></div>
+            <div class="card-body">
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action active border-0 mb-2 rounded shadow-sm" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1 text-white">List group item heading</h5>
+                      <small>3 days ago</small>
+                    </div>
+                    <p class="mb-1 opacity-75">Some placeholder content in a paragraph.</p>
+                    <small>And some small print.</small>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action border-0 mb-2 rounded bg-light border-0 shadow-sm">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">Customer Feedback Analysis</h5>
+                      <small class="text-muted">Just now</small>
+                    </div>
+                    <p class="mb-1 text-muted">A comprehensive overview of recent survey data...</p>
+                    <small class="text-primary"><i class="fas fa-arrow-right"></i> Read Report</small>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action border-0 rounded bg-light border-0 shadow-sm">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                      <div class="d-flex align-items-center">
+                          <img src="https://ui-avatars.com/api/?name=Jane+Doe&background=ffcc00&color=fff" class="rounded-circle me-3" width="40" height="40" alt="Avatar">
+                          <h6 class="mb-0 fw-bold">Jane Doe</h6>
+                      </div>
+                      <span class="badge bg-success rounded-pill">Completed</span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

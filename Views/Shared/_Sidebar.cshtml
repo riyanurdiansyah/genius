@@ -5,92 +5,131 @@
             document.getElementById('mainSidebar').classList.add('collapsed');
         }
     </script>
+
+    <!-- Logo -->
     <div class="logo-area">
-        <h2 class="logo-text">Genius</h2>
+        <div class="brand-text">
+            <span class="brand-name">Kuda</span>
+            <span class="brand-sub">Admin Panel</span>
+        </div>
     </div>
 
     <aside class="sidebar">
         <ul class="sidebar-menu">
-        <li>
-            <a href="/Home/Index"><i class="nav-icon fas fa-home"></i> Dashboard</a>
-        </li>
-        <li>
-            <a href="/Components/DataTables"><i class="nav-icon fas fa-table"></i> DataTables</a>
-        </li>
-        <li>
-            <a href="/Components/Forms"><i class="nav-icon fas fa-edit"></i> Forms & Inputs</a>
-        </li>
-        <li>
-            <a href="/Components/Buttons"><i class="nav-icon fas fa-hand-pointer"></i> Buttons</a>
-        </li>
-        <li>
-            <a href="/Components/Cards"><i class="nav-icon fas fa-id-card"></i> Cards</a>
-        </li>
-        <li>
-            <a href="/Components/Notifications"><i class="nav-icon fas fa-bell"></i> Notifications</a>
-        </li>
-        <li>
-            <a href="/Components/Modals"><i class="nav-icon fas fa-window-restore"></i> Modals</a>
-        </li>
 
-        <li>
-            <a href="#" class="sidebar-toggle-menu"><i class="nav-icon fas fa-columns"></i> Layouts <i class="fas fa-chevron-right toggle-icon"></i></a>
-            <ul class="sidebar-submenu">
-                <li><a href="/Layouts/CollapsedMenu">Collapsed menu</a></li>
-                <li><a href="/Layouts/ContentNavbar">Content navbar</a></li>
-                <li><a href="/Layouts/ContentNavSidebar">Content nav + Sidebar</a></li>
-                <li><a href="/Layouts/Horizontal">Horizontal</a></li>
-                <li><a href="/Layouts/WithoutMenu">Without menu</a></li>
-                <li><a href="/Layouts/WithoutNavbar">Without navbar</a></li>
-                <li><a href="/Layouts/Fluid">Fluid</a></li>
-                <li><a href="/Layouts/Container">Container</a></li>
-                <li><a href="/Layouts/Blank">Blank</a></li>
-            </ul>
-        </li>
+            <!-- Main -->
+            <li class="menu-section-label"><span>Main</span></li>
+            <li>
+                <a href="#" class="sidebar-toggle-menu">
+                    <span class="menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="menu-label">Dashboards</span>
+                    <i class="fas fa-chevron-right toggle-icon"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/Home/Index">Default</a></li>
+                    <li><a href="/Home/Manufacturing">Manufacturing</a></li>
+                    <li><a href="/Home/Commercial">Commercial</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Documentation/Index">
+                    <span class="menu-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="menu-label">Documentation</span>
+                </a>
+            </li>
 
-        <li class="sidebar-menu-header" style="padding: 1rem 1rem 0.5rem; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Forms & Tables</li>
+            <!-- Applications -->
+            <li class="menu-section-label"><span>Applications</span></li>
+            <li>
+                <a href="#" class="sidebar-toggle-menu">
+                    <span class="menu-icon"><i class="fas fa-globe"></i></span>
+                    <span class="menu-label">Front Pages</span>
+                    <i class="fas fa-chevron-right toggle-icon"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/FrontEnd/CompanyProfile" target="_blank">Company Profile</a></li>
+                    <li><a href="/Seo/Dashboard">SEO Analytics</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-toggle-menu">
+                    <span class="menu-icon"><i class="fas fa-layer-group"></i></span>
+                    <span class="menu-label">User Interface</span>
+                    <i class="fas fa-chevron-right toggle-icon"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/UI/Accordion">Accordion</a></li>
+                    <li><a href="/UI/Alerts">Alerts</a></li>
+                    <li><a href="/UI/Badges">Badges</a></li>
+                    <li><a href="/UI/Buttons">Buttons</a></li>
+                    <li><a href="/UI/Carousel">Carousel</a></li>
+                    <li><a href="/UI/Modals">Modals</a></li>
+                    <li><a href="/UI/Sidebar">Sidebars</a></li>
+                    <li><a href="/UI/TabsPills">Tabs & Pills</a></li>
+                    <li><a href="/UI/Typography">Typography</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Tools/Design">
+                    <span class="menu-icon"><i class="fas fa-palette"></i></span>
+                    <span class="menu-label">UI Designer</span>
+                </a>
+            </li>
+            <li>
+                <a href="/Apps/Kanban">
+                    <span class="menu-icon"><i class="fas fa-table-columns"></i></span>
+                    <span class="menu-label">Kanban Board</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="sidebar-toggle-menu">
+                    <span class="menu-icon"><i class="fas fa-lock"></i></span>
+                    <span class="menu-label">Authentication</span>
+                    <i class="fas fa-chevron-right toggle-icon"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/Auth/LoginV1" target="_blank">Login v1</a></li>
+                </ul>
+            </li>
 
-        <li>
-            <a href="#" class="sidebar-toggle-menu"><i class="nav-icon fas fa-list-alt"></i> Form Elements <i class="fas fa-chevron-right toggle-icon"></i></a>
-            <ul class="sidebar-submenu">
-                <li><a href="/FormElements/BasicInputs">Basic Inputs</a></li>
-                <li><a href="/FormElements/InputGroups">Input groups</a></li>
-                <li><a href="/FormElements/CustomOptions">Custom Options</a></li>
-                <li><a href="/FormElements/Editors">Editors</a></li>
-                <li><a href="/FormElements/FileUpload">File Upload</a></li>
-                <li><a href="/FormElements/Pickers">Pickers</a></li>
-                <li><a href="/FormElements/SelectTags">Select & Tags</a></li>
-                <li><a href="/FormElements/Sliders">Sliders</a></li>
-                <li><a href="/FormElements/Switches">Switches</a></li>
-                <li><a href="/FormElements/Extras">Extras</a></li>
-            </ul>
-        </li>
+            <!-- Forms & Tables -->
+            <li class="menu-section-label"><span>Forms & Tables</span></li>
+            <li>
+                <a href="#" class="sidebar-toggle-menu">
+                    <span class="menu-icon"><i class="fas fa-list-alt"></i></span>
+                    <span class="menu-label">Form Elements</span>
+                    <i class="fas fa-chevron-right toggle-icon"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/FormElements/BasicInputs">Basic Inputs</a></li>
+                    <li><a href="/FormElements/InputGroups">Input Groups</a></li>
+                    <li><a href="/FormElements/CustomOptions">Custom Options</a></li>
+                    <li><a href="/FormElements/Editors">Editors</a></li>
+                    <li><a href="/FormElements/FileUpload">File Upload</a></li>
+                    <li><a href="/FormElements/Pickers">Pickers</a></li>
+                    <li><a href="/FormElements/SelectTags">Select & Tags</a></li>
+                    <li><a href="/FormElements/Sliders">Sliders</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-toggle-menu">
+                    <span class="menu-icon"><i class="fas fa-chart-pie"></i></span>
+                    <span class="menu-label">Charts</span>
+                    <i class="fas fa-chevron-right toggle-icon"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="/Charts/ApexCharts">ApexChart</a></li>
+                    <li><a href="/Charts/ChartJS">ChartJs</a></li>
+                    <li><a href="/Charts/GanttChart">GanttChart</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Components/DataTables">
+                    <span class="menu-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-label">DataTables</span>
+                </a>
+            </li>
 
-        <li>
-            <a href="#" class="sidebar-toggle-menu"><i class="nav-icon fas fa-credit-card"></i> Form Layouts <i class="fas fa-chevron-right toggle-icon"></i></a>
-            <ul class="sidebar-submenu">
-                <li><a href="/FormLayouts/VerticalForm">Vertical Form</a></li>
-                <li><a href="/FormLayouts/HorizontalForm">Horizontal Form</a></li>
-                <li><a href="/FormLayouts/StickyActions">Sticky Actions</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="#" class="sidebar-toggle-menu"><i class="nav-icon fas fa-magic"></i> Form Wizard <i class="fas fa-chevron-right toggle-icon"></i></a>
-            <ul class="sidebar-submenu">
-                <li><a href="/FormWizard/Numbered">Numbered</a></li>
-                <li><a href="/FormWizard/Icons">Icons</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="#" class="sidebar-toggle-menu"><i class="nav-icon fas fa-chart-pie"></i> Charts <i class="fas fa-chevron-right toggle-icon"></i></a>
-            <ul class="sidebar-submenu">
-                <li><a href="/Charts/ApexCharts">ApexChart</a></li>
-                <li><a href="/Charts/ChartJS">ChartJs</a></li>
-                <li><a href="/Charts/GanttChart">GanttChart</a></li>
-            </ul>
-        </li>
-    </ul>
-</aside>
+        </ul>
+    </aside>
 </div>

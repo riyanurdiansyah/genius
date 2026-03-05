@@ -2,10 +2,189 @@
     ViewData["Title"] = "Pickers";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Pickers Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Pickers form elements.</p>
+@section Styles {
+    <style>
+        .picker-card { margin-bottom: 25px; }
+
+        /* Simulating Pickers UI */
+        .picker-input-wrapper {
+            position: relative;
+        }
+        .picker-input-wrapper i {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        
+        /* Color Picker blocks */
+        .color-block {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s;
+        }
+        .color-block:hover {
+            transform: scale(1.1);
+        }
+        .color-block.selected {
+            border-color: var(--text-dark);
+            box-shadow: 0 0 0 2px white inset;
+        }
+        
+        /* Calendar UI Mockup */
+        .cal-mockup {
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 15px;
+            background: #fff;
+            max-width: 300px;
+        }
+        .cal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .cal-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .cal-day-name { color: var(--text-muted); font-weight: 600; margin-bottom: 5px;}
+        .cal-date {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .cal-date:hover { background: #f1f5f9; }
+        .cal-date.active { background: var(--primary-color); color: white; }
+        .cal-date.muted { color: #cbd5e1; }
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Native HTML5 Pickers -->
+    <div class="col-lg-6 mb-4">
+        <div class="card picker-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">HTML5 Native Pickers</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="native-pick"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="native-pick">
+                <div class="mb-3">
+                    <label class="form-label">Native Date Picker</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Native Time Picker</label>
+                    <input type="time" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Native Color Picker</label>
+                    <input type="color" class="form-control form-control-color" value="#3b9d82" title="Choose your color">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Week Picker</label>
+                    <input type="week" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Custom Styled Advanced Pickers -->
+    <div class="col-lg-6 mb-4">
+        <div class="card picker-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Custom Pickers (Flatpickr style)</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="custom-pick"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="custom-pick">
+                <div class="mb-3">
+                    <label class="form-label">Date Range</label>
+                    <div class="picker-input-wrapper">
+                        <input type="text" class="form-control" placeholder="10 Oct 2026 to 20 Oct 2026">
+                        <i class="fa-regular fa-calendar-alt"></i>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Date & Time Selection</label>
+                    <div class="picker-input-wrapper">
+                        <input type="text" class="form-control" placeholder="10 Oct 2026 14:30">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                </div>
+                
+                <label class="form-label mb-2">Inline Calendar UI Mockup</label>
+                <div class="cal-mockup">
+                    <div class="cal-header">
+                        <i class="fa-solid fa-chevron-left text-muted cursor-pointer"></i>
+                        <span>October 2026</span>
+                        <i class="fa-solid fa-chevron-right text-muted cursor-pointer"></i>
+                    </div>
+                    <div class="cal-days">
+                        <div class="cal-day-name">Su</div><div class="cal-day-name">Mo</div><div class="cal-day-name">Tu</div>
+                        <div class="cal-day-name">We</div><div class="cal-day-name">Th</div><div class="cal-day-name">Fr</div><div class="cal-day-name">Sa</div>
+                        
+                        <div class="cal-date muted">27</div><div class="cal-date muted">28</div><div class="cal-date muted">29</div>
+                        <div class="cal-date muted">30</div><div class="cal-date mt">1</div><div class="cal-date">2</div><div class="cal-date">3</div>
+                        <div class="cal-date">4</div><div class="cal-date">5</div><div class="cal-date">6</div>
+                        <div class="cal-date">7</div><div class="cal-date">8</div><div class="cal-date">9</div><div class="cal-date active">10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 3. Predefined Color Palette -->
+    <div class="col-lg-12 mb-4">
+        <div class="card picker-card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Predefined Color Selection</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="color-palette"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="color-palette">
+                <label class="form-label mb-3">Choose Theme Color</label>
+                <div class="d-flex flex-wrap gap-2">
+                    <div class="color-block" style="background: #ef4444;"></div>
+                    <div class="color-block" style="background: #f97316;"></div>
+                    <div class="color-block" style="background: #eab308;"></div>
+                    <div class="color-block selected" style="background: #3b9d82;"></div>
+                    <div class="color-block" style="background: #06b6d4;"></div>
+                    <div class="color-block" style="background: #3b82f6;"></div>
+                    <div class="color-block" style="background: #8b5cf6;"></div>
+                    <div class="color-block" style="background: #ec4899;"></div>
+                    <div class="color-block" style="background: #64748b;"></div>
+                    <div class="color-block" style="background: #0f172a;"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            
+            // Color block selection interaction
+            document.querySelectorAll('.color-block').forEach(block => {
+                block.addEventListener('click', function() {
+                    document.querySelectorAll('.color-block').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+        });
+    </script>
+}

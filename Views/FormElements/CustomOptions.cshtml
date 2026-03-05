@@ -2,10 +2,318 @@
     ViewData["Title"] = "Custom Options";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Custom Options Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Custom Options form elements.</p>
+@section Styles {
+    <style>
+        /* Custom Options Component Styles */
+        /* 1. Radio Cards/Boxes */
+        .custom-option {
+            position: relative;
+            cursor: pointer;
+            height: 100%;
+        }
+        
+        .custom-option input[type="radio"], 
+        .custom-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .custom-option-content {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            background-color: #fff;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .custom-option:hover .custom-option-content {
+            border-color: #cbd5e1;
+            background-color: #f8fafc;
+        }
+        
+        .custom-option input:checked ~ .custom-option-content {
+            border-color: var(--primary-color);
+            background-color: rgba(59, 157, 130, 0.03);
+            box-shadow: 0 4px 15px rgba(59, 157, 130, 0.1);
+        }
+        
+        /* The Tick/Check indicator */
+        .custom-option-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #cbd5e1;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        
+        /* Checkbox specific indicator (Square) */
+        .custom-option.checkbox-type .custom-option-indicator {
+            border-radius: 6px;
+        }
+        
+        .custom-option input:checked ~ .custom-option-content .custom-option-indicator {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+        }
+        
+        .custom-option-indicator i {
+            color: white;
+            font-size: 12px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .custom-option input:checked ~ .custom-option-content .custom-option-indicator i {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .custom-option-info h6 {
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+        
+        .custom-option input:checked ~ .custom-option-content .custom-option-info h6 {
+            color: var(--primary-color);
+        }
+        
+        .custom-option-info p {
+            margin-bottom: 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        /* 2. Visual Icon Plans (Cards with Icon in Center) */
+        .plan-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            flex-direction: column;
+            align-items: center;
+        }
+        .plan-card .custom-option-indicator {
+            position: absolute;
+            top: 15px;
+            right: 0;
+        }
+        .plan-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+            transition: all 0.3s;
+        }
+        .custom-option input:checked ~ .plan-card .plan-icon {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* 3. Pricing Cards */
+        .pricing-option {
+            flex-direction: column;
+        }
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .pricing-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .pricing-price span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Standard Radio Cards (Delivery Method) -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Custom Radio Cards (Delivery)</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="custom-radio"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="custom-radio">
+                <div class="row g-4">
+                    <!-- Option 1 -->
+                    <div class="col-md-6">
+                        <label class="custom-option">
+                            <input type="radio" name="deliveryMethod" value="standard" checked>
+                            <div class="custom-option-content">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="custom-option-info flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Standard Delivery</h6>
+                                        <h6 class="text-success">Free</h6>
+                                    </div>
+                                    <p>Delivered in 3-5 business days.</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <!-- Option 2 -->
+                    <div class="col-md-6">
+                        <label class="custom-option">
+                            <input type="radio" name="deliveryMethod" value="express">
+                            <div class="custom-option-content">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="custom-option-info flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Express Delivery</h6>
+                                        <h6>$15.00</h6>
+                                    </div>
+                                    <p>Delivered tomorrow if ordered before 5 PM.</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Multiple Checkbox Cards (Skills) -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Custom Checkbox Cards (Select Multiple)</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="custom-checkbox"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="custom-checkbox">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="custom-option checkbox-type">
+                            <input type="checkbox" name="skills" value="design" checked>
+                            <div class="custom-option-content align-items-center">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="custom-option-info">
+                                    <h6>UI/UX Design</h6>
+                                    <p>Figma, Adobe XD</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="custom-option checkbox-type">
+                            <input type="checkbox" name="skills" value="dev" checked>
+                            <div class="custom-option-content align-items-center">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="custom-option-info">
+                                    <h6>Frontend Dev</h6>
+                                    <p>HTML, CSS, React</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="custom-option checkbox-type">
+                            <input type="checkbox" name="skills" value="backend">
+                            <div class="custom-option-content align-items-center">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="custom-option-info">
+                                    <h6>Backend Dev</h6>
+                                    <p>Node.js, C#, SQL</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Icon Centric Plans -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Icon Centric Plans</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="icon-plans"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="icon-plans">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <label class="custom-option">
+                            <input type="radio" name="plan" value="basic">
+                            <div class="custom-option-content plan-card">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <i class="fa-solid fa-paper-plane plan-icon"></i>
+                                <div class="custom-option-info">
+                                    <h6>Basic Plan</h6>
+                                    <p>Best for individuals</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="custom-option">
+                            <input type="radio" name="plan" value="pro" checked>
+                            <div class="custom-option-content plan-card">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <i class="fa-solid fa-rocket plan-icon"></i>
+                                <div class="custom-option-info">
+                                    <h6>Pro Plan</h6>
+                                    <p>Best for professionals</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="custom-option">
+                            <input type="radio" name="plan" value="enterprise">
+                            <div class="custom-option-content plan-card">
+                                <div class="custom-option-indicator">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <i class="fa-solid fa-building plan-icon"></i>
+                                <div class="custom-option-info">
+                                    <h6>Enterprise Plan</h6>
+                                    <p>Best for large teams</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+        });
+    </script>
+}

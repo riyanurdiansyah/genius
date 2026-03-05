@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Genius.Controllers;
+namespace Kuda.Controllers;
 
 public class FormWizardController : Controller
 {

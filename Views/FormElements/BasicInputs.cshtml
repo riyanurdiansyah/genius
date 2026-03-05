@@ -2,10 +2,217 @@
     ViewData["Title"] = "Basic Inputs";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Basic Inputs Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Basic Inputs form elements.</p>
+@section Styles {
+    <style>
+        .input-demo-block {
+            padding: 1.5rem;
+            background-color: var(--sidebar-bg);
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        /* Solid Input Variation */
+        .form-control-solid {
+            background-color: #f1f5f9;
+            border-color: #f1f5f9;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+        .form-control-solid:focus {
+            background-color: #fff;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(59, 157, 130, 0.15);
+        }
+
+        /* Outline Focus Line */
+        .form-control-line {
+            border: none;
+            border-bottom: 2px solid #e2e8f0;
+            border-radius: 0;
+            padding-left: 0;
+            padding-right: 0;
+            background-color: transparent;
+        }
+        .form-control-line:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Custom File Input Upload Area */
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            text-align: center;
+            background: #f8fafc;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--primary-color);
+            background: rgba(59, 157, 130, 0.05);
+        }
+        .upload-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            opacity: 0.7;
+            margin-bottom: 15px;
+        }
+        
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Default Inputs -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 component-card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Default Inputs</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="default-inputs"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="default-inputs">
+                <div class="mb-3">
+                    <label for="basicInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="basicInput1" placeholder="name@example.com">
+                    <div class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="basicInput2" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="basicInput2" placeholder="••••••••">
+                </div>
+                <div class="mb-3">
+                    <label for="basicInput3" class="form-label">Disabled Input</label>
+                    <input type="text" class="form-control" id="basicInput3" placeholder="Disabled placeholder" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="basicInput4" class="form-label">Readonly Input</label>
+                    <input type="text" class="form-control" id="basicInput4" value="Readonly value here" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Input Sizing & Styles -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 component-card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Input Sizing & Variations</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="sizing-inputs"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="sizing-inputs">
+                <!-- Sizing -->
+                <div class="mb-3">
+                    <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                </div>
+                <div class="mb-4">
+                    <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+                </div>
+                
+                <hr class="mb-4">
+                
+                <!-- Solid Variation -->
+                <div class="mb-3">
+                    <label class="form-label">Solid Background Style</label>
+                    <input class="form-control form-control-solid" type="text" placeholder="Solid background input">
+                </div>
+                
+                <!-- Line Variation -->
+                <div class="mb-3">
+                    <label class="form-label">Material Line Style</label>
+                    <input class="form-control form-control-line" type="text" placeholder="Underlined input">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Floating Labels -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 component-card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Floating Labels</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="floating-inputs"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="floating-inputs">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control is-valid" id="floatingValid" placeholder="Valid input" value="Great value">
+                    <label for="floatingValid">Pre-filled Validated</label>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Comments</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. File Upload (Native & Custom) -->
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 component-card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">File Upload UI</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="file-inputs"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="file-inputs">
+                <!-- Native Bootstrap -->
+                <div class="mb-4">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="formFileMultiple" class="form-label">Multiple files input</label>
+                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                </div>
+
+                <!-- Custom Drag and Drop Area -->
+                <div class="upload-area mt-4" onclick="document.getElementById('customFileUpload').click()">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <h6 class="mb-1">Click or drag file to this area to upload</h6>
+                    <p class="text-muted text-sm mb-0">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                    <input type="file" id="customFileUpload" style="display: none;" multiple>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            
+            // Drag and drop slight effect for upload area
+            const uploadArea = document.querySelector('.upload-area');
+            if(uploadArea) {
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.add('dragover');
+                });
+                uploadArea.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.remove('dragover');
+                });
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.remove('dragover');
+                    const dT = new DataTransfer();
+                    dT.items.add(e.dataTransfer.files[0]);
+                    document.getElementById('customFileUpload').files = dT.files;
+                    alert('File selected from drag!');
+                });
+            }
+        });
+    </script>
+}

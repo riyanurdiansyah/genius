@@ -1,0 +1,80 @@
+@{ ViewData["Title"] = "Dropdowns"; }
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Basic & Colored Dropdowns</h5></div>
+            <div class="card-body">
+                <div class="d-flex gap-2 flex-wrap">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown button
+                      </button>
+                      <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                    </div>
+                    
+                    <div class="dropdown">
+                      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        Success Dropdown
+                      </button>
+                      <ul class="dropdown-menu shadow border-0" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user ms-2"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog ms-2"></i> Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt ms-2"></i> Logout</a></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Split & Direction Variants</h5></div>
+            <div class="card-body border-0">
+                <div class="d-flex gap-2 flex-wrap mb-4">
+                    <!-- Example split danger button -->
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-danger">Action</button>
+                      <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu shadow">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                </div>
+                
+                <div class="d-flex gap-2 flex-wrap">
+                    <!-- Dropup -->
+                    <div class="btn-group dropup">
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropup
+                      </button>
+                      <ul class="dropdown-menu shadow">
+                        <li><a class="dropdown-item" href="#">Option 1</a></li>
+                        <li><a class="dropdown-item" href="#">Option 2</a></li>
+                      </ul>
+                    </div>
+                    
+                    <!-- Dropend -->
+                    <div class="btn-group dropend">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropright
+                      </button>
+                      <ul class="dropdown-menu shadow">
+                        <li><a class="dropdown-item" href="#">Option X</a></li>
+                        <li><a class="dropdown-item" href="#">Option Y</a></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,49 +1,140 @@
 /* theme.css - Core variables and utility classes */
+
+/* ─── Kalbe Geometric ─────────────────────────── */
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
-
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
 }
-
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-SemiBold.woff2') format('woff2');
     font-weight: 600;
     font-style: normal;
+    font-display: swap;
 }
-
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
-
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-ExtraBold.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
+    font-display: swap;
 }
-
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Black.woff2') format('woff2');
     font-weight: 900;
     font-style: normal;
+    font-display: swap;
+}
+
+/* ─── Kalbe Helix (fallback 1) ────────────────── */
+@font-face {
+    font-family: 'KalbeHelix';
+    src: url('../font/helix/KalbeHelix-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeHelix';
+    src: url('../font/helix/KalbeHelix-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeHelix';
+    src: url('../font/helix/KalbeHelix-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeHelix';
+    src: url('../font/helix/KalbeHelix-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeHelix';
+    src: url('../font/helix/KalbeHelix-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeHelix';
+    src: url('../font/helix/KalbeHelix-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ─── Kalbe Rounded (fallback 2) ─────────────── */
+@font-face {
+    font-family: 'KalbeRounded';
+    src: url('../font/rounded/KalbeRounded-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeRounded';
+    src: url('../font/rounded/KalbeRounded-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeRounded';
+    src: url('../font/rounded/KalbeRounded-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeRounded';
+    src: url('../font/rounded/KalbeRounded-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeRounded';
+    src: url('../font/rounded/KalbeRounded-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KalbeRounded';
+    src: url('../font/rounded/KalbeRounded-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
-    /* Fonts */
-    --font-family-primary: 'KalbeGeometric', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    /* Fonts — priority: Geometric → Helix → Rounded → system */
+    --font-family-primary: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', 'Segoe UI', system-ui, -apple-system, sans-serif;
 
     /* Color Palette from Image */
     --color-1: #051F20;
@@ -54,7 +145,7 @@
     --color-6: #DAF1DE;
 
     /* Organic Sidebar Theme Variables */
-    --bg-color: #eaf5f2;
+    --bg-color: #f8fafc;
     --dashboard-bg: #ffffff;
     --sidebar-green: #5a9c88;
     --text-dark: #1a1a1a;
@@ -108,6 +199,28 @@
     --radius-md: 16px;
     --radius-lg: 25px;
 }
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --dashboard-bg: #1e293b;
+    --text-dark: #f1f5f9;
+    --text-gray: #94a3b8;
+    --text-light-gray: #64748b;
+
+    --bg-body: var(--bg-color);
+    --bg-card: var(--dashboard-bg);
+    --text-primary: var(--text-dark);
+    --text-secondary: var(--text-gray);
+    --text-muted: var(--text-light-gray);
+    --border-color: #334155;
+    --border-dark: #475569;
+
+    --color-1: #e2e8f0;
+
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Reset and Base Styles */
 * {

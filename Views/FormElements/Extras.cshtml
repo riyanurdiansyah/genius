@@ -2,10 +2,215 @@
     ViewData["Title"] = "Extras";
 }
 
-<div class="card">
-    <div class="card-body text-center py-5">
-        <i class="fas fa-list-alt fa-3x text-muted mb-3"></i>
-        <h4>Extras Elements</h4>
-        <p class="text-muted">This is an empty page placeholder for the Extras form elements.</p>
+@section Styles {
+    <style>
+        .extras-card { margin-bottom: 25px; }
+
+        /* Star Rating UI */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            cursor: pointer;
+            color: #cbd5e1;
+            font-size: 2rem;
+            margin-right: 5px;
+            transition: color 0.2s ease-in-out;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: #fbbf24; /* yellow/gold */
+        }
+        
+        /* Interactive Hearts */
+        .heart-rating label:hover,
+        .heart-rating label:hover ~ label,
+        .heart-rating input:checked ~ label {
+            color: var(--danger-color);
+        }
+
+        /* Password Strength Meter */
+        .pass-strength-meter {
+            display: flex;
+            gap: 5px;
+            margin-top: 8px;
+        }
+        .pass-step {
+            height: 6px;
+            flex: 1;
+            background: #e2e8f0;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .pass-weak .pass-step:nth-child(1) { background: var(--danger-color); }
+        .pass-medium .pass-step:nth-child(1), .pass-medium .pass-step:nth-child(2) { background: var(--warning-color); }
+        .pass-strong .pass-step { background: var(--primary-color); }
+
+        /* Char Counter Input */
+        .char-counter-wrap {
+            position: relative;
+        }
+        .char-count {
+            position: absolute;
+            bottom: -22px;
+            right: 0;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .char-count.limit-reached { color: var(--danger-color); font-weight: bold; }
+    </style>
+}
+
+<div class="row">
+    <!-- 1. Star Rating -->
+    <div class="col-lg-6 mb-4">
+        <div class="card extras-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Interactive Ratings</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="rating-ui"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="rating-ui">
+                <div class="mb-4">
+                    <label class="form-label mb-2">Basic Star Rating</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5"><i class="fa-solid fa-star"></i></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4"><i class="fa-solid fa-star"></i></label>
+                        <input type="radio" id="star3" name="rating" value="3" checked /><label for="star3"><i class="fa-solid fa-star"></i></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2"><i class="fa-solid fa-star"></i></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1"><i class="fa-solid fa-star"></i></label>
+                    </div>
+                    <div class="form-text mt-2">Rate your experience (CSS only)</div>
+                </div>
+
+                <div>
+                    <label class="form-label mb-2">Heart / Favorites</label>
+                    <div class="star-rating heart-rating">
+                        <input type="radio" id="heart5" name="hrating" value="5" /><label for="heart5"><i class="fa-solid fa-heart"></i></label>
+                        <input type="radio" id="heart4" name="hrating" value="4" /><label for="heart4"><i class="fa-solid fa-heart"></i></label>
+                        <input type="radio" id="heart3" name="hrating" value="3" /><label for="heart3"><i class="fa-solid fa-heart"></i></label>
+                        <input type="radio" id="heart2" name="hrating" value="2" /><label for="heart2"><i class="fa-solid fa-heart"></i></label>
+                        <input type="radio" id="heart1" name="hrating" value="1" /><label for="heart1"><i class="fa-solid fa-heart"></i></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Form Add-ons (Pass strength & counters) -->
+    <div class="col-lg-6 mb-4">
+        <div class="card extras-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Advanced Input Add-ons</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="addons-ui"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="addons-ui">
+                <div class="mb-4 pb-2">
+                    <label class="form-label d-flex justify-content-between">
+                        Password Strength
+                        <span class="text-warning fw-bold small" id="pass-text">Medium</span>
+                    </label>
+                    <input type="password" class="form-control" id="passInput" value="TestPass123" placeholder="Enter password">
+                    <div class="pass-strength-meter pass-medium" id="passMeter">
+                        <div class="pass-step"></div>
+                        <div class="pass-step"></div>
+                        <div class="pass-step"></div>
+                        <div class="pass-step"></div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Character Counter</label>
+                    <div class="char-counter-wrap">
+                        <textarea class="form-control" id="charTextarea" rows="3" placeholder="Write a short bio... (max 100 char)">I love designing user interfaces that look stunning.</textarea>
+                        <div class="char-count" id="charCountDisplay">51/100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Form Input Masks -->
+    <div class="col-lg-12 mb-4">
+        <div class="card extras-card">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
+                <h6 class="m-0 font-weight-bold">Formatting & Input Masks (Mockups)</h6>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="masks-ui"><i class="fa-regular fa-copy"></i> HTML</button>
+            </div>
+            <div class="card-body" id="masks-ui">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Phone Number Mask</label>
+                        <input type="text" class="form-control" placeholder="(+62) ___-____-____" value="(+62) 812-3456-7890">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Credit Card Mask</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-brands fa-cc-visa"></i></span>
+                            <input type="text" class="form-control" placeholder="0000 0000 0000 0000" value="4523 1256 7890 0000">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Date Format Mask</label>
+                        <input type="text" class="form-control" placeholder="DD/MM/YYYY" value="28/10/2026">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+
+            // Password strength mock interaction
+            const pInput = document.getElementById('passInput');
+            const pMeter = document.getElementById('passMeter');
+            const pText = document.getElementById('pass-text');
+            
+            if(pInput && pMeter) {
+                pInput.addEventListener('input', function() {
+                    const val = this.value;
+                    pMeter.className = 'pass-strength-meter';
+                    if(val.length === 0) {
+                        pText.innerText = 'None';
+                        pText.className = 'text-muted fw-bold small';
+                    } else if (val.length < 5) {
+                        pMeter.classList.add('pass-weak');
+                        pText.innerText = 'Weak';
+                        pText.className = 'text-danger fw-bold small';
+                    } else if (val.length < 10) {
+                        pMeter.classList.add('pass-medium');
+                        pText.innerText = 'Medium';
+                        pText.className = 'text-warning fw-bold small';
+                    } else {
+                        pMeter.classList.add('pass-strong');
+                        pText.innerText = 'Strong';
+                        pText.className = 'text-primary fw-bold small';
+                    }
+                });
+            }
+
+            // Character counter script
+            const tArea = document.getElementById('charTextarea');
+            const tCount = document.getElementById('charCountDisplay');
+            if(tArea && tCount) {
+                tArea.addEventListener('input', function() {
+                    let len = this.value.length;
+                    if (len > 100) {
+                        this.value = this.value.substring(0, 100);
+                        len = 100;
+                    }
+                    tCount.innerText = len + "/100";
+                    if(len === 100) tCount.classList.add('limit-reached');
+                    else tCount.classList.remove('limit-reached');
+                });
+            }
+        });
+    </script>
+}
