@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets/css/theme.css"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/themes/blue.css",
+      "PackagePath": "staticwebassets/css/themes/blue.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/themes/orange.css",
+      "PackagePath": "staticwebassets/css/themes/orange.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/themes/purple.css",
+      "PackagePath": "staticwebassets/css/themes/purple.css"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/ui-builder.css",
       "PackagePath": "staticwebassets/css/ui-builder.css"
     },
@@ -287,6 +299,10 @@
     {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/font/systemcondensed/KalbeSystemCondensed[wght].woff2",
       "PackagePath": "staticwebassets/font/systemcondensed/KalbeSystemCondensed[wght].woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/image/kn.jpg",
+      "PackagePath": "staticwebassets/image/kn.jpg"
     },
     {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/image/kuda-icon.png",

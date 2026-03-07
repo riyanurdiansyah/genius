@@ -4,6 +4,9 @@
 
 <link rel="stylesheet" href="/css/report.css" />
 
+<!-- DataTables CSS for QA Format -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
 <div class="report-page">
     <div class="report-toolbar">
         <div class="report-toolbar-left">
@@ -11,10 +14,7 @@
             <h5>Report Generator</h5>
         </div>
         <div class="design-pills">
-            <div class="design-pill active" onclick="switchDesign('standard',this)">Standard Corporate</div>
-            <div class="design-pill" onclick="switchDesign('centered',this)">Centered Formal</div>
-            <div class="design-pill" onclick="switchDesign('sidebar',this)">Sidebar Accent</div>
-            <div class="design-pill" onclick="switchDesign('split',this)">Modern Split</div>
+            <div class="design-pill active" onclick="switchDesign('qa',this)">General</div>
         </div>
         <div>
             <button class="btn btn-outline-secondary me-1" onclick="printReport()"><i class="fas fa-print me-1"></i> Print</button>
@@ -30,10 +30,12 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
-    let currentDesign = 'standard';
+    let currentDesign = 'qa';
 
     function switchDesign(d, el) {
         currentDesign = d;
@@ -53,167 +55,86 @@
         refNo: "RPT-2026-003"
     };
 
-    function getBodyHtml() {
+    function getQaBodyHtml() {
         return `
-            <!-- Info Section -->
-            <div class="rpt-section">
-                <div class="rpt-section-title">Informasi Laporan</div>
-                <div style="font-size: 11px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
-                    <div><strong style="color:#64748b;font-weight:600;">Tanggal Cetak:</strong> <span style="font-weight:700;margin-left:8px;">5 Maret 2026</span></div>
-                    <div><strong style="color:#64748b;font-weight:600;">Departemen:</strong> <span style="font-weight:700;margin-left:8px;">Dept. Penjualan</span></div>
-                    <div><strong style="color:#64748b;font-weight:600;">Dibuat Oleh:</strong> <span style="font-weight:700;margin-left:8px;">Rina Susanti</span></div>
-                    <div><strong style="color:#64748b;font-weight:600;">Disetujui:</strong> <span style="font-weight:700;margin-left:8px;">Budi Hartono</span></div>
-                </div>
+            <div style="font-size: 11px; margin-bottom: 20px;">
+                <p><strong>Nama Panelis:</strong> ______________________ &nbsp;&nbsp;&nbsp;&nbsp; <strong>Tanggal:</strong> ______________________</p>
+                <p><strong>Tujuan Uji:</strong> Terdapatnya tiga sampel produk. Dua sampel adalah sama dan satu sampel adalah berbeda. Silakan uji sampel secara berurutan dan lingkarilah kode sampel yang rasanya/profilnya berbeda.</p>
             </div>
+            
+            <table id="qaDataTable" class="display table cell-border" style="width:100%; font-size: 11px;">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">No.</th>
+                        <th>Kode Sampel A</th>
+                        <th>Kode Sampel B</th>
+                        <th>Kode Sampel C</th>
+                        <th>Komentar Panelis / Deskripsi Perbedaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>412</td><td>689</td><td>412</td><td></td></tr>
+                    <tr><td>2</td><td>331</td><td>331</td><td>890</td><td></td></tr>
+                    <tr><td>3</td><td>745</td><td>123</td><td>123</td><td></td></tr>
+                    <tr><td>4</td><td>999</td><td>554</td><td>999</td><td></td></tr>
+                    <tr><td>5</td><td>222</td><td>222</td><td>444</td><td></td></tr>
+                    <tr><td>6</td><td>876</td><td>876</td><td>391</td><td></td></tr>
+                    <tr><td>7</td><td>404</td><td>200</td><td>404</td><td></td></tr>
+                    <tr><td>8</td><td>711</td><td>822</td><td>822</td><td></td></tr>
+                    <tr><td>9</td><td>303</td><td>303</td><td>101</td><td></td></tr>
+                    <tr><td>10</td><td>900</td><td>450</td><td>450</td><td></td></tr>
+                </tbody>
+            </table>
 
-            <!-- Summary Cards -->
-            <div class="rpt-section">
-                <div class="rpt-summary-row">
-                    <div class="rpt-summary-card"><div class="sc-label">Total Penjualan</div><div class="sc-value">Rp 1.84M</div></div>
-                    <div class="rpt-summary-card"><div class="sc-label">Total Transaksi</div><div class="sc-value">1,247</div></div>
-                    <div class="rpt-summary-card"><div class="sc-label">Rata-rata / Hari</div><div class="sc-value">Rp 59.4Jt</div></div>
-                    <div class="rpt-summary-card"><div class="sc-label">Produk Terjual</div><div class="sc-value">3,892</div></div>
-                </div>
-            </div>
-
-            <!-- Sales Table -->
-            <div class="rpt-section">
-                <div class="rpt-section-title">Detail Penjualan per Produk</div>
-                <table class="rpt-table">
-                    <thead>
-                        <tr>
-                            <th>No</th><th>Kode Produk</th><th>Nama Produk</th><th class="num">Qty</th><th class="num">Harga Satuan</th><th class="num">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>PRD-001</td><td>Server Rack 42U</td><td class="num">12</td><td class="num">Rp 28.500.000</td><td class="num">Rp 342.000.000</td></tr>
-                        <tr><td>2</td><td>PRD-002</td><td>UPS 3000VA Online</td><td class="num">45</td><td class="num">Rp 8.750.000</td><td class="num">Rp 393.750.000</td></tr>
-                        <tr><td>3</td><td>PRD-003</td><td>Switch Managed 48-Port</td><td class="num">68</td><td class="num">Rp 4.200.000</td><td class="num">Rp 285.600.000</td></tr>
-                        <tr><td>4</td><td>PRD-004</td><td>Firewall Appliance</td><td class="num">23</td><td class="num">Rp 12.500.000</td><td class="num">Rp 287.500.000</td></tr>
-                        <tr><td>5</td><td>PRD-005</td><td>Kabel Fiber Optic (roll)</td><td class="num">156</td><td class="num">Rp 850.000</td><td class="num">Rp 132.600.000</td></tr>
-                        <tr><td>6</td><td>PRD-006</td><td>Access Point WiFi 6E</td><td class="num">94</td><td class="num">Rp 2.350.000</td><td class="num">Rp 220.900.000</td></tr>
-                        <tr><td>7</td><td>PRD-007</td><td>Patch Panel 24-Port</td><td class="num">82</td><td class="num">Rp 1.150.000</td><td class="num">Rp 94.300.000</td></tr>
-                        <tr><td>8</td><td>PRD-008</td><td>SSD Enterprise 1TB</td><td class="num">37</td><td class="num">Rp 2.400.000</td><td class="num">Rp 88.800.000</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr><td colspan="3" style="font-weight:700;">Total</td><td class="num" style="font-weight:700;">517</td><td></td><td class="num" style="font-weight:700;">Rp 1.845.450.000</td></tr>
-                    </tfoot>
-                </table>
-            </div>
-
-            <!-- Sales by Region -->
-            <div class="rpt-section" style="margin-top: 24px;">
-                <div class="rpt-section-title">Penjualan per Wilayah</div>
-                <table class="rpt-table">
-                    <thead>
-                        <tr><th>No</th><th>Wilayah</th><th class="num">Jumlah Transaksi</th><th class="num">Total Penjualan</th><th class="num">% dari Total</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>Jakarta & Jabodetabek</td><td class="num">487</td><td class="num">Rp 738.540.000</td><td class="num">40.0%</td></tr>
-                        <tr><td>2</td><td>Jawa Barat</td><td class="num">215</td><td class="num">Rp 332.181.000</td><td class="num">18.0%</td></tr>
-                        <tr><td>3</td><td>Jawa Timur</td><td class="num">198</td><td class="num">Rp 276.817.500</td><td class="num">15.0%</td></tr>
-                        <tr><td>4</td><td>Sumatera</td><td class="num">143</td><td class="num">Rp 221.454.000</td><td class="num">12.0%</td></tr>
-                        <tr><td>5</td><td>Kalimantan & Sulawesi</td><td class="num">112</td><td class="num">Rp 166.090.500</td><td class="num">9.0%</td></tr>
-                        <tr><td>6</td><td>Bali & NTT</td><td class="num">92</td><td class="num">Rp 110.727.000</td><td class="num">6.0%</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr><td colspan="2" style="font-weight:700;">Total</td><td class="num" style="font-weight:700;">1,247</td><td class="num" style="font-weight:700;">Rp 1.845.450.000</td><td class="num" style="font-weight:700;">100%</td></tr>
-                    </tfoot>
-                </table>
-            </div>
-
-            <div class="rpt-note">* Laporan ini digenerate secara otomatis oleh sistem. Data berlaku per tanggal cetak.</div>
-
-            <!-- Signature -->
-            <div class="rpt-signatures-row">
-                <div class="rpt-sig-col"><div class="rpt-sig-line"></div><div class="rpt-sig-name">Rina Susanti</div><div class="rpt-sig-role">Staff Penjualan</div></div>
-                <div class="rpt-sig-col"><div class="rpt-sig-line"></div><div class="rpt-sig-name">Budi Hartono</div><div class="rpt-sig-role">Manager Penjualan</div></div>
-                <div class="rpt-sig-col"><div class="rpt-sig-line"></div><div class="rpt-sig-name">Ahmad Wijaya</div><div class="rpt-sig-role">Direktur</div></div>
+            <div class="rpt-note" style="margin-top:20px;">* Harap kembalikan formulir kepada QC Dept setelah diisi.</div>
+            
+            <div class="rpt-signatures-row" style="margin-top: 40px;">
+                <div class="rpt-sig-col"><div class="rpt-sig-line"></div><div class="rpt-sig-name">QC Inspector</div></div>
+                <div class="rpt-sig-col"><div class="rpt-sig-line"></div><div class="rpt-sig-name">QA Manager</div></div>
             </div>`;
     }
 
     function renderReport() {
         const wrapper = document.getElementById('reportPaperWrapper');
-        const d = reportData;
         
-        let html = '';
-
-        if (currentDesign === 'standard') {
-            html = `
-                <div class="report-paper design-standard" id="actualPaperContent">
-                    <div class="rpt-header">
-                        <div class="rpt-logo-area">
-                            <div style="font-size:24px;font-weight:900;background:#0f172a;color:#fff;width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:12px;">K</div>
-                            <div><div class="rpt-company-name">${d.company}</div><div class="rpt-company-sub">${d.companySub}</div></div>
-                        </div>
-                        <div class="rpt-header-right">
-                            ${d.addressLine1}<br>${d.addressLine2}<br>${d.website}
-                        </div>
-                    </div>
-                    <div class="rpt-title-bar">
-                        <h1>${d.title}</h1>
-                        <div class="rpt-subtitle">${d.subtitle} | Ref: ${d.refNo}</div>
-                    </div>
-                    <div class="rpt-body">${getBodyHtml()}</div>
-                </div>`;
-        } 
-        else if (currentDesign === 'centered') {
-            html = `
-                <div class="report-paper design-centered" id="actualPaperContent">
-                    <div class="rpt-header-centered">
-                        <div class="rpt-logo-icon">K</div>
-                        <div class="rpt-company-name">${d.company}</div>
-                        <div class="rpt-address">${d.addressLine1} | ${d.addressLine2} | ${d.website}</div>
-                        <div class="rpt-report-title">${d.title}</div>
-                        <div class="rpt-report-meta">${d.subtitle}</div>
-                        <div class="rpt-report-meta" style="color:#64748b;font-weight:400;font-size:10px;">REF: ${d.refNo}</div>
-                    </div>
-                    <div class="rpt-body">${getBodyHtml()}</div>
-                </div>`;
-        }
-        else if (currentDesign === 'sidebar') {
-            html = `
-                <div class="report-paper design-sidebar" id="actualPaperContent">
-                    <div class="rpt-sidebar-band">
-                        <div class="rpt-logo-text">${d.company}</div>
-                        
-                        <div class="rpt-meta-group">
-                            <div class="rpt-meta-label">Ref Number</div>
-                            <div class="rpt-meta-value">${d.refNo}</div>
-                        </div>
-                        <div class="rpt-meta-group">
-                            <div class="rpt-meta-label">Period</div>
-                            <div class="rpt-meta-value">Mar 2026</div>
-                        </div>
-                        <div class="rpt-meta-group">
-                            <div class="rpt-meta-label">Contact</div>
-                            <div class="rpt-meta-value" style="font-size:10px;line-height:1.6;">${d.addressLine1}<br>${d.website}</div>
-                        </div>
-                    </div>
-                    <div class="rpt-main-content">
-                        <div class="rpt-main-title">${d.title}</div>
-                        <div class="rpt-body p-0">${getBodyHtml()}</div>
-                    </div>
-                </div>`;
-        }
-        else if (currentDesign === 'split') {
-            html = `
-                <div class="report-paper design-split" id="actualPaperContent">
-                    <div class="rpt-top-split">
-                        <div class="rpt-top-left">
-                            <div class="rpt-logo-main">${d.company}.</div>
-                            <div class="rpt-address-light">${d.addressLine1}<br>${d.addressLine2}<br>${d.website}</div>
-                        </div>
-                        <div class="rpt-top-right">
-                            <div class="rpt-title-large">${d.title}</div>
-                            <div class="rpt-title-sub">${d.subtitle} <span style="color:#94a3b8;margin-left:8px;">REF: ${d.refNo}</span></div>
-                        </div>
-                    </div>
-                    <div class="rpt-body">${getBodyHtml()}</div>
-                </div>`;
-        }
+        // Single default format ("General" / qa format)
+        let html = `
+            <div class="report-paper design-qa" id="actualPaperContent">
+                <div class="qa-document-box">
+                    <table class="rpt-qa-header">
+                        <tr>
+                            <td class="qa-logo-cell">
+                                <img src="/image/kn.jpg" alt="Kalbe Nutritionals" />
+                            </td>
+                            <td class="qa-title-cell" rowspan="3">
+                                UJI SEGITIGA<br/>(TRIANGLE TEST)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="qa-meta-cell">Doc No &nbsp;: SHP-FRM-QACC-01</td>
+                        </tr>
+                        <tr>
+                            <td class="qa-meta-cell">Revision : 02</td>
+                        </tr>
+                    </table>
+                    <div class="qa-header-divider"></div>
+                    <div class="rpt-body qa-body-content">${getQaBodyHtml()}</div>
+                </div>
+            </div>`;
 
         wrapper.innerHTML = html;
+
+        // Initialize DataTable since only General/QA mode remains
+        if ($.fn.DataTable.isDataTable('#qaDataTable')) {
+            $('#qaDataTable').DataTable().destroy();
+        }
+        $('#qaDataTable').DataTable({
+            paging: false,
+            searching: false,
+            info: false,
+            ordering: false,
+            lengthChange: false
+        });
     }
 
     function printReport() {

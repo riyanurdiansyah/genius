@@ -93,4 +93,37 @@ document.addEventListener('DOMContentLoaded', () => {
             syncIconState(isDark);
         });
     }
+    // ==========================================
+    // 3. Color Theme Customizer
+    // ==========================================
+    window.changeThemeColor = function (colorKey) {
+        localStorage.setItem('app-color-theme', colorKey);
+
+        let existingLink = document.getElementById('color-theme-override');
+
+        if (colorKey === 'default') {
+            if (existingLink) existingLink.remove();
+            return;
+        }
+
+        if (existingLink) {
+            existingLink.href = `/css/themes/${colorKey}.css`;
+        } else {
+            let themeLink = document.createElement('link');
+            themeLink.rel = 'stylesheet';
+            themeLink.id = 'color-theme-override';
+            themeLink.href = `/css/themes/${colorKey}.css`;
+            document.head.appendChild(themeLink);
+        }
+
+        // Update profile picture background
+        let img = document.getElementById('headerProfileImage');
+        if (img) {
+            let hex = "3b9d82"; // default
+            if (colorKey === "blue") hex = "2563eb";
+            if (colorKey === "purple") hex = "7c3aed";
+            if (colorKey === "orange") hex = "ea580c";
+            img.src = `https://ui-avatars.com/api/?name=Admin+User&background=${hex}&color=fff`;
+        }
+    };
 });

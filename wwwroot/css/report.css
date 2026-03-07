@@ -148,395 +148,7 @@
     margin-top: 6px;
 }
 
-/* ════════════════════════════════════════
-   DESIGN 1 — Standard Corporate (Left aligned)
-   ════════════════════════════════════════ */
-.design-standard .rpt-header {
-    padding: 32px 48px 24px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 3px solid #0f172a;
-}
-
-.design-standard .rpt-logo-area {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.design-standard .rpt-company-name {
-    font-size: 20px;
-    font-weight: 800;
-    color: #0f172a;
-}
-
-.design-standard .rpt-company-sub {
-    font-size: 10px;
-    color: #64748b;
-    letter-spacing: .5px;
-}
-
-.design-standard .rpt-header-right {
-    text-align: right;
-    font-size: 11px;
-    color: #64748b;
-}
-
-.design-standard .rpt-title-bar {
-    padding: 20px 48px;
-    background: #f8fafc;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.design-standard .rpt-title-bar h1 {
-    font-size: 18px;
-    font-weight: 800;
-    color: #0f172a;
-    margin: 0 0 4px;
-}
-
-.design-standard .rpt-title-bar .rpt-subtitle {
-    font-size: 12px;
-    color: #64748b;
-}
-
-.design-standard .rpt-body {
-    padding: 28px 48px 20px;
-}
-
-.design-standard .rpt-section-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 10px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid #0f172a;
-    text-transform: uppercase;
-}
-
-.design-standard .rpt-table th {
-    background: #f1f5f9;
-    color: #0f172a;
-    border: 1px solid #e2e8f0;
-}
-
-.design-standard .rpt-table td {
-    border: 1px solid #e2e8f0;
-}
-
-.design-standard .rpt-summary-card {
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-}
-
-.design-standard .rpt-summary-card .sc-label {
-    color: #94a3b8;
-}
-
-.design-standard .rpt-summary-card .sc-value {
-    color: #0f172a;
-}
-
-/* ════════════════════════════════════════
-   DESIGN 2 — Centered Formal (Logo & Title Centered)
-   ════════════════════════════════════════ */
-.design-centered {
-    padding: 36px 48px;
-    border: 8px solid double #e2e8f0;
-}
-
-.design-centered .rpt-header-centered {
-    text-align: center;
-    border-bottom: 2px solid #cbd5e1;
-    padding-bottom: 24px;
-    margin-bottom: 24px;
-}
-
-.design-centered .rpt-logo-icon {
-    width: 60px;
-    height: 60px;
-    background: #064e3b;
-    color: white;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: 900;
-    border-radius: 50%;
-    margin-bottom: 16px;
-}
-
-.design-centered .rpt-company-name {
-    font-size: 24px;
-    font-weight: 900;
-    color: #0f172a;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.design-centered .rpt-address {
-    font-size: 11px;
-    color: #475569;
-    margin-top: 6px;
-}
-
-.design-centered .rpt-report-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-top: 24px;
-    text-decoration: underline;
-}
-
-.design-centered .rpt-report-meta {
-    font-size: 12px;
-    color: #0f172a;
-    margin-top: 8px;
-    font-weight: 600;
-}
-
-.design-centered .rpt-section {
-    margin-bottom: 24px;
-}
-
-.design-centered .rpt-section-title {
-    font-size: 13px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 16px;
-    background: #f1f5f9;
-    padding: 8px;
-    border: 1px solid #cbd5e1;
-}
-
-.design-centered .rpt-table th {
-    border-top: 2px solid #0f172a;
-    border-bottom: 2px solid #0f172a;
-    color: #0f172a;
-}
-
-.design-centered .rpt-table td {
-    border-bottom: 1px dashed #cbd5e1;
-}
-
-.design-centered .rpt-summary-card {
-    border: 2px solid #0f172a;
-}
-
-.design-centered .rpt-summary-card .sc-label {
-    color: #475569;
-    font-weight: 700;
-}
-
-.design-centered .rpt-summary-card .sc-value {
-    color: #064e3b;
-}
-
-/* ════════════════════════════════════════
-   DESIGN 3 — Left Sidebar / Band Accent
-   ════════════════════════════════════════ */
-.design-sidebar {
-    display: flex;
-    flex-direction: row;
-}
-
-.design-sidebar .rpt-sidebar-band {
-    width: 220px;
-    background: linear-gradient(180deg, #1e3a8a, #1e40af);
-    padding: 40px 24px;
-    color: white;
-    border-right: 4px solid #3b82f6;
-    display: flex;
-    flex-direction: column;
-}
-
-.design-sidebar .rpt-main-content {
-    flex: 1;
-    padding: 40px;
-}
-
-.design-sidebar .rpt-logo-text {
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 40px;
-    letter-spacing: -1px;
-}
-
-.design-sidebar .rpt-meta-group {
-    margin-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, .2);
-    padding-bottom: 16px;
-}
-
-.design-sidebar .rpt-meta-label {
-    font-size: 10px;
-    color: #bfdbfe;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-}
-
-.design-sidebar .rpt-meta-value {
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.design-sidebar .rpt-main-title {
-    font-size: 26px;
-    font-weight: 800;
-    color: #1e3a8a;
-    margin-bottom: 32px;
-    line-height: 1.2;
-}
-
-.design-sidebar .rpt-section {
-    margin-bottom: 28px;
-}
-
-.design-sidebar .rpt-section-title {
-    color: #1e40af;
-    font-size: 14px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.design-sidebar .rpt-section-title::before {
-    content: "";
-    width: 12px;
-    height: 12px;
-    background: #3b82f6;
-    border-radius: 50%;
-}
-
-.design-sidebar .rpt-table th {
-    background: #eff6ff;
-    color: #1e3a8a;
-    border-bottom: 2px solid #bfdbfe;
-}
-
-.design-sidebar .rpt-table td {
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.design-sidebar .rpt-summary-card {
-    background: #eff6ff;
-    border: none;
-    border-left: 4px solid #3b82f6;
-    border-radius: 4px;
-    text-align: left;
-}
-
-.design-sidebar .rpt-summary-card .sc-label {
-    color: #1e40af;
-    font-weight: 700;
-}
-
-.design-sidebar .rpt-summary-card .sc-value {
-    color: #1e3a8a;
-}
-
-/* ════════════════════════════════════════
-   DESIGN 4 — Split Top (Modern Layout)
-   ════════════════════════════════════════ */
-.design-split .rpt-top-split {
-    display: flex;
-    height: 160px;
-}
-
-.design-split .rpt-top-left {
-    background: #0f172a;
-    color: white;
-    width: 40%;
-    padding: 32px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.design-split .rpt-top-right {
-    background: #f8fafc;
-    width: 60%;
-    padding: 32px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom: 4px solid #0f172a;
-}
-
-.design-split .rpt-logo-main {
-    font-size: 28px;
-    font-weight: 900;
-    color: #3b9d82;
-}
-
-.design-split .rpt-address-light {
-    font-size: 11px;
-    color: #94a3b8;
-    margin-top: 12px;
-}
-
-.design-split .rpt-title-large {
-    font-size: 22px;
-    font-weight: 900;
-    color: #0f172a;
-    text-transform: uppercase;
-}
-
-.design-split .rpt-title-sub {
-    font-size: 13px;
-    color: #64748b;
-    font-weight: 600;
-    margin-top: 8px;
-}
-
-.design-split .rpt-body {
-    padding: 32px 40px;
-}
-
-.design-split .rpt-section-title {
-    font-size: 13px;
-    font-weight: 800;
-    color: #0f172a;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.design-split .rpt-table th {
-    background: #0f172a;
-    color: white;
-}
-
-.design-split .rpt-table td {
-    border: 1px solid #e2e8f0;
-}
-
-.design-split .rpt-summary-row {
-    background: #f8fafc;
-    border-radius: 8px;
-    padding: 16px;
-    border: 1px solid #e2e8f0;
-}
-
-.design-split .rpt-summary-card {
-    border: none;
-    border-right: 1px dashed #cbd5e1;
-}
-
-.design-split .rpt-summary-card:last-child {
-    border-right: none;
-}
-
-.design-split .rpt-summary-card .sc-label {
-    color: #64748b;
-}
-
-.design-split .rpt-summary-card .sc-value {
-    color: #0f172a;
-}
+/* Removed unused legacy report designs */
 
 /* ════════════════════════════════════════
    Signatures
@@ -573,9 +185,90 @@
 }
 
 /* ════════════════════════════════════════
+   DESIGN 5 — QA Format (Table Header & Box)
+   ════════════════════════════════════════ */
+.design-qa {
+    padding: 36px 48px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.qa-document-box {
+    border: 1px solid #000;
+    flex: 1;
+    /* Stretch down if needed */
+    display: flex;
+    flex-direction: column;
+}
+
+.design-qa .rpt-qa-header {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+.design-qa .rpt-qa-header td {
+    border: 1px solid #000;
+    padding: 6px 12px;
+}
+
+/* Hide outer table borders so they don't double with wrapper box */
+.design-qa .rpt-qa-header tr:first-child td {
+    border-top: none;
+}
+
+.design-qa .rpt-qa-header td:first-child {
+    border-left: none;
+}
+
+.design-qa .rpt-qa-header td:last-child {
+    border-right: none;
+}
+
+.design-qa .qa-logo-cell {
+    width: 32%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+.design-qa .qa-logo-cell img {
+    max-height: 75px;
+    object-fit: contain;
+}
+
+.design-qa .qa-meta-cell {
+    font-size: 11px;
+    font-weight: 600;
+    color: #000;
+}
+
+.design-qa .qa-title-cell {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.4;
+}
+
+.design-qa .qa-header-divider {
+    border-top: 2px solid #00b050;
+    border-bottom: 1px solid #000;
+    height: 4px;
+    margin: 0;
+}
+
+.qa-body-content {
+    padding: 24px;
+    flex: 1;
+}
+
+/* ════════════════════════════════════════
    Print — ONLY report paper, nothing else
    ════════════════════════════════════════ */
-@@media print {
+@media print {
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
@@ -633,5 +326,25 @@
     /* Elegant border fixes for PDF printers */
     .design-centered {
         border: none !important;
+    }
+
+    .design-qa {
+        min-height: 290mm;
+        /* Fit inside A4 printer margins safely */
+        padding: 20mm 15mm !important;
+        /* Standard print padding */
+        display: block !important;
+        /* Better than flex for pure print */
+    }
+
+    .qa-document-box {
+        border: 1px solid #000 !important;
+        border-bottom: 2px solid #000 !important;
+        /* Force render */
+        min-height: 250mm;
+        /* Stretch to near bottom */
+        display: block !important;
+        box-sizing: border-box;
+        page-break-inside: avoid;
     }
 }

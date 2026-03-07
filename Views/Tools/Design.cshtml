@@ -54,6 +54,39 @@
                 <div id="erdRelList"></div>
             </div>
         </div>
+
+        <!-- FSD Sidebar (hidden by default) -->
+        <div id="fsdSidebarContent" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
+            <div class="builder-sidebar-header pb-0 border-bottom-0">
+                <ul class="nav nav-tabs" style="font-size: 13px; border-bottom: none;">
+                    <li class="nav-item">
+                        <button class="nav-link active px-3 py-2" data-bs-toggle="tab" data-bs-target="#fsd-comp-tab" type="button">Components</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-3 py-2" data-bs-toggle="tab" data-bs-target="#fsd-pages-tab" type="button">Pages</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content builder-components flex-grow-1" style="overflow-y:auto;">
+                <!-- FSD COMPONENTS TAB -->
+                <div class="tab-pane fade show active p-3" id="fsd-comp-tab">
+                    <div class="component-group-title">FSD Elements</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="landscape"><i class="fa-solid fa-circle-info"></i> General Information</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="process"><i class="fa-solid fa-random"></i> As-Is vs To-Be</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="roles"><i class="fa-solid fa-user-shield"></i> User Role Access</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="form"><i class="fa-solid fa-table-list"></i> Form & Design</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="datatable"><i class="fa-solid fa-table"></i> Data Table Specs</div>
+                    <div class="component-group-title mt-4">Integrations</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="prototype"><i class="fa-solid fa-desktop"></i> Embed Prototype</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="erd"><i class="fa-solid fa-project-diagram"></i> Embed ERD Schema</div>
+                </div>
+                <!-- FSD PAGES TAB -->
+                <div class="tab-pane fade p-3" id="fsd-pages-tab">
+                    <button class="btn btn-primary w-100 mb-3 btn-sm" onclick="FSD.addNewPage()"><i class="fas fa-plus me-1"></i> Add FSD Page</button>
+                    <div id="fsdPagesList"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Main Canvas Area -->
@@ -79,8 +112,12 @@
         </div>
 
         <!-- FSD PANEL -->
-        <div class="workspace-panel" id="panel-fsd">
-            <div class="fsd-panel" id="fsdContent"></div>
+        <div class="workspace-panel" id="panel-fsd" style="background:#e2e8f0; overflow-y:auto;">
+            <div style="display:flex; justify-content:center; padding: 40px 20px;">
+                <div class="fsd-paper drop-zone fsd-drop-zone" id="fsdCanvas" ondrop="FSD.drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" style="background:white; padding:40px; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); width:100%; max-width:900px; min-height:1056px;">
+                    <!-- FSD Content goes here -->
+                </div>
+            </div>
         </div>
 
         <!-- ERD PANEL -->
@@ -107,6 +144,33 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
                 <button type="button" class="btn btn-primary" onclick="copySource()">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for PDF Preview -->
+<div class="modal fade" id="pdfPreviewModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" style="height: 90vh;">
+            <div class="modal-header">
+                <h5 class="modal-title">PDF Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0" style="height: calc(100% - 130px);">
+                <!-- Loading State -->
+                <div id="pdfLoadingState" class="d-flex justify-content-center align-items-center h-100 flex-column">
+                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Generating PDF preview...</p>
+                </div>
+                <!-- Iframe for PDF -->
+                <iframe id="pdfPreviewFrame" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="btnDownloadPdf" href="#" class="btn btn-primary" download="document.pdf"><i class="fas fa-download"></i> Download PDF</a>
             </div>
         </div>
     </div>
@@ -149,6 +213,28 @@
     </div>
 </div>
 
+<!-- Modal for Adding FSD Page -->
+<div class="modal fade" id="addFsdPageModal" tabindex="-1" style="z-index: 1060;">
+    <div class="modal-dialog modal-sm modal-dialog-centered" style="pointer-events: auto;">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fs-6">Add New FSD Page</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label">Page Number / Phase</label>
+                <input type="text" class="form-control mb-2" id="newFsdPageNumInput" placeholder="e.g. 1.1">
+                <label class="form-label">Page Title</label>
+                <input type="text" class="form-control" id="newFsdPageNameInput" placeholder="e.g. Tambah User">
+            </div>
+            <div class="modal-footer border-top-0 pt-0">
+                <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary px-3" onclick="FSD.confirmAddPage()">Add Page</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/js/ui-builder-fsd.js"></script>
 <script src="/js/ui-builder-erd.js"></script>
 <!-- html2pdf for FSD Export -->
@@ -179,25 +265,30 @@
         // Sidebar switching
         const protoTabs = document.getElementById('sidebarProtoTabs');
         const erdSb = document.getElementById('erdSidebarContent');
-        const sidebarHeader = document.querySelector('.builder-sidebar-header');
+        const fsdSb = document.getElementById('fsdSidebarContent');
+        const sidebarHeader = document.querySelector('.builder-sidebar-header h5');
+        const sidebarUl = document.querySelector('.builder-sidebar-header ul');
 
         if (ws === 'erd') {
             protoTabs.style.display = 'none';
+            if (fsdSb) fsdSb.style.display = 'none';
             erdSb.style.display = 'flex';
-            sidebarHeader.querySelector('h5').textContent = 'ERD Builder';
-            sidebarHeader.querySelector('ul').style.display = 'none';
+            if (sidebarHeader) sidebarHeader.textContent = 'ERD Builder';
+            if (sidebarUl) sidebarUl.style.display = 'none';
             ERD.init();
         } else if (ws === 'fsd') {
             protoTabs.style.display = 'none';
             erdSb.style.display = 'none';
-            sidebarHeader.querySelector('h5').textContent = 'FSD Editor';
-            sidebarHeader.querySelector('ul').style.display = 'none';
+            if (fsdSb) fsdSb.style.display = 'flex';
+            if (sidebarHeader) sidebarHeader.textContent = 'FSD Builder';
+            if (sidebarUl) sidebarUl.style.display = 'none'; // Using fsd tab ul
             FSD.init();
         } else {
+            if (fsdSb) fsdSb.style.display = 'none';
             protoTabs.style.display = '';
             erdSb.style.display = 'none';
-            sidebarHeader.querySelector('h5').textContent = 'UI Builder';
-            sidebarHeader.querySelector('ul').style.display = '';
+            if (sidebarHeader) sidebarHeader.textContent = 'UI Builder';
+            if (sidebarUl) sidebarUl.style.display = '';
         }
 
         // Toolbar actions update
@@ -206,36 +297,36 @@
             actions.innerHTML = `<button class="btn btn-sm btn-outline-danger me-2" onclick="clearCanvas()"><i class="fa-solid fa-trash"></i> Clear</button>
                 <button class="btn btn-sm btn-outline-primary" onclick="previewHTML()"><i class="fa-solid fa-code"></i> Get HTML</button>`;
         } else if (ws === 'fsd') {
-            actions.innerHTML = `<button class="btn btn-sm btn-outline-secondary me-2" onclick="exportFSDPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>
-                <button class="btn btn-sm btn-outline-primary" onclick="exportFSD()"><i class="fas fa-download"></i> Export Markdown</button>`;
+            actions.innerHTML = `<button class="btn btn-sm btn-outline-danger me-2" onclick="FSD.deletePage(FSD.currentPageId)"><i class="fa-solid fa-trash"></i> Delete Page</button>
+                <button class="btn btn-sm btn-outline-primary" onclick="exportFSDPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>`;
         } else if (ws === 'erd') {
             actions.innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="exportERD()"><i class="fas fa-download"></i> Export SQL</button>`;
         }
     }
 
-    function exportFSD() {
-        const md = FSD.exportMarkdown();
-        document.getElementById('exportCode').textContent = md;
-        document.querySelector('#htmlPreviewModal .modal-title').textContent = 'Export FSD (Markdown)';
-        const modal = document.getElementById('htmlPreviewModal');
-        modal.style.display = 'flex'; modal.classList.add('show');
-    }
+    // Markdown export removed since FSD is now visual node based
 
     function exportFSDPDF() {
         const el = document.querySelector('.fsd-paper');
         if (!el) return;
         
-        // Clone paper to replace inputs with text for printing
         const clone = el.cloneNode(true);
         
-        // Replace form elements with text spans
+        // 1. Tangkap input tepat setelah clone sebelum ada elemen yang dibuang
         const origInputs = el.querySelectorAll('input, select, textarea');
         const cloneInputs = clone.querySelectorAll('input, select, textarea');
+        
+        // 2. Remove interactive prototype UI & placeholders safely
+        clone.querySelectorAll('.fsd-prototype-control, .fsd-prototype-placeholder').forEach(el => el.remove());
+        
+        // 3. Transform input jadi teks dengan presisi
         origInputs.forEach((inp, i) => {
+            const cloneNodeCandidate = cloneInputs[i];
+            if (!cloneNodeCandidate || !cloneNodeCandidate.parentNode) return; // skip if already removed
+            
+            const cInp = cloneNodeCandidate;
             const val = inp.value;
-            const cInp = cloneInputs[i];
             const span = document.createElement('span');
-            // Basic styling for print
             span.style.fontFamily = cInp.tagName === 'INPUT' && cInp.style.fontFamily === 'monospace' ? 'monospace' : 'inherit';
             span.style.fontWeight = cInp.style.fontWeight || 'normal';
             span.style.fontSize = cInp.style.fontSize || 'inherit';
@@ -243,9 +334,9 @@
             if (cInp.tagName === 'TEXTAREA') {
                 span.innerHTML = val ? val.replace(/\n/g, '<br>') : '-';
                 span.style.display = 'block';
-                // Copy height or min-height to maintain spacing if needed
                 span.style.minHeight = '20px';
                 span.style.padding = '8px 0';
+                span.style.whiteSpace = 'pre-wrap';
             } else if (cInp.tagName === 'SELECT') {
                 span.innerText = cInp.options[cInp.selectedIndex]?.text || '-';
             } else {
@@ -254,33 +345,163 @@
             cInp.parentNode.replaceChild(span, cInp);
         });
 
-        // Hide UI buttons
-        clone.querySelectorAll('.toggle, .fsd-add-btn, button').forEach(b => b.remove());
+        clone.querySelectorAll('.toggle, .fsd-add-btn, button, select').forEach(b => b.remove());
 
-        // Render directly in-place to avoid out-of-viewport blank captures
-        const container = el.parentElement;
-        el.style.display = 'none'; // hide original FSD temporarily
-        clone.style.background = '#fff';
+        // Hapus paksa ikon delete & kolom `.fsd-hide-pdf` (Telah dibantu penandaan Class asli di ui-builder)
+        clone.querySelectorAll('.fa-trash, .fas.fa-trash, .text-danger, button').forEach(el => el.remove());
+        clone.querySelectorAll('.fsd-hide-pdf').forEach(el => el.remove());
+
+        // Hapus kolom spesifik dengan nama persis 'Act' (Fallback jika komponen ditarik SEBELUM pembaruan kelas)
+        Array.from(clone.querySelectorAll('th')).forEach(th => {
+            const txt = (th.textContent || '').trim();
+            if (txt === 'Act' || txt === 'Action') {
+                const tbl = th.closest('table');
+                if (!tbl) return;
+                
+                const colIdx = th.cellIndex;
+                if (colIdx !== undefined && colIdx > -1) {
+                    tbl.querySelectorAll('tr').forEach(row => {
+                        const cellToRemove = row.children[colIdx];
+                        if (cellToRemove) cellToRemove.remove();
+                    });
+                }
+            }
+        });
+
+        // Hapus contenteditable untuk menghindari bug 'Garis Putus-Putus' halus dari spellcheck/editable boundary WebKit
+        clone.querySelectorAll('[contenteditable]').forEach(el => {
+            el.removeAttribute('contenteditable');
+            el.style.outline = 'none';
+        });
+
+        // Hapus styling berlebih yang memicu bug rendering html2canvas (Garis Putus-Putus dari Bootstrap Table Bordered)
+        clone.querySelectorAll('table.table-bordered').forEach(t => {
+            t.classList.remove('table-bordered');
+        });
+
+        // Pastikan drop zone tidak merender dashed line
+        clone.querySelectorAll('.fsd-drop-zone, .canvas-element').forEach(el => {
+            el.style.border = 'none';
+            el.style.boxShadow = 'none';
+        });
+
+        // --- PENYESUAIAN A4 TEPAT ---
+        // Lebar A4 proporsional sekitar 800px. Jika lebar melebihi ini, akan terpotong
+        clone.style.width = '800px'; 
+        clone.style.maxWidth = '100%';
+        clone.style.margin = '0 auto';  
         clone.style.padding = '20px';
-        container.appendChild(clone);
+        clone.style.background = '#fff';
+        clone.style.boxShadow = 'none';
+        
+        // Paksa Font ke KalbeGeometric menggunakan Injeksi Style Block yang aman untuk html2canvas
+        const fontOverrides = document.createElement('style');
+        const baseUrl = window.location.origin;
+        fontOverrides.innerHTML = `
+            @font-face {
+                font-family: 'KalbeGeometric';
+                src: url('${baseUrl}/font/geometric/KalbeGeometric-Regular.woff2') format('woff2');
+                font-weight: 400; font-style: normal;
+            }
+            @font-face {
+                font-family: 'KalbeGeometric';
+                src: url('${baseUrl}/font/geometric/KalbeGeometric-Bold.woff2') format('woff2');
+                font-weight: 700; font-style: normal;
+            }
+            @font-face {
+                font-family: 'KalbeGeometric';
+                src: url('${baseUrl}/font/geometric/KalbeGeometric-Medium.woff2') format('woff2');
+                font-weight: 500; font-style: normal;
+            }
+            /* Mengamankan elemen dasar FSD */
+            .fsd-paper, .fsd-comp, .fsd-comp *, table, th, td, h1, h2, h3, h4, h5, h6, p, span, div {
+                font-family: 'KalbeGeometric', sans-serif !important;
+            }
+            /* Kecuali untuk ikon FontAwesome yang wajib mempertahankan font aslinya */
+            i, .fa, .fas, .fa-solid, .fa-regular, .fab, .fal {
+                font-family: "Font Awesome 6 Free", "FontAwesome" !important;
+            }
+        `;
+        clone.appendChild(fontOverrides);
 
-        const safeName = 'FSD_' + (FSD.data.projectName || 'Document').replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
+        // Secara agresif menginjeksi inline font-family ke seluruh elemen Prototype
+        // Karena HTML2Canvas sering buta pada CSS Selector universal atau bersarang
+        clone.querySelectorAll('*').forEach(el => {
+            if (el.tagName.toLowerCase() !== 'i' && !el.classList.contains('fa') && !el.classList.contains('fas') && !el.classList.contains('fa-solid')) {
+                // Jangan sampai merusak ikon
+                el.style.setProperty('font-family', "'KalbeGeometric', system-ui, sans-serif", 'important');
+                
+                // Set ukuran Font ke 10px default dan 12px untuk title
+                const tag = el.tagName.toLowerCase();
+                if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag) || el.classList.contains('fsd-section-title')) {
+                    el.style.setProperty('font-size', '12px', 'important');
+                    el.style.setProperty('font-weight', 'bold', 'important');
+                } else {
+                    el.style.setProperty('font-size', '10px', 'important');
+                }
+            }
+        });
+
+        // 1. Memaksa Prototype HTML embed agar di-zoom-out 
+        // sehingga seluruh kontennya mengecil dan menyesuaikan lebar A4 tanpa nabrak
+        clone.querySelectorAll('.fsd-prototype-preview').forEach(p => {
+            p.style.zoom = '0.75'; // kecilkan 25% agar muat mantap
+            p.style.overflow = 'hidden';
+            p.style.width = '100%';
+            p.style.border = 'none'; // menghilangkan kotak luar tambahan jika ada
+            p.style.background = 'transparent';
+            
+            // hindari komponen di dalam prototype (seperti card/row) yang melebihi lebar
+            p.querySelectorAll('*').forEach(child => {
+                if (child.style && child.clientWidth > 800) {
+                    child.style.maxWidth = '100%';
+                    child.style.height = 'auto';
+                    child.style.whiteSpace = 'normal';
+                }
+            });
+        });
+
+        // Menghilangkan border berlebih untuk tampilan rapih
+        const comps = clone.querySelectorAll('.fsd-comp');
+        comps.forEach(c => {
+            c.classList.remove('mb-4', 'border', 'rounded', 'bg-white');
+            c.style.marginBottom = '25px';
+            c.style.padding = '10px 0';
+        });
+
+        const container = el.parentElement;
+        const oldDisplay = el.style.display;
+        el.style.display = 'none'; // Sembunyikan canvas asli
+        container.appendChild(clone); // Tempel clone di dalam container asli (tanpa trick document.body yg bikin blank)
+
+        const currentP = FSD.pages.find(p => p.id === FSD.currentPageId);
+        const safeName = 'FSD_' + (currentP ? currentP.name : 'Document').replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
         
         const opt = {
-            margin: [10, 10, 10, 10],
+            margin: [10, 10, 10, 10], // top, left, bottom, right margins in mm
             filename: safeName,
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true, logging: false, windowWidth: clone.scrollWidth },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['css', 'legacy'], avoid: ['.fsd-comp', 'tr', '.erd-fsd-ent', '.fsd-header'] }
         };
         
-        // Wait a tiny bit for DOM to apply styles, then capture
+        // Disable scrollbar menghindari tergesernya canvas ketika direkam
+        const oldOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        
         setTimeout(() => {
+            window.scrollTo(0,0);
             html2pdf().set(opt).from(clone).save().then(() => {
                 container.removeChild(clone);
-                el.style.display = ''; // restore original FSD
+                document.body.style.overflow = oldOverflow;
+                el.style.display = oldDisplay; // restore original FSD
+            }).catch(err => {
+                container.removeChild(clone);
+                document.body.style.overflow = oldOverflow;
+                el.style.display = oldDisplay;
             });
-        }, 100);
+        }, 500);
     }
 
     function exportERD() {
@@ -370,7 +591,7 @@
         'select': `<div class="form-group mb-3"><label class="form-label" contenteditable="true">Select Option</label><select class="form-select form-control"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div>`,
         'checkbox': `<div class="form-check mb-3"><input class="form-check-input" type="checkbox"><label class="form-check-label" contenteditable="true">Example checkbox</label></div>`,
         'button': `<button class="btn btn-primary" contenteditable="true">Submit Button</button>`,
-        'table': `<div class="table-responsive"><table class="table table-hover"><thead><tr><th contenteditable="true">ID</th><th contenteditable="true">Name</th><th contenteditable="true">Status</th><th>Action</th></tr></thead><tbody><tr><td>1</td><td contenteditable="true">John Doe</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr><tr><td>2</td><td contenteditable="true">Jane Smith</td><td><span class="badge bg-warning">Pending</span></td><td><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr></tbody></table></div>`
+        'table': `<div class="table-responsive"><table class="table table-hover"><thead><tr><th contenteditable="true">ID</th><th contenteditable="true">Name</th><th contenteditable="true">Status</th><th contenteditable="true">Action</th></tr></thead><tbody><tr><td contenteditable="true">1</td><td contenteditable="true">John Doe</td><td contenteditable="true"><span class="badge bg-success">Active</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr><tr><td contenteditable="true">2</td><td contenteditable="true">Jane Smith</td><td contenteditable="true"><span class="badge bg-warning">Pending</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr></tbody></table></div>`
     };
 
     /* ── Drag & Drop ───────────────────── */
@@ -389,13 +610,112 @@
         if (type && componentTemplates[type]) {
             const w = document.createElement('div');
             w.className = 'canvas-element';
-            let extra = type === 'button' ? `<button class="action-btn link-btn" title="Link to Page" onclick="openLinkModal(this)"><i class="fa-solid fa-link"></i></button>` : '';
+            
+            let extra = '';
+            if (type === 'button') {
+                extra = `<button class="action-btn link-btn" title="Link to Page" onclick="openLinkModal(this)"><i class="fa-solid fa-link"></i></button>`;
+            } else if (type === 'table') {
+                extra = `
+                    <button class="action-btn" title="Tambah Kolom" onclick="addColumn(this)" style="color:#10b981;"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-table-columns"></i></button>
+                    <button class="action-btn" title="Hapus Kolom" onclick="removeColumn(this)" style="color:#ef4444;"><i class="fa-solid fa-minus"></i> <i class="fa-solid fa-table-columns"></i></button>
+                    <button class="action-btn" title="Tambah Baris" onclick="addRow(this)" style="color:#10b981;"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-table-list"></i></button>
+                    <button class="action-btn" title="Hapus Baris" onclick="removeRow(this)" style="color:#ef4444;"><i class="fa-solid fa-minus"></i> <i class="fa-solid fa-table-list"></i></button>
+                `;
+            }
+            
             w.innerHTML = `<div class="canvas-element-actions">${extra}<button class="action-btn" title="Move Up" onclick="moveEl(this,-1)"><i class="fa-solid fa-arrow-up"></i></button><button class="action-btn" title="Move Down" onclick="moveEl(this,1)"><i class="fa-solid fa-arrow-down"></i></button><button class="action-btn delete" title="Delete" onclick="deleteEl(this)"><i class="fa-solid fa-trash"></i></button></div>` + componentTemplates[type];
             target.appendChild(w);
         }
     }
 
     function deleteEl(btn) { btn.closest('.canvas-element').remove(); }
+
+    function addColumn(btn) {
+        const table = btn.closest('.canvas-element').querySelector('table');
+        if (!table) return;
+        const theadTr = table.querySelector('thead tr');
+        let insertIndex = theadTr ? theadTr.children.length : 0;
+        
+        // Coba insert sebelum kolom terakhir (action column)
+        if (insertIndex > 1) {
+            insertIndex = insertIndex - 1;
+        }
+
+        if (theadTr) {
+            const th = document.createElement('th');
+            th.contentEditable = "true";
+            th.innerText = "New Column";
+            if (insertIndex < theadTr.children.length) {
+                theadTr.insertBefore(th, theadTr.children[insertIndex]);
+            } else {
+                theadTr.appendChild(th);
+            }
+        }
+        
+        const tbodyTrs = table.querySelectorAll('tbody tr');
+        tbodyTrs.forEach(tr => {
+            const td = document.createElement('td');
+            td.contentEditable = "true";
+            td.innerText = "Data";
+            if (insertIndex < tr.children.length) {
+                tr.insertBefore(td, tr.children[insertIndex]);
+            } else {
+                tr.appendChild(td);
+            }
+        });
+    }
+
+    function removeColumn(btn) {
+        const table = btn.closest('.canvas-element').querySelector('table');
+        if (!table) return;
+        const theadTr = table.querySelector('thead tr');
+        if (!theadTr || theadTr.children.length <= 1) return;
+        
+        // Hapus kolom sebelum yang terakhir, untuk menjaga kolom Action jika ada
+        let removeIndex = theadTr.children.length > 2 ? theadTr.children.length - 2 : theadTr.children.length - 1;
+        
+        theadTr.removeChild(theadTr.children[removeIndex]);
+        
+        const tbodyTrs = table.querySelectorAll('tbody tr');
+        tbodyTrs.forEach(tr => {
+            if (removeIndex < tr.children.length) {
+                tr.removeChild(tr.children[removeIndex]);
+            }
+        });
+    }
+
+    function addRow(btn) {
+        const table = btn.closest('.canvas-element').querySelector('table');
+        if (!table) return;
+        const tbody = table.querySelector('tbody');
+        if (!tbody) return;
+        
+        const theadTr = table.querySelector('thead tr');
+        const colCount = theadTr ? theadTr.children.length : 1;
+        
+        const newTr = document.createElement('tr');
+        for (let i = 0; i < colCount; i++) {
+            const td = document.createElement('td');
+            td.contentEditable = "true";
+            // Jika ini adalah kolom terakhir dan mungkin kolom action
+            if (i === colCount - 1 && colCount > 1) {
+                td.innerHTML = `<button class="btn btn-sm btn-outline-primary">Edit</button>`;
+            } else {
+                td.innerText = "New Data";
+            }
+            newTr.appendChild(td);
+        }
+        tbody.appendChild(newTr);
+    }
+
+    function removeRow(btn) {
+        const table = btn.closest('.canvas-element').querySelector('table');
+        if (!table) return;
+        const tbody = table.querySelector('tbody');
+        if (tbody && tbody.children.length > 1) { // biarkan minimal 1 baris
+            tbody.removeChild(tbody.lastElementChild);
+        }
+    }
     function moveEl(btn, dir) {
         const el = btn.closest('.canvas-element'), p = el.parentNode;
         if (dir === -1 && el.previousElementSibling) p.insertBefore(el, el.previousElementSibling);

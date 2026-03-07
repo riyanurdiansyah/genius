@@ -1,0 +1,89 @@
+--- Views/Tools/Design.cshtml
++++ Views/Tools/Design.cshtml
+@@ -312,11 +312,13 @@
+         
+         const clone = el.cloneNode(true);
+         
+-        // Remove interactive prototype UI & placeholders so they are not replaced by spans
+-        clone.querySelectorAll('.fsd-prototype-control, .fsd-prototype-placeholder').forEach(el => el.remove());
+-        
+-        // Format inputs to text
++        // 1. Tangkap input tepat setelah clone sebelum ada elemen yang dibuang
+         const origInputs = el.querySelectorAll('input, select, textarea');
+         const cloneInputs = clone.querySelectorAll('input, select, textarea');
++        
++        // 2. Remove interactive prototype UI & placeholders safely
++        clone.querySelectorAll('.fsd-prototype-control, .fsd-prototype-placeholder').forEach(el => el.remove());
++        
++        // 3. Transform input jadi teks dengan presisi
+         origInputs.forEach((inp, i) => {
+             const cloneNodeCandidate = cloneInputs[i];
+             if (!cloneNodeCandidate || !cloneNodeCandidate.parentNode) return; // skip if already removed
+@@ -345,9 +347,15 @@
+         clone.querySelectorAll('.toggle, .fsd-add-btn, button, select').forEach(b => b.remove());
+ 
+         // Hapus paksa ikon delete jika masih ada yang lolos
+-        clone.querySelectorAll('.fa-trash, .fas.fa-trash, .text-danger').forEach(el => {
+-            if (el.closest('td')) el.closest('td').innerHTML = ''; // bersihkan isi td nya
+-        });
+-
+-        // Hapus kolom 'Act' (Action) pada semua tabel dengan perhitungan baris sederhana
+-        clone.querySelectorAll('table').forEach(table => {
+-            const trs = table.querySelectorAll('tr');
+-            if (trs.length === 0) return;
+-            
+-            // Cari indeksolom 'act' dari baris pertama
+-            let actIndex = -1;
+-            const headers = trs[0].querySelectorAll('th, td');
+-            headers.forEach((cell, idx) => {
+-                const txt = (cell.textContent || '').trim().toLowerCase();
+-                if (txt === 'act' || txt === 'action') {
+-                    actIndex = idx;
+-                }
+-            });
+-
+-            // Jika ketemu indeksnya, hapus sel pada indeks tersebut di SEMUA baris
+-            if (actIndex !== -1) {
+-                trs.forEach(tr => {
+-                    const cells = tr.querySelectorAll('th, td');
+-                    if (cells.length > actIndex) {
+-                        cells[actIndex].remove();
+-                    }
+-                });
+-            }
++        clone.querySelectorAll('.fa-trash, .fas.fa-trash, .text-danger').forEach(el => el.remove());
++
++        // Hapus kolom 'Act' (Action) dengan cara absolut universal
++        Array.from(clone.querySelectorAll('th')).forEach(th => {
++            const txt = (th.textContent || '').trim().toLowerCase();
++            if (txt === 'act' || txt === 'action') {
++                const tbl = th.closest('table');
++                const tr = th.closest('tr');
++                if (!tbl || !tr) return;
++                
++                const colIdx = Array.from(tr.children).indexOf(th);
++                if (colIdx > -1) {
++                    tbl.querySelectorAll('tr').forEach(row => {
++                        if (row.children[colIdx]) row.children[colIdx].remove();
++                    });
++                }
++            }
+         });
+ 
+         // --- PENYESUAIAN A4 TEPAT ---
+         // Lebar A4 proporsional sekitar 800px. Jika lebar melebihi ini, akan terpotong
+         clone.style.width = '800px'; 
+@@ -395,6 +403,13 @@
+             /* Kecuali untuk ikon FontAwesome yang wajib mempertahankan font aslinya */
+             i, .fa, .fas, .fa-solid, .fa-regular, .fab, .fal {
+                 font-family: "Font Awesome 6 Free", "FontAwesome" !important;
++            }
++            
++            /* Perbaikan mutlak garis tabel putus-putus bug di html2canvas */
++            table {
++                border-collapse: collapse !important;
++            }
++            table th, table td {
++                border: 1px solid #ced4da !important;
+             }
+         \`;

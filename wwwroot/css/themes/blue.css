@@ -1,0 +1,8 @@
+/* Blue Theme Override */
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --green-accent: #2563eb;
+    --green-light: #eff6ff;
+    --sidebar-green: #1e3a8a;
+}

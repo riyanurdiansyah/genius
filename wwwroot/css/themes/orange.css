@@ -1,0 +1,8 @@
+/* Orange Theme Override */
+:root {
+    --primary: #ea580c;
+    --primary-hover: #c2410c;
+    --green-accent: #ea580c;
+    --green-light: #fff7ed;
+    --sidebar-green: #9a3412;
+}

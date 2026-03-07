@@ -1,0 +1,8 @@
+/* Purple Theme Override */
+:root {
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
+    --green-accent: #7c3aed;
+    --green-light: #f5f3ff;
+    --sidebar-green: #4c1d95;
+}

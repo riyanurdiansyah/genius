@@ -121,7 +121,7 @@
 
 :root {
     --sb-bg: #ffffff;
-    --sb-primary: var(--primary);
+    --sb-primary: #3b9d82;
     --sb-primary-light: #edf7f4;
     --sb-primary-mid: rgba(59, 157, 130, 0.12);
     --sb-text: #374151;

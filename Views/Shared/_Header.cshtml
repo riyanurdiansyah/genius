@@ -37,11 +37,26 @@
                 </a></li>
             </ul>
         </div>
+        <!-- Theme Color Selector -->
+        <div class="dropdown">
+            <div class="icon-btn" id="themeDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Theme Settings" style="cursor: pointer;">
+                <i class="fa-solid fa-palette"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2 p-3" aria-labelledby="themeDropdown" style="width: 250px;">
+                <li class="mb-2"><span class="text-muted fw-bold" style="font-size: 11px; text-transform: uppercase;">Color Theme</span></li>
+                <li class="d-flex gap-2 mb-3">
+                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #3b9d82;" onclick="changeThemeColor('default')" title="Default Green"></button>
+                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #2563eb;" onclick="changeThemeColor('blue')" title="Blue"></button>
+                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #7c3aed;" onclick="changeThemeColor('purple')" title="Purple"></button>
+                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #ea580c;" onclick="changeThemeColor('orange')" title="Orange"></button>
+                </li>
+            </ul>
+        </div>
         
         <div class="icon-btn"><i class="fa-regular fa-bell"></i></div>
         <div class="profile">
             <span data-i18n="admin_user">Admin</span>
-            <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff" alt="Profile">
+            <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff" alt="Profile" id="headerProfileImage">
         </div>
     </div>
 </div>
