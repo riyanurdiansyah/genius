@@ -15,8 +15,24 @@ const ERD = {
     init() {
         const canvas = document.getElementById('erdCanvas');
         if (!canvas) return;
-        canvas.addEventListener('mousemove', e => this._onMouseMove(e));
-        canvas.addEventListener('mouseup', () => this._onMouseUp());
+
+        if (!this.initialized) {
+            canvas.addEventListener('mousemove', e => this._onMouseMove(e));
+            canvas.addEventListener('mouseup', () => this._onMouseUp());
+            this.initialized = true;
+        }
+
+        // Bersihkan canvas visually
+        document.querySelectorAll('.erd-entity').forEach(n => n.remove());
+
+        // Re-render entitas di kanvas berdasarkan data di memori / Cloud
+        this.entities.forEach(ent => this._renderEntity(ent));
+
+        // Gambar relasi garis-garis koneksi
+        setTimeout(() => {
+            this._drawLines();
+        }, 50);
+
         this.renderSidebar();
     },
 

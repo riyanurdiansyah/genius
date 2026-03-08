@@ -1,0 +1,287 @@
+@{
+    ViewData["Title"] = "Pro Invoice Template";
+}
+
+<style>
+    /* ═══════════════════════════════════════════════
+       PREMIUM INVOICE TEMPLATE — Minimal & Clean
+    ═══════════════════════════════════════════════ */
+    
+    .invoice-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        font-family: var(--font-family-primary);
+        color: #1e293b;
+        position: relative;
+    }
+
+    [data-theme="dark"] .invoice-container {
+        background: #1e293b;
+        color: #f1f5f9;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    /* Decorative Accent */
+    .invoice-accent {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 6px;
+        background: linear-gradient(90deg, #3b9d82, #5a9c88);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .invoice-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 60px;
+    }
+
+    .brand-logo {
+        font-family: var(--font-family-primary);
+        font-size: 2rem;
+        font-weight: 800;
+        color: #3b9d82;
+        letter-spacing: -1px;
+    }
+    .brand-logo span { color: #1e293b; }
+    [data-theme="dark"] .brand-logo span { color: #fff; }
+
+    .invoice-id {
+        text-align: right;
+    }
+    .invoice-id h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+        color: #64748b;
+    }
+    .invoice-id p { margin: 4px 0 0; opacity: 0.7; font-size: 0.9rem; }
+
+    .invoice-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .meta-box h6 {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #3b9d82;
+        margin-bottom: 15px;
+    }
+    .meta-box address {
+        font-style: normal;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        opacity: 0.8;
+    }
+
+    /* Table Styling */
+    .invoice-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+    }
+    .invoice-table th {
+        padding: 16px;
+        text-align: left;
+        border-bottom: 2px solid #f1f5f9;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #64748b;
+        text-transform: uppercase;
+    }
+    [data-theme="dark"] .invoice-table th { border-bottom-color: #334155; }
+
+    .invoice-table td {
+        padding: 20px 16px;
+        border-bottom: 1px solid #f8fafc;
+        font-size: 0.95rem;
+    }
+    [data-theme="dark"] .invoice-table td { border-bottom-color: rgba(255,255,255,0.05); }
+
+    .item-desc { font-weight: 600; }
+    .item-qty { color: #64748b; }
+
+    /* Summary */
+    .invoice-summary {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .summary-box {
+        width: 100%;
+        max-width: 300px;
+    }
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        font-size: 0.95rem;
+    }
+    .summary-row.total {
+        margin-top: 15px;
+        padding: 20px 0;
+        border-top: 2px solid #f1f5f9;
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #3b9d82;
+    }
+    [data-theme="dark"] .summary-row.total { border-top-color: #334155; }
+
+    .invoice-footer {
+        margin-top: 80px;
+        padding-top: 40px;
+        border-top: 1px dashed #e2e8f0;
+        text-align: center;
+        font-size: 0.85rem;
+        opacity: 0.6;
+    }
+    [data-theme="dark"] .invoice-footer { border-top-color: #334155; }
+
+    .btn-print {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: #3b9d82;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 10px 20px rgba(59, 157, 130, 0.2);
+        margin-bottom: 2rem;
+    }
+    .btn-print:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(59, 157, 130, 0.3); }
+
+    @@media print {
+        .btn-print, .sidebar-wrapper, .header-wrapper { display: none !important; }
+        .invoice-container { margin: 0; box-shadow: none; border: none; width: 100%; max-width: none; }
+        body { background: white !important; }
+    }
+</style>
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                <li class="breadcrumb-item active">Invoice Template</li>
+            </ol>
+        </nav>
+        <div class="d-flex gap-2">
+            <button class="btn-print" onclick="window.print()">
+                <i class="fas fa-print"></i> Download PDF / Print
+            </button>
+        </div>
+    </div>
+
+    <div class="invoice-container">
+        <div class="invoice-accent"></div>
+        
+        <div class="invoice-header">
+            <div class="brand-logo">KUDA<span>.</span></div>
+            <div class="invoice-id">
+                <h1>Invoice</h1>
+                <p>#INV-2026-0042</p>
+                <p>Date: March 08, 2026</p>
+            </div>
+        </div>
+
+        <div class="invoice-meta">
+            <div class="meta-box">
+                <h6>Billed From</h6>
+                <address>
+                    <strong>Kuda Innovation Lab</strong><br>
+                    Jl. Sudirman No. 1, Level 42<br>
+                    Jakarta, Indonesia 12190<br>
+                    contact@kuda.io
+                </address>
+            </div>
+            <div class="meta-box">
+                <h6>Billed To</h6>
+                <address>
+                    <strong>Alexandar Wright</strong><br>
+                    CEO, Nebula Systems Inc.<br>
+                    1245 Market St, Suite 100<br>
+                    San Francisco, CA 94103
+                </address>
+            </div>
+        </div>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th style="text-align: right;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="item-desc">Enterprise SaaS Architecture</div>
+                        <div class="small opacity-50">Custom .NET Core Infrastructure & Cloud Deploy</div>
+                    </td>
+                    <td class="item-qty">1</td>
+                    <td>$4,500.00</td>
+                    <td style="text-align: right;">$4,500.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="item-desc">UI/UX Design Retainer</div>
+                        <div class="small opacity-50">Sprint-based design iterates for Q1 cycle</div>
+                    </td>
+                    <td class="item-qty">2</td>
+                    <td>$1,200.00</td>
+                    <td style="text-align: right;">$2,400.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="item-desc">LLM Model Fine-Tuning</div>
+                        <div class="small opacity-50">Integration of custom weights for BioLogic AI</div>
+                    </td>
+                    <td class="item-qty">1</td>
+                    <td>$3,200.00</td>
+                    <td style="text-align: right;">$3,200.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="invoice-summary">
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>$10,100.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (10%)</span>
+                    <span>$1,010.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Discount</span>
+                    <span>-$500.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total Amount</span>
+                    <span>$10,610.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="invoice-footer">
+            <p>Thank you for your business. Payment is due within 30 days.</p>
+            <p><strong>KUDA.</strong> — Building the extraordinary since 2014.</p>
+        </div>
+    </div>
+</div>

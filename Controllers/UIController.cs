@@ -7,6 +7,7 @@ public class UIController : Controller
     public IActionResult Accordion() => View();
     public IActionResult Alerts() => View();
     public IActionResult Badges() => View();
+    public IActionResult BarcodeGenerator() => View();
     public IActionResult Buttons() => View();
     public IActionResult Carousel() => View();
     public IActionResult Collapse() => View();

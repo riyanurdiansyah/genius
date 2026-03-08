@@ -1,45 +1,232 @@
 @{ ViewData["Title"] = "Alerts & Notifications"; }
-<div class="row">
-    <div class="col-md-6 mb-4">
-        <div class="card">
-            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Standard Alerts</h5></div>
-            <div class="card-body">
-                <div class="alert alert-primary" role="alert">A simple primary alert—check it out!</div>
-                <div class="alert alert-success" role="alert">A simple success alert—check it out!</div>
-                <div class="alert alert-danger" role="alert">A simple danger alert—check it out!</div>
-                <div class="alert alert-warning" role="alert">A simple warning alert—check it out!</div>
+
+<style>
+    .alert-glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .alert-left-border {
+        border: none;
+        border-radius: 8px;
+        border-left: 5px solid;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .alert-floating {
+        border: none;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        position: relative;
+    }
+    .alert-floating::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 6px;
+        height: 100%;
+    }
+    .alert-floating.primary-float::before { background: var(--bs-primary); }
+    .alert-floating.success-float::before { background: var(--bs-success); }
+    .alert-floating.danger-float::before { background: var(--bs-danger); }
+    
+    .alert-dark-glass {
+        background: rgba(30, 41, 59, 0.9);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #f8fafc;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .alert-gradient-primary {
+        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+        color: white;
+        border: none;
+    }
+    .alert-gradient-success {
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        color: white;
+        border: none;
+    }
+
+    .icon-wrapper-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+</style>
+
+<div class="row g-4">
+    <!-- 1. Modern Bordered Alerts -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-border-left text-primary me-2"></i>Left-Bordered Alerts</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="alertsLeftBorder"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="alertsLeftBorder">
+                <p class="text-muted small mb-4">Clean, professional alerts with a thick left indicating color.</p>
+                
+                <div class="alert alert-left-border border-primary bg-primary bg-opacity-10 text-primary d-flex align-items-center" role="alert">
+                    <i class="fas fa-info-circle fs-4 me-3"></i>
+                    <div>
+                        <strong>Information:</strong> A new software update is available for download.
+                    </div>
+                </div>
+                
+                <div class="alert alert-left-border border-success bg-success bg-opacity-10 text-success d-flex align-items-center" role="alert">
+                    <i class="fas fa-check-circle fs-4 me-3"></i>
+                    <div>
+                        <strong>Success!</strong> Your profile settings have been saved successfully.
+                    </div>
+                </div>
+
+                <div class="alert alert-left-border border-warning bg-warning bg-opacity-10 text-dark d-flex align-items-center mb-0" role="alert">
+                    <i class="fas fa-exclamation-triangle fs-4 me-3 text-warning"></i>
+                    <div>
+                        <strong>Warning:</strong> Your cloud storage is almost full (95%).
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 mb-4">
-        <div class="card">
-            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Modern Icon Alerts</h5></div>
-            <div class="card-body">
-                <div class="alert alert-success d-flex align-items-center" role="alert">
-                  <i class="fas fa-check-circle fa-2x me-3"></i>
-                  <div><strong>Success!</strong> Your operation was completed successfully.</div>
+
+    <!-- 2. Floating / Card Style Alerts -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-layer-group text-success me-2"></i>Floating Card Alerts</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="alertsFloating"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="alertsFloating">
+                <p class="text-muted small mb-4">Modern alerts that look like floating toast notifications.</p>
+
+                <div class="alert alert-floating success-float p-3 mb-3 d-flex align-items-start gap-3 alert-dismissible fade show" role="alert">
+                    <div class="icon-wrapper-circle bg-success bg-opacity-10 text-success">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1 fw-bold text-dark">Payment Accepted</h6>
+                        <p class="mb-0 text-muted small">Your payment of $120.00 has been processed successfully.</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <div class="alert alert-warning d-flex align-items-center" role="alert">
-                  <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
-                  <div><strong>Warning:</strong> Please review your inputs before proceeding.</div>
-                </div>
-                <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-                  <i class="fas fa-times-circle fa-2x me-3"></i>
-                  <div><strong>Error!</strong> An unexpected issue occurred during processing.</div>
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                <div class="alert alert-floating danger-float p-3 mb-0 d-flex align-items-start gap-3 alert-dismissible fade show" role="alert">
+                    <div class="icon-wrapper-circle bg-danger bg-opacity-10 text-danger">
+                        <i class="fas fa-exclamation"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1 fw-bold text-dark">Connection Failed</h6>
+                        <p class="mb-0 text-muted small">Could not connect to the database server. Retrying in 5 seconds...</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-12 mb-4">
-        <div class="card">
-            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Soft Styling Alerts</h5></div>
-            <div class="card-body">
-                <div class="alert bg-success bg-opacity-10 text-success border-0 border-start border-success border-4" role="alert">
-                  Everything looks great! You are ready to launch your application.
+
+    <!-- 3. Gradient & Colorful Alerts -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-fill-drip text-info me-2"></i>Gradient & Solid</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="alertsGradient"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="alertsGradient">
+                <p class="text-muted small mb-4">Eye-catching alerts for major announcements or premium features.</p>
+
+                <div class="alert alert-gradient-primary rounded-3 shadow-sm d-flex align-items-center alert-dismissible fade show" role="alert">
+                    <i class="fas fa-rocket fa-2x me-3 opacity-75"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-white">Upgrade to Pro!</h6>
+                        <p class="mb-0 small text-white text-opacity-75">Get access to premium features and unlimited storage.</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <div class="alert bg-danger bg-opacity-10 text-danger border-0 border-start border-danger border-4" role="alert">
-                  Oops! We couldn't connect to the database. Please check your credentials.
+
+                <div class="alert alert-gradient-success rounded-3 shadow-sm d-flex align-items-center alert-dismissible fade show mb-0" role="alert">
+                    <i class="fas fa-gift fa-2x me-3 opacity-75"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-white">Holiday Promo Applied</h6>
+                        <p class="mb-0 small text-white text-opacity-75">You get 50% off for the next 3 months.</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Glassmorphism & Dark Mode -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-0 position-relative" style="background: url('https://images.unsplash.com/photo-1557683311-eac922347aa1?q=80&w=1000&auto=format&fit=crop') center/cover;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-white bg-opacity-75" style="backdrop-filter: blur(5px);"></div>
+            <div class="card-header bg-transparent border-0 pt-4 pb-0 position-relative z-1 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-gem text-primary me-2"></i>Glassmorphism (Frosted)</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="alertsGlass"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body position-relative z-1" id="alertsGlass">
+                <p class="text-muted small mb-4 fw-medium">Translucent alerts that adapt to colorful backgrounds.</p>
+
+                <div class="alert alert-glass rounded-4 d-flex align-items-center mb-3" role="alert">
+                    <div class="bg-primary text-white p-2 rounded-circle d-flex align-items-center justify-content-center me-3" style="width:35px;height:35px;">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="text-dark">
+                        <strong>New Message:</strong> You have 3 unread messages from Sarah.
+                    </div>
+                </div>
+
+                <div class="alert alert-dark-glass rounded-4 d-flex align-items-center mb-0 fade show alert-dismissible" role="alert">
+                    <div class="bg-white bg-opacity-25 text-white p-2 rounded-circle d-flex align-items-center justify-content-center me-3" style="width:35px;height:35px;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold text-white">System Secured</h6>
+                        <small class="text-white text-opacity-75">All firewalls are running optimally.</small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white opacity-50" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Content-rich Alerts -->
+    <div class="col-12">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-newspaper text-secondary me-2"></i>Content-Rich Alerts</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="alertsContentRich"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="alertsContentRich">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="alert bg-primary bg-opacity-10 border-primary border-opacity-25 rounded-3" role="alert">
+                            <h4 class="alert-heading fw-bold text-dark"><i class="fas fa-bullhorn text-primary me-2"></i> Welcome to the platform!</h4>
+                            <p class="text-secondary mb-3">Thank you for joining our community. We have set up a quick tutorial to help you get started with your new dashboard.</p>
+                            <hr class="border-primary border-opacity-25">
+                            <div class="d-flex align-items-center mt-3">
+                                <button class="btn btn-sm btn-primary me-2">Start Tutorial</button>
+                                <button class="btn btn-sm btn-outline-primary bg-white">Skip for now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert bg-danger bg-opacity-10 border-danger border-opacity-25 rounded-3" role="alert">
+                            <h4 class="alert-heading fw-bold text-dark"><i class="fas fa-ban text-danger me-2"></i> Account Suspended</h4>
+                            <p class="text-secondary mb-3">Your account has been temporarily suspended due to suspicious login activities from another country.</p>
+                            <hr class="border-danger border-opacity-25">
+                            <p class="mb-0 text-secondary small">If you think this is a mistake, please <a href="#" class="alert-link text-danger">contact support</a> immediately.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,24 +9,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kuda Admin - Welcome</title>
     <!-- Use the same fonts if available -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/theme.css" />
     <style>
+        :root {
+            --primary-glow: #3b82f6;
+            --secondary-glow: #2dd4bf;
+            --midnight: #060b14;
+        }
+        
         body, html {
-            margin: 0; 
-            padding: 0; 
-            width: 100%; 
-            height: 100%;
-            /* Dark techy background matching the image aesthetic */
-            background-color: #060b14; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: var(--midnight); 
+            display: flex; align-items: center; justify-content: center;
             overflow: hidden;
-            font-family: var(--font-primary, sans-serif);
+            font-family: 'Inter', sans-serif;
         }
         
         .splash-container {
             text-align: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .splash-logo {
@@ -34,57 +36,64 @@
             max-width: 95vw;
             opacity: 0;
             transform: scale(0.9);
-            /* Play animation for 6 seconds then stay on last frame */
-            animation: emerge 6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: emerge 3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        /* 
-           The animation sequence:
-           0% : Invisible and slightly zoomed out
-           20% : Fades in quickly, slight glow
-           70% : Held visible, bright glow representing the "loading/activation" phase
-           100%: Quick fade-out & swoop up simulating entering the system
-        */
         @@keyframes emerge {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateY(20px);
-                filter: blur(10px) brightness(0.5);
-            }
-            25% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-                filter: blur(0px) drop-shadow(0 0 25px rgba(0, 255, 255, 0.4)) brightness(1.1);
-            }
-            80% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-                filter: blur(0px) drop-shadow(0 0 35px rgba(0, 255, 255, 0.6)) brightness(1.2);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(1.1) translateY(-20px);
-                filter: blur(8px) brightness(1.5);
-            }
+            0% { opacity: 0; transform: scale(0.8) translateY(20px); filter: blur(10px) brightness(0.5); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px) drop-shadow(0 0 35px rgba(0, 255, 255, 0.6)) brightness(1.2); }
+        }
+
+        /* Action Hub below logo */
+        .landing-actions {
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        @@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+        .btn-protocol-trigger {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 14px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s;
+            display: flex; align-items: center; gap: 10px;
+        }
+        
+        .btn-protocol-trigger:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
 <body>
     <div class="splash-container">
-        <!-- 
-           The user specified the image is placed at wwwroot/image/kuda.png 
-           Note: the Genius template standard path might be image/ or images/, 
-           but we'll use /image/kuda.png as requested.
-        -->
         <img src="/image/kuda.png" alt="Kuda System Architecture" class="splash-logo" onerror="this.src='/images/kuda.png'" />
+        
+        <div class="landing-actions">
+            <button class="btn-protocol-trigger" onclick="openTnC()">
+                <i class="fas fa-check-shield"></i> Terms & Conditions
+            </button>
+        </div>
     </div>
 
+    <!-- The T&C Popup Partial -->
+    <partial name="_TnCPopup" />
+
     <script>
-        // Redirect to login page after the animation finishes (6 seconds)
-        // Set slightly earlier than CSS animation end for a smooth transition feeling
-        setTimeout(() => {
-            window.location.replace('/Login');
-        }, 5900);
+        // Redirect logic handled by the T&C modal
+        window.onTnCAccepted = function() {
+            window.location.href = '/Login';
+        };
     </script>
 </body>
 </html>

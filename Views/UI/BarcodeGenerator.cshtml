@@ -1,0 +1,327 @@
+@{
+    ViewData["Title"] = "Universal Barcode Generator";
+}
+
+<style>
+    .barcode-generator-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 0;
+    }
+
+    @@media (min-width: 992px) {
+        .barcode-generator-container {
+            flex-direction: row;
+        }
+    }
+
+    .barcode-settings {
+        flex: 1;
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .barcode-preview-area {
+        flex: 1;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 16px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+        border: 1px dashed rgba(59, 157, 130, 0.3);
+        min-height: 400px;
+        position: relative;
+    }
+
+    .preview-card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        text-align: center;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .preview-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .empty-state {
+        color: var(--text-muted);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .empty-state i {
+        font-size: 3rem;
+        color: #cbd5e1;
+    }
+
+    canvas#barcodeCanvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    .color-picker-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .color-picker-group input[type="color"] {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    
+    .color-picker-group input[type="color"]::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+    
+    .color-picker-group input[type="color"]::-webkit-color-swatch {
+        border: none;
+        border-radius: 8px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+        width: 100%;
+    }
+
+    .advanced-settings {
+        margin-top: 15px;
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row mb-4 align-items-center">
+        <div class="col-12 d-flex justify-content-between align-items-start">
+            <div>
+                <h2 class="fw-bold mb-1"><i class="fas fa-barcode text-primary me-2"></i> Universal Barcode Generator</h2>
+                <p class="text-muted mb-0">Generate modern, high-quality 1D and 2D barcodes instantly. Supports over 100+ formats.</p>
+            </div>
+            <button class="btn btn-sm btn-outline-primary copy-btn" data-target="barcodeGeneratorApp"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+        </div>
+    </div>
+
+    <div class="barcode-generator-container" id="barcodeGeneratorApp">
+        <!-- Configuration Panel -->
+        <div class="barcode-settings">
+            <h5 class="fw-bold mb-4 border-bottom pb-2">Configuration</h5>
+            
+            <form id="barcodeForm" onsubmit="event.preventDefault(); generateBarcode();">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Barcode Type</label>
+                    <select class="form-select" id="bcid" onchange="generateBarcode()">
+                        <optgroup label="Popular 2D (Matrix)">
+                            <option value="qrcode" selected>QR Code</option>
+                            <option value="datamatrix">Data Matrix</option>
+                            <option value="pdf417">PDF417</option>
+                            <option value="azteccode">Aztec Code</option>
+                        </optgroup>
+                        <optgroup label="Popular 1D (Linear)">
+                            <option value="code128">Code 128</option>
+                            <option value="code39">Code 39</option>
+                            <option value="ean13">EAN-13</option>
+                            <option value="upca">UPC-A</option>
+                            <option value="itf14">ITF-14</option>
+                        </optgroup>
+                        <optgroup label="Other Formats">
+                            <option value="pharmacode">Pharmacode</option>
+                            <option value="isbn">ISBN</option>
+                            <option value="gs1-128">GS1-128</option>
+                            <option value="royalmail">Royal Mail (RM4SCC)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Data / Value</label>
+                    <textarea class="form-control" id="bcText" rows="3" placeholder="Enter text, URL, or numbers..." oninput="debounceGenerate()"></textarea>
+                    <div class="form-text text-danger d-none" id="errorMsg">Invalid data for the selected barcode type.</div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label class="form-label fw-bold">Barcode Color</label>
+                        <div class="color-picker-group">
+                            <input type="color" id="bcColor" value="#0f172a" onchange="generateBarcode()">
+                            <span class="small text-muted" id="bcColorValue">#0f172a</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label fw-bold">Background</label>
+                        <div class="color-picker-group">
+                            <input type="color" id="bcBgColor" value="#ffffff" onchange="generateBarcode()">
+                            <span class="small text-muted" id="bcBgColorValue">#ffffff</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <button class="btn btn-sm btn-light w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#advancedOptions">
+                        <i class="fas fa-sliders-h me-2"></i> Advanced Options <i class="fas fa-chevron-down float-end mt-1"></i>
+                    </button>
+                    
+                    <div class="collapse advanced-settings" id="advancedOptions">
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="bcIncludeText" checked onchange="generateBarcode()">
+                                <label class="form-check-label" for="bcIncludeText">Include Human-Readable Text</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-label small">Scale (Size)</label>
+                                <input type="range" class="form-range" id="bcScale" min="1" max="10" value="3" oninput="generateBarcode()">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small">Height (1D only)</label>
+                                <input type="range" class="form-range" id="bcHeight" min="5" max="50" value="15" oninput="generateBarcode()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="barcode-preview-area">
+            <div id="emptyState" class="empty-state">
+                <i class="fas fa-qrcode"></i>
+                <h5 class="fw-bold m-0">Live Preview</h5>
+                <p class="small mb-0">Enter some data to generate your barcode</p>
+            </div>
+            
+            <div id="previewCard" class="preview-card d-none">
+                <canvas id="barcodeCanvas"></canvas>
+            </div>
+
+            <div id="previewActions" class="action-buttons d-none justify-content-center">
+                <button class="btn btn-primary shadow-sm" onclick="downloadBarcode('png')"><i class="fas fa-download me-2"></i> Save PNG</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- bwip-js Universal Barcode Generator -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bwip-js/3.4.1/bwip-js-min.js"></script>
+
+<script>
+    // Set default value for presentation
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('bcText').value = "https://example.com";
+        
+        // Update color hex displays
+        document.getElementById('bcColor').addEventListener('input', function() {
+            document.getElementById('bcColorValue').innerText = this.value;
+        });
+        document.getElementById('bcBgColor').addEventListener('input', function() {
+            document.getElementById('bcBgColorValue').innerText = this.value;
+        });
+        
+        generateBarcode();
+    });
+
+    let typingTimer;
+    function debounceGenerate() {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(generateBarcode, 300);
+    }
+
+    function generateBarcode() {
+        const text = document.getElementById('bcText').value;
+        const type = document.getElementById('bcid').value;
+        const color = document.getElementById('bcColor').value.replace('#', '');
+        const bgColor = document.getElementById('bcBgColor').value.replace('#', '');
+        const incText = document.getElementById('bcIncludeText').checked;
+        const scale = document.getElementById('bcScale').value;
+        const height = document.getElementById('bcHeight').value;
+
+        const emptyState = document.getElementById('emptyState');
+        const previewCard = document.getElementById('previewCard');
+        const actions = document.getElementById('previewActions');
+        const errorMsg = document.getElementById('errorMsg');
+
+        if (!text.trim()) {
+            emptyState.classList.remove('d-none');
+            previewCard.classList.add('d-none');
+            actions.classList.add('d-none');
+            errorMsg.classList.add('d-none');
+            return;
+        }
+
+        try {
+            // Apply background color specifically if different from pure white/transparent logic
+            const canvas = document.getElementById('barcodeCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            bwipjs.toCanvas('barcodeCanvas', {
+                bcid: type,       // Barcode type
+                text: text,       // Text to encode
+                scale: parseInt(scale), // 3x scaling factor
+                height: parseInt(height), // Bar height, in millimeters
+                includetext: incText, // Show human-readable text
+                textxalign: 'center', // Always good to center text
+                barcolor: color,
+                backgroundcolor: bgColor
+            });
+
+            emptyState.classList.add('d-none');
+            previewCard.classList.remove('d-none');
+            actions.classList.remove('d-none');
+            errorMsg.classList.add('d-none');
+            
+            // Adjust card background logic for contrast/preview purposes
+            previewCard.style.backgroundColor = '#' + bgColor;
+            
+        } catch (e) {
+            console.error(e);
+            errorMsg.innerText = e.message || "Invalid input for this barcode type.";
+            errorMsg.classList.remove('d-none');
+            emptyState.classList.remove('d-none');
+            previewCard.classList.add('d-none');
+            actions.classList.add('d-none');
+        }
+    }
+
+    function downloadBarcode(format) {
+        const canvas = document.getElementById('barcodeCanvas');
+        if (!canvas) return;
+
+        const link = document.createElement('a');
+        link.download = `barcode_${Date.now()}.${format}`;
+        
+        // Convert canvas to data URL
+        if(format === 'png') {
+            link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        }
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>

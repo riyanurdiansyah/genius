@@ -1,62 +1,304 @@
-<!-- Views/Shared/_Header.cshtml -->
+<style>
+    .topbar {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(15px) saturate(180%);
+        -webkit-backdrop-filter: blur(15px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        margin: 0 -40px 40px -40px !important; /* Fixed: Added negative margins back for full-width */
+        padding: 15px 40px !important;
+        position: sticky;
+        top: 0;
+        z-index: 1050;
+        transition: all 0.3s ease;
+    }
+    
+    [data-theme="dark"] .topbar {
+        background: rgba(15, 23, 42, 0.8) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .search-container {
+        max-width: 450px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .search-bar {
+        background: rgba(241, 245, 249, 0.6) !important;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+        padding: 8px 20px !important;
+    }
+
+    [data-theme="dark"] .search-bar {
+        background: rgba(30, 41, 59, 0.6) !important;
+    }
+
+    .search-container:focus-within .search-bar {
+        background: #fff !important;
+        border-color: var(--primary);
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1);
+        transform: translateY(-1px);
+    }
+    
+    [data-theme="dark"] .search-container:focus-within .search-bar {
+        background: #1e293b !important;
+    }
+
+    .user-actions {
+        gap: 12px !important;
+    }
+
+    .icon-btn {
+        width: 42px !important;
+        height: 42px !important;
+        border: 1px solid rgba(0,0,0,0.05) !important;
+        background: #fff;
+        color: #64748b !important;
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    [data-theme="dark"] .icon-btn {
+        background: #1e293b;
+        border-color: rgba(255,255,255,0.05) !important;
+        color: #94a3b8 !important;
+    }
+
+    .icon-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        background: #fff;
+        color: var(--primary) !important;
+        border-color: var(--primary) !important;
+        box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
+    }
+
+    .profile {
+        background: rgba(241, 245, 249, 0.6);
+        padding: 4px 4px 4px 16px !important;
+        border-radius: 50px;
+        border: 1px solid rgba(0,0,0,0.03);
+        margin-left: 8px !important;
+        transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .profile {
+        background: rgba(30, 41, 59, 0.6);
+        border-color: rgba(255,255,255,0.05);
+    }
+
+    .profile:hover {
+        background: #fff;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transform: translateX(-2px);
+    }
+
+    .profile-img-wrap {
+        position: relative;
+    }
+    
+    .profile-status {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        width: 10px;
+        height: 10px;
+        background: #10b981;
+        border: 2px solid #fff;
+        border-radius: 50%;
+    }
+
+    /* Notification Dropdown Styles */
+    .notification-dropdown {
+        width: 360px !important;
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 20px !important;
+        overflow: hidden;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.1) !important;
+        margin-top: 15px !important;
+    }
+
+    .noti-header {
+        padding: 20px;
+        background: #fff;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    [data-theme="dark"] .noti-header { background: #1e293b; border-color: rgba(255,255,255,0.05); }
+
+    .noti-title { font-weight: 800; font-size: 15px; margin: 0; }
+    .noti-badge { background: rgba(59, 157, 130, 0.1); color: var(--primary); font-size: 11px; padding: 4px 10px; border-radius: 50px; font-weight: 700; }
+
+    .noti-list {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .noti-item {
+        padding: 16px 20px;
+        display: flex;
+        gap: 15px;
+        transition: all 0.2s;
+        border-bottom: 1px solid #f8fafc;
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+    
+    [data-theme="dark"] .noti-item { border-color: rgba(255,255,255,0.03); }
+
+    .noti-item:hover {
+        background: #f8fafc;
+        transform: scale(1.01);
+    }
+    
+    [data-theme="dark"] .noti-item:hover { background: rgba(255,255,255,0.02); }
+
+    .noti-item.unread {
+        background: rgba(59, 157, 130, 0.02);
+    }
+
+    .noti-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 18px;
+    }
+
+    .noti-content { flex: 1; }
+    .noti-text { font-size: 13px; line-height: 1.4; margin-bottom: 4px; color: #1e293b; }
+    [data-theme="dark"] .noti-text { color: #e2e8f0; }
+    .noti-time { font-size: 11px; color: #94a3b8; }
+
+    .noti-footer {
+        padding: 14px;
+        text-align: center;
+        background: #f8fafc;
+    }
+    [data-theme="dark"] .noti-footer { background: #1a2233; }
+    .noti-view-all { font-size: 12px; font-weight: 700; color: var(--primary); text-decoration: none; }
+</style>
+
 <div class="topbar">
-    <div class="d-flex align-items-center" style="flex: 1; gap: 15px;">
-        <!-- Re-use the toggle identifier for the sidebar action -->
-        <div class="icon-btn" id="toggleSidebar" title="Toggle Sidebar"><i class="fa-solid fa-bars"></i></div>
+    <div class="d-flex align-items-center" style="gap: 20px;">
+        <div class="icon-btn" id="toggleSidebar" title="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </div>
         
-        <div class="search-container" style="position: relative; flex: 1; max-width: 400px;">
-            <div class="search-bar" style="max-width: 100%;">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="globalSearchInput" placeholder="Search menu or type command...">
+        <div class="search-container">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass opacity-50"></i>
+                <input type="text" id="globalSearchInput" placeholder="Spotlight Search (Ctrl+K)">
             </div>
-            
-            <!-- Search Results Dropdown -->
-            <div class="search-dropdown" id="globalSearchDropdown" style="left: 0; width: 100%;">
-                <!-- Results injected here via JS -->
-            </div>
+            <div class="search-dropdown" id="globalSearchDropdown"></div>
         </div>
     </div>
 
-    <div class="user-actions align-items-center">
-        <!-- Dark Mode Toggle -->
-        <div class="icon-btn" id="toggleDarkMode" title="Toggle Dark Mode" data-i18n="dark_mode_title">
+    <div class="user-actions">
+        <!-- Dashboard Home -->
+        <a href="/Home/Index" class="icon-btn text-decoration-none" title="Dashboard">
+            <i class="fa-solid fa-gauge-high"></i>
+        </a>
+
+        <!-- Dark Mode -->
+        <div class="icon-btn" id="toggleDarkMode" title="Switch Theme">
             <i class="fa-solid fa-moon" id="darkModeIcon"></i>
         </div>
 
-        <!-- Language Dropdown -->
+        <!-- Language -->
         <div class="dropdown">
-            <div class="icon-btn" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Language" data-i18n="language_title" style="cursor: pointer;">
-                <i class="fa-solid fa-language"></i>
+            <div class="icon-btn" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-globe"></i>
             </div>
-            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2" aria-labelledby="langDropdown">
-                <li><a class="dropdown-item d-flex align-items-center lang-switch" href="#" data-lang="id">
-                    <img src="https://flagcdn.com/w20/id.png" alt="ID" class="me-2 rounded-1" style="width:20px;"> Bahasa Indonesia
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-3 p-2 rounded-4">
+                <li><a class="dropdown-item rounded-3 d-flex align-items-center py-2 lang-switch" href="#" data-lang="id">
+                    <img src="https://flagcdn.com/w20/id.png" alt="ID" class="me-3 rounded-1" style="width:20px;"> Bahasa Indonesia
                 </a></li>
-                <li><a class="dropdown-item d-flex align-items-center lang-switch" href="#" data-lang="en">
-                    <img src="https://flagcdn.com/w20/us.png" alt="EN" class="me-2 rounded-1" style="width:20px;"> English
+                <li><a class="dropdown-item rounded-3 d-flex align-items-center py-2 lang-switch" href="#" data-lang="en">
+                    <img src="https://flagcdn.com/w20/us.png" alt="EN" class="me-3 rounded-1" style="width:20px;"> English
                 </a></li>
             </ul>
         </div>
-        <!-- Theme Color Selector -->
+
+        <!-- Notifications -->
         <div class="dropdown">
-            <div class="icon-btn" id="themeDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Theme Settings" style="cursor: pointer;">
-                <i class="fa-solid fa-palette"></i>
+            <div class="icon-btn position-relative" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+                <i class="fa-regular fa-bell"></i>
+                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" style="margin-top: 10px; margin-left: -10px;">
+                    <span class="visually-hidden">New alerts</span>
+                </span>
             </div>
-            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2 p-3" aria-labelledby="themeDropdown" style="width: 250px;">
-                <li class="mb-2"><span class="text-muted fw-bold" style="font-size: 11px; text-transform: uppercase;">Color Theme</span></li>
-                <li class="d-flex gap-2 mb-3">
-                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #3b9d82;" onclick="changeThemeColor('default')" title="Default Green"></button>
-                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #2563eb;" onclick="changeThemeColor('blue')" title="Blue"></button>
-                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #7c3aed;" onclick="changeThemeColor('purple')" title="Purple"></button>
-                    <button class="btn p-0 rounded-circle" style="width: 30px; height: 30px; background-color: #ea580c;" onclick="changeThemeColor('orange')" title="Orange"></button>
-                </li>
-            </ul>
+            <div class="dropdown-menu dropdown-menu-end notification-dropdown shadow-lg">
+                <div class="noti-header">
+                    <h6 class="noti-title">Notifications</h6>
+                    <span class="noti-badge">4 New</span>
+                </div>
+                <div class="noti-list">
+                    <!-- Item 1 -->
+                    <a href="#" class="noti-item unread">
+                        <div class="noti-icon bg-soft-primary text-primary">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <div class="noti-content">
+                            <div class="noti-text">Invoice <strong>#INV-2024</strong> has been paid successfully.</div>
+                            <div class="noti-time">2 minutes ago</div>
+                        </div>
+                    </a>
+                    <!-- Item 2 -->
+                    <a href="#" class="noti-item">
+                        <div class="noti-icon bg-soft-success text-success">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div class="noti-content">
+                            <div class="noti-text">New user <strong>Riyan Urdiansyah</strong> registered.</div>
+                            <div class="noti-time">45 minutes ago</div>
+                        </div>
+                    </a>
+                    <!-- Item 3 -->
+                    <a href="#" class="noti-item unread">
+                        <div class="noti-icon bg-soft-warning text-warning">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="noti-content">
+                            <div class="noti-text">System storage is reaching <strong>85% capacity</strong>.</div>
+                            <div class="noti-time">2 hours ago</div>
+                        </div>
+                    </a>
+                    <!-- Item 4 -->
+                    <a href="#" class="noti-item">
+                        <div class="noti-icon bg-soft-info text-info">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="noti-content">
+                            <div class="noti-text">Update security patches for <strong>Forensic Module</strong>.</div>
+                            <div class="noti-time">5 hours ago</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="noti-footer">
+                    <a href="#" class="noti-view-all">View All Notifications</a>
+                </div>
+            </div>
         </div>
-        
-        <div class="icon-btn"><i class="fa-regular fa-bell"></i></div>
+
+        <!-- Profile -->
         <div class="profile">
-            <span data-i18n="admin_user">Admin</span>
-            <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff" alt="Profile" id="headerProfileImage">
+            <div class="text-end d-none d-md-block">
+                <div class="fw-bold text-dark mb-0" style="font-size: 13px;">Admin User</div>
+                <div class="text-muted" style="font-size: 11px;">Elite Member</div>
+            </div>
+            <div class="profile-img-wrap ms-3">
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff" 
+                     class="rounded-circle" width="36" height="36" alt="Profile" id="headerProfileImage">
+                <div class="profile-status"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -72,6 +314,7 @@
         const searchData = [
             // --- MENU PAGES ---
             { title: "Dashboard", desc: "Main overview page", url: "/Home/Index", icon: "fa-solid fa-home", type: "Menu" },
+            { title: "Terms & Conditions", desc: "Legal agreement and policies", url: "/FrontEnd/TermsAndConditions", icon: "fa-solid fa-file-contract", type: "Legal" },
             { title: "Kanban Board", desc: "Manage tasks and projects", url: "/Apps/Kanban", icon: "fa-solid fa-table-columns", type: "Menu" },
             { title: "Forms & Inputs", desc: "Basic form elements", url: "/Components/Forms", icon: "fa-solid fa-edit", type: "Menu" },
             { title: "Form Validation", desc: "KTP, NPWP, No HP validator", url: "/Components/FormValidation", icon: "fa-solid fa-check-circle", type: "Menu" },
@@ -162,6 +405,12 @@
             }
         });
 
-        // Optional: Keyboard navigation (Up/Down/Enter) could be added here
+        // Shortcut Ctrl+K to search
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
     });
 </script>

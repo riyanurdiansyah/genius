@@ -1,94 +1,342 @@
-@{
-    ViewData["Title"] = "Modals";
-}
+@{ ViewData["Title"] = "Modals & Dialogs"; }
 
-<div class="row">
-    <div class="col-12 mb-4">
-        <div class="card">
-            <div class="card-header">Modal Examples</div>
-            <div class="card-body">
-                <p class="text-muted mb-4">Use modals to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
-                
-                <!-- Buttons to trigger modals -->
-                <button type="button" class="btn btn-primary" onclick="openModal('standardModal')">
-                    Launch Standard Modal
-                </button>
-                
-                <button type="button" class="btn btn-secondary ms-2" onclick="openModal('formModal')">
-                    Launch Form Modal
-                </button>
-                
-                <button type="button" class="btn btn-danger ms-2" onclick="openModal('alertModal')">
-                    Launch Alert Modal
-                </button>
+<style>
+    /* Modals should be purely white */
+    .modal-content {
+        background-color: #ffffff !important;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
+    }
+
+    /* 2. Premium Modal Design (No Glass/Blur on inner content) */
+    .modal-premium .modal-content {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    }
+    .modal-premium .modal-header {
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .modal-premium .modal-footer {
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* 3. Slide-in Drawer (Right Side) */
+    .modal-drawer.fade .modal-dialog {
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: 0;
+        margin-left: auto;
+        height: 100%;
+    }
+    .modal-drawer.show .modal-dialog {
+        transform: translateX(0);
+    }
+    .modal-drawer .modal-content {
+        height: 100%;
+        border-radius: 0;
+        border: none;
+    }
+
+    /* 4. Bottom Sheet Modal */
+    .modal-bottom.fade .modal-dialog {
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: auto;
+        margin-bottom: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .modal-bottom.show .modal-dialog {
+        transform: translateY(0);
+    }
+    .modal-bottom .modal-content {
+        border-radius: 24px 24px 0 0;
+        border: none;
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+    }
+
+    /* Utility */
+    .icon-circle-lg {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="row g-4 mb-5">
+    <div class="col-12">
+        <h4 class="fw-bold mb-1">Modals & Dialogs</h4>
+        <p class="text-muted">Modern popups, side drawers, and cinematic lightboxes.</p>
+    </div>
+
+    <!-- Group 1: Standard & Premium -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-window-restore text-primary me-2"></i>Standard & Premium</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="modalsStandardPremium"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="modalsStandardPremium">
+                <p class="text-muted small mb-4">Classic centered dialogs with clean and elevated aesthetics.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#blurStandardModal">
+                        Standard Default
+                    </button>
+                    <button type="button" class="btn btn-primary" style="background: linear-gradient(45deg, #8b5cf6, #3b82f6); border:none;" data-bs-toggle="modal" data-bs-target="#premiumModal">
+                        <i class="fas fa-gem me-1"></i> Premium Lightbox
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group 2: Layouts & Placements -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-arrows-alt text-info me-2"></i>Drawers & Slide-ins</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="modalsDrawersSlideIns"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="modalsDrawersSlideIns">
+                <p class="text-muted small mb-4">Alternative sliding panels instead of center popups.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-outline-info border-2" data-bs-toggle="modal" data-bs-target="#rightDrawerModal">
+                        <i class="fas fa-arrow-left me-1"></i> Right Drawer
+                    </button>
+                    <button type="button" class="btn btn-outline-dark border-2" data-bs-toggle="modal" data-bs-target="#bottomSheetModal">
+                        <i class="fas fa-arrow-up me-1"></i> Bottom Sheet
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary border-2" data-bs-toggle="modal" data-bs-target="#fullScreenModal">
+                        <i class="fas fa-expand me-1"></i> Full Screen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group 3: Sweet Alerts / Status Modals -->
+    <div class="col-12">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-exclamation-triangle text-danger me-2"></i>Status & Interaction Alerts</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="modalsStatusAlerts"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="modalsStatusAlerts">
+                <p class="text-muted small mb-4">Beautiful confirmation and success messages without third-party plugins.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#successAlertModal">
+                        <i class="fas fa-check-circle me-1"></i> Payment Success
+                    </button>
+                    <button type="button" class="btn btn-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#dangerAlertModal">
+                        <i class="fas fa-trash me-1"></i> Dangerous Action
+                    </button>
+                    <button type="button" class="btn btn-warning text-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#warningAlertModal">
+                        <i class="fas fa-exclamation-circle me-1"></i> Subscription Warning
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal Structure 1: Standard -->
-<div class="modal" id="standardModal">
-    <div class="modal-dialog">
+<!-- ================= MODALS COMPONENT DIRECTORIES ================= -->
+
+<!-- 1. Standard Modal -->
+<div class="modal fade" id="blurStandardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold">Standard Layout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-4">
+                <p class="text-muted mb-0">This is a clean, standard Bootstrap popup layout cleanly centered in the middle of the screen with soft shadows and rounded corners.</p>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary px-4">Got it</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2. Premium Lightbox Modal -->
+<div class="modal fade modal-premium" id="premiumModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Standard Modal</h5>
-                <button type="button" class="btn-close" onclick="closeModal('standardModal')">&times;</button>
+                <h5 class="modal-title fw-bold text-dark"><i class="fas fa-gem text-primary me-2"></i>Premium Setup</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <p>Woohoo, you're reading this text in a modal! You can add paragraphs, tables, or generic UI elements inside the modal body securely.</p>
+            <div class="modal-body px-4 py-4">
+                <p class="mb-4 text-secondary">This modal uses an elevated solid white aesthetic with thick, soft shadows instead of glassmorphism.</p>
+                <div class="bg-light p-3 rounded-3 border border-light">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Enable Analytics Tracker</label>
+                    </div>
+                    <small class="text-muted">We will track visitor metrics automatically.</small>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('standardModal')">Close</button>
-                <button type="button" class="btn btn-primary" onclick="closeModal('standardModal')">Save changes</button>
+                <button type="button" class="btn btn-sm btn-outline-dark border-0" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-dark px-4 rounded-pill">Activate</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal Structure 2: Form -->
-<div class="modal" id="formModal">
-    <div class="modal-dialog">
+<!-- 3. Right Drawer -->
+<div class="modal fade modal-drawer" id="rightDrawerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" style="width: 400px; max-width: 100%;">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Quick Settings</h5>
-                <button type="button" class="btn-close" onclick="closeModal('formModal')">&times;</button>
+            <div class="modal-header bg-light border-0">
+                <h5 class="modal-title fw-bold">Configuration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <p class="text-muted small mb-4">Slide-in drawers are perfect for settings, filters, or editing data without losing the context of the main page.</p>
+                
                 <form>
-                    <div class="form-group mb-3">
-                        <label class="form-label">System Name</label>
-                        <input type="text" class="form-control" value="Kuda Admin">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-uppercase text-muted">API Settings</label>
+                        <input type="text" class="form-control bg-light" value="sk_test_••••••••••••••••••••••••">
                     </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Admin Email</label>
-                        <input type="email" class="form-control" value="admin@kuda.com">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-uppercase text-muted">Environment</label>
+                        <select class="form-select bg-light">
+                            <option>Development</option>
+                            <option>Staging</option>
+                            <option selected>Production</option>
+                        </select>
                     </div>
-                    <div class="form-check form-switch mt-3">
-                        <input class="form-check-input" type="checkbox" id="maintenanceMode">
-                        <label class="form-check-label" for="maintenanceMode">Maintenance Mode</label>
+                    <div class="form-check form-switch mt-4">
+                        <input class="form-check-input" type="checkbox" role="switch" id="drawerSwitch">
+                        <label class="form-check-label" for="drawerSwitch">Force HTTPS routing</label>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('formModal')">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="closeModal('formModal')">Apply Settings</button>
+            <div class="modal-footer border-0 bg-light">
+                <button type="button" class="btn btn-lg btn-primary w-100">Save Configuration</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal Structure 3: Alert -->
-<div class="modal" id="alertModal">
-    <div class="modal-dialog" style="max-width: 400px;">
+<!-- 4. Bottom Sheet Modal -->
+<div class="modal fade modal-bottom" id="bottomSheetModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body text-center p-5">
-                <i class="fas fa-exclamation-circle fa-4x text-danger mb-4"></i>
-                <h4 class="mb-3">Are you sure?</h4>
-                <p class="text-muted mb-4">Do you really want to delete these records? This process cannot be undone.</p>
-                <div class="d-flex justify-content-center gap-2">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal('alertModal')">Cancel</button>
-                    <button type="button" class="btn btn-danger" onclick="closeModal('alertModal')">Delete</button>
+            <div class="modal-header border-0 pb-0 justify-content-center">
+                <!-- Grab handle for mobile look -->
+                <div style="width: 50px; height: 5px; background: #cbd5e1; border-radius: 5px; margin-top: -10px;"></div>
+                <button type="button" class="btn-close position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-4 pt-2 pb-5 text-center">
+                <h5 class="fw-bold mb-3">Share this Document</h5>
+                <p class="text-muted mb-4">Choose a method to share "Annual_Metrics_2026.pdf"</p>
+                
+                <div class="d-flex justify-content-center gap-4">
+                    <div class="text-center cursor-pointer" role="button">
+                        <div class="icon-circle-lg bg-primary bg-opacity-10 text-primary mb-2 shadow-sm" style="width:60px; height:60px; font-size:1.5rem;">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <span class="small fw-medium">Copy Link</span>
+                    </div>
+                    <div class="text-center cursor-pointer" role="button">
+                        <div class="icon-circle-lg bg-success bg-opacity-10 text-success mb-2 shadow-sm" style="width:60px; height:60px; font-size:1.5rem;">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <span class="small fw-medium">WhatsApp</span>
+                    </div>
+                    <div class="text-center cursor-pointer" role="button">
+                        <div class="icon-circle-lg bg-info bg-opacity-10 text-info mb-2 shadow-sm" style="width:60px; height:60px; font-size:1.5rem;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span class="small fw-medium">Email</span>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 5. Full Screen Modal -->
+<div class="modal fade" id="fullScreenModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content bg-light">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold">Fullscreen Media Viewer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                    <i class="fas fa-images fa-4x text-muted mb-3 opacity-50"></i>
+                    <h2 class="fw-bold text-dark">Immersive Content</h2>
+                    <p class="text-secondary lead">Perfect for image galleries, document editors, or complex multistep forms.</p>
+                    <button class="btn btn-dark mt-3 px-4 py-2 rounded-pill" data-bs-dismiss="modal">Exit Fullscreen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= ALERTS & STATUS MODALS ================= -->
+
+<!-- 6. Success Alert Modal -->
+<div class="modal fade" id="successAlertModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 rounded-4 shadow-lg">
+            <div class="modal-body text-center p-4">
+                <div class="icon-circle-lg bg-success bg-opacity-10 text-success mb-3 mx-auto">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h4 class="fw-bold mb-2">Payment Successful!</h4>
+                <p class="text-muted small mb-4">Your order #99214 has been processed and your receipt has been emailed.</p>
+                <button class="btn btn-success w-100 rounded-pill py-2" data-bs-dismiss="modal">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 7. Danger Alert Modal -->
+<div class="modal fade" id="dangerAlertModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 rounded-4 shadow-lg">
+            <div class="modal-body text-center p-4">
+                <div class="icon-circle-lg bg-danger bg-opacity-10 text-danger mb-3 mx-auto">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <h4 class="fw-bold mb-2">Delete Project?</h4>
+                <p class="text-muted small mb-4">Are you absolutely sure you want to permanently delete "Redesign Repo"? This action <strong>cannot</strong> be undone.</p>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-light w-50 rounded-pill fw-medium" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger w-50 rounded-pill fw-medium" data-bs-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 8. Warning Alert Modal -->
+<div class="modal fade" id="warningAlertModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 rounded-4 shadow-lg border-top border-warning border-5">
+            <div class="modal-body text-center p-4">
+                <div class="icon-circle-lg bg-warning bg-opacity-10 text-warning mb-3 mx-auto">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h4 class="fw-bold mb-2">Plan Expiring</h4>
+                <p class="text-muted small mb-4">Your premium subscription will expire in 3 days. Please update your payment method to avoid interruptions.</p>
+                <button class="btn btn-warning w-100 rounded-pill py-2 text-dark fw-bold mb-2" data-bs-dismiss="modal">Update Billing</button>
+                <button class="btn btn-link text-muted small text-decoration-none" data-bs-dismiss="modal">Remind me later</button>
             </div>
         </div>
     </div>

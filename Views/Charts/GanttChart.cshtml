@@ -86,7 +86,7 @@
                         <button class="btn btn-sm btn-outline-secondary" onclick="changeView('Week')">Week</button>
                         <button class="btn btn-sm btn-outline-secondary" onclick="changeView('Month')">Month</button>
                     </div>
-                    <button class="btn btn-outline-primary btn-sm btn-copyHtml ms-2"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+                    <button class="btn btn-sm btn-outline-primary copy-btn"><i class="fa-regular fa-copy"></i> Copy HTML</button>
                 </div>
             </div>
             
@@ -174,7 +174,7 @@
             // STEP 1: CACHE RAW HTML FOR COPY BUTTONS
             // Cache before saving states so we don't copy the JS mutated version
             $('.custom-chart-container').each(function() {
-                var btn = $(this).find('.btn-copyHtml');
+                var btn = $(this).find('.copy-btn');
                 if (btn.length) {
                     var containerClone = $(this).clone();
                     // Clean injected SVG by Gantt
@@ -184,7 +184,7 @@
                 }
             });
 
-            $('.btn-copyHtml').on('click', function(e) {
+            $('.copy-btn').on('click', function(e) {
                 e.preventDefault();
                 var rawHtml = $(this).data('raw-html');
                 

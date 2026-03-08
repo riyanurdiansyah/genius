@@ -1,0 +1,341 @@
+@{ ViewData["Title"] = "Email Workspace"; }
+
+<style>
+    /* Email App Layout Variables */
+    .app-email-container {
+        height: calc(100vh - 150px);
+        min-height: 550px;
+        background: var(--bg-card);
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        display: flex;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
+    
+    /* 1. Left Sidebar (Folders) */
+    .email-sidebar {
+        width: 260px;
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        background: #f8fafc;
+        padding: 1.5rem;
+    }
+    .compose-btn {
+        background: var(--primary);
+        color: white;
+        border-radius: 50px;
+        padding: 12px;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        cursor: pointer;
+        transition: transform 0.2s;
+        margin-bottom: 2rem;
+    }
+    .compose-btn:hover { transform: translateY(-2px); color: white; }
+    
+    .nav-label { font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); margin-bottom: 1rem; }
+    
+    .folder-item {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 10px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+    .folder-item:hover { background: rgba(0,0,0,0.03); }
+    .folder-item.active {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--primary);
+        font-weight: 600;
+    }
+    .folder-item i { width: 20px; }
+    
+    .tag-circle { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; }
+    
+    /* 2. Middle Panel (Inbox List) */
+    .email-list-panel {
+        width: 350px;
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-card);
+    }
+    .email-list-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .email-search {
+        background: #f1f5f9;
+        border-radius: 50px;
+        padding: 8px 16px;
+        border: none;
+        width: 100%;
+        outline: none;
+    }
+    
+    .email-items {
+        flex: 1; overflow-y: auto; padding: 0.5rem;
+    }
+    .email-item {
+        padding: 14px 16px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 4px;
+        border-left: 3px solid transparent;
+        position: relative;
+    }
+    .email-item:hover { background: rgba(0,0,0,0.02); }
+    .email-item.active {
+        background: #f8fafc;
+        border-left-color: var(--primary);
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+    }
+    .email-item.unread { font-weight: 700; background: rgba(59, 130, 246, 0.05); }
+    .email-item.unread .time { color: var(--primary); font-weight: 700; }
+    
+    .email-sender { font-size: 0.95rem; color: var(--text-dark); margin-bottom: 3px; }
+    .email-subject { font-size: 0.85rem; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .email-snippet { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 3px;}
+    .time { font-size: 0.75rem; color: var(--text-muted); }
+    
+    /* 3. Right Panel (Reading Pane) */
+    .email-read-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-card);
+        overflow-y: auto;
+    }
+    .read-header {
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex; justify-content: space-between; align-items: center;
+        position: sticky; top: 0; background: var(--bg-card); z-index: 10;
+    }
+    .read-body {
+        padding: 2rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--text-dark);
+    }
+    .read-subject { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-dark); }
+    
+    .reply-box {
+        margin: 2rem;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .reply-input {
+        width: 100%; min-height: 120px; border: none; padding: 1.5rem; outline: none; background: transparent; resize: vertical;
+    }
+    .reply-actions {
+        padding: 1rem; border-top: 1px solid var(--border-color); background: #f8fafc;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    
+    /* Context UI Elements */
+    .btn-icon-soft {
+        width: 36px; height: 36px; border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--text-muted); transition: all 0.2s; background: transparent; border: none;
+    }
+    .btn-icon-soft:hover { background: #f1f5f9; color: var(--primary); }
+    
+    /* Dark Mode specific */
+    [data-theme="dark"] .email-sidebar { background: #0f172a; border-color: #334155; }
+    [data-theme="dark"] .email-list-panel, [data-theme="dark"] .email-read-panel { background: var(--bg-card); border-color: #334155; }
+    [data-theme="dark"] .email-list-header { border-color: #334155; }
+    [data-theme="dark"] .read-header { background: var(--bg-card); border-color: #334155; }
+    [data-theme="dark"] .email-search { background: #0f172a; color: white; border: 1px solid #334155;}
+    [data-theme="dark"] .folder-item:hover, [data-theme="dark"] .email-item:hover { background: rgba(255,255,255,0.03); }
+    [data-theme="dark"] .email-item.active { background: #0f172a; }
+    [data-theme="dark"] .folder-item { color: #f8fafc; }
+    [data-theme="dark"] .text-dark, [data-theme="dark"] .email-sender, [data-theme="dark"] .email-subject, [data-theme="dark"] .read-subject, [data-theme="dark"] .read-body { color: #f8fafc !important; }
+    [data-theme="dark"] .text-muted, [data-theme="dark"] .email-snippet, [data-theme="dark"] .time { color: #94a3b8 !important; }
+    [data-theme="dark"] .reply-box { border-color: #334155; }
+    [data-theme="dark"] .reply-input { color: #f8fafc; }
+    [data-theme="dark"] .reply-actions { background: #0f172a; border-color: #334155; }
+    [data-theme="dark"] .btn-icon-soft:hover { background: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .email-item.unread { background: rgba(59, 130, 246, 0.15); }
+
+</style>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h4 class="fw-bold mb-1">Corporate Mail</h4>
+        <p class="text-muted">A fully-featured email client layout with rich reading panes.</p>
+    </div>
+</div>
+
+<div class="app-email-container">
+    
+    <!-- 1. Left Sidebar Navigation -->
+    <div class="email-sidebar d-none d-lg-flex">
+        <a href="#" class="compose-btn text-decoration-none">
+            <i class="fas fa-pen me-2"></i> Compose Email
+        </a>
+        
+        <div class="nav-label">My Mailbox</div>
+        <div class="folder-item active">
+            <span><i class="fas fa-inbox text-primary"></i> Inbox</span>
+            <span class="badge bg-primary rounded-pill">12</span>
+        </div>
+        <div class="folder-item">
+            <span><i class="fas fa-star text-warning"></i> Starred</span>
+        </div>
+        <div class="folder-item">
+            <span><i class="fas fa-clock text-info"></i> Snoozed</span>
+        </div>
+        <div class="folder-item">
+            <span><i class="fas fa-paper-plane text-success"></i> Sent</span>
+        </div>
+        <div class="folder-item">
+            <span><i class="fas fa-pen-nib text-secondary"></i> Drafts</span>
+            <span class="badge bg-secondary rounded-pill">4</span>
+        </div>
+        <div class="folder-item">
+            <span><i class="fas fa-trash text-danger"></i> Trash</span>
+        </div>
+        
+        <div class="nav-label mt-4">Labels</div>
+        <div class="folder-item"><span><span class="tag-circle bg-danger"></span> Important</span></div>
+        <div class="folder-item"><span><span class="tag-circle bg-success"></span> Personal</span></div>
+        <div class="folder-item"><span><span class="tag-circle bg-info"></span> Projects</span></div>
+    </div>
+    
+    <!-- 2. Middle Panel: Inbox List -->
+    <div class="email-list-panel">
+        <div class="email-list-header">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">Inbox</h5>
+                <button class="btn btn-icon-soft"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            <div class="position-relative">
+                <i class="fas fa-search position-absolute text-muted" style="top:50%; transform:translateY(-50%); left:15px;"></i>
+                <input type="text" class="email-search ps-5" placeholder="Search emails...">
+            </div>
+        </div>
+        
+        <div class="email-items">
+            
+            <!-- Email Item Unread -->
+            <div class="email-item unread active">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="email-sender">Google Cloud Team</div>
+                    <span class="time">10:45 AM</span>
+                </div>
+                <div class="email-subject"><strong>Action Required: Review your billing account</strong></div>
+                <div class="email-snippet">Your trial period is ending soon. Please review your billing console to prevent service disruption to your servers.</div>
+            </div>
+            
+            <!-- Email Item Read -->
+            <div class="email-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="email-sender">Sarah Miller</div>
+                    <span class="time">Yesterday</span>
+                </div>
+                <div class="email-subject">UX Design Review Outcomes</div>
+                <div class="email-snippet">Here are the minutes of meeting from yesterday's design sync. We agreed to update the color palette.</div>
+            </div>
+            
+            <!-- Email Item Unread -->
+            <div class="email-item unread">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="email-sender">Stripe Updates</div>
+                    <span class="time">Oct 12</span>
+                </div>
+                <div class="email-subject"><strong>New API features available</strong></div>
+                <div class="email-snippet">We are excited to announce our latest API endpoints for recurring payments are now in beta. Check the docs.</div>
+            </div>
+            
+            <div class="email-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="email-sender">Medium Daily Digest</div>
+                    <span class="time">Oct 10</span>
+                </div>
+                <div class="email-subject">How to master React in 2026</div>
+                <div class="email-snippet">Stories from the community tailored for you. Read the latest highly curated posts on web development.</div>
+            </div>
+            
+            <div class="email-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="email-sender">HR Department</div>
+                    <span class="time">Oct 05</span>
+                </div>
+                <div class="email-subject d-flex align-items-center">
+                    Annual Leave Balance Update <i class="fas fa-paperclip text-muted ms-2" style="font-size:0.7rem;"></i>
+                </div>
+                <div class="email-snippet">Please find attached the latest report regarding your remaining annual leave days for Q4.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- 3. Right Panel: Reading Pane -->
+    <div class="email-read-panel d-none d-md-flex">
+        <!-- Reader Action Header -->
+        <div class="read-header">
+            <div class="d-flex align-items-center gap-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="35" height="35" class="rounded-circle shadow-sm bg-white p-1" alt="Avatar">
+                <div>
+                    <h6 class="fw-bold mb-0 text-dark">Google Cloud Team</h6>
+                    <span class="text-muted small">noreply@google.com • To: me</span>
+                </div>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-icon-soft" title="Reply"><i class="fas fa-reply"></i></button>
+                <button class="btn btn-icon-soft" title="Forward"><i class="fas fa-share text-muted"></i></button>
+                <button class="btn btn-icon-soft text-warning" title="Star"><i class="far fa-star"></i></button>
+                <button class="btn btn-icon-soft text-danger" title="Delete"><i class="far fa-trash-alt"></i></button>
+            </div>
+        </div>
+        
+        <!-- Reader Body Container -->
+        <div class="read-body">
+            <h1 class="read-subject">Action Required: Review your billing account</h1>
+            
+            <p>Hi Admin User,</p>
+            <p>Your Google Cloud Platform free trial ends in <strong>5 days</strong> on October 20, 2026.</p>
+            
+            <div class="alert alert-warning border-warning bg-opacity-10 my-4" style="border-left: 4px solid #ffc107;">
+                <h6 class="fw-bold"><i class="fas fa-exclamation-triangle me-2"></i>Action Required</h6>
+                Please upgrade to a paid account before the trial ends so that your running resources (Compute Engine blocks, Cloud SQL databases) are not suspended.
+            </div>
+            
+            <p>If you have already upgraded, you can safely ignore this email.</p>
+            
+            <br>
+            <button class="btn btn-primary px-4 py-2 fw-bold shadow-sm">Go to Billing Console</button>
+            <br><br><br>
+            
+            <p class="text-muted small">
+                Best regards,<br>
+                The Google Cloud Team<br>
+                1600 Amphitheatre Parkway, Mountain View, CA 94043
+            </p>
+        </div>
+        
+        <!-- Quick Reply Box -->
+        <div class="reply-box mt-auto">
+            <textarea class="reply-input" placeholder="Click here to Reply or Forward..."></textarea>
+            <div class="reply-actions">
+                <div class="d-flex gap-2 text-muted">
+                    <i class="fas fa-font btn-icon-soft" style="width:28px; height:28px; cursor:pointer;"></i>
+                    <i class="fas fa-paperclip btn-icon-soft" style="width:28px; height:28px; cursor:pointer;"></i>
+                    <i class="far fa-image btn-icon-soft" style="width:28px; height:28px; cursor:pointer;"></i>
+                </div>
+                <button class="btn btn-primary px-4 rounded-pill"><i class="fas fa-paper-plane me-2"></i>Send</button>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,238 @@
+<!-- Views/Shared/_TnCPopup.cshtml -->
+<style>
+    /* ═══════════════════════════════════════════════
+       MODERN CLEAN T&C POPUP — Balanced Style
+    ═══════════════════════════════════════════════ */
+    
+    #tncModalOverlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 10000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    #tncModalOverlay.show {
+        display: flex;
+        opacity: 1;
+    }
+
+    .tnc-modal-card {
+        background: #ffffff;
+        width: 100%;
+        max-width: 650px;
+        max-height: 85vh;
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.05);
+        transform: scale(0.95);
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    
+    [data-theme="dark"] .tnc-modal-card {
+        background: #1e293b;
+        color: #f1f5f9;
+        border-color: rgba(255,255,255,0.1);
+    }
+
+    #tncModalOverlay.show .tnc-modal-card {
+        transform: scale(1);
+    }
+
+    /* Modal Header */
+    .tnc-modal-header {
+        padding: 24px 40px;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fdfdfd;
+    }
+    [data-theme="dark"] .tnc-modal-header { background: #1e293b; border-bottom-color: rgba(255,255,255,0.05); }
+
+    .tnc-modal-header h2 {
+        font-family: var(--font-family-primary);
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+        color: #0f172a;
+    }
+    [data-theme="dark"] .tnc-modal-header h2 { color: #ffffff; }
+
+    .tnc-modal-close {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        color: #94a3b8;
+        background: #f8fafc;
+        border: 1px solid #f1f5f9;
+        transition: all 0.2s;
+    }
+    .tnc-modal-close:hover { color: #ef4444; background: #fee2e2; border-color: #fecaca; }
+    [data-theme="dark"] .tnc-modal-close { background: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.1); }
+
+    /* Modal Body */
+    .tnc-modal-body {
+        padding: 40px;
+        overflow-y: auto;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #475569;
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+    }
+    [data-theme="dark"] .tnc-modal-body { color: #94a3b8; }
+    .tnc-modal-body::-webkit-scrollbar { width: 4px; }
+    .tnc-modal-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+    .tnc-point {
+        margin-bottom: 32px;
+    }
+    .tnc-point h3 {
+        font-family: var(--font-family-primary);
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #0f172a;
+        margin-bottom: 12px;
+        display: flex; align-items: center; gap: 10px;
+    }
+    [data-theme="dark"] .tnc-point h3 { color: #f8fafc; }
+    .tnc-point h3::before {
+        content: ''; width: 4px; height: 16px; background: #2563eb; border-radius: 10px;
+    }
+
+    .tnc-point p { margin-bottom: 0; }
+
+    /* Modal Footer */
+    .tnc-modal-footer {
+        padding: 24px 40px;
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-top: 1px solid #f1f5f9;
+    }
+    [data-theme="dark"] .tnc-modal-footer { background: rgba(0,0,0,0.1); border-top-color: rgba(255,255,255,0.05); }
+
+    .tnc-cb-label {
+        display: flex; align-items: center; gap: 10px; cursor: pointer;
+        font-size: 0.9rem; font-weight: 500; color: #475569;
+    }
+    [data-theme="dark"] .tnc-cb-label { color: #cbd5e1; }
+    .tnc-cb-label input { width: 18px; height: 18px; accent-color: #2563eb; }
+
+    .btn-action {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 10px 28px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.15);
+        font-size: 0.9rem;
+    }
+    .btn-action:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 10px -1px rgba(37, 99, 235, 0.25);
+    }
+    .btn-action:disabled {
+        background: #cbd5e1; box-shadow: none; cursor: not-allowed; transform: none;
+    }
+</style>
+
+<div class="tnc-modal-overlay" id="tncModalOverlay">
+    <div class="tnc-modal-card">
+        <div class="tnc-modal-header">
+            <h2>Terms of Protocol</h2>
+            <div class="tnc-modal-close" onclick="closeTnC()">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        
+        <div class="tnc-modal-body">
+            <div class="tnc-point">
+                <h3>01. General Scope</h3>
+                <p>Welcome to Kuda Admin. These terms govern the professional relationship and system access standards of our workspace.</p>
+            </div>
+            
+            <div class="tnc-point">
+                <h3>02. System Integrity</h3>
+                <p>Users are expected to maintain the stability of the platform. Any attempt at automated scraping or unauthorized extraction is prohibited.</p>
+            </div>
+            
+            <div class="tnc-point">
+                <h3>03. Intellectual Protection</h3>
+                <p>The dashboard’s architecture and visual blueprints are proprietary property. Professional usage is granted through your authenticated license.</p>
+            </div>
+            
+            <div class="tnc-point" style="margin-bottom:0;">
+                <h3>04. Data Sovereignty</h3>
+                <p>Your telemetric data is protected by Tier-4 encryption standards, ensuring absolute privacy for your business logic.</p>
+            </div>
+        </div>
+        
+        <div class="tnc-modal-footer">
+            <label class="tnc-cb-label">
+                <input type="checkbox" id="popupAcceptCheck">
+                I agree to the terms
+            </label>
+            <button class="btn-action" id="popupAcceptBtn" disabled onclick="acceptTnC()">
+                Accept & Proceed
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTnC() {
+        const overlay = document.getElementById('tncModalOverlay');
+        overlay.style.display = 'flex';
+        setTimeout(() => overlay.classList.add('show'), 10);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeTnC() {
+        const overlay = document.getElementById('tncModalOverlay');
+        overlay.classList.remove('show');
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    document.getElementById('popupAcceptCheck').addEventListener('change', function() {
+        document.getElementById('popupAcceptBtn').disabled = !this.checked;
+    });
+
+    function acceptTnC() {
+        const btn = document.getElementById('popupAcceptBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Initializing...';
+        
+        setTimeout(() => {
+            closeTnC();
+            if (window.onTnCAccepted) window.onTnCAccepted();
+        }, 800);
+    }
+
+    // Handle ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('tncModalOverlay').classList.contains('show')) {
+            closeTnC();
+        }
+    });
+</script>

@@ -1,0 +1,310 @@
+@{
+    ViewData["Title"] = "Advanced Audit Trail Logging";
+}
+
+<style>
+    /* ═══════════════════════════════════════════════
+       PREMIUM AUDIT TRAIL — Forensic Grade UI
+    ═══════════════════════════════════════════════ */
+    
+    :root {
+        --trail-primary: #3b9d82;
+        --trail-danger: #ef4444;
+        --trail-warning: #f59e0b;
+        --trail-info: #3b82f6;
+        --trail-font: var(--font-family-primary);
+    }
+
+    .audit-header {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    }
+    [data-theme="dark"] .audit-header { background: #1e293b; border-color: rgba(255,255,255,0.05); }
+
+    /* --- VARIATION 1: CHRONO TIMELINE (Ultra Clean) --- */
+    .timeline-container {
+        position: relative;
+        padding-left: 45px;
+    }
+    .timeline-container::before {
+        content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+        width: 2px; background: #e2e8f0;
+    }
+    [data-theme="dark"] .timeline-container::before { background: #334155; }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 40px;
+        animation: k-slide-up 0.5s ease-out backwards;
+    }
+    @@keyframes k-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .timeline-dot {
+        position: absolute; left: -34px; top: 4px;
+        width: 20px; height: 20px;
+        border-radius: 50%;
+        background: #fff;
+        border: 4px solid var(--trail-primary);
+        z-index: 2;
+        box-shadow: 0 0 0 4px rgba(59, 157, 130, 0.1);
+    }
+    .timeline-item.danger .timeline-dot { border-color: var(--trail-danger); box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1); }
+    .timeline-item.warning .timeline-dot { border-color: var(--trail-warning); box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1); }
+
+    .timeline-content {
+        background: #fff;
+        padding: 24px;
+        border-radius: 16px;
+        border: 1px solid #f1f5f9;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        transition: all 0.3s;
+    }
+    [data-theme="dark"] .timeline-content { background: #1e293b; border-color: #334155; }
+    .timeline-content:hover { transform: translateX(10px); border-color: var(--trail-primary); }
+
+    .log-time { font-size: 0.75rem; font-weight: 700; color: #64748b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .log-title { font-family: var(--trail-font); font-weight: 700; font-size: 1.1rem; color: #0f172a; margin-bottom: 10px; }
+    [data-theme="dark"] .log-title { color: #fff; }
+    .log-user { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .user-avatar { width: 24px; height: 24px; border-radius: 50%; background: #e2e8f0; }
+
+    .log-diff {
+        background: #f8fafc;
+        padding: 12px;
+        border-radius: 8px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.85rem;
+        margin-top: 15px;
+        border-left: 3px solid #cbd5e1;
+    }
+    [data-theme="dark"] .log-diff { background: #0f172a; border-left-color: #475569; }
+    .diff-old { color: #ef4444; }
+    .diff-new { color: #10b981; }
+
+    /* --- VARIATION 2: FORENSIC GRID (Compact) --- */
+    .forensic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+    }
+    .forensic-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid #f1f5f9;
+        display: flex; gap: 15px;
+        transition: all 0.3s;
+    }
+    [data-theme="dark"] .forensic-card { background: #1e293b; border-color: #334155; }
+    .forensic-card:hover { border-color: var(--trail-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    
+    .status-indicator {
+        width: 10px; border-radius: 10px; flex-shrink: 0;
+    }
+
+    /* --- Action Pills --- */
+    .action-badge {
+        padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    }
+    .bg-soft-success { background: rgba(59, 157, 130, 0.1); color: #3b9d82; }
+    .bg-soft-danger { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .bg-soft-warning { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+    .view-switcher {
+        display: flex; gap: 10px; margin-bottom: 25px;
+    }
+    .switch-btn {
+        padding: 8px 20px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff;
+        font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
+    }
+    [data-theme="dark"] .switch-btn { background: #1e293b; border-color: #334155; color: #fff; }
+    .switch-btn.active { background: var(--trail-primary); color: #fff; border-color: var(--trail-primary); }
+</style>
+
+<div id="page-wrapper">
+<div class="container py-5">
+    <div class="audit-header d-flex justify-content-between align-items-center">
+        <div>
+            <h3 class="log-title mb-1">System Audit Trail</h3>
+            <p class="text-muted small mb-0">Security-grade logging and forensic data clusters.</p>
+        </div>
+        <div class="d-flex gap-3">
+            <button class="btn btn-outline-primary rounded-pill px-4 fw-bold">
+                <i class="fas fa-download me-2"></i> Export CSV
+            </button>
+        </div>
+    </div>
+
+    <div class="view-switcher">
+        <button class="switch-btn active" onclick="switchView('timeline')">Chrono Timeline</button>
+        <button class="switch-btn" onclick="switchView('grid')">Forensic Grid</button>
+        <button class="switch-btn" onclick="switchView('table')">System Table</button>
+    </div>
+
+    <!-- TIMELINE VIEW -->
+    <div id="view-timeline" class="audit-view">
+        <div class="timeline-container">
+            <!-- Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="log-time">Today, 09:42:15 AM</div>
+                        <span class="action-badge bg-soft-success">Record Updated</span>
+                    </div>
+                    <div class="log-title">Modified Inventory Stock #SKU-4921</div>
+                    <div class="log-user">
+                        <img src="https://ui-avatars.com/api/?name=Alex+Wright&background=3b9d82&color=fff" class="user-avatar" />
+                        <span class="small fw-bold">Alex Wright</span>
+                        <span class="small text-muted">• Admin Panel</span>
+                    </div>
+                    <p class="small text-muted mb-0">Updated stock quantity for 'Industrial Grade Steel' across 3 warehouses.</p>
+                    <div class="log-diff">
+                        <span class="diff-old">- stock_qty: 450</span><br>
+                        <span class="diff-new">+ stock_qty: 1200</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item danger">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="log-time">Today, 08:20:00 AM</div>
+                        <span class="action-badge bg-soft-danger">Security Exception</span>
+                    </div>
+                    <div class="log-title">Unauthorized Login Attempt Detected</div>
+                    <div class="log-user">
+                        <i class="fas fa-user-secret text-danger"></i>
+                        <span class="small fw-bold">Guest Node_12</span>
+                        <span class="small text-muted">• External IP: 182.44.12.9</span>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.05); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <div class="small fw-bold text-danger mb-1">ALERT TRIGGERED</div>
+                        <p class="small text-danger mb-0">Brute force mitigation active. IP blacklisted for 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item warning">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="log-time">Yesterday, 11:55 PM</div>
+                        <span class="action-badge bg-soft-warning">Configuration Change</span>
+                    </div>
+                    <div class="log-title">API Key Regeneration: Stripe_Connect</div>
+                    <div class="log-user">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Chen&background=f59e0b&color=fff" class="user-avatar" />
+                        <span class="small fw-bold">Sarah Chen</span>
+                        <span class="small text-muted">• System Dev</span>
+                    </div>
+                    <p class="small text-muted mb-0">Production API keys for payment gateway were rotated as per security policy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRID VIEW (HIDDEN) -->
+    <div id="view-grid" class="audit-view d-none">
+        <div class="forensic-grid">
+            @for(int i=1; i<=6; i++){
+                <div class="forensic-card">
+                    <div class="status-indicator" style="background: @(i%3==0 ? "#ef4444" : "#3b9d82")"></div>
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-bold text-muted">#LOG-@i</span>
+                            <span class="small opacity-50">12m ago</span>
+                        </div>
+                        <h6 class="fw-bold mb-1">User Policy Updated</h6>
+                        <p class="small text-muted mb-3">Permissions changed for 'Editor' role.</p>
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="https://ui-avatars.com/api/?name=U-@i" class="user-avatar" />
+                            <span class="small fw-bold">System Admin</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- TABLE VIEW (HIDDEN) -->
+    <div id="view-table" class="audit-view d-none">
+        <div class="card border-0 shadow-sm rounded-16 overflow-hidden">
+            <table class="table table-hover mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="border-0 px-4 py-3 small fw-bold">TIMESTAMP</th>
+                        <th class="border-0 px-4 py-3 small fw-bold">ACTION</th>
+                        <th class="border-0 px-4 py-3 small fw-bold">USER</th>
+                        <th class="border-0 px-4 py-3 small fw-bold">ENTITY</th>
+                        <th class="border-0 px-4 py-3 small fw-bold">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-3 small">2026-03-08 10:22:15</td>
+                        <td class="px-4 py-3 fw-bold">UPDATE</td>
+                        <td class="px-4 py-3 d-flex align-items-center gap-2">
+                             <img src="https://ui-avatars.com/api/?name=AW" class="user-avatar" />
+                             <span class="small">alex_wright</span>
+                        </td>
+                        <td class="px-4 py-3 small">Stock_Master</td>
+                        <td class="px-4 py-3"><span class="badge bg-success">SUCCESS</span></td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-3 small">2026-03-08 09:12:00</td>
+                        <td class="px-4 py-3 fw-bold text-danger">DELETE</td>
+                        <td class="px-4 py-3 d-flex align-items-center gap-2">
+                             <img src="https://ui-avatars.com/api/?name=SC" class="user-avatar" />
+                             <span class="small">sarah_chen</span>
+                        </td>
+                        <td class="px-4 py-3 small">Legacy_Report_Beta</td>
+                        <td class="px-4 py-3"><span class="badge bg-success">SUCCESS</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchView(view) {
+        // Update Buttons
+        document.querySelectorAll('.switch-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        // Update Views
+        document.querySelectorAll('.audit-view').forEach(v => v.classList.add('d-none'));
+        document.getElementById('view-' + view).classList.remove('d-none');
+    }
+
+    function copyHTML() {
+        const html = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(html).then(() => {
+            const btn = document.getElementById('btnCopyHTML');
+            if(btn) {
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check me-2"></i> COPIED!';
+                btn.style.backgroundColor = '#10b981';
+                btn.style.borderColor = '#10b981';
+                btn.style.color = '#fff';
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.style.backgroundColor = '#1e293b';
+                    btn.style.borderColor = 'rgba(255,255,255,0.1)';
+                }, 2000);
+            }
+        });
+    }
+</script>
+
+</div>
+<!-- Unified Copy HTML Button -->
+<button class="btn btn-sm btn-outline-primary copy-btn shadow" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: white; border-radius: 6px;" data-target="page-wrapper"><i class="fa-regular fa-copy"></i> Copy HTML</button>

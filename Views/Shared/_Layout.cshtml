@@ -74,7 +74,7 @@
     </div>
 
     <!-- Global Copy HTML Modal -->
-    <div class="modal" id="globalCopyHtmlModal">
+    <div class="modal fade" id="globalCopyHtmlModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -212,10 +212,14 @@
         
         // Modals Script
         function openModal(id) {
-            document.getElementById(id).classList.add('show');
+            var modalEl = document.getElementById(id);
+            var myModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            myModal.show();
         }
         function closeModal(id) {
-            document.getElementById(id).classList.remove('show');
+            var modalEl = document.getElementById(id);
+            var myModal = bootstrap.Modal.getInstance(modalEl);
+            if (myModal) myModal.hide();
         }
 
         // Floating Menu Logic for Collapsed Sidebar

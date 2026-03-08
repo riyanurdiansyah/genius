@@ -8,6 +8,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Medium.woff2') format('woff2');
@@ -15,6 +16,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-SemiBold.woff2') format('woff2');
@@ -22,6 +24,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Bold.woff2') format('woff2');
@@ -29,6 +32,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-ExtraBold.woff2') format('woff2');
@@ -36,6 +40,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Black.woff2') format('woff2');
@@ -52,6 +57,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeHelix';
     src: url('../font/helix/KalbeHelix-Regular.woff2') format('woff2');
@@ -59,6 +65,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeHelix';
     src: url('../font/helix/KalbeHelix-Medium.woff2') format('woff2');
@@ -66,6 +73,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeHelix';
     src: url('../font/helix/KalbeHelix-SemiBold.woff2') format('woff2');
@@ -73,6 +81,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeHelix';
     src: url('../font/helix/KalbeHelix-Bold.woff2') format('woff2');
@@ -80,6 +89,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeHelix';
     src: url('../font/helix/KalbeHelix-ExtraBold.woff2') format('woff2');
@@ -96,6 +106,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeRounded';
     src: url('../font/rounded/KalbeRounded-Regular.woff2') format('woff2');
@@ -103,6 +114,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeRounded';
     src: url('../font/rounded/KalbeRounded-Medium.woff2') format('woff2');
@@ -110,6 +122,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeRounded';
     src: url('../font/rounded/KalbeRounded-SemiBold.woff2') format('woff2');
@@ -117,6 +130,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeRounded';
     src: url('../font/rounded/KalbeRounded-Bold.woff2') format('woff2');
@@ -124,6 +138,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'KalbeRounded';
     src: url('../font/rounded/KalbeRounded-ExtraBold.woff2') format('woff2');
@@ -134,7 +149,9 @@
 
 :root {
     /* Fonts — priority: Geometric → Helix → Rounded → system */
-    --font-family-primary: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-family-primary: 'KalbeGeometric', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --bs-body-font-family: var(--font-family-primary);
+    --bs-font-sans-serif: var(--font-family-primary);
 
     /* Color Palette from Image */
     --color-1: #051F20;

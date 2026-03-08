@@ -4,11 +4,25 @@
 
 <link rel="stylesheet" href="/css/ui-builder.css" />
 
-<div class="builder-container">
+<!-- Dashboard Projects Overlay -->
+<div class="project-dashboard" id="projectDashboard" style="padding: 40px; background: #f8fafc; min-height: calc(100vh - 65px);">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold m-0 text-dark"><i class="fas fa-folder-open text-primary me-2"></i> Your Projects</h3>
+        <button class="btn btn-primary" onclick="createProject()"><i class="fas fa-plus shadow-sm me-1"></i> New Project</button>
+    </div>
+    <div class="row g-4" id="projectGrid">
+        <!-- Injected via JS -->
+    </div>
+</div>
+
+<div class="builder-container" id="builderMain" style="display: none;">
     <!-- Sidebar / Components Palette -->
     <div class="builder-sidebar">
         <div class="builder-sidebar-header pb-0 border-bottom-0">
-            <h5 class="mb-2">UI Builder</h5>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0" id="currentProjectTitle">UI Builder</h5>
+                <button class="btn btn-sm btn-light border" onclick="closeProject()" title="Close Project"><i class="fas fa-times"></i></button>
+            </div>
             <ul class="nav nav-tabs" style="font-size: 13px; border-bottom: none;">
                 <li class="nav-item">
                     <button class="nav-link active px-3 py-2" data-bs-toggle="tab" data-bs-target="#components-tab" type="button">Components</button>
@@ -55,6 +69,40 @@
             </div>
         </div>
 
+        <!-- Flowchart Sidebar (hidden by default) -->
+        <div id="flowchartSidebarContent" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
+            <div class="builder-sidebar-header pb-0 border-bottom-0">
+                <ul class="nav nav-tabs" style="font-size: 13px; border-bottom: none;">
+                    <li class="nav-item">
+                        <button class="nav-link active px-3 py-2" data-bs-toggle="tab" data-bs-target="#fc-comp-tab" type="button">Objects</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-3 py-2" data-bs-toggle="tab" data-bs-target="#fc-pages-tab" type="button">Diagrams</button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="tab-content builder-components flex-grow-1" style="overflow-y:auto;">
+                <!-- FLOWCHART COMP TAB -->
+                <div class="tab-pane fade show active p-3" id="fc-comp-tab">
+                    <div class="component-group-title">Shapes (Drag & Drop)</div>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <div class="component-item mb-2 w-100" style="padding:10px; font-size:12px;" draggable="true" ondragstart="Flowchart.drag(event)" data-fc-type="start"><i class="fas fa-circle-play text-primary me-2"></i> Start/End</div>
+                        <div class="component-item mb-2 w-100" style="padding:10px; font-size:12px;" draggable="true" ondragstart="Flowchart.drag(event)" data-fc-type="process"><i class="fas fa-square text-success me-2"></i> Process</div>
+                        <div class="component-item mb-2 w-100" style="padding:10px; font-size:12px;" draggable="true" ondragstart="Flowchart.drag(event)" data-fc-type="decision"><i class="fas fa-diamond text-warning me-2"></i> Decision</div>
+                        <div class="component-item mb-2 w-100" style="padding:10px; font-size:12px;" draggable="true" ondragstart="Flowchart.drag(event)" data-fc-type="data"><i class="fas fa-database text-info me-2"></i> Data/IO</div>
+                    </div>
+                    <div class="component-group-title">Elements on Canvas</div>
+                    <div id="fcNodeList"></div>
+                </div>
+                <!-- FLOWCHART PAGES TAB -->
+                <div class="tab-pane fade p-3 h-100" id="fc-pages-tab">
+                    <button class="btn btn-primary w-100 mb-3 btn-sm" onclick="Flowchart.addNewPageModal()"><i class="fas fa-plus me-1"></i> New Diagram</button>
+                    <div id="fcPagesList"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- FSD Sidebar (hidden by default) -->
         <div id="fsdSidebarContent" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
             <div class="builder-sidebar-header pb-0 border-bottom-0">
@@ -71,6 +119,7 @@
                 <!-- FSD COMPONENTS TAB -->
                 <div class="tab-pane fade show active p-3" id="fsd-comp-tab">
                     <div class="component-group-title">FSD Elements</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="cover"><i class="fa-solid fa-file-signature text-warning"></i> Cover Page Document</div>
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="landscape"><i class="fa-solid fa-circle-info"></i> General Information</div>
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="process"><i class="fa-solid fa-random"></i> As-Is vs To-Be</div>
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="roles"><i class="fa-solid fa-user-shield"></i> User Role Access</div>
@@ -79,6 +128,7 @@
                     <div class="component-group-title mt-4">Integrations</div>
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="prototype"><i class="fa-solid fa-desktop"></i> Embed Prototype</div>
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="erd"><i class="fa-solid fa-project-diagram"></i> Embed ERD Schema</div>
+                    <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="flowchart"><i class="fa-solid fa-sitemap"></i> Embed Flowchart</div>
                 </div>
                 <!-- FSD PAGES TAB -->
                 <div class="tab-pane fade p-3" id="fsd-pages-tab">
@@ -97,6 +147,7 @@
                 <button class="ws-tab active" onclick="switchWorkspace('prototype',this)"><i class="fas fa-paint-brush"></i> Prototype</button>
                 <button class="ws-tab" onclick="switchWorkspace('fsd',this)"><i class="fas fa-file-alt"></i> FSD</button>
                 <button class="ws-tab" onclick="switchWorkspace('erd',this)"><i class="fas fa-project-diagram"></i> ERD</button>
+                <button class="ws-tab" onclick="switchWorkspace('flowchart',this)"><i class="fas fa-sitemap"></i> Flowchart</button>
             </div>
             <div class="toolbar-right" id="toolbarActions">
                 <button class="btn btn-sm btn-outline-danger me-2" onclick="clearCanvas()"><i class="fa-solid fa-trash"></i> Clear</button>
@@ -124,6 +175,15 @@
         <div class="workspace-panel" id="panel-erd">
             <div class="erd-canvas-area" id="erdCanvas">
                 <svg id="erdSvg"></svg>
+            </div>
+        </div>
+
+        <!-- FLOWCHART PANEL -->
+        <div class="workspace-panel" id="panel-flowchart" style="background:#e2e8f0; overflow-y:auto; overflow-x:auto;">
+            <div style="display:flex; justify-content:center; align-items:flex-start; padding: 40px 20px; min-width:min-content;">
+                <div class="fc-paper border drop-zone" id="flowchartCanvas" ondrop="Flowchart.drop(event)" ondragover="Flowchart.allowDrop(event)" style="position: relative; background:white; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:794px; min-height:400px; height: 400px; overflow: hidden; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; transition: width 0.2s, height 0.2s;">
+                    <svg id="flowchartSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible;"></svg>
+                </div>
             </div>
         </div>
     </div>
@@ -235,28 +295,245 @@
     </div>
 </div>
 
+<!-- Modal for Adding Flowchart Page -->
+<div class="modal fade" id="addFcPageModal" tabindex="-1" style="z-index: 1060;">
+    <div class="modal-dialog modal-sm modal-dialog-centered" style="pointer-events: auto;">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fs-6">Add New Diagram</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label">Sequence (Optional)</label>
+                <input type="text" class="form-control mb-2" id="newFcPageNumInput" placeholder="e.g. 1.0">
+                <label class="form-label">Flowchart Title</label>
+                <input type="text" class="form-control" id="newFcPageNameInput" placeholder="e.g. Login User Flow">
+            </div>
+            <div class="modal-footer border-top-0 pt-0">
+                <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary px-3" onclick="Flowchart.confirmAddPage()">Add Diagram</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/js/ui-builder-fsd.js"></script>
 <script src="/js/ui-builder-erd.js"></script>
+<script src="/js/ui-builder-flowchart.js"></script>
 <!-- html2pdf for FSD Export -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
+<!-- Firebase SDK Integrasi -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+
 <script>
+    /* ── Prototype Init Logic ────────────── */
+    let pages = [];
+    let currentPageId = null;
+
+    /* ── Firebase Configuration ────────────── */
+    // TODO: GANTI DENGAN KUNCI PRODUKSI FIREBASE FIRESTORE ANDA
+    const firebaseConfig = {
+        apiKey: "AIzaSyAkHR9hh2Y2QjpkOXr0PC4AZHdK5tBd854",
+        authDomain: "kuda-300c0.firebaseapp.com",
+        projectId: "kuda-300c0",
+        storageBucket: "kuda-300c0.firebasestorage.app",
+        messagingSenderId: "683068549402",
+        appId: "1:683068549402:web:5945369acce65e999de4a3",
+        measurementId: "G-RVGR1LE9LS"
+    };
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
+    /* ── App Data & Project Management ────────────── */
+    let AppData = { projects: [] };
+    let currentProject = null;
+
+    async function fetchProjects() {
+        const grid = document.getElementById('projectGrid');
+        if (grid) grid.innerHTML = `<div class="col-12 text-center text-muted" style="padding:40px;"><i class="fas fa-spinner fa-spin fs-1 mb-3"></i><br>Connecting to Firebase Firestore...</div>`;
+        
+        try {
+            const snapshot = await db.collection("projects").get();
+            AppData.projects = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            renderProjects();
+        } catch (error) {
+            console.error("Firestore Error: ", error);
+            if (grid) grid.innerHTML = `<div class="col-12 text-center text-danger" style="padding:40px;"><i class="fas fa-exclamation-triangle fs-1 mb-3"></i><br>Gagal Terhubung ke Firebase!<br><small class="text-muted">Pastikan Anda telah mengisi 'firebaseConfig' di file Design.cshtml dan permission Firestore telah dibuka.</small></div>`;
+        }
+    }
+
+    function renderProjects() {
+        const grid = document.getElementById('projectGrid');
+        if (!grid) return;
+        if (AppData.projects.length === 0) {
+            grid.innerHTML = `<div class="col-12 text-center text-muted" style="padding:40px;"><i class="fas fa-box-open fs-1 mb-3"></i><br>No projects found in Cloud. Create one to get started!</div>`;
+            return;
+        }
+
+        grid.innerHTML = AppData.projects.map(p => `
+            <div class="col-md-4 col-sm-6">
+                <div class="card shadow-sm border-0 h-100" style="transition:all 0.2s;" onmouseover="this.classList.add('shadow')" onmouseout="this.classList.remove('shadow')">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title fw-bold text-dark">${p.name}</h5>
+                            <button class="btn btn-sm text-danger" onclick="deleteProject('${p.id}', event)"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <p class="text-muted small mb-3">Last updated: ${p.updatedAt || 'Unknown'}</p>
+                        <div class="d-flex gap-2 text-muted" style="font-size: 12px;">
+                            <span><i class="fas fa-paint-brush"></i> ${p.prototypePages?.length || 1} Pages</span>
+                            <span><i class="fas fa-project-diagram"></i> ${p.erdEntities?.length || 0} Entities</span>
+                            <span><i class="fas fa-sitemap"></i> ${p.flowchartDiagrams?.length || 1} Flows</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-0 pt-0">
+                        <button class="btn btn-outline-primary w-100 btn-sm" onclick="loadProject('${p.id}')">Open Project <i class="fas fa-cloud-download-alt ms-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    async function createProject() {
+        const name = prompt("Enter project name:", "New Cloud Project");
+        if (!name) return;
+        
+        const newProj = {
+            id: 'proj-' + Date.now(),
+            name: name,
+            updatedAt: new Date().toLocaleTimeString(),
+            prototypePages: [{ id: 'page-1', name: 'Home', html: '' }],
+            fsdPages: [{ id: 'fsd-cover', num: 'Cover', name: 'Halaman Utama', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['cover'] : '' }],
+            erdEntities: [],
+            erdRelationships: [],
+            flowchartDiagrams: [{ id: 'fc-page-1', num: '1.0', name: 'Main Flow', nodes: [], edges: [] }]
+        };
+        
+        try {
+            await db.collection("projects").doc(newProj.id).set(newProj);
+            AppData.projects.push(newProj);
+            renderProjects();
+        } catch (e) {
+            alert("Firebase Error: Gagal Membuat Proyek. \nPastikan Rules Firestore Anda (allow read, write: if true;)");
+        }
+    }
+
+    async function deleteProject(id, ev) {
+        if (ev) ev.stopPropagation();
+        if (confirm("Hapus proyek Cloud ini beserta seluruh isinya secara permanen dari Firebase?")) {
+            try {
+                await db.collection("projects").doc(id).delete();
+                AppData.projects = AppData.projects.filter(p => p.id !== id);
+                renderProjects();
+            } catch (e) {
+                alert("Firebase Error: Gagal Menghapus Proyek.");
+            }
+        }
+    }
+
+    function loadProject(id) {
+        const proj = AppData.projects.find(p => p.id === id);
+        if (!proj) return;
+        currentProject = proj;
+
+        // Bind data state directly securely
+        pages = currentProject.prototypePages || [{ id: 'page-1', name: 'Home', html: '' }];
+        currentPageId = pages[0].id;
+        const mainCanvas = document.getElementById('mainCanvas');
+        if (mainCanvas) mainCanvas.innerHTML = pages[0].html || '';
+        
+        FSD.pages = currentProject.fsdPages || [{ id: 'fsd-cover', num: 'Cover', name: 'Halaman Utama', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['cover'] : '' }];
+        FSD.currentPageId = FSD.pages[0].id;
+        
+        ERD.entities = currentProject.erdEntities || [];
+        ERD.relationships = currentProject.erdRelationships || [];
+        
+        Flowchart.diagrams = currentProject.flowchartDiagrams || [{ id: 'fc-page-1', num: '1.0', name: 'Main Flow', nodes: [], edges: [] }];
+        Flowchart.currentPageId = Flowchart.diagrams[0].id;
+
+        document.getElementById('currentProjectTitle').textContent = proj.name;
+        document.getElementById('projectDashboard').style.display = 'none';
+        document.getElementById('builderMain').style.display = 'flex';
+
+        // Refresh UI
+        currentWorkspace = ''; 
+        const wsTab = document.querySelector(`.ws-tab[onclick="switchWorkspace('prototype',this)"]`);
+        if (wsTab) switchWorkspace('prototype', wsTab);
+    }
+
+    function closeProject() {
+        saveAllData();
+        currentProject = null;
+        document.getElementById('builderMain').style.display = 'none';
+        document.getElementById('projectDashboard').style.display = 'block';
+        // Re-fetch project list incase auto-save updated metadata
+        fetchProjects(); 
+    }
+
+    let isSavingToCloud = false;
+    async function saveAllData() {
+        if (!currentProject || isSavingToCloud) return;
+        isSavingToCloud = true;
+
+        // Capture current active state
+        if (currentWorkspace === 'prototype') {
+            const cd = pages.find(p => p.id === currentPageId);
+            if (cd) cd.html = document.getElementById('mainCanvas').innerHTML;
+        } else if (currentWorkspace === 'fsd') {
+            const fd = FSD.pages.find(p => p.id === FSD.currentPageId);
+            const fCnv = document.getElementById('fsdCanvas');
+            if (fd && fCnv) fd.html = fCnv.innerHTML;
+        }
+
+        currentProject.prototypePages = pages;
+        currentProject.fsdPages = FSD.pages;
+        currentProject.erdEntities = ERD.entities;
+        currentProject.erdRelationships = ERD.relationships;
+        currentProject.flowchartDiagrams = Flowchart.diagrams;
+        currentProject.updatedAt = new Date().toLocaleTimeString();
+
+        // Menyimpan status dokumen terbaru langsung ke JSON Firestore
+        try {
+            await db.collection("projects").doc(currentProject.id).set(currentProject);
+            console.log("Auto-saved to Cloud Firestore");
+        } catch(e) {
+            console.error("Firebase Sync Error", e);
+        } finally {
+            isSavingToCloud = false;
+        }
+    }
+
+    // Auto save synchronize to Firebase every 15 seconds
+    setInterval(() => {
+        saveAllData();
+    }, 15000);
+
+    // Initial Dashboard rendering trigger fetch from Firebase
+    window.addEventListener('DOMContentLoaded', () => {
+        fetchProjects();
+    });
+
     /* ── Workspace Switching ────────────── */
     let currentWorkspace = 'prototype';
 
     function switchWorkspace(ws, btn) {
         if (ws === currentWorkspace) return;
-        currentWorkspace = ws;
 
         // Save prototype canvas before leaving
-        if (ws !== 'prototype') {
+        if (currentWorkspace === 'prototype') {
             const cd = pages.find(p => p.id === currentPageId);
             if (cd) cd.html = document.getElementById('mainCanvas').innerHTML;
         }
 
+        currentWorkspace = ws;
+
         // Tab active state
         document.querySelectorAll('.ws-tab').forEach(t => t.classList.remove('active'));
-        btn.classList.add('active');
+        if (btn) btn.classList.add('active');
 
         // Panel visibility
         document.querySelectorAll('.workspace-panel').forEach(p => p.classList.remove('active'));
@@ -266,29 +543,37 @@
         const protoTabs = document.getElementById('sidebarProtoTabs');
         const erdSb = document.getElementById('erdSidebarContent');
         const fsdSb = document.getElementById('fsdSidebarContent');
+        const flowchartSb = document.getElementById('flowchartSidebarContent');
         const sidebarHeader = document.querySelector('.builder-sidebar-header h5');
         const sidebarUl = document.querySelector('.builder-sidebar-header ul');
 
+        // Hide all sidebar contents first
+        if (protoTabs) protoTabs.style.display = 'none';
+        if (erdSb) erdSb.style.display = 'none';
+        if (fsdSb) fsdSb.style.display = 'none';
+        if (flowchartSb) flowchartSb.style.display = 'none';
+
         if (ws === 'erd') {
-            protoTabs.style.display = 'none';
-            if (fsdSb) fsdSb.style.display = 'none';
-            erdSb.style.display = 'flex';
+            if (erdSb) erdSb.style.display = 'flex';
             if (sidebarHeader) sidebarHeader.textContent = 'ERD Builder';
             if (sidebarUl) sidebarUl.style.display = 'none';
             ERD.init();
         } else if (ws === 'fsd') {
-            protoTabs.style.display = 'none';
-            erdSb.style.display = 'none';
             if (fsdSb) fsdSb.style.display = 'flex';
             if (sidebarHeader) sidebarHeader.textContent = 'FSD Builder';
-            if (sidebarUl) sidebarUl.style.display = 'none'; // Using fsd tab ul
+            if (sidebarUl) sidebarUl.style.display = 'none';
             FSD.init();
+        } else if (ws === 'flowchart') {
+            if (flowchartSb) flowchartSb.style.display = 'flex';
+            if (sidebarHeader) sidebarHeader.textContent = 'Flowchart Builder';
+            if (sidebarUl) sidebarUl.style.display = 'none';
+            Flowchart.init();
         } else {
-            if (fsdSb) fsdSb.style.display = 'none';
-            protoTabs.style.display = '';
-            erdSb.style.display = 'none';
+            if (protoTabs) protoTabs.style.display = 'flex';
             if (sidebarHeader) sidebarHeader.textContent = 'UI Builder';
-            if (sidebarUl) sidebarUl.style.display = '';
+            if (sidebarUl) sidebarUl.style.display = 'flex';
+            renderPages(); 
+            switchPage(currentPageId);
         }
 
         // Toolbar actions update
@@ -301,16 +586,46 @@
                 <button class="btn btn-sm btn-outline-primary" onclick="exportFSDPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>`;
         } else if (ws === 'erd') {
             actions.innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="exportERD()"><i class="fas fa-download"></i> Export SQL</button>`;
+        } else if (ws === 'flowchart') {
+            actions.innerHTML = `<button class="btn btn-sm btn-outline-danger me-2" onclick="Flowchart.deletePage(Flowchart.currentPageId)"><i class="fa-solid fa-trash"></i> Delete Diagram</button>
+                                 <button class="btn btn-sm btn-outline-warning me-2" onclick="FSD.compactDiagram()"><i class="fa-solid fa-compress-arrows-alt"></i> Fix Layout (A4)</button>
+                                 <button class="btn btn-sm btn-outline-primary me-2" onclick="Flowchart.clearCanvas()"><i class="fa-solid fa-eraser"></i> Clear Canvas</button>
+                                 <button class="btn btn-sm btn-outline-primary" onclick="exportFlowchartPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>`;
         }
     }
 
     // Markdown export removed since FSD is now visual node based
 
     function exportFSDPDF() {
-        const el = document.querySelector('.fsd-paper');
-        if (!el) return;
+        if (!FSD || !FSD.pages || FSD.pages.length === 0) return;
         
-        const clone = el.cloneNode(true);
+        const el = document.getElementById('fsdCanvas');
+        
+        // Segarkan layar terakhir ke array memori
+        const fc = FSD.pages.find(p => p.id === FSD.currentPageId);
+        if (fc && el) fc.html = el.innerHTML;
+        
+        const tempContainer = document.createElement('div');
+        tempContainer.className = 'fsd-paper';
+        
+        let counter = 0;
+        FSD.pages.forEach((page) => {
+            const pageDiv = document.createElement('div');
+            // Supaya tampilan tetap nyaman dan rapi antar halaman, tanpa bayangan dll
+            pageDiv.innerHTML = page.html || '<div style="color:#ccc;text-align:center;">[Blank Page]</div>';
+            
+            // Inject Class bawaan html2pdf.js agar PDF dipotong sempurna setiap pergantian dokumen yang berbeda
+            if (counter < FSD.pages.length - 1) {
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'html2pdf__page-break';
+                pageDiv.appendChild(breakDiv);
+            }
+            tempContainer.appendChild(pageDiv);
+            counter++;
+        });
+
+        // Set clone referensi ke DOM tempContainer gabungan semua halaman FSD
+        const clone = tempContainer;
         
         // 1. Tangkap input tepat setelah clone sebelum ada elemen yang dibuang
         const origInputs = el.querySelectorAll('input, select, textarea');
@@ -398,17 +713,17 @@
         const fontOverrides = document.createElement('style');
         const baseUrl = window.location.origin;
         fontOverrides.innerHTML = `
-            @font-face {
+            @@font-face {
                 font-family: 'KalbeGeometric';
                 src: url('${baseUrl}/font/geometric/KalbeGeometric-Regular.woff2') format('woff2');
                 font-weight: 400; font-style: normal;
             }
-            @font-face {
+            @@font-face {
                 font-family: 'KalbeGeometric';
                 src: url('${baseUrl}/font/geometric/KalbeGeometric-Bold.woff2') format('woff2');
                 font-weight: 700; font-style: normal;
             }
-            @font-face {
+            @@font-face {
                 font-family: 'KalbeGeometric';
                 src: url('${baseUrl}/font/geometric/KalbeGeometric-Medium.woff2') format('woff2');
                 font-weight: 500; font-style: normal;
@@ -511,10 +826,6 @@
         const modal = document.getElementById('htmlPreviewModal');
         modal.style.display = 'flex'; modal.classList.add('show');
     }
-
-    /* ── Prototype Pages Logic ──────────── */
-    let pages = [{ id: 'page-1', name: 'Home', html: '' }];
-    let currentPageId = 'page-1';
 
     function renderPages() {
         const list = document.getElementById('pagesList');
@@ -757,5 +1068,75 @@
     }
     function closeModal() { const m = document.getElementById('htmlPreviewModal'); m.style.display = 'none'; m.classList.remove('show'); }
     function copySource() { navigator.clipboard.writeText(document.getElementById('exportCode').textContent).then(() => { alert("Copied!"); closeModal(); }); }
+    function exportFlowchartPDF() {
+        const canvas = document.getElementById('flowchartCanvas');
+        if (!canvas) return;
+
+        // Clone for PDF production
+        const clone = canvas.cloneNode(true);
+        clone.id = 'fc-clone-pdf';
+        
+        // Remove interactive controls
+        clone.querySelectorAll('.fc-actions').forEach(el => el.remove());
+        clone.classList.remove('fc-selected', 'fc-blink');
+        clone.querySelectorAll('.fc-selected').forEach(el => el.classList.remove('fc-selected'));
+        
+        // Transform textareas into static text for PDF rendering
+        const origTextareas = canvas.querySelectorAll('textarea');
+        const cloneTextareas = clone.querySelectorAll('textarea');
+        origTextareas.forEach((ta, i) => {
+            const val = ta.value;
+            const span = document.createElement('div');
+            span.style.width = '100%';
+            span.style.height = '100%';
+            span.style.display = 'flex';
+            span.style.justifyContent = 'center';
+            span.style.alignItems = 'center';
+            span.style.textAlign = 'center';
+            span.style.fontSize = ta.style.fontSize || '12px';
+            span.style.fontWeight = 'bold';
+            span.style.color = '#333';
+            span.style.whiteSpace = 'pre-wrap';
+            span.innerText = val;
+            
+            const parent = cloneTextareas[i].parentNode;
+            if (parent) parent.replaceChild(span, cloneTextareas[i]);
+        });
+
+        // Prepare clone styles for A4 high-quality export
+        clone.style.width = '794px'; 
+        clone.style.minHeight = '1123px';
+        clone.style.overflow = 'visible';
+        clone.style.boxShadow = 'none';
+        clone.style.background = '#fff';
+        clone.style.border = '1px solid transparent'; // remove visual border during export
+
+        // Temporarily mount clone to the DOM so html2canvas can read computed styles properly
+        const container = canvas.parentElement;
+        const originalDisplay = canvas.style.display;
+        canvas.style.display = 'none';
+        container.appendChild(clone);
+
+        const opt = {
+            margin: [10, 0, 10, 0], // Optional top/bottom margin
+            filename: 'Flowchart_' + (Flowchart.diagrams.find(p => p.id === Flowchart.currentPageId)?.name || 'Diagram').replace(/[^a-zA-Z0-9]/g, '_') + '.pdf',
+            image: { type: 'jpeg', quality: 1.0 },
+            html2canvas: { 
+                scale: 2, 
+                useCORS: true, 
+                logging: false,
+                width: 794,
+                windowWidth: 794
+            },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(clone).save().then(() => {
+            // Clean up and restore original canvas
+            clone.remove();
+            canvas.style.display = originalDisplay;
+        });
+    }
+
     function formatHTML(html) { let tab = '    ', result = '', indent = ''; html.split(/>\s*</).forEach(function (el) { if (el.match(/^\/\w/)) indent = indent.substring(tab.length); result += indent + '<' + el + '>\r\n'; if (el.match(/^<?\\w[^>]*[^\/]$/) && !el.startsWith("input") && !el.startsWith("img")) indent += tab; }); return result.substring(1, result.length - 3); }
 </script>

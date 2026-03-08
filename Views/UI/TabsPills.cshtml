@@ -1,75 +1,438 @@
 @{ ViewData["Title"] = "Tabs & Pills"; }
-<div class="row">
-    <div class="col-md-6 mb-4">
-        <div class="card h-100">
-            <div class="card-header border-0 pb-0"><h5 class="mb-0 fw-bold">Nav Tabs</h5></div>
-            <div class="card-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-                  </li>
+
+<style>
+    /* 1. Minimal Underline Tabs */
+    .nav-tabs-minimal {
+        border-bottom: 2px solid #e2e8f0;
+        gap: 2rem;
+    }
+    .nav-tabs-minimal .nav-link {
+        border: none;
+        color: #64748b;
+        font-weight: 500;
+        padding: 0.75rem 0.25rem;
+        position: relative;
+        background: transparent;
+    }
+    .nav-tabs-minimal .nav-link:hover {
+        color: #334155;
+    }
+    .nav-tabs-minimal .nav-link.active {
+        color: var(--primary);
+        font-weight: 600;
+        background: transparent;
+    }
+    .nav-tabs-minimal .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: var(--primary);
+        border-radius: 2px 2px 0 0;
+    }
+
+    /* 2. iOS Segmented Control */
+    .nav-segmented {
+        background-color: #f1f5f9;
+        padding: 4px;
+        border-radius: 12px;
+        display: inline-flex;
+    }
+    .nav-segmented .nav-item {
+        flex: 1;
+    }
+    .nav-segmented .nav-link {
+        color: #64748b;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 0.5rem 1.5rem;
+        transition: all 0.2s ease;
+        text-align: center;
+        background: transparent;
+    }
+    .nav-segmented .nav-link:hover {
+        color: #0f172a;
+    }
+    .nav-segmented .nav-link.active {
+        background-color: #ffffff;
+        color: #0f172a;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        font-weight: 600;
+    }
+    
+    /* Dark Mode specific for segmented */
+    [data-theme="dark"] .nav-segmented {
+        background-color: #0f172a;
+    }
+    [data-theme="dark"] .nav-segmented .nav-link.active {
+        background-color: #1e293b;
+        color: #f8fafc;
+    }
+
+    /* 3. Soft Background Pills */
+    .nav-pills-soft .nav-link {
+        color: #64748b;
+        background: transparent;
+        border-radius: 50rem; /* pill shape */
+        padding: 0.5rem 1.25rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    .nav-pills-soft .nav-link:hover {
+        background: rgba(59, 157, 130, 0.05); /* very light primary */
+        color: var(--primary);
+    }
+    .nav-pills-soft .nav-link.active {
+        background: rgba(59, 157, 130, 0.15); /* primary with opacity */
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    /* 4. Gradient Glowing Pills */
+    .nav-pills-gradient .nav-link {
+        color: #64748b;
+        background: transparent;
+        border-radius: 12px;
+        padding: 0.6rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    .nav-pills-gradient .nav-link:hover {
+        background: #f8fafc;
+    }
+    [data-theme="dark"] .nav-pills-gradient .nav-link:hover {
+        background: #1e293b;
+    }
+    .nav-pills-gradient .nav-link.active {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* 5. Vertical Floating Layout */
+    .nav-vertical-modern {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .nav-vertical-modern .nav-link {
+        color: #64748b;
+        border-radius: 12px;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        background: transparent;
+    }
+    .nav-vertical-modern .nav-link i {
+        margin-right: 12px;
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+        opacity: 0.7;
+    }
+    .nav-vertical-modern .nav-link:hover {
+        background: #f1f5f9;
+        color: #334155;
+    }
+    .nav-vertical-modern .nav-link.active {
+        background: #ffffff;
+        color: var(--primary);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transform: translateX(5px); /* pop out effect */
+        font-weight: 600;
+    }
+    .nav-vertical-modern .nav-link.active i {
+        opacity: 1;
+        color: var(--primary);
+    }
+
+    [data-theme="dark"] .nav-vertical-modern .nav-link:hover { background: #1e293b; color: #fff; }
+    [data-theme="dark"] .nav-vertical-modern .nav-link.active { background: #1e293b; color: var(--primary); }
+
+    /* Indicator dot */
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .tab-content-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.02);
+        border: 1px solid #e2e8f0;
+    }
+    [data-theme="dark"] .tab-content-card {
+        background: #1e293b;
+        border-color: rgba(255,255,255,0.05);
+    }
+</style>
+
+<div class="row g-4 mb-5">
+    <div class="col-12">
+        <h4 class="fw-bold mb-1">Tabs & Pills</h4>
+        <p class="text-muted">Modern navigation panels, segmented controls, and vertical layouts.</p>
+    </div>
+
+    <!-- 1. Minimal Underline Tabs -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Minimal Underline</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="tabsMinimalUnderline"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="tabsMinimalUnderline">
+                <p class="text-muted small mb-4">Clean and spacious. Perfect for main page navigation menus.</p>
+                
+                <ul class="nav nav-tabs-minimal" id="minimalTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="min-overview-tab" data-bs-toggle="tab" data-bs-target="#min-overview" type="button" role="tab" aria-selected="true">Overview</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="min-activity-tab" data-bs-toggle="tab" data-bs-target="#min-activity" type="button" role="tab" aria-selected="false">Activity <span class="badge bg-danger ms-1 rounded-pill">3</span></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="min-settings-tab" data-bs-toggle="tab" data-bs-target="#min-settings" type="button" role="tab" aria-selected="false">Settings</button>
+                    </li>
                 </ul>
-                <div class="tab-content border-start border-end border-bottom p-3 bg-white" id="myTabContent">
-                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">This is some placeholder content the Home tab's associated content.</div>
-                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">This is some placeholder content the Profile tab's associated content.</div>
-                  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">This is some placeholder content the Contact tab's associated content.</div>
+                <div class="tab-content mt-4" id="minimalTabsContent">
+                    <div class="tab-pane fade show active" id="min-overview" role="tabpanel">
+                        <h6 class="fw-bold mb-2">Project Overview</h6>
+                        <p class="text-muted small">This represents a clean material-style tab system. It strips away borders and relies on a smooth bottom bar for active state indication.</p>
+                    </div>
+                    <div class="tab-pane fade" id="min-activity" role="tabpanel">
+                        <h6 class="fw-bold mb-2">Recent Activity</h6>
+                        <p class="text-muted small">You have 3 unread notifications in this section representing recent changes applied by your team members.</p>
+                    </div>
+                    <div class="tab-pane fade" id="min-settings" role="tabpanel">
+                        <h6 class="fw-bold mb-2">General Settings</h6>
+                        <p class="text-muted small">Configure application parameters, access control lists, and other vital project preferences here.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="col-md-6 mb-4">
-        <div class="card h-100">
-            <div class="card-header border-0 pb-0"><h5 class="mb-0 fw-bold">Nav Pills (Soft style)</h5></div>
-            <div class="card-body">
-                <style>
-                    .nav-soft-pills .nav-link { color: var(--text-dark); background: transparent; transition: all 0.2s; font-weight: 500;}
-                    .nav-soft-pills .nav-link.active { background: rgba(59, 157, 130, 0.1); color: var(--primary-color); border-radius: 20px;}
-                    .nav-soft-pills .nav-link:hover:not(.active) { background: #f8f9fa; border-radius: 20px; }
-                </style>
-                <ul class="nav nav-pills nav-soft-pills mb-3 gap-2" id="pills-tab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fas fa-home me-2"></i>Dashboard</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-user-circle me-2"></i>Account</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fas fa-shield-alt me-2"></i>Security</button>
-                  </li>
+
+    <!-- 2. iOS Segmented Control -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Segmented Controls</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="tabsSegmentedControls"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="tabsSegmentedControls">
+                <p class="text-muted small mb-4">Inspired by mobile iOS switchers. Great for dual or triple toggles.</p>
+                
+                <ul class="nav nav-segmented mb-4" id="segmentedTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#seg-monthly" type="button" role="tab" aria-selected="true">Monthly</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#seg-annual" type="button" role="tab" aria-selected="false">Annually</button>
+                    </li>
                 </ul>
-                <div class="tab-content" id="pills-tabContent">
-                  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">Dashboard panel content goes here with soft colored pill navigation.</div>
-                  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Account details and personal information section.</div>
-                  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Security settings, passwords, and 2FA configuration.</div>
+                <div class="tab-content" id="segmentedTabsContent">
+                    <div class="tab-pane fade show active" id="seg-monthly" role="tabpanel">
+                        <div class="bg-light rounded-3 p-3 text-center border">
+                            <h3 class="fw-bold text-dark mb-0">$29<span class="fs-6 text-muted fw-normal">/mo</span></h3>
+                            <p class="text-muted small mt-2 mb-0">Billed every month</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="seg-annual" role="tabpanel">
+                        <div class="bg-light rounded-3 p-3 text-center border border-primary">
+                            <span class="badge bg-success mb-2">Save 20%</span>
+                            <h3 class="fw-bold text-dark mb-0">$290<span class="fs-6 text-muted fw-normal">/yr</span></h3>
+                            <p class="text-muted small mt-2 mb-0">Billed annually</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="col-12 mb-4">
-        <div class="card">
-            <div class="card-header border-0 pb-0"><h5 class="mb-0 fw-bold">Vertical Left Tabs</h5></div>
-            <div class="card-body">
-                <div class="d-flex align-items-start border rounded p-3 bg-light">
-                  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="min-width: 15rem;">
-                    <button class="nav-link active text-start mb-2" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</button>
-                    <button class="nav-link text-start mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
-                    <button class="nav-link text-start mb-2" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
-                    <button class="nav-link text-start" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
-                  </div>
-                  <div class="tab-content bg-white p-4 w-100 rounded border h-100" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">Vertical tabs content...</div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Profile content...</div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages content...</div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Settings content...</div>
-                  </div>
+
+    <!-- 3. Soft Background Pills -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Soft Background Pills</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="tabsSoftPills"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="tabsSoftPills">
+                <p class="text-muted small mb-4">Rounded pills that only show background color when active or hovered.</p>
+                
+                <ul class="nav nav-pills-soft d-flex gap-2 flex-wrap mb-4" id="softPills" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#soft-all" type="button" role="tab"><i class="fas fa-border-all me-2"></i>All Tasks</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#soft-pending" type="button" role="tab"><span class="status-dot bg-warning me-2"></span>Pending</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#soft-done" type="button" role="tab"><span class="status-dot bg-success me-2"></span>Completed</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="softPillsContent">
+                    <div class="tab-pane fade show active" id="soft-all" role="tabpanel">
+                        <div class="alert alert-light border text-muted small"><i class="fas fa-info-circle me-2"></i>Showing all 124 available tasks in the system without any filtering applied.</div>
+                    </div>
+                    <div class="tab-pane fade" id="soft-pending" role="tabpanel">
+                        <div class="alert alert-warning border text-dark small"><i class="fas fa-clock me-2"></i>There are 12 tasks currently pending review by your department supervisor.</div>
+                    </div>
+                    <div class="tab-pane fade" id="soft-done" role="tabpanel">
+                        <div class="alert alert-success border text-dark small"><i class="fas fa-check-circle me-2"></i>Great job! 112 tasks have been successfully completed and archived.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Gradient Glowing Pills -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold">Gradient Glowing Cards</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="tabsGradientCards"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="tabsGradientCards">
+                <p class="text-muted small mb-4">Premium look for highlighting special features or subscriptions.</p>
+                
+                <ul class="nav nav-pills-gradient d-flex gap-2 flex-wrap mb-4" id="gradPills" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#grad-ai" type="button" role="tab"><i class="fas fa-robot me-2"></i>AI Engine</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#grad-analytics" type="button" role="tab"><i class="fas fa-chart-pie me-2"></i>Analytics</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="gradPillsContent">
+                    <div class="tab-pane fade show active" id="grad-ai" role="tabpanel">
+                        <div class="p-3 bg-light rounded-3 border">
+                            <h6 class="fw-bold mb-1 text-primary"><i class="fas fa-magic me-2"></i>AI Features Enabled</h6>
+                            <p class="text-muted small mb-0">The next-generation artificial intelligence module is currently active and assisting with data sorting.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="grad-analytics" role="tabpanel">
+                        <div class="p-3 bg-light rounded-3 border">
+                            <h6 class="fw-bold mb-1"><i class="fas fa-chart-line me-2"></i>Real-time Data Stream</h6>
+                            <p class="text-muted small mb-0">Data from multiple nodes is streaming. Turn on visual charts to see the full diagram flow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Vertical Floating Layout -->
+    <div class="col-12">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-start">
+                <div>
+                    <h5 class="mb-0 fw-bold">Vertical Floating Layout</h5>
+                    <p class="text-muted small mb-4 mt-1">A modern dashboard pattern separating navigation buttons from the content card.</p>
+                </div>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="tabsVerticalLayout"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body bg-light" style="border-radius: 0 0 16px 16px;" id="tabsVerticalLayout">
+                <div class="row g-4 align-items-start">
+                    <!-- Nav Column -->
+                    <div class="col-md-3 col-sm-4">
+                        <div class="nav flex-column nav-vertical-modern" id="v-modern-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#v-mod-profile" type="button" role="tab" aria-selected="true">
+                                <i class="fas fa-user"></i> My Profile
+                            </button>
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#v-mod-password" type="button" role="tab" aria-selected="false">
+                                <i class="fas fa-lock"></i> Security
+                            </button>
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#v-mod-billing" type="button" role="tab" aria-selected="false">
+                                <i class="fas fa-credit-card"></i> Billing Plan
+                            </button>
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#v-mod-notifications" type="button" role="tab" aria-selected="false">
+                                <i class="fas fa-bell"></i> Notifications
+                            </button>
+                            <hr class="my-2 border-secondary opacity-25">
+                            <button class="nav-link text-danger" type="button">
+                                <i class="fas fa-sign-out-alt text-danger"></i> Sign Out
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Column -->
+                    <div class="col-md-9 col-sm-8">
+                        <div class="tab-content tab-content-card h-100" id="v-modern-tabContent">
+                            <div class="tab-pane fade show active" id="v-mod-profile" role="tabpanel">
+                                <h5 class="fw-bold mb-4">Profile Information</h5>
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-auto">
+                                        <img src="https://ui-avatars.com/api/?name=Admin&background=3b9d82&color=fff&size=80" class="rounded-circle shadow-sm" alt="Avatar">
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-sm btn-primary rounded-pill px-3 me-2">Upload Photo</button>
+                                        <button class="btn btn-sm btn-light border rounded-pill px-3 text-muted">Remove</button>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">First Name</label>
+                                        <input type="text" class="form-control" value="Master">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Last Name</label>
+                                        <input type="text" class="form-control" value="Admin">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <button class="btn btn-primary px-4 rounded-pill">Save Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-mod-password" role="tabpanel">
+                                <h5 class="fw-bold mb-4">Update Password</h5>
+                                <p class="text-muted small">Ensure your account is using a long, random password to stay secure.</p>
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">Current Password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">New Password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <button class="btn btn-dark px-4 rounded-pill mt-2">Change Password</button>
+                            </div>
+                            <div class="tab-pane fade" id="v-mod-billing" role="tabpanel">
+                                <h5 class="fw-bold mb-4">Billing Configuration</h5>
+                                <div class="p-4 border rounded-3 bg-light text-center">
+                                    <i class="fas fa-file-invoice-dollar fa-3x text-muted mb-3 opacity-25"></i>
+                                    <h6>Free Plan Active</h6>
+                                    <p class="text-muted small mb-3">You do not have any active subscriptions yet.</p>
+                                    <button class="btn btn-outline-primary rounded-pill px-4">Upgrade Now</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-mod-notifications" role="tabpanel">
+                                <h5 class="fw-bold mb-0">Email Notifications</h5>
+                                <p class="text-muted small mb-4">Choose what we email you about.</p>
+                                
+                                <div class="form-check form-switch mb-3">
+                                  <input class="form-check-input" type="checkbox" id="notif-1" checked>
+                                  <label class="form-check-label ms-2 fw-medium" for="notif-1">News and updates</label>
+                                </div>
+                                <div class="form-check form-switch mb-3">
+                                  <input class="form-check-input" type="checkbox" id="notif-2" checked>
+                                  <label class="form-check-label ms-2 fw-medium" for="notif-2">Tips and tutorials</label>
+                                </div>
+                                <div class="form-check form-switch mb-3">
+                                  <input class="form-check-input" type="checkbox" id="notif-3">
+                                  <label class="form-check-label ms-2 fw-medium" for="notif-3">Special offers</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

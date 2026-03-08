@@ -1,73 +1,334 @@
 @{ ViewData["Title"] = "Buttons"; }
-<div class="row">
-    <div class="col-md-12 mb-4">
-        <div class="card">
-            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Solid & Outline Buttons</h5></div>
-            <div class="card-body">
-                <div class="mb-4">
+
+<style>
+    .btn-custom-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    .btn-section-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+        margin-top: 25px;
+    }
+    
+    /* Soft Buttons */
+    .btn-soft-primary { background: rgba(13, 110, 253, 0.1); color: #0d6efd; border: 1px solid transparent; }
+    .btn-soft-primary:hover { background: #0d6efd; color: #fff; }
+    
+    .btn-soft-success { background: rgba(25, 135, 84, 0.1); color: #198754; border: 1px solid transparent; }
+    .btn-soft-success:hover { background: #198754; color: #fff; }
+    
+    .btn-soft-danger { background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid transparent; }
+    .btn-soft-danger:hover { background: #dc3545; color: #fff; }
+    
+    .btn-soft-warning { background: rgba(255, 193, 7, 0.1); color: #ffc107; border: 1px solid transparent; }
+    .btn-soft-warning:hover { background: #ffc107; color: #212529; }
+    
+    .btn-soft-info { background: rgba(13, 202, 240, 0.1); color: #0dcaf0; border: 1px solid transparent; }
+    .btn-soft-info:hover { background: #0dcaf0; color: #000; }
+    
+    .btn-soft-dark { background: rgba(33, 37, 41, 0.1); color: #212529; border: 1px solid transparent; }
+    .btn-soft-dark:hover { background: #212529; color: #fff; }
+
+    /* Gradient Buttons */
+    .btn-gradient-primary { background: linear-gradient(45deg, var(--bs-primary), #4facfe); color: white; border: none; }
+    .btn-gradient-danger { background: linear-gradient(45deg, var(--bs-danger), #ff0844); color: white; border: none; text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
+    .btn-gradient-success { background: linear-gradient(45deg, var(--bs-success), #43e97b); color: white; border: none; text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
+    .btn-gradient-warning { background: linear-gradient(45deg, #f6d365, var(--bs-warning)); color: #000; border: none; }
+
+    /* Glowing Buttons */
+    .btn-glow-primary {
+        background: var(--bs-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+        border: none;
+    }
+    .btn-glow-primary:hover {
+        box-shadow: 0 6px 20px rgba(13, 110, 253, 0.6);
+        transform: translateY(-2px);
+    }
+    
+    .btn-glow-danger {
+        background: var(--bs-danger);
+        color: white;
+        box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+        border: none;
+    }
+    .btn-glow-danger:hover {
+        box-shadow: 0 6px 20px rgba(220, 53, 69, 0.6);
+        transform: translateY(-2px);
+    }
+
+    .btn-glow-success {
+        background: var(--bs-success);
+        color: white;
+        box-shadow: 0 4px 15px rgba(25, 135, 84, 0.4);
+        border: none;
+    }
+    .btn-glow-success:hover {
+        box-shadow: 0 6px 20px rgba(25, 135, 84, 0.6);
+        transform: translateY(-2px);
+    }
+
+    /* Icon Buttons (Circular) */
+    .btn-icon-circle {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Hover effects for regular buttons */
+    .btn:not(.btn-link) {
+        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+    
+    /* Button sizes adjustments */
+    .btn-xs {
+        padding: 0.125rem 0.25rem;
+        font-size: 0.75rem;
+        border-radius: 0.2rem;
+    }
+    
+    /* 3D Button */
+    .btn-3d {
+        transition: all 0.1s;
+        border-bottom: 4px solid;
+    }
+    .btn-3d:active {
+        transform: translateY(3px);
+        border-bottom-width: 1px;
+    }
+    .btn-3d-primary { background: var(--bs-primary); border-bottom-color: #0b5ed7; color: white; }
+    .btn-3d-success { background: var(--bs-success); border-bottom-color: #146c43; color: white; }
+    .btn-3d-danger { background: var(--bs-danger); border-bottom-color: #b02a37; color: white; }
+</style>
+
+<div class="row g-4 mb-5">
+    <!-- Solid & Soft Buttons -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-cube text-primary me-2"></i>Solid & Soft Buttons</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="buttonsSolidSoft"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="buttonsSolidSoft">
+                <div class="btn-section-title mt-0">Solid Colors</div>
+                <div class="btn-custom-group">
                     <button type="button" class="btn btn-primary">Primary</button>
                     <button type="button" class="btn btn-secondary">Secondary</button>
                     <button type="button" class="btn btn-success">Success</button>
                     <button type="button" class="btn btn-danger">Danger</button>
-                    <button type="button" class="btn btn-warning">Warning</button>
-                    <button type="button" class="btn btn-info">Info</button>
+                    <button type="button" class="btn btn-warning text-dark">Warning</button>
+                    <button type="button" class="btn btn-info text-dark">Info</button>
+                    <button type="button" class="btn btn-light text-dark">Light</button>
                     <button type="button" class="btn btn-dark">Dark</button>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-outline-primary">Primary</button>
-                    <button type="button" class="btn btn-outline-secondary">Secondary</button>
-                    <button type="button" class="btn btn-outline-success">Success</button>
-                    <button type="button" class="btn btn-outline-danger">Danger</button>
-                    <button type="button" class="btn btn-outline-warning">Warning</button>
-                    <button type="button" class="btn btn-outline-info">Info</button>
-                    <button type="button" class="btn btn-outline-dark">Dark</button>
+
+                <div class="btn-section-title">Soft / Flat Colors</div>
+                <p class="text-muted small mb-3">Modern alternative to outlines, using a subtle background.</p>
+                <div class="btn-custom-group mb-0">
+                    <button type="button" class="btn btn-soft-primary">Primary</button>
+                    <button type="button" class="btn btn-soft-secondary text-secondary" style="background:rgba(108,117,125,0.1)">Secondary</button>
+                    <button type="button" class="btn btn-soft-success">Success</button>
+                    <button type="button" class="btn btn-soft-danger">Danger</button>
+                    <button type="button" class="btn btn-soft-warning">Warning</button>
+                    <button type="button" class="btn btn-soft-info">Info</button>
+                    <button type="button" class="btn btn-soft-dark">Dark</button>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="col-md-6 mb-4">
-        <div class="card h-100">
-            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Modern Gradient & Icon Buttons</h5></div>
-            <div class="card-body">
-                <style>
-                    .btn-gradient-primary { background: linear-gradient(45deg, var(--primary-color), #20c997); color: white; border: none; }
-                    .btn-gradient-danger { background: linear-gradient(45deg, #f5365c, #f56036); color: white; border: none; }
-                </style>
-                <div class="mb-4">
-                    <button class="btn btn-gradient-primary px-4 py-2 rounded-pill shadow-sm">Gradient Primary</button>
-                    <button class="btn btn-gradient-danger px-4 py-2 rounded-pill shadow-sm">Gradient Danger</button>
+
+    <!-- Outline & Rounded Buttons -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="far fa-circle text-info me-2"></i>Outline & Pill Buttons</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="buttonsOutlinePill"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="buttonsOutlinePill">
+                <div class="btn-section-title mt-0">Outline Variations</div>
+                <div class="btn-custom-group">
+                    <button type="button" class="btn btn-outline-primary border-2">Primary</button>
+                    <button type="button" class="btn btn-outline-secondary border-2">Secondary</button>
+                    <button type="button" class="btn btn-outline-success border-2">Success</button>
+                    <button type="button" class="btn btn-outline-danger border-2">Danger</button>
+                    <button type="button" class="btn btn-outline-warning border-2">Warning</button>
+                    <button type="button" class="btn btn-outline-info border-2">Info</button>
+                    <button type="button" class="btn btn-outline-dark border-2">Dark</button>
                 </div>
-                <div>
-                    <button class="btn btn-primary"><i class="fas fa-download me-2"></i> Download</button>
-                    <button class="btn btn-danger"><i class="fas fa-trash me-2"></i> Delete</button>
-                    <button class="btn btn-white border shadow-sm"><i class="fas fa-cog"></i></button>
+
+                <div class="btn-section-title">Rounded Pills</div>
+                <p class="text-muted small mb-3">Add the <code>.rounded-pill</code> class to make buttons completely round on the edges.</p>
+                <div class="btn-custom-group mb-0">
+                    <button type="button" class="btn btn-primary rounded-pill px-4">Primary</button>
+                    <button type="button" class="btn btn-success rounded-pill px-4">Success</button>
+                    <button type="button" class="btn btn-outline-danger border-2 rounded-pill px-4">Danger</button>
+                    <button type="button" class="btn btn-soft-warning rounded-pill px-4">Warning</button>
+                    <button type="button" class="btn btn-dark rounded-pill px-4">Dark</button>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="col-md-6 mb-4">
-        <div class="card h-100">
-            <div class="card-header border-0"><h5 class="mb-0 fw-bold">Button Groups & Dropdowns</h5></div>
-            <div class="card-body">
-                <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-primary">Left</button>
-                  <button type="button" class="btn btn-primary">Middle</button>
-                  <button type="button" class="btn btn-primary">Right</button>
+
+    <!-- Cool & Premium Effects -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-magic text-warning me-2"></i>Premium Effects</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="buttonsPremiumEffects"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="buttonsPremiumEffects">
+                <div class="btn-section-title mt-0">Gradient Backgrounds</div>
+                <div class="btn-custom-group">
+                    <button class="btn btn-gradient-primary fw-bold shadow-sm">Premium Pro</button>
+                    <button class="btn btn-gradient-success fw-bold shadow-sm">Upgrade Plan</button>
+                    <button class="btn btn-gradient-danger fw-bold shadow-sm">Clear Data</button>
+                    <button class="btn btn-gradient-warning fw-bold shadow-sm">Get Premium</button>
                 </div>
-                <br>
-                <div class="btn-group mt-2">
-                  <button type="button" class="btn btn-success">Action</button>
-                  <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                  </ul>
+
+                <div class="btn-section-title">Glowing / Floating Effect</div>
+                <p class="text-muted small mb-3">Buttons emitting a soft, colored shadow, perfect for CTAs.</p>
+                <div class="btn-custom-group">
+                    <button class="btn btn-glow-primary rounded-pill px-4 py-2 fw-semibold">Get Started</button>
+                    <button class="btn btn-glow-success rounded-pill px-4 py-2 fw-semibold">Save Changes</button>
+                    <button class="btn btn-glow-danger rounded-pill px-4 py-2 fw-semibold">Delete Account</button>
+                </div>
+
+                <div class="btn-section-title">Retro 3D Click</div>
+                <div class="btn-custom-group mb-0">
+                    <button class="btn btn-3d btn-3d-primary fw-bold px-4">Launch Game</button>
+                    <button class="btn btn-3d btn-3d-success fw-bold px-4">Confirm</button>
+                    <button class="btn btn-3d btn-3d-danger fw-bold px-4">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sizes & States -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-expand-arrows-alt text-secondary me-2"></i>Sizes & States</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="buttonsSizesStates"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="buttonsSizesStates">
+                <div class="btn-section-title mt-0">Different Sizes</div>
+                <div class="d-flex align-items-center flex-wrap gap-3 mb-4">
+                    <button type="button" class="btn btn-primary btn-lg">Large Button</button>
+                    <button type="button" class="btn btn-primary">Default Button</button>
+                    <button type="button" class="btn btn-primary btn-sm">Small</button>
+                    <button type="button" class="btn btn-primary btn-xs">X-Small</button>
+                </div>
+
+                <div class="row w-100 mb-4 ms-0 me-0">
+                    <div class="col-12 px-0">
+                        <button class="btn btn-outline-primary bg-white d-block w-100 shadow-sm border-2">Block Level Button</button>
+                    </div>
+                </div>
+
+                <div class="btn-section-title">Disabled & Loading States</div>
+                <div class="btn-custom-group mb-0">
+                    <button type="button" class="btn btn-primary" disabled>Disabled Solid</button>
+                    <button type="button" class="btn btn-outline-danger" disabled>Disabled Outline</button>
+                    <button class="btn btn-primary" type="button" disabled>
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      <span class="ms-1">Loading...</span>
+                    </button>
+                    <button class="btn btn-success" type="button" disabled>
+                      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                      <span class="visually-hidden">Loading...</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Icon Buttons & Groups -->
+    <div class="col-12">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-icons text-danger me-2"></i>Icons, Socials & Groups</h5>
+                <button class="btn btn-sm btn-outline-primary copy-btn" data-target="buttonsIconsSocials"><i class="fa-regular fa-copy"></i> Copy HTML</button>
+            </div>
+            <div class="card-body" id="buttonsIconsSocials">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="btn-section-title mt-0">Labeled Icon Buttons</div>
+                        <div class="d-flex flex-column gap-3">
+                            <button class="btn btn-primary text-start w-auto shadow-sm"><i class="fas fa-download me-2"></i> Download Report</button>
+                            <button class="btn btn-soft-danger text-start w-auto"><i class="fas fa-trash-alt me-2"></i> Delete User</button>
+                            <button class="btn border shadow-sm text-start bg-white w-auto"><i class="fas fa-envelope text-primary me-2"></i> Send Email</button>
+                            <button class="btn btn-dark text-start w-auto"><i class="fab fa-github me-2"></i> Login with Github</button>
+                            <button class="btn bg-white border fw-bold text-start w-auto shadow-sm" style="color:#db4437;"><i class="fab fa-google me-2"></i> Sign in with Google</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="btn-section-title mt-0">Icon-Only (Circular & Square)</div>
+                        <div class="btn-custom-group mb-4">
+                            <!-- Circular -->
+                            <button type="button" class="btn btn-primary btn-icon-circle shadow-sm"><i class="fas fa-plus"></i></button>
+                            <button type="button" class="btn btn-success btn-icon-circle shadow-sm"><i class="fas fa-check"></i></button>
+                            <button type="button" class="btn btn-soft-danger btn-icon-circle"><i class="fas fa-heart"></i></button>
+                            <button type="button" class="btn btn-dark btn-icon-circle"><i class="fab fa-apple"></i></button>
+                            <button type="button" class="btn bg-white border shadow-sm btn-icon-circle text-muted"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        
+                        <div class="btn-custom-group">
+                            <!-- Square -->
+                            <button type="button" class="btn btn-outline-secondary px-3 py-2"><i class="fas fa-search"></i></button>
+                            <button type="button" class="btn btn-soft-primary px-3 py-2"><i class="fas fa-edit"></i></button>
+                            <button type="button" class="btn btn-light border px-3 py-2"><i class="fas fa-cog text-secondary"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="btn-section-title mt-0">Button Groups</div>
+                        <div class="btn-group mb-4 shadow-sm" role="group">
+                          <button type="button" class="btn btn-primary"><i class="fas fa-align-left"></i></button>
+                          <button type="button" class="btn btn-primary"><i class="fas fa-align-center"></i></button>
+                          <button type="button" class="btn btn-primary"><i class="fas fa-align-right"></i></button>
+                        </div>
+                        
+                        <br>
+                        
+                        <div class="btn-group mb-4" role="group">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary border-2 fw-semibold" for="btnradio1">Daily</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                            <label class="btn btn-outline-primary border-2 fw-semibold" for="btnradio2">Weekly</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                            <label class="btn btn-outline-primary border-2 fw-semibold" for="btnradio3">Monthly</label>
+                        </div>
+
+                        <br>
+                        
+                        <div class="btn-group shadow-sm">
+                          <button type="button" class="btn btn-success"><i class="fas fa-save me-2"></i>Save Draft</button>
+                          <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cloud-upload-alt me-2 text-muted"></i> Publish</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-print me-2 text-muted"></i> Save & Print</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash me-2"></i> Discard</a></li>
+                          </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

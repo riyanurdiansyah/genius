@@ -1,0 +1,448 @@
+@{ ViewData["Title"] = "Terms & Conditions"; }
+
+<!-- Premium Typography -->
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.4);
+        --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+        --text-headline: #0f172a;
+        --font-outfit: var(--font-family-primary);
+        --font-inter: var(--font-family-primary);
+    }
+
+    [data-theme="dark"] {
+        --glass-bg: rgba(15, 23, 42, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --text-headline: #f8fafc;
+    }
+
+    body {
+        font-family: var(--font-inter);
+    }
+
+    /* Background Grain & Fluid shapes */
+    .tnc-background {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: -1;
+        background: var(--dashboard-bg);
+        overflow: hidden;
+    }
+    .shape {
+        position: absolute;
+        filter: blur(80px);
+        opacity: 0.15;
+        border-radius: 50%;
+        animation: float 20s infinite alternate;
+    }
+    .shape-1 { width: 500px; height: 500px; background: #3b82f6; top: -100px; right: -100px; }
+    .shape-2 { width: 400px; height: 400px; background: #2dd4bf; bottom: -50px; left: -100px; animation-delay: -5s;}
+    
+    @@keyframes float {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 100px); }
+    }
+
+    /* Progress Bar */
+    .scroll-progress {
+        position: fixed;
+        top: 0; left: 0; width: 0%; height: 4px;
+        background: var(--accent-gradient);
+        z-index: 2000;
+        transition: width 0.1s linear;
+    }
+
+    /* Hero Section */
+    .tnc-hero {
+        padding: 8rem 2rem 5rem;
+        text-align: center;
+        position: relative;
+    }
+    .tnc-hero-icon {
+        width: 100px; height: 100px;
+        background: var(--accent-gradient);
+        margin: 0 auto 2rem;
+        border-radius: 30px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2.5rem; color: white;
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        transform: rotate(-10deg);
+        animation: heroIconFloat 4s ease-in-out infinite;
+    }
+    @@keyframes heroIconFloat {
+        0%, 100% { transform: rotate(-10deg) translateY(0); }
+        50% { transform: rotate(-5deg) translateY(-15px); }
+    }
+    .tnc-hero h1 {
+        font-family: var(--font-outfit);
+        font-weight: 800;
+        font-size: 4rem;
+        letter-spacing: -2px;
+        color: var(--text-headline);
+        margin-bottom: 1.5rem;
+    }
+    .tnc-hero p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.7;
+        line-height: 1.6;
+    }
+
+    /* Main Container */
+    .tnc-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 3rem;
+        padding-bottom: 8rem;
+    }
+
+    /* Sidebar Navigation (Next-Gen Glass) */
+    .tnc-sidebar {
+        position: sticky;
+        top: 120px;
+        height: min-content;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 30px;
+        padding: 2.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    }
+    .tnc-nav-header {
+        font-family: var(--font-outfit);
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        color: var(--text-headline);
+        display: flex; align-items: center; gap: 10px;
+    }
+    .tnc-nav-list { list-style: none; padding: 0; margin: 0; }
+    .tnc-nav-link {
+        display: flex; align-items: center;
+        padding: 0.8rem 1.2rem;
+        color: var(--text-muted);
+        text-decoration: none !important;
+        font-weight: 500;
+        font-size: 0.95rem;
+        border-radius: 14px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tnc-nav-link:hover {
+        background: rgba(59, 130, 246, 0.08);
+        color: var(--primary);
+        transform: translateX(5px);
+    }
+    .tnc-nav-link.active {
+        background: var(--accent-gradient);
+        color: white !important;
+        box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+    }
+    .tnc-nav-number {
+        font-size: 0.75rem; font-weight: 800; opacity: 0.5; margin-right: 12px;
+    }
+
+    /* Content Area */
+    .tnc-content {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 40px;
+        padding: 5rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Intersection Observer Reveals */
+    .reveal-section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        margin-bottom: 6rem;
+    }
+    .reveal-section.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .tnc-content h2 {
+        font-family: var(--font-outfit);
+        font-weight: 800;
+        font-size: 2.5rem;
+        color: var(--text-headline);
+        margin-bottom: 2rem;
+        display: flex; align-items: center; gap: 15px;
+    }
+    .tnc-content h2 i {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .tnc-content p {
+        font-size: 1.15rem;
+        line-height: 1.9;
+        color: var(--text-dark);
+        opacity: 0.8;
+        margin-bottom: 2rem;
+    }
+
+    /* Specialized Boxes */
+    .bento-info {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+    .info-card {
+        background: rgba(59, 130, 246, 0.05);
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        padding: 2.5rem;
+        border-radius: 30px;
+        transition: transform 0.3s ease;
+    }
+    .info-card:hover { transform: scale(1.02); }
+    .info-card i { font-size: 2rem; margin-bottom: 1.5rem; color: #3b82f6; }
+    .info-card h4 { font-family: var(--font-outfit); font-weight: 700; margin-bottom: 1rem; }
+    .info-card p { font-size: 1rem; margin-bottom: 0; }
+
+    /* Action Bar (Minimal Floating) */
+    .tnc-actions {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text-headline);
+        padding: 1rem 1.5rem 1rem 2.5rem;
+        border-radius: 100px;
+        display: flex; align-items: center; gap: 3rem;
+        box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        width: max-content;
+        animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    @@keyframes slideUp {
+        from { transform: translate(-50%, 100px); opacity: 0; }
+        to { transform: translate(-50%, 0); opacity: 1; }
+    }
+    .tnc-actions-info { color: white; }
+    .tnc-actions-info span { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; }
+    .tnc-actions-info p { margin: 0; font-weight: 700; font-family: var(--font-outfit); }
+    
+    .btn-accept {
+        background: var(--accent-gradient);
+        color: white !important;
+        border: none;
+        padding: 12px 40px;
+        border-radius: 100px;
+        font-weight: 800;
+        font-family: var(--font-outfit);
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .btn-accept:hover {
+        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @@media (max-width: 1024px) {
+        .tnc-wrapper { grid-template-columns: 1fr; padding: 0 1rem 8rem; }
+        .tnc-sidebar { display: none; }
+        .tnc-hero h1 { font-size: 2.5rem; }
+        .tnc-content { padding: 3rem 2rem; }
+        .bento-info { grid-template-columns: 1fr; }
+        .tnc-actions { width: 90%; gap: 1rem; padding: 1rem 1.5rem; flex-direction: column; text-align: center; border-radius: 30px; }
+        .tnc-actions-info { order: 2; }
+    }
+</style>
+
+<div id="page-wrapper">
+<div class="tnc-background">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+</div>
+
+<div class="scroll-progress" id="progressBar"></div>
+
+<div class="tnc-hero">
+    <div class="tnc-hero-icon">
+        <i class="fas fa-file-invoice"></i>
+    </div>
+    <div class="reveal-section">
+        <h1>Rules of Engagement</h1>
+        <p>Our commitment to transparency, security, and the future of interaction. Built for the modern builder.</p>
+        <div class="mt-4 small opacity-50">OCT 2026 • DOCUMENT v4.2</div>
+    </div>
+</div>
+
+<div class="tnc-wrapper">
+    <!-- Sidebar -->
+    <aside class="tnc-sidebar">
+        <div class="tnc-nav-header">
+            <i class="fas fa-compass"></i> GUIDELINES
+        </div>
+        <ul class="tnc-nav-list" id="sidebarLinks">
+            <li><a href="#agreement" class="tnc-nav-link active"><span class="tnc-nav-number">01</span> The Core Agreement</a></li>
+            <li><a href="#ip" class="tnc-nav-link"><span class="tnc-nav-number">02</span> Intellectual Assets</a></li>
+            <li><a href="#representations" class="tnc-nav-link"><span class="tnc-nav-number">03</span> User Integrity</a></li>
+            <li><a href="#privacy" class="tnc-nav-link"><span class="tnc-nav-number">04</span> Data Sovereignty</a></li>
+            <li><a href="#safety" class="tnc-nav-link"><span class="tnc-nav-number">05</span> Protocol Safety</a></li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="tnc-content">
+        <!-- Section 1 -->
+        <section class="reveal-section" id="agreement">
+            <h2><i class="fas fa-feather-pointed"></i> 1. The Core Agreement</h2>
+            <p>These Terms of Use represent a digital handshake between you and the Platform. By navigating this digital space, you acknowledge a binding partnership designed on mutual respect and professional integrity.</p>
+            <p>Our system is built for elite performance. Usage outside the scope of these professional boundaries is strictly prohibited. If our vision does not align with your requirements, we recommend immediate disconnection from our services.</p>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="reveal-section" id="ip">
+            <h2><i class="fas fa-microchip"></i> 2. Intellectual Assets</h2>
+            <p>Everything you see—from the fluid algorithms to the bespoke interface—is part of our proprietary engine. We guard our innovation as fiercely as you guard your business goals.</p>
+            
+            <div class="bento-info">
+                <div class="info-card">
+                    <i class="fas fa-shield-halved"></i>
+                    <h4>Protection</h4>
+                    <p>All source code, designs, and marks are legally safeguarded against reproduction.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Usage Rights</h4>
+                    <p>We grant a temporary, non-exclusive license to utilize our tools for your designated growth.</p>
+                </div>
+            </div>
+            
+            <p>Unauthorized extraction of data (scrapping) or attempts to reverse-engineer our protocol will trigger an automated security lockdown of your credentials.</p>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="reveal-section" id="representations">
+            <h2><i class="fas fa-fingerprint"></i> 3. User Integrity</h2>
+            <p>We believe in a community of authenticated high-performers. When you create an account, you represent that your identity is verifiable and your intentions are constructive.</p>
+            <ul>
+                <li>Submission of false or misleading data is a violation of our trust-protocol.</li>
+                <li>Your account is a personal node in our network; it cannot be traded or shared without explicit authorization.</li>
+                <li>Automated access (bots) must be registered and authenticated via our Official API endpoints.</li>
+            </ul>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="reveal-section" id="privacy">
+            <h2><i class="fas fa-vault"></i> 4. Data Sovereignty</h2>
+            <p>Your data is the fuel of your enterprise. We treat it with the respect it deserves. Our architecture follows a security-first methodology, ensuring your information remains within your sphere of control.</p>
+            <p>We utilize end-to-end encryption for all sensitive payloads and adhere to global compliance standards, ensuring that while the platform is global, your privacy is absolute.</p>
+        </section>
+
+        <!-- Section 5 -->
+        <section class="reveal-section" id="safety">
+            <h2><i class="fas fa-radiation"></i> 5. Protocol Safety</h2>
+            <p>To maintain our 99.9% uptime, we enforce a strict non-interference policy. Activities designed to overload, bypass, or disrupt our delivery systems are monitored in real-time by our defensive layer.</p>
+            <p>Violation of these safety protocols will result in permanent blacklisting of associated node-addresses and potential legal escalation in accordance with international digital commerce regulations.</p>
+        </section>
+    </main>
+</div>
+
+<!-- Floating Action -->
+<div class="tnc-actions">
+    <div class="tnc-actions-info">
+        <span>PENDING APPROVAL</span>
+        <p>Document Agreement v4.2</p>
+    </div>
+    <button class="btn-accept">Accept Protocol</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // --- Scroll Progress Bar ---
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        // --- Intersection Observer for Fade-In ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    
+                    // Update sidebar active state
+                    if (entry.target.id) {
+                        document.querySelectorAll('.tnc-nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-section').forEach(el => observer.observe(el));
+
+        // --- Smooth Scrolling ---
+        document.querySelectorAll('.tnc-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetEl = document.querySelector(targetId);
+                const offset = 120;
+                const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - offset;
+                
+                window.scrollTo({
+                    top: targetPos,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- Button Interaction ---
+        document.querySelector('.btn-accept').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-check me-2"></i> PROTOCOL ACCEPTED';
+            this.style.background = '#10b981';
+            setTimeout(() => {
+                window.location.href = '/Home/Index';
+            }, 1000);
+        });
+    });
+
+    function copyHTML() {
+        const html = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(html).then(() => {
+            const btn = document.getElementById('btnCopyHTML');
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check me-2"></i> COPIED!';
+            btn.style.backgroundColor = '#10b981';
+            btn.style.borderColor = '#10b981';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.style.backgroundColor = '#1e293b';
+                btn.style.borderColor = 'rgba(255,255,255,0.1)';
+            }, 2000);
+        });
+    }
+</script>
+
+</div>
+<!-- Unified Copy HTML Button -->
+<button class="btn btn-sm btn-outline-primary copy-btn shadow" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: white; border-radius: 6px;" data-target="page-wrapper"><i class="fa-regular fa-copy"></i> Copy HTML</button>

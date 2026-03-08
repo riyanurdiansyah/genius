@@ -325,6 +325,10 @@
       "PackagePath": "staticwebassets/js/ui-builder-erd.js"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-flowchart.js",
+      "PackagePath": "staticwebassets/js/ui-builder-flowchart.js"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-fsd.js",
       "PackagePath": "staticwebassets/js/ui-builder-fsd.js"
     },

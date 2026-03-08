@@ -1,0 +1,312 @@
+@{ ViewData["Title"] = "Driver & Fleet Tracking"; }
+
+<style>
+    /* 1. Fullscreen Map & Floating Card */
+    .map-container {
+        position: relative;
+        height: 500px;
+        width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        filter: invert(90%) hue-rotate(180deg) contrast(80%); /* Makes map dark mode aesthetic */
+    }
+    .floating-glass-card {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 16px;
+        padding: 1.5rem;
+        width: 340px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        z-index: 10;
+        transition: transform 0.3s ease;
+    }
+    .floating-glass-card:hover { transform: translateY(-5px); }
+    
+    .floating-glass-card.dark-mode {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: white;
+    }
+    
+    .pulse-dot {
+        width: 12px;
+        height: 12px;
+        background: var(--success);
+        border-radius: 50%;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        animation: pulseAnimation 1.5s infinite;
+        display: inline-block;
+    @@keyframes pulseAnimation {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .truck-list-item {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.2s;
+        cursor: pointer;
+        background: #fff;
+    }
+    .truck-list-item:hover, .truck-list-item.active {
+        border-color: var(--primary);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        background: var(--bg-card);
+    }
+    .speedometer {
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        border: 4px solid #e2e8f0;
+        border-top-color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+    
+    /* 3. Telemetry Grid Cards */
+    .telemetry-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+    }
+    .telemetry-card::before {
+        content: ''; position: absolute; top:0; left:0; width: 4px; height: 100%;
+        background: var(--primary);
+    }
+    .telemetry-icon-wrap {
+        width: 45px; height: 45px;
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.25rem;
+    }
+    
+    [data-theme="dark"] .truck-list-item { background: var(--bg-card, #1e293b); color: #f8fafc; }
+    [data-theme="dark"] .telemetry-card { background: var(--bg-card, #1e293b); color: #f8fafc; }
+    [data-theme="dark"] .card-header,
+    [data-theme="dark"] .bg-white { background-color: transparent !important; }
+    [data-theme="dark"] .bg-light { background-color: rgba(255, 255, 255, 0.05) !important; color: #f8fafc; }
+    [data-theme="dark"] .text-dark { color: #f8fafc !important; }
+    [data-theme="dark"] .map-container { border-color: rgba(255,255,255,0.1); }
+    
+    /* Contrast Fixes */
+    .text-muted { color: #64748b !important; }
+    [data-theme="dark"] .text-muted { color: #94a3b8 !important; }
+    
+    .badge-soft-success { background: #e2fbd7 !important; color: #198754 !important; }
+    .badge-soft-warning { background: #fef5cc !important; color: #d97706 !important; }
+    .badge-soft-danger { background: #fee2e2 !important; color: #dc3545 !important; }
+    
+    [data-theme="dark"] .badge-soft-success { background: rgba(25, 135, 84, 0.2) !important; color: #4ade80 !important; }
+    [data-theme="dark"] .badge-soft-warning { background: rgba(217, 119, 6, 0.2) !important; color: #fbbf24 !important; }
+    [data-theme="dark"] .badge-soft-danger { background: rgba(220, 53, 69, 0.2) !important; color: #f87171 !important; }
+</style>
+
+<div class="row g-4 mb-5">
+    <div class="col-12">
+        <h4 class="fw-bold mb-1">Fleet & Driver Tracking</h4>
+        <p class="text-muted">Real-time GPS positioning, live telemetry, and routing variations.</p>
+    </div>
+
+    <!-- Variation 1: Immersive Cinematic Map with Glass Card -->
+    <div class="col-12">
+        <h6 class="fw-bold mb-3"><i class="fas fa-map-marked-alt text-primary me-2"></i>Live Tracker Overlay</h6>
+        <div class="map-container shadow-sm">
+            <!-- Simulated interactive map using generic OSM embedded URL -->
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-74.015,40.705,-73.985,40.725&layer=mapnik" loading="lazy"></iframe>
+            
+            <!-- Glassmorphism Floating Driver Card -->
+            <div class="floating-glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge badge-soft-success rounded-pill px-3">
+                        <span class="pulse-dot me-2"></span>En Route
+                    </span>
+                    <span class="text-muted small fw-bold">ETA: 14:30 PM</span>
+                </div>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <img src="https://ui-avatars.com/api/?name=David+R&background=0D8ABC&color=fff" class="rounded-circle me-3 border border-2 border-white shadow-sm" width="55" height="55" alt="Driver">
+                    <div>
+                        <h6 class="fw-bold mb-0">David Robertson</h6>
+                        <span class="text-muted small">Truck #B-8291-KXA</span>
+                    </div>
+                </div>
+                
+                <div class="row g-2">
+                    <div class="col-6">
+                        <div class="bg-light bg-opacity-75 rounded-3 p-2 text-center border border-white">
+                            <i class="fas fa-tachometer-alt text-primary mb-1"></i>
+                            <h6 class="fw-bold mb-0">65 km/h</h6>
+                            <small class="text-muted" style="font-size:0.7rem;">Current Speed</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-light bg-opacity-75 rounded-3 p-2 text-center border border-white">
+                            <i class="fas fa-temperature-low text-info mb-1"></i>
+                            <h6 class="fw-bold mb-0">-4°C</h6>
+                            <small class="text-muted" style="font-size:0.7rem;">Cargo Temp</small>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-dark w-100 mt-3 rounded-pill py-2 shadow-sm"><i class="fas fa-phone-alt me-2"></i>Contact Driver</button>
+            </div>
+            
+            <!-- Floating Navigation Controls Simulation -->
+            <div class="position-absolute shadow-sm rounded-pill overflow-hidden" style="top: 20px; right: 20px; background: rgba(255,255,255,0.9); z-index:10;">
+                <button class="btn btn-light border-0"><i class="fas fa-layer-group text-muted"></i></button>
+                <div class="vr"></div>
+                <button class="btn btn-light border-0"><i class="fas fa-route text-muted"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 2: Split Telemetry Dashboard -->
+    <div class="col-12 mt-4">
+        <h6 class="fw-bold mb-3"><i class="fas fa-columns text-primary me-2"></i>Split Control Room View</h6>
+        <div class="row g-4">
+            <!-- Left: Truck List -->
+            <div class="col-lg-4 col-md-5">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-header border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                        <h6 class="fw-bold mb-0">Active Fleet (3)</h6>
+                        <button class="btn btn-sm btn-light rounded-circle"><i class="fas fa-filter"></i></button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Truck Item 1 -->
+                        <div class="truck-list-item active">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold">Hino Ranger 500</span>
+                                <span class="badge badge-soft-success"><i class="fas fa-map-marker-alt me-1"></i> Moving</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-muted small">
+                                    <div><i class="fas fa-id-card me-2"></i>ALX-9012</div>
+                                    <div><i class="fas fa-gas-pump me-2"></i>78% Fuel</div>
+                                </div>
+                                <div class="speedometer text-primary">62</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Truck Item 2 -->
+                        <div class="truck-list-item">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold">Volvo FH16</span>
+                                <span class="badge badge-soft-warning"><i class="fas fa-pause-circle me-1"></i> Idling</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-muted small">
+                                    <div><i class="fas fa-id-card me-2"></i>BRD-4451</div>
+                                    <div><i class="fas fa-gas-pump me-2"></i>32% Fuel</div>
+                                </div>
+                                <div class="speedometer text-warning" style="border-top-color: var(--warning);">0</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Truck Item 3 -->
+                        <div class="truck-list-item">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold">Isuzu Elf</span>
+                                <span class="badge badge-soft-danger"><i class="fas fa-exclamation-triangle me-1"></i> Delay</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-muted small">
+                                    <div><i class="fas fa-id-card me-2"></i>CZT-8891</div>
+                                    <div><i class="fas fa-gas-pump me-2"></i>15% Fuel</div>
+                                </div>
+                                <div class="speedometer text-danger" style="border-top-color: var(--danger);">12</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right: Detailed Telemetrics Grid -->
+            <div class="col-lg-8 col-md-7">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="telemetry-card shadow-sm h-100" style="--primary: #3b82f6;">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="text-muted small fw-bold text-uppercase mb-1">Engine Status</h6>
+                                    <h4 class="fw-bold mb-0">Running Optimal</h4>
+                                </div>
+                                <div class="telemetry-icon-wrap bg-primary bg-opacity-10 text-primary">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-primary" style="width: 85%;"></div>
+                            </div>
+                            <p class="text-muted small mt-2 mb-0">85% Health Score • Last service 12 days ago</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <div class="telemetry-card shadow-sm h-100" style="--primary: #8b5cf6;">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="text-muted small fw-bold text-uppercase mb-1">Tire Pressure (TPMS)</h6>
+                                    <h4 class="fw-bold mb-0">98 PSI <span class="text-success fs-6"><i class="fas fa-arrow-up"></i></span></h4>
+                                </div>
+                                <div class="telemetry-icon-wrap bg-primary bg-opacity-10" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);">
+                                    <i class="fas fa-truck-monster"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <span class="badge badge-soft-success rounded-pill">FL: Good</span>
+                                <span class="badge badge-soft-success rounded-pill">FR: Good</span>
+                            </div>
+                            <p class="text-muted small mt-2 mb-0">All 6 tires within nominal threshold</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm mt-1">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                                    <h6 class="fw-bold mb-0"><i class="fas fa-route text-success me-2"></i>Active Route Data</h6>
+                                    <span class="text-muted small">Updated 2m ago</span>
+                                </div>
+                                <div class="row text-center divide-x">
+                                    <div class="col-4 border-end">
+                                        <div class="text-muted small">Origin</div>
+                                        <div class="fw-bold mt-1">Jakarta Hub</div>
+                                        <small class="text-muted">Despatched 08:15</small>
+                                    </div>
+                                    <div class="col-4 border-end">
+                                        <div class="text-muted small">Distance Left</div>
+                                        <div class="fw-bold text-primary mt-1" style="font-size: 1.2rem;">142 km</div>
+                                        <small class="text-muted">~2h 15m remaining</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-muted small">Destination</div>
+                                        <div class="fw-bold mt-1">Bandung WH</div>
+                                        <small class="text-muted">Target ETA 14:30</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

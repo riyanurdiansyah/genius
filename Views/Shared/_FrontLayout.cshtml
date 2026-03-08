@@ -83,9 +83,79 @@
 
     @RenderBody()
 
+    <!-- Global Copy HTML Modal -->
+    <div class="modal fade" id="globalCopyHtmlModal" tabindex="-1" aria-hidden="true" style="z-index: 10000;">
+        <div class="modal-dialog" style="max-width: 800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">HTML Source Code</h5>
+                    <button type="button" class="btn-close" onclick="closeModal('globalCopyHtmlModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small mb-2">You can select specific parts to copy, or click "Copy All" below.</p>
+                    <textarea id="globalCopyHtmlTextarea" class="form-control" rows="15" readonly style="font-family: monospace; font-size: 13px; background: #f8fafc; cursor: text; white-space: pre; border: 1px solid #e2e8f0;"></textarea>
+                </div>
+                <div class="modal-footer" style="padding-top: 1rem;">
+                    <button type="button" class="btn btn-light" onclick="closeModal('globalCopyHtmlModal')">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnCopyAllHtml"><i class="fas fa-copy me-2"></i>Copy All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Core Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Standardized Modal & Copy Logic
+        function openModal(id) {
+            var modalEl = document.getElementById(id);
+            var myModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            myModal.show();
+        }
+        function closeModal(id) {
+            var modalEl = document.getElementById(id);
+            var myModal = bootstrap.Modal.getInstance(modalEl);
+            if (myModal) myModal.hide();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Standardize button text on load and bind event
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy HTML';
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    if(targetId) {
+                        const targetEl = document.getElementById(targetId);
+                        if(targetEl) {
+                            document.getElementById('globalCopyHtmlTextarea').value = targetEl.outerHTML;
+                            openModal('globalCopyHtmlModal');
+                        }
+                    }
+                });
+            });
+
+            const copyAllBtn = document.getElementById('btnCopyAllHtml');
+            if(copyAllBtn) {
+                copyAllBtn.addEventListener('click', function() {
+                    const txtArea = document.getElementById('globalCopyHtmlTextarea');
+                    txtArea.select();
+                    navigator.clipboard.writeText(txtArea.value).then(() => {
+                        const origHtml = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                        this.classList.replace('btn-primary', 'btn-success');
+                        setTimeout(() => {
+                            this.innerHTML = origHtml;
+                            this.classList.replace('btn-success', 'btn-primary');
+                        }, 2000);
+                    });
+                });
+            }
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
