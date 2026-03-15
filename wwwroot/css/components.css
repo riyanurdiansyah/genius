@@ -1150,7 +1150,158 @@
     }
 }
 
+
+/* =============================================
+   ACCORDION — Kuda Style Customization
+   ============================================= */
+.accordion-item {
+    border-radius: 12px !important;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.accordion-header .accordion-button {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--sb-primary-light);
+    color: var(--primary);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--primary);
+}
+
+/* =============================================
+   TIMELINE — Kuda Signature
+   ============================================= */
+.timeline-item {
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 25px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 5px;
+    bottom: -25px;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.timeline-item:last-child::before {
+    display: none;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* =============================================
+   AVATARS & BADGES
+   ============================================= */
+.avatar-gradient {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+/* =============================================
+   DIAGRAM VISUALS (ERD / FLOWCHART)
+   ============================================= */
+.erd-entity,
+.fc-node {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.erd-entity-header,
+.fc-node-header {
+    background: var(--color-3, #163832);
+    color: #fff;
+    padding: 8px 12px;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.erd-field,
+.fc-content {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =============================================
+   KANBAN BOARD (Light Mode Base)
+   ============================================= */
+.kanban-board {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+    background: #f8fafc;
+    border-radius: var(--radius-lg);
+    min-height: 500px;
+}
+
+.kanban-column {
+    flex: 0 0 300px;
+    background: #eff6f3;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.kanban-column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.kanban-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
 /* --- Mobile Responsiveness --- */
+
 @media (max-width: 991px) {
     .sidebar-wrapper {
         position: fixed;

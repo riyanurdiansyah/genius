@@ -184,6 +184,68 @@
     }
     [data-theme="dark"] .noti-footer { background: #1a2233; }
     .noti-view-all { font-size: 12px; font-weight: 700; color: var(--primary); text-decoration: none; }
+
+    /* Profile Dropdown Styles */
+    .profile-dropdown {
+        width: 260px !important;
+        padding: 8px !important;
+        border: none !important;
+        border-radius: 20px !important;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.1) !important;
+        margin-top: 15px !important;
+    }
+
+    .profile-dropdown-header {
+        padding: 16px;
+        border-bottom: 1px solid #f1f5f9;
+        margin-bottom: 8px;
+    }
+    
+    [data-theme="dark"] .profile-dropdown-header { border-color: rgba(255,255,255,0.05); }
+
+    .profile-dropdown-item {
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 12px;
+        color: #475569 !important;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.2s;
+        text-decoration: none !important;
+    }
+
+    [data-theme="dark"] .profile-dropdown-item { color: #94a3b8 !important; }
+
+    .profile-dropdown-item:hover {
+        background: #f8fafc;
+        color: var(--primary) !important;
+        transform: translateX(4px);
+    }
+    
+    [data-theme="dark"] .profile-dropdown-item:hover { background: rgba(255,255,255,0.03); }
+
+    .profile-dropdown-item i {
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+        opacity: 0.7;
+    }
+
+    .profile-dropdown-item.logout {
+        color: #ef4444 !important;
+        margin-top: 8px;
+        border-top: 1px solid #f1f5f9;
+        border-radius: 0 0 12px 12px;
+    }
+    
+    [data-theme="dark"] .profile-dropdown-item.logout { border-top-color: rgba(255,255,255,0.05); }
+    
+    .profile-dropdown-item.logout:hover {
+        background: #fef2f2;
+    }
+    [data-theme="dark"] .profile-dropdown-item.logout:hover { background: rgba(239, 68, 68, 0.05); }
 </style>
 
 <div class="topbar">
@@ -289,15 +351,39 @@
         </div>
 
         <!-- Profile -->
-        <div class="profile">
-            <div class="text-end d-none d-md-block">
-                <div class="fw-bold text-dark mb-0" style="font-size: 13px;">Admin User</div>
-                <div class="text-muted" style="font-size: 11px;">Elite Member</div>
+        <div class="dropdown">
+            <div class="profile" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+                <div class="text-end d-none d-md-block">
+                    <div class="fw-bold text-dark mb-0" style="font-size: 13px;">Admin User</div>
+                    <div class="text-muted" style="font-size: 11px;">Elite Member</div>
+                </div>
+                <div class="profile-img-wrap ms-3">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff" 
+                         class="rounded-circle" width="36" height="36" alt="Profile" id="headerProfileImage">
+                    <div class="profile-status"></div>
+                </div>
             </div>
-            <div class="profile-img-wrap ms-3">
-                <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff" 
-                     class="rounded-circle" width="36" height="36" alt="Profile" id="headerProfileImage">
-                <div class="profile-status"></div>
+            <div class="dropdown-menu dropdown-menu-end profile-dropdown shadow-lg">
+                <div class="profile-dropdown-header">
+                    <div class="fw-bold text-dark" style="font-size: 14px;">Admin User</div>
+                    <div class="text-muted" style="font-size: 11px;">admin@genius.com</div>
+                </div>
+                <a href="#" class="profile-dropdown-item">
+                    <i class="fa-regular fa-user"></i> My Profile
+                </a>
+                <a href="#" class="profile-dropdown-item">
+                    <i class="fa-regular fa-circle-user"></i> Account Settings
+                </a>
+                <a href="#" class="profile-dropdown-item">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Activity Log
+                </a>
+                <a href="#" class="profile-dropdown-item">
+                    <i class="fa-regular fa-credit-card"></i> Billing & Plans
+                </a>
+                <div class="dropdown-divider mx-2 my-1" style="opacity: 0.05;"></div>
+                <a href="#" class="profile-dropdown-item logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
             </div>
         </div>
     </div>

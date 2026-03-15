@@ -21,7 +21,10 @@
         <div class="builder-sidebar-header pb-0 border-bottom-0">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="mb-0" id="currentProjectTitle">UI Builder</h5>
-                <button class="btn btn-sm btn-light border" onclick="closeProject()" title="Close Project"><i class="fas fa-times"></i></button>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-light border text-primary" onclick="shareProject()" title="Share Project"><i class="fas fa-share-nodes"></i></button>
+                    <button class="btn btn-sm btn-light border" onclick="closeProject()" title="Close Project"><i class="fas fa-times"></i></button>
+                </div>
             </div>
             <ul class="nav nav-tabs" style="font-size: 13px; border-bottom: none;">
                 <li class="nav-item">
@@ -35,19 +38,73 @@
         <div class="tab-content builder-components" id="sidebarProtoTabs">
             <!-- COMPONENTS TAB -->
             <div class="tab-pane fade show active p-3" id="components-tab">
-                <div class="component-group-title">Layouts</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="row"><i class="fa-solid fa-table-columns"></i> 2-Column Row</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="card"><i class="fa-solid fa-rectangle-list"></i> Card</div>
-                <div class="component-group-title mt-4">Typography</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="header"><i class="fa-solid fa-heading"></i> Heading Title</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="paragraph"><i class="fa-solid fa-align-left"></i> Text Paragraph</div>
-                <div class="component-group-title mt-4">Forms & Inputs</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="input-text"><i class="fa-solid fa-i-cursor"></i> Text Input</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="select"><i class="fa-regular fa-square-caret-down"></i> Select Dropdown</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="checkbox"><i class="fa-regular fa-square-check"></i> Checkbox</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="button"><i class="fa-solid fa-hand-pointer"></i> Button</div>
-                <div class="component-group-title mt-4">Data</div>
-                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="table"><i class="fa-solid fa-table"></i> Data Table</div>
+                <!-- Search Box -->
+                <div class="mb-3">
+                    <input type="text" id="componentSearch" class="form-control form-control-sm" placeholder="&#xF002; Search components..." style="font-family: 'Font Awesome 6 Free', sans-serif; font-size: 12px;" oninput="filterComponents(this.value)">
+                </div>
+
+                <!-- LAYOUTS -->
+                <div class="component-group-title" data-group="layouts">Layouts</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="row" data-label="2-column row"><i class="fa-solid fa-table-columns"></i> 2-Column Row</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="row3" data-label="3-column row"><i class="fa-solid fa-columns"></i> 3-Column Row</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="card" data-label="card"><i class="fa-solid fa-rectangle-list"></i> Card</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="card-stat" data-label="stat card statistics"><i class="fa-solid fa-chart-pie"></i> Stat Card</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="divider" data-label="divider separator hr"><i class="fa-solid fa-grip-lines"></i> Divider</div>
+
+                <!-- TYPOGRAPHY -->
+                <div class="component-group-title mt-3" data-group="typography">Typography</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="header" data-label="heading title h1 h2 h3"><i class="fa-solid fa-heading"></i> Heading Title</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="paragraph" data-label="text paragraph body"><i class="fa-solid fa-align-left"></i> Text Paragraph</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="badge" data-label="badge label tag"><i class="fa-solid fa-tag"></i> Badge</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="alert" data-label="alert notification warning info"><i class="fa-solid fa-triangle-exclamation"></i> Alert</div>
+
+                <!-- NAVIGATION -->
+                <div class="component-group-title mt-3" data-group="navigation">Navigation</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="navbar" data-label="navbar header navigation top bar"><i class="fa-solid fa-bars"></i> Navbar / Header</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="breadcrumb" data-label="breadcrumb navigation path"><i class="fa-solid fa-sitemap"></i> Breadcrumb</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="pagination" data-label="pagination pages next prev"><i class="fa-solid fa-ellipsis"></i> Pagination</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="tabs" data-label="tabs pills navigation"><i class="fa-solid fa-folder-open"></i> Tabs & Pills</div>
+
+                <!-- FORMS & INPUTS -->
+                <div class="component-group-title mt-3" data-group="forms">Forms & Inputs</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="input-text" data-label="text input form field"><i class="fa-solid fa-i-cursor"></i> Text Input</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="input-group" data-label="input group icon prefix append"><i class="fa-solid fa-at"></i> Input Group</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="textarea" data-label="textarea multiline text"><i class="fa-solid fa-align-justify"></i> Textarea</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="select" data-label="select dropdown option"><i class="fa-regular fa-square-caret-down"></i> Select Dropdown</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="checkbox" data-label="checkbox check option"><i class="fa-regular fa-square-check"></i> Checkbox</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="radio" data-label="radio button option choice"><i class="fa-regular fa-circle-dot"></i> Radio Button</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="toggle" data-label="toggle switch on off"><i class="fa-solid fa-toggle-on"></i> Toggle Switch</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="slider" data-label="range slider input"><i class="fa-solid fa-sliders"></i> Range Slider</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="file-upload" data-label="file upload input attachment"><i class="fa-solid fa-upload"></i> File Upload</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="date-picker" data-label="date picker calendar input"><i class="fa-regular fa-calendar"></i> Date Picker</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="button" data-label="button submit action"><i class="fa-solid fa-hand-pointer"></i> Button</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="button-group" data-label="button group toolbar"><i class="fa-solid fa-layer-group"></i> Button Group</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="form-full" data-label="form full login register"><i class="fa-solid fa-wpforms"></i> Form (Full)</div>
+
+                <!-- UI COMPONENTS -->
+                <div class="component-group-title mt-3" data-group="ui">User Interface</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="accordion" data-label="accordion collapse expand faq"><i class="fa-solid fa-layer-group"></i> Accordion</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="modal-trigger" data-label="modal dialog popup overlay"><i class="fa-solid fa-window-restore"></i> Modal (Trigger)</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="carousel" data-label="carousel slider image gallery"><i class="fa-solid fa-images"></i> Carousel / Slider</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="progress" data-label="progress bar loading percent"><i class="fa-solid fa-bars-progress"></i> Progress Bar</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="avatar" data-label="avatar user profile photo"><i class="fa-solid fa-user-circle"></i> Avatar</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="timeline" data-label="timeline activity log history"><i class="fa-solid fa-timeline"></i> Timeline</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="list-group" data-label="list group menu items"><i class="fa-solid fa-list-ul"></i> List Group</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="tooltip-demo" data-label="tooltip popover hint"><i class="fa-regular fa-comment-dots"></i> Tooltip / Popover</div>
+
+                <!-- CHARTS -->
+                <div class="component-group-title mt-3" data-group="charts">Charts</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-bar" data-label="bar chart apex apexchart"><i class="fa-solid fa-chart-bar"></i> Bar Chart</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-line" data-label="line chart area apex"><i class="fa-solid fa-chart-line"></i> Line / Area Chart</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-pie" data-label="pie donut chart"><i class="fa-solid fa-chart-pie"></i> Pie / Donut Chart</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-gantt" data-label="gantt chart project timeline"><i class="fa-solid fa-diagram-gantt"></i> Gantt Chart</div>
+
+                <!-- DATA -->
+                <div class="component-group-title mt-3" data-group="data">Data & Tables</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="table" data-label="data table grid rows columns"><i class="fa-solid fa-table"></i> Data Table</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="table-striped" data-label="striped table bordered"><i class="fa-solid fa-table-list"></i> Striped Table</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="table-datatable" data-label="datatable search filter pagination"><i class="fa-solid fa-database"></i> DataTable (Full)</div>
+                <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="barcode" data-label="barcode generator qr"><i class="fa-solid fa-barcode"></i> Barcode</div>
             </div>
             <!-- PAGES TAB -->
             <div class="tab-pane fade p-3 h-100" id="pages-tab">
@@ -322,6 +379,8 @@
 <script src="/js/ui-builder-flowchart.js"></script>
 <!-- html2pdf for FSD Export -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- ApexCharts for Chart Components in Prototype Builder -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!-- Firebase SDK Integrasi -->
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
@@ -463,6 +522,16 @@
         currentWorkspace = ''; 
         const wsTab = document.querySelector(`.ws-tab[onclick="switchWorkspace('prototype',this)"]`);
         if (wsTab) switchWorkspace('prototype', wsTab);
+    }
+
+    function shareProject() {
+        if (!currentProject) return;
+        const url = window.location.origin + '/Tools/Share/' + currentProject.id;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Share link copied to clipboard!\n' + url + '\n\nAnyone with this link can view the project.');
+        }).catch(err => {
+            alert('Failed to copy. Share link is: \n' + url);
+        });
     }
 
     function closeProject() {
@@ -894,16 +963,442 @@
 
     /* ── Component Templates ───────────── */
     const componentTemplates = {
+        /* ─ Layouts ─ */
         'row': `<div class="row"><div class="col-md-6"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div><div class="col-md-6"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div></div>`,
+        'row3': `<div class="row"><div class="col-md-4"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div><div class="col-md-4"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div><div class="col-md-4"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div></div>`,
         'card': `<div class="card mb-3"><div class="card-header" contenteditable="true">Card Title Here</div><div class="card-body"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div></div>`,
+        'card-stat': `<div class="row g-3"><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(99,102,241,.12);"><i class="fas fa-users fs-4 text-primary"></i></div><div><div class="text-muted small" contenteditable="true">Total Users</div><div class="fw-bold fs-5" contenteditable="true">12,450</div><div class="text-success small"><i class="fas fa-arrow-up"></i> <span contenteditable="true">8.2%</span> vs last month</div></div></div></div></div><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(16,185,129,.12);"><i class="fas fa-dollar-sign fs-4 text-success"></i></div><div><div class="text-muted small" contenteditable="true">Revenue</div><div class="fw-bold fs-5" contenteditable="true">$84,200</div><div class="text-success small"><i class="fas fa-arrow-up"></i> <span contenteditable="true">12.5%</span> vs last month</div></div></div></div></div><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(245,158,11,.12);"><i class="fas fa-shopping-cart fs-4 text-warning"></i></div><div><div class="text-muted small" contenteditable="true">Orders</div><div class="fw-bold fs-5" contenteditable="true">3,280</div><div class="text-danger small"><i class="fas fa-arrow-down"></i> <span contenteditable="true">2.1%</span> vs last month</div></div></div></div></div><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(239,68,68,.12);"><i class="fas fa-exclamation-circle fs-4 text-danger"></i></div><div><div class="text-muted small" contenteditable="true">Issues</div><div class="fw-bold fs-5" contenteditable="true">24</div><div class="text-muted small">Open tickets</div></div></div></div></div></div>`,
+        'divider': `<hr class="my-3">`,
+
+        /* ─ Typography ─ */
         'header': `<h3 contenteditable="true">Editable Heading Title</h3>`,
         'paragraph': `<p contenteditable="true" class="text-muted">Click to edit this paragraph text.</p>`,
+        'badge': `<div class="d-flex flex-wrap gap-2 mb-2"><span class="badge bg-primary" contenteditable="true">Primary</span><span class="badge bg-success" contenteditable="true">Success</span><span class="badge bg-warning text-dark" contenteditable="true">Warning</span><span class="badge bg-danger" contenteditable="true">Danger</span><span class="badge bg-info text-dark" contenteditable="true">Info</span><span class="badge bg-secondary" contenteditable="true">Secondary</span></div>`,
+        'alert': `<div class="alert alert-info alert-dismissible fade show" role="alert"><i class="fas fa-info-circle me-2"></i><span contenteditable="true">This is an informational alert message. Click to edit.</span><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>`,
+
+        /* ─ Navigation ─ */
+        'navbar': `<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm rounded mb-3"><div class="container-fluid"><a class="navbar-brand fw-bold" contenteditable="true">Brand Logo</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navDemo"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navDemo"><ul class="navbar-nav me-auto mb-2 mb-lg-0"><li class="nav-item"><a class="nav-link active" contenteditable="true">Home</a></li><li class="nav-item"><a class="nav-link" contenteditable="true">Features</a></li><li class="nav-item"><a class="nav-link" contenteditable="true">Pricing</a></li></ul><div class="d-flex gap-2"><button class="btn btn-outline-primary btn-sm" contenteditable="true">Login</button><button class="btn btn-primary btn-sm" contenteditable="true">Sign Up</button></div></div></div></nav>`,
+        'breadcrumb': `<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" contenteditable="true">Home</a></li><li class="breadcrumb-item"><a href="#" contenteditable="true">Module</a></li><li class="breadcrumb-item active" contenteditable="true">Current Page</li></ol></nav>`,
+        'pagination': `<nav><ul class="pagination pagination-sm"><li class="page-item disabled"><a class="page-link">Previous</a></li><li class="page-item"><a class="page-link">1</a></li><li class="page-item active"><a class="page-link">2</a></li><li class="page-item"><a class="page-link">3</a></li><li class="page-item"><a class="page-link">4</a></li><li class="page-item"><a class="page-link">5</a></li><li class="page-item"><a class="page-link">Next</a></li></ul></nav>`,
+        'tabs': function() {
+            const uid = 'tab' + Date.now();
+            return `
+<div class="card border-0 shadow-sm mb-3" id="wrap_${uid}">
+    <div class="card-header bg-white pb-0 border-bottom-0 d-flex justify-content-between align-items-end">
+        <ul class="nav nav-tabs card-header-tabs" id="nav_${uid}" style="margin-bottom:-1px; flex-wrap:nowrap; overflow-x:auto; border-bottom:none;">
+            <!-- Tabs injected here by script -->
+        </ul>
+        <div class="d-flex gap-1 ms-2 mb-2 pb-1" style="flex-shrink:0;">
+            <button class="btn btn-sm btn-outline-primary" style="padding:2px 8px;font-size:12px;" onclick="TABS_${uid}.addTab()" title="Add Tab"><i class="fas fa-plus"></i></button>
+            <button class="btn btn-sm btn-outline-danger" style="padding:2px 8px;font-size:12px;" onclick="TABS_${uid}.removeTab()" title="Remove Active Tab"><i class="fas fa-minus"></i></button>
+        </div>
+    </div>
+    <div class="card-body p-0 border border-top-0 rounded-bottom">
+        <div class="tab-content w-100" id="content_${uid}" style="position:relative; min-height:100px;">
+            <!-- Panes injected here by script -->
+        </div>
+    </div>
+</div>
+<script>
+(function(){
+    const ID = '${uid}';
+    let tabs = [
+        { id: 't1', label: 'Tab One' },
+        { id: 't2', label: 'Tab Two' }
+    ];
+    let activeId = 't1';
+    let nextId = 3;
+
+    function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    
+    function rNav() {
+        const nav = document.getElementById('nav_' + ID);
+        if(!nav) return;
+        nav.innerHTML = tabs.map(t => {
+            const isActive = t.id === activeId;
+            return '<li class="nav-item"><button class="nav-link ' + (isActive ? 'active fw-bold' : '') + '" style="outline:none;background:'+(isActive?'#fff':'transparent')+';" onblur="TABS_'+ID+'.lbl(&quot;'+t.id+'&quot;, this.innerText)" '+(isActive?'contenteditable="true"':'onclick="TABS_'+ID+'.sw(&quot;'+t.id+'&quot;)"')+'>' + esc(t.label) + '</button></li>';
+        }).join('');
+    }
+
+    function rPanes() {
+        const content = document.getElementById('content_' + ID);
+        if(!content) return;
+        
+        // Preserve unremoved panes 
+        tabs.forEach(t => {
+            let pane = document.getElementById('pane_' + t.id + '_' + ID);
+            if (!pane) {
+                pane = document.createElement('div');
+                pane.id = 'pane_' + t.id + '_' + ID;
+                pane.className = 'tab-pane p-4 drop-zone nested-drop w-100';
+                pane.style.minHeight = '150px';
+                
+                // Add placeholder helper text
+                const emptyState = document.createElement('div');
+                emptyState.className = 'text-center text-muted w-100 comp-empty-state';
+                emptyState.style.paddingTop = '10px';
+                emptyState.style.pointerEvents = 'none';
+                emptyState.innerHTML = '<i class="fas fa-cubes mb-2 d-block fa-lg" style="opacity:0.5;"></i>Drag &amp; Drop Components Here';
+                
+                pane.appendChild(emptyState);
+                
+                // Manually map drag drop events since it's dynamically added after initial doc parse
+                pane.setAttribute('ondrop', 'drop(event)');
+                pane.setAttribute('ondragover', 'allowDrop(event)');
+                pane.setAttribute('ondragenter', 'dragEnter(event)');
+                pane.setAttribute('ondragleave', 'dragLeave(event)');
+                
+                content.appendChild(pane);
+            }
+        });
+        
+        // Show active pane, hide others
+        Array.from(content.children).forEach(pane => {
+            if (pane.id === 'pane_' + activeId + '_' + ID) {
+                pane.style.display = 'block';
+                pane.classList.add('show', 'active');
+            } else {
+                pane.style.display = 'none';
+                pane.classList.remove('show', 'active');
+            }
+        });
+    }
+
+    // Attach to global scope for button clicks
+    window['TABS_' + ID] = {
+        sw: function(id) { 
+            activeId = id; 
+            rNav(); rPanes(); 
+        },
+        addTab: function() { 
+            const newId = 't' + nextId++; 
+            tabs.push({ id: newId, label: 'New Tab' }); 
+            activeId = newId; 
+            rNav(); rPanes(); 
+        },
+        removeTab: function() {
+            if (tabs.length <= 1) return;
+            const idx = tabs.findIndex(t => t.id === activeId);
+            const r = tabs[idx];
+            tabs = tabs.filter(t => t.id !== activeId);
+            
+            const pane = document.getElementById('pane_' + r.id + '_' + ID);
+            if (pane) pane.remove();
+
+            if (idx < tabs.length) activeId = tabs[idx].id;
+            else activeId = tabs[tabs.length - 1].id;
+            
+            rNav(); rPanes();
+        },
+        lbl: function(id, text) { 
+            const t = tabs.find(x => x.id === id); 
+            if (t) t.label = text.trim() || 'Tab'; 
+        }
+    };
+
+    // Initial Render
+    rNav();
+    rPanes();
+})();
+<\/script>`;
+        },
+
+        /* ─ Forms & Inputs ─ */
         'input-text': `<div class="form-group mb-3"><label class="form-label" contenteditable="true">Input Label</label><input type="text" class="form-control" placeholder="Type here..."></div>`,
+        'input-group': `<div class="mb-3"><label class="form-label" contenteditable="true">Email Address</label><div class="input-group"><span class="input-group-text"><i class="fas fa-envelope"></i></span><input type="email" class="form-control" placeholder="user@example.com"></div></div>`,
+        'textarea': `<div class="mb-3"><label class="form-label" contenteditable="true">Description</label><textarea class="form-control" rows="4" placeholder="Write something..."></textarea></div>`,
         'select': `<div class="form-group mb-3"><label class="form-label" contenteditable="true">Select Option</label><select class="form-select form-control"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div>`,
         'checkbox': `<div class="form-check mb-3"><input class="form-check-input" type="checkbox"><label class="form-check-label" contenteditable="true">Example checkbox</label></div>`,
+        'radio': `<div class="mb-3"><div class="form-check"><input class="form-check-input" type="radio" name="protoRadio" id="r1" checked><label class="form-check-label" contenteditable="true">Option A</label></div><div class="form-check"><input class="form-check-input" type="radio" name="protoRadio" id="r2"><label class="form-check-label" contenteditable="true">Option B</label></div><div class="form-check"><input class="form-check-input" type="radio" name="protoRadio" id="r3"><label class="form-check-label" contenteditable="true">Option C</label></div></div>`,
+        'toggle': `<div class="mb-3"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" checked><label class="form-check-label" contenteditable="true">Enable Notifications</label></div><div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch"><label class="form-check-label" contenteditable="true">Auto Sync Data</label></div></div>`,
+        'slider': `<div class="mb-3"><label class="form-label d-flex justify-content-between"><span contenteditable="true">Volume</span><span class="text-primary fw-bold">70%</span></label><input type="range" class="form-range" min="0" max="100" value="70"></div>`,
+        'file-upload': `<div class="mb-3"><label class="form-label" contenteditable="true">Upload File</label><div class="border-2 border-dashed rounded-3 text-center p-4" style="border:2px dashed #dee2e6; cursor:pointer;"><i class="fas fa-cloud-upload-alt fs-1 text-muted mb-2"></i><p class="text-muted mb-1" contenteditable="true">Drag & drop files here</p><small class="text-muted">or</small><br><label class="btn btn-outline-primary btn-sm mt-2">Browse File<input type="file" class="d-none"></label></div></div>`,
+        'date-picker': `<div class="mb-3"><label class="form-label" contenteditable="true">Select Date</label><div class="input-group"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span><input type="date" class="form-control"></div></div>`,
         'button': `<button class="btn btn-primary" contenteditable="true">Submit Button</button>`,
-        'table': `<div class="table-responsive"><table class="table table-hover"><thead><tr><th contenteditable="true">ID</th><th contenteditable="true">Name</th><th contenteditable="true">Status</th><th contenteditable="true">Action</th></tr></thead><tbody><tr><td contenteditable="true">1</td><td contenteditable="true">John Doe</td><td contenteditable="true"><span class="badge bg-success">Active</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr><tr><td contenteditable="true">2</td><td contenteditable="true">Jane Smith</td><td contenteditable="true"><span class="badge bg-warning">Pending</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr></tbody></table></div>`
+        'button-group': `<div class="btn-group mb-3" role="group"><button class="btn btn-outline-primary" contenteditable="true">Left</button><button class="btn btn-outline-primary" contenteditable="true">Center</button><button class="btn btn-outline-primary" contenteditable="true">Right</button></div>`,
+        'form-full': `<form class="border rounded p-4 bg-white shadow-sm"><h5 class="mb-3" contenteditable="true">Form Title</h5><div class="row g-3"><div class="col-md-6"><label class="form-label" contenteditable="true">First Name</label><input type="text" class="form-control" placeholder="John"></div><div class="col-md-6"><label class="form-label" contenteditable="true">Last Name</label><input type="text" class="form-control" placeholder="Doe"></div><div class="col-12"><label class="form-label" contenteditable="true">Email</label><div class="input-group"><span class="input-group-text"><i class="fas fa-envelope"></i></span><input type="email" class="form-control" placeholder="user@example.com"></div></div><div class="col-md-6"><label class="form-label" contenteditable="true">Department</label><select class="form-select"><option>Marketing</option><option>Engineering</option><option>Finance</option></select></div><div class="col-md-6"><label class="form-label" contenteditable="true">Join Date</label><input type="date" class="form-control"></div><div class="col-12"><label class="form-label" contenteditable="true">Notes</label><textarea class="form-control" rows="3" placeholder="Optional notes..."></textarea></div><div class="col-12 d-flex gap-2 justify-content-end"><button type="button" class="btn btn-light border">Cancel</button><button type="submit" class="btn btn-primary">Save Changes</button></div></div></form>`,
+
+        /* ─ User Interface Components ─ */
+        'accordion': `<div class="accordion mb-3" id="protoAccordion"><div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acc1" contenteditable="true">Accordion Item #1</button></h2><div id="acc1" class="accordion-collapse collapse show" data-bs-parent="#protoAccordion"><div class="accordion-body" contenteditable="true">Content for the first accordion item. Click to edit.</div></div></div><div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc2" contenteditable="true">Accordion Item #2</button></h2><div id="acc2" class="accordion-collapse collapse" data-bs-parent="#protoAccordion"><div class="accordion-body" contenteditable="true">Content for the second accordion item.</div></div></div><div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc3" contenteditable="true">Accordion Item #3</button></h2><div id="acc3" class="accordion-collapse collapse" data-bs-parent="#protoAccordion"><div class="accordion-body" contenteditable="true">Content for the third accordion item.</div></div></div></div>`,
+        'modal-trigger': `<div class="d-flex flex-column align-items-start gap-2"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#protoModal" contenteditable="true">Open Modal</button><div class="modal fade" id="protoModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" contenteditable="true">Modal Title</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" contenteditable="true">Modal body content goes here.</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button><button type="button" class="btn btn-primary">Save changes</button></div></div></div></div></div>`,
+        'carousel': `<div id="protoCarousel" class="carousel slide mb-3" data-bs-ride="carousel"><div class="carousel-indicators"><button type="button" data-bs-target="#protoCarousel" data-bs-slide-to="0" class="active"></button><button type="button" data-bs-target="#protoCarousel" data-bs-slide-to="1"></button><button type="button" data-bs-target="#protoCarousel" data-bs-slide-to="2"></button></div><div class="carousel-inner rounded"><div class="carousel-item active"><div style="background:linear-gradient(135deg,#667eea,#764ba2);height:220px;display:flex;align-items:center;justify-content:center;"><h3 class="text-white" contenteditable="true">Slide One Title</h3></div></div><div class="carousel-item"><div style="background:linear-gradient(135deg,#f093fb,#f5576c);height:220px;display:flex;align-items:center;justify-content:center;"><h3 class="text-white" contenteditable="true">Slide Two Title</h3></div></div><div class="carousel-item"><div style="background:linear-gradient(135deg,#4facfe,#00f2fe);height:220px;display:flex;align-items:center;justify-content:center;"><h3 class="text-white" contenteditable="true">Slide Three Title</h3></div></div></div><button class="carousel-control-prev" type="button" data-bs-target="#protoCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button><button class="carousel-control-next" type="button" data-bs-target="#protoCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button></div>`,
+        'progress': `<div class="mb-3"><div class="d-flex justify-content-between mb-1"><span class="small fw-semibold" contenteditable="true">Sales Target</span><span class="small text-primary" contenteditable="true">72%</span></div><div class="progress mb-3" style="height:10px;"><div class="progress-bar bg-primary" style="width:72%"></div></div><div class="d-flex justify-content-between mb-1"><span class="small fw-semibold" contenteditable="true">Marketing Budget</span><span class="small text-success" contenteditable="true">45%</span></div><div class="progress mb-3" style="height:10px;"><div class="progress-bar bg-success" style="width:45%"></div></div><div class="d-flex justify-content-between mb-1"><span class="small fw-semibold" contenteditable="true">Project Completion</span><span class="small text-warning" contenteditable="true">88%</span></div><div class="progress" style="height:10px;"><div class="progress-bar bg-warning" style="width:88%"></div></div></div>`,
+        'avatar': `<div class="d-flex align-items-center gap-3 mb-3"><div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="width:48px;height:48px;background:linear-gradient(135deg,#667eea,#764ba2);flex-shrink:0;">JD</div><div><div class="fw-semibold" contenteditable="true">John Doe</div><div class="text-muted small" contenteditable="true">Product Manager</div></div><span class="badge bg-success ms-auto">Online</span></div>`,
+        'timeline': `<div class="mb-3"><div class="d-flex gap-3 mb-3"><div class="d-flex flex-column align-items-center"><div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width:36px;height:36px;flex-shrink:0;"><i class="fas fa-check text-white small"></i></div><div class="flex-grow-1" style="width:2px;background:#dee2e6;margin-top:4px;"></div></div><div class="pb-3"><p class="fw-semibold mb-0" contenteditable="true">Task Completed</p><p class="text-muted small mb-0" contenteditable="true">Today, 10:30 AM</p></div></div><div class="d-flex gap-3 mb-3"><div class="d-flex flex-column align-items-center"><div class="rounded-circle bg-warning d-flex align-items-center justify-content-center" style="width:36px;height:36px;flex-shrink:0;"><i class="fas fa-clock text-white small"></i></div><div class="flex-grow-1" style="width:2px;background:#dee2e6;margin-top:4px;"></div></div><div class="pb-3"><p class="fw-semibold mb-0" contenteditable="true">In Progress</p><p class="text-muted small mb-0" contenteditable="true">Yesterday, 3:00 PM</p></div></div><div class="d-flex gap-3"><div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width:36px;height:36px;flex-shrink:0;"><i class="fas fa-plus text-white small"></i></div><div><p class="fw-semibold mb-0" contenteditable="true">Task Created</p><p class="text-muted small mb-0" contenteditable="true">2 days ago</p></div></div></div>`,
+        'list-group': `<ul class="list-group mb-3"><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item One<span class="badge bg-primary rounded-pill">14</span></li><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item Two<span class="badge bg-success rounded-pill">9</span></li><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item Three<span class="badge bg-warning text-dark rounded-pill">3</span></li><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item Four<span class="badge bg-secondary rounded-pill">0</span></li></ul>`,
+        'tooltip-demo': `<div class="d-flex flex-wrap gap-2 mb-3 align-items-center"><button class="btn btn-secondary" title="This is a tooltip">Hover Tooltip</button><button class="btn btn-info text-white" data-bs-toggle="popover" title="Popover Title" data-bs-content="This is popover content. More detail here.">Click Popover</button><small class="text-muted">Tooltips & popovers appear on hover/click</small></div>`,
+
+        /* ─ Charts ─ */
+        'chart-bar': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Bar Chart — Monthly Sales</div><div class="card-body"><div id="chartBar_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartBar_{{UID}}'),{chart:{type:'bar',height:260,toolbar:{show:false}},colors:['#6366f1'],series:[{name:'Sales',data:[44,55,57,56,61,58,63,70,65,80,75,90]}],xaxis:{categories:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']},plotOptions:{bar:{borderRadius:4}},dataLabels:{enabled:false}}).render();}<\/script>`.replace(/{{UID}}/g, 'b'+Date.now()),
+        'chart-line': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Line Chart — Revenue Trend</div><div class="card-body"><div id="chartLine_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartLine_{{UID}}'),{chart:{type:'area',height:260,toolbar:{show:false}},colors:['#10b981'],fill:{type:'gradient',gradient:{shadeIntensity:1,opacityFrom:0.4,opacityTo:0,stops:[0,90,100]}},series:[{name:'Revenue',data:[31,40,28,51,42,109,100,80,91,120,105,135]}],xaxis:{categories:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']},dataLabels:{enabled:false},stroke:{curve:'smooth'}}).render();}<\/script>`.replace(/{{UID}}/g, 'l'+Date.now()),
+        'chart-pie': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Pie / Donut Chart — Distribution</div><div class="card-body"><div id="chartPie_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartPie_{{UID}}'),{chart:{type:'donut',height:260},colors:['#6366f1','#10b981','#f59e0b','#ef4444'],series:[44,55,41,17],labels:['Product A','Product B','Product C','Product D'],legend:{position:'bottom'}}).render();}<\/script>`.replace(/{{UID}}/g, 'p'+Date.now()),
+        'chart-gantt': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Gantt Chart — Project Timeline</div><div class="card-body"><div id="chartGantt_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartGantt_{{UID}}'),{chart:{type:'rangeBar',height:260,toolbar:{show:false}},plotOptions:{bar:{horizontal:true,borderRadius:4}},colors:['#6366f1','#10b981','#f59e0b'],series:[{name:'Planning',data:[{x:'Research',y:[new Date('2025-01-01').getTime(),new Date('2025-01-20').getTime()]},{x:'Design',y:[new Date('2025-01-15').getTime(),new Date('2025-02-10').getTime()]}]},{name:'Development',data:[{x:'Frontend',y:[new Date('2025-02-01').getTime(),new Date('2025-03-01').getTime()]},{x:'Backend',y:[new Date('2025-02-10').getTime(),new Date('2025-03-15').getTime()]}]}],xaxis:{type:'datetime'},dataLabels:{enabled:false}}).render();}<\/script>`.replace(/{{UID}}/g, 'g'+Date.now()),
+
+        /* ─ Data Tables ─ */
+        'table': `<div class="table-responsive"><table class="table table-hover"><thead><tr><th contenteditable="true">ID</th><th contenteditable="true">Name</th><th contenteditable="true">Status</th><th contenteditable="true">Action</th></tr></thead><tbody><tr><td contenteditable="true">1</td><td contenteditable="true">John Doe</td><td contenteditable="true"><span class="badge bg-success">Active</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr><tr><td contenteditable="true">2</td><td contenteditable="true">Jane Smith</td><td contenteditable="true"><span class="badge bg-warning">Pending</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr></tbody></table></div>`,
+        'table-striped': `<div class="table-responsive"><table class="table table-striped table-bordered align-middle"><thead class="table-dark"><tr><th contenteditable="true">#</th><th contenteditable="true">Name</th><th contenteditable="true">Role</th><th contenteditable="true">Department</th><th contenteditable="true">Status</th></tr></thead><tbody><tr><td>1</td><td contenteditable="true">Alice Johnson</td><td contenteditable="true">Manager</td><td contenteditable="true">Marketing</td><td><span class="badge bg-success">Active</span></td></tr><tr><td>2</td><td contenteditable="true">Bob Williams</td><td contenteditable="true">Developer</td><td contenteditable="true">Engineering</td><td><span class="badge bg-primary">Active</span></td></tr><tr><td>3</td><td contenteditable="true">Carol Smith</td><td contenteditable="true">Designer</td><td contenteditable="true">Creative</td><td><span class="badge bg-warning text-dark">On Leave</span></td></tr></tbody></table></div>`,
+        'table-datatable': function() {
+            const uid = 'dt' + Date.now();
+            const u = uid;
+            return `
+<div class="card border-0 shadow-sm" id="DTW_${u}">
+  <div class="card-header bg-white d-flex justify-content-between align-items-center flex-wrap gap-2" style="padding:10px 14px;">
+    <span class="fw-semibold" contenteditable="true">Interactive Data Table</span>
+    <div class="d-flex gap-2 align-items-center flex-wrap">
+      <input type="text" id="DTS_${u}" class="form-control form-control-sm" placeholder="Search..." style="width:150px;" oninput="DT_${u}.search(this.value)">
+      <select id="DTF_${u}" class="form-select form-select-sm" style="width:auto;" onchange="DT_${u}.filter(this.value)"></select>
+      <button class="btn btn-outline-secondary btn-sm" onclick="DT_${u}.openColMgr()"><i class="fas fa-table-columns me-1"></i>Columns</button>
+      <button class="btn btn-primary btn-sm" onclick="DT_${u}.openAdd()"><i class="fas fa-plus me-1"></i>Add</button>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead class="table-light" id="DTH_${u}"></thead><tbody id="DTB_${u}"></tbody></table></div>
+    <div id="DTE_${u}" class="text-center text-muted py-4" style="display:none;"><i class="fas fa-inbox fa-2x mb-2 d-block"></i>No data found</div>
+  </div>
+  <div class="card-footer bg-white d-flex justify-content-between align-items-center" style="padding:8px 14px;">
+    <small class="text-muted" id="DTI_${u}"></small>
+    <nav><ul class="pagination pagination-sm mb-0" id="DTP_${u}"></ul></nav>
+  </div>
+  <!-- ADD/EDIT MODAL -->
+  <div id="DTM_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:500px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);">
+      <div style="padding:14px 18px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;">
+        <h6 class="mb-0 fw-bold" id="DMTITLE_${u}">Add Data</h6>
+        <button onclick="DT_${u}.closeModal()" style="background:none;border:none;font-size:20px;color:#9ca3af;cursor:pointer;line-height:1;">&times;</button>
+      </div>
+      <div style="padding:18px;" id="DMFORM_${u}"></div>
+      <div id="DMERR_${u}" class="text-danger small px-4 pb-2" style="display:none;"><i class="fas fa-exclamation-circle me-1"></i>Please fill required fields.</div>
+      <div style="padding:12px 18px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:#fff;">
+        <button onclick="DT_${u}.closeModal()" class="btn btn-light border btn-sm">Cancel</button>
+        <button onclick="DT_${u}.saveData()" class="btn btn-primary btn-sm px-4"><i class="fas fa-save me-1"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <!-- VIEW MODAL -->
+  <div id="DTV_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:400px;max-width:95vw;box-shadow:0 24px 64px rgba(0,0,0,.3);overflow:hidden;">
+      <div id="DVHDR_${u}" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:20px;color:#fff;">
+        <div style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin-bottom:8px;" id="DVAVT_${u}"></div>
+        <div class="fw-bold" id="DVNAME_${u}"></div><small style="opacity:.75;" id="DVSUB_${u}"></small>
+      </div>
+      <div style="padding:18px;" id="DVBODY_${u}"></div>
+      <div style="padding:12px 18px;border-top:1px solid #e5e7eb;text-align:right;"><button onclick="DT_${u}.closeView()" class="btn btn-light border btn-sm px-4">Close</button></div>
+    </div>
+  </div>
+  <!-- DELETE MODAL -->
+  <div id="DTDEL_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:340px;max-width:95vw;text-align:center;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.3);">
+      <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"><i class="fas fa-trash-alt text-danger" style="font-size:20px;"></i></div>
+      <h6 class="fw-bold mb-1">Delete record?</h6>
+      <p class="text-muted small mb-4" id="DTDELNAME_${u}"></p>
+      <div class="d-flex gap-2 justify-content-center">
+        <button onclick="DT_${u}.closeDelete()" class="btn btn-light border btn-sm px-3">Cancel</button>
+        <button onclick="DT_${u}.confirmDelete()" class="btn btn-danger btn-sm px-3"><i class="fas fa-trash me-1"></i>Delete</button>
+      </div>
+    </div>
+  </div>
+  <!-- COLUMN MANAGER MODAL -->
+  <div id="DTCM_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:660px;max-width:97vw;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);">
+      <div style="padding:14px 18px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;">
+        <div><h6 class="mb-0 fw-bold"><i class="fas fa-table-columns text-primary me-2"></i>Manage Columns</h6><small class="text-muted">Edit columns — Add/Edit form fields update automatically.</small></div>
+        <button onclick="DT_${u}.closeColMgr()" style="background:none;border:none;font-size:20px;color:#9ca3af;cursor:pointer;">&times;</button>
+      </div>
+      <div style="padding:16px 18px;">
+        <div style="display:grid;grid-template-columns:1fr 140px 1fr 32px;gap:8px;margin-bottom:6px;font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;">
+          <div>Column Name</div><div>Type</div><div>Options (comma-separated)</div><div></div>
+        </div>
+        <div id="DTCMLIST_${u}"></div>
+        <button onclick="DT_${u}._addCol()" class="btn btn-outline-primary btn-sm mt-2 w-100"><i class="fas fa-plus me-1"></i>Add Column</button>
+      </div>
+      <div style="padding:12px 18px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:#fff;">
+        <button onclick="DT_${u}.closeColMgr()" class="btn btn-light border btn-sm">Cancel</button>
+        <button onclick="DT_${u}.saveColMgr()" class="btn btn-primary btn-sm px-4"><i class="fas fa-check me-1"></i>Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+const ID='${u}';const PS=5;
+let cols=[{key:'c1',label:'Name',type:'text',req:true},{key:'c2',label:'Email',type:'email',req:false},{key:'c3',label:'Role',type:'select',opts:['Admin','User','Editor','Manager','Viewer'],req:false},{key:'c4',label:'Status',type:'status',opts:['Active','Pending','Inactive'],req:false}];
+let draft=[];
+let rows=[{id:1,c1:'John Doe',c2:'john@@example.com',c3:'Admin',c4:'Active'},{id:2,c1:'Jane Smith',c2:'jane@@example.com',c3:'User',c4:'Pending'},{id:3,c1:'Bob Marley',c2:'bob@@example.com',c3:'Editor',c4:'Inactive'},{id:4,c1:'Alice Johnson',c2:'alice@@example.com',c3:'Manager',c4:'Active'},{id:5,c1:'Charlie Brown',c2:'charlie@@example.com',c3:'Viewer',c4:'Active'},{id:6,c1:'Diana Prince',c2:'diana@@example.com',c3:'User',c4:'Pending'}];
+let nid=7,eid=null,did=null,pg=1,sq='',fv='',ck=cols.length;
+const g=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const sCol=()=>cols.find(c=>c.type==='status');
+const sBadge=s=>{const m={Active:'bg-success',Pending:'bg-warning text-dark',Inactive:'bg-secondary'};return '<span class="badge '+(m[s]||'bg-secondary')+'">'+esc(s)+'</span>';};
+const showM=id=>{g(id).style.display='flex';};
+const hideM=id=>{g(id).style.display='none';};
+function filt(){return rows.filter(r=>{const q=sq.toLowerCase();const mq=!q||cols.some(c=>(r[c.key]||'').toString().toLowerCase().includes(q));const sc=sCol();const ms=!fv||!sc||r[sc.key]===fv;return mq&&ms;});}
+function rAll(){rHead();rBody();rFilterSel();}
+function rHead(){const th=g('DTH_'+ID);if(!th)return;th.innerHTML='<tr><th style="width:40px;font-size:12px;">No</th>'+cols.map(c=>'<th style="font-size:12px;">'+esc(c.label)+'</th>').join('')+'<th style="width:110px;font-size:12px;">Action</th></tr>';}
+function rBody(){
+  const data=filt();const tot=data.length;const totP=Math.max(1,Math.ceil(tot/PS));
+  if(pg>totP)pg=totP;const paged=data.slice((pg-1)*PS,pg*PS);
+  const tb=g('DTB_'+ID),em=g('DTE_'+ID);if(!tb)return;
+  tb.innerHTML='';
+  if(!paged.length){em.style.display='';g('DTI_'+ID).textContent='No entries';}
+  else{
+    em.style.display='none';
+    paged.forEach((r,i)=>{
+      const tr=document.createElement('tr');
+      let h='<td style="font-size:12px;">'+(((pg-1)*PS)+i+1)+'</td>';
+      cols.forEach((c,ci)=>{
+        const v=r[c.key]||'';
+        if(c.type==='status')h+='<td>'+sBadge(v)+'</td>';
+        else if(c.type==='select')h+='<td><span class="badge bg-light text-dark border" style="font-size:12px;">'+esc(v)+'</span></td>';
+        else if(ci===0)h+='<td><div class="d-flex align-items-center gap-2"><div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">'+(v.charAt(0)||'?').toUpperCase()+'</div><span style="font-size:13px;font-weight:600;">'+esc(v)+'</span></div></td>';
+        else h+='<td><span class="text-muted" style="font-size:12px;">'+esc(v)+'</span></td>';
+      });
+      h+='<td><div class="d-flex gap-1"><button class="btn btn-sm btn-outline-primary" style="padding:2px 6px;" onclick="DT_'+ID+'.openView('+r.id+')"><i class="fas fa-eye" style="font-size:11px;"></i></button><button class="btn btn-sm btn-outline-warning" style="padding:2px 6px;" onclick="DT_'+ID+'.openEdit('+r.id+')"><i class="fas fa-edit" style="font-size:11px;"></i></button><button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_'+ID+'.openDelete('+r.id+')"><i class="fas fa-trash" style="font-size:11px;"></i></button></div></td>';
+      tr.innerHTML=h;tb.appendChild(tr);
+    });
+    const from=(pg-1)*PS+1,to=Math.min(pg*PS,tot);
+    g('DTI_'+ID).textContent='Showing '+from+'\u2013'+to+' of '+tot+' entries';
+  }
+  const ul=g('DTP_'+ID);ul.innerHTML='';
+  const mk=(lbl,p,dis,act)=>{const li=document.createElement('li');li.className='page-item'+(dis?' disabled':'')+(act?' active':'');const a=document.createElement('a');a.className='page-link';a.textContent=lbl;a.href='#';if(!dis&&!act)a.onclick=e=>{e.preventDefault();pg=p;rBody();};li.appendChild(a);return li;};
+  ul.appendChild(mk('Prev',pg-1,pg===1,false));
+  for(let p=1;p<=totP;p++)ul.appendChild(mk(p,p,false,p===pg));
+  ul.appendChild(mk('Next',pg+1,pg===totP,false));
+}
+function rFilterSel(){const sel=g('DTF_'+ID);if(!sel)return;const sc=sCol();if(!sc){sel.style.display='none';return;}sel.style.display='';const cv=fv;sel.innerHTML='<option value="">All '+esc(sc.label)+'</option>'+(sc.opts||[]).map(o=>'<option value="'+esc(o)+'"'+(o===cv?' selected':'')+'>'+esc(o)+'</option>').join('');}
+function buildForm(r){
+  return '<div class="row g-3">'+cols.map(c=>{
+    const v=r?(r[c.key]||''):'';
+    const req=c.req?'<span class="text-danger">*</span>':'';
+    let inp='';
+    if(c.type==='status'||c.type==='select'){const opts=(c.opts||[]).map(o=>'<option'+(o===v?' selected':'')+'>'+esc(o)+'</option>').join('');inp='<select id="mf_'+c.key+'_'+ID+'" class="form-select form-select-sm">'+opts+'</select>';}
+    else if(c.type==='date')inp='<input type="date" id="mf_'+c.key+'_'+ID+'" class="form-control form-control-sm" value="'+esc(v)+'">';
+    else if(c.type==='number')inp='<input type="number" id="mf_'+c.key+'_'+ID+'" class="form-control form-control-sm" value="'+esc(v)+'">';
+    else if(c.type==='email')inp='<div class="input-group input-group-sm"><span class="input-group-text"><i class="fas fa-envelope text-muted" style="font-size:11px;"></i></span><input type="email" id="mf_'+c.key+'_'+ID+'" class="form-control" value="'+esc(v)+'" placeholder="user@@example.com"></div>';
+    else inp='<input type="text" id="mf_'+c.key+'_'+ID+'" class="form-control form-control-sm" value="'+esc(v)+'" placeholder="Enter '+esc(c.label)+'">';
+    const cls=cols.length>2?'col-md-6 col-12':'col-12';
+    return '<div class="'+cls+'"><label class="form-label mb-1" style="font-size:12px;font-weight:600;">'+esc(c.label)+' '+req+'</label>'+inp+'</div>';
+  }).join('')+'</div>';}
+function buildColMgr(){
+  const list=g('DTCMLIST_'+ID);if(!list)return;
+  list.innerHTML='';
+  draft.forEach(c=>{
+    const hasOpts=c.type==='select'||c.type==='status';
+    const row=document.createElement('div');
+    row.style.cssText='display:grid;grid-template-columns:1fr 140px 1fr 32px;gap:8px;margin-bottom:8px;align-items:center;';
+    row.innerHTML=
+      '<input type="text" class="form-control form-control-sm" value="'+esc(c.label)+'" placeholder="Name" oninput="DT_'+ID+'._cLbl(&quot;'+c.key+'&quot;,this.value)">'+
+      '<select class="form-select form-select-sm" onchange="DT_'+ID+'._cType(&quot;'+c.key+'&quot;,this.value)">'+
+      ['text','email','number','date','select','status'].map(t=>'<option value="'+t+'"'+(c.type===t?' selected':'')+'>'+{text:'Text',email:'Email',number:'Number',date:'Date',select:'Select',status:'Status Badge'}[t]+'</option>').join('')+
+      '</select>'+
+      '<input type="text" class="form-control form-control-sm" value="'+(c.opts||[]).join(',')+'" placeholder="e.g. Yes,No"'+(hasOpts?'':' disabled style="opacity:.4"')+' oninput="DT_'+ID+'._cOpts(&quot;'+c.key+'&quot;,this.value)">'+
+      '<button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_'+ID+'._delCol(&quot;'+c.key+'&quot;)"'+(draft.length<=1?' disabled':'')+' title="Remove"><i class="fas fa-times" style="font-size:11px;"></i></button>';
+    list.appendChild(row);
+  });
+}
+window['DT_'+ID]={
+  search:v=>{sq=v;pg=1;rBody();},
+  filter:v=>{fv=v;pg=1;rBody();},
+  openAdd:()=>{eid=null;g('DMTITLE_'+ID).textContent='Add New Data';g('DMFORM_'+ID).innerHTML=buildForm(null);g('DMERR_'+ID).style.display='none';showM('DTM_'+ID);},
+  openEdit:id=>{const r=rows.find(x=>x.id===id);if(!r)return;eid=id;g('DMTITLE_'+ID).textContent='Edit Data';g('DMFORM_'+ID).innerHTML=buildForm(r);g('DMERR_'+ID).style.display='none';showM('DTM_'+ID);},
+  closeModal:()=>hideM('DTM_'+ID),
+  saveData:()=>{
+    const nd={};let ok=true;
+    cols.forEach(c=>{const el=g('mf_'+c.key+'_'+ID);nd[c.key]=el?el.value.trim():'';if(c.req&&!nd[c.key])ok=false;});
+    if(!ok){g('DMERR_'+ID).style.display='';return;}
+    if(eid){const r=rows.find(x=>x.id===eid);if(r)Object.assign(r,nd);}else{rows.push({id:nid++,...nd});}
+    hideM('DTM_'+ID);rBody();
+  },
+  openView:id=>{
+    const r=rows.find(x=>x.id===id);if(!r)return;
+    const fc=cols[0],sc=cols[1];
+    g('DVAVT_'+ID).textContent=(r[fc.key]||'?').charAt(0).toUpperCase();
+    g('DVNAME_'+ID).textContent=r[fc.key]||'';
+    g('DVSUB_'+ID).textContent=sc?(sc.label+': '+(r[sc.key]||'')):'';    const icons={email:'fa-envelope',status:'fa-circle-dot',date:'fa-calendar-alt',number:'fa-hashtag',select:'fa-list'};
+    g('DVBODY_'+ID).innerHTML=cols.slice(2).map(c=>{
+      const v=r[c.key]||'';
+      return '<div class="d-flex align-items-center gap-2 mb-3"><div style="width:30px;height:30px;border-radius:8px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas '+(icons[c.type]||'fa-tag')+' text-primary" style="font-size:11px;"></i></div><div><div style="font-size:11px;color:#9ca3af;">' +esc(c.label)+'</div><div style="font-size:13px;font-weight:500;">'+(c.type==='status'?sBadge(v):esc(v)||'\u2014')+'</div></div></div>';
+    }).join('')||'<p class="text-muted small mb-0">No additional details.</p>';
+    showM('DTV_'+ID);
+  },
+  closeView:()=>hideM('DTV_'+ID),
+  openDelete:id=>{
+    const r=rows.find(x=>x.id===id);if(!r)return;
+    did=id;const fc=cols[0];
+    g('DTDELNAME_'+ID).textContent='Delete "'+(r[fc.key]||'this record')+'"? This cannot be undone.';
+    showM('DTDEL_'+ID);
+  },
+  confirmDelete:()=>{rows=rows.filter(x=>x.id!==did);hideM('DTDEL_'+ID);rBody();},
+  closeDelete:()=>hideM('DTDEL_'+ID),
+  openColMgr:()=>{draft=cols.map(c=>({...c,opts:c.opts?[...c.opts]:undefined}));buildColMgr();showM('DTCM_'+ID);},
+  closeColMgr:()=>hideM('DTCM_'+ID),
+  saveColMgr:()=>{cols=draft.map(c=>({...c,opts:c.opts?[...c.opts]:undefined}));hideM('DTCM_'+ID);rAll();},
+  _cLbl:(k,v)=>{const c=draft.find(x=>x.key===k);if(c)c.label=v;},
+  _cType:(k,v)=>{const c=draft.find(x=>x.key===k);if(!c)return;c.type=v;if((v==='select'||v==='status')&&!c.opts)c.opts=['Option1','Option2'];buildColMgr();},
+  _cOpts:(k,v)=>{const c=draft.find(x=>x.key===k);if(c)c.opts=v.split(',').map(s=>s.trim()).filter(Boolean);},
+  _delCol:(k)=>{if(draft.length<=1)return;draft=draft.filter(c=>c.key!==k);buildColMgr();},
+  _addCol:()=>{ck++;draft.push({key:'c'+ck,label:'New Column',type:'text',req:false});buildColMgr();}
+};
+rAll();
+})();
+<\/script>`;
+        },
+        'barcode': `<div class="text-center p-3"><svg id="barcodeProto_{{UID}}" style="max-width:100%;"></svg><p class="text-muted small mt-2" contenteditable="true">1234567890128</p></div>`.replace(/{{UID}}/g, 'bc'+Date.now())
     };
+
+    /* ── Component Search Filter ───────── */
+    function filterComponents(query) {
+        const q = query.toLowerCase().trim();
+        const tab = document.getElementById('components-tab');
+        if (!tab) return;
+
+        const items = tab.querySelectorAll('.component-item');
+        const groups = tab.querySelectorAll('.component-group-title');
+
+        if (!q) {
+            // Reset — show everything
+            items.forEach(el => el.style.display = '');
+            groups.forEach(el => el.style.display = '');
+            const nm = tab.querySelector('.comp-no-match');
+            if (nm) nm.remove();
+            return;
+        }
+
+        let anyVisible = false;
+        items.forEach(el => {
+            const label = (el.getAttribute('data-label') || '') + ' ' + el.textContent;
+            const match = label.toLowerCase().includes(q);
+            el.style.display = match ? '' : 'none';
+            if (match) anyVisible = true;
+        });
+
+        // Hide group titles if all their items are hidden
+        groups.forEach(group => {
+            let sibling = group.nextElementSibling;
+            let hasVisible = false;
+            while (sibling && !sibling.classList.contains('component-group-title')) {
+                if (sibling.classList.contains('component-item') && sibling.style.display !== 'none') {
+                    hasVisible = true;
+                }
+                sibling = sibling.nextElementSibling;
+            }
+            group.style.display = hasVisible ? '' : 'none';
+        });
+
+        // Show / remove "no results" message
+        let nm = tab.querySelector('.comp-no-match');
+        if (!anyVisible) {
+            if (!nm) {
+                nm = document.createElement('div');
+                nm.className = 'comp-no-match text-center text-muted py-3';
+                nm.innerHTML = '<i class="fas fa-search mb-2 d-block"></i>No components found';
+                tab.appendChild(nm);
+            }
+        } else {
+            if (nm) nm.remove();
+        }
+    }
 
     /* ── Drag & Drop ───────────────────── */
     function allowDrop(ev) { ev.preventDefault(); ev.stopPropagation(); }
@@ -921,11 +1416,16 @@
         if (type && componentTemplates[type]) {
             const w = document.createElement('div');
             w.className = 'canvas-element';
-            
+
+            // Resolve template — call it if it's a function (e.g. table-datatable generates fresh uid each drop)
+            const tpl = componentTemplates[type];
+            const content = (typeof tpl === 'function') ? tpl() : tpl;
+
             let extra = '';
             if (type === 'button') {
                 extra = `<button class="action-btn link-btn" title="Link to Page" onclick="openLinkModal(this)"><i class="fa-solid fa-link"></i></button>`;
-            } else if (type === 'table') {
+            } else if (type === 'table' || type === 'table-striped') {
+                // table-datatable has its own built-in Column Manager; only basic tables get the manual controls
                 extra = `
                     <button class="action-btn" title="Tambah Kolom" onclick="addColumn(this)" style="color:#10b981;"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-table-columns"></i></button>
                     <button class="action-btn" title="Hapus Kolom" onclick="removeColumn(this)" style="color:#ef4444;"><i class="fa-solid fa-minus"></i> <i class="fa-solid fa-table-columns"></i></button>
@@ -933,9 +1433,16 @@
                     <button class="action-btn" title="Hapus Baris" onclick="removeRow(this)" style="color:#ef4444;"><i class="fa-solid fa-minus"></i> <i class="fa-solid fa-table-list"></i></button>
                 `;
             }
-            
-            w.innerHTML = `<div class="canvas-element-actions">${extra}<button class="action-btn" title="Move Up" onclick="moveEl(this,-1)"><i class="fa-solid fa-arrow-up"></i></button><button class="action-btn" title="Move Down" onclick="moveEl(this,1)"><i class="fa-solid fa-arrow-down"></i></button><button class="action-btn delete" title="Delete" onclick="deleteEl(this)"><i class="fa-solid fa-trash"></i></button></div>` + componentTemplates[type];
+
+            w.innerHTML = `<div class="canvas-element-actions">${extra}<button class="action-btn" title="Move Up" onclick="moveEl(this,-1)"><i class="fa-solid fa-arrow-up"></i></button><button class="action-btn" title="Move Down" onclick="moveEl(this,1)"><i class="fa-solid fa-arrow-down"></i></button><button class="action-btn delete" title="Delete" onclick="deleteEl(this)"><i class="fa-solid fa-trash"></i></button></div>` + content;
             target.appendChild(w);
+
+            // Execute any <script> tags inside (needed for chart renders & interactive datatable)
+            w.querySelectorAll('script').forEach(oldScript => {
+                const newScript = document.createElement('script');
+                newScript.textContent = oldScript.textContent;
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
         }
     }
 

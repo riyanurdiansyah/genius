@@ -1,0 +1,732 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+    <a href="#">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+    <a href="#">Module</a>
+    </li>
+    <li class="breadcrumb-item active">Current Page</li>
+    </ol>
+    </nav>
+    <div class="card border-0 shadow-sm mb-3" id="wrap_tab1773562911299">
+    <div class="card-header bg-white pb-0 border-bottom-0 d-flex justify-content-between align-items-end">
+    <ul class="nav nav-tabs card-header-tabs" id="nav_tab1773562911299" style="margin-bottom:-1px; flex-wrap:nowrap; overflow-x:auto; border-bottom:none;">
+    <li class="nav-item">
+    <button class="nav-link active fw-bold" style="outline:none;background:#fff;" onblur="TABS_tab1773562911299.lbl(&quot;t1&quot;, this.innerText)">Request</button>
+    </li>
+    <li class="nav-item">
+    <button class="nav-link " style="outline:none;background:transparent;" onblur="TABS_tab1773562911299.lbl(&quot;t2&quot;, this.innerText)" onclick="TABS_tab1773562911299.sw(&quot;t2&quot;)">Protocol</button>
+    </li>
+    </ul>
+    <div class="d-flex gap-1 ms-2 mb-2 pb-1" style="flex-shrink:0;">
+    <button class="btn btn-sm btn-outline-primary" style="padding:2px 8px;font-size:12px;" onclick="TABS_tab1773562911299.addTab()" title="Add Tab">
+    <i class="fas fa-plus">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" style="padding:2px 8px;font-size:12px;" onclick="TABS_tab1773562911299.removeTab()" title="Remove Active Tab">
+    <i class="fas fa-minus">
+    </i>
+    </button>
+    </div>
+    </div>
+    <div class="card-body p-0 border border-top-0 rounded-bottom">
+    <div class="tab-content w-100" id="content_tab1773562911299" style="position:relative; min-height:100px;">
+    <!-- Panes injected here by script -->
+    <div id="pane_t1_tab1773562911299" class="tab-pane p-4 w-100 show active" style="min-height: 150px; display: block;">
+    <div class="text-center text-muted w-100 comp-empty-state" style="padding-top: 10px; pointer-events: none;">
+    <i class="fas fa-cubes mb-2 d-block fa-lg" style="opacity:0.5;">
+    </i>Drag &amp; Drop Components Here</div>
+    <div class="canvas-element">
+    <div class="canvas-element-actions">
+    <button class="action-btn" title="Move Up" onclick="moveEl(this,-1)">
+    <i class="fa-solid fa-arrow-up">
+    </i>
+    </button>
+    <button class="action-btn" title="Move Down" onclick="moveEl(this,1)">
+    <i class="fa-solid fa-arrow-down">
+    </i>
+    </button>
+    <button class="action-btn delete" title="Delete" onclick="deleteEl(this)">
+    <i class="fa-solid fa-trash">
+    </i>
+    </button>
+    </div>
+    <div class="card border-0 shadow-sm" id="DTW_dt1773562927663">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center flex-wrap gap-2" style="padding:10px 14px;">
+    <span class="fw-semibold">Interactive Data Table</span>
+    <div class="d-flex gap-2 align-items-center flex-wrap">
+    <input type="text" id="DTS_dt1773562927663" class="form-control form-control-sm" placeholder="Search..." style="width:150px;" oninput="DT_dt1773562927663.search(this.value)">
+    <select id="DTF_dt1773562927663" class="form-select form-select-sm" style="width:auto;" onchange="DT_dt1773562927663.filter(this.value)">
+    <option value="">All Status</option>
+    <option value="Active">Active</option>
+    <option value="Pending">Pending</option>
+    <option value="Inactive">Inactive</option>
+    </select>
+    <button class="btn btn-outline-secondary btn-sm" onclick="DT_dt1773562927663.openColMgr()">
+    <i class="fas fa-table-columns me-1">
+    </i>Columns</button>
+    <button class="btn btn-primary btn-sm" onclick="DT_dt1773562927663.openAdd()">
+    <i class="fas fa-plus me-1">
+    </i>Add</button>
+    </div>
+    </div>
+    <div class="card-body p-0">
+    <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+    <thead class="table-light" id="DTH_dt1773562927663">
+    <tr>
+    <th style="width:40px;font-size:12px;">No</th>
+    <th style="font-size:12px;">Name</th>
+    <th style="font-size:12px;">Email</th>
+    <th style="font-size:12px;">Role</th>
+    <th style="font-size:12px;">Status</th>
+    <th style="width:110px;font-size:12px;">Action</th>
+    </tr>
+    </thead>
+    <tbody id="DTB_dt1773562927663">
+    <tr>
+    <td style="font-size:12px;">1</td>
+    <td>
+    <div class="d-flex align-items-center gap-2">
+    <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">J</div>
+    <span style="font-size:13px;font-weight:600;">John Doe</span>
+    </div>
+    </td>
+    <td>
+    <span class="text-muted" style="font-size:12px;">john@example.com</span>
+    </td>
+    <td>
+    <span class="badge bg-light text-dark border" style="font-size:12px;">Admin</span>
+    </td>
+    <td>
+    <span class="badge bg-success">Active</span>
+    </td>
+    <td>
+    <div class="d-flex gap-1">
+    <button class="btn btn-sm btn-outline-primary" style="padding:2px 6px;" onclick="DT_dt1773562927663.openView(1)">
+    <i class="fas fa-eye" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-warning" style="padding:2px 6px;" onclick="DT_dt1773562927663.openEdit(1)">
+    <i class="fas fa-edit" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_dt1773562927663.openDelete(1)">
+    <i class="fas fa-trash" style="font-size:11px;">
+    </i>
+    </button>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td style="font-size:12px;">2</td>
+    <td>
+    <div class="d-flex align-items-center gap-2">
+    <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">J</div>
+    <span style="font-size:13px;font-weight:600;">Jane Smith</span>
+    </div>
+    </td>
+    <td>
+    <span class="text-muted" style="font-size:12px;">jane@example.com</span>
+    </td>
+    <td>
+    <span class="badge bg-light text-dark border" style="font-size:12px;">User</span>
+    </td>
+    <td>
+    <span class="badge bg-warning text-dark">Pending</span>
+    </td>
+    <td>
+    <div class="d-flex gap-1">
+    <button class="btn btn-sm btn-outline-primary" style="padding:2px 6px;" onclick="DT_dt1773562927663.openView(2)">
+    <i class="fas fa-eye" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-warning" style="padding:2px 6px;" onclick="DT_dt1773562927663.openEdit(2)">
+    <i class="fas fa-edit" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_dt1773562927663.openDelete(2)">
+    <i class="fas fa-trash" style="font-size:11px;">
+    </i>
+    </button>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td style="font-size:12px;">3</td>
+    <td>
+    <div class="d-flex align-items-center gap-2">
+    <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">B</div>
+    <span style="font-size:13px;font-weight:600;">Bob Marley</span>
+    </div>
+    </td>
+    <td>
+    <span class="text-muted" style="font-size:12px;">bob@example.com</span>
+    </td>
+    <td>
+    <span class="badge bg-light text-dark border" style="font-size:12px;">Editor</span>
+    </td>
+    <td>
+    <span class="badge bg-secondary">Inactive</span>
+    </td>
+    <td>
+    <div class="d-flex gap-1">
+    <button class="btn btn-sm btn-outline-primary" style="padding:2px 6px;" onclick="DT_dt1773562927663.openView(3)">
+    <i class="fas fa-eye" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-warning" style="padding:2px 6px;" onclick="DT_dt1773562927663.openEdit(3)">
+    <i class="fas fa-edit" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_dt1773562927663.openDelete(3)">
+    <i class="fas fa-trash" style="font-size:11px;">
+    </i>
+    </button>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td style="font-size:12px;">4</td>
+    <td>
+    <div class="d-flex align-items-center gap-2">
+    <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">A</div>
+    <span style="font-size:13px;font-weight:600;">Alice Johnson</span>
+    </div>
+    </td>
+    <td>
+    <span class="text-muted" style="font-size:12px;">alice@example.com</span>
+    </td>
+    <td>
+    <span class="badge bg-light text-dark border" style="font-size:12px;">Manager</span>
+    </td>
+    <td>
+    <span class="badge bg-success">Active</span>
+    </td>
+    <td>
+    <div class="d-flex gap-1">
+    <button class="btn btn-sm btn-outline-primary" style="padding:2px 6px;" onclick="DT_dt1773562927663.openView(4)">
+    <i class="fas fa-eye" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-warning" style="padding:2px 6px;" onclick="DT_dt1773562927663.openEdit(4)">
+    <i class="fas fa-edit" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_dt1773562927663.openDelete(4)">
+    <i class="fas fa-trash" style="font-size:11px;">
+    </i>
+    </button>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td style="font-size:12px;">5</td>
+    <td>
+    <div class="d-flex align-items-center gap-2">
+    <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">C</div>
+    <span style="font-size:13px;font-weight:600;">Charlie Brown</span>
+    </div>
+    </td>
+    <td>
+    <span class="text-muted" style="font-size:12px;">charlie@example.com</span>
+    </td>
+    <td>
+    <span class="badge bg-light text-dark border" style="font-size:12px;">Viewer</span>
+    </td>
+    <td>
+    <span class="badge bg-success">Active</span>
+    </td>
+    <td>
+    <div class="d-flex gap-1">
+    <button class="btn btn-sm btn-outline-primary" style="padding:2px 6px;" onclick="DT_dt1773562927663.openView(5)">
+    <i class="fas fa-eye" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-warning" style="padding:2px 6px;" onclick="DT_dt1773562927663.openEdit(5)">
+    <i class="fas fa-edit" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_dt1773562927663.openDelete(5)">
+    <i class="fas fa-trash" style="font-size:11px;">
+    </i>
+    </button>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div id="DTE_dt1773562927663" class="text-center text-muted py-4" style="display:none;">
+    <i class="fas fa-inbox fa-2x mb-2 d-block">
+    </i>No data found</div>
+    </div>
+    <div class="card-footer bg-white d-flex justify-content-between align-items-center" style="padding:8px 14px;">
+    <small class="text-muted" id="DTI_dt1773562927663">Showing 1–5 of 6 entries</small>
+    <nav>
+    <ul class="pagination pagination-sm mb-0" id="DTP_dt1773562927663">
+    <li class="page-item disabled">
+    <a class="page-link" href="#">Prev</a>
+    </li>
+    <li class="page-item active">
+    <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item">
+    <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+    <a class="page-link" href="#">Next</a>
+    </li>
+    </ul>
+    </nav>
+    </div>
+    <!-- ADD/EDIT MODAL -->
+    <div id="DTM_dt1773562927663" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:500px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);">
+    <div style="padding:14px 18px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;">
+    <h6 class="mb-0 fw-bold" id="DMTITLE_dt1773562927663">Add Data</h6>
+    <button onclick="DT_dt1773562927663.closeModal()" style="background:none;border:none;font-size:20px;color:#9ca3af;cursor:pointer;line-height:1;">×</button>
+    </div>
+    <div style="padding:18px;" id="DMFORM_dt1773562927663">
+    </div>
+    <div id="DMERR_dt1773562927663" class="text-danger small px-4 pb-2" style="display:none;">
+    <i class="fas fa-exclamation-circle me-1">
+    </i>Please fill required fields.</div>
+    <div style="padding:12px 18px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:#fff;">
+    <button onclick="DT_dt1773562927663.closeModal()" class="btn btn-light border btn-sm">Cancel</button>
+    <button onclick="DT_dt1773562927663.saveData()" class="btn btn-primary btn-sm px-4">
+    <i class="fas fa-save me-1">
+    </i>Save</button>
+    </div>
+    </div>
+    </div>
+    <!-- VIEW MODAL -->
+    <div id="DTV_dt1773562927663" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:400px;max-width:95vw;box-shadow:0 24px 64px rgba(0,0,0,.3);overflow:hidden;">
+    <div id="DVHDR_dt1773562927663" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:20px;color:#fff;">
+    <div style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin-bottom:8px;" id="DVAVT_dt1773562927663">
+    </div>
+    <div class="fw-bold" id="DVNAME_dt1773562927663">
+    </div>
+    <small style="opacity:.75;" id="DVSUB_dt1773562927663">
+    </small>
+    </div>
+    <div style="padding:18px;" id="DVBODY_dt1773562927663">
+    </div>
+    <div style="padding:12px 18px;border-top:1px solid #e5e7eb;text-align:right;">
+    <button onclick="DT_dt1773562927663.closeView()" class="btn btn-light border btn-sm px-4">Close</button>
+    </div>
+    </div>
+    </div>
+    <!-- DELETE MODAL -->
+    <div id="DTDEL_dt1773562927663" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:340px;max-width:95vw;text-align:center;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.3);">
+    <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+    <i class="fas fa-trash-alt text-danger" style="font-size:20px;">
+    </i>
+    </div>
+    <h6 class="fw-bold mb-1">Delete record?</h6>
+    <p class="text-muted small mb-4" id="DTDELNAME_dt1773562927663">
+    </p>
+    <div class="d-flex gap-2 justify-content-center">
+    <button onclick="DT_dt1773562927663.closeDelete()" class="btn btn-light border btn-sm px-3">Cancel</button>
+    <button onclick="DT_dt1773562927663.confirmDelete()" class="btn btn-danger btn-sm px-3">
+    <i class="fas fa-trash me-1">
+    </i>Delete</button>
+    </div>
+    </div>
+    </div>
+    <!-- COLUMN MANAGER MODAL -->
+    <div id="DTCM_dt1773562927663" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;width:660px;max-width:97vw;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);">
+    <div style="padding:14px 18px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;">
+    <div>
+    <h6 class="mb-0 fw-bold">
+    <i class="fas fa-table-columns text-primary me-2">
+    </i>Manage Columns</h6>
+    <small class="text-muted">Edit columns — Add/Edit form fields update automatically.</small>
+    </div>
+    <button onclick="DT_dt1773562927663.closeColMgr()" style="background:none;border:none;font-size:20px;color:#9ca3af;cursor:pointer;">×</button>
+    </div>
+    <div style="padding:16px 18px;">
+    <div style="display:grid;grid-template-columns:1fr 140px 1fr 32px;gap:8px;margin-bottom:6px;font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;">
+    <div>Column Name</div>
+    <div>Type</div>
+    <div>Options (comma-separated)</div>
+    <div>
+    </div>
+    </div>
+    <div id="DTCMLIST_dt1773562927663">
+    </div>
+    <button onclick="DT_dt1773562927663._addCol()" class="btn btn-outline-primary btn-sm mt-2 w-100">
+    <i class="fas fa-plus me-1">
+    </i>Add Column</button>
+    </div>
+    <div style="padding:12px 18px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;position:sticky;bottom:0;background:#fff;">
+    <button onclick="DT_dt1773562927663.closeColMgr()" class="btn btn-light border btn-sm">Cancel</button>
+    <button onclick="DT_dt1773562927663.saveColMgr()" class="btn btn-primary btn-sm px-4">
+    <i class="fas fa-check me-1">
+    </i>Apply</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script>
+    (function(){
+    const ID='dt1773562927663';const PS=5;
+    let cols=[{key:'c1',label:'Name',type:'text',req:true},{key:'c2',label:'Email',type:'email',req:false},{key:'c3',label:'Role',type:'select',opts:['Admin','User','Editor','Manager','Viewer'],req:false},{key:'c4',label:'Status',type:'status',opts:['Active','Pending','Inactive'],req:false}];
+    let draft=[];
+    let rows=[{id:1,c1:'John Doe',c2:'john@example.com',c3:'Admin',c4:'Active'},{id:2,c1:'Jane Smith',c2:'jane@example.com',c3:'User',c4:'Pending'},{id:3,c1:'Bob Marley',c2:'bob@example.com',c3:'Editor',c4:'Inactive'},{id:4,c1:'Alice Johnson',c2:'alice@example.com',c3:'Manager',c4:'Active'},{id:5,c1:'Charlie Brown',c2:'charlie@example.com',c3:'Viewer',c4:'Active'},{id:6,c1:'Diana Prince',c2:'diana@example.com',c3:'User',c4:'Pending'}];
+    let nid=7,eid=null,did=null,pg=1,sq='',fv='',ck=cols.length;
+    const g=id=>document.getElementById(id);
+    const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const sCol=()=>cols.find(c=>c.type==='status');
+    const sBadge=s=>{const m={Active:'bg-success',Pending:'bg-warning text-dark',Inactive:'bg-secondary'};return '<span class="badge '+(m[s]||'bg-secondary')+'">'+esc(s)+'</span>';};
+    const showM=id=>{g(id).style.display='flex';};
+    const hideM=id=>{g(id).style.display='none';};
+    function filt(){return rows.filter(r=>{const q=sq.toLowerCase();const mq=!q||cols.some(c=>(r[c.key]||'').toString().toLowerCase().includes(q));const sc=sCol();const ms=!fv||!sc||r[sc.key]===fv;return mq&&ms;});}
+    function rAll(){rHead();rBody();rFilterSel();}
+    function rHead(){const th=g('DTH_'+ID);if(!th)return;th.innerHTML='<tr>
+    <th style="width:40px;font-size:12px;">No</th>'+cols.map(c=>'<th style="font-size:12px;">'+esc(c.label)+'</th>').join('')+'<th style="width:110px;font-size:12px;">Action</th>
+    </tr>';}
+    function rBody(){
+      const data=filt();const tot=data.length;const totP=Math.max(1,Math.ceil(tot/PS));
+      if(pg>totP)pg=totP;const paged=data.slice((pg-1)*PS,pg*PS);
+      const tb=g('DTB_'+ID),em=g('DTE_'+ID);if(!tb)return;
+      tb.innerHTML='';
+      if(!paged.length){em.style.display='';g('DTI_'+ID).textContent='No entries';}
+      else{
+        em.style.display='none';
+        paged.forEach((r,i)=>{
+          const tr=document.createElement('tr');
+          let h='<td style="font-size:12px;">'+(((pg-1)*PS)+i+1)+'</td>';
+          cols.forEach((c,ci)=>{
+            const v=r[c.key]||'';
+            if(c.type==='status')h+='<td>'+sBadge(v)+'</td>';
+            else if(c.type==='select')h+='<td>
+    <span class="badge bg-light text-dark border" style="font-size:12px;">'+esc(v)+'</span>
+    </td>';
+            else if(ci===0)h+='<td>
+    <div class="d-flex align-items-center gap-2">
+    <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;">'+(v.charAt(0)||'?').toUpperCase()+'</div>
+    <span style="font-size:13px;font-weight:600;">'+esc(v)+'</span>
+    </div>
+    </td>';
+            else h+='<td>
+    <span class="text-muted" style="font-size:12px;">'+esc(v)+'</span>
+    </td>';
+          });
+          h+='<td>
+    <div class="d-flex gap-1">
+    <button class="btn btn-sm btn-outline-primary" style="padding:2px 6px;" onclick="DT_'+ID+'.openView('+r.id+')">
+    <i class="fas fa-eye" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-warning" style="padding:2px 6px;" onclick="DT_'+ID+'.openEdit('+r.id+')">
+    <i class="fas fa-edit" style="font-size:11px;">
+    </i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_'+ID+'.openDelete('+r.id+')">
+    <i class="fas fa-trash" style="font-size:11px;">
+    </i>
+    </button>
+    </div>
+    </td>';
+          tr.innerHTML=h;tb.appendChild(tr);
+        });
+        const from=(pg-1)*PS+1,to=Math.min(pg*PS,tot);
+        g('DTI_'+ID).textContent='Showing '+from+'–'+to+' of '+tot+' entries';
+      }
+      const ul=g('DTP_'+ID);ul.innerHTML='';
+      const mk=(lbl,p,dis,act)=>{const li=document.createElement('li');li.className='page-item'+(dis?' disabled':'')+(act?' active':'');const a=document.createElement('a');a.className='page-link';a.textContent=lbl;a.href='#';if(!dis&&!act)a.onclick=e=>{e.preventDefault();pg=p;rBody();};li.appendChild(a);return li;};
+      ul.appendChild(mk('Prev',pg-1,pg===1,false));
+      for(let p=1;p<=totP;p++)ul.appendChild(mk(p,p,false,p===pg));
+      ul.appendChild(mk('Next',pg+1,pg===totP,false));
+    }
+    function rFilterSel(){const sel=g('DTF_'+ID);if(!sel)return;const sc=sCol();if(!sc){sel.style.display='none';return;}sel.style.display='';const cv=fv;sel.innerHTML='<option value="">All '+esc(sc.label)+'</option>'+(sc.opts||[]).map(o=>'<option value="'+esc(o)+'"'+(o===cv?' selected':'')+'>'+esc(o)+'</option>').join('');}
+    function buildForm(r){
+      return '<div class="row g-3">'+cols.map(c=>{
+        const v=r?(r[c.key]||''):'';
+        const req=c.req?'<span class="text-danger">*</span>':'';
+        let inp='';
+        if(c.type==='status'||c.type==='select'){const opts=(c.opts||[]).map(o=>'<option'+(o===v?' selected':'')+'>'+esc(o)+'</option>').join('');inp='<select id="mf_'+c.key+'_'+ID+'" class="form-select form-select-sm">'+opts+'</select>';}
+        else if(c.type==='date')inp='<input type="date" id="mf_'+c.key+'_'+ID+'" class="form-control form-control-sm" value="'+esc(v)+'">';
+        else if(c.type==='number')inp='<input type="number" id="mf_'+c.key+'_'+ID+'" class="form-control form-control-sm" value="'+esc(v)+'">';
+        else if(c.type==='email')inp='<div class="input-group input-group-sm">
+    <span class="input-group-text">
+    <i class="fas fa-envelope text-muted" style="font-size:11px;">
+    </i>
+    </span>
+    <input type="email" id="mf_'+c.key+'_'+ID+'" class="form-control" value="'+esc(v)+'" placeholder="user@example.com">
+    </div>';
+        else inp='<input type="text" id="mf_'+c.key+'_'+ID+'" class="form-control form-control-sm" value="'+esc(v)+'" placeholder="Enter '+esc(c.label)+'">';
+        const cls=cols.length>2?'col-md-6 col-12':'col-12';
+        return '<div class="'+cls+'">
+    <label class="form-label mb-1" style="font-size:12px;font-weight:600;">'+esc(c.label)+' '+req+'</label>'+inp+'</div>';
+      }).join('')+'</div>';}
+    function buildColMgr(){
+      const list=g('DTCMLIST_'+ID);if(!list)return;
+      list.innerHTML='';
+      draft.forEach(c=>{
+        const hasOpts=c.type==='select'||c.type==='status';
+        const row=document.createElement('div');
+        row.style.cssText='display:grid;grid-template-columns:1fr 140px 1fr 32px;gap:8px;margin-bottom:8px;align-items:center;';
+        row.innerHTML=
+          '<input type="text" class="form-control form-control-sm" value="'+esc(c.label)+'" placeholder="Name" oninput="DT_'+ID+'._cLbl(&quot;'+c.key+'&quot;,this.value)">'+
+          '<select class="form-select form-select-sm" onchange="DT_'+ID+'._cType(&quot;'+c.key+'&quot;,this.value)">'+
+          ['text','email','number','date','select','status'].map(t=>'<option value="'+t+'"'+(c.type===t?' selected':'')+'>'+{text:'Text',email:'Email',number:'Number',date:'Date',select:'Select',status:'Status Badge'}[t]+'</option>').join('')+
+          '</select>'+
+          '<input type="text" class="form-control form-control-sm" value="'+(c.opts||[]).join(',')+'" placeholder="e.g. Yes,No"'+(hasOpts?'':' disabled style="opacity:.4"')+' oninput="DT_'+ID+'._cOpts(&quot;'+c.key+'&quot;,this.value)">'+
+          '<button class="btn btn-sm btn-outline-danger" style="padding:2px 6px;" onclick="DT_'+ID+'._delCol(&quot;'+c.key+'&quot;)"'+(draft.length<=1?' disabled':'')+' title="Remove">
+    <i class="fas fa-times" style="font-size:11px;">
+    </i>
+    </button>';
+        list.appendChild(row);
+      });
+    }
+    window['DT_'+ID]={
+      search:v=>{sq=v;pg=1;rBody();},
+      filter:v=>{fv=v;pg=1;rBody();},
+      openAdd:()=>{eid=null;g('DMTITLE_'+ID).textContent='Add New Data';g('DMFORM_'+ID).innerHTML=buildForm(null);g('DMERR_'+ID).style.display='none';showM('DTM_'+ID);},
+      openEdit:id=>{const r=rows.find(x=>x.id===id);if(!r)return;eid=id;g('DMTITLE_'+ID).textContent='Edit Data';g('DMFORM_'+ID).innerHTML=buildForm(r);g('DMERR_'+ID).style.display='none';showM('DTM_'+ID);},
+      closeModal:()=>hideM('DTM_'+ID),
+      saveData:()=>{
+        const nd={};let ok=true;
+        cols.forEach(c=>{const el=g('mf_'+c.key+'_'+ID);nd[c.key]=el?el.value.trim():'';if(c.req&&!nd[c.key])ok=false;});
+        if(!ok){g('DMERR_'+ID).style.display='';return;}
+        if(eid){const r=rows.find(x=>x.id===eid);if(r)Object.assign(r,nd);}else{rows.push({id:nid++,...nd});}
+        hideM('DTM_'+ID);rBody();
+      },
+      openView:id=>{
+        const r=rows.find(x=>x.id===id);if(!r)return;
+        const fc=cols[0],sc=cols[1];
+        g('DVAVT_'+ID).textContent=(r[fc.key]||'?').charAt(0).toUpperCase();
+        g('DVNAME_'+ID).textContent=r[fc.key]||'';
+        g('DVSUB_'+ID).textContent=sc?(sc.label+': '+(r[sc.key]||'')):'';    const icons={email:'fa-envelope',status:'fa-circle-dot',date:'fa-calendar-alt',number:'fa-hashtag',select:'fa-list'};
+        g('DVBODY_'+ID).innerHTML=cols.slice(2).map(c=>{
+          const v=r[c.key]||'';
+          return '<div class="d-flex align-items-center gap-2 mb-3">
+    <div style="width:30px;height:30px;border-radius:8px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+    <i class="fas '+(icons[c.type]||'fa-tag')+' text-primary" style="font-size:11px;">
+    </i>
+    </div>
+    <div>
+    <div style="font-size:11px;color:#9ca3af;">' +esc(c.label)+'</div>
+    <div style="font-size:13px;font-weight:500;">'+(c.type==='status'?sBadge(v):esc(v)||'—')+'</div>
+    </div>
+    </div>';
+        }).join('')||'<p class="text-muted small mb-0">No additional details.</p>';
+        showM('DTV_'+ID);
+      },
+      closeView:()=>hideM('DTV_'+ID),
+      openDelete:id=>{
+        const r=rows.find(x=>x.id===id);if(!r)return;
+        did=id;const fc=cols[0];
+        g('DTDELNAME_'+ID).textContent='Delete "'+(r[fc.key]||'this record')+'"? This cannot be undone.';
+        showM('DTDEL_'+ID);
+      },
+      confirmDelete:()=>{rows=rows.filter(x=>x.id!==did);hideM('DTDEL_'+ID);rBody();},
+      closeDelete:()=>hideM('DTDEL_'+ID),
+      openColMgr:()=>{draft=cols.map(c=>({...c,opts:c.opts?[...c.opts]:undefined}));buildColMgr();showM('DTCM_'+ID);},
+      closeColMgr:()=>hideM('DTCM_'+ID),
+      saveColMgr:()=>{cols=draft.map(c=>({...c,opts:c.opts?[...c.opts]:undefined}));hideM('DTCM_'+ID);rAll();},
+      _cLbl:(k,v)=>{const c=draft.find(x=>x.key===k);if(c)c.label=v;},
+      _cType:(k,v)=>{const c=draft.find(x=>x.key===k);if(!c)return;c.type=v;if((v==='select'||v==='status')&&!c.opts)c.opts=['Option1','Option2'];buildColMgr();},
+      _cOpts:(k,v)=>{const c=draft.find(x=>x.key===k);if(c)c.opts=v.split(',').map(s=>s.trim()).filter(Boolean);},
+      _delCol:(k)=>{if(draft.length<=1)return;draft=draft.filter(c=>c.key!==k);buildColMgr();},
+      _addCol:()=>{ck++;draft.push({key:'c'+ck,label:'New Column',type:'text',req:false});buildColMgr();}
+    };
+    rAll();
+    })();
+    </script>
+    </div>
+    </div>
+    <div id="pane_t2_tab1773562911299" class="tab-pane p-4 w-100" style="min-height: 150px; display: none;">
+    <div class="text-center text-muted w-100 comp-empty-state" style="padding-top: 10px; pointer-events: none;">
+    <i class="fas fa-cubes mb-2 d-block fa-lg" style="opacity:0.5;">
+    </i>Drag &amp; Drop Components Here</div>
+    <div class="canvas-element">
+    <div class="canvas-element-actions">
+    <button class="action-btn" title="Move Up" onclick="moveEl(this,-1)">
+    <i class="fa-solid fa-arrow-up">
+    </i>
+    </button>
+    <button class="action-btn" title="Move Down" onclick="moveEl(this,1)">
+    <i class="fa-solid fa-arrow-down">
+    </i>
+    </button>
+    <button class="action-btn delete" title="Delete" onclick="deleteEl(this)">
+    <i class="fa-solid fa-trash">
+    </i>
+    </button>
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Email Address</label>
+    <div class="input-group">
+    <span class="input-group-text">
+    <i class="fas fa-envelope">
+    </i>
+    </span>
+    <input type="email" class="form-control" placeholder="user@example.com">
+    </div>
+    </div>
+    </div>
+    <div class="canvas-element">
+    <div class="canvas-element-actions">
+    <button class="action-btn" title="Move Up" onclick="moveEl(this,-1)">
+    <i class="fa-solid fa-arrow-up">
+    </i>
+    </button>
+    <button class="action-btn" title="Move Down" onclick="moveEl(this,1)">
+    <i class="fa-solid fa-arrow-down">
+    </i>
+    </button>
+    <button class="action-btn delete" title="Delete" onclick="deleteEl(this)">
+    <i class="fa-solid fa-trash">
+    </i>
+    </button>
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Email Address</label>
+    <div class="input-group">
+    <span class="input-group-text">
+    <i class="fas fa-envelope">
+    </i>
+    </span>
+    <input type="email" class="form-control" placeholder="user@example.com">
+    </div>
+    </div>
+    </div>
+    <div class="canvas-element">
+    <div class="canvas-element-actions">
+    <button class="action-btn" title="Move Up" onclick="moveEl(this,-1)">
+    <i class="fa-solid fa-arrow-up">
+    </i>
+    </button>
+    <button class="action-btn" title="Move Down" onclick="moveEl(this,1)">
+    <i class="fa-solid fa-arrow-down">
+    </i>
+    </button>
+    <button class="action-btn delete" title="Delete" onclick="deleteEl(this)">
+    <i class="fa-solid fa-trash">
+    </i>
+    </button>
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" rows="4" placeholder="Write something...">
+    </textarea>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script>
+    (function(){
+        const ID = 'tab1773562911299';
+        let tabs = [
+            { id: 't1', label: 'Tab One' },
+            { id: 't2', label: 'Tab Two' }
+        ];
+        let activeId = 't1';
+        let nextId = 3;
+    
+        function esc(s) {
+            return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        
+        function rNav() {
+            const nav = document.getElementById('nav_' + ID);
+            if(!nav) return;
+            nav.innerHTML = tabs.map(t => {
+                const isActive = t.id === activeId;
+                return '<li class="nav-item">
+    <button class="nav-link ' + (isActive ? 'active fw-bold' : '') + '" style="outline:none;background:'+(isActive?'#fff':'transparent')+';" onblur="TABS_'+ID+'.lbl(&quot;'+t.id+'&quot;, this.innerText)" '+(isActive?'contenteditable="true"':'onclick="TABS_'+ID+'.sw(&quot;'+t.id+'&quot;)"')+'>' + esc(t.label) + '</button>
+    </li>';
+            }).join('');
+        }
+    
+        function rPanes() {
+            const content = document.getElementById('content_' + ID);
+            if(!content) return;
+            
+            // Preserve unremoved panes 
+            tabs.forEach(t => {
+                let pane = document.getElementById('pane_' + t.id + '_' + ID);
+                if (!pane) {
+                    pane = document.createElement('div');
+                    pane.id = 'pane_' + t.id + '_' + ID;
+                    pane.className = 'tab-pane p-4 drop-zone nested-drop w-100';
+                    pane.style.minHeight = '150px';
+                    
+                    // Add placeholder helper text
+                    const emptyState = document.createElement('div');
+                    emptyState.className = 'text-center text-muted w-100 comp-empty-state';
+                    emptyState.style.paddingTop = '10px';
+                    emptyState.style.pointerEvents = 'none';
+                    emptyState.innerHTML = '<i class="fas fa-cubes mb-2 d-block fa-lg" style="opacity:0.5;">
+    </i>Drag &amp; Drop Components Here';
+                    
+                    pane.appendChild(emptyState);
+                    
+                    // Manually map drag drop events since it's dynamically added after initial doc parse
+                    pane.setAttribute('ondrop', 'drop(event)');
+                    pane.setAttribute('ondragover', 'allowDrop(event)');
+                    pane.setAttribute('ondragenter', 'dragEnter(event)');
+                    pane.setAttribute('ondragleave', 'dragLeave(event)');
+                    
+                    content.appendChild(pane);
+                }
+            });
+            
+            // Show active pane, hide others
+            Array.from(content.children).forEach(pane => {
+                if (pane.id === 'pane_' + activeId + '_' + ID) {
+                    pane.style.display = 'block';
+                    pane.classList.add('show', 'active');
+                } else {
+                    pane.style.display = 'none';
+                    pane.classList.remove('show', 'active');
+                }
+            });
+        }
+    
+        // Attach to global scope for button clicks
+        window['TABS_' + ID] = {
+            sw: function(id) { 
+                activeId = id; 
+                rNav(); rPanes(); 
+            },
+            addTab: function() { 
+                const newId = 't' + nextId++; 
+                tabs.push({ id: newId, label: 'New Tab' }); 
+                activeId = newId; 
+                rNav(); rPanes(); 
+            },
+            removeTab: function() {
+                if (tabs.length <= 1) return;
+                const idx = tabs.findIndex(t => t.id === activeId);
+                const r = tabs[idx];
+                tabs = tabs.filter(t => t.id !== activeId);
+                
+                const pane = document.getElementById('pane_' + r.id + '_' + ID);
+                if (pane) pane.remove();
+    
+                if (idx < tabs.length) activeId = tabs[idx].id;
+                else activeId = tabs[tabs.length - 1].id;
+                
+                rNav(); rPanes();
+            },
+            lbl: function(id, text) { 
+                const t = tabs.find(x => x.id === id); 
+                if (t) t.label = text.trim() || 'Tab'; 
+            }
+        };
+    
+        // Initial Render
+        rNav();
+        rPanes();
+    })();
+    </script>

@@ -1,0 +1,269 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functional Specification Document (FSD) Viewer</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/ui-builder.css" />
+
+    <style>
+        :root {
+            --fsd-bg: #f1f5f9;
+            --fsd-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --fsd-accent: #2563eb;
+        }
+
+        body {
+            background-color: var(--fsd-bg);
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+        }
+
+        .fsd-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .fsd-page-merged {
+            background: #fff;
+            margin-bottom: 50px;
+            box-shadow: var(--fsd-shadow);
+            border-radius: 4px;
+            position: relative;
+            /* FSD sizing usually A4-ish in spirit but responsive here */
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .fsd-page-merged::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--fsd-accent), #3b82f6);
+        }
+
+        .fsd-content-inner {
+            padding: 60px 80px;
+            min-height: 1000px;
+        }
+
+        /* Responsive adjustments for mobile viewing */
+        @@media (max-width: 768px) {
+            .fsd-content-inner {
+                padding: 40px 20px;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+
+        /* --- EMBEDDED CONTENT RESPONSIVENESS --- */
+        
+        /* 1. Prototypes embedded in FSD */
+        .fsd-content-inner .prototype-embed-container {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        /* Ensure specific builder elements inside FSD responsive */
+        .fsd-content-inner [data-type="row"], 
+        .fsd-content-inner .row {
+            width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        /* 2. ERD / Flowchart embedded as Canvas */
+        .fsd-visual-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .fsd-canvas-wrap {
+            transform-origin: top left;
+            transition: transform 0.3s ease;
+        }
+
+        /* Disable Interactivity & Cleanup */
+        .fsd-content-inner * {
+            user-select: none;
+        }
+        /* Hide specific Designer elements and action buttons */
+        .canvas-element-actions, 
+        .action-btn, 
+        .fsd-add-btn, 
+        .fsd-prototype-control, 
+        .fa-trash, 
+        .fsd-hide-pdf, 
+        .text-danger,
+        .btn-primary:not(.nav-link), 
+        .btn-outline-primary,
+        .btn-secondary,
+        .refresh-btn,
+        .add-field-btn,
+        .erd-add-field,
+        .erd-field-actions,
+        .fc-actions,
+        button:has(.fa-plus),
+        button:has(.fa-refresh),
+        button:has(.fa-sync),
+        [onclick*="add"], 
+        [onclick*="Add"],
+        [onclick*="delete"],
+        [onclick*="remove"] {
+            display: none !important;
+        }
+        [contenteditable="true"] {
+            outline: none !important;
+            cursor: default !important;
+        }
+
+        /* Page Metadata Badge */
+        .fsd-page-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viewer-loading {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #fff; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+
+<div class="viewer-loading" id="viewerLoading">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    <h5 class="mt-4 fw-bold">Generating Full FSD...</h5>
+</div>
+
+<div class="fsd-container" id="fsdMainOutput" style="display:none;">
+    <!-- Merged content injected here -->
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAkHR9hh2Y2QjpkOXr0PC4AZHdK5tBd854",
+        authDomain: "kuda-300c0.firebaseapp.com",
+        projectId: "kuda-300c0",
+        storageBucket: "kuda-300c0.firebasestorage.app",
+        messagingSenderId: "683068549402",
+        appId: "1:683068549402:web:5945369acce65e999de4a3",
+        measurementId: "G-RVGR1LE9LS"
+    };
+
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        const projectId = '@ViewBag.ProjectId';
+        if (!projectId) {
+            document.getElementById('viewerLoading').innerHTML = '<h5 class="text-danger">Invalid Link</h5>';
+            return;
+        }
+
+        try {
+            const doc = await db.collection("projects").doc(projectId).get();
+            if (doc.exists) {
+                const proj = doc.data();
+                const container = document.getElementById('fsdMainOutput');
+                
+                let combinedHtml = '';
+                const fsdPages = proj.fsdPages || [];
+
+                if (fsdPages.length === 0) {
+                    combinedHtml = '<div class="text-center p-5 bg-white border">No FSD pages found in this project.</div>';
+                } else {
+                    fsdPages.forEach((page, idx) => {
+                        combinedHtml += `
+                            <div class="fsd-page-merged">
+                                <div class="fsd-page-indicator">Section ${page.num || (idx+1)}</div>
+                                <div class="fsd-content-inner">
+                                    ${page.html || ''}
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+
+                container.innerHTML = combinedHtml;
+
+                // --- POST PROCESSING FOR RESPONSIVENESS & EMBEDS ---
+                
+                // 1. Cleanup all editables
+                document.querySelectorAll('[contenteditable="true"]').forEach(el => el.removeAttribute('contenteditable'));
+                
+                // 2. Wrap visuals (Prototype, ERD, Flowchart) inside FSD for scaling
+                const visualContainers = document.querySelectorAll('.fsd-visual-embed'); // Assuming designer uses these classes
+                visualContainers.forEach(container => {
+                    container.style.maxWidth = '100%';
+                    container.style.overflow = 'auto';
+                });
+
+                // 3. Make charts and high-level layout responsive
+                document.querySelectorAll('.apexcharts-canvas').forEach(chart => {
+                    chart.style.maxWidth = '100%';
+                });
+
+                // 4. Manual Script Execution (for DataTables, etc inside FSD)
+                const scripts = container.getElementsByTagName('script');
+                Array.from(scripts).forEach(s => {
+                    const newS = document.createElement('script');
+                    newS.textContent = s.textContent;
+                    document.body.appendChild(newS);
+                });
+
+                // 5. Responsive scaling for large embedded images/canvases
+                document.querySelectorAll('.fsd-content-inner img').forEach(img => {
+                    img.style.height = 'auto';
+                    img.style.maxWidth = '100%';
+                });
+
+                document.getElementById('viewerLoading').style.display = 'none';
+                container.style.display = 'block';
+
+            } else {
+                document.getElementById('viewerLoading').innerHTML = '<h5 class="text-danger">Project Not Found</h5>';
+            }
+        } catch (e) {
+            console.error(e);
+            document.getElementById('viewerLoading').innerHTML = '<h5 class="text-danger">Load Error</h5>';
+        }
+    });
+
+</script>
+
+</body>
+</html>

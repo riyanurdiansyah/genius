@@ -1,5 +1,33 @@
 @{ ViewData["Title"] = "Badges"; }
 
+<style>
+    /* Fixed Contrast for Soft Badges (overriding theme.css !important) */
+    .badge.bg-primary.bg-opacity-10 { 
+        background-color: rgba(59, 157, 130, 0.12) !important; 
+        color: #3b9d82 !important; 
+    }
+    .badge.bg-success.bg-opacity-10 { 
+        background-color: rgba(25, 135, 84, 0.12) !important; 
+        color: #198754 !important; 
+    }
+    .badge.bg-danger.bg-opacity-10 { 
+        background-color: rgba(220, 53, 69, 0.12) !important; 
+        color: #dc3545 !important; 
+    }
+    .badge.bg-info.bg-opacity-10 { 
+        background-color: rgba(13, 202, 240, 0.12) !important; 
+        color: #0891b2 !important; 
+    }
+    .badge.bg-warning.bg-opacity-10 { 
+        background-color: rgba(245, 195, 66, 0.15) !important; 
+        color: #9a781d !important; 
+    }
+    .badge.bg-dark.bg-opacity-10 { 
+        background-color: rgba(30, 41, 59, 0.1) !important; 
+        color: #1e293b !important; 
+    }
+</style>
+
 <div class="row g-4">
     <!-- Existing Contextual Badges -->
     <div class="col-md-6">
