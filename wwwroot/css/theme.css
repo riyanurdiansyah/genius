@@ -219,23 +219,23 @@
 
 /* Dark Mode Overrides */
 [data-theme="dark"] {
-    --bg-color: #0f172a;
-    --dashboard-bg: #1e293b;
+    --bg-color: #051311;
+    --dashboard-bg: #0f2620;
     --text-dark: #f1f5f9;
-    --text-gray: #94a3b8;
-    --text-light-gray: #64748b;
+    --text-gray: #7fa99d;
+    --text-light-gray: #4a6580;
 
     --bg-body: var(--bg-color);
     --bg-card: var(--dashboard-bg);
     --text-primary: var(--text-dark);
     --text-secondary: var(--text-gray);
     --text-muted: var(--text-light-gray);
-    --border-color: #334155;
-    --border-dark: #475569;
+    --border-color: rgba(59, 157, 130, 0.15);
+    --border-dark: rgba(59, 157, 130, 0.25);
 
     --color-1: #e2e8f0;
 
-    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 

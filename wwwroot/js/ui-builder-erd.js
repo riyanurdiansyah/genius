@@ -31,14 +31,29 @@ const ERD = {
         // Gambar relasi garis-garis koneksi
         setTimeout(() => {
             this._drawLines();
+            this._updateCanvasSize();
         }, 50);
 
         this.renderSidebar();
     },
 
     addEntity(name) {
-        const eName = name || `Entity_${this.nextId}`;
+        let eName = name;
+        if (!eName) {
+            eName = prompt('Enter Table Name:', `Table_${this.nextId}`);
+        }
+
+        if (!eName) return; // Cancelled
+
+        // Validate uniqueness
+        const exists = this.entities.some(e => e.name.toLowerCase() === eName.toLowerCase());
+        if (exists) {
+            alert(`Table name "${eName}" already exists in this project!`);
+            return;
+        }
+
         const canvas = document.getElementById('erdCanvas');
+        if (!canvas) return;
         const rect = canvas.getBoundingClientRect();
         const entity = {
             id: 'ent-' + this.nextId++,
@@ -54,6 +69,7 @@ const ERD = {
         this.entities.push(entity);
         this._renderEntity(entity);
         this.renderSidebar();
+        this._updateCanvasSize();
     },
 
     _renderEntity(entity) {
@@ -66,6 +82,27 @@ const ERD = {
         el.onmousedown = (e) => this._onMouseDown(e, entity);
         this._updateEntityHTML(el, entity);
         canvas.appendChild(el);
+    },
+
+    _updateCanvasSize() {
+        const canvas = document.getElementById('erdCanvas');
+        if (!canvas) return;
+
+        let maxX = 1200;
+        let maxY = 800;
+
+        this.entities.forEach(ent => {
+            const el = document.getElementById(ent.id);
+            const width = el ? el.offsetWidth : 200;
+            const height = el ? el.offsetHeight : 150;
+            const right = ent.x + width + 100;
+            const bottom = ent.y + height + 100;
+            if (right > maxX) maxX = right;
+            if (bottom > maxY) maxY = bottom;
+        });
+
+        canvas.style.width = maxX + 'px';
+        canvas.style.height = maxY + 'px';
     },
 
     _updateEntityHTML(el, entity) {
@@ -111,6 +148,7 @@ const ERD = {
         ent.fields.push({ name: 'new_field', type: 'VARCHAR', pk: false });
         const el = document.getElementById(entityId);
         this._updateEntityHTML(el, ent);
+        this._updateCanvasSize();
     },
 
     _removeField(entityId, index) {
@@ -119,6 +157,7 @@ const ERD = {
         ent.fields.splice(index, 1);
         const el = document.getElementById(entityId);
         this._updateEntityHTML(el, ent);
+        this._updateCanvasSize();
     },
 
     _updateField(entityId, index, prop, value) {
@@ -132,6 +171,7 @@ const ERD = {
         ent.fields[index].pk = !ent.fields[index].pk;
         const el = document.getElementById(entityId);
         this._updateEntityHTML(el, ent);
+        this._updateCanvasSize();
     },
 
     removeEntity(id) {
@@ -141,31 +181,42 @@ const ERD = {
         if (el) el.remove();
         this._drawLines();
         this.renderSidebar();
+        this._updateCanvasSize();
     },
 
     // Drag logic
     _onMouseDown(e, entity) {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'BUTTON') return;
         if (this.relMode) { this._endRelation(entity.id); return; }
+
         this.dragging = entity;
+        this.dragStartMouse = { x: e.clientX, y: e.clientY };
+        this.dragStartPos = { x: entity.x, y: entity.y };
+
         const el = document.getElementById(entity.id);
-        const rect = el.getBoundingClientRect();
-        this.dragOffset = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-        el.style.zIndex = 100;
+        if (el) el.style.zIndex = 100;
     },
 
     _onMouseMove(e) {
         if (!this.dragging) return;
-        const canvas = document.getElementById('erdCanvas');
-        const cRect = canvas.getBoundingClientRect();
-        const x = e.clientX - cRect.left - this.dragOffset.x;
-        const y = e.clientY - cRect.top - this.dragOffset.y;
-        this.dragging.x = Math.max(0, x);
-        this.dragging.y = Math.max(0, y);
+
+        // Calculate delta from start of drag
+        const dx = e.clientX - this.dragStartMouse.x;
+        const dy = e.clientY - this.dragStartMouse.y;
+
+        // Update position based on initial position + movement
+        this.dragging.x = Math.max(0, this.dragStartPos.x + dx);
+        this.dragging.y = Math.max(0, this.dragStartPos.y + dy);
+
         const el = document.getElementById(this.dragging.id);
-        el.style.left = this.dragging.x + 'px';
-        el.style.top = this.dragging.y + 'px';
+        if (el) {
+            el.style.left = this.dragging.x + 'px';
+            el.style.top = this.dragging.y + 'px';
+        }
+
         this._drawLines();
+        // Periodic update of canvas size to avoid stuttering, or just call it
+        this._updateCanvasSize();
     },
 
     _onMouseUp() {
@@ -300,19 +351,84 @@ const ERD = {
 
     exportSQL() {
         let sql = '-- Generated SQL Schema\n\n';
+
+        // 1. Create Main Tables
         this.entities.forEach(ent => {
             sql += `CREATE TABLE ${ent.name} (\n`;
-            const pks = [];
-            ent.fields.forEach((f, i) => {
+            let lines = [];
+            let pks = [];
+
+            // Add fields
+            ent.fields.forEach(f => {
                 let typeSql = f.type;
                 if (f.type === 'VARCHAR') typeSql = 'VARCHAR(255)';
-                sql += `    ${f.name} ${typeSql}`;
+                lines.push(`    ${f.name} ${typeSql}`);
                 if (f.pk) pks.push(f.name);
-                sql += (i < ent.fields.length - 1 || pks.length > 0) ? ',\n' : '\n';
             });
-            if (pks.length > 0) sql += `    PRIMARY KEY (${pks.join(', ')})\n`;
-            sql += ');\n\n';
+
+            // Add implicit FK fields for 1:1 or 1:N if they don't exist in destination
+            this.relationships.forEach(rel => {
+                if (rel.to === ent.id && (rel.label === '1 : N' || rel.label === '1 : 1')) {
+                    const fromEnt = this.entities.find(e => e.id === rel.from);
+                    if (fromEnt) {
+                        const fkFieldName = `${fromEnt.name.toLowerCase()}_id`;
+                        const exists = ent.fields.some(f => f.name.toLowerCase() === fkFieldName.toLowerCase());
+                        if (!exists) {
+                            lines.push(`    ${fkFieldName} INT`);
+                        }
+                    }
+                }
+            });
+
+            if (pks.length > 0) {
+                lines.push(`    PRIMARY KEY (${pks.join(', ')})`);
+            }
+
+            sql += lines.join(',\n') + '\n);\n\n';
         });
+
+        // 2. Create Junction Tables for N:N
+        this.relationships.forEach(rel => {
+            if (rel.label === 'N : N') {
+                const fromEnt = this.entities.find(e => e.id === rel.from);
+                const toEnt = this.entities.find(e => e.id === rel.to);
+                if (fromEnt && toEnt) {
+                    const tableName = `${fromEnt.name}_${toEnt.name}`;
+                    const fromFk = `${fromEnt.name.toLowerCase()}_id`;
+                    const toFk = `${toEnt.name.toLowerCase()}_id`;
+
+                    sql += `CREATE TABLE ${tableName} (\n`;
+                    sql += `    ${fromFk} INT,\n`;
+                    sql += `    ${toFk} INT,\n`;
+                    sql += `    PRIMARY KEY (${fromFk}, ${toFk})\n`;
+                    sql += ');\n\n';
+                }
+            }
+        });
+
+        // 3. Add Foreign Key Constraints (ALTER TABLE)
+        if (this.relationships.length > 0) {
+            sql += '-- Relationships (Constraints)\n';
+            this.relationships.forEach(rel => {
+                const fromEnt = this.entities.find(e => e.id === rel.from);
+                const toEnt = this.entities.find(e => e.id === rel.to);
+
+                if (fromEnt && toEnt) {
+                    const fromPk = fromEnt.fields.find(f => f.pk)?.name || 'id';
+
+                    if (rel.label === '1 : N' || rel.label === '1 : 1') {
+                        const fkFieldName = `${fromEnt.name.toLowerCase()}_id`;
+                        sql += `ALTER TABLE ${toEnt.name} ADD CONSTRAINT FK_${toEnt.name}_${fromEnt.name}\n    FOREIGN KEY (${fkFieldName}) REFERENCES ${fromEnt.name}(${fromPk});\n\n`;
+                    } else if (rel.label === 'N : N') {
+                        const tableName = `${fromEnt.name}_${toEnt.name}`;
+                        const toPk = toEnt.fields.find(f => f.pk)?.name || 'id';
+                        sql += `ALTER TABLE ${tableName} ADD CONSTRAINT FK_${tableName}_${fromEnt.name}\n    FOREIGN KEY (${fromEnt.name.toLowerCase()}_id) REFERENCES ${fromEnt.name}(${fromPk});\n`;
+                        sql += `ALTER TABLE ${tableName} ADD CONSTRAINT FK_${tableName}_${toEnt.name}\n    FOREIGN KEY (${toEnt.name.toLowerCase()}_id) REFERENCES ${toEnt.name}(${toPk});\n\n`;
+                    }
+                }
+            });
+        }
+
         return sql;
     }
 };

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6T8LKiN58mclni1osEYHkjPpEuo/lZw7xjcdaQyK5j0=",
+  "Hash": "hQOPCNCX/J9gqdkDfxb9RcAK68mOJNxXp+QNSOCpmcM=",
   "Source": "Kuda",
   "BasePath": "_content/Kuda",
   "Mode": "Default",
@@ -31,11 +31,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "y6tei9vw6j",
-      "Integrity": "tm7b1yJ0RH2JiepM3RtOfaUeXYkHPTvvF0EdGlOFMIY=",
+      "Fingerprint": "0iyujl0ir2",
+      "Integrity": "2A6gUM/U7ZDbw/ue+IaxW5aZ9rLllvOlcKjXvCOejPc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/components.css"
+    },
+    {
+      "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-kit.css",
+      "SourceId": "Kuda",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Kuda",
+      "RelativePath": "css/kuda-kit#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "x4b6c0p70j",
+      "Integrity": "H6afpQhZ1OzPNRwJfIvLn9dJDjPOzZj0PUiaosUIJBc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/kuda-kit.css"
     },
     {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/report.css",
@@ -73,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "z8663w640t",
-      "Integrity": "3deSwnoILmmaWMFGdRQj2VM+6/1Tzy6+EhK/oLMmHug=",
+      "Fingerprint": "epu21axq6h",
+      "Integrity": "8qAjCD2HaSQPUdilb5zbY2oRACle8+zrDG/yELuPois=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/theme.css"
@@ -1697,6 +1718,27 @@
       "OriginalItemSpec": "wwwroot/js/app-system.js"
     },
     {
+      "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.js",
+      "SourceId": "Kuda",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Kuda",
+      "RelativePath": "js/kuda-kit#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ovxv3fuo7c",
+      "Integrity": "vOPrt2Q7kSGpPso8bb16vHdIjjLRyRYD9xVp/+44mKg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/kuda-kit.js"
+    },
+    {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-erd.js",
       "SourceId": "Kuda",
       "SourceType": "Discovered",
@@ -1758,9 +1800,75 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/ui-builder-fsd.js"
+    },
+    {
+      "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/kuda-starter.html",
+      "SourceId": "Kuda",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Kuda",
+      "RelativePath": "kuda-starter#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6zs4e7vsw3",
+      "Integrity": "Tlq9VBMvI/+83bf0bq9AgDbmMJnz7MQAWcDlnNJUJZE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/kuda-starter.html"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "css/components.0iyujl0ir2.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48967"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2A6gUM/U7ZDbw/ue+IaxW5aZ9rLllvOlcKjXvCOejPc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Mar 2026 16:15:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0iyujl0ir2"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2A6gUM/U7ZDbw/ue+IaxW5aZ9rLllvOlcKjXvCOejPc="
+        }
+      ]
+    },
     {
       "Route": "css/components.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
@@ -1772,7 +1880,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "39068"
+          "Value": "48967"
         },
         {
           "Name": "Content-Type",
@@ -1780,11 +1888,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tm7b1yJ0RH2JiepM3RtOfaUeXYkHPTvvF0EdGlOFMIY=\""
+          "Value": "\"2A6gUM/U7ZDbw/ue+IaxW5aZ9rLllvOlcKjXvCOejPc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Mar 2026 15:02:32 GMT"
+          "Value": "Sun, 15 Mar 2026 16:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1794,13 +1902,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-tm7b1yJ0RH2JiepM3RtOfaUeXYkHPTvvF0EdGlOFMIY="
+          "Value": "sha256-2A6gUM/U7ZDbw/ue+IaxW5aZ9rLllvOlcKjXvCOejPc="
         }
       ]
     },
     {
-      "Route": "css/components.y6tei9vw6j.css",
-      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "Route": "css/kuda-kit.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-kit.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1809,7 +1917,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "39068"
+          "Value": "60572"
         },
         {
           "Name": "Content-Type",
@@ -1817,11 +1925,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tm7b1yJ0RH2JiepM3RtOfaUeXYkHPTvvF0EdGlOFMIY=\""
+          "Value": "\"H6afpQhZ1OzPNRwJfIvLn9dJDjPOzZj0PUiaosUIJBc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Mar 2026 15:02:32 GMT"
+          "Value": "Sun, 15 Mar 2026 16:15:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-H6afpQhZ1OzPNRwJfIvLn9dJDjPOzZj0PUiaosUIJBc="
+        }
+      ]
+    },
+    {
+      "Route": "css/kuda-kit.x4b6c0p70j.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-kit.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "60572"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"H6afpQhZ1OzPNRwJfIvLn9dJDjPOzZj0PUiaosUIJBc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Mar 2026 16:15:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1831,15 +1976,15 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "y6tei9vw6j"
+          "Value": "x4b6c0p70j"
         },
         {
           "Name": "label",
-          "Value": "css/components.css"
+          "Value": "css/kuda-kit.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-tm7b1yJ0RH2JiepM3RtOfaUeXYkHPTvvF0EdGlOFMIY="
+          "Value": "sha256-H6afpQhZ1OzPNRwJfIvLn9dJDjPOzZj0PUiaosUIJBc="
         }
       ]
     },
@@ -1936,7 +2081,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "11571"
+          "Value": "11605"
         },
         {
           "Name": "Content-Type",
@@ -1944,11 +2089,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3deSwnoILmmaWMFGdRQj2VM+6/1Tzy6+EhK/oLMmHug=\""
+          "Value": "\"8qAjCD2HaSQPUdilb5zbY2oRACle8+zrDG/yELuPois=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Mar 2026 22:16:07 GMT"
+          "Value": "Sun, 15 Mar 2026 14:04:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1958,12 +2103,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-3deSwnoILmmaWMFGdRQj2VM+6/1Tzy6+EhK/oLMmHug="
+          "Value": "sha256-8qAjCD2HaSQPUdilb5zbY2oRACle8+zrDG/yELuPois="
         }
       ]
     },
     {
-      "Route": "css/theme.z8663w640t.css",
+      "Route": "css/theme.epu21axq6h.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/theme.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1973,7 +2118,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "11571"
+          "Value": "11605"
         },
         {
           "Name": "Content-Type",
@@ -1981,11 +2126,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3deSwnoILmmaWMFGdRQj2VM+6/1Tzy6+EhK/oLMmHug=\""
+          "Value": "\"8qAjCD2HaSQPUdilb5zbY2oRACle8+zrDG/yELuPois=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Mar 2026 22:16:07 GMT"
+          "Value": "Sun, 15 Mar 2026 14:04:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1995,7 +2140,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "z8663w640t"
+          "Value": "epu21axq6h"
         },
         {
           "Name": "label",
@@ -2003,7 +2148,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-3deSwnoILmmaWMFGdRQj2VM+6/1Tzy6+EhK/oLMmHug="
+          "Value": "sha256-8qAjCD2HaSQPUdilb5zbY2oRACle8+zrDG/yELuPois="
         }
       ]
     },
@@ -8322,6 +8467,88 @@
       ]
     },
     {
+      "Route": "js/kuda-kit.js",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vOPrt2Q7kSGpPso8bb16vHdIjjLRyRYD9xVp/+44mKg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Mar 2026 15:29:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-vOPrt2Q7kSGpPso8bb16vHdIjjLRyRYD9xVp/+44mKg="
+        }
+      ]
+    },
+    {
+      "Route": "js/kuda-kit.ovxv3fuo7c.js",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vOPrt2Q7kSGpPso8bb16vHdIjjLRyRYD9xVp/+44mKg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Mar 2026 15:29:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ovxv3fuo7c"
+        },
+        {
+          "Name": "label",
+          "Value": "js/kuda-kit.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-vOPrt2Q7kSGpPso8bb16vHdIjjLRyRYD9xVp/+44mKg="
+        }
+      ]
+    },
+    {
       "Route": "js/ui-builder-erd.js",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-erd.js",
       "Selectors": [],
@@ -8564,6 +8791,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-zxdlkwc2hJE2jxGePipEJNtXvH5rA8uPt8waAJj17rU="
+        }
+      ]
+    },
+    {
+      "Route": "kuda-starter.6zs4e7vsw3.html",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/kuda-starter.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7514"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Tlq9VBMvI/+83bf0bq9AgDbmMJnz7MQAWcDlnNJUJZE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Mar 2026 15:30:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6zs4e7vsw3"
+        },
+        {
+          "Name": "label",
+          "Value": "kuda-starter.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Tlq9VBMvI/+83bf0bq9AgDbmMJnz7MQAWcDlnNJUJZE="
+        }
+      ]
+    },
+    {
+      "Route": "kuda-starter.html",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/kuda-starter.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7514"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Tlq9VBMvI/+83bf0bq9AgDbmMJnz7MQAWcDlnNJUJZE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 15 Mar 2026 15:30:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Tlq9VBMvI/+83bf0bq9AgDbmMJnz7MQAWcDlnNJUJZE="
         }
       ]
     }

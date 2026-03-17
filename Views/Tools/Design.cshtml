@@ -229,9 +229,11 @@
         </div>
 
         <!-- ERD PANEL -->
-        <div class="workspace-panel" id="panel-erd">
-            <div class="erd-canvas-area" id="erdCanvas">
-                <svg id="erdSvg"></svg>
+        <div class="workspace-panel" id="panel-erd" style="background:#e2e8f0; overflow: auto;">
+            <div style="display:flex; justify-content:center; align-items:flex-start; padding: 60px; min-width:min-content;">
+                <div class="erd-canvas-area" id="erdCanvas" style="position: relative; background:white; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:1200px; min-height:800px; height: 800px;">
+                    <svg id="erdSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible;"></svg>
+                </div>
             </div>
         </div>
 
@@ -252,14 +254,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Export</h5>
-                <button type="button" class="btn-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="btn-close" onclick="closeModal('htmlPreviewModal')"></button>
             </div>
             <div class="modal-body">
                 <p class="text-muted mb-2"><small>Copy this code into your IDE.</small></p>
                 <div id="exportCode"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('htmlPreviewModal')">Close</button>
                 <button type="button" class="btn btn-primary" onclick="copySource()">Copy to Clipboard</button>
             </div>
         </div>
@@ -892,8 +894,7 @@
         const sql = ERD.exportSQL();
         document.getElementById('exportCode').textContent = sql;
         document.querySelector('#htmlPreviewModal .modal-title').textContent = 'Export ERD (SQL)';
-        const modal = document.getElementById('htmlPreviewModal');
-        modal.style.display = 'flex'; modal.classList.add('show');
+        openModal('htmlPreviewModal');
     }
 
     function renderPages() {
@@ -1570,11 +1571,9 @@ rAll();
         let html = c.innerHTML.trim() || '<!-- No components added yet -->';
         document.getElementById('exportCode').textContent = formatHTML(html);
         document.querySelector('#htmlPreviewModal .modal-title').textContent = 'Export HTML';
-        const modal = document.getElementById('htmlPreviewModal');
-        modal.style.display = 'flex'; modal.classList.add('show');
+        openModal('htmlPreviewModal');
     }
-    function closeModal() { const m = document.getElementById('htmlPreviewModal'); m.style.display = 'none'; m.classList.remove('show'); }
-    function copySource() { navigator.clipboard.writeText(document.getElementById('exportCode').textContent).then(() => { alert("Copied!"); closeModal(); }); }
+    function copySource() { navigator.clipboard.writeText(document.getElementById('exportCode').textContent).then(() => { alert("Copied!"); closeModal('htmlPreviewModal'); }); }
     function exportFlowchartPDF() {
         const canvas = document.getElementById('flowchartCanvas');
         if (!canvas) return;

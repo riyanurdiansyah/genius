@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/css/components.css"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-kit.css",
+      "PackagePath": "staticwebassets/css/kuda-kit.css"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/report.css",
       "PackagePath": "staticwebassets/css/report.css"
     },
@@ -321,6 +325,10 @@
       "PackagePath": "staticwebassets/js/app-system.js"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.js",
+      "PackagePath": "staticwebassets/js/kuda-kit.js"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-erd.js",
       "PackagePath": "staticwebassets/js/ui-builder-erd.js"
     },
@@ -331,6 +339,10 @@
     {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-fsd.js",
       "PackagePath": "staticwebassets/js/ui-builder-fsd.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/kuda-starter.html",
+      "PackagePath": "staticwebassets/kuda-starter.html"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
