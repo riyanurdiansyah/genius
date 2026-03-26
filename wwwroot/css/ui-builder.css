@@ -889,3 +889,105 @@
     z-index: 3;
     pointer-events: none;
 }
+
+/* Version History Items */
+.version-item {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.version-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.version-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary);
+}
+
+.version-item:hover::before {
+    opacity: 1;
+}
+
+.version-item .badge {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* Comparison Styles */
+.diff-added { background-color: #e6ffec !important; border-left: 4px solid #22863a !important; }
+.diff-removed { background-color: #ffeef0 !important; border-left: 4px solid #cb2431 !important; }
+.diff-modified { background-color: #fff5b1 !important; border-left: 4px solid #e3b341 !important; }
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.compare-column {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+}
+
+.compare-header {
+    padding: 12px 16px;
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 8px 8px 0 0;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.compare-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    background: #fff;
+}
+
+.compare-page-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.2s;
+}
+
+.compare-page-item:hover {
+    border-color: var(--primary);
+    background: #f0fdf4;
+}
+
+.compare-page-item.active {
+    border-color: var(--primary);
+    background: #f0fdf4;
+    box-shadow: 0 0 0 2px rgba(59, 157, 130, 0.1);
+}

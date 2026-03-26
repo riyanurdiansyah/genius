@@ -9,7 +9,7 @@ const FSD = {
     ],
     currentPageId: 'fsd-page-cover',
     compTemplates: {
-        'cover': `<div class="fsd-comp mb-4 bg-white p-5 fsd-page-break" style="min-height: 260mm; display:flex; flex-direction:column; position:relative; border: 1px solid transparent;"><div style="margin-bottom: 60px;"><img src="/image/kn.jpg" alt="Logo" style="max-height: 80px; max-width: 250px; cursor: pointer; padding: 5px;" onclick="const url=prompt('Enter Image URL:', this.src); if(url) this.src=url;"></div><div class="text-end mb-5"><h1 style="font-weight: 800; font-family: 'KalbeGeometric', sans-serif; font-size: 2.5rem; margin:0; outline:none;" contenteditable="true">Functional Specification</h1><p style="font-size: 1.2rem; font-weight: bold; margin-top:5px; outline:none;">Version <span contenteditable="true" style="color: #4f81bd; font-style: italic;">[1.0.0]</span></p></div><div class="text-center" style="margin-top: 70px; margin-bottom: 70px;"><h2 style="font-weight: 800; color: #4f81bd; font-style: italic; font-size: 2.2rem; text-transform: uppercase; padding: 0 20px; outline:none; line-height: 1.5;" contenteditable="true">[FPRS - SPG DAILY PRODUCTIVITY MONITORING WITH AI UTILIZATION]</h2></div><div class="text-center" style="margin-top: auto;"><h4 style="font-weight: bold; margin-bottom: 5px; outline:none;">Prepared By</h4><p style="color: #4f81bd; font-style: italic; font-size: 1.2rem; margin-bottom: 50px; outline:none;" contenteditable="true">[Albet]</p><h4 style="font-weight: bold; margin-bottom: 50px; outline:none;" contenteditable="true">PT. Sanghiang Perkasa</h4><h4 style="font-weight: bold; margin-bottom: 5px; outline:none;">Date</h4><p style="color: #4f81bd; font-style: italic; font-size: 1.2rem; outline:none;" contenteditable="true">[01/03/2026]</p></div><div style="margin-top: 60px; display:flex; justify-content:space-between; align-items:flex-end; font-size: 12px; padding-top: 20px;"><span contenteditable="true" style="outline:none;">Company Confidential &copy;</span><span contenteditable="true" style="font-weight:bold; outline:none;">1</span></div></div>`,
+        'cover': `<div class="fsd-comp mb-4 bg-white p-5 fsd-page-break" style="min-height: 260mm; display:flex; flex-direction:column; position:relative; border: 1px solid transparent;"><div style="margin-bottom: 60px;"><img src="/image/kn.jpg" alt="Logo" style="max-height: 80px; max-width: 250px; cursor: pointer; padding: 5px;" onclick="const url=prompt('Enter Image URL:', this.src); if(url) this.src=url;"></div><div class="text-end mb-5"><h1 style="font-weight: 800; font-family: 'KalbeGeometric', sans-serif; font-size: 2.5rem; margin:0; outline:none;" contenteditable="true">Functional Specification</h1><p style="font-size: 1.2rem; font-weight: bold; margin-top:5px; outline:none;">Version <span contenteditable="true" style="color: #4f81bd; font-style: italic;">[1.0.0]</span></p></div><div class="text-center" style="margin-top: 70px; margin-bottom: 70px;"><h2 style="font-weight: 800; color: #4f81bd; font-style: italic; font-size: 2.2rem; text-transform: uppercase; padding: 0 20px; outline:none; line-height: 1.5;" contenteditable="true">[FPRS - SPG DAILY PRODUCTIVITY MONITORING WITH AI UTILIZATION]</h2></div><div class="text-center" style="margin-top: auto;"><h4 style="font-weight: bold; margin-bottom: 5px; outline:none;">Prepared By</h4><p style="color: #4f81bd; font-style: italic; font-size: 1.2rem; margin-bottom: 50px; outline:none;" contenteditable="true">[Albet]</p><h4 style="font-weight: bold; margin-bottom: 50px; outline:none;" contenteditable="true">PT. Sanghiang Perkasa</h4><h4 style="font-weight: bold; margin-bottom: 50px; outline:none;">Date</h4><p style="color: #4f81bd; font-style: italic; font-size: 1.2rem; outline:none;" contenteditable="true">[01/03/2026]</p></div><div style="margin-top: 60px; display:flex; justify-content:space-between; align-items:flex-end; font-size: 12px; padding-top: 20px;"><span contenteditable="true" style="outline:none;">Company Confidential &copy;</span><span contenteditable="true" style="font-weight:bold; outline:none;">1</span></div></div>`,
         'landscape': `<div class="fsd-comp mb-4 border rounded bg-white p-3"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-circle-info text-primary me-2"></i>General Information</h5><textarea class="form-control" rows="3" placeholder="Jelaskan informasi umum, deskripsi fitur, atau catatan tambahan terkait bab ini di sini..."></textarea></div>`,
         'process': `<div class="fsd-comp mb-4 border rounded bg-white p-3"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-random text-primary me-2"></i>As-Is vs To-Be Process</h5><div class="mb-3"><label class="fw-bold small text-muted">As-Is Process (Current)</label><textarea class="form-control" rows="4" placeholder="Proses berjalan saat ini..."></textarea></div><div><label class="fw-bold small text-muted">To-Be Process (Target)</label><textarea class="form-control" rows="4" placeholder="Target proses baru..."></textarea></div></div>`,
         'roles': `<div class="fsd-comp mb-4 border rounded bg-white p-3 table-comp"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-user-shield text-primary me-2"></i>User Role Access & Entitlements</h5><table class="table table-sm table-bordered mb-0"><thead><tr class="table-light"><th>Role / Actor</th><th>Target Access / Menu</th><th>Permissions (CRUD)</th><th class="fsd-hide-pdf" style="width: 50px;">Act</th></tr></thead><tbody><tr><td contenteditable="true">Admin</td><td contenteditable="true">All Menus</td><td contenteditable="true">CRUD</td><td class="fsd-hide-pdf"><button class="btn btn-sm text-danger p-1" onclick="FSD.removeRow(this)"><i class="fas fa-trash"></i></button></td></tr></tbody></table><button class="btn btn-sm btn-outline-primary mt-2" onclick="FSD.addRow(this, 3)"><i class="fas fa-plus"></i> Add Role Rule</button></div>`,
@@ -26,6 +26,7 @@ const FSD = {
         }
         this.renderPagesList();
         this.switchPage(this.currentPageId);
+        this.refreshHistory();
     },
 
     renderPagesList() {
@@ -455,6 +456,226 @@ const FSD = {
         Flowchart.switchPage(Flowchart.currentPageId);
         Flowchart.renderSidebar();
         alert("Diagram telah dirapikan agar muat di ukuran A4.");
+    },
+
+    saveVersion() {
+        if (!currentProject) {
+            alert("No active project found.");
+            return;
+        }
+
+        const author = prompt("Enter your name:", localStorage.getItem('fsd_author') || "User");
+        if (!author) return;
+        localStorage.setItem('fsd_author', author);
+
+        const summary = prompt("What changed in this version?", "Minor updates");
+        if (summary === null) return;
+
+        // Capture current state before taking snapshot
+        const canvas = document.getElementById('fsdCanvas');
+        if (canvas) {
+            const cd = this.pages.find(p => p.id === this.currentPageId);
+            if (cd) cd.html = canvas.innerHTML;
+        }
+
+        const versionData = {
+            id: 'v-' + Date.now(),
+            timestamp: new Date().toLocaleString(),
+            author: author,
+            summary: summary,
+            pagesSnapshot: JSON.parse(JSON.stringify(this.pages)) // Deep clone
+        };
+
+        if (!currentProject.fsdVersions) currentProject.fsdVersions = [];
+        currentProject.fsdVersions.unshift(versionData); // Add to beginning
+
+        // Keep last 20 versions
+        if (currentProject.fsdVersions.length > 20) {
+            currentProject.fsdVersions = currentProject.fsdVersions.slice(0, 20);
+        }
+
+        this.refreshHistory();
+        
+        // Trigger global save to Firestore
+        if (typeof saveAllData === 'function') {
+            saveAllData();
+            alert("Version saved and synced to Cloud successfully!");
+        } else {
+            alert("Version saved locally. (Global save function missing)");
+        }
+    },
+
+    refreshHistory() {
+        const list = document.getElementById('fsdHistoryList');
+        if (!list || !currentProject) return;
+
+        if (!currentProject.fsdVersions || currentProject.fsdVersions.length === 0) {
+            list.innerHTML = `<div class="text-center text-muted py-5 px-3">
+                <div class="mb-3"><i class="fas fa-history fa-3x opacity-25"></i></div>
+                <p>Belum ada riwayat perubahan yang disimpan.</p>
+                <small class="d-block mt-2">Klik tombol <b>Simpan Version</b> di atas untuk mencatat riwayat.</small>
+            </div>`;
+            return;
+        }
+
+        list.innerHTML = currentProject.fsdVersions.map(v => {
+            // Robust timestamp formatting
+            const parts = v.timestamp ? v.timestamp.split(',') : ['?', '1.0'];
+            const dateStr = parts[0] || 'Unknown';
+            const timeStr = parts[1] ? parts[1].trim() : (v.timestamp ? v.timestamp : '1.0');
+
+            return `
+                <div class="version-item p-3 mb-2 border rounded bg-white shadow-sm" style="position:relative; cursor:pointer; border-left: 4px solid var(--primary) !important;" onclick="FSD.viewVersion('${v.id}')">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="badge bg-primary text-white" style="font-size: 10px;">${timeStr}</span>
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-xs btn-outline-primary p-1 lh-1" onclick="event.stopPropagation(); FSD.compareVersion('${v.id}')" title="Compare with current"><i class="fas fa-columns" style="font-size:10px;"></i></button>
+                            <small class="text-muted" style="font-size:10px;">${dateStr}</small>
+                        </div>
+                    </div>
+                    <div class="fw-bold text-dark mt-1" style="font-size: 13px;"><i class="fas fa-user-edit me-1 opacity-50"></i>${v.author}</div>
+                    <div class="text-muted small text-truncate mt-1" title="${v.summary}">${v.summary}</div>
+                </div>
+            `;
+        }).join('');
+    },
+
+    viewVersion(id) {
+        const version = currentProject.fsdVersions.find(v => v.id === id);
+        if (!version) return;
+
+        if (confirm(`View version by ${version.author} (${version.timestamp})?\nNote: This will replace your current FSD workspace content (unsaved changes will be lost).`)) {
+            this.pages = JSON.parse(JSON.stringify(version.pagesSnapshot));
+            this.currentPageId = this.pages[0].id;
+            this.renderPagesList();
+            this.switchPage(this.currentPageId);
+            alert("Version loaded successfully.");
+        }
+    },
+
+    compareVersion(id) {
+        const version = currentProject.fsdVersions.find(v => v.id === id);
+        if (!version) return;
+
+        const modalEl = document.getElementById('compareFsdModal');
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        
+        const listContainer = document.getElementById('comparePageList');
+        const oldCanvas = document.getElementById('compareOldCanvas');
+        const newCanvas = document.getElementById('compareNewCanvas');
+        const restoreBtn = document.getElementById('restoreVersionBtn');
+        
+        // Sync current canvas before comparison
+        const activeCanvas = document.getElementById('fsdCanvas');
+        if (activeCanvas) {
+            const cd = this.pages.find(p => p.id === this.currentPageId);
+            if (cd) cd.html = activeCanvas.innerHTML;
+        }
+
+        const oldPages = version.pagesSnapshot;
+        const newPages = this.pages;
+
+        // Build a merged set of page IDs
+        const allPageIds = new Set([
+            ...oldPages.map(p => p.id),
+            ...newPages.map(p => p.id)
+        ]);
+
+        let listHtml = '';
+        const pagesData = [];
+
+        [...allPageIds].forEach(pid => {
+            const oldP = oldPages.find(p => p.id === pid);
+            const newP = newPages.find(p => p.id === pid);
+            
+            let status = 'none';
+            let label = '';
+            let colorClass = '';
+
+            if (oldP && newP) {
+                if (oldP.html !== newP.html || oldP.name !== newP.name || oldP.num !== newP.num) {
+                    status = 'modified';
+                    label = 'MODIFIED';
+                    colorClass = 'warning';
+                }
+            } else if (newP) {
+                status = 'added';
+                label = 'ADDED';
+                colorClass = 'success';
+            } else if (oldP) {
+                status = 'removed';
+                label = 'REMOVED';
+                colorClass = 'danger';
+            }
+
+            const pInfo = newP || oldP;
+            pagesData.push({ id: pid, oldP, newP, status });
+
+            const statusBadge = label ? `<span class="badge bg-${colorClass}" style="font-size:8px;">${label}</span>` : '';
+            listHtml += `
+                <div class="compare-page-item p-2 px-3 border-bottom border-0 rounded-0" onclick="FSD.renderCompareDiff('${pid}', this)" id="compare-item-${pid}">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div class="text-truncate me-2" style="font-size: 12px;"><b>${pInfo.num}</b> ${pInfo.name}</div>
+                        ${statusBadge}
+                    </div>
+                </div>
+            `;
+        });
+
+        listContainer.innerHTML = listHtml;
+        window._compareData = pagesData; // Cache for diff rendering
+        
+        // Auto select first modified or first available page
+        const first = pagesData.find(p => p.status !== 'none') || pagesData[0];
+        if (first) {
+            setTimeout(() => FSD.renderCompareDiff(first.id, document.getElementById(`compare-item-${first.id}`)), 200);
+        }
+
+        restoreBtn.onclick = () => {
+            modal.hide();
+            this.viewVersion(id);
+        };
+
+        modal.show();
+    },
+
+    renderCompareDiff(pid, el) {
+        document.querySelectorAll('.compare-page-item').forEach(i => i.classList.remove('active', 'bg-light'));
+        if (el) el.classList.add('active', 'bg-light');
+
+        const data = window._compareData.find(d => d.id === pid);
+        const oldCanvas = document.getElementById('compareOldCanvas');
+        const newCanvas = document.getElementById('compareNewCanvas');
+
+        if (!data) return;
+
+        const cleanHtml = (html) => {
+            if (!html) return '<div class="text-center py-5 text-muted opacity-50"><i>(Empty / Not Found)</i></div>';
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            div.querySelectorAll('.canvas-element-actions').forEach(a => a.remove());
+            div.querySelectorAll('.fsd-hide-pdf').forEach(a => a.remove());
+            div.querySelectorAll('[contenteditable]').forEach(a => a.removeAttribute('contenteditable'));
+            return div.innerHTML;
+        };
+
+        oldCanvas.innerHTML = cleanHtml(data.oldP?.html);
+        newCanvas.innerHTML = cleanHtml(data.newP?.html);
+
+        // Styling for easier diff visibility
+        if (data.status === 'added') {
+            newCanvas.classList.add('diff-added');
+            oldCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
+        } else if (data.status === 'removed') {
+            oldCanvas.classList.add('diff-removed');
+            newCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
+        } else if (data.status === 'modified') {
+            oldCanvas.classList.add('diff-modified');
+            newCanvas.classList.add('diff-modified');
+        } else {
+            oldCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
+            newCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
+        }
     }
 };
 

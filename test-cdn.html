@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuda CDN - Local Test (Bundled)</title>
+
+    <!-- HANYA IMPORT DARI KUDA KIT (Semua library sudah dibundle di dalam sini) -->
+    <link rel="stylesheet" href="./kuda-cdn/css/kuda-kit.css">
+
+    <style>
+        .test-section {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-card {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <aside class="sidebar-wrapper">
+            <div class="logo-area">
+                <div class="brand-text">
+                    <span class="brand-name">KUDA DESIGN</span>
+                    <span class="brand-sub">ENTERPRISE UI</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="menu-section-label"><span>Core Navigation</span></li>
+                    <li class="active">
+                        <a href="#">
+                            <div class="menu-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                            <span class="menu-label">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-icon"><i class="fa-solid fa-cubes"></i></div>
+                            <span class="menu-label">Components</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-icon"><i class="fa-solid fa-table"></i></div>
+                            <span class="menu-label">Data Tables</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-section-label"><span>Account</span></li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-icon"><i class="fa-solid fa-circle-user"></i></div>
+                            <span class="menu-label">Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="menu-icon"><i class="fa-solid fa-gear"></i></div>
+                            <span class="menu-label">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header-bar p-3">
+                <div class="page-header-left">
+                    <h1 class="page-title">CDN Local Test (Bundled)</h1>
+                </div>
+                <div class="page-header-right">
+                    <button id="toggleDarkMode" class="btn btn-secondary">
+                        <i id="darkModeIcon" class="fa fa-moon"></i>
+                    </button>
+                    <button id="toggleSidebar" class="btn btn-primary d-lg-none">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="test-section">
+                <!-- 1. Test Typography & Icons -->
+                <div class="demo-card">
+                    <h2>Testing Bundled Core <i class="fa fa-circle-check text-success"></i></h2>
+                    <p class="text-muted">Jika icon di atas berwarna hijau dan teks ini rapi, berarti FontAwesome,
+                        Bootstrap, dan Kuda CSS berhasil dibundle.</p>
+                </div>
+
+                <!-- 2. Test JS/Theme -->
+                <div class="demo-card">
+                    <h2>Theme Test</h2>
+                    <p>Klik icon bulan di pojok kanan atas. Jika berubah ke Dark Mode, berarti jQuery dan Kuda JS
+                        berhasil dibundle.</p>
+                </div>
+
+                <div class="demo-card">
+                    <div class="custom-dt-container">
+                        <div class="dt-header-flex">
+                            <div class="dt-header-title">
+                                <div class="dt-icon"><i class="fa-solid fa-filter"></i></div>
+                                Column Filtering DataTable
+                            </div>
+                            <div class="dt-header-actions">
+                                <button class="btn btn-sm btn-outline-primary copy-btn"><i
+                                        class="fa-regular fa-copy"></i> Copy HTML</button>
+                            </div>
+                        </div>
+
+                        <table id="table-col-search" class="display table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <!-- Inputs injected via JS so it doesn't pollute raw HTML copy -->
+                                    <th data-search="true">Name</th>
+                                    <th data-search="true">Position</th>
+                                    <th data-search="true">Office</th>
+                                    <th>Age</th>
+                                    <th data-search="true">Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                    <td>2011/04/25</td>
+                                    <td>$320,800</td>
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>63</td>
+                                    <td>2011/07/25</td>
+                                    <td>$170,750</td>
+                                </tr>
+                                <tr>
+                                    <td>Ashton Cox</td>
+                                    <td>Junior Technical Author</td>
+                                    <td>San Francisco</td>
+                                    <td>66</td>
+                                    <td>2009/01/12</td>
+                                    <td>$86,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Cedric Kelly</td>
+                                    <td>Senior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                    <td>22</td>
+                                    <td>2012/03/29</td>
+                                    <td>$433,060</td>
+                                </tr>
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>33</td>
+                                    <td>2008/11/28</td>
+                                    <td>$162,700</td>
+                                </tr>
+                                <tr>
+                                    <td>Brielle Williamson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>New York</td>
+                                    <td>61</td>
+                                    <td>2012/12/02</td>
+                                    <td>$372,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 3. Test DataTable -->
+                <div class="demo-card">
+                    <h2>DataTable Integration Test</h2>
+                    <p class="text-muted">Tabel ini menggunakan DataTables yang sudah dibundle di dalam
+                        <code>kuda-kit.js</code>.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table id="testTable" class="table table-kuda">
+                            <thead>
+                                <tr>
+                                    <th data-search="true">Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>33</td>
+                                </tr>
+                                <tr>
+                                    <td>Angelica Ramos</td>
+                                    <td>CEO</td>
+                                    <td>London</td>
+                                    <td>47</td>
+                                </tr>
+                                <tr>
+                                    <td>Ashton Cox</td>
+                                    <td>Technical Author</td>
+                                    <td>San Francisco</td>
+                                    <td>66</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- HANYA IMPORT DARI KUDA KIT (jQuery & DataTables sudah ada di dalam sini) -->
+    <script src="./kuda-cdn/js/kuda-kit.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Inisialisasi Tabel Filter Kolom
+            KudaKit.initDataTable('table-col-search');
+
+            // Test Inisialisasi DataTable Standar
+            KudaKit.initDataTable('testTable');
+        });
+    </script>
+
+</body>
+
+</html>

@@ -170,6 +170,9 @@
                     <li class="nav-item">
                         <button class="nav-link px-3 py-2" data-bs-toggle="tab" data-bs-target="#fsd-pages-tab" type="button">Pages</button>
                     </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-3 py-2" data-bs-toggle="tab" data-bs-target="#fsd-history-tab" type="button">History</button>
+                    </li>
                 </ul>
             </div>
             <div class="tab-content builder-components flex-grow-1" style="overflow-y:auto;">
@@ -191,6 +194,16 @@
                 <div class="tab-pane fade p-3" id="fsd-pages-tab">
                     <button class="btn btn-primary w-100 mb-3 btn-sm" onclick="FSD.addNewPage()"><i class="fas fa-plus me-1"></i> Add FSD Page</button>
                     <div id="fsdPagesList"></div>
+                </div>
+                <!-- FSD HISTORY TAB -->
+                <div class="tab-pane fade p-3" id="fsd-history-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="m-0 fw-bold">Version History</h6>
+                        <button class="btn btn-xs btn-outline-primary" onclick="FSD.refreshHistory()" title="Refresh History"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                    <div id="fsdHistoryList" style="font-size: 12px;">
+                        <div class="text-center text-muted py-4">No versions recorded yet.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -376,6 +389,56 @@
     </div>
 </div>
 
+<!-- Modal for Comparing FSD Versions -->
+<div class="modal fade" id="compareFsdModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Compare FSD Versions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 bg-light">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-white fw-bold py-3">Page Changes</div>
+                            <div class="card-body p-0 overflow-y-auto" style="max-height: 70vh;" id="comparePageList">
+                                <!-- List of pages with diff status -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="compare-grid">
+                            <div class="compare-column">
+                                <div class="compare-header" id="compareOldTitle">
+                                    <span>Selected Version</span>
+                                    <span class="badge bg-secondary opacity-50">HISTORY</span>
+                                </div>
+                                <div class="compare-body" id="compareOldCanvas">
+                                    <!-- Old content preview -->
+                                </div>
+                            </div>
+                            <div class="compare-column">
+                                <div class="compare-header" id="compareNewTitle">
+                                    <span>Current Version</span>
+                                    <span class="badge bg-primary">CURRENT</span>
+                                </div>
+                                <div class="compare-body" id="compareNewCanvas">
+                                    <!-- New content preview -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="restoreVersionBtn">Restore This Version</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/js/ui-builder-fsd.js"></script>
 <script src="/js/ui-builder-erd.js"></script>
 <script src="/js/ui-builder-flowchart.js"></script>
@@ -516,6 +579,9 @@
         Flowchart.diagrams = currentProject.flowchartDiagrams || [{ id: 'fc-page-1', num: '1.0', name: 'Main Flow', nodes: [], edges: [] }];
         Flowchart.currentPageId = Flowchart.diagrams[0].id;
 
+        currentProject.fsdVersions = currentProject.fsdVersions || [];
+        FSD.refreshHistory();
+
         document.getElementById('currentProjectTitle').textContent = proj.name;
         document.getElementById('projectDashboard').style.display = 'none';
         document.getElementById('builderMain').style.display = 'flex';
@@ -653,7 +719,8 @@
             actions.innerHTML = `<button class="btn btn-sm btn-outline-danger me-2" onclick="clearCanvas()"><i class="fa-solid fa-trash"></i> Clear</button>
                 <button class="btn btn-sm btn-outline-primary" onclick="previewHTML()"><i class="fa-solid fa-code"></i> Get HTML</button>`;
         } else if (ws === 'fsd') {
-            actions.innerHTML = `<button class="btn btn-sm btn-outline-danger me-2" onclick="FSD.deletePage(FSD.currentPageId)"><i class="fa-solid fa-trash"></i> Delete Page</button>
+            actions.innerHTML = `<button class="btn btn-sm btn-outline-success me-2" onclick="FSD.saveVersion()"><i class="fa-solid fa-cloud-upload-alt"></i> Simpan Version</button>
+                <button class="btn btn-sm btn-outline-danger me-2" onclick="FSD.deletePage(FSD.currentPageId)"><i class="fa-solid fa-trash"></i> Delete Page</button>
                 <button class="btn btn-sm btn-outline-primary" onclick="exportFSDPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>`;
         } else if (ws === 'erd') {
             actions.innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="exportERD()"><i class="fas fa-download"></i> Export SQL</button>`;
