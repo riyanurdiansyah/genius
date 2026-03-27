@@ -5,17 +5,27 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
 <style>
-.comm-card {
+    .comm-card {
         border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        border: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.05);
         background: #fff;
+        transition: all 0.3s ease;
+    }
+    [data-theme="dark"] .comm-card {
+        background: rgba(59, 157, 130, 0.05) !important;
+        border-color: rgba(59, 157, 130, 0.1) !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
     }
     .comm-kpi-val {
         font-size: 2rem;
         font-weight: 800;
         letter-spacing: -1px;
         margin-bottom: 5px;
+        color: var(--text-dark);
+    }
+    [data-theme="dark"] .comm-kpi-val {
+        color: #fff !important;
     }
     .comm-title {
         color: #64748b;
@@ -24,8 +34,21 @@
         font-weight: 700;
         letter-spacing: 0.5px;
     }
+    [data-theme="dark"] .comm-title {
+        color: var(--primary) !important;
+        opacity: 0.8;
+    }
     .trend-up { color: var(--success); }
     .trend-down { color: var(--danger); }
+    
+    [data-theme="dark"] .table-light {
+        background: rgba(59, 157, 130, 0.1) !important;
+        color: #fff !important;
+    }
+    [data-theme="dark"] .list-group-item {
+        background: transparent !important;
+        border-color: rgba(59, 157, 130, 0.1) !important;
+    }
 
 </style>
 
@@ -458,10 +481,18 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             xaxis: {
                 categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                labels: { style: { colors: document.documentElement.getAttribute('data-theme') === 'dark' ? '#7fa99d' : '#64748b' } }
+            },
+            yaxis: {
+                labels: { style: { colors: document.documentElement.getAttribute('data-theme') === 'dark' ? '#7fa99d' : '#64748b' } }
+            },
+            grid: {
+                borderColor: document.documentElement.getAttribute('data-theme') === 'dark' ? 'rgba(59, 157, 130, 0.1)' : '#f1f1f1',
             },
             legend: {
                 position: 'top',
-                horizontalAlign: 'right'
+                horizontalAlign: 'right',
+                labels: { colors: document.documentElement.getAttribute('data-theme') === 'dark' ? '#fff' : '#000' }
             },
             markers: {
                 size: 4
@@ -488,9 +519,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             total: {
                                 show: true,
                                 showAlways: true,
-                                label: 'Total',
-                                fontSize: '20px',
-                                color: '#000',
+                                label: 'Total Revenue',
+                                fontSize: '13px',
+                                color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#7fa99d' : '#4a5568',
                                 formatter: function (w) {
                                     return "$2.45M"
                                 }
@@ -500,8 +531,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             },
             dataLabels: { enabled: false },
+            labels: ['B2B Enterprise', 'Retail Direct', 'E-Commerce', 'Wholesale'],
             legend: {
-                position: 'bottom'
+                position: 'bottom',
+                labels: { colors: document.documentElement.getAttribute('data-theme') === 'dark' ? '#ffffff' : '#1a202c' }
             }
         };
 

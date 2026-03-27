@@ -144,7 +144,7 @@
 
 :root {
 
-    --font-family-primary: 'KalbeGeometric', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-family-primary: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif;
     --bs-body-font-family: var(--font-family-primary);
     --bs-font-sans-serif: var(--font-family-primary);
 

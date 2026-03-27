@@ -1,86 +1,42 @@
 @{ ViewData["Title"] = "Accordion Variations"; }
 
-@section Styles {
-    <style>
-.floating-accordion .accordion-item { 
-            border: none; 
-            margin-bottom: 20px; 
-            border-radius: 16px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.03); 
-            overflow: hidden; 
-            background: #fff;
-            transition: all 0.3s ease;
-        }
-        .floating-accordion .accordion-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-        }
-        .floating-accordion .accordion-button { background-color: transparent; font-weight: 700; color: var(--text-dark); padding: 1.5rem; font-size: 1.05rem; box-shadow: none; border-radius: 16px !important; }
-        .floating-accordion .accordion-button:not(.collapsed) { background-color: #f8fafc; color: var(--primary-color); box-shadow: none; }
-        .floating-accordion .accordion-button::after { background-size: 1rem; width: 1.5rem; height: 1.5rem; background-position: center; border-radius: 50%; background-color: #f1f5f9; padding: 1rem; }
-        .floating-accordion .accordion-button:not(.collapsed)::after { background-color: rgba(59, 157, 130, 0.1); filter: none; }
-        .floating-accordion .accordion-body { background: #f8fafc; color: var(--text-gray); padding: 0 1.5rem 1.5rem; }
-
-        .minimal-accordion .accordion-item { border: none; border-bottom: 1px solid #e2e8f0; margin-bottom: 0; background: transparent; }
-        .minimal-accordion .accordion-item:last-child { border-bottom: none; }
-        .minimal-accordion .accordion-button { background-color: transparent; font-weight: 600; font-size: 1.05rem; padding: 1.5rem 0; color: var(--text-dark); box-shadow: none; }
-        .minimal-accordion .accordion-button:not(.collapsed) { color: var(--primary-color); background-color: transparent; box-shadow: none; border-left: 4px solid var(--primary-color); padding-left: 1.5rem; }
-        .minimal-accordion .accordion-button:focus { box-shadow: none; }
-        .minimal-accordion .accordion-body { padding: 0 0 1.5rem 1.7rem; color: var(--text-muted); }
-
-        .custom-accordion .accordion-item { border: none; margin-bottom: 12px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; }
-        .custom-accordion .accordion-button { background-color: #fff; font-weight: 600; padding: 1.25rem 1.5rem; transition: all 0.3s ease; color: var(--text-dark); }
-        .custom-accordion .accordion-button:not(.collapsed) { background-color: var(--primary-color); color: white; box-shadow: 0 4px 15px rgba(59, 157, 130, 0.2); }
-        .custom-accordion .accordion-button:not(.collapsed) i { color: white !important; }
-        .custom-accordion .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
-        .custom-accordion .accordion-body { background: #fff; color: var(--text-muted); padding: 1.5rem; }
-
-        .glass-bg {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            padding: 2.5rem;
-            border-radius: 20px;
-        }
-        .glass-accordion .accordion-item { 
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            margin-bottom: 15px; 
-            border-radius: 16px; 
-            overflow: hidden; 
-        }
-        .glass-accordion .accordion-button { background-color: transparent; font-weight: 600; color: #f8fafc; padding: 1.25rem 1.5rem; box-shadow: none; }
-        .glass-accordion .accordion-button::after { filter: brightness(0) invert(1); }
-        .glass-accordion .accordion-button:not(.collapsed) { background-color: rgba(255, 255, 255, 0.1); color: #fff; box-shadow: none; }
-        .glass-accordion .accordion-body { background: transparent; color: rgba(255, 255, 255, 0.7); padding: 1.5rem; }
-
-        .gradient-accordion .accordion-item { 
-            border: none; 
-            margin-bottom: 15px; 
-            border-radius: 14px; 
-            background: #fff;
-            position: relative;
-        }
-        .gradient-accordion .accordion-item::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 14px;
-            padding: 2px; 
-            background: linear-gradient(45deg, var(--primary-color), #3b82f6);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.3;
-            transition: opacity 0.3s;
-        }
-        .gradient-accordion .accordion-item:hover::before { opacity: 1; }
-        .gradient-accordion .accordion-button { background: transparent; font-weight: 600; box-shadow: none; padding: 1.25rem; z-index: 1;}
-        .gradient-accordion .accordion-button:not(.collapsed) { color: var(--primary-color); background: transparent; }
-        .gradient-accordion .accordion-body { padding: 1.25rem; padding-top: 0; z-index: 1; position: relative;}
-
-</style>
-}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, var(--primary), #2d7a65); color: white; border-radius: 16px;">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-white bg-opacity-25 rounded-circle p-3 me-3">
+                        <i class="fas fa-lightbulb fs-4"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-0 fw-bold">Panduan Penggunaan Accordion</h4>
+                        <p class="mb-0 text-white-50 small">Ikuti langkah-langkah di bawah untuk implementasi cepat.</p>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="bg-white bg-opacity-10 rounded p-3 h-100">
+                            <h6 class="fw-bold mb-2"><span class="badge bg-white text-primary me-2">1</span> Struktur HTML</h6>
+                            <p class="small mb-0 opacity-75">Gunakan parent <code>.accordion</code> dengan ID unik, lalu tambahkan <code>.accordion-item</code> di dalamnya.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-white bg-opacity-10 rounded p-3 h-100">
+                            <h6 class="fw-bold mb-2"><span class="badge bg-white text-primary me-2">2</span> ID & Target</h6>
+                            <p class="small mb-0 opacity-75">Pastikan <code>data-bs-target</code> pada button sesuai dengan ID <code>.accordion-collapse</code> tujuan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-white bg-opacity-10 rounded p-3 h-100">
+                            <h6 class="fw-bold mb-2"><span class="badge bg-white text-primary me-2">3</span> Dependency</h6>
+                            <p class="small mb-0 opacity-75">Cukup panggil <code>kuda-kit.js</code>. Semua fungsi interaksi sudah dibundle menggunakan Bootstrap 5.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
 

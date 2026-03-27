@@ -3,10 +3,16 @@
 }
 
 <style>
-.chart-box { min-height: 300px; background: #f8f9fa; display:flex; align-items:center; justify-content:center; }
+    .chart-box { min-height: 300px; background: #f8fbfa; display:flex; align-items:center; justify-content:center; border-radius: 12px; }
     .progress-track { height: 8px; background: #e9ecef; border-radius: 4px; }
-    [data-theme="dark"] .chart-box { background: #162032 !important; }
+    [data-theme="dark"] .chart-box { background: rgba(59, 157, 130, 0.03) !important; border: 1px solid rgba(59, 157, 130, 0.1); }
     [data-theme="dark"] .progress-track { background: rgba(255,255,255,0.08) !important; }
+    [data-theme="dark"] .card {
+        background: rgba(59, 157, 130, 0.05) !important;
+        border-color: rgba(59, 157, 130, 0.1) !important;
+    }
+    .stat-card { display: flex; align-items: center; gap: 15px; }
+    .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
 
 </style>
 
@@ -126,7 +132,7 @@
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th>Order ID</th>
                                 <th>Customer</th>

@@ -5,8 +5,12 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
 <style>
-.kpi-card {
+    .kpi-card {
         border-left: 4px solid var(--primary);
+    }
+    [data-theme="dark"] .card {
+        background: rgba(59, 157, 130, 0.05) !important;
+        border-color: rgba(59, 157, 130, 0.1) !important;
     }
     .kpi-warning {
         border-left: 4px solid var(--warning);
@@ -24,6 +28,16 @@
     .status-running { background-color: var(--success); }
     .status-stopped { background-color: var(--danger); }
     .status-maintenance { background-color: var(--warning); }
+    
+    [data-theme="dark"] .list-group-item {
+        background: transparent !important;
+        border-color: rgba(59, 157, 130, 0.1) !important;
+        color: #fff !important;
+    }
+    [data-theme="dark"] .table-light {
+        background: rgba(59, 157, 130, 0.1) !important;
+        color: #fff !important;
+    }
 
 </style>
 
@@ -409,6 +423,13 @@ document.addEventListener("DOMContentLoaded", function () {
             dataLabels: { enabled: false },
             xaxis: {
                 categories: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                labels: { style: { colors: document.documentElement.getAttribute('data-theme') === 'dark' ? '#7fa99d' : '#64748b' } }
+            },
+            yaxis: {
+                labels: { style: { colors: document.documentElement.getAttribute('data-theme') === 'dark' ? '#7fa99d' : '#64748b' } }
+            },
+            grid: {
+                borderColor: document.documentElement.getAttribute('data-theme') === 'dark' ? 'rgba(59, 157, 130, 0.1)' : '#f1f1f1',
             },
             tooltip: {
                 y: { formatter: function (val) { return val + " units" } }
@@ -484,7 +505,8 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             legend: {
                 position: 'top',
-                horizontalAlign: 'right'
+                horizontalAlign: 'right',
+                labels: { colors: document.documentElement.getAttribute('data-theme') === 'dark' ? '#fff' : '#000' }
             },
             fill: { opacity: 1 },
             tooltip: {

@@ -20,6 +20,7 @@ curl -s https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css 
 curl -s https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css -o "$VENDOR_DIR/css/datatables.css"
 
 curl -s https://code.jquery.com/jquery-3.7.0.min.js -o "$VENDOR_DIR/js/jquery.js"
+curl -s https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js -o "$VENDOR_DIR/js/bootstrap.bundle.js"
 curl -s https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js -o "$VENDOR_DIR/js/datatables.js"
 
 # 3. Download FontAwesome Webfonts (Penting!)
@@ -50,6 +51,8 @@ echo "📦 Bundling JS..."
 {
     echo "/* BUNDLED BY KUDA-KIT */"
     cat "$VENDOR_DIR/js/jquery.js"
+    echo ";"
+    cat "$VENDOR_DIR/js/bootstrap.bundle.js"
     echo ";"
     cat "$VENDOR_DIR/js/datatables.js"
     echo ";"

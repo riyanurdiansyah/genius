@@ -1,302 +1,455 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuda CDN - Local Test (Bundled)</title>
+    <title>Kuda Kit - Component Test</title>
 
+    <!-- HANYA IMPORT DARI KUDA KIT CDN -->
     <link rel="stylesheet" href="./kuda-cdn/css/kuda-kit.css">
 
     <style>
-        .test-section {
-            padding: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Membersihkan CSS custom agar full menggunakan bawaan kuda-kit.css */
+        .demo-card {
+            background: var(--bg-card, #fff);
+            border-radius: var(--border-radius-lg, 12px);
+            box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.04));
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color, #edf2f7);
+            color: var(--text-dark);
         }
 
-        .demo-card {
-            background: var(--bg-card);
-            padding: 24px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            margin-bottom: 24px;
+        .demo-card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
         }
     </style>
 </head>
 
 <body>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="wrapper">
-        <aside class="sidebar-wrapper">
-            <div class="logo-area">
-                <div class="brand-text">
-                    <span class="brand-name">KUDA DESIGN</span>
-                    <span class="brand-sub">ENTERPRISE UI</span>
-                </div>
-            </div>
+        <div class="dashboard-container">
 
-            <div class="sidebar">
-                <ul class="sidebar-menu">
-                    <li class="menu-section-label"><span>Core Navigation</span></li>
-                    <li class="active">
-                        <a href="#">
-                            <div class="menu-icon"><i class="fa-solid fa-gauge-high"></i></div>
-                            <span class="menu-label">Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="menu-icon"><i class="fa-solid fa-cubes"></i></div>
-                            <span class="menu-label">Components</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="menu-icon"><i class="fa-solid fa-table"></i></div>
-                            <span class="menu-label">Data Tables</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-section-label"><span>Account</span></li>
-                    <li>
-                        <a href="#">
-                            <div class="menu-icon"><i class="fa-solid fa-circle-user"></i></div>
-                            <span class="menu-label">Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="menu-icon"><i class="fa-solid fa-gear"></i></div>
-                            <span class="menu-label">Settings</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <main class="main-content">
-            <header class="page-header-bar p-3">
-                <div class="page-header-left">
-                    <h1 class="page-title">CDN Local Test (Bundled)</h1>
-                </div>
-                <div class="page-header-right">
-                    <button id="toggleDarkMode" class="btn btn-secondary">
-                        <i id="darkModeIcon" class="fa fa-moon"></i>
-                    </button>
-                    <button id="toggleSidebar" class="btn btn-primary d-lg-none">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </div>
-            </header>
-
-            <div class="test-section">
-
-                <div class="demo-card">
-                    <h2>Testing Bundled Core <i class="fa fa-circle-check text-success"></i></h2>
-                    <p class="text-muted">Jika icon di atas berwarna hijau dan teks ini rapi, berarti FontAwesome,
-                        Bootstrap, dan Kuda CSS berhasil dibundle.</p>
-                </div>
-
-                <div class="demo-card">
-                    <h2>Theme Test</h2>
-                    <p>Klik icon bulan di pojok kanan atas. Jika berubah ke Dark Mode, berarti jQuery dan Kuda JS
-                        berhasil dibundle.</p>
-                </div>
-
-                <div class="demo-card">
-                    <div class="custom-dt-container">
-                        <div class="dt-header-flex">
-                            <div class="dt-header-title">
-                                <div class="dt-icon"><i class="fa-solid fa-filter"></i></div>
-                                Column Filtering DataTable
-                            </div>
-                            <div class="dt-header-actions">
-                                <button class="btn btn-sm btn-outline-primary copy-btn"><i
-                                        class="fa-regular fa-copy"></i> Copy HTML</button>
-                            </div>
-                        </div>
-
-                        <table id="table-col-search" class="display table" style="width:100%">
-                            <thead>
-                                <tr>
-
-                                    <th data-search="true">Name</th>
-                                    <th data-search="true">Position</th>
-                                    <th data-search="true">Office</th>
-                                    <th>Age</th>
-                                    <th data-search="true">Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>63</td>
-                                    <td>2011/07/25</td>
-                                    <td>$170,750</td>
-                                </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                    <td>2009/01/12</td>
-                                    <td>$86,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Cedric Kelly</td>
-                                    <td>Senior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                    <td>2012/03/29</td>
-                                    <td>$433,060</td>
-                                </tr>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                    <td>$162,700</td>
-                                </tr>
-                                <tr>
-                                    <td>Brielle Williamson</td>
-                                    <td>Integration Specialist</td>
-                                    <td>New York</td>
-                                    <td>61</td>
-                                    <td>2012/12/02</td>
-                                    <td>$372,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- SIDEBAR SAMA PERSIS DENGAN KUDA TEMPLATE -->
+            <div class="sidebar-wrapper" id="mainSidebar">
+                <div class="logo-area">
+                    <div class="brand-text">
+                        <span class="brand-name">Kuda</span>
+                        <span class="brand-sub">CDN Edition</span>
                     </div>
                 </div>
 
-                <div class="demo-card">
-                    <h2>DataTable Integration Test</h2>
-                    <p class="text-muted">Tabel ini menggunakan DataTables yang sudah dibundle di dalam
-                        <code>kuda-kit.js</code>.
-                    </p>
+                <aside class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="menu-section-label"><span>Testing Modules</span></li>
+                        <li class="active">
+                            <a href="#">
+                                <span class="menu-icon"><i class="fas fa-home"></i></span>
+                                <span class="menu-label">Integration Test</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="menu-icon"><i class="fas fa-table"></i></span>
+                                <span class="menu-label">DataTables</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="menu-icon"><i class="fas fa-layer-group"></i></span>
+                                <span class="menu-label">Accordion UI</span>
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
 
-                    <div class="table-responsive">
-                        <table id="testTable" class="table table-kuda">
-                            <thead>
-                                <tr>
-                                    <th data-search="true">Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                </tr>
-                                <tr>
-                                    <td>Angelica Ramos</td>
-                                    <td>CEO</td>
-                                    <td>London</td>
-                                    <td>47</td>
-                                </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+
+                <!-- TOPBAR MIRIP TEMPLATE ASLI -->
+                <header class="topbar">
+                    <div class="topbar-left">
+                        <button class="menu-toggle-btn" id="toggleSidebar">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="search-bar d-none d-md-flex">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" placeholder="Search CDN components..." class="form-control">
+                        </div>
                     </div>
-                </div>
+                    <div class="topbar-right">
+                        <button class="icon-toggle-btn" id="toggleDarkMode">
+                            <i class="fas fa-moon" id="darkModeIcon"></i>
+                        </button>
+                    </div>
+                </header>
 
-                <div class="demo-card">
-                    <div class="custom-dt-container">
-                        <div class="dt-header-flex">
-                            <div class="dt-header-title">
-                                <div class="dt-icon"><i class="fa-solid fa-server"></i></div>
-                                Server-Side DataTable (Ajax)
+                <main class="pb-3" style="flex:1; padding: 2rem;">
+
+                    <div class="page-header-bar mb-4">
+                        <div class="page-header-left">
+                            <h2 class="page-title mb-0">Component Integration Test</h2>
+                            <p class="text-muted small mt-1 mb-0">Testing <code>kuda-kit.js</code> dan
+                                <code>kuda-kit.css</code> dari folder lokal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid p-0">
+                        <!-- 1. Ajax / Server-Side DataTable -->
+                        <div class="demo-card">
+                            <h2><i class="fas fa-database text-primary"></i> Server-Side / Ajax DataTable</h2>
+                            <div class="table-responsive">
+                                <table id="table-ajax" class="table table-hover align-middle border-0"
+                                    style="width:100%">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Device Name</th>
+                                            <th>Data Array</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Populated via Ajax -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <p class="text-muted mb-4">Mendemonstrasikan cara load data dari external REST API HTTP
-                            <code>https://api.restful-api.dev/objects</code> menggunakan custom render column
-                            DataTables.
-                        </p>
+                        <!-- 2. Accordion Integration -->
+                        <div class="demo-card">
+                            <h2><i class="fas fa-list-check text-primary"></i> Accordion Functional Test</h2>
+                            <div class="accordion floating-accordion" id="accordionFloating">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <i class="fas fa-rocket text-primary me-3"></i> Deployment Strategy
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionFloating">
+                                        <div class="accordion-body">
+                                            <strong>Staging and Production environments.</strong> Deploy your code to a
+                                            staging environment first for testing, then promote to production and use
+                                            Blue/Green deployments to ensure zero downtime.
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="table-responsive">
-                            <table id="table-ajax" class="display table dt-style-bordered" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 80px;">ID</th>
-                                        <th>Product Name</th>
-                                        <th>Specifications Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fas fa-shield-halved text-primary me-3"></i> Security Compliance
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo" data-bs-parent="#accordionFloating">
+                                        <div class="accordion-body">
+                                            <strong>ISO 27001 Certified.</strong> Our infrastructure follows the highest
+                                            security standards. All data is automatically backed up every hour and
+                                            encrypted with rotating keys.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                </tbody>
-                            </table>
+                        <!-- 3. Font Awesome Native Test -->
+                        <div class="demo-card">
+                            <h2><i class="fa-solid fa-icons text-primary"></i> Native FontAwesome Built-in CDN</h2>
+                            <p class="text-secondary small mb-4">Ikon di bawah otomatis muncul murni dari
+                                <code>kuda-kit.css</code> (tanpa import FontAwesome manual atau trik gaya apa pun).
+                            </p>
+
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="p-3 border rounded text-center bg-light">
+                                        <h6 class="fw-bold mb-3">Solid Icons (fas)</h6>
+                                        <div class="d-flex justify-content-center gap-3 fs-3 text-primary">
+                                            <i class="fas fa-home"></i>
+                                            <i class="fas fa-chart-pie"></i>
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <i class="fa-solid fa-bell"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 border rounded text-center bg-light">
+                                        <h6 class="fw-bold mb-3">Regular Icons (far)</h6>
+                                        <div class="d-flex justify-content-center gap-3 fs-3 text-success">
+                                            <i class="far fa-user"></i>
+                                            <i class="far fa-calendar"></i>
+                                            <i class="far fa-folder"></i>
+                                            <i class="fa-regular fa-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 border rounded text-center bg-light">
+                                        <h6 class="fw-bold mb-3">Brand Icons (fab)</h6>
+                                        <div class="d-flex justify-content-center gap-3 fs-3 text-dark">
+                                            <i class="fab fa-whatsapp text-success"></i>
+                                            <i class="fa-brands fa-youtube text-danger"></i>
+                                            <i class="fab fa-google"></i>
+                                            <i class="fa-brands fa-github"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="demo-card">
+                            <div class="accordion gradient-accordion" id="accordionGradient">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="gradientHeadingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#gradientCollapseOne" aria-expanded="true"
+                                            aria-controls="gradientCollapseOne">
+                                            Team Workspace Limits
+                                        </button>
+                                    </h2>
+                                    <div id="gradientCollapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="gradientHeadingOne" data-bs-parent="#accordionGradient">
+                                        <div class="accordion-body text-muted">
+                                            Free tier covers up to 5 members per workspace. If your team scales beyond
+                                            that, you will be prompted to upgrade to the Starter Pack suitable for up to
+                                            25 members.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="gradientHeadingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#gradientCollapseTwo"
+                                            aria-expanded="false" aria-controls="gradientCollapseTwo">
+                                            API Rate Limiting
+                                        </button>
+                                    </h2>
+                                    <div id="gradientCollapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="gradientHeadingTwo" data-bs-parent="#accordionGradient">
+                                        <div class="accordion-body text-muted">
+                                            By default, any API token generated is restricted to 100 requests per minute
+                                            to prevent system abuses. Contact support to raise this ceiling for
+                                            production apps.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="gradientHeadingThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#gradientCollapseThree"
+                                            aria-expanded="false" aria-controls="gradientCollapseThree">
+                                            Refund Policies
+                                        </button>
+                                    </h2>
+                                    <div id="gradientCollapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="gradientHeadingThree" data-bs-parent="#accordionGradient">
+                                        <div class="accordion-body text-muted">
+                                            We issue no questions asked refunds within the first 14 days of any
+                                            purchase. Beyond 14 days, refunds are evaluated strictly on a case-by-case
+                                            basis.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="demo-card">
+                            <div class="card-body" id="alertsGradient">
+                                <p class="text-muted small mb-4">Eye-catching alerts for major announcements or premium
+                                    features.</p>
+
+                                <div class="alert alert-gradient-primary rounded-3 shadow-sm d-flex align-items-center alert-dismissible fade show"
+                                    role="alert">
+                                    <i class="fas fa-rocket fa-2x me-3 opacity-75"></i>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold text-white">Upgrade to Pro!</h6>
+                                        <p class="mb-0 small text-white text-opacity-75">Get access to premium features
+                                            and unlimited storage.</p>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="alert alert-gradient-success rounded-3 shadow-sm d-flex align-items-center alert-dismissible fade show mb-0"
+                                    role="alert">
+                                    <i class="fas fa-gift fa-2x me-3 opacity-75"></i>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold text-white">Holiday Promo Applied</h6>
+                                        <p class="mb-0 small text-white text-opacity-75">You get 50% off for the next 3
+                                            months.</p>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="demo-card">
+                            <div class="barcode-generator-container" id="barcodeGeneratorApp">
+
+                                <div class="barcode-settings">
+                                    <h5 class="fw-bold mb-4 border-bottom pb-2">Configuration</h5>
+
+                                    <form id="barcodeForm" onsubmit="event.preventDefault(); generateBarcode();">
+                                        <div class="mb-3">
+                                            <label class="form-label fw-bold">Barcode Type</label>
+                                            <select class="form-select" id="bcid" onchange="generateBarcode()">
+                                                <optgroup label="Popular 2D (Matrix)">
+                                                    <option value="qrcode" selected="">QR Code</option>
+                                                    <option value="datamatrix">Data Matrix</option>
+                                                    <option value="pdf417">PDF417</option>
+                                                    <option value="azteccode">Aztec Code</option>
+                                                </optgroup>
+                                                <optgroup label="Popular 1D (Linear)">
+                                                    <option value="code128">Code 128</option>
+                                                    <option value="code39">Code 39</option>
+                                                    <option value="ean13">EAN-13</option>
+                                                    <option value="upca">UPC-A</option>
+                                                    <option value="itf14">ITF-14</option>
+                                                </optgroup>
+                                                <optgroup label="Other Formats">
+                                                    <option value="pharmacode">Pharmacode</option>
+                                                    <option value="isbn">ISBN</option>
+                                                    <option value="gs1-128">GS1-128</option>
+                                                    <option value="royalmail">Royal Mail (RM4SCC)</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label fw-bold">Data / Value</label>
+                                            <textarea class="form-control" id="bcText" rows="3"
+                                                placeholder="Enter text, URL, or numbers..."
+                                                oninput="debounceGenerate()"></textarea>
+                                            <div class="form-text text-danger d-none" id="errorMsg">Invalid data for the
+                                                selected barcode type.</div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-6">
+                                                <label class="form-label fw-bold">Barcode Color</label>
+                                                <div class="color-picker-group">
+                                                    <input type="color" id="bcColor" value="#0f172a"
+                                                        onchange="generateBarcode()">
+                                                    <span class="small text-muted" id="bcColorValue">#0f172a</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label fw-bold">Background</label>
+                                                <div class="color-picker-group">
+                                                    <input type="color" id="bcBgColor" value="#ffffff"
+                                                        onchange="generateBarcode()">
+                                                    <span class="small text-muted" id="bcBgColorValue">#ffffff</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <button class="btn btn-sm btn-light w-100 text-start" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#advancedOptions">
+                                                <i class="fas fa-sliders-h me-2"></i> Advanced Options <i
+                                                    class="fas fa-chevron-down float-end mt-1"></i>
+                                            </button>
+
+                                            <div class="collapse advanced-settings" id="advancedOptions">
+                                                <div class="mb-3">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="bcIncludeText" checked="" onchange="generateBarcode()">
+                                                        <label class="form-check-label" for="bcIncludeText">Include
+                                                            Human-Readable Text</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label class="form-label small">Scale (Size)</label>
+                                                        <input type="range" class="form-range" id="bcScale" min="1"
+                                                            max="10" value="3" oninput="generateBarcode()">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label small">Height (1D only)</label>
+                                                        <input type="range" class="form-range" id="bcHeight" min="5"
+                                                            max="50" value="15" oninput="generateBarcode()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="barcode-preview-area">
+                                    <div id="emptyState" class="empty-state d-none">
+                                        <i class="fas fa-qrcode"></i>
+                                        <h5 class="fw-bold m-0">Live Preview</h5>
+                                        <p class="small mb-0">Enter some data to generate your barcode</p>
+                                    </div>
+
+                                    <div id="previewCard" class="preview-card"
+                                        style="background-color: rgb(255, 255, 255);">
+                                        <canvas id="barcodeCanvas" width="150" height="125"></canvas>
+                                    </div>
+
+                                    <div id="previewActions" class="action-buttons justify-content-center">
+                                        <button class="btn btn-primary shadow-sm" onclick="downloadBarcode('png')"><i
+                                                class="fas fa-download me-2"></i> Save PNG</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                </main>
             </div>
-        </main>
+        </div>
     </div>
 
+    <!-- HANYA IMPORT DARI KUDA KIT (jQuery, Bootstrap JS & DataTables sudah ada di dalam sini) -->
     <script src="./kuda-cdn/js/kuda-kit.js"></script>
 
     <script>
-        jQuery(document).ready(function ($) {
+        $(document).ready(function () {
 
-            KudaKit.initDataTable('table-col-search');
-
-            KudaKit.initDataTable('testTable');
-
+            // Inisialisasi Ajax DataTable
             $('#table-ajax').DataTable({
                 ajax: {
                     url: 'https://api.restful-api.dev/objects',
                     dataSrc: ''
                 },
                 columns: [
-                    { data: 'id' },
-                    { data: 'name', className: 'fw-bold' },
+                    { data: 'id', width: '20%' },
+                    { data: 'name' },
                     {
                         data: 'data',
-                        render: function (data, type, row) {
-                            if (!data) return '<span class="text-muted fst-italic">N/A</span>';
-
-                            let specs = '';
-                            for (const [key, value] of Object.entries(data)) {
-                                specs += `<span class="badge" style="background-color: var(--sb-primary-light); color: var(--primary); border: 1px solid var(--primary); margin-right: 4px; font-weight: 500; font-size: 11px;">${key}: <b style="font-weight: 700;">${value}</b></span> `;
-                            }
-                            return specs;
+                        render: function (data) {
+                            if (!data) return '<span class="text-muted small">No extra data...</span>';
+                            return Object.entries(data).map(([key, value]) => `<span class="badge bg-light text-dark border me-1">${key}: ${value}</span>`).join('');
                         }
                     }
                 ],
+                pageLength: 5,
+                lengthMenu: [5, 10, 25],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search records..."
-                },
-                pageLength: 10,
-                lengthMenu: [5, 10, 25, 50]
+                    searchPlaceholder: "Search device..."
+                }
             });
-        });
 
+        });
     </script>
 
 </body>

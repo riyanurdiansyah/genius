@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Kuda")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddafda745e345726d83878dd3f3572213a35347d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1d49bb04f344944995b4ef3c8c5f1cd836f5247")]
 [assembly: System.Reflection.AssemblyProductAttribute("Kuda")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Kuda")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
