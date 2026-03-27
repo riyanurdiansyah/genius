@@ -1,10 +1,5 @@
-<!-- Views/Shared/_TnCPopup.cshtml -->
 <style>
-    /* ═══════════════════════════════════════════════
-       MODERN CLEAN T&C POPUP — Balanced Style
-    ═══════════════════════════════════════════════ */
-    
-    #tncModalOverlay {
+#tncModalOverlay {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(15, 23, 42, 0.4);
@@ -17,7 +12,7 @@
         opacity: 0;
         transition: opacity 0.3s ease;
     }
-    
+
     #tncModalOverlay.show {
         display: flex;
         opacity: 1;
@@ -37,7 +32,7 @@
         transform: scale(0.95);
         transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     }
-    
+
     [data-theme="dark"] .tnc-modal-card {
         background: #1e293b;
         color: #f1f5f9;
@@ -48,7 +43,6 @@
         transform: scale(1);
     }
 
-    /* Modal Header */
     .tnc-modal-header {
         padding: 24px 40px;
         border-bottom: 1px solid #f1f5f9;
@@ -81,7 +75,6 @@
     .tnc-modal-close:hover { color: #ef4444; background: #fee2e2; border-color: #fecaca; }
     [data-theme="dark"] .tnc-modal-close { background: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.1); }
 
-    /* Modal Body */
     .tnc-modal-body {
         padding: 40px;
         overflow-y: auto;
@@ -113,7 +106,6 @@
 
     .tnc-point p { margin-bottom: 0; }
 
-    /* Modal Footer */
     .tnc-modal-footer {
         padding: 24px 40px;
         background: #f8fafc;
@@ -152,6 +144,7 @@
     .btn-action:disabled {
         background: #cbd5e1; box-shadow: none; cursor: not-allowed; transform: none;
     }
+
 </style>
 
 <div class="tnc-modal-overlay" id="tncModalOverlay">
@@ -162,29 +155,29 @@
                 <i class="fas fa-times"></i>
             </div>
         </div>
-        
+
         <div class="tnc-modal-body">
             <div class="tnc-point">
                 <h3>01. General Scope</h3>
                 <p>Welcome to Kuda Admin. These terms govern the professional relationship and system access standards of our workspace.</p>
             </div>
-            
+
             <div class="tnc-point">
                 <h3>02. System Integrity</h3>
                 <p>Users are expected to maintain the stability of the platform. Any attempt at automated scraping or unauthorized extraction is prohibited.</p>
             </div>
-            
+
             <div class="tnc-point">
                 <h3>03. Intellectual Protection</h3>
                 <p>The dashboard’s architecture and visual blueprints are proprietary property. Professional usage is granted through your authenticated license.</p>
             </div>
-            
+
             <div class="tnc-point" style="margin-bottom:0;">
                 <h3>04. Data Sovereignty</h3>
                 <p>Your telemetric data is protected by Tier-4 encryption standards, ensuring absolute privacy for your business logic.</p>
             </div>
         </div>
-        
+
         <div class="tnc-modal-footer">
             <label class="tnc-cb-label">
                 <input type="checkbox" id="popupAcceptCheck">
@@ -198,7 +191,7 @@
 </div>
 
 <script>
-    function openTnC() {
+function openTnC() {
         const overlay = document.getElementById('tncModalOverlay');
         overlay.style.display = 'flex';
         setTimeout(() => overlay.classList.add('show'), 10);
@@ -222,17 +215,17 @@
         const btn = document.getElementById('popupAcceptBtn');
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Initializing...';
-        
+
         setTimeout(() => {
             closeTnC();
             if (window.onTnCAccepted) window.onTnCAccepted();
         }, 800);
     }
 
-    // Handle ESC key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && document.getElementById('tncModalOverlay').classList.contains('show')) {
             closeTnC();
         }
     });
+
 </script>

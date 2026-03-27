@@ -1,7 +1,3 @@
-/* ═══════════════════════════════════════════════════════════
-   Flowchart Builder Module
-   ═══════════════════════════════════════════════════════════ */
-
 const Flowchart = {
     diagrams: [{ id: 'fc-page-1', num: '1.0', name: 'Main Flow', nodes: [], edges: [] }],
     currentPageId: 'fc-page-1',
@@ -45,7 +41,6 @@ const Flowchart = {
         this.switchPage(this.currentPageId);
     },
 
-    // --- PAGE MANAGEMENT ---
     addNewPageModal() {
         const modal = new bootstrap.Modal(document.getElementById('addFcPageModal'));
         document.getElementById('newFcPageNameInput').value = `Diagram ${this.nextPageId}`;
@@ -70,13 +65,11 @@ const Flowchart = {
         this.currentPageId = id;
         this.renderPagesList();
 
-        // Clear canvas visually
         document.querySelectorAll('.fc-node').forEach(n => n.remove());
         const svg = document.getElementById('flowchartSvg');
         if (svg) svg.innerHTML = '';
         document.querySelectorAll('.fc-edge-label').forEach(l => l.remove());
 
-        // Re-render active page elements
         this.nodes.forEach(n => this._renderNode(n));
         this._drawLines();
         this.renderSidebar();
@@ -123,7 +116,6 @@ const Flowchart = {
             </div>
         `).join('');
     },
-    // -----------------------
 
     drag(ev) {
         ev.dataTransfer.setData("fc-type", ev.target.getAttribute('data-fc-type'));
@@ -156,7 +148,7 @@ const Flowchart = {
             id: 'fc-' + this.nextId++,
             type: type,
             text: labels[type] || 'Process',
-            x: Math.max(0, x - 50), // center the drop roughly
+            x: Math.max(0, x - 50), 
             y: Math.max(0, y - 30),
             width: type === 'decision' ? 120 : 150,
             height: type === 'decision' ? 120 : 60
@@ -172,12 +164,11 @@ const Flowchart = {
         const canvas = document.getElementById('flowchartCanvas');
         if (!canvas) return;
 
-        // Default minimal sizes
         let maxX = 794;
         let maxY = 400;
 
         this.nodes.forEach(n => {
-            const right = n.x + n.width + 60; // 60px padding
+            const right = n.x + n.width + 60; 
             const bottom = n.y + n.height + 60;
             if (right > maxX) maxX = right;
             if (bottom > maxY) maxY = bottom;
@@ -199,7 +190,6 @@ const Flowchart = {
         el.style.width = node.width + 'px';
         el.style.height = node.height + 'px';
 
-        // Setup inner content based on shape
         let innerHtml = '';
         if (node.type === 'decision') {
             innerHtml = `
@@ -227,7 +217,6 @@ const Flowchart = {
             </div>`;
         }
 
-        // Action Buttons
         const actions = `
             <div class="fc-actions">
                 <button onclick="event.stopPropagation();Flowchart._startEdge('${node.id}')" title="Connect"><i class="fas fa-arrow-right"></i></button>
@@ -265,13 +254,12 @@ const Flowchart = {
     },
 
     _onMouseDown(e, node) {
-        // Prioritize edge connection even if user clicked right on the textarea
+
         if (this.edgeMode) {
             this._endEdge(node.id);
             return;
         }
 
-        // Prevent drag on text inputs and buttons
         if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
 
         this.dragging = node;
@@ -279,7 +267,6 @@ const Flowchart = {
         const rect = el.getBoundingClientRect();
         this.dragOffset = { x: e.clientX - rect.left, y: e.clientY - rect.top };
 
-        // bring to front
         document.querySelectorAll('.fc-node').forEach(n => n.style.zIndex = 10);
         el.style.zIndex = 100;
     },
@@ -289,11 +276,9 @@ const Flowchart = {
         if (!canvas) return;
         const cRect = canvas.getBoundingClientRect();
 
-        // Add scroll offsets so it matches the canvas absolute space
         const x = e.clientX - cRect.left + canvas.scrollLeft;
         const y = e.clientY - cRect.top + canvas.scrollTop;
 
-        // Give a live tracing line when drawing an edge
         if (this.edgeMode && this.edgeSource) {
             this._drawLines(x, y);
             return;
@@ -317,7 +302,6 @@ const Flowchart = {
         this.dragging = null;
     },
 
-    // Edges Connection Logic
     _startEdge(nodeId) {
         this.edgeMode = true;
         this.edgeSource = nodeId;
@@ -332,7 +316,6 @@ const Flowchart = {
             return;
         }
 
-        // Only allow one identical direction
         const exists = this.edges.find(e => e.from === this.edgeSource && e.to === targetId);
 
         if (!exists) {
@@ -361,7 +344,6 @@ const Flowchart = {
         const svg = document.getElementById('flowchartSvg');
         if (!svg) return;
 
-        // Define arrow heads
         svg.innerHTML = `
             <defs>
                 <marker id="fc-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -372,7 +354,6 @@ const Flowchart = {
                 </marker>
             </defs>`;
 
-        // Clear existing labels
         document.querySelectorAll('.fc-edge-label').forEach(l => l.remove());
         const canvas = document.getElementById('flowchartCanvas');
 
@@ -381,7 +362,6 @@ const Flowchart = {
             const toNode = this.nodes.find(n => n.id === edge.to);
             if (!fromNode || !toNode) return;
 
-            // Simple center-to-center for now
             const x1 = fromNode.x + (fromNode.width / 2);
             const y1 = fromNode.y + (fromNode.height / 2);
             const x2 = toNode.x + (toNode.width / 2);
@@ -389,14 +369,13 @@ const Flowchart = {
 
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
-            // Smooth cubic bezier curve routing
             let d = '';
             if (Math.abs(x1 - x2) > Math.abs(y1 - y2)) {
-                // Horizontal dominant
+
                 const midX = (x1 + x2) / 2;
                 d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
             } else {
-                // Vertical dominant
+
                 const midY = (y1 + y2) / 2;
                 d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
             }
@@ -408,7 +387,6 @@ const Flowchart = {
             path.setAttribute('marker-end', 'url(#fc-arrow)');
             svg.appendChild(path);
 
-            // Label text if it is a decision output
             if (edge.label) {
                 const lbl = document.createElement('div');
                 lbl.className = 'fc-edge-label';
@@ -421,7 +399,6 @@ const Flowchart = {
             }
         });
 
-        // Temporary edge line
         if (this.edgeMode && this.edgeSource && mouseX !== null && mouseY !== null) {
             const snode = this.nodes.find(n => n.id === this.edgeSource);
             if (snode) {
@@ -459,7 +436,6 @@ const Flowchart = {
             `).join('');
         }
 
-        // Add Connections mapping
         if (this.edges.length > 0) {
             html += '<div class="fw-bold mt-3 mb-2 px-2" style="font-size:12px; color:var(--text-muted)">Connections</div>';
             html += this.edges.map((e, index) => {

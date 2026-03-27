@@ -1,6 +1,3 @@
-/* theme.css - Core variables and utility classes */
-
-/* ─── Kalbe Geometric ─────────────────────────── */
 @font-face {
     font-family: 'KalbeGeometric';
     src: url('../font/geometric/KalbeGeometric-Regular.woff2') format('woff2');
@@ -49,7 +46,6 @@
     font-display: swap;
 }
 
-/* ─── Kalbe Helix (fallback 1) ────────────────── */
 @font-face {
     font-family: 'KalbeHelix';
     src: url('../font/helix/KalbeHelix-Light.woff2') format('woff2');
@@ -98,7 +94,6 @@
     font-display: swap;
 }
 
-/* ─── Kalbe Rounded (fallback 2) ─────────────── */
 @font-face {
     font-family: 'KalbeRounded';
     src: url('../font/rounded/KalbeRounded-Light.woff2') format('woff2');
@@ -148,12 +143,11 @@
 }
 
 :root {
-    /* Fonts — priority: Geometric → Helix → Rounded → system */
+
     --font-family-primary: 'KalbeGeometric', 'Segoe UI', system-ui, -apple-system, sans-serif;
     --bs-body-font-family: var(--font-family-primary);
     --bs-font-sans-serif: var(--font-family-primary);
 
-    /* Color Palette from Image */
     --color-1: #051F20;
     --color-2: #0B2B26;
     --color-3: #163832;
@@ -161,7 +155,6 @@
     --color-5: #8EB69B;
     --color-6: #DAF1DE;
 
-    /* Organic Sidebar Theme Variables */
     --bg-color: #f8fafc;
     --dashboard-bg: #ffffff;
     --sidebar-green: #5a9c88;
@@ -172,7 +165,6 @@
     --green-light: #e8f5f1;
     --yellow-accent: #f5c342;
 
-    /* Generic UI Colors */
     --bg-body: var(--bg-color);
     --bg-card: var(--dashboard-bg);
     --text-primary: var(--text-dark);
@@ -182,7 +174,6 @@
     --border-color: #e9ecef;
     --border-dark: #ced4da;
 
-    /* Semantic Colors */
     --primary: var(--green-accent);
     --primary-hover: var(--sidebar-green);
     --secondary: var(--text-gray);
@@ -193,31 +184,26 @@
     --info: #0dcaf0;
     --dark: var(--text-dark);
 
-    /* Sidebar Colors */
     --sidebar-bg: var(--sidebar-green);
     --sidebar-text: rgba(255, 255, 255, 0.7);
     --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
     --sidebar-active-bg: var(--dashboard-bg);
     --sidebar-active-text: var(--sidebar-green);
 
-    /* Header Colors */
     --header-bg: transparent;
-    /* Topbar seems transparent or white but no line */
+
     --header-shadow: none;
 
-    /* Dimensions */
     --sidebar-width: 260px;
     --sidebar-collapsed-width: 90px;
     --header-height: 80px;
 
-    /* Transitions */
     --transition-speed: 0.3s;
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 25px;
 }
 
-/* Dark Mode Overrides */
 [data-theme="dark"] {
     --bg-color: #051311;
     --dashboard-bg: #0f2620;
@@ -238,8 +224,6 @@
     --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-
-/* Reset and Base Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -263,7 +247,6 @@ a:hover {
     color: var(--primary-hover);
 }
 
-/* Base Headings */
 h1,
 h2,
 h3,
@@ -291,7 +274,6 @@ h4 {
     font-size: 1.25rem;
 }
 
-/* Utilities */
 .text-primary {
     color: var(--primary) !important;
 }
@@ -411,7 +393,6 @@ h4 {
     height: 100% !important;
 }
 
-/* Margins & Paddings */
 .m-0 {
     margin: 0 !important;
 }
@@ -512,7 +493,6 @@ h4 {
     padding-bottom: 1rem !important;
 }
 
-/* Grid System */
 .row {
     display: flex;
     flex-wrap: wrap;

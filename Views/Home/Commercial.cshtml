@@ -2,11 +2,10 @@
     ViewData["Title"] = "Commercial Dashboard";
 }
 
-<!-- External CSS for DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
 <style>
-    .comm-card {
+.comm-card {
         border-radius: 12px;
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         border: none;
@@ -27,6 +26,7 @@
     }
     .trend-up { color: var(--success); }
     .trend-down { color: var(--danger); }
+
 </style>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -45,7 +45,6 @@
     </div>
 </div>
 
-<!-- High-Level Financials -->
 <div class="row mb-4">
     <div class="col-md-3">
         <div class="card comm-card h-100 p-3">
@@ -90,7 +89,7 @@
 </div>
 
 <div class="row mb-4">
-    <!-- Revenue vs Expenses Trend -->
+
     <div class="col-lg-8">
         <div class="card comm-card h-100">
             <div class="card-header bg-transparent border-bottom-0 pt-4 pb-0">
@@ -102,7 +101,6 @@
         </div>
     </div>
 
-    <!-- Sales by Category (Donut) -->
     <div class="col-lg-4">
         <div class="card comm-card h-100">
             <div class="card-header bg-transparent border-bottom-0 pt-4 pb-0">
@@ -116,7 +114,7 @@
 </div>
 
 <div class="row">
-    <!-- Regional Sales Table -->
+
     <div class="col-md-7">
         <div class="card comm-card">
             <div class="card-header bg-transparent d-flex justify-content-between align-items-center pt-4">
@@ -179,7 +177,6 @@
         </div>
     </div>
 
-    <!-- HR Payroll / Expenses snippet -->
     <div class="col-md-5">
         <div class="card comm-card">
             <div class="card-header bg-transparent border-bottom-0 pt-4">
@@ -224,7 +221,7 @@
 </div>
 
 <div class="row mb-4">
-    <!-- Sales Activity Tracker (List Group) -->
+
     <div class="col-lg-4">
         <div class="card comm-card h-100">
             <div class="card-header bg-transparent pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -273,7 +270,6 @@
         </div>
     </div>
 
-    <!-- Active High Value Deals (DataTable) -->
     <div class="col-lg-8">
         <div class="card comm-card h-100">
             <div class="card-header bg-transparent border-bottom-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -342,7 +338,6 @@
     </div>
 </div>
 
-<!-- Detailed Expenses Tracker -->
 <div class="row">
     <div class="col-12">
         <div class="card comm-card">
@@ -423,8 +418,8 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Initialize Pipeline Deals DataTable
+document.addEventListener("DOMContentLoaded", function () {
+
         if ($.fn.DataTable) {
             $('#dealsTable').DataTable({
                 pageLength: 5,
@@ -433,8 +428,7 @@
                 ordering: true,
                 language: { search: "Filter Deals:" }
             });
-            
-            // Initialize Expense Tracker DataTable
+
             $('#expenseTable').DataTable({
                 pageLength: 5,
                 lengthMenu: [5, 10, 20],
@@ -442,7 +436,7 @@
                 language: { search: "Cari Transaksi:" }
             });
         }
-        // Finance Spline Chart
+
         var finOptions = {
             series: [{
                 name: 'Revenue',
@@ -477,7 +471,6 @@
         var finChart = new ApexCharts(document.querySelector("#financialChart"), finOptions);
         finChart.render();
 
-        // Sales Division Donut Chart
         var salesOptions = {
             series: [44, 55, 13, 33],
             labels: ['B2B Enterprise', 'Retail Direct', 'E-Commerce', 'Wholesale'],
@@ -515,4 +508,5 @@
         var salesChart = new ApexCharts(document.querySelector("#salesDonut"), salesOptions);
         salesChart.render();
     });
+
 </script>

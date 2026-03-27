@@ -1,7 +1,7 @@
 @{ ViewData["Title"] = "Buttons"; }
 
 <style>
-    .btn-custom-group {
+.btn-custom-group {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
@@ -16,33 +16,30 @@
         margin-bottom: 15px;
         margin-top: 25px;
     }
-    
-    /* Soft Buttons */
+
     .btn-soft-primary { background: rgba(13, 110, 253, 0.1); color: #0d6efd; border: 1px solid transparent; }
     .btn-soft-primary:hover { background: #0d6efd; color: #fff; }
-    
+
     .btn-soft-success { background: rgba(25, 135, 84, 0.1); color: #198754; border: 1px solid transparent; }
     .btn-soft-success:hover { background: #198754; color: #fff; }
-    
+
     .btn-soft-danger { background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid transparent; }
     .btn-soft-danger:hover { background: #dc3545; color: #fff; }
-    
+
     .btn-soft-warning { background: rgba(255, 193, 7, 0.1); color: #ffc107; border: 1px solid transparent; }
     .btn-soft-warning:hover { background: #ffc107; color: #212529; }
-    
+
     .btn-soft-info { background: rgba(13, 202, 240, 0.1); color: #0dcaf0; border: 1px solid transparent; }
     .btn-soft-info:hover { background: #0dcaf0; color: #000; }
-    
+
     .btn-soft-dark { background: rgba(33, 37, 41, 0.1); color: #212529; border: 1px solid transparent; }
     .btn-soft-dark:hover { background: #212529; color: #fff; }
 
-    /* Gradient Buttons */
     .btn-gradient-primary { background: linear-gradient(45deg, var(--bs-primary), #4facfe); color: white; border: none; }
     .btn-gradient-danger { background: linear-gradient(45deg, var(--bs-danger), #ff0844); color: white; border: none; text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
     .btn-gradient-success { background: linear-gradient(45deg, var(--bs-success), #43e97b); color: white; border: none; text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
     .btn-gradient-warning { background: linear-gradient(45deg, #f6d365, var(--bs-warning)); color: #000; border: none; }
 
-    /* Glowing Buttons */
     .btn-glow-primary {
         background: var(--bs-primary);
         color: white;
@@ -53,7 +50,7 @@
         box-shadow: 0 6px 20px rgba(13, 110, 253, 0.6);
         transform: translateY(-2px);
     }
-    
+
     .btn-glow-danger {
         background: var(--bs-danger);
         color: white;
@@ -76,7 +73,6 @@
         transform: translateY(-2px);
     }
 
-    /* Icon Buttons (Circular) */
     .btn-icon-circle {
         width: 40px;
         height: 40px;
@@ -86,20 +82,17 @@
         align-items: center;
         justify-content: center;
     }
-    
-    /* Hover effects for regular buttons */
+
     .btn:not(.btn-link) {
         transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
     }
-    
-    /* Button sizes adjustments */
+
     .btn-xs {
         padding: 0.125rem 0.25rem;
         font-size: 0.75rem;
         border-radius: 0.2rem;
     }
-    
-    /* 3D Button */
+
     .btn-3d {
         transition: all 0.1s;
         border-bottom: 4px solid;
@@ -111,10 +104,11 @@
     .btn-3d-primary { background: var(--bs-primary); border-bottom-color: #0b5ed7; color: white; }
     .btn-3d-success { background: var(--bs-success); border-bottom-color: #146c43; color: white; }
     .btn-3d-danger { background: var(--bs-danger); border-bottom-color: #b02a37; color: white; }
+
 </style>
 
 <div class="row g-4 mb-5">
-    <!-- Solid & Soft Buttons -->
+
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -149,7 +143,6 @@
         </div>
     </div>
 
-    <!-- Outline & Rounded Buttons -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -181,7 +174,6 @@
         </div>
     </div>
 
-    <!-- Cool & Premium Effects -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -215,7 +207,6 @@
         </div>
     </div>
 
-    <!-- Sizes & States -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -254,7 +245,6 @@
         </div>
     </div>
 
-    <!-- Icon Buttons & Groups -->
     <div class="col-12">
         <div class="card shadow-sm border-0">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -277,16 +267,16 @@
                     <div class="col-md-4">
                         <div class="btn-section-title mt-0">Icon-Only (Circular & Square)</div>
                         <div class="btn-custom-group mb-4">
-                            <!-- Circular -->
+
                             <button type="button" class="btn btn-primary btn-icon-circle shadow-sm"><i class="fas fa-plus"></i></button>
                             <button type="button" class="btn btn-success btn-icon-circle shadow-sm"><i class="fas fa-check"></i></button>
                             <button type="button" class="btn btn-soft-danger btn-icon-circle"><i class="fas fa-heart"></i></button>
                             <button type="button" class="btn btn-dark btn-icon-circle"><i class="fab fa-apple"></i></button>
                             <button type="button" class="btn bg-white border shadow-sm btn-icon-circle text-muted"><i class="fas fa-ellipsis-v"></i></button>
                         </div>
-                        
+
                         <div class="btn-custom-group">
-                            <!-- Square -->
+
                             <button type="button" class="btn btn-outline-secondary px-3 py-2"><i class="fas fa-search"></i></button>
                             <button type="button" class="btn btn-soft-primary px-3 py-2"><i class="fas fa-edit"></i></button>
                             <button type="button" class="btn btn-light border px-3 py-2"><i class="fas fa-cog text-secondary"></i></button>
@@ -300,9 +290,9 @@
                           <button type="button" class="btn btn-primary"><i class="fas fa-align-center"></i></button>
                           <button type="button" class="btn btn-primary"><i class="fas fa-align-right"></i></button>
                         </div>
-                        
+
                         <br>
-                        
+
                         <div class="btn-group mb-4" role="group">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                             <label class="btn btn-outline-primary border-2 fw-semibold" for="btnradio1">Daily</label>
@@ -315,7 +305,7 @@
                         </div>
 
                         <br>
-                        
+
                         <div class="btn-group shadow-sm">
                           <button type="button" class="btn btn-success"><i class="fas fa-save me-2"></i>Save Draft</button>
                           <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">

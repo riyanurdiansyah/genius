@@ -4,14 +4,12 @@
 
 @section Styles {
     <style>
-        /* Custom Options Component Styles */
-        /* 1. Radio Cards/Boxes */
-        .custom-option {
+.custom-option {
             position: relative;
             cursor: pointer;
             height: 100%;
         }
-        
+
         .custom-option input[type="radio"], 
         .custom-option input[type="checkbox"] {
             position: absolute;
@@ -19,7 +17,7 @@
             width: 0;
             height: 0;
         }
-        
+
         .custom-option-content {
             display: flex;
             align-items: flex-start;
@@ -30,19 +28,18 @@
             transition: all 0.3s ease;
             height: 100%;
         }
-        
+
         .custom-option:hover .custom-option-content {
             border-color: #cbd5e1;
             background-color: #f8fafc;
         }
-        
+
         .custom-option input:checked ~ .custom-option-content {
             border-color: var(--primary-color);
             background-color: rgba(59, 157, 130, 0.03);
             box-shadow: 0 4px 15px rgba(59, 157, 130, 0.1);
         }
-        
-        /* The Tick/Check indicator */
+
         .custom-option-indicator {
             width: 24px;
             height: 24px;
@@ -55,17 +52,16 @@
             transition: all 0.2s;
             flex-shrink: 0;
         }
-        
-        /* Checkbox specific indicator (Square) */
+
         .custom-option.checkbox-type .custom-option-indicator {
             border-radius: 6px;
         }
-        
+
         .custom-option input:checked ~ .custom-option-content .custom-option-indicator {
             border-color: var(--primary-color);
             background-color: var(--primary-color);
         }
-        
+
         .custom-option-indicator i {
             color: white;
             font-size: 12px;
@@ -73,30 +69,29 @@
             transform: scale(0.5);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
+
         .custom-option input:checked ~ .custom-option-content .custom-option-indicator i {
             opacity: 1;
             transform: scale(1);
         }
-        
+
         .custom-option-info h6 {
             margin-bottom: 0.25rem;
             font-weight: 600;
             color: var(--text-dark);
             transition: color 0.3s;
         }
-        
+
         .custom-option input:checked ~ .custom-option-content .custom-option-info h6 {
             color: var(--primary-color);
         }
-        
+
         .custom-option-info p {
             margin-bottom: 0;
             color: var(--text-muted);
             font-size: 0.85rem;
         }
-        
-        /* 2. Visual Icon Plans (Cards with Icon in Center) */
+
         .plan-card {
             text-align: center;
             padding: 2rem 1rem;
@@ -118,8 +113,7 @@
             color: var(--primary-color);
             transform: translateY(-5px);
         }
-        
-        /* 3. Pricing Cards */
+
         .pricing-option {
             flex-direction: column;
         }
@@ -139,11 +133,12 @@
             color: var(--text-muted);
             font-weight: 400;
         }
-    </style>
+
+</style>
 }
 
 <div class="row">
-    <!-- 1. Standard Radio Cards (Delivery Method) -->
+
     <div class="col-12 mb-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -152,7 +147,7 @@
             </div>
             <div class="card-body" id="custom-radio">
                 <div class="row g-4">
-                    <!-- Option 1 -->
+
                     <div class="col-md-6">
                         <label class="custom-option">
                             <input type="radio" name="deliveryMethod" value="standard" checked>
@@ -170,8 +165,7 @@
                             </div>
                         </label>
                     </div>
-                    
-                    <!-- Option 2 -->
+
                     <div class="col-md-6">
                         <label class="custom-option">
                             <input type="radio" name="deliveryMethod" value="express">
@@ -194,7 +188,6 @@
         </div>
     </div>
 
-    <!-- 2. Multiple Checkbox Cards (Skills) -->
     <div class="col-12 mb-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -250,7 +243,6 @@
         </div>
     </div>
 
-    <!-- 3. Icon Centric Plans -->
     <div class="col-12 mb-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -312,8 +304,9 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
+document.addEventListener('DOMContentLoaded', function() {
+
         });
-    </script>
+
+</script>
 }

@@ -1,13 +1,11 @@
 @{ ViewData["Title"] = "Modals & Dialogs"; }
 
 <style>
-    /* Modals should be purely white */
-    .modal-content {
+.modal-content {
         background-color: #ffffff !important;
         box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
     }
 
-    /* 2. Premium Modal Design (No Glass/Blur on inner content) */
     .modal-premium .modal-content {
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 20px;
@@ -20,7 +18,6 @@
         border-top: 1px solid rgba(0,0,0,0.05);
     }
 
-    /* 3. Slide-in Drawer (Right Side) */
     .modal-drawer.fade .modal-dialog {
         transform: translateX(100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -37,7 +34,6 @@
         border: none;
     }
 
-    /* 4. Bottom Sheet Modal */
     .modal-bottom.fade .modal-dialog {
         transform: translateY(100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -57,7 +53,6 @@
         box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
     }
 
-    /* Utility */
     .icon-circle-lg {
         width: 80px;
         height: 80px;
@@ -68,6 +63,7 @@
         font-size: 2rem;
         margin: 0 auto;
     }
+
 </style>
 
 <div class="row g-4 mb-5">
@@ -76,7 +72,6 @@
         <p class="text-muted">Modern popups, side drawers, and cinematic lightboxes.</p>
     </div>
 
-    <!-- Group 1: Standard & Premium -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -97,7 +92,6 @@
         </div>
     </div>
 
-    <!-- Group 2: Layouts & Placements -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -121,7 +115,6 @@
         </div>
     </div>
 
-    <!-- Group 3: Sweet Alerts / Status Modals -->
     <div class="col-12">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -146,9 +139,6 @@
     </div>
 </div>
 
-<!-- ================= MODALS COMPONENT DIRECTORIES ================= -->
-
-<!-- 1. Standard Modal -->
 <div class="modal fade" id="blurStandardModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg rounded-4">
@@ -167,7 +157,6 @@
     </div>
 </div>
 
-<!-- 2. Premium Lightbox Modal -->
 <div class="modal fade modal-premium" id="premiumModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -193,7 +182,6 @@
     </div>
 </div>
 
-<!-- 3. Right Drawer -->
 <div class="modal fade modal-drawer" id="rightDrawerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" style="width: 400px; max-width: 100%;">
         <div class="modal-content">
@@ -203,7 +191,7 @@
             </div>
             <div class="modal-body">
                 <p class="text-muted small mb-4">Slide-in drawers are perfect for settings, filters, or editing data without losing the context of the main page.</p>
-                
+
                 <form>
                     <div class="mb-3">
                         <label class="form-label fw-bold small text-uppercase text-muted">API Settings</label>
@@ -230,19 +218,18 @@
     </div>
 </div>
 
-<!-- 4. Bottom Sheet Modal -->
 <div class="modal fade modal-bottom" id="bottomSheetModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header border-0 pb-0 justify-content-center">
-                <!-- Grab handle for mobile look -->
+
                 <div style="width: 50px; height: 5px; background: #cbd5e1; border-radius: 5px; margin-top: -10px;"></div>
                 <button type="button" class="btn-close position-absolute end-0 top-0 mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4 pt-2 pb-5 text-center">
                 <h5 class="fw-bold mb-3">Share this Document</h5>
                 <p class="text-muted mb-4">Choose a method to share "Annual_Metrics_2026.pdf"</p>
-                
+
                 <div class="d-flex justify-content-center gap-4">
                     <div class="text-center cursor-pointer" role="button">
                         <div class="icon-circle-lg bg-primary bg-opacity-10 text-primary mb-2 shadow-sm" style="width:60px; height:60px; font-size:1.5rem;">
@@ -268,7 +255,6 @@
     </div>
 </div>
 
-<!-- 5. Full Screen Modal -->
 <div class="modal fade" id="fullScreenModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content bg-light">
@@ -288,9 +274,6 @@
     </div>
 </div>
 
-<!-- ================= ALERTS & STATUS MODALS ================= -->
-
-<!-- 6. Success Alert Modal -->
 <div class="modal fade" id="successAlertModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content border-0 rounded-4 shadow-lg">
@@ -306,7 +289,6 @@
     </div>
 </div>
 
-<!-- 7. Danger Alert Modal -->
 <div class="modal fade" id="dangerAlertModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content border-0 rounded-4 shadow-lg">
@@ -325,7 +307,6 @@
     </div>
 </div>
 
-<!-- 8. Warning Alert Modal -->
 <div class="modal fade" id="warningAlertModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content border-0 rounded-4 shadow-lg border-top border-warning border-5">

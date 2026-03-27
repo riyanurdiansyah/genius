@@ -1,8 +1,7 @@
 @{ ViewData["Title"] = "Carousel & Sliders"; }
 
 <style>
-    /* Carousel shared classes */
-    .carousel-item img {
+.carousel-item img {
         object-fit: cover;
     }
     .carousel-caption-glass {
@@ -16,7 +15,7 @@
         right: 10%;
         padding: 1.5rem;
     }
-    
+
     .carousel-caption-dark-glass {
         background: rgba(15, 23, 42, 0.6);
         backdrop-filter: blur(12px);
@@ -25,7 +24,7 @@
         border-radius: 12px;
         bottom: 2rem;
     }
-    
+
     .carousel-indicators-dots [data-bs-target] {
         width: 10px;
         height: 10px;
@@ -33,15 +32,14 @@
         margin: 0 6px;
         background-color: #fff;
     }
-    
+
     .carousel-indicators-lines [data-bs-target] {
         width: 30px;
         height: 4px;
         border-radius: 2px;
         background-color: #fff;
     }
-    
-    /* Overlay effects */
+
     .overlay-gradient-bottom {
         position: absolute;
         bottom: 0;
@@ -51,7 +49,7 @@
         background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
         z-index: 1;
     }
-    
+
     .overlay-primary {
         position: absolute;
         top: 0;
@@ -67,7 +65,6 @@
         z-index: 2;
     }
 
-    /* Testimonial styling */
     .testimonial-card {
         background: transparent;
         border: none;
@@ -84,6 +81,7 @@
     .testimonial-carousel .carousel-indicators [data-bs-target] {
         background-color: var(--bs-primary);
     }
+
 </style>
 
 <div class="row g-4 mb-5">
@@ -92,7 +90,6 @@
         <p class="text-muted">Modern slideshows for images, text, and interactive content.</p>
     </div>
 
-    <!-- 1. Modern Glassmorphism Carousel -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100 overflow-hidden">
             <div class="card-header bg-white border-0 pt-4 pb-3 d-flex justify-content-between align-items-start">
@@ -109,7 +106,7 @@
                         <button type="button" data-bs-target="#carouselGlass" data-bs-slide-to="1"></button>
                         <button type="button" data-bs-target="#carouselGlass" data-bs-slide-to="2"></button>
                     </div>
-                    
+
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" style="height: 350px;" alt="...">
@@ -146,7 +143,6 @@
         </div>
     </div>
 
-    <!-- 2. Cinematic Crossfade -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100 overflow-hidden">
             <div class="card-header bg-white border-0 pt-4 pb-3 d-flex justify-content-between align-items-start">
@@ -163,7 +159,7 @@
                         <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="1"></button>
                         <button type="button" data-bs-target="#carouselFade" data-bs-slide-to="2"></button>
                     </div>
-                    
+
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="overlay-gradient-bottom"></div>
@@ -206,7 +202,6 @@
         </div>
     </div>
 
-    <!-- 3. Testimonial / Text-Only Carousel -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-start">
@@ -217,14 +212,14 @@
                 <button class="btn btn-sm btn-outline-primary copy-btn" data-target="carouselTestimonialTarget"><i class="fa-regular fa-copy"></i> Copy HTML</button>
             </div>
             <div class="card-body d-flex align-items-center bg-light rounded-bottom m-3 p-4" id="carouselTestimonialTarget">
-                
+
                 <div id="carouselTestimonial" class="carousel slide testimonial-carousel w-100" data-bs-ride="carousel">
                     <div class="carousel-indicators mb-0">
                         <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="0" class="active rounded-circle" style="width:10px;height:10px;"></button>
                         <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="1" class="rounded-circle" style="width:10px;height:10px;"></button>
                         <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="2" class="rounded-circle" style="width:10px;height:10px;"></button>
                     </div>
-                    
+
                     <div class="carousel-inner text-center pb-4">
                         <div class="carousel-item active">
                             <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=0D8ABC&color=fff" class="rounded-circle testimonial-avatar shadow-sm mb-3">
@@ -257,7 +252,6 @@
         </div>
     </div>
 
-    <!-- 4. Colored Filter & Dark Theme -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100 overflow-hidden">
             <div class="card-header bg-white border-0 pt-4 pb-3 d-flex justify-content-between align-items-start">
@@ -273,7 +267,7 @@
                         <button type="button" data-bs-target="#carouselFilter" data-bs-slide-to="0" class="active"></button>
                         <button type="button" data-bs-target="#carouselFilter" data-bs-slide-to="1"></button>
                     </div>
-                    
+
                     <div class="carousel-inner">
                         <div class="carousel-item active position-relative">
                             <div class="overlay-primary"></div>
@@ -284,7 +278,7 @@
                             </div>
                         </div>
                         <div class="carousel-item position-relative">
-                            <!-- Orange/Danger filter -->
+
                             <div class="overlay-primary" style="background: rgba(220, 53, 69, 0.4);"></div>
                             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" style="height: 350px;" alt="...">
                             <div class="carousel-caption carousel-caption-dark-glass d-none d-md-block shadow-lg p-4">
@@ -293,7 +287,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <button class="carousel-control-prev z-3" type="button" data-bs-target="#carouselFilter" data-bs-slide="prev">
                         <div class="bg-dark bg-opacity-50 p-2 rounded-circle">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

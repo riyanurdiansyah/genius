@@ -4,7 +4,7 @@
 
 @section Styles {
     <style>
-        .layout-demo { padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 1px dashed #cbd5e1; text-align: center; }
+.layout-demo { padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 1px dashed #cbd5e1; text-align: center; }
         .wf-container { max-width: 700px; margin: 2rem auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #f8fafc; overflow: hidden; display: flex; height: 350px; border: 1px solid #e2e8f0; }
         .wf-nav { width: 70px; background: var(--sidebar-bg); display: flex; flex-direction: column; align-items: center; padding-top: 20px; gap: 15px; border-right: 1px solid rgba(255,255,255,0.05); }
         .wf-menu-item { width: 35px; height: 35px; border-radius: 8px; background: rgba(255,255,255,0.1); }
@@ -14,7 +14,8 @@
         .wf-header-box { height: 16px; background: #e2e8f0; border-radius: 4px; }
         .wf-content { flex: 1; padding: 25px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; grid-template-rows: auto 1fr; }
         .wf-card { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; }
-    </style>
+
+</style>
 }
 
 <div class="row">
@@ -22,7 +23,7 @@
         <div class="layout-demo">
             <h2 class="fw-bold text-dark">Collapsed Menu Layout</h2>
             <p class="text-muted w-75 mx-auto mb-4">This layout automatically minimizes the sidebar, maximizing the screen's horizontal real estate for data-heavy applications while keeping navigation quickly accessible via icons.</p>
-            
+
             <div class="wf-container">
                 <div class="wf-nav">
                     <div class="wf-menu-item" style="border-radius: 50%;"></div>
@@ -54,11 +55,12 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
             var wrapper = document.querySelector('.sidebar-wrapper');
             if (wrapper && !wrapper.classList.contains('collapsed')) {
                 wrapper.classList.add('collapsed');
             }
         });
-    </script>
+
+</script>
 }

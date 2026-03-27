@@ -1,20 +1,20 @@
 <style>
-    .topbar {
+.topbar {
         background: rgba(255, 255, 255, 0.8) !important;
         backdrop-filter: blur(15px) saturate(180%);
         -webkit-backdrop-filter: blur(15px) saturate(180%);
         border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-        margin: 0 -40px 40px -40px !important; /* Fixed: Added negative margins back for full-width */
+        margin: 0 -40px 40px -40px !important; 
         padding: 15px 40px !important;
         position: sticky;
         top: 0;
         z-index: 1050;
         transition: all 0.3s ease;
     }
-    
+
     [data-theme="dark"] .topbar {
-        background: rgba(15, 38, 32, 0.8) !important; /* Adjusted to match organic dark green */
+        background: rgba(15, 38, 32, 0.8) !important; 
         border-bottom: 1px solid var(--border-color) !important;
     }
 
@@ -40,7 +40,7 @@
         box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1);
         transform: translateY(-1px);
     }
-    
+
     [data-theme="dark"] .search-container:focus-within .search-bar {
         background: #112e27 !important;
     }
@@ -96,7 +96,7 @@
     .profile-img-wrap {
         position: relative;
     }
-    
+
     .profile-status {
         position: absolute;
         bottom: 2px;
@@ -108,7 +108,6 @@
         border-radius: 50%;
     }
 
-    /* Notification Dropdown Styles */
     .notification-dropdown {
         width: 360px !important;
         padding: 0 !important;
@@ -127,7 +126,7 @@
         justify-content: space-between;
         align-items: center;
     }
-    
+
     [data-theme="dark"] .noti-header { background: #0d221d; border-color: var(--border-color); }
 
     .noti-title { font-weight: 800; font-size: 15px; margin: 0; }
@@ -147,14 +146,14 @@
         text-decoration: none !important;
         color: inherit !important;
     }
-    
+
     [data-theme="dark"] .noti-item { border-color: rgba(255,255,255,0.03); }
 
     .noti-item:hover {
         background: #f8fafc;
         transform: scale(1.01);
     }
-    
+
     [data-theme="dark"] .noti-item:hover { background: rgba(255,255,255,0.02); }
 
     .noti-item.unread {
@@ -185,7 +184,6 @@
     [data-theme="dark"] .noti-footer { background: #051311; }
     .noti-view-all { font-size: 12px; font-weight: 700; color: var(--primary); text-decoration: none; }
 
-    /* Profile Dropdown Styles */
     .profile-dropdown {
         width: 260px !important;
         padding: 8px !important;
@@ -200,7 +198,7 @@
         border-bottom: 1px solid #f1f5f9;
         margin-bottom: 8px;
     }
-    
+
     [data-theme="dark"] .profile-dropdown-header { border-color: var(--border-color); }
 
     .profile-dropdown-item {
@@ -223,7 +221,7 @@
         color: var(--primary) !important;
         transform: translateX(4px);
     }
-    
+
     [data-theme="dark"] .profile-dropdown-item:hover { background: rgba(255,255,255,0.03); }
 
     .profile-dropdown-item i {
@@ -239,13 +237,14 @@
         border-top: 1px solid #f1f5f9;
         border-radius: 0 0 12px 12px;
     }
-    
+
     [data-theme="dark"] .profile-dropdown-item.logout { border-top-color: var(--border-color); }
-    
+
     .profile-dropdown-item.logout:hover {
         background: #fef2f2;
     }
     [data-theme="dark"] .profile-dropdown-item.logout:hover { background: rgba(239, 68, 68, 0.05); }
+
 </style>
 
 <div class="topbar">
@@ -253,7 +252,7 @@
         <div class="icon-btn" id="toggleSidebar" title="Toggle Sidebar">
             <i class="fa-solid fa-bars-staggered"></i>
         </div>
-        
+
         <div class="search-container">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass opacity-50"></i>
@@ -264,17 +263,15 @@
     </div>
 
     <div class="user-actions">
-        <!-- Dashboard Home -->
+
         <a href="/Home/Index" class="icon-btn text-decoration-none" title="Dashboard">
             <i class="fa-solid fa-gauge-high"></i>
         </a>
 
-        <!-- Dark Mode -->
         <div class="icon-btn" id="toggleDarkMode" title="Switch Theme">
             <i class="fa-solid fa-moon" id="darkModeIcon"></i>
         </div>
 
-        <!-- Language -->
         <div class="dropdown">
             <div class="icon-btn" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-globe"></i>
@@ -289,7 +286,6 @@
             </ul>
         </div>
 
-        <!-- Notifications -->
         <div class="dropdown">
             <div class="icon-btn position-relative" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
                 <i class="fa-regular fa-bell"></i>
@@ -303,7 +299,7 @@
                     <span class="noti-badge">4 New</span>
                 </div>
                 <div class="noti-list">
-                    <!-- Item 1 -->
+
                     <a href="#" class="noti-item unread">
                         <div class="noti-icon bg-soft-primary text-primary">
                             <i class="fa-solid fa-file-invoice"></i>
@@ -313,7 +309,7 @@
                             <div class="noti-time">2 minutes ago</div>
                         </div>
                     </a>
-                    <!-- Item 2 -->
+
                     <a href="#" class="noti-item">
                         <div class="noti-icon bg-soft-success text-success">
                             <i class="fa-solid fa-user-plus"></i>
@@ -323,7 +319,7 @@
                             <div class="noti-time">45 minutes ago</div>
                         </div>
                     </a>
-                    <!-- Item 3 -->
+
                     <a href="#" class="noti-item unread">
                         <div class="noti-icon bg-soft-warning text-warning">
                             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -333,7 +329,7 @@
                             <div class="noti-time">2 hours ago</div>
                         </div>
                     </a>
-                    <!-- Item 4 -->
+
                     <a href="#" class="noti-item">
                         <div class="noti-icon bg-soft-info text-info">
                             <i class="fa-solid fa-shield-halved"></i>
@@ -350,7 +346,6 @@
             </div>
         </div>
 
-        <!-- Profile -->
         <div class="dropdown">
             <div class="profile" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
                 <div class="text-end d-none d-md-block">
@@ -390,15 +385,12 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('globalSearchInput');
         const searchDropdown = document.getElementById('globalSearchDropdown');
 
-        // ==== 1. DEFINE YOUR SEARCH DATA SOURCE ====
-        // Ini mudah disesuaikan. Anda bisa panggil AJAX/API Fetch di dalam logic `handleSearch`,
-        // atau gunakan data statis seperti di bawah ini untuk pencarian Menu + Data.
         const searchData = [
-            // --- MENU PAGES ---
+
             { title: "Dashboard", desc: "Main overview page", url: "/Home/Index", icon: "fa-solid fa-home", type: "Menu" },
             { title: "Terms & Conditions", desc: "Legal agreement and policies", url: "/FrontEnd/TermsAndConditions", icon: "fa-solid fa-file-contract", type: "Legal" },
             { title: "Kanban Board", desc: "Manage tasks and projects", url: "/Apps/Kanban", icon: "fa-solid fa-table-columns", type: "Menu" },
@@ -406,14 +398,12 @@
             { title: "Form Validation", desc: "KTP, NPWP, No HP validator", url: "/Components/FormValidation", icon: "fa-solid fa-check-circle", type: "Menu" },
             { title: "DataTables", desc: "Advanced tables with sorting", url: "/Components/DataTables", icon: "fa-solid fa-table", type: "Menu" },
             { title: "ApexChart", desc: "Dynamic graphic charts", url: "/Charts/ApexCharts", icon: "fa-solid fa-chart-pie", type: "Menu" },
-            
-            // --- DATA / CONTENT (Simulasi Data Penjualan, User, dll) ---
+
             { title: "Laporan Penjualan Q1", desc: "Data transaksi kuartal 1 2026", url: "/Reports/Sales?q=1", icon: "fa-solid fa-file-invoice-dollar", type: "Data Penjualan" },
             { title: "Data Penjualan Tahunan", desc: "Rekap data penjualan", url: "/Reports/Sales?type=annual", icon: "fa-solid fa-chart-line", type: "Data Penjualan" },
             { title: "User: Budi Santoso", desc: "budi@email.com", url: "/Users/Detail/1", icon: "fa-solid fa-user", type: "User Data" },
         ];
 
-        // ==== 2. SEARCH LOGIC ====
         function handleSearch(query) {
             query = query.toLowerCase().trim();
             if(query.length === 0) {
@@ -421,14 +411,12 @@
                 return;
             }
 
-            // Filter data
             const results = searchData.filter(item => 
                 item.title.toLowerCase().includes(query) || 
                 item.desc.toLowerCase().includes(query) ||
                 item.type.toLowerCase().includes(query)
             );
 
-            // Group by Type
             const groupedResults = results.reduce((acc, obj) => {
                 let key = obj.type;
                 if (!acc[key]) acc[key] = [];
@@ -436,7 +424,6 @@
                 return acc;
             }, {});
 
-            // Render HTML
             let html = '';
             if (Object.keys(groupedResults).length === 0) {
                 html = `<div class="search-no-results">
@@ -464,34 +451,28 @@
             searchDropdown.classList.add('show');
         }
 
-        // Helper: Format text to bold matched query
         function highlightText(text, keyword) {
             if (!keyword) return text;
             const regex = new RegExp(`(${keyword})`, 'gi');
             return text.replace(regex, '<strong>$1</strong>');
         }
 
-        // ==== 3. EVENT LISTENERS ====
-        // Listen to typing
         searchInput.addEventListener('input', function(e) {
             handleSearch(e.target.value);
         });
 
-        // Show when focused if not empty
         searchInput.addEventListener('focus', function(e) {
             if(e.target.value.trim().length > 0) {
                 handleSearch(e.target.value);
             }
         });
 
-        // Hide when clicking outside
         document.addEventListener('click', function(e) {
             if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
                 searchDropdown.classList.remove('show');
             }
         });
 
-        // Shortcut Ctrl+K to search
         document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
@@ -499,4 +480,5 @@
             }
         });
     });
+
 </script>

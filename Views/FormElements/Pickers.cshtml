@@ -4,9 +4,8 @@
 
 @section Styles {
     <style>
-        .picker-card { margin-bottom: 25px; }
+.picker-card { margin-bottom: 25px; }
 
-        /* Simulating Pickers UI */
         .picker-input-wrapper {
             position: relative;
         }
@@ -18,8 +17,7 @@
             color: var(--text-muted);
             pointer-events: none;
         }
-        
-        /* Color Picker blocks */
+
         .color-block {
             width: 35px;
             height: 35px;
@@ -35,8 +33,7 @@
             border-color: var(--text-dark);
             box-shadow: 0 0 0 2px white inset;
         }
-        
-        /* Calendar UI Mockup */
+
         .cal-mockup {
             border: 1px solid #e2e8f0;
             border-radius: var(--radius-md);
@@ -71,11 +68,12 @@
         .cal-date:hover { background: #f1f5f9; }
         .cal-date.active { background: var(--primary-color); color: white; }
         .cal-date.muted { color: #cbd5e1; }
-    </style>
+
+</style>
 }
 
 <div class="row">
-    <!-- 1. Native HTML5 Pickers -->
+
     <div class="col-lg-6 mb-4">
         <div class="card picker-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -103,7 +101,6 @@
         </div>
     </div>
 
-    <!-- 2. Custom Styled Advanced Pickers -->
     <div class="col-lg-6 mb-4">
         <div class="card picker-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -125,7 +122,7 @@
                         <i class="fa-solid fa-calendar-check"></i>
                     </div>
                 </div>
-                
+
                 <label class="form-label mb-2">Inline Calendar UI Mockup</label>
                 <div class="cal-mockup">
                     <div class="cal-header">
@@ -136,7 +133,7 @@
                     <div class="cal-days">
                         <div class="cal-day-name">Su</div><div class="cal-day-name">Mo</div><div class="cal-day-name">Tu</div>
                         <div class="cal-day-name">We</div><div class="cal-day-name">Th</div><div class="cal-day-name">Fr</div><div class="cal-day-name">Sa</div>
-                        
+
                         <div class="cal-date muted">27</div><div class="cal-date muted">28</div><div class="cal-date muted">29</div>
                         <div class="cal-date muted">30</div><div class="cal-date mt">1</div><div class="cal-date">2</div><div class="cal-date">3</div>
                         <div class="cal-date">4</div><div class="cal-date">5</div><div class="cal-date">6</div>
@@ -146,8 +143,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- 3. Predefined Color Palette -->
+
     <div class="col-lg-12 mb-4">
         <div class="card picker-card">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -175,10 +171,8 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            
-            // Color block selection interaction
+document.addEventListener('DOMContentLoaded', function() {
+
             document.querySelectorAll('.color-block').forEach(block => {
                 block.addEventListener('click', function() {
                     document.querySelectorAll('.color-block').forEach(b => b.classList.remove('selected'));
@@ -186,5 +180,6 @@
                 });
             });
         });
-    </script>
+
+</script>
 }

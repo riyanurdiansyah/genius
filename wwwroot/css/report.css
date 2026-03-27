@@ -1,12 +1,7 @@
-/* ═══════════════════════════════════════════════════════════
-   Report Generator — Varied Corporate Report Styles
-   ═══════════════════════════════════════════════════════════ */
-
 .report-page {
     padding: 24px 0;
 }
 
-/* ── Toolbar ─────────────────────────── */
 .report-toolbar {
     background: #fff;
     border: 1px solid #e2e8f0;
@@ -68,7 +63,6 @@
     border-color: #3b9d82;
 }
 
-/* ── Preview ─────────────────────────── */
 .report-preview-area {
     background: #cbd5e1;
     border-radius: 10px;
@@ -77,7 +71,6 @@
     justify-content: center;
 }
 
-/* ── Paper ────────────────────────────── */
 .report-paper {
     width: 210mm;
     min-height: 297mm;
@@ -91,7 +84,6 @@
     overflow: hidden;
 }
 
-/* Common table & element styles shared across designs */
 .rpt-table {
     width: 100%;
     border-collapse: collapse;
@@ -148,11 +140,6 @@
     margin-top: 6px;
 }
 
-/* Removed unused legacy report designs */
-
-/* ════════════════════════════════════════
-   Signatures
-   ════════════════════════════════════════ */
 .rpt-signatures-row {
     display: flex;
     justify-content: space-between;
@@ -184,9 +171,6 @@
     letter-spacing: .5px;
 }
 
-/* ════════════════════════════════════════
-   DESIGN 5 — QA Format (Table Header & Box)
-   ════════════════════════════════════════ */
 .design-qa {
     padding: 36px 48px;
     font-family: Arial, Helvetica, sans-serif;
@@ -197,7 +181,7 @@
 .qa-document-box {
     border: 1px solid #000;
     flex: 1;
-    /* Stretch down if needed */
+
     display: flex;
     flex-direction: column;
 }
@@ -213,7 +197,6 @@
     padding: 6px 12px;
 }
 
-/* Hide outer table borders so they don't double with wrapper box */
 .design-qa .rpt-qa-header tr:first-child td {
     border-top: none;
 }
@@ -265,16 +248,12 @@
     flex: 1;
 }
 
-/* ════════════════════════════════════════
-   Print — ONLY report paper, nothing else
-   ════════════════════════════════════════ */
 @media print {
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
 
-    /* Hide everything related to app layout */
     header,
     nav,
     .sidebar-wrapper,
@@ -284,7 +263,6 @@
         display: none !important;
     }
 
-    /* Reset all container constraints to let the paper fill the page */
     body,
     html,
     .wrapper,
@@ -318,31 +296,29 @@
         border: none !important;
     }
 
-    /* Force break page on long tables if needed */
     .rpt-section {
         page-break-inside: avoid;
     }
 
-    /* Elegant border fixes for PDF printers */
     .design-centered {
         border: none !important;
     }
 
     .design-qa {
         min-height: 290mm;
-        /* Fit inside A4 printer margins safely */
+
         padding: 20mm 15mm !important;
-        /* Standard print padding */
+
         display: block !important;
-        /* Better than flex for pure print */
+
     }
 
     .qa-document-box {
         border: 1px solid #000 !important;
         border-bottom: 2px solid #000 !important;
-        /* Force render */
+
         min-height: 250mm;
-        /* Stretch to near bottom */
+
         display: block !important;
         box-sizing: border-box;
         page-break-inside: avoid;

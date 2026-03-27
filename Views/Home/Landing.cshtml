@@ -8,16 +8,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kuda Admin - Welcome</title>
-    <!-- Use the same fonts if available -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/theme.css" />
     <style>
-        :root {
+:root {
             --primary-glow: #3b82f6;
             --secondary-glow: #2dd4bf;
             --midnight: #060b14;
         }
-        
+
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             background-color: var(--midnight); 
@@ -25,7 +25,7 @@
             overflow: hidden;
             font-family: 'Inter', sans-serif;
         }
-        
+
         .splash-container {
             text-align: center;
             display: flex; flex-direction: column; align-items: center;
@@ -44,14 +44,13 @@
             100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px) drop-shadow(0 0 35px rgba(0, 255, 255, 0.6)) brightness(1.2); }
         }
 
-        /* Action Hub below logo */
         .landing-actions {
             margin-top: 40px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 1s 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
-        
+
         @@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
         .btn-protocol-trigger {
@@ -67,18 +66,19 @@
             transition: all 0.2s;
             display: flex; align-items: center; gap: 10px;
         }
-        
+
         .btn-protocol-trigger:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
             border-color: rgba(255, 255, 255, 0.3);
         }
-    </style>
+
+</style>
 </head>
 <body>
     <div class="splash-container">
         <img src="/image/kuda.png" alt="Kuda System Architecture" class="splash-logo" onerror="this.src='/images/kuda.png'" />
-        
+
         <div class="landing-actions">
             <button class="btn-protocol-trigger" onclick="openTnC()">
                 <i class="fas fa-check-shield"></i> Terms & Conditions
@@ -86,14 +86,13 @@
         </div>
     </div>
 
-    <!-- The T&C Popup Partial -->
     <partial name="_TnCPopup" />
 
     <script>
-        // Redirect logic handled by the T&C modal
-        window.onTnCAccepted = function() {
+window.onTnCAccepted = function() {
             window.location.href = '/Login';
         };
-    </script>
+
+</script>
 </body>
 </html>

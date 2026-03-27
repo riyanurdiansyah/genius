@@ -4,11 +4,9 @@
 
 @section Styles {
     <style>
-        /* Force Layout Change for this demo */
-        .top-header { display: none !important; }
+.top-header { display: none !important; }
         .main-content { padding-top: 0 !important; }
 
-        /* Demo Styles */
         .layout-demo { padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 1px dashed #cbd5e1; text-align: center; }
         .wf-container { max-width: 700px; margin: 2rem auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #f8fafc; overflow: hidden; display: flex; height: 350px; border: 1px solid #e2e8f0; }
         .wf-nav { width: 180px; background: var(--sidebar-bg); display: flex; flex-direction: column; padding: 20px 15px; gap: 12px; border-right: 1px solid rgba(255,255,255,0.05); }
@@ -18,7 +16,8 @@
         .wf-main { flex: 1; padding: 25px; }
         .wf-content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; height: 100%; }
         .wf-card { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; }
-    </style>
+
+</style>
 }
 
 <div class="row pt-4">
@@ -26,7 +25,7 @@
         <div class="layout-demo">
             <h2 class="fw-bold text-dark">Without Navbar Layout</h2>
             <p class="text-muted w-75 mx-auto mb-4">Removes the top header completely. The application relies entirely on the left sidebar for both identity and navigation, freeing up vertical space.</p>
-            
+
             <div class="wf-container">
                 <div class="wf-nav">
                     <div class="wf-menu-item circle mt-2"></div>

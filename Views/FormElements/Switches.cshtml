@@ -4,17 +4,15 @@
 
 @section Styles {
     <style>
-        .switch-card { margin-bottom: 25px; }
+.switch-card { margin-bottom: 25px; }
 
-        /* Custom Switch Master */
         .form-switch .form-check-input {
             width: 3em;
             height: 1.5em;
             margin-top: 0.15em;
             cursor: pointer;
         }
-        
-        /* 1. iOS Style Switch */
+
         .switch-ios .form-check-input {
             width: 3.5em;
             height: 1.8em;
@@ -26,11 +24,10 @@
             transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .switch-ios .form-check-input:checked {
-            background-color: #34c759; /* iOS green */
+            background-color: #34c759; 
             box-shadow: none;
         }
 
-        /* 2. Material Style Switch */
         .switch-material .form-check-input {
             width: 3em;
             height: 1em;
@@ -60,25 +57,23 @@
             background: var(--primary-color);
         }
 
-        /* 3. Square Switch */
         .switch-square .form-check-input {
             border-radius: 4px;
         }
-        
-        /* 4. Sizes */
+
         .switch-sm .form-check-input { width: 2.2em; height: 1.1em; }
         .switch-lg .form-check-input { width: 4em; height: 2em; }
 
-        /* Color Variations */
         .switch-danger .form-check-input:checked { background-color: var(--danger-color); border-color: var(--danger-color); }
         .switch-warning .form-check-input:checked { background-color: var(--warning-color); border-color: var(--warning-color); }
         .switch-info .form-check-input:checked { background-color: var(--info-color); border-color: var(--info-color); }
         .switch-dark .form-check-input:checked { background-color: #1e293b; border-color: #1e293b; }
-    </style>
+
+</style>
 }
 
 <div class="row">
-    <!-- 1. Basic & iOS Switches -->
+
     <div class="col-lg-6 mb-4">
         <div class="card switch-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -117,7 +112,6 @@
         </div>
     </div>
 
-    <!-- 2. Material & Square -->
     <div class="col-lg-6 mb-4">
         <div class="card switch-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -152,7 +146,6 @@
         </div>
     </div>
 
-    <!-- 3. Colors and Sizes -->
     <div class="col-lg-12 mb-4">
         <div class="card switch-card">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -181,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <label class="form-label text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Sizing</label>
                         <div class="d-flex align-items-center gap-4 mt-2">
@@ -204,7 +197,8 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
         });
-    </script>
+
+</script>
 }

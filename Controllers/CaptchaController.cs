@@ -13,31 +13,26 @@ namespace Kuda.Controllers;
 public class CaptchaController : Controller
 {
     private static readonly char[] _chars =
-        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789".ToCharArray(); // no ambiguous chars (0,O,I,1)
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789".ToCharArray(); 
 
     private static readonly Random _rng = new();
 
-    // ──────────────────────────────────────────────────────────────
-    // GET /Captcha/Image  — returns a PNG CAPTCHA image
-    // ──────────────────────────────────────────────────────────────
     [HttpGet]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Image()
     {
-        // 1. Generate a 6-character code and save to session
+
         string code = GenerateCode(6);
         HttpContext.Session.SetString("CaptchaCode", code.ToUpperInvariant());
 
-        // 2. Draw the image
         const int W = 160, H = 50;
         using var img = new Image<Rgba32>(W, H);
 
         img.Mutate(ctx =>
         {
-            // Background — light grey to match Neumorphism palette
+
             ctx.Fill(Color.ParseHex("#e8ecf0"));
 
-            // Draw subtle noise dots
             for (int i = 0; i < 200; i++)
             {
                 float x = (float)(_rng.NextDouble() * W);
@@ -50,7 +45,6 @@ public class CaptchaController : Controller
                 ctx.Fill(dotColor, new EllipsePolygon(x, y, 1.5f));
             }
 
-            // Draw distractor lines
             for (int i = 0; i < 5; i++)
             {
                 var lineColor = Color.FromRgba(
@@ -64,7 +58,6 @@ public class CaptchaController : Controller
                     new PointF((float)(_rng.NextDouble() * W), (float)(_rng.NextDouble() * H)));
             }
 
-            // Resolve font — try well-known system fonts, fall back to any available
             string[] tryFonts = { "Arial", "DejaVu Sans", "Liberation Sans", "Helvetica", "FreeSans" };
             FontFamily fontFamily = default;
             bool found = false;
@@ -81,7 +74,6 @@ public class CaptchaController : Controller
 
             var font = fontFamily.CreateFont(26, FontStyle.Bold);
 
-            // Draw each character individually with slight vertical jitter
             float charW = (float)W / code.Length;
             for (int i = 0; i < code.Length; i++)
             {
@@ -103,15 +95,11 @@ public class CaptchaController : Controller
             }
         });
 
-        // 3. Encode to PNG and return
         using var ms = new MemoryStream();
         img.SaveAsPng(ms);
         return File(ms.ToArray(), "image/png");
     }
 
-    // ──────────────────────────────────────────────────────────────
-    // POST /Captcha/Validate — JSON endpoint for AJAX validation
-    // ──────────────────────────────────────────────────────────────
     [HttpPost]
     public IActionResult Validate([FromBody] CaptchaValidateRequest req)
     {
@@ -120,13 +108,11 @@ public class CaptchaController : Controller
                   string.Equals(stored, req.Code?.Trim().ToUpperInvariant(),
                                 StringComparison.OrdinalIgnoreCase);
 
-        // Invalidate after first successful use
         if (ok) HttpContext.Session.Remove("CaptchaCode");
 
         return Json(new { success = ok });
     }
 
-    // ──────────────────────────────────────────────────────────────
     private static string GenerateCode(int length)
     {
         var sb = new System.Text.StringBuilder(length);

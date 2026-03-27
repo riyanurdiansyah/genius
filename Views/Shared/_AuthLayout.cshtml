@@ -4,19 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Kuda Dashboard</title>
-    
-    <!-- FontAwesome Icons -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Bootstrap CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    
-    <!-- Core Theme and Component Styles -->
+
     <link rel="stylesheet" href="~/css/theme.css" />
     <link rel="stylesheet" href="~/css/components.css" />
-    
+
     <style>
-        body {
+body {
             font-family: var(--font-family-primary);
             color: var(--text-dark);
             background: #eef2f5;
@@ -28,8 +25,7 @@
             position: relative;
             overflow: hidden;
         }
-        
-        /* Animated Background Blobs for Glassmorphism */
+
         body::before, body::after {
             content: '';
             position: absolute;
@@ -49,12 +45,11 @@
         body::after {
             width: 40vw;
             height: 40vw;
-            background: rgba(13, 202, 240, 0.15); /* light blue/info tint */
+            background: rgba(13, 202, 240, 0.15); 
             bottom: -5vw;
             left: -10vw;
         }
 
-        /* The Glassmorphic / Polymorphic Container */
         .auth-card {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(24px);
@@ -74,7 +69,6 @@
             z-index: 10;
         }
 
-        /* Left cover (Optional) */
         .auth-cover {
             background: linear-gradient(135deg, rgba(59, 157, 130, 0.8), rgba(35, 83, 71, 0.9));
             color: #fff;
@@ -99,19 +93,17 @@
             pointer-events: none;
         }
 
-        /* Right Form wrapper */
         .auth-form-wrapper {
             padding: 3.5rem 4rem;
             width: 100%;
-            background: transparent; /* transparent to let glass show through */
+            background: transparent; 
             flex: 0 0 58%;
             max-width: 58%;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        
-        /* Form Element Overrides for Polymorphism Look */
+
         .auth-form-wrapper .form-control, .auth-form-wrapper .input-group-text {
             background: rgba(255, 255, 255, 0.75) !important;
             border: 1px solid rgba(255, 255, 255, 0.9) !important;
@@ -167,14 +159,14 @@
             50% { transform: translate(5vw, 5vh) scale(1.05); }
             100% { transform: translate(-2vw, -3vh) scale(0.95); }
         }
-    </style>
+
+</style>
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    
+
     @RenderBody()
 
-    <!-- Global Copy HTML Modal -->
     <div class="modal fade" id="globalCopyHtmlModal" tabindex="-1" aria-hidden="true" style="z-index: 10000;">
         <div class="modal-dialog" style="max-width: 800px;">
             <div class="modal-content">
@@ -194,13 +186,11 @@
         </div>
     </div>
 
-    <!-- Core Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
-        // Standardized Modal & Copy Logic
-        function openModal(id) {
+function openModal(id) {
             var modalEl = document.getElementById(id);
             var myModal = bootstrap.Modal.getOrCreateInstance(modalEl);
             myModal.show();
@@ -212,7 +202,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Standardize button text on load and bind event
+
             document.querySelectorAll('.copy-btn').forEach(btn => {
                 btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy HTML';
                 btn.addEventListener('click', function(e) {
@@ -245,7 +235,8 @@
                 });
             }
         });
-    </script>
+
+</script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -1,8 +1,7 @@
 @{ ViewData["Title"] = "Tabs & Pills"; }
 
 <style>
-    /* 1. Minimal Underline Tabs */
-    .nav-tabs-minimal {
+.nav-tabs-minimal {
         border-bottom: 2px solid #e2e8f0;
         gap: 2rem;
     }
@@ -33,7 +32,6 @@
         border-radius: 2px 2px 0 0;
     }
 
-    /* 2. iOS Segmented Control */
     .nav-segmented {
         background-color: #f1f5f9;
         padding: 4px;
@@ -61,8 +59,7 @@
         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         font-weight: 600;
     }
-    
-    /* Dark Mode specific for segmented */
+
     [data-theme="dark"] .nav-segmented {
         background-color: #0f172a;
     }
@@ -71,26 +68,24 @@
         color: #f8fafc;
     }
 
-    /* 3. Soft Background Pills */
     .nav-pills-soft .nav-link {
         color: #64748b;
         background: transparent;
-        border-radius: 50rem; /* pill shape */
+        border-radius: 50rem; 
         padding: 0.5rem 1.25rem;
         font-weight: 500;
         transition: all 0.2s ease;
     }
     .nav-pills-soft .nav-link:hover {
-        background: rgba(59, 157, 130, 0.05); /* very light primary */
+        background: rgba(59, 157, 130, 0.05); 
         color: var(--primary);
     }
     .nav-pills-soft .nav-link.active {
-        background: rgba(59, 157, 130, 0.15); /* primary with opacity */
+        background: rgba(59, 157, 130, 0.15); 
         color: var(--primary);
         font-weight: 600;
     }
 
-    /* 4. Gradient Glowing Pills */
     .nav-pills-gradient .nav-link {
         color: #64748b;
         background: transparent;
@@ -113,7 +108,6 @@
         border: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* 5. Vertical Floating Layout */
     .nav-vertical-modern {
         display: flex;
         flex-direction: column;
@@ -145,7 +139,7 @@
         background: #ffffff;
         color: var(--primary);
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        transform: translateX(5px); /* pop out effect */
+        transform: translateX(5px); 
         font-weight: 600;
     }
     .nav-vertical-modern .nav-link.active i {
@@ -156,7 +150,6 @@
     [data-theme="dark"] .nav-vertical-modern .nav-link:hover { background: #1e293b; color: #fff; }
     [data-theme="dark"] .nav-vertical-modern .nav-link.active { background: #1e293b; color: var(--primary); }
 
-    /* Indicator dot */
     .status-dot {
         width: 8px;
         height: 8px;
@@ -174,6 +167,7 @@
         background: #1e293b;
         border-color: rgba(255,255,255,0.05);
     }
+
 </style>
 
 <div class="row g-4 mb-5">
@@ -182,7 +176,6 @@
         <p class="text-muted">Modern navigation panels, segmented controls, and vertical layouts.</p>
     </div>
 
-    <!-- 1. Minimal Underline Tabs -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -191,7 +184,7 @@
             </div>
             <div class="card-body" id="tabsMinimalUnderline">
                 <p class="text-muted small mb-4">Clean and spacious. Perfect for main page navigation menus.</p>
-                
+
                 <ul class="nav nav-tabs-minimal" id="minimalTabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="min-overview-tab" data-bs-toggle="tab" data-bs-target="#min-overview" type="button" role="tab" aria-selected="true">Overview</button>
@@ -221,7 +214,6 @@
         </div>
     </div>
 
-    <!-- 2. iOS Segmented Control -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -230,7 +222,7 @@
             </div>
             <div class="card-body" id="tabsSegmentedControls">
                 <p class="text-muted small mb-4">Inspired by mobile iOS switchers. Great for dual or triple toggles.</p>
-                
+
                 <ul class="nav nav-segmented mb-4" id="segmentedTabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#seg-monthly" type="button" role="tab" aria-selected="true">Monthly</button>
@@ -258,7 +250,6 @@
         </div>
     </div>
 
-    <!-- 3. Soft Background Pills -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -267,7 +258,7 @@
             </div>
             <div class="card-body" id="tabsSoftPills">
                 <p class="text-muted small mb-4">Rounded pills that only show background color when active or hovered.</p>
-                
+
                 <ul class="nav nav-pills-soft d-flex gap-2 flex-wrap mb-4" id="softPills" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#soft-all" type="button" role="tab"><i class="fas fa-border-all me-2"></i>All Tasks</button>
@@ -294,7 +285,6 @@
         </div>
     </div>
 
-    <!-- 4. Gradient Glowing Pills -->
     <div class="col-md-6">
         <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
@@ -303,7 +293,7 @@
             </div>
             <div class="card-body" id="tabsGradientCards">
                 <p class="text-muted small mb-4">Premium look for highlighting special features or subscriptions.</p>
-                
+
                 <ul class="nav nav-pills-gradient d-flex gap-2 flex-wrap mb-4" id="gradPills" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#grad-ai" type="button" role="tab"><i class="fas fa-robot me-2"></i>AI Engine</button>
@@ -330,7 +320,6 @@
         </div>
     </div>
 
-    <!-- 5. Vertical Floating Layout -->
     <div class="col-12">
         <div class="card shadow-sm border-0">
             <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-start">
@@ -342,7 +331,7 @@
             </div>
             <div class="card-body bg-light" style="border-radius: 0 0 16px 16px;" id="tabsVerticalLayout">
                 <div class="row g-4 align-items-start">
-                    <!-- Nav Column -->
+
                     <div class="col-md-3 col-sm-4">
                         <div class="nav flex-column nav-vertical-modern" id="v-modern-tab" role="tablist" aria-orientation="vertical">
                             <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#v-mod-profile" type="button" role="tab" aria-selected="true">
@@ -363,8 +352,7 @@
                             </button>
                         </div>
                     </div>
-                    
-                    <!-- Content Column -->
+
                     <div class="col-md-9 col-sm-8">
                         <div class="tab-content tab-content-card h-100" id="v-modern-tabContent">
                             <div class="tab-pane fade show active" id="v-mod-profile" role="tabpanel">
@@ -417,7 +405,7 @@
                             <div class="tab-pane fade" id="v-mod-notifications" role="tabpanel">
                                 <h5 class="fw-bold mb-0">Email Notifications</h5>
                                 <p class="text-muted small mb-4">Choose what we email you about.</p>
-                                
+
                                 <div class="form-check form-switch mb-3">
                                   <input class="form-check-input" type="checkbox" id="notif-1" checked>
                                   <label class="form-check-label ms-2 fw-medium" for="notif-1">News and updates</label>

@@ -1,10 +1,3 @@
-/* components.css - UI Components Styles */
-
-/* --- Layout --- */
-
-/* =============================================
-   PAGE HEADER BAR — Title + Breadcrumb Row
-   ============================================= */
 .page-header-bar {
     display: flex;
     align-items: center;
@@ -27,9 +20,6 @@
     flex-wrap: wrap;
 }
 
-/* =============================================
-   BREADCRUMB — Kuda Style
-   ============================================= */
 .breadcrumb-kuda {
     display: flex;
     align-items: center;
@@ -49,10 +39,9 @@
     font-weight: 500;
 }
 
-/* Separator between items */
 .bc-item+.bc-item::before {
     content: "\f054";
-    /* chevron-right */
+
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     font-size: 8px;
@@ -83,7 +72,6 @@
     font-weight: 600;
 }
 
-/* Dark Mode */
 [data-theme="dark"] .breadcrumb-kuda {
     background: rgba(59, 157, 130, 0.12);
     border-color: rgba(59, 157, 130, 0.2);
@@ -114,11 +102,6 @@
     overflow: hidden;
 }
 
-/* =============================================
-   SIDEBAR — Kuda Signature Design
-   White + Primary (#3b9d82) palette only
-   ============================================= */
-
 :root {
     --sb-bg: #ffffff;
     --sb-primary: #3b9d82;
@@ -148,7 +131,6 @@
     width: var(--sidebar-collapsed-width);
 }
 
-/* --- Brand / Logo Area --- */
 .logo-area {
     height: 72px;
     display: flex;
@@ -198,7 +180,6 @@
     justify-content: center;
 }
 
-/* --- Sidebar Scroll Body --- */
 .sidebar {
     flex: 1;
     overflow-y: auto;
@@ -225,7 +206,6 @@
     border-radius: 4px;
 }
 
-/* --- Menu List --- */
 .sidebar-menu {
     list-style: none;
     padding: 0;
@@ -239,7 +219,6 @@
     padding: 0;
 }
 
-/* Section Labels — small caps + trailing line */
 .sidebar-menu .menu-section-label {
     padding: 20px 10px 6px;
     pointer-events: none;
@@ -278,7 +257,6 @@
     pointer-events: none;
 }
 
-/* --- Menu Links --- */
 .sidebar-menu a {
     display: flex;
     align-items: center;
@@ -296,7 +274,6 @@
     position: relative;
 }
 
-/* Icon — rounded square, fills with primary on hover/active */
 .sidebar-menu a .menu-icon {
     width: 32px;
     height: 32px;
@@ -332,7 +309,6 @@
     color: var(--sb-primary);
 }
 
-/* Hover */
 .sidebar-menu a:hover {
     background: var(--sb-primary-light);
 }
@@ -346,7 +322,6 @@
     color: var(--sb-text);
 }
 
-/* Active — left bar + filled icon */
 .sidebar-menu li.active>a {
     background: var(--sb-primary-light);
     font-weight: 600;
@@ -378,7 +353,6 @@
     opacity: 1;
 }
 
-/* --- Submenu — vertical guide line + dot markers --- */
 .sidebar-submenu {
     list-style: none;
     padding: 0;
@@ -456,7 +430,6 @@
     opacity: 1;
 }
 
-/* --- Collapsed Mode --- */
 .sidebar-wrapper.collapsed .sidebar-menu a .menu-label,
 .sidebar-wrapper.collapsed .sidebar-menu a i.toggle-icon {
     opacity: 0;
@@ -481,7 +454,6 @@
     display: none !important;
 }
 
-/* --- Floating Submenu (Collapsed tooltip) --- */
 .floating-sidebar-menu {
     border-radius: 12px;
 }
@@ -535,7 +507,6 @@
     box-shadow: 0 4px 16px rgba(59, 157, 130, 0.3);
 }
 
-/* --- Legacy / Compat --- */
 .logo-text {
     display: none;
 }
@@ -558,7 +529,6 @@
     display: none;
 }
 
-/* --- Dark Mode Overrides --- */
 [data-theme="dark"] .sidebar-wrapper {
     --sb-bg: #0f2620;
     --sb-primary-light: rgba(59, 157, 130, 0.15);
@@ -582,7 +552,6 @@
     background: #0f2620;
 }
 
-/* Main Content */
 .main-content {
     flex: 1;
     padding: 0 40px 20px 40px;
@@ -591,7 +560,6 @@
     overflow-y: auto;
 }
 
-/* Header */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -600,7 +568,6 @@
     flex-wrap: wrap;
     gap: 20px;
 
-    /* Bikin diem aja ketika scroll */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -636,12 +603,11 @@
     background: transparent;
 }
 
-/* Global Search Dropdown */
 .search-dropdown {
     position: absolute;
     top: calc(100% + 5px);
     left: 40px;
-    /* Aligned with topbar padding */
+
     width: 400px;
     background: #fff;
     border-radius: 12px;
@@ -754,7 +720,6 @@
     object-fit: cover;
 }
 
-/* --- Cards --- */
 .card {
     background-color: var(--bg-card);
     border-radius: var(--radius-lg);
@@ -785,7 +750,6 @@
     background-color: rgba(0, 0, 0, 0.01);
 }
 
-/* Stat Card specific */
 .stat-card {
     display: flex;
     align-items: center;
@@ -802,7 +766,6 @@
     margin-right: 1.5rem;
 }
 
-/* --- Buttons --- */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -874,7 +837,6 @@
     color: white;
 }
 
-/* Buttons Sizing */
 .btn-sm {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
@@ -886,7 +848,6 @@
     font-size: 1.125rem;
 }
 
-/* --- Forms --- */
 .form-group {
     margin-bottom: 1rem;
 }
@@ -965,7 +926,6 @@
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
 }
 
-/* Switches (Toggle) */
 .form-switch {
     padding-left: 2.5em;
 }
@@ -984,7 +944,6 @@
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
 }
 
-/* Validation */
 .is-invalid {
     border-color: var(--danger) !important;
     padding-right: calc(1.5em + .75rem);
@@ -1006,7 +965,6 @@
     display: block;
 }
 
-/* --- Tables --- */
 .table {
     width: 100%;
     margin-bottom: 1rem;
@@ -1037,7 +995,6 @@
     background-color: rgba(0, 0, 0, 0.04);
 }
 
-/* DataTables specific override container */
 .dataTables_wrapper .dataTables_filter input {
     border: 1px solid var(--border-dark);
     border-radius: var(--radius-sm);
@@ -1072,12 +1029,11 @@
     box-shadow: 0 0 0 3px rgba(59, 157, 130, 0.1);
 }
 
-/* --- Premium DataTables --- */
 .custom-dt-container {
     padding: 30px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
     border: 1px solid var(--border-color);
     margin-bottom: 30px;
 }
@@ -1118,7 +1074,194 @@
     font-size: 16px;
 }
 
-/* Inline Editing */
+table.dataTable {
+    border-collapse: separate !important;
+    border-spacing: 0 10px !important;
+    border: none !important;
+    width: 100% !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    border: none !important;
+    background: transparent !important;
+    color: var(--text-gray) !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 10px 20px !important;
+}
+
+table.dataTable.no-footer {
+    border-bottom: none !important;
+}
+
+table.dataTable tbody tr {
+    background: var(--bg-body) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+table.dataTable tbody tr:hover {
+    transform: translateY(-2px) scale(1.002);
+    background: #ffffff !important;
+    box-shadow: 0 12px 24px rgba(59, 157, 130, 0.08) !important;
+    z-index: 10;
+    position: relative;
+}
+
+table.dataTable tbody td {
+    border: none !important;
+    padding: 16px 20px !important;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+table.dataTable tbody td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+table.dataTable tbody td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+table.dataTable.dt-style-bordered {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    background: transparent !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02) !important;
+}
+
+table.dataTable.dt-style-bordered thead th,
+table.dataTable.dt-style-bordered thead td {
+    background: var(--sb-primary-light) !important;
+    color: var(--primary) !important;
+    border-bottom: 2px solid var(--primary) !important;
+    border-right: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+table.dataTable.dt-style-bordered thead th:last-child,
+table.dataTable.dt-style-bordered thead td:last-child {
+    border-right: none !important;
+}
+
+table.dataTable.dt-style-bordered tbody tr {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    transition: background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+table.dataTable.dt-style-bordered tbody tr:hover {
+    background: rgba(59, 157, 130, 0.05) !important;
+    transform: none !important;
+    box-shadow: inset 4px 0 0 var(--primary) !important;
+}
+
+table.dataTable.dt-style-bordered tbody td {
+    border-radius: 0 !important;
+    border-bottom: 1px dashed var(--border-color) !important;
+    border-right: 1px dashed var(--border-color) !important;
+    color: var(--text-dark) !important;
+}
+
+table.dataTable.dt-style-bordered tbody td:last-child {
+    border-right: none !important;
+}
+
+table.dataTable.dt-style-bordered tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+[data-theme="dark"] table.dataTable.dt-style-bordered {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+}
+[data-theme="dark"] table.dataTable.dt-style-bordered thead th {
+    background: rgba(59, 157, 130, 0.15) !important;
+}
+[data-theme="dark"] table.dataTable.dt-style-bordered tbody tr:hover {
+    background: rgba(59, 157, 130, 0.1) !important;
+    box-shadow: inset 4px 0 0 var(--primary) !important;
+}
+[data-theme="dark"] table.dataTable.dt-style-bordered tbody td {
+    color: #e2e8f0 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 20px !important;
+    padding-top: 0 !important;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 10px !important;
+    padding: 8px 16px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    border: 1px solid transparent !important;
+    background: var(--bg-body) !important;
+    color: var(--text-gray) !important;
+    transition: all 0.25s ease !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover:not(.disabled) {
+    background: var(--sb-primary-light) !important;
+    color: var(--primary) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 157, 130, 0.15) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: var(--primary) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(59, 157, 130, 0.3) !important;
+    border: 1px solid var(--primary) !important;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 10px !important;
+    padding: 8px 16px !important;
+    border: 1px solid var(--border-color) !important;
+    background: #fff !important;
+    font-size: 13px !important;
+    outline: none !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus,
+.dataTables_wrapper .dataTables_length select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(59, 157, 130, 0.15) !important;
+}
+
+table.dataTable.stripe > tbody > tr.odd > *, 
+table.dataTable.display > tbody > tr.odd > * { box-shadow: none !important; }
+table.dataTable.stripe > tbody > tr.even > *, 
+table.dataTable.display > tbody > tr.even > * { box-shadow: none !important; }
+table.dataTable.hover > tbody > tr:hover > *, 
+table.dataTable.display > tbody > tr:hover > * { box-shadow: none !important; }
+table.dataTable.row-border > tbody > tr > th, 
+table.dataTable.row-border > tbody > tr > td, 
+table.dataTable.display > tbody > tr > th, 
+table.dataTable.display > tbody > tr > td { border-top: none !important; }
+
 .editable {
     position: relative;
     cursor: pointer;
@@ -1150,7 +1293,6 @@
     font-size: 14px;
 }
 
-/* Status Badges in Tables */
 .table-badge {
     padding: 5px 12px;
     border-radius: 50px;
@@ -1162,7 +1304,6 @@
 .badge-danger { background: #fce8e6; color: #d93025; }
 .badge-info { background: #e8f0fe; color: #1a73e8; }
 
-/* DataTable Buttons Layout */
 .dt-top-flex {
     display: flex;
     justify-content: space-between;
@@ -1188,7 +1329,6 @@
     border-color: var(--primary);
 }
 
-/* Nested Detail Rows */
 td.details-control {
     text-align: center;
     color: var(--primary);
@@ -1213,7 +1353,6 @@ tr.shown td.details-control::after {
     margin: 5px;
 }
 
-/* --- Badges & Notifications --- */
 .badge {
     display: inline-block;
     padding: 0.35em 0.65em;
@@ -1252,8 +1391,6 @@ tr.shown td.details-control::after {
     color: #842029;
     border-color: #f5c2c7;
 }
-
-/* --- Modals --- */
 
 .modal-dialog {
     animation: modalSlideIn 0.3s ease-out;
@@ -1312,10 +1449,6 @@ tr.shown td.details-control::after {
     }
 }
 
-
-/* =============================================
-   ACCORDION — Kuda Style Customization
-   ============================================= */
 .accordion-item {
     border-radius: 12px !important;
     overflow: hidden;
@@ -1339,9 +1472,6 @@ tr.shown td.details-control::after {
     border-color: var(--primary);
 }
 
-/* =============================================
-   TIMELINE — Kuda Signature
-   ============================================= */
 .timeline-item {
     position: relative;
     padding-left: 45px;
@@ -1377,9 +1507,6 @@ tr.shown td.details-control::after {
     z-index: 1;
 }
 
-/* =============================================
-   AVATARS & BADGES
-   ============================================= */
 .avatar-gradient {
     width: 48px;
     height: 48px;
@@ -1395,9 +1522,6 @@ tr.shown td.details-control::after {
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
 }
 
-/* =============================================
-   DIAGRAM VISUALS (ERD / FLOWCHART)
-   ============================================= */
 .erd-entity,
 .fc-node {
     background: #fff;
@@ -1423,9 +1547,6 @@ tr.shown td.details-control::after {
     border-bottom: 1px solid #f1f5f9;
 }
 
-/* =============================================
-   KANBAN BOARD (Light Mode Base)
-   ============================================= */
 .kanban-board {
     display: flex;
     gap: 20px;
@@ -1462,8 +1583,6 @@ tr.shown td.details-control::after {
     border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
-/* --- Mobile Responsiveness --- */
-
 @media (max-width: 991px) {
     .sidebar-wrapper {
         position: fixed;
@@ -1488,7 +1607,6 @@ tr.shown td.details-control::after {
         padding: 12px;
     }
 
-    /* Restore collapsed menu items to full width on mobile */
     .sidebar-wrapper.collapsed {
         left: calc(-1 * var(--sidebar-width));
         width: var(--sidebar-width) !important;
@@ -1525,12 +1643,10 @@ tr.shown td.details-control::after {
         opacity: 0.7;
     }
 
-    /* Ensure dashboard takes full width on mobile */
     .dashboard-container .main-content {
         margin-left: 0 !important;
     }
 
-    /* Overlay background for mobile */
     .sidebar-overlay {
         position: fixed;
         top: 0;
@@ -1550,12 +1666,6 @@ tr.shown td.details-control::after {
     }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DARK MODE — Global Overrides
-   Semua elemen yang perlu penyesuaian warna di dark mode
-═══════════════════════════════════════════════════════════ */
-
-/* ─── Topbar & Search ─────────────────────────────────── */
 [data-theme="dark"] .topbar {
     background: var(--dashboard-bg);
     border-bottom: 1px solid var(--border-color);
@@ -1603,7 +1713,6 @@ tr.shown td.details-control::after {
     background: rgba(255, 255, 255, 0.02);
 }
 
-/* ─── Icon Buttons (topbar actions) ──────────────────── */
 [data-theme="dark"] .icon-btn {
     background: #112e27;
     border-color: rgba(59, 157, 130, 0.1);
@@ -1615,7 +1724,6 @@ tr.shown td.details-control::after {
     color: #3b9d82;
 }
 
-/* ─── Cards ───────────────────────────────────────────── */
 [data-theme="dark"] .card {
     background: var(--dashboard-bg);
     border-color: rgba(255, 255, 255, 0.06);
@@ -1633,7 +1741,6 @@ tr.shown td.details-control::after {
     border-top-color: rgba(255, 255, 255, 0.06);
 }
 
-/* Chart placeholder */
 [data-theme="dark"] .chart-placeholder,
 [data-theme="dark"] [class*="chart-wrap"],
 [data-theme="dark"] [class*="chart-area"],
@@ -1642,7 +1749,6 @@ tr.shown td.details-control::after {
     color: #4a6580;
 }
 
-/* ─── Tables ──────────────────────────────────────────── */
 [data-theme="dark"] table,
 [data-theme="dark"] .table {
     color: #cbd5e1;
@@ -1689,7 +1795,6 @@ tr.shown td.details-control::after {
     background-color: transparent !important;
 }
 
-/* Pagination Dark Mode Fixes */
 [data-theme="dark"] .page-link {
     background-color: rgba(255, 255, 255, 0.03);
     border-color: rgba(255, 255, 255, 0.06);
@@ -1711,7 +1816,6 @@ tr.shown td.details-control::after {
     color: #4a6580;
 }
 
-/* DataTables length/filter fixes */
 [data-theme="dark"] .dataTables_wrapper .dataTables_length select,
 [data-theme="dark"] .dataTables_wrapper .dataTables_filter input {
     background-color: #112e27;
@@ -1730,7 +1834,6 @@ tr.shown td.details-control::after {
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* ─── Forms & Inputs ──────────────────────────────────── */
 [data-theme="dark"] .form-control,
 [data-theme="dark"] input[type="text"],
 [data-theme="dark"] input[type="email"],
@@ -1774,12 +1877,10 @@ tr.shown td.details-control::after {
     color: #e2e8f0;
 }
 
-/* ─── Badges ──────────────────────────────────────────── */
 [data-theme="dark"] .badge {
     opacity: 0.92;
 }
 
-/* ─── Modals ──────────────────────────────────────────── */
 [data-theme="dark"] .modal-content {
     background: #1e293b;
     border-color: rgba(255, 255, 255, 0.08);
@@ -1800,7 +1901,6 @@ tr.shown td.details-control::after {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* ─── Dropdowns ───────────────────────────────────────── */
 [data-theme="dark"] .dropdown-menu {
     background: #0d221d;
     border-color: rgba(59, 157, 130, 0.2);
@@ -1821,17 +1921,14 @@ tr.shown td.details-control::after {
     border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* ─── Alerts ──────────────────────────────────────────── */
 [data-theme="dark"] .alert {
     border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* ─── Progress bars ───────────────────────────────────── */
 [data-theme="dark"] .progress {
     background: rgba(255, 255, 255, 0.08);
 }
 
-/* ─── List groups ─────────────────────────────────────── */
 [data-theme="dark"] .list-group-item {
     background: var(--dashboard-bg);
     border-color: rgba(255, 255, 255, 0.06);
@@ -1842,7 +1939,6 @@ tr.shown td.details-control::after {
     background: rgba(255, 255, 255, 0.03);
 }
 
-/* ─── Nav tabs / pills ────────────────────────────────── */
 [data-theme="dark"] .nav-tabs {
     border-bottom-color: rgba(255, 255, 255, 0.08);
 }
@@ -1871,7 +1967,6 @@ tr.shown td.details-control::after {
     color: #fff;
 }
 
-/* ─── Kanban Board ────────────────────────────────────── */
 [data-theme="dark"] .kanban-column {
     background: #0d221d;
     border-color: rgba(59, 157, 130, 0.1);
@@ -1906,7 +2001,6 @@ tr.shown td.details-control::after {
     border-color: rgba(59, 157, 130, 0.3);
 }
 
-/* ─── Page header & breadcrumb ────────────────────────── */
 [data-theme="dark"] .page-header {
     border-bottom-color: rgba(255, 255, 255, 0.06);
 }
@@ -1923,12 +2017,10 @@ tr.shown td.details-control::after {
     color: #4a6580;
 }
 
-/* ─── Stat cards (dashboard) ──────────────────────────── */
 [data-theme="dark"] .stat-card {
     background: var(--dashboard-bg);
 }
 
-/* ─── Text helpers ────────────────────────────────────── */
 [data-theme="dark"] .text-muted {
     color: #64748b !important;
 }
@@ -1946,7 +2038,6 @@ tr.shown td.details-control::after {
     color: #94a3b8;
 }
 
-/* ─── Code blocks ─────────────────────────────────────── */
 [data-theme="dark"] pre,
 [data-theme="dark"] code {
     background: #0f172a;
@@ -1954,12 +2045,10 @@ tr.shown td.details-control::after {
     border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* ─── Horizontal rules ────────────────────────────────── */
 [data-theme="dark"] hr {
     border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* ─── Tooltips / Popovers ─────────────────────────────── */
 [data-theme="dark"] .tooltip-inner {
     background: #1a2d40;
     color: #e2e8f0;
@@ -1981,7 +2070,6 @@ tr.shown td.details-control::after {
     color: #cbd5e1;
 }
 
-/* ─── Offcanvas ───────────────────────────────────────── */
 [data-theme="dark"] .offcanvas {
     background: #1e293b;
     color: #e2e8f0;
@@ -1992,7 +2080,6 @@ tr.shown td.details-control::after {
     border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
-/* ─── Scrollbars ──────────────────────────────────────── */
 [data-theme="dark"] ::-webkit-scrollbar-track {
     background: #0f172a;
 }
@@ -2006,7 +2093,6 @@ tr.shown td.details-control::after {
     background: #3b9d82;
 }
 
-/* ─── Kanban (actual class names) ────────────────────── */
 [data-theme="dark"] .kanban-board {
     background: rgba(255, 255, 255, 0.02) !important;
     border-color: rgba(255, 255, 255, 0.06) !important;
@@ -2062,7 +2148,6 @@ tr.shown td.details-control::after {
     color: #94a3b8;
 }
 
-/* ─── Accordion ───────────────────────────────────────── */
 [data-theme="dark"] .accordion-item {
     background-color: #1e293b;
     border-color: rgba(255, 255, 255, 0.08) !important;
@@ -2082,7 +2167,6 @@ tr.shown td.details-control::after {
     filter: invert(1) grayscale(1) brightness(2);
 }
 
-/* ─── Timeline ────────────────────────────────────────── */
 [data-theme="dark"] .timeline-item::before {
     background: rgba(255, 255, 255, 0.1);
 }
@@ -2091,7 +2175,6 @@ tr.shown td.details-control::after {
     box-shadow: 0 0 15px rgba(59, 157, 130, 0.3);
 }
 
-/* ─── Visual Diagrams (ERD / Flowchart) ───────────────── */
 [data-theme="dark"] .erd-entity,
 [data-theme="dark"] .fc-node {
     background: #1e293b;
@@ -2117,7 +2200,6 @@ tr.shown td.details-control::after {
     border-color: var(--primary);
 }
 
-/* --- Premium DataTables Dark Mode --- */
 [data-theme="dark"] .custom-dt-container {
     background: var(--dashboard-bg);
     border-color: var(--border-color);
@@ -2168,7 +2250,6 @@ tr.shown td.details-control::after {
     border: none;
 }
 
-/* ─── Canvas Visuals ──────────────────────────────────── */
 [data-theme="dark"] #erdCanvas,
 [data-theme="dark"] #flowchartCanvas {
     background-color: #051311;

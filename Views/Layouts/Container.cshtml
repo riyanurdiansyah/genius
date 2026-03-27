@@ -4,11 +4,9 @@
 
 @section Styles {
     <style>
-        /* Force Layout Change for this demo */
-        body { background: #e2e8f0; } /* Darker body to contrast */
+body { background: #e2e8f0; } 
         .dashboard-container { max-width: 1300px; margin: 0 auto; box-shadow: 0 0 50px rgba(0,0,0,0.1); background: #f8fafc;}
-        
-        /* Demo Styles */
+
         .layout-demo { padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 1px dashed #cbd5e1; text-align: center; }
         .wf-container { max-width: 700px; margin: 2rem auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #e2e8f0; overflow: hidden; display: flex; height: 350px; border: 1px solid #cbd5e1; justify-content: center; }
         .wf-inner-container { width: 80%; background: #f8fafc; display: flex; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
@@ -20,7 +18,8 @@
         .wf-header-box { height: 16px; background: #e2e8f0; border-radius: 4px; }
         .wf-content { flex: 1; padding: 25px; display: grid; gap: 20px; }
         .wf-card { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; }
-    </style>
+
+</style>
 }
 
 <div class="row pt-4">
@@ -28,7 +27,7 @@
         <div class="layout-demo">
             <h2 class="fw-bold text-dark">Boxed Container Layout</h2>
             <p class="text-muted w-75 mx-auto mb-4">Constrains the entire application interface into a fixed maximum-width container, centered on the screen. Great for ultra-wide monitors.</p>
-            
+
             <div class="wf-container">
                 <div class="wf-inner-container">
                     <div class="wf-nav">

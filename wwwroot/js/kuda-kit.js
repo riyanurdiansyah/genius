@@ -1,19 +1,10 @@
-/**
- * Kuda UI Kit - Core Utilities
- * Includes: Theme management, Sidebar toggle, and DataTable helpers.
- */
-
 const KudaKit = {
-    /**
-     * Initialize Theme (Dark/Light Mode)
-     * Loads saved theme from localStorage or system preference.
-     */
+
     initTheme: function() {
         const savedTheme = localStorage.getItem('kuda-theme') || 
                           (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         this.setTheme(savedTheme);
 
-        // Auto-bind toggle buttons if they exist
         const themeToggle = document.getElementById('toggleDarkMode');
         if (themeToggle) {
             themeToggle.addEventListener('click', () => {
@@ -26,8 +17,7 @@ const KudaKit = {
     setTheme: function(theme) {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('kuda-theme', theme);
-        
-        // Update Icons if toggle button exists
+
         const icon = document.getElementById('darkModeIcon');
         if (icon) {
             if (theme === 'dark') {
@@ -40,9 +30,6 @@ const KudaKit = {
         }
     },
 
-    /**
-     * Sidebar Management
-     */
     initSidebar: function() {
         const sidebar = document.querySelector('.sidebar-wrapper');
         const toggleBtn = document.getElementById('toggleSidebar');
@@ -67,16 +54,10 @@ const KudaKit = {
         }
     },
 
-    /**
-     * DataTable Helpers
-     * @param {string} tableId - The ID of the table element
-     * @param {object} options - DT Configuration options
-     */
     initDataTable: function(tableId, options = {}) {
         const $table = document.getElementById(tableId);
         if (!$table) return null;
 
-        // 1. Inject Search Inputs if data-search="true"
         const $headers = $table.querySelectorAll('thead th[data-search="true"]');
         $headers.forEach(th => {
             const title = th.textContent;
@@ -84,15 +65,13 @@ const KudaKit = {
             input.type = 'text';
             input.className = 'col-search-input';
             input.placeholder = `Search ${title}`;
-            
-            // Prevent sorting when clicking input
+
             input.addEventListener('click', (e) => e.stopPropagation());
             input.addEventListener('mousedown', (e) => e.stopPropagation());
-            
+
             th.appendChild(input);
         });
 
-        // 2. Initialize DataTables (using jQuery for now as DataTables requires it)
         const dtOptions = {
             pageLength: options.pageLength || 10,
             responsive: options.responsive !== undefined ? options.responsive : true,
@@ -117,7 +96,10 @@ const KudaKit = {
     }
 };
 
-// Auto-init on load
+if (window.jQuery && !window.$) {
+    window.$ = window.jQuery;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     KudaKit.initTheme();
     KudaKit.initSidebar();

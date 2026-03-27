@@ -2,8 +2,7 @@
 
 @section Styles {
     <style>
-        /* 1. Floating Separated Accordion */
-        .floating-accordion .accordion-item { 
+.floating-accordion .accordion-item { 
             border: none; 
             margin-bottom: 20px; 
             border-radius: 16px; 
@@ -22,7 +21,6 @@
         .floating-accordion .accordion-button:not(.collapsed)::after { background-color: rgba(59, 157, 130, 0.1); filter: none; }
         .floating-accordion .accordion-body { background: #f8fafc; color: var(--text-gray); padding: 0 1.5rem 1.5rem; }
 
-        /* 2. Minimal Left-Border Accordion */
         .minimal-accordion .accordion-item { border: none; border-bottom: 1px solid #e2e8f0; margin-bottom: 0; background: transparent; }
         .minimal-accordion .accordion-item:last-child { border-bottom: none; }
         .minimal-accordion .accordion-button { background-color: transparent; font-weight: 600; font-size: 1.05rem; padding: 1.5rem 0; color: var(--text-dark); box-shadow: none; }
@@ -30,7 +28,6 @@
         .minimal-accordion .accordion-button:focus { box-shadow: none; }
         .minimal-accordion .accordion-body { padding: 0 0 1.5rem 1.7rem; color: var(--text-muted); }
 
-        /* 3. Modern Solid Action Accordion */
         .custom-accordion .accordion-item { border: none; margin-bottom: 12px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; }
         .custom-accordion .accordion-button { background-color: #fff; font-weight: 600; padding: 1.25rem 1.5rem; transition: all 0.3s ease; color: var(--text-dark); }
         .custom-accordion .accordion-button:not(.collapsed) { background-color: var(--primary-color); color: white; box-shadow: 0 4px 15px rgba(59, 157, 130, 0.2); }
@@ -38,7 +35,6 @@
         .custom-accordion .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
         .custom-accordion .accordion-body { background: #fff; color: var(--text-muted); padding: 1.5rem; }
 
-        /* 4. Glassmorphism Concept */
         .glass-bg {
             background: linear-gradient(135deg, #0f172a, #1e293b);
             padding: 2.5rem;
@@ -58,7 +54,6 @@
         .glass-accordion .accordion-button:not(.collapsed) { background-color: rgba(255, 255, 255, 0.1); color: #fff; box-shadow: none; }
         .glass-accordion .accordion-body { background: transparent; color: rgba(255, 255, 255, 0.7); padding: 1.5rem; }
 
-        /* 5. Gradient Border UI Accordion */
         .gradient-accordion .accordion-item { 
             border: none; 
             margin-bottom: 15px; 
@@ -71,7 +66,7 @@
             position: absolute;
             inset: 0;
             border-radius: 14px;
-            padding: 2px; /* thickness of border */
+            padding: 2px; 
             background: linear-gradient(45deg, var(--primary-color), #3b82f6);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -83,12 +78,12 @@
         .gradient-accordion .accordion-button { background: transparent; font-weight: 600; box-shadow: none; padding: 1.25rem; z-index: 1;}
         .gradient-accordion .accordion-button:not(.collapsed) { color: var(--primary-color); background: transparent; }
         .gradient-accordion .accordion-body { padding: 1.25rem; padding-top: 0; z-index: 1; position: relative;}
-    </style>
+
+</style>
 }
 
 <div class="row">
 
-    <!-- 1. Floating Separated Accordion -->
     <div class="col-12 mb-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0 fw-bold">1. Floating Cards Structure</h5>
@@ -140,7 +135,6 @@
         </div>
     </div>
 
-    <!-- 2. Minimalist Left Border -->
     <div class="col-md-6 mb-5">
         <div class="card h-100 shadow-sm border-0">
             <div class="card-header border-0 pb-0 bg-white pt-4 px-4 d-flex justify-content-between align-items-start">
@@ -195,7 +189,6 @@
         </div>
     </div>
 
-    <!-- 3. Modern Solid Style -->
     <div class="col-md-6 mb-5">
         <div class="card h-100 shadow-sm border-0">
             <div class="card-header border-0 pb-0 bg-white pt-4 px-4 d-flex justify-content-between align-items-start">
@@ -250,7 +243,6 @@
         </div>
     </div>
 
-    <!-- 4. Glassmorphism -->
     <div class="col-md-6 mb-5">
         <div class="card h-100 shadow-sm border-0 bg-transparent">
             <div class="card-body glass-bg border-0">
@@ -302,7 +294,6 @@
         </div>
     </div>
 
-    <!-- 5. Gradient Border UI -->
     <div class="col-md-6 mb-5">
         <div class="card h-100 shadow-sm border-0">
             <div class="card-header border-0 pb-0 bg-white pt-4 px-4 d-flex justify-content-between align-items-start">
@@ -339,7 +330,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="gradientHeadingThree">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gradientCollapseThree" aria-expanded="false" aria-controls="gradientCollapseThree">

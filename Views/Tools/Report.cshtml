@@ -4,7 +4,6 @@
 
 <link rel="stylesheet" href="/css/report.css" />
 
-<!-- DataTables CSS for QA Format -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 <div class="report-page">
@@ -23,9 +22,9 @@
     </div>
 
     <div class="report-preview-area">
-        <!-- The paper wrapper -->
+
         <div id="reportPaperWrapper">
-            <!-- Content will be injected here -->
+
         </div>
     </div>
 </div>
@@ -35,7 +34,7 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
-    let currentDesign = 'qa';
+let currentDesign = 'qa';
 
     function switchDesign(d, el) {
         currentDesign = d;
@@ -61,7 +60,7 @@
                 <p><strong>Nama Panelis:</strong> ______________________ &nbsp;&nbsp;&nbsp;&nbsp; <strong>Tanggal:</strong> ______________________</p>
                 <p><strong>Tujuan Uji:</strong> Terdapatnya tiga sampel produk. Dua sampel adalah sama dan satu sampel adalah berbeda. Silakan uji sampel secara berurutan dan lingkarilah kode sampel yang rasanya/profilnya berbeda.</p>
             </div>
-            
+
             <table id="qaDataTable" class="display table cell-border" style="width:100%; font-size: 11px;">
                 <thead>
                     <tr>
@@ -87,7 +86,7 @@
             </table>
 
             <div class="rpt-note" style="margin-top:20px;">* Harap kembalikan formulir kepada QC Dept setelah diisi.</div>
-            
+
             <div class="rpt-signatures-row" style="margin-top: 40px;">
                 <div class="rpt-sig-col"><div class="rpt-sig-line"></div><div class="rpt-sig-name">QC Inspector</div></div>
                 <div class="rpt-sig-col"><div class="rpt-sig-line"></div><div class="rpt-sig-name">QA Manager</div></div>
@@ -96,8 +95,7 @@
 
     function renderReport() {
         const wrapper = document.getElementById('reportPaperWrapper');
-        
-        // Single default format ("General" / qa format)
+
         let html = `
             <div class="report-paper design-qa" id="actualPaperContent">
                 <div class="qa-document-box">
@@ -124,7 +122,6 @@
 
         wrapper.innerHTML = html;
 
-        // Initialize DataTable since only General/QA mode remains
         if ($.fn.DataTable.isDataTable('#qaDataTable')) {
             $('#qaDataTable').DataTable().destroy();
         }
@@ -154,4 +151,5 @@
     }
 
     document.addEventListener('DOMContentLoaded', renderReport);
+
 </script>

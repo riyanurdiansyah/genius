@@ -1,7 +1,3 @@
-/* ═══════════════════════════════════════════════════════════
-   ERD (Entity Relationship Diagram) Module
-   ═══════════════════════════════════════════════════════════ */
-
 const ERD = {
     entities: [],
     relationships: [],
@@ -22,13 +18,10 @@ const ERD = {
             this.initialized = true;
         }
 
-        // Bersihkan canvas visually
         document.querySelectorAll('.erd-entity').forEach(n => n.remove());
 
-        // Re-render entitas di kanvas berdasarkan data di memori / Cloud
         this.entities.forEach(ent => this._renderEntity(ent));
 
-        // Gambar relasi garis-garis koneksi
         setTimeout(() => {
             this._drawLines();
             this._updateCanvasSize();
@@ -43,9 +36,8 @@ const ERD = {
             eName = prompt('Enter Table Name:', `Table_${this.nextId}`);
         }
 
-        if (!eName) return; // Cancelled
+        if (!eName) return; 
 
-        // Validate uniqueness
         const exists = this.entities.some(e => e.name.toLowerCase() === eName.toLowerCase());
         if (exists) {
             alert(`Table name "${eName}" already exists in this project!`);
@@ -184,7 +176,6 @@ const ERD = {
         this._updateCanvasSize();
     },
 
-    // Drag logic
     _onMouseDown(e, entity) {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'BUTTON') return;
         if (this.relMode) { this._endRelation(entity.id); return; }
@@ -200,11 +191,9 @@ const ERD = {
     _onMouseMove(e) {
         if (!this.dragging) return;
 
-        // Calculate delta from start of drag
         const dx = e.clientX - this.dragStartMouse.x;
         const dy = e.clientY - this.dragStartMouse.y;
 
-        // Update position based on initial position + movement
         this.dragging.x = Math.max(0, this.dragStartPos.x + dx);
         this.dragging.y = Math.max(0, this.dragStartPos.y + dy);
 
@@ -215,7 +204,7 @@ const ERD = {
         }
 
         this._drawLines();
-        // Periodic update of canvas size to avoid stuttering, or just call it
+
         this._updateCanvasSize();
     },
 
@@ -227,7 +216,6 @@ const ERD = {
         this.dragging = null;
     },
 
-    // Relationships
     _startRelation(entityId) {
         this.relMode = true;
         this.relSource = entityId;
@@ -265,10 +253,9 @@ const ERD = {
     _drawLines() {
         const svg = document.getElementById('erdSvg');
         if (!svg) return;
-        // Clear existing
+
         svg.innerHTML = '<defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#3b9d82"></polygon></marker></defs>';
 
-        // Remove old labels
         document.querySelectorAll('.erd-rel-label').forEach(l => l.remove());
         const canvas = document.getElementById('erdCanvas');
 
@@ -292,7 +279,6 @@ const ERD = {
             line.setAttribute('marker-end', 'url(#arrowhead)');
             svg.appendChild(line);
 
-            // Label
             const label = document.createElement('div');
             label.className = 'erd-rel-label';
             label.textContent = rel.label;
@@ -316,7 +302,6 @@ const ERD = {
             </div>
         `).join('');
 
-        // Relationships
         const relList = document.getElementById('erdRelList');
         if (relList) {
             if (this.relationships.length === 0) {
@@ -352,13 +337,11 @@ const ERD = {
     exportSQL() {
         let sql = '-- Generated SQL Schema\n\n';
 
-        // 1. Create Main Tables
         this.entities.forEach(ent => {
             sql += `CREATE TABLE ${ent.name} (\n`;
             let lines = [];
             let pks = [];
 
-            // Add fields
             ent.fields.forEach(f => {
                 let typeSql = f.type;
                 if (f.type === 'VARCHAR') typeSql = 'VARCHAR(255)';
@@ -366,7 +349,6 @@ const ERD = {
                 if (f.pk) pks.push(f.name);
             });
 
-            // Add implicit FK fields for 1:1 or 1:N if they don't exist in destination
             this.relationships.forEach(rel => {
                 if (rel.to === ent.id && (rel.label === '1 : N' || rel.label === '1 : 1')) {
                     const fromEnt = this.entities.find(e => e.id === rel.from);
@@ -387,7 +369,6 @@ const ERD = {
             sql += lines.join(',\n') + '\n);\n\n';
         });
 
-        // 2. Create Junction Tables for N:N
         this.relationships.forEach(rel => {
             if (rel.label === 'N : N') {
                 const fromEnt = this.entities.find(e => e.id === rel.from);
@@ -406,7 +387,6 @@ const ERD = {
             }
         });
 
-        // 3. Add Foreign Key Constraints (ALTER TABLE)
         if (this.relationships.length > 0) {
             sql += '-- Relationships (Constraints)\n';
             this.relationships.forEach(rel => {

@@ -1,7 +1,3 @@
-/* ═══════════════════════════════════════════════════════════
-   FSD (Functional Specification Document) Module - Drag & Drop Maker
-   ═══════════════════════════════════════════════════════════ */
-
 const FSD = {
     pages: [
         { id: 'fsd-page-cover', num: 'Cover', name: 'Document Title', html: '' },
@@ -33,7 +29,6 @@ const FSD = {
         const list = document.getElementById('fsdPagesList');
         if (!list) return;
 
-        // Auto-sort pages by outline numbers
         this.pages.sort((a, b) => {
             const numA = a.num ? a.num.toString().toLowerCase() : '';
             const numB = b.num ? b.num.toString().toLowerCase() : '';
@@ -61,7 +56,6 @@ const FSD = {
         const canvas = document.getElementById('fsdCanvas');
         if (id === this.currentPageId && canvas && canvas.innerHTML.trim() !== '' && !canvas.innerHTML.includes('<!-- FSD Content goes here -->')) return;
 
-        // Save current page html
         if (canvas) {
             const cd = this.pages.find(p => p.id === this.currentPageId);
             if (cd && !canvas.innerHTML.includes('<!-- FSD Content goes here -->')) cd.html = canvas.innerHTML;
@@ -75,7 +69,7 @@ const FSD = {
             if (nd && nd.num && nd.num.toString().toLowerCase() === 'cover') {
                 targetHtml = this.compTemplates['cover'];
             } else {
-                // Auto inject base FSD drop zone if blank
+
                 targetHtml = `<div class="fsd-header mb-4" style="border-bottom: 2px solid var(--primary); padding-bottom: 16px;">
                         <h2 style="font-weight: 800; color: #0f172a;"><span contenteditable="true">${nd?.num || '1'}</span>. <span contenteditable="true">${nd?.name || 'FSD Concept'}</span></h2>
                         <p style="color:var(--text-muted);margin:0;font-size:14px;font-weight:600;text-transform:uppercase;">Technical / Functional specification</p>
@@ -233,7 +227,6 @@ const FSD = {
             });
             div.querySelectorAll('[contenteditable]').forEach(e => e.removeAttribute('contenteditable'));
 
-            // Clear styles interfering with static preview
             div.style.pointerEvents = "none";
             container.innerHTML = div.innerHTML || '<div class="text-muted fst-italic">Empty Prototype Page</div>';
         } else {
@@ -300,7 +293,6 @@ const FSD = {
         const sourceCanvas = document.getElementById('flowchartCanvas');
         if (!sourceCanvas) return;
 
-        // Find boundaries with padding for transformations and labels
         if (Flowchart.nodes.length === 0) {
             btn.closest('.fsd-comp').querySelector('.fsd-flowchart-preview').innerHTML = '<i class="text-muted">No flowchart items found. Create diagram first.</i>';
             return;
@@ -308,9 +300,8 @@ const FSD = {
 
         let minX = 99999, minY = 99999, maxX = -99999, maxY = -99999;
 
-        // Accurate bounding box calculation
         Flowchart.nodes.forEach(n => {
-            // Account for decision rotation and potential text overflow
+
             const extra = (n.type === 'decision') ? 40 : 20;
             const left = n.x - extra;
             const right = n.x + n.width + extra;
@@ -323,7 +314,6 @@ const FSD = {
             if (bottom > maxY) maxY = bottom;
         });
 
-        // Extend for edge labels
         Flowchart.edges.forEach(e => {
             if (e.label) {
                 const from = Flowchart.nodes.find(n => n.id === e.from);
@@ -339,7 +329,6 @@ const FSD = {
             }
         });
 
-        // Use integers for viewBox to avoid rendering artifacts
         minX = Math.floor(minX);
         minY = Math.floor(minY);
         const outWidth = Math.ceil(maxX - minX);
@@ -352,7 +341,6 @@ const FSD = {
                 </marker>
             </defs>`;
 
-        // 1. Draw Edges
         Flowchart.edges.forEach(edge => {
             const fromNode = Flowchart.nodes.find(n => n.id === edge.from);
             const toNode = Flowchart.nodes.find(n => n.id === edge.to);
@@ -381,7 +369,6 @@ const FSD = {
             }
         });
 
-        // 2. Draw Nodes
         Flowchart.nodes.forEach(n => {
             const cx = (n.x + n.width / 2) - minX;
             const cy = (n.y + n.height / 2) - minY;
@@ -391,17 +378,16 @@ const FSD = {
             if (n.type === 'start') {
                 svgHtml += `<rect x="${nx}" y="${ny}" width="${n.width}" height="${n.height}" rx="30" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"></rect>`;
             } else if (n.type === 'decision') {
-                // Diamond shape logic
+
                 svgHtml += `<polygon points="${cx},${ny} ${nx + n.width},${cy} ${cx},${ny + n.height} ${nx},${cy}" fill="#fffbeb" stroke="#fbbf24" stroke-width="2"></polygon>`;
             } else if (n.type === 'data') {
-                // Parallelogram logic
+
                 const offset = 20;
                 svgHtml += `<polygon points="${nx + offset},${ny} ${nx + n.width},${ny} ${nx + n.width - offset},${ny + n.height} ${nx},${ny + n.height}" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"></polygon>`;
             } else {
                 svgHtml += `<rect x="${nx}" y="${ny}" width="${n.width}" height="${n.height}" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2"></rect>`;
             }
 
-            // Allow line breaks in SVG text by splitting \n
             const lines = (n.text || '').split(/\r?\n/);
             let startY = cy + 4 - ((lines.length - 1) * 6);
 
@@ -415,7 +401,7 @@ const FSD = {
         const container = btn.closest('.fsd-comp').querySelector('.fsd-flowchart-preview');
         container.innerHTML = svgHtml;
         container.style.height = 'auto';
-        container.style.overflow = 'visible'; // Ensure no container clipping
+        container.style.overflow = 'visible'; 
 
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-check"></i> Refreshed';
@@ -431,17 +417,14 @@ const FSD = {
     compactDiagram() {
         if (!Flowchart.nodes || Flowchart.nodes.length === 0) return;
 
-        // Find current top-left
         let minX = Math.min(...Flowchart.nodes.map(n => n.x));
         let minY = Math.min(...Flowchart.nodes.map(n => n.y));
 
-        // Shift all nodes to start at (50, 50)
         Flowchart.nodes.forEach(n => {
             n.x = n.x - minX + 50;
             n.y = n.y - minY + 50;
         });
 
-        // Check if any node is too far right for A4 (794px)
         const canvasWidth = 794;
         const rightmost = Math.max(...Flowchart.nodes.map(n => n.x + n.width));
 
@@ -449,7 +432,7 @@ const FSD = {
             const scale = (canvasWidth - 100) / (rightmost - 50);
             Flowchart.nodes.forEach(n => {
                 n.x = 50 + (n.x - 50) * scale;
-                // n.y = 50 + (n.y - 50) * scale; // Keep vertical as is or scale too? let's just scale X to fit
+
             });
         }
 
@@ -471,7 +454,6 @@ const FSD = {
         const summary = prompt("What changed in this version?", "Minor updates");
         if (summary === null) return;
 
-        // Capture current state before taking snapshot
         const canvas = document.getElementById('fsdCanvas');
         if (canvas) {
             const cd = this.pages.find(p => p.id === this.currentPageId);
@@ -483,20 +465,18 @@ const FSD = {
             timestamp: new Date().toLocaleString(),
             author: author,
             summary: summary,
-            pagesSnapshot: JSON.parse(JSON.stringify(this.pages)) // Deep clone
+            pagesSnapshot: JSON.parse(JSON.stringify(this.pages)) 
         };
 
         if (!currentProject.fsdVersions) currentProject.fsdVersions = [];
-        currentProject.fsdVersions.unshift(versionData); // Add to beginning
+        currentProject.fsdVersions.unshift(versionData); 
 
-        // Keep last 20 versions
         if (currentProject.fsdVersions.length > 20) {
             currentProject.fsdVersions = currentProject.fsdVersions.slice(0, 20);
         }
 
         this.refreshHistory();
-        
-        // Trigger global save to Firestore
+
         if (typeof saveAllData === 'function') {
             saveAllData();
             alert("Version saved and synced to Cloud successfully!");
@@ -519,7 +499,7 @@ const FSD = {
         }
 
         list.innerHTML = currentProject.fsdVersions.map(v => {
-            // Robust timestamp formatting
+
             const parts = v.timestamp ? v.timestamp.split(',') : ['?', '1.0'];
             const dateStr = parts[0] || 'Unknown';
             const timeStr = parts[1] ? parts[1].trim() : (v.timestamp ? v.timestamp : '1.0');
@@ -559,13 +539,12 @@ const FSD = {
 
         const modalEl = document.getElementById('compareFsdModal');
         const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-        
+
         const listContainer = document.getElementById('comparePageList');
         const oldCanvas = document.getElementById('compareOldCanvas');
         const newCanvas = document.getElementById('compareNewCanvas');
         const restoreBtn = document.getElementById('restoreVersionBtn');
-        
-        // Sync current canvas before comparison
+
         const activeCanvas = document.getElementById('fsdCanvas');
         if (activeCanvas) {
             const cd = this.pages.find(p => p.id === this.currentPageId);
@@ -575,7 +554,6 @@ const FSD = {
         const oldPages = version.pagesSnapshot;
         const newPages = this.pages;
 
-        // Build a merged set of page IDs
         const allPageIds = new Set([
             ...oldPages.map(p => p.id),
             ...newPages.map(p => p.id)
@@ -587,7 +565,7 @@ const FSD = {
         [...allPageIds].forEach(pid => {
             const oldP = oldPages.find(p => p.id === pid);
             const newP = newPages.find(p => p.id === pid);
-            
+
             let status = 'none';
             let label = '';
             let colorClass = '';
@@ -623,9 +601,8 @@ const FSD = {
         });
 
         listContainer.innerHTML = listHtml;
-        window._compareData = pagesData; // Cache for diff rendering
-        
-        // Auto select first modified or first available page
+        window._compareData = pagesData; 
+
         const first = pagesData.find(p => p.status !== 'none') || pagesData[0];
         if (first) {
             setTimeout(() => FSD.renderCompareDiff(first.id, document.getElementById(`compare-item-${first.id}`)), 200);
@@ -662,7 +639,6 @@ const FSD = {
         oldCanvas.innerHTML = cleanHtml(data.oldP?.html);
         newCanvas.innerHTML = cleanHtml(data.newP?.html);
 
-        // Styling for easier diff visibility
         if (data.status === 'added') {
             newCanvas.classList.add('diff-added');
             oldCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');

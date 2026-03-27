@@ -26,7 +26,6 @@ public class FileManagerController : Controller
         var rootPath = _env.ContentRootPath;
         var targetPath = string.IsNullOrEmpty(dir) ? rootPath : Path.Combine(rootPath, dir);
 
-        // Security check to ensure targetPath is within rootPath
         if (!Path.GetFullPath(targetPath).StartsWith(Path.GetFullPath(rootPath)))
         {
             return BadRequest("Invalid directory path.");
@@ -69,7 +68,6 @@ public class FileManagerController : Controller
         var rootPath = _env.ContentRootPath;
         var filePath = Path.Combine(rootPath, path);
 
-        // Security check
         if (!Path.GetFullPath(filePath).StartsWith(Path.GetFullPath(rootPath)))
         {
             return BadRequest("Invalid file path.");
@@ -92,7 +90,6 @@ public class FileManagerController : Controller
         var rootPath = _env.ContentRootPath;
         var filePath = Path.Combine(rootPath, path);
 
-        // Security check
         if (!Path.GetFullPath(filePath).StartsWith(Path.GetFullPath(rootPath)))
         {
             return BadRequest(new { success = false, message = "Invalid file path." });
@@ -118,7 +115,7 @@ public class FileManagerController : Controller
     {
         var root = Path.GetFullPath(rootPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
         var full = Path.GetFullPath(fullPath);
-        
+
         if (full.StartsWith(root))
         {
             var relPath = full.Substring(root.Length);

@@ -1,12 +1,11 @@
-<!-- Views/Shared/_Sidebar.cshtml -->
 <div class="sidebar-wrapper" id="mainSidebar">
     <script>
-        if (localStorage.getItem('sidebar-collapsed') === 'true' && window.innerWidth > 991) {
+if (localStorage.getItem('sidebar-collapsed') === 'true' && window.innerWidth > 991) {
             document.getElementById('mainSidebar').classList.add('collapsed');
         }
-    </script>
 
-    <!-- Logo -->
+</script>
+
     <div class="logo-area">
         <div class="brand-text">
             <span class="brand-name">Kuda</span>
@@ -17,7 +16,6 @@
     <aside class="sidebar">
         <ul class="sidebar-menu">
 
-            <!-- Main -->
             <li class="menu-section-label"><span>Main</span></li>
             <li>
                 <a href="#" class="sidebar-toggle-menu">
@@ -38,7 +36,6 @@
                 </a>
             </li>
 
-            <!-- Applications -->
             <li class="menu-section-label"><span>Applications</span></li>
             <li>
                 <a href="#" class="sidebar-toggle-menu">
@@ -122,7 +119,6 @@
                 </ul>
             </li>
 
-            <!-- Forms & Tables -->
             <li class="menu-section-label"><span>Forms & Tables</span></li>
             <li>
                 <a href="#" class="sidebar-toggle-menu">
@@ -159,8 +155,7 @@
                     <span class="menu-label">DataTables</span>
                 </a>
             </li>
-            
-            <!-- Pro Templates -->
+
             <li class="menu-section-label"><span>Pro Templates</span></li>
             <li>
                 <a href="/FrontEnd/InvoiceTemplate">
@@ -181,7 +176,6 @@
                 </a>
             </li>
 
-            <!-- Legal & Support -->
             <li class="menu-section-label"><span>Legal & Support</span></li>
             <li>
                 <a href="/FrontEnd/TermsAndConditions">

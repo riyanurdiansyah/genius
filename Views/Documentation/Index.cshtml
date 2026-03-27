@@ -2,7 +2,7 @@
 
 @section Styles {
     <style>
-        .doc-section {
+.doc-section {
             background: #fff;
             border-radius: var(--radius-md);
             padding: 2.5rem;
@@ -37,11 +37,11 @@
         }
         .code-block.html-block { color: #0ea5e9; }
         .code-block.css-block { color: #f59e0b; }
-        
+
         .lib-table th { background: #f8fafc; color: var(--text-gray); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
         .lib-table td { vertical-align: middle; }
         .lib-badge { font-family: monospace; font-size: 0.85rem; }
-        
+
         .step-card {
             border-left: 4px solid var(--primary);
             background: #f8fafc;
@@ -59,7 +59,7 @@
             font-weight: bold;
             margin-right: 10px;
         }
-        
+
         [data-theme="dark"] .code-block {
             background: #0f172a;
             border-color: #334155;
@@ -71,7 +71,8 @@
         [data-theme="dark"] .lib-table th {
             background: #0f172a;
         }
-    </style>
+
+</style>
 }
 
 <div class="row">
@@ -80,12 +81,11 @@
         <p class="text-muted mb-4 text-lg">Panduan lengkap mengenai pustaka, struktur, dan langkah integrasi untuk Kuda Admin Template.</p>
     </div>
 
-    <!-- 1. Libraries & Dependencies -->
     <div class="col-12">
         <div class="doc-section">
             <h3 class="doc-title"><i class="fas fa-cubes"></i> Pustaka (Library) & Dependencies</h3>
             <p class="text-muted mb-4">Template ini dibangun menggunakan teknologi web modern dan stabil. Berikut adalah daftar library utama yang terintegrasi di dalamnya.</p>
-            
+
             <div class="table-responsive">
                 <table class="table table-hover lib-table mb-0">
                     <thead>
@@ -139,7 +139,6 @@
         </div>
     </div>
 
-    <!-- 2. Folder Structure & Assets -->
     <div class="col-12">
         <div class="doc-section">
             <h3 class="doc-title"><i class="fas fa-folder-tree"></i> Arsitektur CSS & Aset Lokal</h3>
@@ -176,11 +175,10 @@
         </div>
     </div>
 
-    <!-- 3. Implementation Steps -->
     <div class="col-12">
         <div class="doc-section">
             <h3 class="doc-title"><i class="fas fa-code-branch"></i> Cara Menggunakan (Panduan Pengembang)</h3>
-            
+
             <ul class="nav nav-pills mb-4 mt-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active fw-bold px-4 rounded-pill" id="pills-new-tab" data-bs-toggle="pill" data-bs-target="#pills-new" type="button" role="tab" aria-controls="pills-new" aria-selected="true">Proyek ASP.NET Baru</button>
@@ -192,9 +190,9 @@
                     <button class="nav-link fw-bold px-4 rounded-pill bg-primary bg-opacity-10 text-primary" id="pills-cdn-tab" data-bs-toggle="pill" data-bs-target="#pills-cdn" type="button" role="tab" aria-controls="pills-cdn" aria-selected="false"><i class="fas fa-server me-1"></i> Gunakan via CDN (External)</button>
                 </li>
             </ul>
-            
+
             <div class="tab-content" id="pills-tabContent">
-                <!-- Tab: New Project -->
+
                 <div class="tab-pane fade show active" id="pills-new" role="tabpanel" aria-labelledby="pills-new-tab">
                     <div class="step-card">
                         <h5 class="fw-bold mb-3"><span class="step-number">1</span> Kopi Struktur Views/Shared</h5>
@@ -205,7 +203,7 @@
                             <li><code class="text-dark">_Header.cshtml</code> (Komponen menu atas / topbar)</li>
                         </ul>
                     </div>
-                    
+
                     <div class="step-card">
                         <h5 class="fw-bold mb-3"><span class="step-number">2</span> Kopi Aset ke wwwroot</h5>
                         <p class="text-muted mb-2">Salin file pemetaan CSS dan berkas Font luring ke <code>wwwroot/</code>:</p>
@@ -226,10 +224,9 @@
                     </div>
                 </div>
 
-                <!-- Tab: Existing Project -->
                 <div class="tab-pane fade" id="pills-existing" role="tabpanel" aria-labelledby="pills-existing-tab">
                     <p class="text-muted mb-4">Apabila Anda sudah merajut proyek ASP.NET dan sekadar ingin "menyuntikkan" tema tanpa membongkar logika backend berjalan, ini caranya:</p>
-                    
+
                     <div class="step-card">
                         <h5 class="fw-bold mb-3"><span class="step-number">A</span> Suntik Tag CSS di Head</h5>
                         <p class="text-muted mb-2">Buka file <code>Views/Shared/_Layout.cshtml</code> bawaan Anda. Timpa style head Anda dengan referensi di bawah ini:</p>
@@ -250,14 +247,14 @@
                         <div class="code-block html-block">
 &lt;div class="wrapper"&gt;
     &lt;div class="dashboard-container"&gt;
-        
+
         &lt;!-- Suntik Komponen Sidebar --&gt;
         &lt;partial name="_Sidebar" /&gt;
-        
+
         &lt;div class="main-content"&gt;
             &lt;!-- Suntik Komponen Topbar --&gt;
             &lt;partial name="_Header" /&gt;
-            
+
             &lt;main class="pb-3" style="flex:1;"&gt;
                 @@RenderBody()
             &lt;/main&gt;
@@ -279,7 +276,6 @@
                     </div>
                 </div>
 
-                <!-- Tab: Use as CDN -->
                 <div class="tab-pane fade" id="pills-cdn" role="tabpanel" aria-labelledby="pills-cdn-tab">
                     <div class="alert alert-info border-0 shadow-sm align-items-center d-flex mb-4">
                         <i class="fas fa-server fa-2x pt-1 me-3 opacity-75 align-self-start"></i>

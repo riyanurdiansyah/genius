@@ -4,9 +4,8 @@
 
 @section Styles {
     <style>
-        .upload-card { margin-bottom: 25px; }
+.upload-card { margin-bottom: 25px; }
 
-        /* Dropzone Styling */
         .dropzone-area {
             border: 2px dashed #cbd5e1;
             border-radius: var(--radius-lg);
@@ -32,8 +31,7 @@
         .dropzone-area:hover .dropzone-icon {
             transform: translateY(-5px);
         }
-        
-        /* Avatar Uploader mockup */
+
         .avatar-upload {
             position: relative;
             max-width: 150px;
@@ -81,7 +79,6 @@
             border-color: var(--primary-color);
         }
 
-        /* File Item List UI */
         .file-item {
             display: flex;
             align-items: center;
@@ -118,7 +115,6 @@
         }
         .file-item-actions { margin-left: 10px; }
 
-        /* Datatable Upload Styling */
         .preview-table-container {
             max-height: 400px;
             overflow: auto;
@@ -129,14 +125,15 @@
         #importTable tbody tr.selected {
             background-color: rgba(13, 110, 253, 0.1) !important;
         }
-    </style>
-    <!-- DataTables CSS -->
+
+</style>
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.bootstrap5.min.css" />
 }
 
 <div class="row">
-    <!-- 1. Avatar Uploader -->
+
     <div class="col-lg-4 mb-4">
         <div class="card upload-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -158,7 +155,6 @@
         </div>
     </div>
 
-    <!-- 2. Dropzone UI -->
     <div class="col-lg-8 mb-4">
         <div class="card upload-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -173,11 +169,10 @@
                     <button class="btn btn-primary px-4"><i class="fa-solid fa-folder-open me-2"></i> Browse Files</button>
                     <input type="file" id="hiddenFile" style="display: none;" multiple>
                 </div>
-                
-                <!-- Mockup List of Uploaded Files -->
+
                 <div class="mt-4">
                     <h6 class="text-muted text-uppercase fw-bold" style="font-size:0.75rem;">Uploading Files (Mockup)</h6>
-                    
+
                     <div class="file-item">
                         <div class="file-item-icon">
                             <i class="fa-solid fa-file-pdf"></i>
@@ -193,7 +188,7 @@
                             <button class="btn btn-sm btn-text text-danger"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
-                    
+
                     <div class="file-item">
                         <div class="file-item-icon" style="background: rgba(234, 179, 8, 0.1); color: #eab308;">
                             <i class="fa-solid fa-file-image"></i>
@@ -217,9 +212,8 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Interaction drag mockup
+document.addEventListener('DOMContentLoaded', function() {
+
             const dZone = document.querySelector('.dropzone-area');
             if(dZone) {
                 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -232,12 +226,11 @@
                 ['dragleave', 'drop'].forEach(eventName => {
                     dZone.addEventListener(eventName, () => dZone.classList.remove('dragover'), false);
                 });
-            // Upload to Datatable Logic
+
             const importFileInput = document.getElementById('importFile');
             let mainDataTable = null;
             let importDataTable = null;
-            
-            // Initialize main table
+
             mainDataTable = $('#mainTable').DataTable({
                 responsive: true,
                 pageLength: 5,
@@ -253,9 +246,9 @@
                 $('#previewEmptyState').hide();
                 $('#previewTableContainer').show();
                 $('#btnImportSelected').removeClass('d-none');
-                
+
                 const isCsv = file.name.toLowerCase().endsWith('.csv');
-                
+
                 if (isCsv) {
                     processCSV(file);
                 } else {
@@ -264,15 +257,14 @@
             });
 
             function renderImportTable(data) {
-                // Destroy if already exists
+
                 if (importDataTable !== null) {
                     importDataTable.destroy();
                     $('#importTable').empty();
                 }
 
-                // Make sure we have enough columns to map
                 if(data.length === 0) return;
-                
+
                 const headers = data[0];
                 let thead = '<thead><tr><th><input type="checkbox" id="selectAll"></th>';
                 headers.forEach((h, i) => {
@@ -283,11 +275,11 @@
                 const rows = data.slice(1);
                 let tbody = '';
                 rows.forEach((row, rowIndex) => {
-                    // skip fully empty rows
+
                     if(!row || row.length === 0 || row.every(val => val === undefined || val === null || val === '')) return;
 
-                    tbody += `<tr><td></td>`; // Checkbox col
-                    // Pad or truncate row to exactly match headers length to prevent DataTables crash
+                    tbody += `<tr><td></td>`; 
+
                     for (let i = 0; i < headers.length; i++) {
                         tbody += `<td>${row[i] !== undefined && row[i] !== null ? row[i] : ''}</td>`;
                     }
@@ -313,13 +305,11 @@
                     scrollCollapse: true
                 });
 
-                // Update selected count dynamically
                 importDataTable.on('select deselect', function () {
                     const count = importDataTable.rows({ selected: true }).count();
                     $('#selectedCount').text(count);
                 });
 
-                // Select All Checkbox
                 $('#selectAll').on('click', function() {
                     if (this.checked) {
                         importDataTable.rows().select();
@@ -348,8 +338,7 @@
                         const workbook = XLSX.read(dataUrl, {type: 'array'});
                         const firstSheetName = workbook.SheetNames[0];
                         const worksheet = workbook.Sheets[firstSheetName];
-                        
-                        // Parse explicitly as JSON array of arrays
+
                         const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
                         renderImportTable(data);
                     } catch(err) {
@@ -360,23 +349,19 @@
                 reader.readAsArrayBuffer(file);
             }
 
-            // Handle Import from Preview to Main DB
             $('#btnImportSelected').click(function() {
                 if(!importDataTable) return;
-                
+
                 const selectedData = importDataTable.rows({ selected: true }).data();
-                
+
                 if (selectedData.length === 0) {
                     alert("Please select at least one row to import.");
                     return;
                 }
 
-                // Add to main table (assuming the Excel columns map linearly to the 5 columns for demo purposes)
                 for(let i = 0; i < selectedData.length; i++) {
                     const rowData = selectedData[i];
-                    
-                    // rowData[0] is checkbox, start from index 1.
-                    // Fallback to "Unknown" if column is missing.
+
                     const fn = rowData[1] || "Unknown";
                     const ln = rowData[2] || "Unknown";
                     const em = rowData[3] || "Unknown";
@@ -386,20 +371,19 @@
                     mainDataTable.row.add([fn, ln, em, ro, st]).draw(false);
                 }
 
-                // Visual confirmation
                 const btn = $(this);
                 const originalHtml = btn.html();
                 btn.html('<i class="fas fa-check"></i> Imported!').removeClass('btn-success').addClass('btn-primary');
-                
+
                 setTimeout(() => {
                     btn.html(originalHtml).removeClass('btn-primary').addClass('btn-success');
                     importDataTable.rows().deselect();
                 }, 2000);
             });
         });
-    </script>
-    
-    <!-- DataTables & SheetJS Scripts -->
+
+</script>
+
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>

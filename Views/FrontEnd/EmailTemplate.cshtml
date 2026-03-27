@@ -3,10 +3,7 @@
 }
 
 <style>
-    /* ═══════════════════════════════════════════════
-       MODERN EMAIL TEMPLATE GALLERY — Ultra Dynamic
-    ═══════════════════════════════════════════════ */
-    :root {
+:root {
         --e-primary: #3b9d82;
         --e-bg: #f8fafc;
         --e-card: #ffffff;
@@ -60,7 +57,6 @@
         gap: 30px;
     }
 
-    /* Email Body Mockup */
     .email-frame {
         background: #f1f5f9;
         padding: 60px 20px;
@@ -151,7 +147,6 @@
         color: #64748b;
     }
 
-    /* Control Panel */
     .email-controls {
         background: var(--e-card);
         border-radius: 20px;
@@ -176,7 +171,6 @@
         background: #0f172a; border-color: #334155; color: #fff;
     }
 
-    /* Variation Specific Styles */
     .invoice-info-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -208,6 +202,7 @@
         .email-controls { position: static; }
         .variant-pills { width: 100%; justify-content: center; }
     }
+
 </style>
 
 <div id="page-wrapper">
@@ -219,7 +214,6 @@
         </div>
     </div>
 
-    <!-- Variants Switcher -->
     <div class="variant-pills">
         <div class="pill-item active" onclick="switchVariant('verify')">Verification</div>
         <div class="pill-item" onclick="switchVariant('invoice')">Invoice Billing</div>
@@ -229,7 +223,7 @@
     </div>
 
     <div class="email-preview-wrapper">
-        <!-- Email Preview -->
+
         <div class="email-frame">
             <div class="email-content-card" id="emailDraft">
                 <div class="email-header" id="emailHeader">
@@ -241,7 +235,7 @@
                 <div class="email-body">
                     <h1 id="view-title">Verify Your Protocol</h1>
                     <div id="dynamic-content-wrap">
-                        <!-- Dynamic content injected here -->
+
                         <p id="view-desc">Your access token has been generated. Use the code below to finalize your authentication process within the next 10 minutes.</p>
                         <div class="code-block" id="view-code">829 415</div>
                     </div>
@@ -261,12 +255,11 @@
             </div>
         </div>
 
-        <!-- Controls -->
         <div class="email-controls">
             <h6 class="fw-bold mb-4 d-flex align-items-center">
                 <i class="fas fa-sliders h-5 text-primary me-2"></i> LIVE CUSTOMIZER
             </h6>
-            
+
             <div class="control-group">
                 <label>Headline</label>
                 <input type="text" id="input-title" value="Verify Your Protocol" oninput="liveUpdate()">
@@ -300,7 +293,7 @@
 </div>
 
 <script>
-    const variants = {
+const variants = {
         verify: {
             title: "Verify Your Protocol",
             desc: "Your access token has been generated. Use the code below to finalize your authentication process within the next 10 minutes.",
@@ -366,17 +359,14 @@
     function switchVariant(v) {
         currentVariant = v;
         const data = variants[v];
-        
-        // Update Pills
+
         document.querySelectorAll('.pill-item').forEach(p => p.classList.remove('active'));
         event.target.classList.add('active');
 
-        // Update Inputs
         document.getElementById('input-title').value = data.title;
         document.getElementById('input-desc').value = data.desc;
         document.getElementById('input-btn').value = data.btn;
 
-        // Update Preview
         renderPreview();
     }
 
@@ -387,8 +377,7 @@
 
         document.getElementById('view-title').innerText = title;
         document.getElementById('view-btn').innerText = btn;
-        
-        // Re-render HTML part to include updated description inside variant logic
+
         const htmlContent = variants[currentVariant].html(desc);
         document.getElementById('dynamic-content-wrap').innerHTML = htmlContent;
     }
@@ -397,7 +386,7 @@
         const data = variants[currentVariant];
         document.getElementById('view-title').innerText = data.title;
         document.getElementById('headerIcon').innerHTML = `<i class="${data.icon}"></i>`;
-        
+
         const htmlContent = data.html(data.desc);
         document.getElementById('dynamic-content-wrap').innerHTML = htmlContent;
         document.getElementById('view-btn').innerText = data.btn;
@@ -407,8 +396,7 @@
         document.documentElement.style.setProperty('--e-primary', color);
         document.getElementById('emailHeader').style.backgroundColor = color;
         document.getElementById('view-btn').style.backgroundColor = color;
-        
-        // Update Dots UI
+
         document.querySelectorAll('.color-dot').forEach(d => {
             d.classList.remove('active');
             d.style.border = 'none';
@@ -437,8 +425,9 @@
             }
         });
     }
+
 </script>
 
 </div>
-<!-- Unified Copy HTML Button -->
+
 <button class="btn btn-sm btn-outline-primary copy-btn shadow" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: white; border-radius: 6px;" data-target="page-wrapper"><i class="fa-regular fa-copy"></i> Copy HTML</button>

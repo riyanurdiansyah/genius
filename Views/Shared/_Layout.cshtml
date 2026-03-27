@@ -1,14 +1,11 @@
-<!-- Views/Shared/_Layout.cshtml -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <script>
-        // Check local storage for dark mode before rendering anything to prevent flash
-        if (localStorage.getItem('app-theme') === 'dark') {
+if (localStorage.getItem('app-theme') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
         }
-        
-        // Dynamically load selected color theme if it exists
+
         var savedColorTheme = localStorage.getItem('app-color-theme');
         if (savedColorTheme && savedColorTheme !== 'default') {
             var themeLink = document.createElement('link');
@@ -17,41 +14,36 @@
             themeLink.href = '/css/themes/' + savedColorTheme + '.css';
             document.head.appendChild(themeLink);
         }
-    </script>
+
+</script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Kuda Admin Dashboard</title>
-    
-    
-    <!-- FontAwesome Icons -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- DataTables CSS -->
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    
-    <!-- Bootstrap CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    
-    <!-- Core Theme and Component Styles -->
+
     <link rel="stylesheet" href="~/css/theme.css" />
     <link rel="stylesheet" href="~/css/components.css" />
-    
+
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <!-- Mobile Overlay -->
+
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="wrapper">
         <div class="dashboard-container">
-            <!-- Sidebar Navigation -->
+
             <partial name="_Sidebar" />
-            
+
             <div class="main-content">
-                <!-- Top Header -->
+
                 <partial name="_Header" />
-                
-                <!-- Page Content -->
+
                 <main class="pb-3" style="flex:1;">
                     <div class="page-header-bar mb-4">
                         <div class="page-header-left">
@@ -60,20 +52,19 @@
                         <div class="page-header-right">
                             <nav aria-label="breadcrumb" id="autoBreadcrumb">
                                 <ol class="breadcrumb-kuda mb-0">
-                                    <!-- auto-filled by JS -->
+
                                 </ol>
                             </nav>
                             @await RenderSectionAsync("PageActions", required: false)
                         </div>
                     </div>
-                    
+
                     @RenderBody()
                 </main>
             </div>
         </div>
     </div>
 
-    <!-- Global Copy HTML Modal -->
     <div class="modal fade" id="globalCopyHtmlModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 800px;">
             <div class="modal-content">
@@ -93,60 +84,54 @@
         </div>
     </div>
 
-    <!-- Core Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    
+
     <script>
-        // Sidebar Toggle Script
-        document.getElementById('toggleSidebar').addEventListener('click', function() {
+document.getElementById('toggleSidebar').addEventListener('click', function() {
             var wrapper = document.querySelector('.sidebar-wrapper');
             if (window.innerWidth <= 991) {
-                // Mobile open sidebar overlay
+
                 console.log('Mobile toggle sidebar');
                 wrapper.classList.toggle('mobile-open');
                 document.getElementById('sidebarOverlay').classList.toggle('show');
             } else {
-                // Desktop toggle collapse
+
                 console.log('Desktop toggle collapse');
                 var isCollapsed = wrapper.classList.toggle('collapsed');
                 localStorage.setItem('sidebar-collapsed', isCollapsed);
             }
         });
 
-        // Overlay Click Script (Mobile)
         document.getElementById('sidebarOverlay').addEventListener('click', function() {
             document.querySelector('.sidebar-wrapper').classList.remove('mobile-open');
             this.classList.remove('show');
         });
 
-        // Auto-assign data-title for CSS tooltips
         document.querySelectorAll('.sidebar-menu > li > a').forEach(link => {
             let text = link.innerText.trim();
             if(text) link.setAttribute('data-title', text);
         });
 
-        // Submenu Toggle Script
         document.querySelectorAll('.sidebar-toggle-menu').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
                 var wrapper = document.querySelector('.sidebar-wrapper');
-                
-                // If collapsed on desktop, don't execute JS toggle (css hover handles it)
+
                 if (wrapper.classList.contains('collapsed') && window.innerWidth > 991) {
                     return;
                 }
 
                 const parentLi = this.parentElement;
                 const submenu = parentLi.querySelector('.sidebar-submenu');
-                
+
                 if (parentLi.classList.contains('open')) {
                     $(submenu).slideUp(200, function() {
                         parentLi.classList.remove('open');
                     });
                 } else {
-                    // Close other open submenus first (Accordion effect)
+
                     const AllOpenParents = document.querySelectorAll('.sidebar-menu > li.open');
                     AllOpenParents.forEach(openParent => {
                         if(openParent !== parentLi) {
@@ -163,17 +148,16 @@
             });
         });
 
-        // Active State logic (Auto-detect from URL)
         document.addEventListener("DOMContentLoaded", function () {
             var currentPath = window.location.pathname;
             if (currentPath === '/' || currentPath.toLowerCase() === '/home/index') {
                 currentPath = '/Home/Index';
             }
-            
+
             document.querySelectorAll('.sidebar-menu a').forEach(function(link) {
                 var href = link.getAttribute('href');
                 var activePrefix = link.getAttribute('data-active-prefix');
-                
+
                 var isActive = false;
                 if (href && href !== '#' && currentPath.toLowerCase() === href.toLowerCase()) {
                     isActive = true;
@@ -187,30 +171,29 @@
                     var isCollapsed = wrapper.classList.contains('collapsed') && window.innerWidth > 991;
 
                     var parentSubmenu = link.closest('.sidebar-submenu');
-                    
+
                     if (parentSubmenu) {
                         var menuToggleLi = parentSubmenu.parentElement;
-                        
+
                         if (isCollapsed) {
-                            // If collapsed, make the parent toggle the active one visually
+
                             menuToggleLi.classList.add('active');
-                            // But also keep the child active internally 
+
                             parentLi.classList.add('active');
                         } else {
-                            // If expanded, open the parent menu and assign active to child
+
                             parentLi.classList.add('active');
                             menuToggleLi.classList.add('open');
                             parentSubmenu.style.display = 'block';
                         }
                     } else {
-                        // Regular menu item
+
                         parentLi.classList.add('active');
                     }
                 }
             });
         });
-        
-        // Modals Script
+
         function openModal(id) {
             var modalEl = document.getElementById(id);
             var myModal = bootstrap.Modal.getOrCreateInstance(modalEl);
@@ -222,7 +205,6 @@
             if (myModal) myModal.hide();
         }
 
-        // Floating Menu Logic for Collapsed Sidebar
         let floatingMenu = null;
         let floatingMenuTimeout = null;
 
@@ -243,16 +225,16 @@
 
                 var submenu = this.querySelector('.sidebar-submenu');
                 var rect = this.getBoundingClientRect();
-                
+
                 floatingMenu = document.createElement('div');
                 floatingMenu.className = 'floating-sidebar-menu';
                 floatingMenu.style.position = 'fixed';
                 floatingMenu.style.top = rect.top + 'px';
-                // Adjust position and add a transparent "bridge" to prevent hover loss
+
                 floatingMenu.style.left = rect.right + 'px';
                 floatingMenu.style.paddingLeft = '10px'; 
                 floatingMenu.style.zIndex = '9999';
-                
+
                 if (submenu) {
                     var clone = submenu.cloneNode(true);
                     clone.style.display = 'block';
@@ -272,7 +254,7 @@
                 floatingMenu.addEventListener('mouseenter', function() {
                     clearTimeout(floatingMenuTimeout);
                 });
-                
+
                 floatingMenu.addEventListener('mouseleave', function() {
                     floatingMenuTimeout = setTimeout(() => {
                         hideFloatingMenu();
@@ -286,8 +268,7 @@
                 }, 250);
             });
         });
-        
-        // Hide floating menu on scroll or outside click
+
         document.querySelector('.sidebar-menu').addEventListener('scroll', hideFloatingMenu);
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.sidebar-wrapper') && !e.target.closest('.floating-sidebar-menu')) {
@@ -295,22 +276,20 @@
             }
         });
 
-        // Global Copy HTML logic
         document.addEventListener('DOMContentLoaded', function() {
-            // Standardize button text on load and bind event
+
             document.querySelectorAll('.copy-btn').forEach(btn => {
                 btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy HTML';
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // Fix: Some inner script blocks in individual files might also be running if not removed yet, 
-                    // but we will remove them.
+
                     const targetId = this.getAttribute('data-target');
                     if(targetId) {
                         const targetEl = document.getElementById(targetId);
                         if(targetEl) {
-                            // Beautify basic indentation visually (very simple)
+
                             let htmlContent = targetEl.outerHTML;
-                            // Optionally trim wrapper container if it's card-body
+
                             document.getElementById('globalCopyHtmlTextarea').value = htmlContent;
                             openModal('globalCopyHtmlModal');
                         }
@@ -335,13 +314,13 @@
                 });
             }
         });
-    </script>
-    
+
+</script>
+
     <script src="~/js/app-system.js"></script>
 
     <script>
-        // ── Auto Breadcrumb Builder ──────────────────────────────────────────────
-        (function buildBreadcrumb() {
+(function buildBreadcrumb() {
             const labelMap = {
                 'home': 'Home', 'index': 'Dashboard', 'manufacturing': 'Manufacturing',
                 'commercial': 'Commercial', 'documentation': 'Documentation',
@@ -380,13 +359,11 @@
 
             const parts = window.location.pathname.split('/').filter(Boolean);
 
-            // Home crumb (always first)
             const homeLi = document.createElement('li');
             homeLi.className = 'bc-item';
             homeLi.innerHTML = '<a href="/Home/Index" class="bc-link"><i class="fas fa-house"></i></a>';
             ol.appendChild(homeLi);
 
-            // Segment crumbs
             parts.forEach(function(seg, idx) {
                 var key = seg.toLowerCase();
                 var label = labelMap[key] || seg.replace(/([A-Z])/g, ' $1').trim();
@@ -401,7 +378,8 @@
                 ol.appendChild(li);
             });
         })();
-    </script>
+
+</script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

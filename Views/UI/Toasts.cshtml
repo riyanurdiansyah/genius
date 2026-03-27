@@ -7,8 +7,7 @@
                 <p>Click the buttons below to trigger toast notifications. They will stack at the bottom right corner.</p>
                 <button type="button" class="btn btn-primary mb-2" id="liveToastBtn1">Show Success Toast</button>
                 <button type="button" class="btn btn-danger mb-2" id="liveToastBtn2">Show Error Toast</button>
-                
-                <!-- Static Example -->
+
                 <h6 class="mt-4 mb-3">Static Layout</h6>
                 <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                   <div class="toast-header">
@@ -26,9 +25,8 @@
     </div>
 </div>
 
-<!-- Toast Container -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1060;">
-  
+
     <div id="liveToast1" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
         <div class="toast-body">
@@ -37,7 +35,7 @@
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
-    
+
     <div id="liveToast2" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
         <div class="toast-body">
@@ -51,14 +49,14 @@
 
 @section Scripts {
     <script>
-        document.getElementById('liveToastBtn1').addEventListener('click', function () {
+document.getElementById('liveToastBtn1').addEventListener('click', function () {
             var toastElList1 = [].slice.call(document.querySelectorAll('#liveToast1'))
             var toastList1 = toastElList1.map(function (toastEl) {
               return new bootstrap.Toast(toastEl)
             })
             toastList1.forEach(toast => toast.show())
         });
-        
+
         document.getElementById('liveToastBtn2').addEventListener('click', function () {
             var toastElList2 = [].slice.call(document.querySelectorAll('#liveToast2'))
             var toastList2 = toastElList2.map(function (toastEl) {
@@ -66,5 +64,6 @@
             })
             toastList2.forEach(toast => toast.show())
         });
-    </script>
+
+</script>
 }

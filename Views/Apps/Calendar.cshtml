@@ -1,8 +1,7 @@
 @{ ViewData["Title"] = "Calendar & Scheduler"; }
 
 <style>
-    /* Full Application Layout Wrapper */
-    .app-calendar-wrap {
+.app-calendar-wrap {
         background: var(--bg-card);
         border-radius: 20px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -11,8 +10,7 @@
         border: 1px solid var(--border-color);
         overflow: hidden;
     }
-    
-    /* 1. Left Sidebar (Mini Calendar & Filters) */
+
     .cal-sidebar {
         width: 300px;
         border-right: 1px solid var(--border-color);
@@ -44,8 +42,7 @@
         box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
         color: white;
     }
-    
-    /* Mini Calendar Pure CSS Component */
+
     .mini-calendar { margin-bottom: 2rem; }
     .mini-cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-weight: 700; color: var(--text-dark);}
     .mini-cal-nav { background: transparent; border: none; color: var(--text-muted); cursor: pointer; border-radius: 6px; padding: 4px 8px; transition: 0.2s;}
@@ -64,14 +61,12 @@
         content:''; display:block; width:4px; height:4px; border-radius:50%; background:var(--danger); position:absolute; bottom:2px;
     }
     .cal-date-wrap { position: relative; display: flex; justify-content: center; }
-    
-    /* Calendars / Filters */
+
     .filter-title { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 0.5px;}
     .cal-toggle { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; font-size: 0.9rem; color: var(--text-dark); font-weight: 500;}
     .cal-toggle input[type="checkbox"] { margin-right: 12px; width: 16px; height: 16px; accent-color: var(--primary); }
     .cal-toggle-color { width: 12px; height: 12px; border-radius: 4px; margin-right: 10px; }
-    
-    /* 2. Main Calendar View */
+
     .cal-main {
         flex: 1;
         display: flex;
@@ -89,8 +84,7 @@
     .view-switcher .btn { border: 1px solid var(--border-color); color: var(--text-dark); background: transparent; font-weight: 600; padding: 6px 14px;}
     .view-switcher .btn.active { background: rgba(59,130,246,0.1); color: var(--primary); border-color: rgba(59,130,246,0.2); z-index: 2;}
     .view-switcher .btn:hover { background: #f8fafc; }
-    
-    /* Calendar Grid Wrapper */
+
     .cal-grid-wrapper {
         flex: 1;
         display: flex;
@@ -112,8 +106,7 @@
     .day-name { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
     .day-number { font-size: 1.5rem; font-weight: 300; color: var(--text-dark); }
     .weekday-col.today .day-number { color: var(--primary); font-weight: 700; }
-    
-    /* Timeline / Schedule Area (Weekly View Mockup) */
+
     .cal-timeline-body {
         flex: 1;
         overflow-y: auto;
@@ -128,7 +121,7 @@
         flex-direction: column;
     }
     .time-slot-label {
-        height: 80px; /* 1 hour slot */
+        height: 80px; 
         position: relative;
     }
     .time-slot-label span {
@@ -136,13 +129,13 @@
         top: -8px; right: 10px;
         font-size: 0.75rem; color: var(--text-muted); font-weight: 600;
     }
-    
+
     .days-grid {
         flex: 1;
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         background-image: linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
-        background-size: 100% 80px; /* aligns with time-slot-label height */
+        background-size: 100% 80px; 
         position: relative;
     }
     .day-col {
@@ -150,11 +143,10 @@
         position: relative;
     }
     .day-col:last-child { border-right: none; }
-    
-    /* Current Time Indicator */
+
     .current-time-line {
         position: absolute;
-        top: 360px; /* Arbitrary for 10:30 AM (4.5 hours * 80px) */
+        top: 360px; 
         left: 0; right: 0;
         height: 2px;
         background: var(--danger);
@@ -165,8 +157,7 @@
         content: ''; position: absolute; left: -5px; top: -4px;
         width: 10px; height: 10px; border-radius: 50%; background: var(--danger);
     }
-    
-    /* Event Blocks */
+
     .event-block {
         position: absolute;
         left: 4px; right: 8px;
@@ -183,25 +174,23 @@
     .event-block:hover { transform: scale(1.02); box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 10;}
     .event-title { font-weight: 700; margin-bottom: 2px; color: var(--text-dark); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
     .event-time { font-size: 0.7rem; opacity: 0.8; color: var(--text-dark); }
-    
-    /* Event Color Variations */
+
     .event-primary { background: rgba(59, 130, 246, 0.15); border-left-color: var(--primary); }
     .event-primary .event-title { color: #1e40af; }
     .event-primary .event-time { color: #2563eb; }
-    
+
     .event-success { background: rgba(16, 185, 129, 0.15); border-left-color: var(--success); }
     .event-success .event-title { color: #065f46; }
     .event-success .event-time { color: #059669; }
-    
+
     .event-warning { background: rgba(245, 158, 11, 0.15); border-left-color: var(--warning); }
     .event-warning .event-title { color: #92400e; }
     .event-warning .event-time { color: #d97706; }
-    
+
     .event-purple { background: rgba(139, 92, 246, 0.15); border-left-color: #8b5cf6; }
     .event-purple .event-title { color: #5b21b6; }
     .event-purple .event-time { color: #7c3aed; }
-    
-    /* Side Schedule Widget (Upcoming) */
+
     .upcoming-widget {
         margin-top: 2rem;
     }
@@ -216,8 +205,7 @@
     .up-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px;}
     .up-detail h6 { font-size: 0.85rem; font-weight: 700; margin-bottom: 2px; color: var(--text-dark); }
     .up-detail p { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
-    
-    /* Dark Theme Support */
+
     [data-theme="dark"] .cal-sidebar { background: #0f172a; border-color: #334155; }
     [data-theme="dark"] .cal-weekdays { background: #0f172a; border-color: #334155; }
     [data-theme="dark"] .weekday-col, [data-theme="dark"] .time-gutter, [data-theme="dark"] .day-col, [data-theme="dark"] .upcoming-item { border-color: #334155; }
@@ -231,16 +219,15 @@
     [data-theme="dark"] .mini-cal-nav:hover, [data-theme="dark"] .mini-cal-date:hover { background: #1e293b; color: var(--primary); }
     [data-theme="dark"] .view-switcher .btn { border-color: #334155; color: #e2e8f0; }
     [data-theme="dark"] .view-switcher .btn:hover { background: #1e293b; }
-    
-    /* Dark Mode Event Colors - increase contrast slightly */
+
     [data-theme="dark"] .event-primary { background: rgba(59, 130, 246, 0.25); }
     [data-theme="dark"] .event-primary .event-title { color: #bfdbfe; }
     [data-theme="dark"] .event-primary .event-time { color: #93c5fd; }
-    
+
     [data-theme="dark"] .event-success { background: rgba(16, 185, 129, 0.25); }
     [data-theme="dark"] .event-success .event-title { color: #a7f3d0; }
     [data-theme="dark"] .event-success .event-time { color: #6ee7b7; }
-    
+
     [data-theme="dark"] .event-warning { background: rgba(245, 158, 11, 0.25); }
     [data-theme="dark"] .event-warning .event-title { color: #fde68a; }
     [data-theme="dark"] .event-warning .event-time { color: #fcd34d; }
@@ -255,15 +242,13 @@
 </div>
 
 <div class="app-calendar-wrap">
-    
-    <!-- 1. Left Sidebar -->
+
     <div class="cal-sidebar d-none d-lg-flex">
-        
+
         <button class="btn-create-event shadow" data-bs-toggle="modal" data-bs-target="#eventModal">
             <i class="fas fa-plus"></i> Create Event
         </button>
-        
-        <!-- CSS-based Mini Calendar UI -->
+
         <div class="mini-calendar">
             <div class="mini-cal-header">
                 <span>October 2026</span>
@@ -280,8 +265,7 @@
                 <div class="mini-cal-day-name">TH</div>
                 <div class="mini-cal-day-name">FR</div>
                 <div class="mini-cal-day-name">SA</div>
-                
-                <!-- Dates Start. 27=Sun, etc. -->
+
                 <div class="cal-date-wrap"><div class="mini-cal-date other-month">27</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date other-month">28</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date other-month">29</div></div>
@@ -289,7 +273,7 @@
                 <div class="cal-date-wrap"><div class="mini-cal-date">1</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date">2</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date">3</div></div>
-                
+
                 <div class="cal-date-wrap"><div class="mini-cal-date">4</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date">5</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date">6</div></div>
@@ -297,18 +281,17 @@
                 <div class="cal-date-wrap"><div class="mini-cal-date">8</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date has-event">9</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date">10</div></div>
-                
+
                 <div class="cal-date-wrap"><div class="mini-cal-date">11</div></div>
-                <div class="cal-date-wrap"><div class="mini-cal-date today">12</div></div> <!-- Today Oct 12 -->
+                <div class="cal-date-wrap"><div class="mini-cal-date today">12</div></div> 
                 <div class="cal-date-wrap"><div class="mini-cal-date has-event">13</div></div>
-                <div class="cal-date-wrap"><div class="mini-cal-date active">14</div></div> <!-- Selected -->
+                <div class="cal-date-wrap"><div class="mini-cal-date active">14</div></div> 
                 <div class="cal-date-wrap"><div class="mini-cal-date">15</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date border border-primary">16</div></div>
                 <div class="cal-date-wrap"><div class="mini-cal-date has-event">17</div></div>
             </div>
         </div>
-        
-        <!-- Filter Checkboxes -->
+
         <h6 class="filter-title">My Calendars</h6>
         <label class="cal-toggle">
             <input type="checkbox" checked>
@@ -325,7 +308,7 @@
             <div class="cal-toggle-color" style="background:#8b5cf6;"></div>
             Team Syncs
         </label>
-        
+
         <h6 class="filter-title mt-4">Other Calendars</h6>
         <label class="cal-toggle">
             <input type="checkbox" checked>
@@ -337,11 +320,10 @@
             <div class="cal-toggle-color bg-danger"></div>
             HR Events
         </label>
-        
-        <!-- Mini Upcoming Schedule -->
+
          <div class="upcoming-widget border-top pt-4">
             <h6 class="filter-title">Upcoming Today</h6>
-            
+
             <div class="upcoming-item">
                 <div class="up-time">
                     <span class="up-time-hr">10:30</span>
@@ -353,7 +335,7 @@
                     <p><i class="fas fa-video me-1"></i> Google Meet</p>
                 </div>
             </div>
-            
+
             <div class="upcoming-item">
                 <div class="up-time">
                     <span class="up-time-hr">02:00</span>
@@ -367,11 +349,9 @@
             </div>
          </div>
     </div>
-    
-    <!-- 2. Main Calendar Workspace -->
+
     <div class="cal-main">
-        
-        <!-- Toolbar -->
+
         <div class="cal-toolbar">
             <div class="d-flex align-items-center gap-3">
                 <button class="btn btn-outline-secondary btn-sm fw-bold rounded-pill px-3">Today</button>
@@ -381,13 +361,13 @@
                 </div>
                 <h3>Oct 11 – 17, 2026</h3>
             </div>
-            
+
             <div class="d-flex align-items-center gap-3">
                 <div class="input-group border rounded-pill overflow-hidden bg-white shadow-sm" style="max-width: 200px; [data-theme='dark'] & { background: #0f172a; border-color: #334155; }">
                     <span class="input-group-text bg-transparent border-0 text-muted ps-3 py-1"><i class="fas fa-search"></i></span>
                     <input type="text" class="form-control border-0 py-1 bg-transparent fs-6" placeholder="Search..." style="box-shadow:none;">
                 </div>
-                
+
                 <div class="btn-group view-switcher shadow-sm rounded-pill overflow-hidden" role="group">
                     <button type="button" class="btn active">Week</button>
                     <button type="button" class="btn">Month</button>
@@ -395,10 +375,9 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Grid View container -->
+
         <div class="cal-grid-wrapper">
-            <!-- Headers -->
+
             <div class="cal-weekdays">
                 <div class="weekday-col">
                     <div class="day-name">Sun</div>
@@ -429,15 +408,13 @@
                     <div class="day-number">17</div>
                 </div>
             </div>
-            
-            <!-- Timeline Matrix -->
+
             <div class="cal-timeline-body">
-                
-                <!-- The red line indicating 'Current Time' -->
+
                 <div class="current-time-line"></div>
-                
+
                 <div class="time-gutter">
-                    <div class="time-slot-label"></div> <!-- 00:00 spacer typically -->
+                    <div class="time-slot-label"></div> 
                     <div class="time-slot-label"><span>08 AM</span></div>
                     <div class="time-slot-label"><span>09 AM</span></div>
                     <div class="time-slot-label"><span>10 AM</span></div>
@@ -450,69 +427,60 @@
                     <div class="time-slot-label"><span>05 PM</span></div>
                     <div class="time-slot-label"><span>06 PM</span></div>
                 </div>
-                
+
                 <div class="days-grid">
-                    <!-- Column 1 (Sun 11) -->
+
                     <div class="day-col"></div>
-                    
-                    <!-- Column 2 (Mon 12 - Today) -->
+
                     <div class="day-col">
-                        <!-- Positioning: top = hour * 80px (e.g. 10.5h = 840. But we start timeline visually at 7am? Let's say top 0 is 7am. 
-                             So 8am is 80px, 9am is 160px.
-                             10:30am = 3.5 hrs from 7am = 3.5 * 80 = 280px 
-                             Let's place UX sync at 10:30 to 11:30 -->
+
                         <div class="event-block event-warning" style="top: 280px; height: 80px;">
                             <span class="event-title">UX Design Sync</span>
                             <span class="event-time">10:30 AM - 11:30 AM</span>
                         </div>
-                        
-                        <div class="event-block event-purple" style="top: 560px; height: 120px;"> <!-- 02:00 PM = 7 hrs = 560 -->
+
+                        <div class="event-block event-purple" style="top: 560px; height: 120px;"> 
                             <span class="event-title">Q4 Review Meeting</span>
                             <span class="event-time">02:00 PM - 03:30 PM • Boardroom B</span>
                         </div>
                     </div>
-                    
-                    <!-- Column 3 (Tue 13) -->
+
                     <div class="day-col">
-                        <div class="event-block event-primary" style="top: 160px; height: 160px;"> <!-- 09:00 AM -->
+                        <div class="event-block event-primary" style="top: 160px; height: 160px;"> 
                             <span class="event-title">Development Sprint Planning</span>
                             <span class="event-time">09:00 AM - 11:00 AM</span>
                         </div>
                     </div>
-                    
-                    <!-- Column 4 (Wed 14) -->
+
                     <div class="day-col">
-                        <div class="event-block event-success" style="top: 320px; height: 80px;"> <!-- 11:00 AM -->
+                        <div class="event-block event-success" style="top: 320px; height: 80px;"> 
                             <span class="event-title">Doctor Appointment</span>
                             <span class="event-time">11:00 AM - 12:00 PM</span>
                         </div>
-                        <div class="event-block event-warning" style="top: 640px; height: 80px;"> <!-- 03:00 PM -->
+                        <div class="event-block event-warning" style="top: 640px; height: 80px;"> 
                             <span class="event-title">Client Calls</span>
                             <span class="event-time">03:00 PM - 04:00 PM</span>
                         </div>
                     </div>
-                    
-                    <!-- Column 5 (Thu 15) -->
+
                     <div class="day-col">
-                        <div class="event-block event-primary" style="top: 240px; height: 80px;"> <!-- 10:00 AM -->
+                        <div class="event-block event-primary" style="top: 240px; height: 80px;"> 
                             <span class="event-title">1:1 Check-in</span>
                             <span class="event-time">10:00 AM - 11:00 AM</span>
                         </div>
                     </div>
-                    
-                    <!-- Column 6 (Fri 16) -->
+
                     <div class="day-col">
-                        <div class="event-block event-purple" style="top: 480px; height: 160px;"> <!-- 01:00 PM -->
+                        <div class="event-block event-purple" style="top: 480px; height: 160px;"> 
                             <span class="event-title">Marketing Strategy Workshop</span>
                             <span class="event-time">01:00 PM - 03:00 PM</span>
                         </div>
-                        <div class="event-block event-success" style="top: 720px; height: 80px;"> <!-- 04:00 PM -->
+                        <div class="event-block event-success" style="top: 720px; height: 80px;"> 
                             <span class="event-title">Team Happy Hour 🎉</span>
                             <span class="event-time">04:00 PM - 05:00 PM</span>
                         </div>
                     </div>
-                    
-                    <!-- Column 7 (Sat 17) -->
+
                     <div class="day-col"></div>
                 </div>
             </div>
@@ -520,7 +488,6 @@
     </div>
 </div>
 
-<!-- Add Event Modal -->
 <div class="modal fade" id="eventModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered border-0">
         <div class="modal-content rounded-4 border-0 shadow-lg">
@@ -532,7 +499,7 @@
                 <div class="mb-3">
                     <input type="text" class="form-control form-control-lg border-0 bg-light rounded-3 fw-bold" placeholder="Add Title" autofocus>
                 </div>
-                
+
                 <div class="row g-3 mb-3">
                     <div class="col-6">
                         <label class="form-label text-muted small fw-bold mb-1">Start Date</label>
@@ -543,7 +510,7 @@
                         <input type="time" class="form-control bg-light border-0" value="10:30">
                     </div>
                 </div>
-                
+
                 <div class="row g-3 mb-4">
                     <div class="col-6">
                         <label class="form-label text-muted small fw-bold mb-1">End Date</label>
@@ -554,7 +521,7 @@
                         <input type="time" class="form-control bg-light border-0" value="11:30">
                     </div>
                 </div>
-                
+
                 <div class="mb-3 d-flex align-items-center gap-3">
                     <div class="bg-light rounded-circle p-2 text-primary d-flex align-items-center justify-content-center" style="width:40px; height:40px;"><i class="fas fa-users"></i></div>
                     <input type="text" class="form-control border-0 bg-light" placeholder="Add Guests / Emails">
@@ -567,7 +534,7 @@
                     <div class="bg-light rounded-circle p-2 text-muted d-flex align-items-center justify-content-center mt-1" style="width:40px; height:40px;"><i class="fas fa-align-left"></i></div>
                     <textarea class="form-control border-0 bg-light" rows="3" placeholder="Add description or attachments..."></textarea>
                 </div>
-                
+
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle border-0 shadow-sm fw-bold text-warning" type="button" data-bs-toggle="dropdown">
@@ -582,11 +549,11 @@
 </div>
 
 <script>
-    // Set scroll position for the calendar timeline slightly down so we see the 8 AM start nicely
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
         const calTimeline = document.querySelector('.cal-timeline-body');
         if (calTimeline) {
-            calTimeline.scrollTop = 160; // scroll to around 9AM marker for better initial view
+            calTimeline.scrollTop = 160; 
         }
     });
+
 </script>

@@ -1,4 +1,3 @@
-// Language Dictionary
 const dict = {
     'en': {
         'dark_mode_title': 'Toggle Dark Mode',
@@ -23,9 +22,7 @@ const dict = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-    // 1. Language Mapping Logic
-    // ==========================================
+
     let currentLang = localStorage.getItem('app-lang') || 'en';
 
     function applyLocalization(lang) {
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.placeholder = dict[lang][key];
                 } else if (el.hasAttribute('title') && el.classList.contains('icon-btn')) {
                     el.title = dict[lang][key];
-                    el.setAttribute('data-bs-original-title', dict[lang][key]); // Bootstrap Tooltip update if exists
+                    el.setAttribute('data-bs-original-title', dict[lang][key]); 
                 } else {
                     el.innerText = dict[lang][key];
                 }
@@ -44,10 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Apply localization safely on load
     applyLocalization(currentLang);
 
-    // Bind dropdown click events
     document.querySelectorAll('.lang-switch').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -57,13 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ==========================================
-    // 2. Dark Mode Toggle Buttons Logic
-    // ==========================================
     const toggleBtn = document.getElementById('toggleDarkMode');
     const darkModeIcon = document.getElementById('darkModeIcon');
 
-    // Check state from what the inline script generated
     let isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
     function syncIconState(dark) {
@@ -93,9 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             syncIconState(isDark);
         });
     }
-    // ==========================================
-    // 3. Color Theme Customizer
-    // ==========================================
+
     window.changeThemeColor = function (colorKey) {
         localStorage.setItem('app-color-theme', colorKey);
 
@@ -116,10 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.head.appendChild(themeLink);
         }
 
-        // Update profile picture background
         let img = document.getElementById('headerProfileImage');
         if (img) {
-            let hex = "3b9d82"; // default
+            let hex = "3b9d82"; 
             if (colorKey === "blue") hex = "2563eb";
             if (colorKey === "purple") hex = "7c3aed";
             if (colorKey === "orange") hex = "ea580c";

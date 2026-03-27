@@ -4,9 +4,8 @@
 
 @section Styles {
     <style>
-        .extras-card { margin-bottom: 25px; }
+.extras-card { margin-bottom: 25px; }
 
-        /* Star Rating UI */
         .star-rating {
             display: flex;
             flex-direction: row-reverse;
@@ -23,17 +22,15 @@
         .star-rating label:hover,
         .star-rating label:hover ~ label,
         .star-rating input:checked ~ label {
-            color: #fbbf24; /* yellow/gold */
+            color: #fbbf24; 
         }
-        
-        /* Interactive Hearts */
+
         .heart-rating label:hover,
         .heart-rating label:hover ~ label,
         .heart-rating input:checked ~ label {
             color: var(--danger-color);
         }
 
-        /* Password Strength Meter */
         .pass-strength-meter {
             display: flex;
             gap: 5px;
@@ -50,7 +47,6 @@
         .pass-medium .pass-step:nth-child(1), .pass-medium .pass-step:nth-child(2) { background: var(--warning-color); }
         .pass-strong .pass-step { background: var(--primary-color); }
 
-        /* Char Counter Input */
         .char-counter-wrap {
             position: relative;
         }
@@ -62,11 +58,12 @@
             color: var(--text-muted);
         }
         .char-count.limit-reached { color: var(--danger-color); font-weight: bold; }
-    </style>
+
+</style>
 }
 
 <div class="row">
-    <!-- 1. Star Rating -->
+
     <div class="col-lg-6 mb-4">
         <div class="card extras-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -100,7 +97,6 @@
         </div>
     </div>
 
-    <!-- 2. Form Add-ons (Pass strength & counters) -->
     <div class="col-lg-6 mb-4">
         <div class="card extras-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -133,7 +129,6 @@
         </div>
     </div>
 
-    <!-- 3. Form Input Masks -->
     <div class="col-lg-12 mb-4">
         <div class="card extras-card">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -165,14 +160,12 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
+document.addEventListener('DOMContentLoaded', function() {
 
-            // Password strength mock interaction
             const pInput = document.getElementById('passInput');
             const pMeter = document.getElementById('passMeter');
             const pText = document.getElementById('pass-text');
-            
+
             if(pInput && pMeter) {
                 pInput.addEventListener('input', function() {
                     const val = this.value;
@@ -196,7 +189,6 @@
                 });
             }
 
-            // Character counter script
             const tArea = document.getElementById('charTextarea');
             const tCount = document.getElementById('charCountDisplay');
             if(tArea && tCount) {
@@ -212,5 +204,6 @@
                 });
             }
         });
-    </script>
+
+</script>
 }

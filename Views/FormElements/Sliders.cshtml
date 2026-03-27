@@ -4,9 +4,8 @@
 
 @section Styles {
     <style>
-        .slider-card { margin-bottom: 25px; }
+.slider-card { margin-bottom: 25px; }
 
-        /* Custom Range Slider Styling */
         .custom-range {
             -webkit-appearance: none;
             width: 100%;
@@ -34,7 +33,6 @@
             transform: scale(1.2);
         }
 
-        /* Value Bubble Mockup */
         .range-wrap {
             position: relative;
             width: 100%;
@@ -63,7 +61,6 @@
             border-color: var(--primary-color) transparent transparent transparent;
         }
 
-        /* Dual Slider Mockup */
         .dual-slider-track {
             height: 6px;
             background: #e2e8f0;
@@ -93,11 +90,12 @@
         .dual-thumb.left { left: 20%; transform: translateX(-50%); }
         .dual-thumb.right { right: 40%; transform: translateX(50%); border-color: var(--danger-color); }
         .dual-slider-fill.danger-fill { background: var(--danger-color); right: 20%; left: 10%;}
-    </style>
+
+</style>
 }
 
 <div class="row">
-    <!-- 1. Default HTML5 Range -->
+
     <div class="col-lg-6 mb-4">
         <div class="card slider-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -109,12 +107,12 @@
                     <label for="customRange1" class="form-label">Example range</label>
                     <input type="range" class="form-range" id="customRange1">
                 </div>
-                
+
                 <div class="mb-4">
                     <label for="disabledRange" class="form-label">Disabled range</label>
                     <input type="range" class="form-range" id="disabledRange" disabled>
                 </div>
-                
+
                 <div class="mb-4">
                     <label for="customRange2" class="form-label">Min and max (0-5)</label>
                     <input type="range" class="form-range" min="0" max="5" id="customRange2">
@@ -123,7 +121,6 @@
         </div>
     </div>
 
-    <!-- 2. Custom Advanced Mocks -->
     <div class="col-lg-6 mb-4">
         <div class="card slider-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
@@ -140,7 +137,7 @@
                         <input type="range" class="custom-range" min="0" max="100" value="50">
                     </div>
                 </div>
-                
+
                 <div class="mb-4 pt-3">
                     <label class="form-label d-flex justify-content-between">
                         <span>Price Range (Dual Slider Mockup)</span>
@@ -152,7 +149,7 @@
                         <div class="dual-thumb right" style="border-color: var(--primary-color);"></div>
                     </div>
                 </div>
-                
+
                 <div class="mb-4 pt-3">
                     <label class="form-label d-flex justify-content-between">
                         <span>Danger Range Theme</span>
@@ -171,9 +168,8 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Simple mockup interaction for value tooltip
+document.addEventListener('DOMContentLoaded', function() {
+
             const ranges = document.querySelectorAll('.range-wrap input');
             ranges.forEach(range => {
                 range.addEventListener('input', function() {
@@ -187,5 +183,6 @@
                 });
             });
         });
-    </script>
+
+</script>
 }

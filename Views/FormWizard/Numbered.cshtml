@@ -4,8 +4,7 @@
 
 @section Styles {
     <style>
-        /* Shared Wizard Styles */
-        .wizard-container {
+.wizard-container {
             background: #fff;
             border-radius: var(--radius-lg);
             padding: 30px;
@@ -28,7 +27,6 @@
             color: var(--text-dark);
         }
 
-        /* 1. Horizontal Classic Numbered */
         .wizard-horizontal .wizard-steps {
             display: flex;
             justify-content: space-between;
@@ -106,7 +104,6 @@
             color: var(--text-dark);
         }
 
-        /* 2. Vertical Numbered Wizard */
         .wizard-vertical {
             display: flex;
             gap: 40px;
@@ -122,7 +119,7 @@
         .wizard-step-v {
             position: relative;
             padding: 20px 20px 20px 40px;
-            margin-bottom: 25px; /* Added spacing */
+            margin-bottom: 25px; 
             cursor: pointer;
             transition: all 0.3s;
             border-radius: 12px 0 0 12px;
@@ -189,14 +186,13 @@
             padding: 10px;
         }
 
-        /* 3. Compact Progress Wizard */
         .wizard-compact .progress-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             margin-bottom: 15px;
         }
-        
+
         .wizard-compact .step-badge {
             background: rgba(59, 157, 130, 0.1);
             color: var(--primary-color);
@@ -228,11 +224,12 @@
             padding-top: 20px;
             border-top: 1px dashed var(--border-color);
         }
-    </style>
+
+</style>
 }
 
 <div class="row">
-    <!-- 1. Horizontal Classic Numbered Wizard -->
+
     <div class="col-12">
         <div class="wizard-container wizard-horizontal" id="wizard-horizontal-num">
             <div class="wizard-header">
@@ -240,7 +237,6 @@
                 <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-horizontal-num"><i class="fa-regular fa-copy"></i> Copy HTML</button>
             </div>
 
-            <!-- Steps Indicator -->
             <div class="wizard-steps pl-0 pr-0" id="num-hz-steps">
                 <div class="wizard-step active" data-step="1">
                     <div class="step-number"><span>1</span></div>
@@ -260,9 +256,8 @@
                 </div>
             </div>
 
-            <!-- Wizard Content -->
             <div class="wizard-content-area" id="num-hz-panes">
-                <!-- Pane 1 -->
+
                 <div class="wizard-pane active" data-pane="1">
                     <h5 class="mb-4">Setup your account</h5>
                     <div class="row">
@@ -277,7 +272,6 @@
                     </div>
                 </div>
 
-                <!-- Pane 2 -->
                 <div class="wizard-pane" data-pane="2" style="display:none;">
                     <h5 class="mb-4">Personal Details</h5>
                     <div class="row">
@@ -296,7 +290,6 @@
                     </div>
                 </div>
 
-                <!-- Pane 3 -->
                 <div class="wizard-pane" data-pane="3" style="display:none;">
                     <h5 class="mb-4">Payment Method</h5>
                     <div class="mb-3">
@@ -315,7 +308,6 @@
                     </div>
                 </div>
 
-                <!-- Pane 4 -->
                 <div class="wizard-pane" data-pane="4" style="display:none;">
                     <div class="text-center py-4">
                         <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
@@ -325,7 +317,6 @@
                 </div>
             </div>
 
-            <!-- Actions -->
             <div class="wizard-actions">
                 <button class="btn btn-outline-secondary" id="num-hz-prev" disabled><i class="fas fa-arrow-left"></i> Previous</button>
                 <button class="btn btn-primary" id="num-hz-next">Next Step <i class="fas fa-arrow-right"></i></button>
@@ -333,7 +324,6 @@
         </div>
     </div>
 
-    <!-- 2. Vertical Numbered Wizard -->
     <div class="col-12">
         <div class="wizard-container" id="wizard-vertical-num">
             <div class="wizard-header">
@@ -342,7 +332,7 @@
             </div>
 
             <div class="wizard-vertical">
-                <!-- Sidebar Steps -->
+
                 <div class="wizard-steps-v">
                     <div class="wizard-step-v completed" data-step="1">
                         <span class="v-title">Project Details</span>
@@ -362,7 +352,6 @@
                     </div>
                 </div>
 
-                <!-- Content Area -->
                 <div class="wizard-content-v">
                     <h5 class="mb-4">Budget Configuration</h5>
                     <div class="row">
@@ -393,14 +382,13 @@
         </div>
     </div>
 
-    <!-- 3. Compact Progress Wizard -->
     <div class="col-lg-8 mx-auto">
         <div class="wizard-container wizard-compact" id="wizard-compact-num">
             <div class="wizard-header border-bottom pb-3 mb-4">
                 <div class="wizard-title">Compact Line Wizard</div>
                 <button class="btn btn-sm btn-outline-primary copy-btn" data-target="wizard-compact-num"><i class="fa-regular fa-copy"></i> Copy HTML</button>
             </div>
-            
+
             <div class="progress-header">
                 <div>
                     <h6 class="mb-1">Security Setup</h6>
@@ -408,7 +396,7 @@
                 </div>
                 <div class="step-badge">66% Completed</div>
             </div>
-            
+
             <div class="progress mb-4" style="height: 8px;">
                 <div class="progress-bar bg-primary" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
@@ -440,8 +428,8 @@
 
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Horizontal Numbered Wizard Logic
+document.addEventListener('DOMContentLoaded', function() {
+
             const steps = document.querySelectorAll('#num-hz-steps .wizard-step');
             const panes = document.querySelectorAll('#num-hz-panes .wizard-pane');
             const btnNext = document.getElementById('num-hz-next');
@@ -450,7 +438,7 @@
             const totalSteps = steps.length;
 
             function updateWizard() {
-                // Update Steps UI
+
                 steps.forEach((step, index) => {
                     const stepNum = index + 1;
                     step.classList.remove('active', 'completed');
@@ -461,7 +449,6 @@
                     }
                 });
 
-                // Update Panes UI
                 panes.forEach(pane => {
                     if (parseInt(pane.getAttribute('data-pane')) === currentStep) {
                         pane.style.display = 'block';
@@ -470,7 +457,6 @@
                     }
                 });
 
-                // Update Buttons
                 if (currentStep === 1) {
                     btnPrev.disabled = true;
                 } else {
@@ -493,7 +479,7 @@
                     currentStep++;
                     updateWizard();
                 } else {
-                    // Reset or submit here
+
                     alert('Numbered Wizard Submitted Successfully!');
                     currentStep = 1;
                     updateWizard();
@@ -506,8 +492,7 @@
                     updateWizard();
                 }
             });
-            
-            // Allow clicking steps
+
             steps.forEach((step, idx) => {
                step.addEventListener('click', function() {
                    if(idx + 1 < currentStep || step.classList.contains('completed')) {
@@ -517,5 +502,6 @@
                }); 
             });
         });
-    </script>
+
+</script>
 }

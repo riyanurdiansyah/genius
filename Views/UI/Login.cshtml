@@ -1,14 +1,12 @@
 @{ ViewData["Title"] = "Login Pages"; }
 
 <style>
-    /* ── Login Showcase Global Styles ─────────────────────────── */
-    .login-preview-wrap {
+.login-preview-wrap {
         border-radius: 16px;
         overflow: hidden;
         position: relative;
     }
 
-    /* -- Shared mini-form styles inside preview cards -- */
     .lp-input {
         width: 100%;
         padding: 10px 14px;
@@ -76,9 +74,6 @@
         z-index: 10;
     }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* VARIANT 1 — Aurora Mesh Gradient                            */
-    /* ─────────────────────────────────────────────────────────── */
     .lp-aurora-bg {
         background: #0d0d1a;
         padding: 40px 30px;
@@ -135,9 +130,6 @@
     .lp-aurora-card .lp-divider::before, .lp-aurora-card .lp-divider::after { background: rgba(255,255,255,0.12); }
     .lp-aurora-card .lp-divider span { color: rgba(255,255,255,0.35); }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* VARIANT 2 — Split Layout                                    */
-    /* ─────────────────────────────────────────────────────────── */
     .lp-split-wrap {
         display: flex;
         min-height: 460px;
@@ -196,9 +188,6 @@
     .lp-split-form .lp-divider::before, .lp-split-form .lp-divider::after { background: #e5e7eb; }
     .lp-split-form .lp-divider span { color: #9ca3af; }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* VARIANT 3 — Minimal / Centered Clean                        */
-    /* ─────────────────────────────────────────────────────────── */
     .lp-minimal-bg {
         background: #f8fafc;
         display: flex;
@@ -232,9 +221,6 @@
     .lp-minimal-card .lp-divider::before, .lp-minimal-card .lp-divider::after { background: #e2e8f0; }
     .lp-minimal-card .lp-divider span { color: #94a3b8; }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* VARIANT 4 — Dark Luxury Gold                                */
-    /* ─────────────────────────────────────────────────────────── */
     .lp-luxury-bg {
         background: #0c0c0e;
         display: flex;
@@ -297,9 +283,6 @@
     .lp-luxury-card .lp-divider::before, .lp-luxury-card .lp-divider::after { background: rgba(212,175,55,0.15); }
     .lp-luxury-card .lp-divider span { color: rgba(212,175,55,0.4); }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* VARIANT 5 — Frosted Geometric Pattern                       */
-    /* ─────────────────────────────────────────────────────────── */
     .lp-geo-bg {
         display: flex;
         align-items: center;
@@ -360,9 +343,6 @@
     .lp-geo-card .lp-divider::before, .lp-geo-card .lp-divider::after { background: rgba(167,139,250,0.2); }
     .lp-geo-card .lp-divider span { color: rgba(167,139,250,0.5); }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* VARIANT 6 — Neumorphism / Soft UI                           */
-    /* ─────────────────────────────────────────────────────────── */
     .lp-neumorph-bg {
         background: #e8ecf0;
         display: flex;
@@ -400,9 +380,6 @@
     .lp-neumorph-card .lp-divider::before, .lp-neumorph-card .lp-divider::after { background: #c8d0da; }
     .lp-neumorph-card .lp-divider span { color: #a0aec0; }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* VARIANT 7 — Sunset Panoramic (Split + Illustration)         */
-    /* ─────────────────────────────────────────────────────────── */
     .lp-sunset-wrap {
         display: flex;
         min-height: 460px;
@@ -467,7 +444,6 @@
     .lp-sunset-form .lp-divider::before, .lp-sunset-form .lp-divider::after { background: #ffe4cc; }
     .lp-sunset-form .lp-divider span { color: #f7b733; font-weight: 600; }
 
-    /* Preview card wrapper */
     .preview-card {
         border: none;
         border-radius: 16px;
@@ -501,9 +477,9 @@
         background: rgba(0,0,0,0.06);
         color: #666;
     }
+
 </style>
 
-<!-- Page Header Info -->
 <div class="d-flex align-items-center gap-3 mb-4">
     <div>
         <h2 class="mb-0 fw-bold" style="font-size: 1.35rem;">Login UI Variations</h2>
@@ -516,9 +492,6 @@
 
 <div class="row g-4">
 
-    <!-- ───────────────────────────────────────── -->
-    <!-- 1. AURORA MESH GRADIENT                   -->
-    <!-- ───────────────────────────────────────── -->
     <div class="col-xl-6 col-lg-6 col-md-12">
         <div class="card preview-card">
             <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -545,9 +518,6 @@
         </div>
     </div>
 
-    <!-- ───────────────────────────────────────── -->
-    <!-- 2. SPLIT LAYOUT                           -->
-    <!-- ───────────────────────────────────────── -->
     <div class="col-xl-6 col-lg-6 col-md-12">
         <div class="card preview-card">
             <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -557,7 +527,7 @@
             <div id="lp-preview-2" class="login-preview-wrap">
                 <div class="variant-badge">Split</div>
                 <div class="lp-split-wrap">
-                    <!-- Left cover -->
+
                     <div class="lp-split-cover">
                         <div style="position:relative; z-index:2;">
                             <div style="width:36px; height:36px; background:rgba(255,255,255,0.2); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
@@ -571,7 +541,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Right form -->
+
                     <div class="lp-split-form">
                         <h4 style="font-weight:800; color:#111; font-size:18px; margin-bottom:4px;">Sign In</h4>
                         <p style="color:#9ca3af; font-size:12px; margin-bottom:20px;">Enter your credentials to continue.</p>
@@ -595,9 +565,6 @@
         </div>
     </div>
 
-    <!-- ───────────────────────────────────────── -->
-    <!-- 3. MINIMAL CLEAN                          -->
-    <!-- ───────────────────────────────────────── -->
     <div class="col-xl-4 col-lg-6 col-md-6">
         <div class="card preview-card">
             <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -629,9 +596,6 @@
         </div>
     </div>
 
-    <!-- ───────────────────────────────────────── -->
-    <!-- 4. DARK LUXURY GOLD                       -->
-    <!-- ───────────────────────────────────────── -->
     <div class="col-xl-4 col-lg-6 col-md-6">
         <div class="card preview-card">
             <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -666,10 +630,6 @@
         </div>
     </div>
 
-
-    <!-- ───────────────────────────────────────── -->
-    <!-- 5. FROSTED GEOMETRIC                      -->
-    <!-- ───────────────────────────────────────── -->
     <div class="col-xl-4 col-lg-6 col-md-6">
         <div class="card preview-card">
             <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -707,9 +667,6 @@
         </div>
     </div>
 
-    <!-- ───────────────────────────────────────── -->
-    <!-- 6. NEUMORPHISM                            -->
-    <!-- ───────────────────────────────────────── -->
     <div class="col-xl-6 col-lg-6 col-md-6">
         <div class="card preview-card">
             <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -741,9 +698,6 @@
         </div>
     </div>
 
-    <!-- ───────────────────────────────────────── -->
-    <!-- 7. SUNSET PANORAMIC                       -->
-    <!-- ───────────────────────────────────────── -->
     <div class="col-xl-6 col-lg-6 col-md-6">
         <div class="card preview-card">
             <div class="card-header bg-white d-flex align-items-center justify-content-between">
@@ -753,7 +707,7 @@
             <div id="lp-preview-7" class="login-preview-wrap">
                 <div class="variant-badge">Sunset</div>
                 <div class="lp-sunset-wrap">
-                    <!-- Left cover -->
+
                     <div class="lp-sunset-cover">
                         <div class="lp-sunset-circles">
                             <div class="lp-sun"></div>
@@ -768,7 +722,7 @@
                             <p style="color:rgba(255,255,255,0.75);font-size:11px;line-height:1.5;">Sign in to your dashboard and start the day right.</p>
                         </div>
                     </div>
-                    <!-- Right form -->
+
                     <div class="lp-sunset-form">
                         <h4 style="font-weight:800;color:#1c1c1c;font-size:17px;margin-bottom:3px;">Sign In</h4>
                         <p style="color:#9ca3af;font-size:11px;margin-bottom:18px;">Enter your credentials below</p>

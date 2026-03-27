@@ -3,12 +3,11 @@
 }
 
 @section Styles {
-    <!-- Select2 CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
-        /* ─── Select2 Custom Theme ─────────────────────────────────── */
-        .select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--single,
         .select2-container--default .select2-selection--multiple {
             border: 1px solid #cbd5e1;
             border-radius: var(--radius-md, 8px);
@@ -48,7 +47,6 @@
             border-color: transparent transparent var(--primary, #3b9d82) transparent;
         }
 
-        /* Multiple selection pills */
         .select2-container--default .select2-selection--multiple {
             padding: 4px 8px;
             min-height: 42px;
@@ -69,7 +67,7 @@
             color: rgba(255,255,255,.8);
             margin-right: 5px;
             font-size: 13px;
-            /* Reset default button styles */
+
             background: transparent;
             border: none !important;
             outline: none !important;
@@ -91,7 +89,6 @@
             color: #2d3748;
         }
 
-        /* Dropdown panel */
         .select2-dropdown {
             border: 1px solid #cbd5e1;
             border-radius: 10px;
@@ -136,7 +133,6 @@
             color: #94a3b8;
         }
 
-        /* Light-pill variant for multi-select */
         .select2-light .select2-selection--multiple .select2-selection__choice {
             background: rgba(59,157,130,.12);
             color: var(--primary, #3b9d82);
@@ -156,7 +152,6 @@
             border-radius: 3px;
         }
 
-        /* Danger variant */
         .select2-danger.select2-container--focus .select2-selection--multiple,
         .select2-danger.select2-container--focus .select2-selection--single {
             border-color: #ef4444;
@@ -167,7 +162,6 @@
             background: #ef4444;
         }
 
-        /* Dark mode */
         [data-theme="dark"] .select2-container--default .select2-selection--single,
         [data-theme="dark"] .select2-container--default .select2-selection--multiple {
             background: #162032;
@@ -193,7 +187,6 @@
             color: #e2e8f0;
         }
 
-        /* ─── Tags demo card ───────────────────────────────────────── */
         .tag-input-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -235,14 +228,12 @@
         }
 
         [data-theme="dark"] .tag-input-wrapper { background: #162032; border-color: rgba(255,255,255,.12); }
-    </style>
+
+</style>
 }
 
 <div class="row">
 
-    <!-- ══════════════════════════════════════════════════
-         1. Default Single Select (Select2)
-    ══════════════════════════════════════════════════ -->
     <div class="col-lg-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -303,9 +294,6 @@
         </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════
-         2. Multiple Select (Select2)
-    ══════════════════════════════════════════════════ -->
     <div class="col-lg-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -363,9 +351,6 @@
         </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════
-         3. Advanced / Special Use-cases
-    ══════════════════════════════════════════════════ -->
     <div class="col-lg-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -418,9 +403,6 @@
         </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════
-         4. Tags Input (Select2 tags mode)
-    ══════════════════════════════════════════════════ -->
     <div class="col-lg-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -466,9 +448,6 @@
         </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════
-         5. Disabled & States
-    ══════════════════════════════════════════════════ -->
     <div class="col-12 mb-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -513,57 +492,48 @@
 </div>
 
 @section Scripts {
-    <!-- jQuery (Select2 needs it) -->
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <!-- Select2 JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+$(document).ready(function () {
 
             const s2defaults = { width: '100%', theme: 'default' };
 
-            // 1. Basic single
             $('#s2-basic').select2({ ...s2defaults, placeholder: 'Choose an option…' });
 
-            // 2. Country
             $('#s2-country').select2({ ...s2defaults, placeholder: '🔍 Search a country…' });
 
-            // 3. Grouped
             $('#s2-grouped').select2({ ...s2defaults, placeholder: 'Select framework…' });
 
-            // 4. Multi solid
             $('#s2-multi-solid').select2({ ...s2defaults, placeholder: 'Select technologies…' });
 
-            // 5. Multi light
             $('#s2-multi-light').select2({ ...s2defaults, placeholder: 'Select skills…' });
-            // Add light class to container
+
             $('#s2-multi-light').on('select2:open select2:close', function () {
                 $(this).data('select2').$container.addClass('select2-light');
             }).trigger('select2:close');
-            // Apply immediately
+
             setTimeout(() => {
                 $('#s2-multi-light').data('select2').$container.addClass('select2-light');
             }, 50);
 
-            // 6. Multi grouped
             $('#s2-multi-roles').select2({ ...s2defaults, placeholder: 'Assign roles…' });
 
-            // 7. No search
             $('#s2-nosearch').select2({
                 ...s2defaults,
                 placeholder: '-- Choose status --',
                 minimumResultsForSearch: Infinity
             });
 
-            // 8. Clearable
             $('#s2-clearable').select2({
                 ...s2defaults,
                 placeholder: 'Select a priority…',
                 allowClear: true
             });
 
-            // 9. Max selections = 3
             $('#s2-maxsel').select2({
                 ...s2defaults,
                 placeholder: 'Pick up to 3 days…',
@@ -572,14 +542,13 @@
             $('#s2-maxsel').on('select2:select', function () {
                 const max = 3;
                 if ($(this).val() && $(this).val().length >= max) {
-                    // Show subtle warning
+
                     const $info = $(this).closest('.col-md-4, div').find('.form-text');
                     $info.addClass('text-warning').text('Maximum 3 items reached!');
                     setTimeout(() => $info.removeClass('text-warning').text('Maximum 3 items can be selected'), 2000);
                 }
             });
 
-            // 10. Tags solid (free-type)
             $('#s2-tags-solid').select2({
                 ...s2defaults,
                 tags: true,
@@ -587,7 +556,6 @@
                 tokenSeparators: [',', ' ']
             });
 
-            // 11. Tags light
             $('#s2-tags-light').select2({
                 ...s2defaults,
                 tags: true,
@@ -598,11 +566,9 @@
                 $('#s2-tags-light').data('select2').$container.addClass('select2-light');
             }, 50);
 
-            // 12. Disabled states (Select2 respects HTML `disabled` attribute natively)
             $('#s2-disabled').select2({ ...s2defaults });
             $('#s2-disabled-multi').select2({ ...s2defaults });
 
-            // 13. Error state
             $('#s2-error').select2({ ...s2defaults, placeholder: 'Select a value…' });
             setTimeout(() => {
                 $('#s2-error').data('select2').$container.addClass('select2-danger');
@@ -611,25 +577,22 @@
                     .css({ borderColor: '#ef4444', boxShadow: '0 0 0 3px rgba(239,68,68,.15)' });
             }, 50);
 
-            // Static tag badge removal
             document.querySelectorAll('.remove-tag').forEach(btn => {
                 btn.addEventListener('click', function () {
                     this.parentElement.remove();
                 });
             });
 
-            // ─── Copy HTML buttons ───────────────────────────────────────
             document.querySelectorAll('.copy-html-btn').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const targetId = this.dataset.target;
                     const el = document.getElementById(targetId);
                     if (!el) return;
 
-                    // Get inner HTML, pretty-print with basic indent cleanup
                     const raw = el.innerHTML.trim();
 
                     navigator.clipboard.writeText(raw).then(() => {
-                        // Success feedback
+
                         const original = this.innerHTML;
                         this.innerHTML = '<i class="fa-solid fa-check me-1"></i> Copied!';
                         this.classList.replace('btn-outline-primary', 'btn-success');
@@ -641,10 +604,9 @@
                             this.disabled = false;
                         }, 2000);
 
-                        // Toast notification
                         showCopyToast();
                     }).catch(() => {
-                        // Fallback for older browsers
+
                         const ta = document.createElement('textarea');
                         ta.value = raw;
                         ta.style.position = 'fixed';
@@ -686,7 +648,6 @@
                 `;
                 document.body.appendChild(toast);
 
-                // Animate in
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         toast.style.opacity = '1';
@@ -694,7 +655,6 @@
                     });
                 });
 
-                // Animate out
                 setTimeout(() => {
                     toast.style.opacity = '0';
                     toast.style.transform = 'translateY(10px)';
@@ -702,5 +662,6 @@
                 }, 2500);
             }
         });
-    </script>
+
+</script>
 }

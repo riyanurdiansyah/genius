@@ -3,13 +3,13 @@
 }
 
 @section Styles {
-    <!-- CodeMirror CSS -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css" />
     <style>
-        .file-manager-container {
+.file-manager-container {
             display: flex;
-            height: calc(100vh - 180px); /* Adjust based on navbar/footer */
+            height: calc(100vh - 180px); 
             border: 1px solid #dee2e6;
             border-radius: var(--bs-border-radius);
             background: #fff;
@@ -71,7 +71,7 @@
             background: #0d6efd;
             color: white;
         }
-        
+
         .file-tree-item.active i {
             color: white !important;
         }
@@ -132,13 +132,14 @@
             height: 100%;
             color: #6c757d;
         }
-        
+
         .empty-state i {
             font-size: 3rem;
             margin-bottom: 1rem;
             opacity: 0.5;
         }
-    </style>
+
+</style>
 }
 
 <div class="container-fluid">
@@ -152,7 +153,7 @@
     </div>
 
     <div class="file-manager-container shadow-sm">
-        <!-- Sidebar Tree -->
+
         <div class="file-tree-sidebar">
             <div class="file-tree-header">
                 <i class="fas fa-project-diagram text-primary"></i> 
@@ -169,7 +170,6 @@
             </div>
         </div>
 
-        <!-- Editor Area -->
         <div class="file-editor-area">
             <div class="editor-header">
                 <div class="editor-title" id="editorTitle">
@@ -194,7 +194,7 @@
 </div>
 
 @section Scripts {
-    <!-- CodeMirror JS -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
@@ -203,12 +203,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
 
     <script>
-        let editor = null;
+let editor = null;
         let currentOpenFilePath = null;
         let isEditorInit = false;
 
         $(document).ready(function () {
-            // Load root directory
+
             loadDirectory('', $('#fileTreeContainer'), true);
 
             $('#btnRefreshTree').click(function() {
@@ -227,7 +227,7 @@
                 const content = editor.getValue();
                 const btn = $(this);
                 const originalHtml = btn.html();
-                
+
                 btn.html('<i class="fas fa-spinner fa-spin me-1"></i> Saving...').prop('disabled', true);
 
                 $.ajax({
@@ -254,7 +254,6 @@
             });
         });
 
-        // Load Directory Contents
         function loadDirectory(dirPath, containerElement, isRoot = false) {
             $.ajax({
                 url: '/FileManager/GetFiles',
@@ -262,17 +261,17 @@
                 data: { dir: dirPath },
                 success: function (data) {
                     let ul = $('<ul>').addClass('file-tree-ul').addClass(isRoot ? 'root-ul' : '');
-                    
+
                     if (data && data.length > 0) {
                         data.forEach(item => {
                             let li = $('<li>');
                             let itemDiv = $('<div>').addClass('file-tree-item').attr('data-path', item.path);
-                            
+
                             let iconClass = 'fas fa-file text-secondary';
                             if (item.isDirectory) {
                                 iconClass = 'fas fa-folder text-warning';
                             } else {
-                                // Assign icons based on extension
+
                                 const ext = item.extension ? item.extension.toLowerCase() : '';
                                 if (ext === '.cs') iconClass = 'fas fa-code text-primary';
                                 else if (ext === '.cshtml' || ext === '.html') iconClass = 'fab fa-html5 text-danger';
@@ -290,8 +289,7 @@
                                 let subContainer = $('<div>').addClass('sub-tree').hide();
                                 itemDiv.click(function (e) {
                                     e.stopPropagation();
-                                    
-                                    // Toggle folder icon
+
                                     let icon = $(this).find('.file-tree-icon');
                                     if (icon.hasClass('fa-folder')) {
                                         icon.removeClass('fa-folder').addClass('fa-folder-open');
@@ -300,7 +298,7 @@
                                     }
 
                                     if (subContainer.is(':empty')) {
-                                        // Load content first time
+
                                         subContainer.html('<div class="ms-4 my-1 small text-muted"><i class="fas fa-circle-notch fa-spin me-1"></i>Loading...</div>').show();
                                         loadDirectory(item.path, subContainer);
                                     } else {
@@ -322,7 +320,7 @@
                     } else {
                         ul.append('<li class="small text-muted fst-italic py-1 px-3">Empty folder</li>');
                     }
-                    
+
                     containerElement.html(ul);
                 },
                 error: function () {
@@ -346,8 +344,7 @@
 
         function openFile(path, name, extension) {
             $('#editorEmptyState').hide();
-            
-            // Show loading in header
+
             $('#editorTitle').html(`<i class="fas fa-spinner fa-spin text-primary"></i> <span class="ms-1">Loading ${name}...</span>`);
             $('#btnSaveFile').prop('disabled', true);
 
@@ -357,8 +354,7 @@
                 data: { path: path },
                 success: function (content) {
                     currentOpenFilePath = path;
-                    
-                    // Update Header
+
                     $('#editorTitle').html(`<i class="fas fa-file-code text-primary"></i> <span class="ms-1 fw-bold">${name}</span> <span class="badge bg-light text-dark ms-2 border">${path}</span>`);
                     $('#btnSaveFile').prop('disabled', false);
 
@@ -374,11 +370,10 @@
                         });
                         isEditorInit = true;
                     }
-                    
+
                     editor.setOption('mode', getEditorMode(extension));
                     editor.setValue(content);
-                    
-                    // Optional: clear history so undo doesn't go back to empty
+
                     editor.clearHistory();
                 },
                 error: function (xhr) {
@@ -390,7 +385,6 @@
             });
         }
 
-        // Simple Toast Notification
         function showToast(title, message, type = 'primary') {
             const toastContainer = $('<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;"></div>');
             if ($('.toast-container').length === 0) {
@@ -408,7 +402,7 @@
                   </div>
                 </div>
             `;
-            
+
             $('.toast-container').append(toastHtml);
             const toastElement = new bootstrap.Toast(document.getElementById(toastId), { delay: 3000 });
             toastElement.show();
@@ -417,5 +411,6 @@
                 $(this).remove();
             });
         }
-    </script>
+
+</script>
 }

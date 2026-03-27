@@ -3,11 +3,11 @@
 }
 
 @section Styles {
-    <!-- Frappe Gantt CSS -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/0.6.1/frappe-gantt.min.css">
-    
+
     <style>
-        .custom-chart-container {
+.custom-chart-container {
             padding: 30px;
             background: #fff;
             border-radius: 25px;
@@ -31,7 +31,7 @@
             align-items: center;
             gap: 15px;
         }
-        
+
         .chart-icon {
             background: var(--green-light);
             color: var(--green-accent);
@@ -44,12 +44,11 @@
             font-size: 18px;
         }
 
-        /* Customizing Frappe Gantt to match our organic theme */
         .gantt .bar-wrapper { cursor: pointer; }
         .gantt .bar-progress { fill: var(--green-accent) !important; }
         .gantt .bar-wrapper:hover .bar-progress { fill: var(--sidebar-green) !important; }
         .gantt .bar-label { font-family: var(--font-family-primary) !important; font-size: 12px; font-weight: 500; fill: #fff; }
-        
+
         .gantt-container {
             overflow-x: auto;
             border-radius: 12px;
@@ -67,7 +66,8 @@
             display: flex;
             gap: 10px;
         }
-    </style>
+
+</style>
 }
 
 <div class="row">
@@ -89,20 +89,20 @@
                     <button class="btn btn-sm btn-outline-primary copy-btn"><i class="fa-regular fa-copy"></i> Copy HTML</button>
                 </div>
             </div>
-            
+
             <div class="gantt-target"></div>
-            
+
         </div>
     </div>
 </div>
 
 @section Scripts {
-    <!-- Frappe Gantt JS -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/frappe-gantt/0.6.1/frappe-gantt.min.js"></script>
-    
+
     <script>
-        var gantt;
-        
+var gantt;
+
         $(document).ready(function() {
             var tasks = [
                 {
@@ -147,7 +147,6 @@
                 }
             ];
 
-            // Initialize Gantt Chart
             gantt = new Gantt(".gantt-target", tasks, {
                 header_height: 50,
                 column_width: 30,
@@ -171,13 +170,11 @@
                 }
             });
 
-            // STEP 1: CACHE RAW HTML FOR COPY BUTTONS
-            // Cache before saving states so we don't copy the JS mutated version
             $('.custom-chart-container').each(function() {
                 var btn = $(this).find('.copy-btn');
                 if (btn.length) {
                     var containerClone = $(this).clone();
-                    // Clean injected SVG by Gantt
+
                     containerClone.find('.gantt-target').empty(); 
                     var rawHtml = containerClone.prop('outerHTML');
                     btn.data('raw-html', rawHtml);
@@ -187,8 +184,7 @@
             $('.copy-btn').on('click', function(e) {
                 e.preventDefault();
                 var rawHtml = $(this).data('raw-html');
-                
-                // Use the Global Copy HTML Modal from _Layout.cshtml
+
                 document.getElementById('globalCopyHtmlTextarea').value = rawHtml;
                 openModal('globalCopyHtmlModal');
             });
@@ -197,5 +193,6 @@
         function changeView(mode) {
             gantt.change_view_mode(mode);
         }
-    </script>
+
+</script>
 }

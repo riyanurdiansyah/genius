@@ -2,7 +2,7 @@
 
 @section Styles {
     <style>
-        .seo-card {
+.seo-card {
             border: none;
             border-radius: var(--radius-md);
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
@@ -34,16 +34,16 @@
         .bg-warning-subtle { background: #fef3c7; color: #92400e; }
         .bg-primary-subtle { background: #e0e7ff; color: #3730a3; }
         .bg-info-subtle { background: #e0f2fe; color: #0369a1; }
-        
+
         .progress-slim {
             height: 6px;
             border-radius: 3px;
             background: #f1f5f9;
         }
-    </style>
+
+</style>
 }
 
-<!-- Summary Widgets -->
 <div class="row g-4 mb-4">
     <div class="col-md-3 col-sm-6">
         <div class="card seo-card">
@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-3 col-sm-6">
         <div class="card seo-card">
             <div class="card-body">
@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-3 col-sm-6">
         <div class="card seo-card">
             <div class="card-body">
@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-3 col-sm-6">
         <div class="card seo-card">
             <div class="card-body">
@@ -110,7 +110,6 @@
     </div>
 </div>
 
-<!-- Charts Section -->
 <div class="row g-4 mb-4">
     <div class="col-lg-8">
         <div class="card seo-card">
@@ -164,7 +163,7 @@
                 <div class="progress progress-slim mb-4">
                     <div class="progress-bar bg-danger" style="width: 45%"></div>
                 </div>
-                
+
                 <div class="d-flex justify-content-between mb-2">
                     <span class="fw-bold">"web analytics tool"</span>
                     <span class="text-success-alt fw-bold"><i class="fas fa-caret-up"></i> #18</span>
@@ -172,14 +171,13 @@
                 <div class="progress progress-slim mb-3">
                     <div class="progress-bar bg-success" style="width: 25%"></div>
                 </div>
-                
+
                 <button class="btn btn-light w-100 fw-bold mt-2 text-primary">View All Keywords</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Pages Health Table -->
 <div class="card seo-card">
     <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
         <h5 class="fw-bold mb-0">Pages SEO Health Check</h5>
@@ -280,7 +278,7 @@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
             var options = {
                 series: [{
                     name: 'Organic Traffic',
@@ -333,5 +331,6 @@
             var chart = new ApexCharts(document.querySelector("#trafficChart"), options);
             chart.render();
         });
-    </script>
+
+</script>
 }

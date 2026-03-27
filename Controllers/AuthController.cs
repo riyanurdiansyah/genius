@@ -10,7 +10,7 @@ namespace Kuda.Controllers
             {
                 return View("LoginV1");
             }
-            
+
             [HttpGet("/Auth/LoginV1")]
             public IActionResult LoginV1()
             {

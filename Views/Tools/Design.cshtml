@@ -4,19 +4,18 @@
 
 <link rel="stylesheet" href="/css/ui-builder.css" />
 
-<!-- Dashboard Projects Overlay -->
 <div class="project-dashboard" id="projectDashboard" style="padding: 40px; background: #f8fafc; min-height: calc(100vh - 65px);">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold m-0 text-dark"><i class="fas fa-folder-open text-primary me-2"></i> Your Projects</h3>
         <button class="btn btn-primary" onclick="createProject()"><i class="fas fa-plus shadow-sm me-1"></i> New Project</button>
     </div>
     <div class="row g-4" id="projectGrid">
-        <!-- Injected via JS -->
+
     </div>
 </div>
 
 <div class="builder-container" id="builderMain" style="display: none;">
-    <!-- Sidebar / Components Palette -->
+
     <div class="builder-sidebar">
         <div class="builder-sidebar-header pb-0 border-bottom-0">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -36,14 +35,13 @@
             </ul>
         </div>
         <div class="tab-content builder-components" id="sidebarProtoTabs">
-            <!-- COMPONENTS TAB -->
+
             <div class="tab-pane fade show active p-3" id="components-tab">
-                <!-- Search Box -->
+
                 <div class="mb-3">
                     <input type="text" id="componentSearch" class="form-control form-control-sm" placeholder="&#xF002; Search components..." style="font-family: 'Font Awesome 6 Free', sans-serif; font-size: 12px;" oninput="filterComponents(this.value)">
                 </div>
 
-                <!-- LAYOUTS -->
                 <div class="component-group-title" data-group="layouts">Layouts</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="row" data-label="2-column row"><i class="fa-solid fa-table-columns"></i> 2-Column Row</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="row3" data-label="3-column row"><i class="fa-solid fa-columns"></i> 3-Column Row</div>
@@ -51,21 +49,18 @@
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="card-stat" data-label="stat card statistics"><i class="fa-solid fa-chart-pie"></i> Stat Card</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="divider" data-label="divider separator hr"><i class="fa-solid fa-grip-lines"></i> Divider</div>
 
-                <!-- TYPOGRAPHY -->
                 <div class="component-group-title mt-3" data-group="typography">Typography</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="header" data-label="heading title h1 h2 h3"><i class="fa-solid fa-heading"></i> Heading Title</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="paragraph" data-label="text paragraph body"><i class="fa-solid fa-align-left"></i> Text Paragraph</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="badge" data-label="badge label tag"><i class="fa-solid fa-tag"></i> Badge</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="alert" data-label="alert notification warning info"><i class="fa-solid fa-triangle-exclamation"></i> Alert</div>
 
-                <!-- NAVIGATION -->
                 <div class="component-group-title mt-3" data-group="navigation">Navigation</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="navbar" data-label="navbar header navigation top bar"><i class="fa-solid fa-bars"></i> Navbar / Header</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="breadcrumb" data-label="breadcrumb navigation path"><i class="fa-solid fa-sitemap"></i> Breadcrumb</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="pagination" data-label="pagination pages next prev"><i class="fa-solid fa-ellipsis"></i> Pagination</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="tabs" data-label="tabs pills navigation"><i class="fa-solid fa-folder-open"></i> Tabs & Pills</div>
 
-                <!-- FORMS & INPUTS -->
                 <div class="component-group-title mt-3" data-group="forms">Forms & Inputs</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="input-text" data-label="text input form field"><i class="fa-solid fa-i-cursor"></i> Text Input</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="input-group" data-label="input group icon prefix append"><i class="fa-solid fa-at"></i> Input Group</div>
@@ -81,7 +76,6 @@
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="button-group" data-label="button group toolbar"><i class="fa-solid fa-layer-group"></i> Button Group</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="form-full" data-label="form full login register"><i class="fa-solid fa-wpforms"></i> Form (Full)</div>
 
-                <!-- UI COMPONENTS -->
                 <div class="component-group-title mt-3" data-group="ui">User Interface</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="accordion" data-label="accordion collapse expand faq"><i class="fa-solid fa-layer-group"></i> Accordion</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="modal-trigger" data-label="modal dialog popup overlay"><i class="fa-solid fa-window-restore"></i> Modal (Trigger)</div>
@@ -92,28 +86,25 @@
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="list-group" data-label="list group menu items"><i class="fa-solid fa-list-ul"></i> List Group</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="tooltip-demo" data-label="tooltip popover hint"><i class="fa-regular fa-comment-dots"></i> Tooltip / Popover</div>
 
-                <!-- CHARTS -->
                 <div class="component-group-title mt-3" data-group="charts">Charts</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-bar" data-label="bar chart apex apexchart"><i class="fa-solid fa-chart-bar"></i> Bar Chart</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-line" data-label="line chart area apex"><i class="fa-solid fa-chart-line"></i> Line / Area Chart</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-pie" data-label="pie donut chart"><i class="fa-solid fa-chart-pie"></i> Pie / Donut Chart</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="chart-gantt" data-label="gantt chart project timeline"><i class="fa-solid fa-diagram-gantt"></i> Gantt Chart</div>
 
-                <!-- DATA -->
                 <div class="component-group-title mt-3" data-group="data">Data & Tables</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="table" data-label="data table grid rows columns"><i class="fa-solid fa-table"></i> Data Table</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="table-striped" data-label="striped table bordered"><i class="fa-solid fa-table-list"></i> Striped Table</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="table-datatable" data-label="datatable search filter pagination"><i class="fa-solid fa-database"></i> DataTable (Full)</div>
                 <div class="component-item" draggable="true" ondragstart="drag(event)" data-type="barcode" data-label="barcode generator qr"><i class="fa-solid fa-barcode"></i> Barcode</div>
             </div>
-            <!-- PAGES TAB -->
+
             <div class="tab-pane fade p-3 h-100" id="pages-tab">
                 <button class="btn btn-primary w-100 mb-3 btn-sm" onclick="addNewPage()"><i class="fas fa-plus me-1"></i> Add Prototype Page</button>
                 <div id="pagesList"></div>
             </div>
         </div>
 
-        <!-- ERD Sidebar (hidden by default) -->
         <div id="erdSidebarContent" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
             <div style="padding:16px;border-bottom:1px solid var(--border-color);">
                 <button class="btn btn-primary w-100 btn-sm mb-2" onclick="ERD.addEntity()"><i class="fas fa-plus me-1"></i> Add Entity</button>
@@ -126,7 +117,6 @@
             </div>
         </div>
 
-        <!-- Flowchart Sidebar (hidden by default) -->
         <div id="flowchartSidebarContent" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
             <div class="builder-sidebar-header pb-0 border-bottom-0">
                 <ul class="nav nav-tabs" style="font-size: 13px; border-bottom: none;">
@@ -138,9 +128,9 @@
                     </li>
                 </ul>
             </div>
-            
+
             <div class="tab-content builder-components flex-grow-1" style="overflow-y:auto;">
-                <!-- FLOWCHART COMP TAB -->
+
                 <div class="tab-pane fade show active p-3" id="fc-comp-tab">
                     <div class="component-group-title">Shapes (Drag & Drop)</div>
                     <div class="d-flex flex-wrap gap-2 mb-4">
@@ -152,7 +142,7 @@
                     <div class="component-group-title">Elements on Canvas</div>
                     <div id="fcNodeList"></div>
                 </div>
-                <!-- FLOWCHART PAGES TAB -->
+
                 <div class="tab-pane fade p-3 h-100" id="fc-pages-tab">
                     <button class="btn btn-primary w-100 mb-3 btn-sm" onclick="Flowchart.addNewPageModal()"><i class="fas fa-plus me-1"></i> New Diagram</button>
                     <div id="fcPagesList"></div>
@@ -160,7 +150,6 @@
             </div>
         </div>
 
-        <!-- FSD Sidebar (hidden by default) -->
         <div id="fsdSidebarContent" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
             <div class="builder-sidebar-header pb-0 border-bottom-0">
                 <ul class="nav nav-tabs" style="font-size: 13px; border-bottom: none;">
@@ -176,7 +165,7 @@
                 </ul>
             </div>
             <div class="tab-content builder-components flex-grow-1" style="overflow-y:auto;">
-                <!-- FSD COMPONENTS TAB -->
+
                 <div class="tab-pane fade show active p-3" id="fsd-comp-tab">
                     <div class="component-group-title">FSD Elements</div>
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="cover"><i class="fa-solid fa-file-signature text-warning"></i> Cover Page Document</div>
@@ -190,12 +179,12 @@
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="erd"><i class="fa-solid fa-project-diagram"></i> Embed ERD Schema</div>
                     <div class="component-item" draggable="true" ondragstart="FSD.drag(event)" data-fsd-type="flowchart"><i class="fa-solid fa-sitemap"></i> Embed Flowchart</div>
                 </div>
-                <!-- FSD PAGES TAB -->
+
                 <div class="tab-pane fade p-3" id="fsd-pages-tab">
                     <button class="btn btn-primary w-100 mb-3 btn-sm" onclick="FSD.addNewPage()"><i class="fas fa-plus me-1"></i> Add FSD Page</button>
                     <div id="fsdPagesList"></div>
                 </div>
-                <!-- FSD HISTORY TAB -->
+
                 <div class="tab-pane fade p-3" id="fsd-history-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h6 class="m-0 fw-bold">Version History</h6>
@@ -209,9 +198,8 @@
         </div>
     </div>
 
-    <!-- Main Canvas Area -->
     <div class="builder-canvas-wrapper">
-        <!-- Unified Toolbar -->
+
         <div class="builder-toolbar">
             <div class="workspace-tabs">
                 <button class="ws-tab active" onclick="switchWorkspace('prototype',this)"><i class="fas fa-paint-brush"></i> Prototype</button>
@@ -225,23 +213,20 @@
             </div>
         </div>
 
-        <!-- PROTOTYPE PANEL -->
         <div class="workspace-panel active" id="panel-prototype">
             <div class="builder-canvas">
                 <div class="canvas-paper drop-zone" id="mainCanvas" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div>
             </div>
         </div>
 
-        <!-- FSD PANEL -->
         <div class="workspace-panel" id="panel-fsd" style="background:#e2e8f0; overflow-y:auto;">
             <div style="display:flex; justify-content:center; padding: 40px 20px;">
                 <div class="fsd-paper drop-zone fsd-drop-zone" id="fsdCanvas" ondrop="FSD.drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" style="background:white; padding:40px; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); width:100%; max-width:900px; min-height:1056px;">
-                    <!-- FSD Content goes here -->
+
                 </div>
             </div>
         </div>
 
-        <!-- ERD PANEL -->
         <div class="workspace-panel" id="panel-erd" style="background:#e2e8f0; overflow: auto;">
             <div style="display:flex; justify-content:center; align-items:flex-start; padding: 60px; min-width:min-content;">
                 <div class="erd-canvas-area" id="erdCanvas" style="position: relative; background:white; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:1200px; min-height:800px; height: 800px;">
@@ -250,7 +235,6 @@
             </div>
         </div>
 
-        <!-- FLOWCHART PANEL -->
         <div class="workspace-panel" id="panel-flowchart" style="background:#e2e8f0; overflow-y:auto; overflow-x:auto;">
             <div style="display:flex; justify-content:center; align-items:flex-start; padding: 40px 20px; min-width:min-content;">
                 <div class="fc-paper border drop-zone" id="flowchartCanvas" ondrop="Flowchart.drop(event)" ondragover="Flowchart.allowDrop(event)" style="position: relative; background:white; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:794px; min-height:400px; height: 400px; overflow: hidden; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; transition: width 0.2s, height 0.2s;">
@@ -261,7 +245,6 @@
     </div>
 </div>
 
-<!-- Modal for HTML Source -->
 <div class="modal fade" id="htmlPreviewModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -281,7 +264,6 @@
     </div>
 </div>
 
-<!-- Modal for PDF Preview -->
 <div class="modal fade" id="pdfPreviewModal" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content" style="height: 90vh;">
@@ -290,14 +272,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-0" style="height: calc(100% - 130px);">
-                <!-- Loading State -->
+
                 <div id="pdfLoadingState" class="d-flex justify-content-center align-items-center h-100 flex-column">
                     <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                     <p class="mt-3 text-muted">Generating PDF preview...</p>
                 </div>
-                <!-- Iframe for PDF -->
+
                 <iframe id="pdfPreviewFrame" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
             </div>
             <div class="modal-footer">
@@ -308,7 +290,6 @@
     </div>
 </div>
 
-<!-- Modal for Linking Buttons -->
 <div class="modal fade" id="linkModal" tabindex="-1" style="z-index: 1060;">
     <div class="modal-dialog modal-sm modal-dialog-centered" style="pointer-events: auto;">
         <div class="modal-content">
@@ -325,7 +306,6 @@
     </div>
 </div>
 
-<!-- Modal for Adding Page -->
 <div class="modal fade" id="addPageModal" tabindex="-1" style="z-index: 1060;">
     <div class="modal-dialog modal-sm modal-dialog-centered" style="pointer-events: auto;">
         <div class="modal-content">
@@ -345,7 +325,6 @@
     </div>
 </div>
 
-<!-- Modal for Adding FSD Page -->
 <div class="modal fade" id="addFsdPageModal" tabindex="-1" style="z-index: 1060;">
     <div class="modal-dialog modal-sm modal-dialog-centered" style="pointer-events: auto;">
         <div class="modal-content">
@@ -367,7 +346,6 @@
     </div>
 </div>
 
-<!-- Modal for Adding Flowchart Page -->
 <div class="modal fade" id="addFcPageModal" tabindex="-1" style="z-index: 1060;">
     <div class="modal-dialog modal-sm modal-dialog-centered" style="pointer-events: auto;">
         <div class="modal-content">
@@ -389,7 +367,6 @@
     </div>
 </div>
 
-<!-- Modal for Comparing FSD Versions -->
 <div class="modal fade" id="compareFsdModal" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
@@ -403,7 +380,7 @@
                         <div class="card shadow-sm h-100">
                             <div class="card-header bg-white fw-bold py-3">Page Changes</div>
                             <div class="card-body p-0 overflow-y-auto" style="max-height: 70vh;" id="comparePageList">
-                                <!-- List of pages with diff status -->
+
                             </div>
                         </div>
                     </div>
@@ -415,7 +392,7 @@
                                     <span class="badge bg-secondary opacity-50">HISTORY</span>
                                 </div>
                                 <div class="compare-body" id="compareOldCanvas">
-                                    <!-- Old content preview -->
+
                                 </div>
                             </div>
                             <div class="compare-column">
@@ -424,7 +401,7 @@
                                     <span class="badge bg-primary">CURRENT</span>
                                 </div>
                                 <div class="compare-body" id="compareNewCanvas">
-                                    <!-- New content preview -->
+
                                 </div>
                             </div>
                         </div>
@@ -442,22 +419,18 @@
 <script src="/js/ui-builder-fsd.js"></script>
 <script src="/js/ui-builder-erd.js"></script>
 <script src="/js/ui-builder-flowchart.js"></script>
-<!-- html2pdf for FSD Export -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<!-- ApexCharts for Chart Components in Prototype Builder -->
+
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-<!-- Firebase SDK Integrasi -->
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
 
 <script>
-    /* ── Prototype Init Logic ────────────── */
-    let pages = [];
+let pages = [];
     let currentPageId = null;
 
-    /* ── Firebase Configuration ────────────── */
-    // TODO: GANTI DENGAN KUNCI PRODUKSI FIREBASE FIRESTORE ANDA
     const firebaseConfig = {
         apiKey: "AIzaSyAkHR9hh2Y2QjpkOXr0PC4AZHdK5tBd854",
         authDomain: "kuda-300c0.firebaseapp.com",
@@ -473,14 +446,13 @@
     }
     const db = firebase.firestore();
 
-    /* ── App Data & Project Management ────────────── */
     let AppData = { projects: [] };
     let currentProject = null;
 
     async function fetchProjects() {
         const grid = document.getElementById('projectGrid');
         if (grid) grid.innerHTML = `<div class="col-12 text-center text-muted" style="padding:40px;"><i class="fas fa-spinner fa-spin fs-1 mb-3"></i><br>Connecting to Firebase Firestore...</div>`;
-        
+
         try {
             const snapshot = await db.collection("projects").get();
             AppData.projects = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -525,7 +497,7 @@
     async function createProject() {
         const name = prompt("Enter project name:", "New Cloud Project");
         if (!name) return;
-        
+
         const newProj = {
             id: 'proj-' + Date.now(),
             name: name,
@@ -536,7 +508,7 @@
             erdRelationships: [],
             flowchartDiagrams: [{ id: 'fc-page-1', num: '1.0', name: 'Main Flow', nodes: [], edges: [] }]
         };
-        
+
         try {
             await db.collection("projects").doc(newProj.id).set(newProj);
             AppData.projects.push(newProj);
@@ -564,18 +536,17 @@
         if (!proj) return;
         currentProject = proj;
 
-        // Bind data state directly securely
         pages = currentProject.prototypePages || [{ id: 'page-1', name: 'Home', html: '' }];
         currentPageId = pages[0].id;
         const mainCanvas = document.getElementById('mainCanvas');
         if (mainCanvas) mainCanvas.innerHTML = pages[0].html || '';
-        
+
         FSD.pages = currentProject.fsdPages || [{ id: 'fsd-cover', num: 'Cover', name: 'Halaman Utama', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['cover'] : '' }];
         FSD.currentPageId = FSD.pages[0].id;
-        
+
         ERD.entities = currentProject.erdEntities || [];
         ERD.relationships = currentProject.erdRelationships || [];
-        
+
         Flowchart.diagrams = currentProject.flowchartDiagrams || [{ id: 'fc-page-1', num: '1.0', name: 'Main Flow', nodes: [], edges: [] }];
         Flowchart.currentPageId = Flowchart.diagrams[0].id;
 
@@ -586,7 +557,6 @@
         document.getElementById('projectDashboard').style.display = 'none';
         document.getElementById('builderMain').style.display = 'flex';
 
-        // Refresh UI
         currentWorkspace = ''; 
         const wsTab = document.querySelector(`.ws-tab[onclick="switchWorkspace('prototype',this)"]`);
         if (wsTab) switchWorkspace('prototype', wsTab);
@@ -607,7 +577,7 @@
         currentProject = null;
         document.getElementById('builderMain').style.display = 'none';
         document.getElementById('projectDashboard').style.display = 'block';
-        // Re-fetch project list incase auto-save updated metadata
+
         fetchProjects(); 
     }
 
@@ -616,7 +586,6 @@
         if (!currentProject || isSavingToCloud) return;
         isSavingToCloud = true;
 
-        // Capture current active state
         if (currentWorkspace === 'prototype') {
             const cd = pages.find(p => p.id === currentPageId);
             if (cd) cd.html = document.getElementById('mainCanvas').innerHTML;
@@ -633,7 +602,6 @@
         currentProject.flowchartDiagrams = Flowchart.diagrams;
         currentProject.updatedAt = new Date().toLocaleTimeString();
 
-        // Menyimpan status dokumen terbaru langsung ke JSON Firestore
         try {
             await db.collection("projects").doc(currentProject.id).set(currentProject);
             console.log("Auto-saved to Cloud Firestore");
@@ -644,23 +612,19 @@
         }
     }
 
-    // Auto save synchronize to Firebase every 15 seconds
     setInterval(() => {
         saveAllData();
     }, 15000);
 
-    // Initial Dashboard rendering trigger fetch from Firebase
     window.addEventListener('DOMContentLoaded', () => {
         fetchProjects();
     });
 
-    /* ── Workspace Switching ────────────── */
     let currentWorkspace = 'prototype';
 
     function switchWorkspace(ws, btn) {
         if (ws === currentWorkspace) return;
 
-        // Save prototype canvas before leaving
         if (currentWorkspace === 'prototype') {
             const cd = pages.find(p => p.id === currentPageId);
             if (cd) cd.html = document.getElementById('mainCanvas').innerHTML;
@@ -668,15 +632,12 @@
 
         currentWorkspace = ws;
 
-        // Tab active state
         document.querySelectorAll('.ws-tab').forEach(t => t.classList.remove('active'));
         if (btn) btn.classList.add('active');
 
-        // Panel visibility
         document.querySelectorAll('.workspace-panel').forEach(p => p.classList.remove('active'));
         document.getElementById('panel-' + ws).classList.add('active');
 
-        // Sidebar switching
         const protoTabs = document.getElementById('sidebarProtoTabs');
         const erdSb = document.getElementById('erdSidebarContent');
         const fsdSb = document.getElementById('fsdSidebarContent');
@@ -684,7 +645,6 @@
         const sidebarHeader = document.querySelector('.builder-sidebar-header h5');
         const sidebarUl = document.querySelector('.builder-sidebar-header ul');
 
-        // Hide all sidebar contents first
         if (protoTabs) protoTabs.style.display = 'none';
         if (erdSb) erdSb.style.display = 'none';
         if (fsdSb) fsdSb.style.display = 'none';
@@ -713,7 +673,6 @@
             switchPage(currentPageId);
         }
 
-        // Toolbar actions update
         const actions = document.getElementById('toolbarActions');
         if (ws === 'prototype') {
             actions.innerHTML = `<button class="btn btn-sm btn-outline-danger me-2" onclick="clearCanvas()"><i class="fa-solid fa-trash"></i> Clear</button>
@@ -732,27 +691,23 @@
         }
     }
 
-    // Markdown export removed since FSD is now visual node based
-
     function exportFSDPDF() {
         if (!FSD || !FSD.pages || FSD.pages.length === 0) return;
-        
+
         const el = document.getElementById('fsdCanvas');
-        
-        // Segarkan layar terakhir ke array memori
+
         const fc = FSD.pages.find(p => p.id === FSD.currentPageId);
         if (fc && el) fc.html = el.innerHTML;
-        
+
         const tempContainer = document.createElement('div');
         tempContainer.className = 'fsd-paper';
-        
+
         let counter = 0;
         FSD.pages.forEach((page) => {
             const pageDiv = document.createElement('div');
-            // Supaya tampilan tetap nyaman dan rapi antar halaman, tanpa bayangan dll
+
             pageDiv.innerHTML = page.html || '<div style="color:#ccc;text-align:center;">[Blank Page]</div>';
-            
-            // Inject Class bawaan html2pdf.js agar PDF dipotong sempurna setiap pergantian dokumen yang berbeda
+
             if (counter < FSD.pages.length - 1) {
                 const breakDiv = document.createElement('div');
                 breakDiv.className = 'html2pdf__page-break';
@@ -762,28 +717,24 @@
             counter++;
         });
 
-        // Set clone referensi ke DOM tempContainer gabungan semua halaman FSD
         const clone = tempContainer;
-        
-        // 1. Tangkap input tepat setelah clone sebelum ada elemen yang dibuang
+
         const origInputs = el.querySelectorAll('input, select, textarea');
         const cloneInputs = clone.querySelectorAll('input, select, textarea');
-        
-        // 2. Remove interactive prototype UI & placeholders safely
+
         clone.querySelectorAll('.fsd-prototype-control, .fsd-prototype-placeholder').forEach(el => el.remove());
-        
-        // 3. Transform input jadi teks dengan presisi
+
         origInputs.forEach((inp, i) => {
             const cloneNodeCandidate = cloneInputs[i];
-            if (!cloneNodeCandidate || !cloneNodeCandidate.parentNode) return; // skip if already removed
-            
+            if (!cloneNodeCandidate || !cloneNodeCandidate.parentNode) return; 
+
             const cInp = cloneNodeCandidate;
             const val = inp.value;
             const span = document.createElement('span');
             span.style.fontFamily = cInp.tagName === 'INPUT' && cInp.style.fontFamily === 'monospace' ? 'monospace' : 'inherit';
             span.style.fontWeight = cInp.style.fontWeight || 'normal';
             span.style.fontSize = cInp.style.fontSize || 'inherit';
-            
+
             if (cInp.tagName === 'TEXTAREA') {
                 span.innerHTML = val ? val.replace(/\n/g, '<br>') : '-';
                 span.style.display = 'block';
@@ -800,17 +751,15 @@
 
         clone.querySelectorAll('.toggle, .fsd-add-btn, button, select').forEach(b => b.remove());
 
-        // Hapus paksa ikon delete & kolom `.fsd-hide-pdf` (Telah dibantu penandaan Class asli di ui-builder)
         clone.querySelectorAll('.fa-trash, .fas.fa-trash, .text-danger, button').forEach(el => el.remove());
         clone.querySelectorAll('.fsd-hide-pdf').forEach(el => el.remove());
 
-        // Hapus kolom spesifik dengan nama persis 'Act' (Fallback jika komponen ditarik SEBELUM pembaruan kelas)
         Array.from(clone.querySelectorAll('th')).forEach(th => {
             const txt = (th.textContent || '').trim();
             if (txt === 'Act' || txt === 'Action') {
                 const tbl = th.closest('table');
                 if (!tbl) return;
-                
+
                 const colIdx = th.cellIndex;
                 if (colIdx !== undefined && colIdx > -1) {
                     tbl.querySelectorAll('tr').forEach(row => {
@@ -821,33 +770,27 @@
             }
         });
 
-        // Hapus contenteditable untuk menghindari bug 'Garis Putus-Putus' halus dari spellcheck/editable boundary WebKit
         clone.querySelectorAll('[contenteditable]').forEach(el => {
             el.removeAttribute('contenteditable');
             el.style.outline = 'none';
         });
 
-        // Hapus styling berlebih yang memicu bug rendering html2canvas (Garis Putus-Putus dari Bootstrap Table Bordered)
         clone.querySelectorAll('table.table-bordered').forEach(t => {
             t.classList.remove('table-bordered');
         });
 
-        // Pastikan drop zone tidak merender dashed line
         clone.querySelectorAll('.fsd-drop-zone, .canvas-element').forEach(el => {
             el.style.border = 'none';
             el.style.boxShadow = 'none';
         });
 
-        // --- PENYESUAIAN A4 TEPAT ---
-        // Lebar A4 proporsional sekitar 800px. Jika lebar melebihi ini, akan terpotong
         clone.style.width = '800px'; 
         clone.style.maxWidth = '100%';
         clone.style.margin = '0 auto';  
         clone.style.padding = '20px';
         clone.style.background = '#fff';
         clone.style.boxShadow = 'none';
-        
-        // Paksa Font ke KalbeGeometric menggunakan Injeksi Style Block yang aman untuk html2canvas
+
         const fontOverrides = document.createElement('style');
         const baseUrl = window.location.origin;
         fontOverrides.innerHTML = `
@@ -866,25 +809,22 @@
                 src: url('${baseUrl}/font/geometric/KalbeGeometric-Medium.woff2') format('woff2');
                 font-weight: 500; font-style: normal;
             }
-            /* Mengamankan elemen dasar FSD */
+
             .fsd-paper, .fsd-comp, .fsd-comp *, table, th, td, h1, h2, h3, h4, h5, h6, p, span, div {
                 font-family: 'KalbeGeometric', sans-serif !important;
             }
-            /* Kecuali untuk ikon FontAwesome yang wajib mempertahankan font aslinya */
+
             i, .fa, .fas, .fa-solid, .fa-regular, .fab, .fal {
                 font-family: "Font Awesome 6 Free", "FontAwesome" !important;
             }
         `;
         clone.appendChild(fontOverrides);
 
-        // Secara agresif menginjeksi inline font-family ke seluruh elemen Prototype
-        // Karena HTML2Canvas sering buta pada CSS Selector universal atau bersarang
         clone.querySelectorAll('*').forEach(el => {
             if (el.tagName.toLowerCase() !== 'i' && !el.classList.contains('fa') && !el.classList.contains('fas') && !el.classList.contains('fa-solid')) {
-                // Jangan sampai merusak ikon
+
                 el.style.setProperty('font-family', "'KalbeGeometric', system-ui, sans-serif", 'important');
-                
-                // Set ukuran Font ke 10px default dan 12px untuk title
+
                 const tag = el.tagName.toLowerCase();
                 if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag) || el.classList.contains('fsd-section-title')) {
                     el.style.setProperty('font-size', '12px', 'important');
@@ -895,16 +835,13 @@
             }
         });
 
-        // 1. Memaksa Prototype HTML embed agar di-zoom-out 
-        // sehingga seluruh kontennya mengecil dan menyesuaikan lebar A4 tanpa nabrak
         clone.querySelectorAll('.fsd-prototype-preview').forEach(p => {
-            p.style.zoom = '0.75'; // kecilkan 25% agar muat mantap
+            p.style.zoom = '0.75'; 
             p.style.overflow = 'hidden';
             p.style.width = '100%';
-            p.style.border = 'none'; // menghilangkan kotak luar tambahan jika ada
+            p.style.border = 'none'; 
             p.style.background = 'transparent';
-            
-            // hindari komponen di dalam prototype (seperti card/row) yang melebihi lebar
+
             p.querySelectorAll('*').forEach(child => {
                 if (child.style && child.clientWidth > 800) {
                     child.style.maxWidth = '100%';
@@ -914,7 +851,6 @@
             });
         });
 
-        // Menghilangkan border berlebih untuk tampilan rapih
         const comps = clone.querySelectorAll('.fsd-comp');
         comps.forEach(c => {
             c.classList.remove('mb-4', 'border', 'rounded', 'bg-white');
@@ -924,31 +860,30 @@
 
         const container = el.parentElement;
         const oldDisplay = el.style.display;
-        el.style.display = 'none'; // Sembunyikan canvas asli
-        container.appendChild(clone); // Tempel clone di dalam container asli (tanpa trick document.body yg bikin blank)
+        el.style.display = 'none'; 
+        container.appendChild(clone); 
 
         const currentP = FSD.pages.find(p => p.id === FSD.currentPageId);
         const safeName = 'FSD_' + (currentP ? currentP.name : 'Document').replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
-        
+
         const opt = {
-            margin: [10, 10, 10, 10], // top, left, bottom, right margins in mm
+            margin: [10, 10, 10, 10], 
             filename: safeName,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0 },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
             pagebreak: { mode: ['css', 'legacy'], avoid: ['.fsd-comp', 'tr', '.erd-fsd-ent', '.fsd-header'] }
         };
-        
-        // Disable scrollbar menghindari tergesernya canvas ketika direkam
+
         const oldOverflow = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
-        
+
         setTimeout(() => {
             window.scrollTo(0,0);
             html2pdf().set(opt).from(clone).save().then(() => {
                 container.removeChild(clone);
                 document.body.style.overflow = oldOverflow;
-                el.style.display = oldDisplay; // restore original FSD
+                el.style.display = oldDisplay; 
             }).catch(err => {
                 container.removeChild(clone);
                 document.body.style.overflow = oldOverflow;
@@ -1029,22 +964,19 @@
 
     document.addEventListener("DOMContentLoaded", function () { renderPages(); });
 
-    /* ── Component Templates ───────────── */
     const componentTemplates = {
-        /* ─ Layouts ─ */
+
         'row': `<div class="row"><div class="col-md-6"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div><div class="col-md-6"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div></div>`,
         'row3': `<div class="row"><div class="col-md-4"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div><div class="col-md-4"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div><div class="col-md-4"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div></div>`,
         'card': `<div class="card mb-3"><div class="card-header" contenteditable="true">Card Title Here</div><div class="card-body"><div class="drop-zone nested-drop" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div></div></div>`,
         'card-stat': `<div class="row g-3"><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(99,102,241,.12);"><i class="fas fa-users fs-4 text-primary"></i></div><div><div class="text-muted small" contenteditable="true">Total Users</div><div class="fw-bold fs-5" contenteditable="true">12,450</div><div class="text-success small"><i class="fas fa-arrow-up"></i> <span contenteditable="true">8.2%</span> vs last month</div></div></div></div></div><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(16,185,129,.12);"><i class="fas fa-dollar-sign fs-4 text-success"></i></div><div><div class="text-muted small" contenteditable="true">Revenue</div><div class="fw-bold fs-5" contenteditable="true">$84,200</div><div class="text-success small"><i class="fas fa-arrow-up"></i> <span contenteditable="true">12.5%</span> vs last month</div></div></div></div></div><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(245,158,11,.12);"><i class="fas fa-shopping-cart fs-4 text-warning"></i></div><div><div class="text-muted small" contenteditable="true">Orders</div><div class="fw-bold fs-5" contenteditable="true">3,280</div><div class="text-danger small"><i class="fas fa-arrow-down"></i> <span contenteditable="true">2.1%</span> vs last month</div></div></div></div></div><div class="col-md-3"><div class="card border-0 shadow-sm"><div class="card-body d-flex align-items-center gap-3"><div class="rounded-3 p-3" style="background:rgba(239,68,68,.12);"><i class="fas fa-exclamation-circle fs-4 text-danger"></i></div><div><div class="text-muted small" contenteditable="true">Issues</div><div class="fw-bold fs-5" contenteditable="true">24</div><div class="text-muted small">Open tickets</div></div></div></div></div></div>`,
         'divider': `<hr class="my-3">`,
 
-        /* ─ Typography ─ */
         'header': `<h3 contenteditable="true">Editable Heading Title</h3>`,
         'paragraph': `<p contenteditable="true" class="text-muted">Click to edit this paragraph text.</p>`,
         'badge': `<div class="d-flex flex-wrap gap-2 mb-2"><span class="badge bg-primary" contenteditable="true">Primary</span><span class="badge bg-success" contenteditable="true">Success</span><span class="badge bg-warning text-dark" contenteditable="true">Warning</span><span class="badge bg-danger" contenteditable="true">Danger</span><span class="badge bg-info text-dark" contenteditable="true">Info</span><span class="badge bg-secondary" contenteditable="true">Secondary</span></div>`,
         'alert': `<div class="alert alert-info alert-dismissible fade show" role="alert"><i class="fas fa-info-circle me-2"></i><span contenteditable="true">This is an informational alert message. Click to edit.</span><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>`,
 
-        /* ─ Navigation ─ */
         'navbar': `<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm rounded mb-3"><div class="container-fluid"><a class="navbar-brand fw-bold" contenteditable="true">Brand Logo</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navDemo"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navDemo"><ul class="navbar-nav me-auto mb-2 mb-lg-0"><li class="nav-item"><a class="nav-link active" contenteditable="true">Home</a></li><li class="nav-item"><a class="nav-link" contenteditable="true">Features</a></li><li class="nav-item"><a class="nav-link" contenteditable="true">Pricing</a></li></ul><div class="d-flex gap-2"><button class="btn btn-outline-primary btn-sm" contenteditable="true">Login</button><button class="btn btn-primary btn-sm" contenteditable="true">Sign Up</button></div></div></div></nav>`,
         'breadcrumb': `<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" contenteditable="true">Home</a></li><li class="breadcrumb-item"><a href="#" contenteditable="true">Module</a></li><li class="breadcrumb-item active" contenteditable="true">Current Page</li></ol></nav>`,
         'pagination': `<nav><ul class="pagination pagination-sm"><li class="page-item disabled"><a class="page-link">Previous</a></li><li class="page-item"><a class="page-link">1</a></li><li class="page-item active"><a class="page-link">2</a></li><li class="page-item"><a class="page-link">3</a></li><li class="page-item"><a class="page-link">4</a></li><li class="page-item"><a class="page-link">5</a></li><li class="page-item"><a class="page-link">Next</a></li></ul></nav>`,
@@ -1054,7 +986,7 @@
 <div class="card border-0 shadow-sm mb-3" id="wrap_${uid}">
     <div class="card-header bg-white pb-0 border-bottom-0 d-flex justify-content-between align-items-end">
         <ul class="nav nav-tabs card-header-tabs" id="nav_${uid}" style="margin-bottom:-1px; flex-wrap:nowrap; overflow-x:auto; border-bottom:none;">
-            <!-- Tabs injected here by script -->
+
         </ul>
         <div class="d-flex gap-1 ms-2 mb-2 pb-1" style="flex-shrink:0;">
             <button class="btn btn-sm btn-outline-primary" style="padding:2px 8px;font-size:12px;" onclick="TABS_${uid}.addTab()" title="Add Tab"><i class="fas fa-plus"></i></button>
@@ -1063,7 +995,7 @@
     </div>
     <div class="card-body p-0 border border-top-0 rounded-bottom">
         <div class="tab-content w-100" id="content_${uid}" style="position:relative; min-height:100px;">
-            <!-- Panes injected here by script -->
+
         </div>
     </div>
 </div>
@@ -1080,7 +1012,7 @@
     function esc(s) {
         return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
-    
+
     function rNav() {
         const nav = document.getElementById('nav_' + ID);
         if(!nav) return;
@@ -1093,8 +1025,7 @@
     function rPanes() {
         const content = document.getElementById('content_' + ID);
         if(!content) return;
-        
-        // Preserve unremoved panes 
+
         tabs.forEach(t => {
             let pane = document.getElementById('pane_' + t.id + '_' + ID);
             if (!pane) {
@@ -1102,27 +1033,24 @@
                 pane.id = 'pane_' + t.id + '_' + ID;
                 pane.className = 'tab-pane p-4 drop-zone nested-drop w-100';
                 pane.style.minHeight = '150px';
-                
-                // Add placeholder helper text
+
                 const emptyState = document.createElement('div');
                 emptyState.className = 'text-center text-muted w-100 comp-empty-state';
                 emptyState.style.paddingTop = '10px';
                 emptyState.style.pointerEvents = 'none';
                 emptyState.innerHTML = '<i class="fas fa-cubes mb-2 d-block fa-lg" style="opacity:0.5;"></i>Drag &amp; Drop Components Here';
-                
+
                 pane.appendChild(emptyState);
-                
-                // Manually map drag drop events since it's dynamically added after initial doc parse
+
                 pane.setAttribute('ondrop', 'drop(event)');
                 pane.setAttribute('ondragover', 'allowDrop(event)');
                 pane.setAttribute('ondragenter', 'dragEnter(event)');
                 pane.setAttribute('ondragleave', 'dragLeave(event)');
-                
+
                 content.appendChild(pane);
             }
         });
-        
-        // Show active pane, hide others
+
         Array.from(content.children).forEach(pane => {
             if (pane.id === 'pane_' + activeId + '_' + ID) {
                 pane.style.display = 'block';
@@ -1134,7 +1062,6 @@
         });
     }
 
-    // Attach to global scope for button clicks
     window['TABS_' + ID] = {
         sw: function(id) { 
             activeId = id; 
@@ -1151,13 +1078,13 @@
             const idx = tabs.findIndex(t => t.id === activeId);
             const r = tabs[idx];
             tabs = tabs.filter(t => t.id !== activeId);
-            
+
             const pane = document.getElementById('pane_' + r.id + '_' + ID);
             if (pane) pane.remove();
 
             if (idx < tabs.length) activeId = tabs[idx].id;
             else activeId = tabs[tabs.length - 1].id;
-            
+
             rNav(); rPanes();
         },
         lbl: function(id, text) { 
@@ -1166,14 +1093,12 @@
         }
     };
 
-    // Initial Render
     rNav();
     rPanes();
 })();
 <\/script>`;
         },
 
-        /* ─ Forms & Inputs ─ */
         'input-text': `<div class="form-group mb-3"><label class="form-label" contenteditable="true">Input Label</label><input type="text" class="form-control" placeholder="Type here..."></div>`,
         'input-group': `<div class="mb-3"><label class="form-label" contenteditable="true">Email Address</label><div class="input-group"><span class="input-group-text"><i class="fas fa-envelope"></i></span><input type="email" class="form-control" placeholder="user@example.com"></div></div>`,
         'textarea': `<div class="mb-3"><label class="form-label" contenteditable="true">Description</label><textarea class="form-control" rows="4" placeholder="Write something..."></textarea></div>`,
@@ -1188,7 +1113,6 @@
         'button-group': `<div class="btn-group mb-3" role="group"><button class="btn btn-outline-primary" contenteditable="true">Left</button><button class="btn btn-outline-primary" contenteditable="true">Center</button><button class="btn btn-outline-primary" contenteditable="true">Right</button></div>`,
         'form-full': `<form class="border rounded p-4 bg-white shadow-sm"><h5 class="mb-3" contenteditable="true">Form Title</h5><div class="row g-3"><div class="col-md-6"><label class="form-label" contenteditable="true">First Name</label><input type="text" class="form-control" placeholder="John"></div><div class="col-md-6"><label class="form-label" contenteditable="true">Last Name</label><input type="text" class="form-control" placeholder="Doe"></div><div class="col-12"><label class="form-label" contenteditable="true">Email</label><div class="input-group"><span class="input-group-text"><i class="fas fa-envelope"></i></span><input type="email" class="form-control" placeholder="user@example.com"></div></div><div class="col-md-6"><label class="form-label" contenteditable="true">Department</label><select class="form-select"><option>Marketing</option><option>Engineering</option><option>Finance</option></select></div><div class="col-md-6"><label class="form-label" contenteditable="true">Join Date</label><input type="date" class="form-control"></div><div class="col-12"><label class="form-label" contenteditable="true">Notes</label><textarea class="form-control" rows="3" placeholder="Optional notes..."></textarea></div><div class="col-12 d-flex gap-2 justify-content-end"><button type="button" class="btn btn-light border">Cancel</button><button type="submit" class="btn btn-primary">Save Changes</button></div></div></form>`,
 
-        /* ─ User Interface Components ─ */
         'accordion': `<div class="accordion mb-3" id="protoAccordion"><div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acc1" contenteditable="true">Accordion Item #1</button></h2><div id="acc1" class="accordion-collapse collapse show" data-bs-parent="#protoAccordion"><div class="accordion-body" contenteditable="true">Content for the first accordion item. Click to edit.</div></div></div><div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc2" contenteditable="true">Accordion Item #2</button></h2><div id="acc2" class="accordion-collapse collapse" data-bs-parent="#protoAccordion"><div class="accordion-body" contenteditable="true">Content for the second accordion item.</div></div></div><div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc3" contenteditable="true">Accordion Item #3</button></h2><div id="acc3" class="accordion-collapse collapse" data-bs-parent="#protoAccordion"><div class="accordion-body" contenteditable="true">Content for the third accordion item.</div></div></div></div>`,
         'modal-trigger': `<div class="d-flex flex-column align-items-start gap-2"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#protoModal" contenteditable="true">Open Modal</button><div class="modal fade" id="protoModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" contenteditable="true">Modal Title</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" contenteditable="true">Modal body content goes here.</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button><button type="button" class="btn btn-primary">Save changes</button></div></div></div></div></div>`,
         'carousel': `<div id="protoCarousel" class="carousel slide mb-3" data-bs-ride="carousel"><div class="carousel-indicators"><button type="button" data-bs-target="#protoCarousel" data-bs-slide-to="0" class="active"></button><button type="button" data-bs-target="#protoCarousel" data-bs-slide-to="1"></button><button type="button" data-bs-target="#protoCarousel" data-bs-slide-to="2"></button></div><div class="carousel-inner rounded"><div class="carousel-item active"><div style="background:linear-gradient(135deg,#667eea,#764ba2);height:220px;display:flex;align-items:center;justify-content:center;"><h3 class="text-white" contenteditable="true">Slide One Title</h3></div></div><div class="carousel-item"><div style="background:linear-gradient(135deg,#f093fb,#f5576c);height:220px;display:flex;align-items:center;justify-content:center;"><h3 class="text-white" contenteditable="true">Slide Two Title</h3></div></div><div class="carousel-item"><div style="background:linear-gradient(135deg,#4facfe,#00f2fe);height:220px;display:flex;align-items:center;justify-content:center;"><h3 class="text-white" contenteditable="true">Slide Three Title</h3></div></div></div><button class="carousel-control-prev" type="button" data-bs-target="#protoCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button><button class="carousel-control-next" type="button" data-bs-target="#protoCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button></div>`,
@@ -1198,13 +1122,11 @@
         'list-group': `<ul class="list-group mb-3"><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item One<span class="badge bg-primary rounded-pill">14</span></li><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item Two<span class="badge bg-success rounded-pill">9</span></li><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item Three<span class="badge bg-warning text-dark rounded-pill">3</span></li><li class="list-group-item d-flex justify-content-between align-items-center" contenteditable="true">List Item Four<span class="badge bg-secondary rounded-pill">0</span></li></ul>`,
         'tooltip-demo': `<div class="d-flex flex-wrap gap-2 mb-3 align-items-center"><button class="btn btn-secondary" title="This is a tooltip">Hover Tooltip</button><button class="btn btn-info text-white" data-bs-toggle="popover" title="Popover Title" data-bs-content="This is popover content. More detail here.">Click Popover</button><small class="text-muted">Tooltips & popovers appear on hover/click</small></div>`,
 
-        /* ─ Charts ─ */
         'chart-bar': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Bar Chart — Monthly Sales</div><div class="card-body"><div id="chartBar_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartBar_{{UID}}'),{chart:{type:'bar',height:260,toolbar:{show:false}},colors:['#6366f1'],series:[{name:'Sales',data:[44,55,57,56,61,58,63,70,65,80,75,90]}],xaxis:{categories:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']},plotOptions:{bar:{borderRadius:4}},dataLabels:{enabled:false}}).render();}<\/script>`.replace(/{{UID}}/g, 'b'+Date.now()),
         'chart-line': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Line Chart — Revenue Trend</div><div class="card-body"><div id="chartLine_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartLine_{{UID}}'),{chart:{type:'area',height:260,toolbar:{show:false}},colors:['#10b981'],fill:{type:'gradient',gradient:{shadeIntensity:1,opacityFrom:0.4,opacityTo:0,stops:[0,90,100]}},series:[{name:'Revenue',data:[31,40,28,51,42,109,100,80,91,120,105,135]}],xaxis:{categories:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']},dataLabels:{enabled:false},stroke:{curve:'smooth'}}).render();}<\/script>`.replace(/{{UID}}/g, 'l'+Date.now()),
         'chart-pie': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Pie / Donut Chart — Distribution</div><div class="card-body"><div id="chartPie_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartPie_{{UID}}'),{chart:{type:'donut',height:260},colors:['#6366f1','#10b981','#f59e0b','#ef4444'],series:[44,55,41,17],labels:['Product A','Product B','Product C','Product D'],legend:{position:'bottom'}}).render();}<\/script>`.replace(/{{UID}}/g, 'p'+Date.now()),
         'chart-gantt': `<div class="card border-0 shadow-sm mb-3"><div class="card-header bg-white fw-semibold" contenteditable="true">Gantt Chart — Project Timeline</div><div class="card-body"><div id="chartGantt_{{UID}}" style="min-height:280px;"></div></div></div><script>if(typeof ApexCharts!=='undefined'){new ApexCharts(document.querySelector('#chartGantt_{{UID}}'),{chart:{type:'rangeBar',height:260,toolbar:{show:false}},plotOptions:{bar:{horizontal:true,borderRadius:4}},colors:['#6366f1','#10b981','#f59e0b'],series:[{name:'Planning',data:[{x:'Research',y:[new Date('2025-01-01').getTime(),new Date('2025-01-20').getTime()]},{x:'Design',y:[new Date('2025-01-15').getTime(),new Date('2025-02-10').getTime()]}]},{name:'Development',data:[{x:'Frontend',y:[new Date('2025-02-01').getTime(),new Date('2025-03-01').getTime()]},{x:'Backend',y:[new Date('2025-02-10').getTime(),new Date('2025-03-15').getTime()]}]}],xaxis:{type:'datetime'},dataLabels:{enabled:false}}).render();}<\/script>`.replace(/{{UID}}/g, 'g'+Date.now()),
 
-        /* ─ Data Tables ─ */
         'table': `<div class="table-responsive"><table class="table table-hover"><thead><tr><th contenteditable="true">ID</th><th contenteditable="true">Name</th><th contenteditable="true">Status</th><th contenteditable="true">Action</th></tr></thead><tbody><tr><td contenteditable="true">1</td><td contenteditable="true">John Doe</td><td contenteditable="true"><span class="badge bg-success">Active</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr><tr><td contenteditable="true">2</td><td contenteditable="true">Jane Smith</td><td contenteditable="true"><span class="badge bg-warning">Pending</span></td><td contenteditable="true"><button class="btn btn-sm btn-outline-primary">Edit</button></td></tr></tbody></table></div>`,
         'table-striped': `<div class="table-responsive"><table class="table table-striped table-bordered align-middle"><thead class="table-dark"><tr><th contenteditable="true">#</th><th contenteditable="true">Name</th><th contenteditable="true">Role</th><th contenteditable="true">Department</th><th contenteditable="true">Status</th></tr></thead><tbody><tr><td>1</td><td contenteditable="true">Alice Johnson</td><td contenteditable="true">Manager</td><td contenteditable="true">Marketing</td><td><span class="badge bg-success">Active</span></td></tr><tr><td>2</td><td contenteditable="true">Bob Williams</td><td contenteditable="true">Developer</td><td contenteditable="true">Engineering</td><td><span class="badge bg-primary">Active</span></td></tr><tr><td>3</td><td contenteditable="true">Carol Smith</td><td contenteditable="true">Designer</td><td contenteditable="true">Creative</td><td><span class="badge bg-warning text-dark">On Leave</span></td></tr></tbody></table></div>`,
         'table-datatable': function() {
@@ -1229,7 +1151,7 @@
     <small class="text-muted" id="DTI_${u}"></small>
     <nav><ul class="pagination pagination-sm mb-0" id="DTP_${u}"></ul></nav>
   </div>
-  <!-- ADD/EDIT MODAL -->
+
   <div id="DTM_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:12px;width:500px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);">
       <div style="padding:14px 18px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;">
@@ -1244,7 +1166,7 @@
       </div>
     </div>
   </div>
-  <!-- VIEW MODAL -->
+
   <div id="DTV_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:12px;width:400px;max-width:95vw;box-shadow:0 24px 64px rgba(0,0,0,.3);overflow:hidden;">
       <div id="DVHDR_${u}" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:20px;color:#fff;">
@@ -1255,7 +1177,7 @@
       <div style="padding:12px 18px;border-top:1px solid #e5e7eb;text-align:right;"><button onclick="DT_${u}.closeView()" class="btn btn-light border btn-sm px-4">Close</button></div>
     </div>
   </div>
-  <!-- DELETE MODAL -->
+
   <div id="DTDEL_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:12px;width:340px;max-width:95vw;text-align:center;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.3);">
       <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"><i class="fas fa-trash-alt text-danger" style="font-size:20px;"></i></div>
@@ -1267,7 +1189,7 @@
       </div>
     </div>
   </div>
-  <!-- COLUMN MANAGER MODAL -->
+
   <div id="DTCM_${u}" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:12px;width:660px;max-width:97vw;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);">
       <div style="padding:14px 18px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;">
@@ -1415,7 +1337,6 @@ rAll();
         'barcode': `<div class="text-center p-3"><svg id="barcodeProto_{{UID}}" style="max-width:100%;"></svg><p class="text-muted small mt-2" contenteditable="true">1234567890128</p></div>`.replace(/{{UID}}/g, 'bc'+Date.now())
     };
 
-    /* ── Component Search Filter ───────── */
     function filterComponents(query) {
         const q = query.toLowerCase().trim();
         const tab = document.getElementById('components-tab');
@@ -1425,7 +1346,7 @@ rAll();
         const groups = tab.querySelectorAll('.component-group-title');
 
         if (!q) {
-            // Reset — show everything
+
             items.forEach(el => el.style.display = '');
             groups.forEach(el => el.style.display = '');
             const nm = tab.querySelector('.comp-no-match');
@@ -1441,7 +1362,6 @@ rAll();
             if (match) anyVisible = true;
         });
 
-        // Hide group titles if all their items are hidden
         groups.forEach(group => {
             let sibling = group.nextElementSibling;
             let hasVisible = false;
@@ -1454,7 +1374,6 @@ rAll();
             group.style.display = hasVisible ? '' : 'none';
         });
 
-        // Show / remove "no results" message
         let nm = tab.querySelector('.comp-no-match');
         if (!anyVisible) {
             if (!nm) {
@@ -1468,7 +1387,6 @@ rAll();
         }
     }
 
-    /* ── Drag & Drop ───────────────────── */
     function allowDrop(ev) { ev.preventDefault(); ev.stopPropagation(); }
     function dragEnter(ev) { ev.preventDefault(); ev.stopPropagation(); if (ev.target.classList.contains('drop-zone')) ev.target.classList.add('active-drag'); }
     function dragLeave(ev) { ev.preventDefault(); ev.stopPropagation(); if (ev.target.classList.contains('drop-zone')) ev.target.classList.remove('active-drag'); }
@@ -1485,7 +1403,6 @@ rAll();
             const w = document.createElement('div');
             w.className = 'canvas-element';
 
-            // Resolve template — call it if it's a function (e.g. table-datatable generates fresh uid each drop)
             const tpl = componentTemplates[type];
             const content = (typeof tpl === 'function') ? tpl() : tpl;
 
@@ -1493,7 +1410,7 @@ rAll();
             if (type === 'button') {
                 extra = `<button class="action-btn link-btn" title="Link to Page" onclick="openLinkModal(this)"><i class="fa-solid fa-link"></i></button>`;
             } else if (type === 'table' || type === 'table-striped') {
-                // table-datatable has its own built-in Column Manager; only basic tables get the manual controls
+
                 extra = `
                     <button class="action-btn" title="Tambah Kolom" onclick="addColumn(this)" style="color:#10b981;"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-table-columns"></i></button>
                     <button class="action-btn" title="Hapus Kolom" onclick="removeColumn(this)" style="color:#ef4444;"><i class="fa-solid fa-minus"></i> <i class="fa-solid fa-table-columns"></i></button>
@@ -1505,7 +1422,6 @@ rAll();
             w.innerHTML = `<div class="canvas-element-actions">${extra}<button class="action-btn" title="Move Up" onclick="moveEl(this,-1)"><i class="fa-solid fa-arrow-up"></i></button><button class="action-btn" title="Move Down" onclick="moveEl(this,1)"><i class="fa-solid fa-arrow-down"></i></button><button class="action-btn delete" title="Delete" onclick="deleteEl(this)"><i class="fa-solid fa-trash"></i></button></div>` + content;
             target.appendChild(w);
 
-            // Execute any <script> tags inside (needed for chart renders & interactive datatable)
             w.querySelectorAll('script').forEach(oldScript => {
                 const newScript = document.createElement('script');
                 newScript.textContent = oldScript.textContent;
@@ -1521,8 +1437,7 @@ rAll();
         if (!table) return;
         const theadTr = table.querySelector('thead tr');
         let insertIndex = theadTr ? theadTr.children.length : 0;
-        
-        // Coba insert sebelum kolom terakhir (action column)
+
         if (insertIndex > 1) {
             insertIndex = insertIndex - 1;
         }
@@ -1537,7 +1452,7 @@ rAll();
                 theadTr.appendChild(th);
             }
         }
-        
+
         const tbodyTrs = table.querySelectorAll('tbody tr');
         tbodyTrs.forEach(tr => {
             const td = document.createElement('td');
@@ -1556,12 +1471,11 @@ rAll();
         if (!table) return;
         const theadTr = table.querySelector('thead tr');
         if (!theadTr || theadTr.children.length <= 1) return;
-        
-        // Hapus kolom sebelum yang terakhir, untuk menjaga kolom Action jika ada
+
         let removeIndex = theadTr.children.length > 2 ? theadTr.children.length - 2 : theadTr.children.length - 1;
-        
+
         theadTr.removeChild(theadTr.children[removeIndex]);
-        
+
         const tbodyTrs = table.querySelectorAll('tbody tr');
         tbodyTrs.forEach(tr => {
             if (removeIndex < tr.children.length) {
@@ -1575,15 +1489,15 @@ rAll();
         if (!table) return;
         const tbody = table.querySelector('tbody');
         if (!tbody) return;
-        
+
         const theadTr = table.querySelector('thead tr');
         const colCount = theadTr ? theadTr.children.length : 1;
-        
+
         const newTr = document.createElement('tr');
         for (let i = 0; i < colCount; i++) {
             const td = document.createElement('td');
             td.contentEditable = "true";
-            // Jika ini adalah kolom terakhir dan mungkin kolom action
+
             if (i === colCount - 1 && colCount > 1) {
                 td.innerHTML = `<button class="btn btn-sm btn-outline-primary">Edit</button>`;
             } else {
@@ -1598,7 +1512,7 @@ rAll();
         const table = btn.closest('.canvas-element').querySelector('table');
         if (!table) return;
         const tbody = table.querySelector('tbody');
-        if (tbody && tbody.children.length > 1) { // biarkan minimal 1 baris
+        if (tbody && tbody.children.length > 1) { 
             tbody.removeChild(tbody.lastElementChild);
         }
     }
@@ -1609,7 +1523,6 @@ rAll();
     }
     function clearCanvas() { if (confirm("Clear the entire canvas?")) { document.getElementById('mainCanvas').innerHTML = ''; const cd = pages.find(p => p.id === currentPageId); if (cd) cd.html = ''; } }
 
-    /* ── Link Modal ────────────────────── */
     let currentLinkButton = null;
     function openLinkModal(btn) {
         currentLinkButton = btn.closest('.canvas-element').querySelector('button.btn');
@@ -1629,13 +1542,12 @@ rAll();
         if (modal) modal.hide();
     }
 
-    /* ── HTML Preview & Export ──────────── */
     function previewHTML() {
         const c = document.getElementById('mainCanvas').cloneNode(true);
         c.querySelectorAll('.canvas-element').forEach(w => { const a = w.querySelector('.canvas-element-actions'); if (a) a.remove(); w.outerHTML = w.innerHTML; });
         c.querySelectorAll('.drop-zone').forEach(dz => { dz.removeAttribute('ondrop'); dz.removeAttribute('ondragover'); dz.removeAttribute('ondragenter'); dz.removeAttribute('ondragleave'); dz.classList.remove('drop-zone', 'nested-drop'); if (dz.classList.length === 0) dz.removeAttribute('class'); if (dz.innerHTML.trim() === '') dz.outerHTML = ''; });
         c.querySelectorAll('[contenteditable]').forEach(e => e.removeAttribute('contenteditable'));
-        let html = c.innerHTML.trim() || '<!-- No components added yet -->';
+        let html = c.innerHTML.trim() || '';
         document.getElementById('exportCode').textContent = formatHTML(html);
         document.querySelector('#htmlPreviewModal .modal-title').textContent = 'Export HTML';
         openModal('htmlPreviewModal');
@@ -1645,16 +1557,13 @@ rAll();
         const canvas = document.getElementById('flowchartCanvas');
         if (!canvas) return;
 
-        // Clone for PDF production
         const clone = canvas.cloneNode(true);
         clone.id = 'fc-clone-pdf';
-        
-        // Remove interactive controls
+
         clone.querySelectorAll('.fc-actions').forEach(el => el.remove());
         clone.classList.remove('fc-selected', 'fc-blink');
         clone.querySelectorAll('.fc-selected').forEach(el => el.classList.remove('fc-selected'));
-        
-        // Transform textareas into static text for PDF rendering
+
         const origTextareas = canvas.querySelectorAll('textarea');
         const cloneTextareas = clone.querySelectorAll('textarea');
         origTextareas.forEach((ta, i) => {
@@ -1671,27 +1580,25 @@ rAll();
             span.style.color = '#333';
             span.style.whiteSpace = 'pre-wrap';
             span.innerText = val;
-            
+
             const parent = cloneTextareas[i].parentNode;
             if (parent) parent.replaceChild(span, cloneTextareas[i]);
         });
 
-        // Prepare clone styles for A4 high-quality export
         clone.style.width = '794px'; 
         clone.style.minHeight = '1123px';
         clone.style.overflow = 'visible';
         clone.style.boxShadow = 'none';
         clone.style.background = '#fff';
-        clone.style.border = '1px solid transparent'; // remove visual border during export
+        clone.style.border = '1px solid transparent'; 
 
-        // Temporarily mount clone to the DOM so html2canvas can read computed styles properly
         const container = canvas.parentElement;
         const originalDisplay = canvas.style.display;
         canvas.style.display = 'none';
         container.appendChild(clone);
 
         const opt = {
-            margin: [10, 0, 10, 0], // Optional top/bottom margin
+            margin: [10, 0, 10, 0], 
             filename: 'Flowchart_' + (Flowchart.diagrams.find(p => p.id === Flowchart.currentPageId)?.name || 'Diagram').replace(/[^a-zA-Z0-9]/g, '_') + '.pdf',
             image: { type: 'jpeg', quality: 1.0 },
             html2canvas: { 
@@ -1705,11 +1612,12 @@ rAll();
         };
 
         html2pdf().set(opt).from(clone).save().then(() => {
-            // Clean up and restore original canvas
+
             clone.remove();
             canvas.style.display = originalDisplay;
         });
     }
 
     function formatHTML(html) { let tab = '    ', result = '', indent = ''; html.split(/>\s*</).forEach(function (el) { if (el.match(/^\/\w/)) indent = indent.substring(tab.length); result += indent + '<' + el + '>\r\n'; if (el.match(/^<?\\w[^>]*[^\/]$/) && !el.startsWith("input") && !el.startsWith("img")) indent += tab; }); return result.substring(1, result.length - 3); }
+
 </script>

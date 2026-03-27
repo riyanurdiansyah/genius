@@ -3,7 +3,7 @@
 }
 
 <div class="row">
-    <!-- Validasi KTP -->
+
     <div class="col-md-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -23,20 +23,20 @@
                         </div>
                         <small class="text-muted mt-1 d-block">Contoh: 3171234567890123</small>
                     </div>
-                    
+
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
                             const ktpInput = document.getElementById('inputKTP');
                             if(!ktpInput) return;
-                            
+
                             ktpInput.addEventListener('input', function(e) {
-                                // Hanya izinkan angka
+
                                 this.value = this.value.replace(/\D/g, ''); 
-                                
+
                                 const val = this.value;
                                 const err = document.getElementById('ktpError');
                                 const suc = document.getElementById('ktpSuccess');
-                                
+
                                 if(val.length > 0 && val.length < 16) {
                                     this.classList.add('is-invalid');
                                     this.classList.remove('is-valid');
@@ -55,13 +55,13 @@
                                 }
                             });
                         });
-                    </script>
+
+</script>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Validasi NPWP -->
     <div class="col-md-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -82,15 +82,14 @@
                     </div>
 
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
                             const npwpInput = document.getElementById('inputNPWP');
                             if(!npwpInput) return;
 
                             npwpInput.addEventListener('input', function(e) {
-                                // Hapus semua karakter selain angka
+
                                 let val = this.value.replace(/\D/g, ''); 
-                                
-                                // Format NPWP: 12.345.678.9-012.000 (15 digit angka = 20 karakter)
+
                                 let formatted = '';
                                 if(val.length > 0) formatted += val.substring(0,2);
                                 if(val.length > 2) formatted += '.' + val.substring(2,5);
@@ -98,9 +97,9 @@
                                 if(val.length > 8) formatted += '.' + val.substring(8,9);
                                 if(val.length > 9) formatted += '-' + val.substring(9,12);
                                 if(val.length > 12) formatted += '.' + val.substring(12,15);
-                                
+
                                 this.value = formatted;
-                                
+
                                 const err = document.getElementById('npwpError');
                                 const suc = document.getElementById('npwpSuccess');
 
@@ -122,13 +121,13 @@
                                 }
                             });
                         });
-                    </script>
+
+</script>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Validasi No HP Indonesia -->
     <div class="col-md-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -154,12 +153,12 @@
                     </div>
 
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
                             const hpInput = document.getElementById('inputHP');
                             if(!hpInput) return;
 
                             hpInput.addEventListener('input', function(e) {
-                                // Hapus karakter non angka, termasuk 0 di paling depan karena pake +62
+
                                 let val = this.value.replace(/\D/g, ''); 
                                 if (val.startsWith('0')) {
                                     val = val.substring(1);
@@ -170,7 +169,7 @@
                                 const suc = document.getElementById('hpSuccess');
 
                                 if (val.length > 0) {
-                                    // Nomor HP di indo valid biasanya minimal 9 digit s.d 13 digit setelah +62
+
                                     if(val.startsWith('8') && val.length >= 9 && val.length <= 13) {
                                         this.classList.remove('is-invalid');
                                         this.classList.add('is-valid');
@@ -190,13 +189,13 @@
                                 }
                             });
                         });
-                    </script>
+
+</script>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Validasi Nominal Uang Rupiah -->
     <div class="col-md-6 mb-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -214,7 +213,7 @@
                     </div>
 
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
                             const rupiahInput = document.getElementById('inputRupiah');
                             if(!rupiahInput) return;
 
@@ -234,13 +233,13 @@
                                 this.value = rupiah;
                             });
                         });
-                    </script>
+
+</script>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Complete Registration Form with Checks -->
     <div class="col-12 mb-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -254,13 +253,13 @@
                         <input type="text" class="form-control" id="regName" required>
                         <div class="invalid-feedback">Nama wajib diisi.</div>
                     </div>
-                    
+
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Email Aktif</label>
                         <input type="email" class="form-control" id="regEmail" required placeholder="email@contoh.com">
                         <div class="invalid-feedback">Harap gunakan format email yang benar (cth: a@b.com).</div>
                     </div>
-                    
+
                     <div class="col-md-6 mb-3">
                         <label class="form-label">NIK (Nomor Induk Kependudukan)</label>
                         <input type="text" class="form-control" id="regNIK" placeholder="16 Digit Angka" maxlength="16" required pattern="\d{16}">
@@ -285,9 +284,9 @@
                     </div>
 
                     <script>
-                        (function () {
+(function () {
                             'use strict'
-                            // Bootstrap validation logic integration
+
                             var forms = document.querySelectorAll('.needs-validation');
                             Array.prototype.slice.call(forms).forEach(function (form) {
                                 form.addEventListener('submit', function (event) {
@@ -296,13 +295,13 @@
                                         event.stopPropagation();
                                     }
                                     form.classList.add('was-validated');
-                                    
-                                    // To not naturally postback for demo 
+
                                     event.preventDefault(); 
                                 }, false);
                             });
                         })();
-                    </script>
+
+</script>
                 </form>
             </div>
         </div>
