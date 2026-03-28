@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+RDR7D9EkZvj+HZ2aC0WoEJk3yhrdlhY4Sr4evlG52I=",
+  "Hash": "AqL3JzOpkl5ZbY0eKswkYIUc+3+5UIQ1q9Qts253cgA=",
   "Source": "Kuda",
   "BasePath": "_content/Kuda",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "1jpukidhtp",
-      "Integrity": "Q/ci27oo0cSVqOqNNEHjU7zucpK/V/ojMNqS3JKHAKo=",
+      "Fingerprint": "b2x5qrjg8m",
+      "Integrity": "XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/components.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "qot1cgx5bi",
-      "Integrity": "imhaqVgNcQcPNUJLUHot/KjVnO/M/9cLD3iI58EH+dQ=",
+      "Fingerprint": "sws702gi1b",
+      "Integrity": "5KkmHkFRFb7qi6LtA80Ek7QD3mdoZR2K+9AaUFY95YM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/kuda-kit.css"
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "1e8ucqvjcs",
-      "Integrity": "B5bk25f0dcvQTYCId9JVuyxsz7gTBOcDnA54yrokBKo=",
+      "Fingerprint": "72dtzas9bk",
+      "Integrity": "X1IB+g1xWXoQm6ErwUIkCz1KATh/qFYjNSDmjucdtwg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/report.css"
@@ -1711,8 +1711,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8v0mcq468r",
-      "Integrity": "5KENhum28EQ2v2x0B/mQiKMwxFLWPB4PRjbmXKxI7QA=",
+      "Fingerprint": "sqrbvzsiw5",
+      "Integrity": "zHOOOpoG0jCtpNPQnce6PSp6PQIKo4zInz3JG7bZdKQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/app-system.js"
@@ -1732,8 +1732,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5z802t66qs",
-      "Integrity": "jxz+Pk9H/tTYAt0u2XmNqVDYGLvAiVfACw4UQE0n4HY=",
+      "Fingerprint": "18q2s72tn5",
+      "Integrity": "QWnAhfQCHQU8S2lc7iRsLGOrOtqUc5nx11xbsHKLJzY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/kuda-kit.js"
@@ -1825,7 +1825,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/components.1jpukidhtp.css",
+      "Route": "css/components.b2x5qrjg8m.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1835,7 +1835,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "58038"
+          "Value": "66117"
         },
         {
           "Name": "Content-Type",
@@ -1843,11 +1843,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Q/ci27oo0cSVqOqNNEHjU7zucpK/V/ojMNqS3JKHAKo=\""
+          "Value": "\"XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 07:41:28 GMT"
+          "Value": "Fri, 27 Mar 2026 09:10:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1857,7 +1857,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "1jpukidhtp"
+          "Value": "b2x5qrjg8m"
         },
         {
           "Name": "label",
@@ -1865,7 +1865,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Q/ci27oo0cSVqOqNNEHjU7zucpK/V/ojMNqS3JKHAKo="
+          "Value": "sha256-XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0="
         }
       ]
     },
@@ -1880,7 +1880,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "58038"
+          "Value": "66117"
         },
         {
           "Name": "Content-Type",
@@ -1888,11 +1888,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Q/ci27oo0cSVqOqNNEHjU7zucpK/V/ojMNqS3JKHAKo=\""
+          "Value": "\"XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 07:41:28 GMT"
+          "Value": "Fri, 27 Mar 2026 09:10:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1902,7 +1902,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Q/ci27oo0cSVqOqNNEHjU7zucpK/V/ojMNqS3JKHAKo="
+          "Value": "sha256-XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0="
         }
       ]
     },
@@ -1917,7 +1917,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "66138"
+          "Value": "73729"
         },
         {
           "Name": "Content-Type",
@@ -1925,11 +1925,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"imhaqVgNcQcPNUJLUHot/KjVnO/M/9cLD3iI58EH+dQ=\""
+          "Value": "\"5KkmHkFRFb7qi6LtA80Ek7QD3mdoZR2K+9AaUFY95YM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 07:41:30 GMT"
+          "Value": "Fri, 27 Mar 2026 09:01:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1939,12 +1939,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-imhaqVgNcQcPNUJLUHot/KjVnO/M/9cLD3iI58EH+dQ="
+          "Value": "sha256-5KkmHkFRFb7qi6LtA80Ek7QD3mdoZR2K+9AaUFY95YM="
         }
       ]
     },
     {
-      "Route": "css/kuda-kit.qot1cgx5bi.css",
+      "Route": "css/kuda-kit.sws702gi1b.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-kit.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1954,7 +1954,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "66138"
+          "Value": "73729"
         },
         {
           "Name": "Content-Type",
@@ -1962,11 +1962,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"imhaqVgNcQcPNUJLUHot/KjVnO/M/9cLD3iI58EH+dQ=\""
+          "Value": "\"5KkmHkFRFb7qi6LtA80Ek7QD3mdoZR2K+9AaUFY95YM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 07:41:30 GMT"
+          "Value": "Fri, 27 Mar 2026 09:01:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1976,7 +1976,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "qot1cgx5bi"
+          "Value": "sws702gi1b"
         },
         {
           "Name": "label",
@@ -1984,12 +1984,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-imhaqVgNcQcPNUJLUHot/KjVnO/M/9cLD3iI58EH+dQ="
+          "Value": "sha256-5KkmHkFRFb7qi6LtA80Ek7QD3mdoZR2K+9AaUFY95YM="
         }
       ]
     },
     {
-      "Route": "css/report.1e8ucqvjcs.css",
+      "Route": "css/report.72dtzas9bk.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/report.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1999,7 +1999,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5703"
+          "Value": "5734"
         },
         {
           "Name": "Content-Type",
@@ -2007,11 +2007,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"B5bk25f0dcvQTYCId9JVuyxsz7gTBOcDnA54yrokBKo=\""
+          "Value": "\"X1IB+g1xWXoQm6ErwUIkCz1KATh/qFYjNSDmjucdtwg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 03:53:10 GMT"
+          "Value": "Fri, 27 Mar 2026 09:51:35 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2021,7 +2021,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "1e8ucqvjcs"
+          "Value": "72dtzas9bk"
         },
         {
           "Name": "label",
@@ -2029,7 +2029,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-B5bk25f0dcvQTYCId9JVuyxsz7gTBOcDnA54yrokBKo="
+          "Value": "sha256-X1IB+g1xWXoQm6ErwUIkCz1KATh/qFYjNSDmjucdtwg="
         }
       ]
     },
@@ -2044,7 +2044,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5703"
+          "Value": "5734"
         },
         {
           "Name": "Content-Type",
@@ -2052,11 +2052,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"B5bk25f0dcvQTYCId9JVuyxsz7gTBOcDnA54yrokBKo=\""
+          "Value": "\"X1IB+g1xWXoQm6ErwUIkCz1KATh/qFYjNSDmjucdtwg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 03:53:10 GMT"
+          "Value": "Fri, 27 Mar 2026 09:51:35 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2066,7 +2066,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-B5bk25f0dcvQTYCId9JVuyxsz7gTBOcDnA54yrokBKo="
+          "Value": "sha256-X1IB+g1xWXoQm6ErwUIkCz1KATh/qFYjNSDmjucdtwg="
         }
       ]
     },
@@ -8385,51 +8385,6 @@
       ]
     },
     {
-      "Route": "js/app-system.8v0mcq468r.js",
-      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4058"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"5KENhum28EQ2v2x0B/mQiKMwxFLWPB4PRjbmXKxI7QA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8v0mcq468r"
-        },
-        {
-          "Name": "label",
-          "Value": "js/app-system.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-5KENhum28EQ2v2x0B/mQiKMwxFLWPB4PRjbmXKxI7QA="
-        }
-      ]
-    },
-    {
       "Route": "js/app-system.js",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
       "Selectors": [],
@@ -8440,7 +8395,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4058"
+          "Value": "8712"
         },
         {
           "Name": "Content-Type",
@@ -8448,11 +8403,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"5KENhum28EQ2v2x0B/mQiKMwxFLWPB4PRjbmXKxI7QA=\""
+          "Value": "\"zHOOOpoG0jCtpNPQnce6PSp6PQIKo4zInz3JG7bZdKQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
+          "Value": "Fri, 27 Mar 2026 08:32:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8462,13 +8417,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-5KENhum28EQ2v2x0B/mQiKMwxFLWPB4PRjbmXKxI7QA="
+          "Value": "sha256-zHOOOpoG0jCtpNPQnce6PSp6PQIKo4zInz3JG7bZdKQ="
         }
       ]
     },
     {
-      "Route": "js/kuda-kit.5z802t66qs.js",
-      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.js",
+      "Route": "js/app-system.sqrbvzsiw5.js",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8477,7 +8432,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3755"
+          "Value": "8712"
         },
         {
           "Name": "Content-Type",
@@ -8485,11 +8440,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"jxz+Pk9H/tTYAt0u2XmNqVDYGLvAiVfACw4UQE0n4HY=\""
+          "Value": "\"zHOOOpoG0jCtpNPQnce6PSp6PQIKo4zInz3JG7bZdKQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:49:54 GMT"
+          "Value": "Fri, 27 Mar 2026 08:32:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8499,7 +8454,52 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "5z802t66qs"
+          "Value": "sqrbvzsiw5"
+        },
+        {
+          "Name": "label",
+          "Value": "js/app-system.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-zHOOOpoG0jCtpNPQnce6PSp6PQIKo4zInz3JG7bZdKQ="
+        }
+      ]
+    },
+    {
+      "Route": "js/kuda-kit.18q2s72tn5.js",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10635"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QWnAhfQCHQU8S2lc7iRsLGOrOtqUc5nx11xbsHKLJzY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 27 Mar 2026 09:15:20 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "18q2s72tn5"
         },
         {
           "Name": "label",
@@ -8507,7 +8507,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-jxz+Pk9H/tTYAt0u2XmNqVDYGLvAiVfACw4UQE0n4HY="
+          "Value": "sha256-QWnAhfQCHQU8S2lc7iRsLGOrOtqUc5nx11xbsHKLJzY="
         }
       ]
     },
@@ -8522,7 +8522,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3755"
+          "Value": "10635"
         },
         {
           "Name": "Content-Type",
@@ -8530,11 +8530,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"jxz+Pk9H/tTYAt0u2XmNqVDYGLvAiVfACw4UQE0n4HY=\""
+          "Value": "\"QWnAhfQCHQU8S2lc7iRsLGOrOtqUc5nx11xbsHKLJzY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:49:54 GMT"
+          "Value": "Fri, 27 Mar 2026 09:15:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8544,7 +8544,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-jxz+Pk9H/tTYAt0u2XmNqVDYGLvAiVfACw4UQE0n4HY="
+          "Value": "sha256-QWnAhfQCHQU8S2lc7iRsLGOrOtqUc5nx11xbsHKLJzY="
         }
       ]
     },

@@ -7,7 +7,7 @@
     <title>Kuda Kit - Component Test</title>
 
     <!-- HANYA IMPORT DARI KUDA KIT CDN -->
-    <link rel="stylesheet" href="./kuda-cdn/css/kuda-kit.css">
+    <link rel="stylesheet" href="./kuda-cdn/css/kuda-kit.css?v=1.5">
 
     <style>
         /* Membersihkan CSS custom agar full menggunakan bawaan kuda-kit.css */
@@ -299,116 +299,132 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="demo-card">
+                            <div class="card-body" id="tabsMinimalUnderline">
+                                <p class="text-muted small mb-4">Clean and spacious. Perfect for main page navigation
+                                    menus.</p>
+                                <ul class="nav nav-tabs-minimal" id="minimalTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="min-overview-tab" data-bs-toggle="tab"
+                                            data-bs-target="#min-overview" type="button" role="tab"
+                                            aria-selected="true">Overview</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="min-activity-tab" data-bs-toggle="tab"
+                                            data-bs-target="#min-activity" type="button" role="tab"
+                                            aria-selected="false" tabindex="-1">Activity <span
+                                                class="badge bg-danger ms-1 rounded-pill">3</span></button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="min-settings-tab" data-bs-toggle="tab"
+                                            data-bs-target="#min-settings" type="button" role="tab"
+                                            aria-selected="false" tabindex="-1">Settings</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content mt-4" id="minimalTabsContent">
+                                    <div class="tab-pane fade show active" id="min-overview" role="tabpanel"
+                                        aria-labelledby="min-overview-tab">
+                                        <h6 class="fw-bold mb-2">Project Overview</h6>
+                                        <p class="text-muted small">This represents a clean material-style tab system.
+                                            It strips away borders and relies on a smooth bottom bar for active state
+                                            indication.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="min-activity" role="tabpanel"
+                                        aria-labelledby="min-activity-tab">
+                                        <h6 class="fw-bold mb-2">Recent Activity</h6>
+                                        <p class="text-muted small">You have 3 unread notifications in this section
+                                            representing recent changes applied by your team members.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="min-settings" role="tabpanel"
+                                        aria-labelledby="min-settings-tab">
+                                        <h6 class="fw-bold mb-2">General Settings</h6>
+                                        <p class="text-muted small">Configure application parameters, access control
+                                            lists, and other vital project preferences here.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Segmented Controls -->
+                        <div class="demo-card">
+                            <h2><i class="fas fa-toggle-on text-primary"></i> Segmented Controls</h2>
+                            <ul class="nav nav-segmented mb-4" id="segmentedTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#seg-monthly"
+                                        type="button" role="tab" aria-selected="true">Monthly</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#seg-annual"
+                                        type="button" role="tab" aria-selected="false">Annually</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="segmentedTabsContent">
+                                <div class="tab-pane fade show active" id="seg-monthly" role="tabpanel">
+                                    <div class="bg-light rounded-3 p-3 text-center border">
+                                        <h3 class="fw-bold text-dark mb-0">$29<span
+                                                class="fs-6 text-muted fw-normal">/mo</span></h3>
+                                        <p class="text-muted small mt-2 mb-0">Billed every month</p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="seg-annual" role="tabpanel">
+                                    <div class="bg-light rounded-3 p-3 text-center border border-primary">
+                                        <span class="badge bg-success mb-2">Save 20%</span>
+                                        <h3 class="fw-bold text-dark mb-0">$290<span
+                                                class="fs-6 text-muted fw-normal">/yr</span></h3>
+                                        <p class="text-muted small mt-2 mb-0">Billed annually</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Barcode Generator Integration -->
+                        <div class="demo-card">
+                            <h2><i class="fas fa-barcode text-primary"></i> Barcode Generator</h2>
+                            <div class="row g-3">
+                                <div class="col-md-8">
+                                    <input type="text" id="bcText" class="form-control"
+                                        placeholder="Enter barcode data..." value="https://kudakit.io"
+                                        oninput="debounceGenerate()">
+                                    <input type="hidden" id="bcid" value="qrcode">
+                                    <input type="hidden" id="bcScale" value="3">
+                                    <input type="hidden" id="bcHeight" value="10">
+                                    <input type="hidden" id="bcColor" value="#000000">
+                                    <input type="hidden" id="bcBgColor" value="#ffffff">
+                                    <input type="checkbox" id="bcIncludeText" class="d-none" checked>
+                                </div>
+                                <div class="col-md-4">
+                                    <div id="previewCard" class="p-2 border rounded bg-white text-center">
+                                        <canvas id="barcodeCanvas"></canvas>
+                                    </div>
+                                    <div id="emptyState" class="d-none"></div>
+                                    <div id="errorMsg" class="text-danger small d-none"></div>
+                                    <div id="previewActions" class="mt-2 text-center">
+                                        <button class="btn btn-sm btn-light border w-100"
+                                            onclick="downloadBarcode('png')">Download</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="demo-card">
-                            <div class="barcode-generator-container" id="barcodeGeneratorApp">
-
-                                <div class="barcode-settings">
-                                    <h5 class="fw-bold mb-4 border-bottom pb-2">Configuration</h5>
-
-                                    <form id="barcodeForm" onsubmit="event.preventDefault(); generateBarcode();">
-                                        <div class="mb-3">
-                                            <label class="form-label fw-bold">Barcode Type</label>
-                                            <select class="form-select" id="bcid" onchange="generateBarcode()">
-                                                <optgroup label="Popular 2D (Matrix)">
-                                                    <option value="qrcode" selected="">QR Code</option>
-                                                    <option value="datamatrix">Data Matrix</option>
-                                                    <option value="pdf417">PDF417</option>
-                                                    <option value="azteccode">Aztec Code</option>
-                                                </optgroup>
-                                                <optgroup label="Popular 1D (Linear)">
-                                                    <option value="code128">Code 128</option>
-                                                    <option value="code39">Code 39</option>
-                                                    <option value="ean13">EAN-13</option>
-                                                    <option value="upca">UPC-A</option>
-                                                    <option value="itf14">ITF-14</option>
-                                                </optgroup>
-                                                <optgroup label="Other Formats">
-                                                    <option value="pharmacode">Pharmacode</option>
-                                                    <option value="isbn">ISBN</option>
-                                                    <option value="gs1-128">GS1-128</option>
-                                                    <option value="royalmail">Royal Mail (RM4SCC)</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label fw-bold">Data / Value</label>
-                                            <textarea class="form-control" id="bcText" rows="3"
-                                                placeholder="Enter text, URL, or numbers..."
-                                                oninput="debounceGenerate()"></textarea>
-                                            <div class="form-text text-danger d-none" id="errorMsg">Invalid data for the
-                                                selected barcode type.</div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <div class="col-6">
-                                                <label class="form-label fw-bold">Barcode Color</label>
-                                                <div class="color-picker-group">
-                                                    <input type="color" id="bcColor" value="#0f172a"
-                                                        onchange="generateBarcode()">
-                                                    <span class="small text-muted" id="bcColorValue">#0f172a</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <label class="form-label fw-bold">Background</label>
-                                                <div class="color-picker-group">
-                                                    <input type="color" id="bcBgColor" value="#ffffff"
-                                                        onchange="generateBarcode()">
-                                                    <span class="small text-muted" id="bcBgColorValue">#ffffff</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-2">
-                                            <button class="btn btn-sm btn-light w-100 text-start" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#advancedOptions">
-                                                <i class="fas fa-sliders-h me-2"></i> Advanced Options <i
-                                                    class="fas fa-chevron-down float-end mt-1"></i>
-                                            </button>
-
-                                            <div class="collapse advanced-settings" id="advancedOptions">
-                                                <div class="mb-3">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="bcIncludeText" checked="" onchange="generateBarcode()">
-                                                        <label class="form-check-label" for="bcIncludeText">Include
-                                                            Human-Readable Text</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label class="form-label small">Scale (Size)</label>
-                                                        <input type="range" class="form-range" id="bcScale" min="1"
-                                                            max="10" value="3" oninput="generateBarcode()">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label class="form-label small">Height (1D only)</label>
-                                                        <input type="range" class="form-range" id="bcHeight" min="5"
-                                                            max="50" value="15" oninput="generateBarcode()">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                            <div class="card-body row" id="typographyInlineText">
+                                <div class="col-md-6">
+                                    <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+                                    <p><del>This line of text is meant to be treated as deleted text.</del></p>
+                                    <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+                                    <p><ins>This line of text is meant to be treated as an addition to the
+                                            document.</ins></p>
+                                    <p><u>This line of text will render as underlined.</u></p>
                                 </div>
-
-                                <div class="barcode-preview-area">
-                                    <div id="emptyState" class="empty-state d-none">
-                                        <i class="fas fa-qrcode"></i>
-                                        <h5 class="fw-bold m-0">Live Preview</h5>
-                                        <p class="small mb-0">Enter some data to generate your barcode</p>
-                                    </div>
-
-                                    <div id="previewCard" class="preview-card"
-                                        style="background-color: rgb(255, 255, 255);">
-                                        <canvas id="barcodeCanvas" width="150" height="125"></canvas>
-                                    </div>
-
-                                    <div id="previewActions" class="action-buttons justify-content-center">
-                                        <button class="btn btn-primary shadow-sm" onclick="downloadBarcode('png')"><i
-                                                class="fas fa-download me-2"></i> Save PNG</button>
-                                    </div>
+                                <div class="col-md-6">
+                                    <p><small>This line of text is meant to be treated as fine print.</small></p>
+                                    <p><strong>This line rendered as bold text.</strong></p>
+                                    <p><em>This line rendered as italicized text.</em></p>
+                                    <blockquote class="blockquote">
+                                        <p>A well-known quote, contained in a blockquote element.</p>
+                                        <footer class="blockquote-footer">Someone famous in <cite
+                                                title="Source Title">Source Title</cite></footer>
+                                    </blockquote>
                                 </div>
                             </div>
                         </div>
@@ -419,7 +435,7 @@
     </div>
 
     <!-- HANYA IMPORT DARI KUDA KIT (jQuery, Bootstrap JS & DataTables sudah ada di dalam sini) -->
-    <script src="./kuda-cdn/js/kuda-kit.js"></script>
+    <script src="./kuda-cdn/js/kuda-kit.js?v=1.5"></script>
 
     <script>
         $(document).ready(function () {

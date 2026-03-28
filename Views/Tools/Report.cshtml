@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="/css/report.css" />
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
 
 <div class="report-page">
     <div class="report-toolbar">
@@ -31,7 +31,7 @@
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 
 <script>
 let currentDesign = 'qa';
@@ -61,7 +61,7 @@ let currentDesign = 'qa';
                 <p><strong>Tujuan Uji:</strong> Terdapatnya tiga sampel produk. Dua sampel adalah sama dan satu sampel adalah berbeda. Silakan uji sampel secara berurutan dan lingkarilah kode sampel yang rasanya/profilnya berbeda.</p>
             </div>
 
-            <table id="qaDataTable" class="display table cell-border" style="width:100%; font-size: 11px;">
+            <table id="qaDataTable" class="table table-bordered" style="width:100%;">
                 <thead>
                     <tr>
                         <th style="width: 50px;">No.</th>
@@ -121,17 +121,6 @@ let currentDesign = 'qa';
             </div>`;
 
         wrapper.innerHTML = html;
-
-        if ($.fn.DataTable.isDataTable('#qaDataTable')) {
-            $('#qaDataTable').DataTable().destroy();
-        }
-        $('#qaDataTable').DataTable({
-            paging: false,
-            searching: false,
-            info: false,
-            ordering: false,
-            lengthChange: false
-        });
     }
 
     function printReport() {

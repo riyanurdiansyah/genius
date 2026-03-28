@@ -507,11 +507,11 @@ const FSD = {
             return `
                 <div class="version-item p-3 mb-2 border rounded bg-white shadow-sm" style="position:relative; cursor:pointer; border-left: 4px solid var(--primary) !important;" onclick="FSD.viewVersion('${v.id}')">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="badge bg-primary text-white" style="font-size: 10px;">${timeStr}</span>
-                        <div class="d-flex gap-1">
-                            <button class="btn btn-xs btn-outline-primary p-1 lh-1" onclick="event.stopPropagation(); FSD.compareVersion('${v.id}')" title="Compare with current"><i class="fas fa-columns" style="font-size:10px;"></i></button>
+                        <div class="d-flex align-items-center gap-1">
+                            <button class="btn btn-xs btn-outline-primary p-1 lh-1" style="font-size:10px; padding: 2px 6px !important;" onclick="event.stopPropagation(); FSD.compareVersion('${v.id}')"><i class="fas fa-columns me-1" style="font-size:10px;"></i>Compare</button>
                             <small class="text-muted" style="font-size:10px;">${dateStr}</small>
                         </div>
+                        <span class="badge bg-primary text-white" style="font-size: 10px;">${timeStr}</span>
                     </div>
                     <div class="fw-bold text-dark mt-1" style="font-size: 13px;"><i class="fas fa-user-edit me-1 opacity-50"></i>${v.author}</div>
                     <div class="text-muted small text-truncate mt-1" title="${v.summary}">${v.summary}</div>
@@ -537,14 +537,7 @@ const FSD = {
         const version = currentProject.fsdVersions.find(v => v.id === id);
         if (!version) return;
 
-        const modalEl = document.getElementById('compareFsdModal');
-        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-
-        const listContainer = document.getElementById('comparePageList');
-        const oldCanvas = document.getElementById('compareOldCanvas');
-        const newCanvas = document.getElementById('compareNewCanvas');
-        const restoreBtn = document.getElementById('restoreVersionBtn');
-
+        // Save current page state first
         const activeCanvas = document.getElementById('fsdCanvas');
         if (activeCanvas) {
             const cd = this.pages.find(p => p.id === this.currentPageId);
@@ -554,105 +547,313 @@ const FSD = {
         const oldPages = version.pagesSnapshot;
         const newPages = this.pages;
 
-        const allPageIds = new Set([
-            ...oldPages.map(p => p.id),
-            ...newPages.map(p => p.id)
-        ]);
-
-        let listHtml = '';
-        const pagesData = [];
-
-        [...allPageIds].forEach(pid => {
-            const oldP = oldPages.find(p => p.id === pid);
-            const newP = newPages.find(p => p.id === pid);
-
-            let status = 'none';
-            let label = '';
-            let colorClass = '';
-
-            if (oldP && newP) {
-                if (oldP.html !== newP.html || oldP.name !== newP.name || oldP.num !== newP.num) {
-                    status = 'modified';
-                    label = 'MODIFIED';
-                    colorClass = 'warning';
-                }
-            } else if (newP) {
-                status = 'added';
-                label = 'ADDED';
-                colorClass = 'success';
-            } else if (oldP) {
-                status = 'removed';
-                label = 'REMOVED';
-                colorClass = 'danger';
-            }
-
-            const pInfo = newP || oldP;
-            pagesData.push({ id: pid, oldP, newP, status });
-
-            const statusBadge = label ? `<span class="badge bg-${colorClass}" style="font-size:8px;">${label}</span>` : '';
-            listHtml += `
-                <div class="compare-page-item p-2 px-3 border-bottom border-0 rounded-0" onclick="FSD.renderCompareDiff('${pid}', this)" id="compare-item-${pid}">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <div class="text-truncate me-2" style="font-size: 12px;"><b>${pInfo.num}</b> ${pInfo.name}</div>
-                        ${statusBadge}
-                    </div>
-                </div>
-            `;
+        // Collect all unique page ids in order (old ∪ new)
+        const allPageIds = [];
+        const seen = new Set();
+        [...oldPages, ...newPages].forEach(p => {
+            if (!seen.has(p.id)) { seen.add(p.id); allPageIds.push(p.id); }
         });
 
-        listContainer.innerHTML = listHtml;
-        window._compareData = pagesData; 
-
-        const first = pagesData.find(p => p.status !== 'none') || pagesData[0];
-        if (first) {
-            setTimeout(() => FSD.renderCompareDiff(first.id, document.getElementById(`compare-item-${first.id}`)), 200);
-        }
-
-        restoreBtn.onclick = () => {
-            modal.hide();
-            this.viewVersion(id);
-        };
-
-        modal.show();
-    },
-
-    renderCompareDiff(pid, el) {
-        document.querySelectorAll('.compare-page-item').forEach(i => i.classList.remove('active', 'bg-light'));
-        if (el) el.classList.add('active', 'bg-light');
-
-        const data = window._compareData.find(d => d.id === pid);
-        const oldCanvas = document.getElementById('compareOldCanvas');
-        const newCanvas = document.getElementById('compareNewCanvas');
-
-        if (!data) return;
-
         const cleanHtml = (html) => {
-            if (!html) return '<div class="text-center py-5 text-muted opacity-50"><i>(Empty / Not Found)</i></div>';
+            if (!html) return '<p class="empty-note"><i>(Empty / Not Found)</i></p>';
             const div = document.createElement('div');
             div.innerHTML = html;
             div.querySelectorAll('.canvas-element-actions').forEach(a => a.remove());
             div.querySelectorAll('.fsd-hide-pdf').forEach(a => a.remove());
             div.querySelectorAll('[contenteditable]').forEach(a => a.removeAttribute('contenteditable'));
+            // Hide all action/interactive buttons in preview
+            div.querySelectorAll('button').forEach(a => a.remove());
+            div.querySelectorAll('.fsd-add-btn').forEach(a => a.remove());
+            // Hide "add column" last th/td in tables
+            div.querySelectorAll('thead tr th:last-child').forEach(th => {
+                if ((th.textContent || '').trim() === 'Act' || (th.textContent || '').trim() === 'Action') {
+                    const tbl = th.closest('table');
+                    if (!tbl) return;
+                    const idx = th.cellIndex;
+                    tbl.querySelectorAll('tr').forEach(row => { if (row.children[idx]) row.children[idx].remove(); });
+                }
+            });
             return div.innerHTML;
         };
 
-        oldCanvas.innerHTML = cleanHtml(data.oldP?.html);
-        newCanvas.innerHTML = cleanHtml(data.newP?.html);
+        let oldHtml = '';
+        let newHtml = '';
 
-        if (data.status === 'added') {
-            newCanvas.classList.add('diff-added');
-            oldCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
-        } else if (data.status === 'removed') {
-            oldCanvas.classList.add('diff-removed');
-            newCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
-        } else if (data.status === 'modified') {
-            oldCanvas.classList.add('diff-modified');
-            newCanvas.classList.add('diff-modified');
-        } else {
-            oldCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
-            newCanvas.classList.remove('diff-added', 'diff-removed', 'diff-modified');
-        }
+        allPageIds.forEach(pid => {
+            const oldP = oldPages.find(p => p.id === pid);
+            const newP = newPages.find(p => p.id === pid);
+            const pInfo = newP || oldP;
+
+            let status = 'unchanged';
+            let badgeHtml = '';
+            let dividerColor = '#64748b';
+
+            if (oldP && newP) {
+                if (oldP.html !== newP.html || oldP.name !== newP.name || oldP.num !== newP.num) {
+                    status = 'modified';
+                    badgeHtml = '<span class="badge badge-warning">MODIFIED</span>';
+                    dividerColor = '#d97706';
+                }
+            } else if (newP && !oldP) {
+                status = 'added';
+                badgeHtml = '<span class="badge badge-success">ADDED</span>';
+                dividerColor = '#059669';
+            } else if (oldP && !newP) {
+                status = 'removed';
+                badgeHtml = '<span class="badge badge-danger">REMOVED</span>';
+                dividerColor = '#dc2626';
+            }
+
+            const divider = `<div class="page-divider" style="border-color:${dividerColor}; color:${dividerColor};">
+                <span class="divider-line"></span>
+                <span class="divider-label">
+                    <i class="fa-regular fa-file-alt"></i>
+                    ${pInfo.num} — ${pInfo.name}
+                    ${badgeHtml}
+                </span>
+                <span class="divider-line"></span>
+            </div>`;
+
+            const sectionClass = status === 'removed' ? 'section-removed'
+                               : status === 'added'   ? 'section-added'
+                               : status === 'modified' ? 'section-modified' : '';
+
+            const oldContent = oldP
+                ? `<div class="page-section ${sectionClass}">${cleanHtml(oldP.html)}</div>`
+                : `<div class="page-section section-placeholder-add"><span>➕ Not in this version</span></div>`;
+
+            const newContent = newP
+                ? `<div class="page-section ${sectionClass}">${cleanHtml(newP.html)}</div>`
+                : `<div class="page-section section-placeholder-del"><span>🗑️ Deleted in current</span></div>`;
+
+            oldHtml += divider + oldContent;
+            newHtml += divider + newContent;
+        });
+
+        const origin = window.location.origin;
+        const projectName = currentProject?.name || 'Project';
+        const compareWin = window.open('', '_blank');
+        compareWin.document.write(`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare: ${projectName} — ${version.author} (${version.timestamp})</title>
+<link rel="stylesheet" href="${origin}/css/kuda-kit.css">
+<link rel="stylesheet" href="${origin}/lib/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  html, body {
+    height: 100%; margin: 0; padding: 0;
+    background: var(--bg-color, #f8fafc);
+    color: var(--text-dark, #1a1a1a);
+    font-family: 'KalbeGeometric', 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+
+  /* Top Bar */
+  .compare-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 56px;
+    background: var(--dashboard-bg, #fff);
+    border-bottom: 2px solid var(--border-color, #e9ecef);
+    flex-shrink: 0; gap: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .compare-topbar .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 700; color: var(--text-dark, #1a1a1a);
+    white-space: nowrap;
+  }
+  .compare-topbar .brand i { color: var(--primary, #3b9d82); font-size: 16px; }
+  .compare-topbar .meta {
+    font-size: 12px; font-weight: 400; color: var(--text-gray, #9ca3af); margin-left: 4px;
+  }
+
+  /* Column Headers */
+  .compare-cols-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    flex-shrink: 0;
+    background: var(--dashboard-bg, #fff);
+    border-bottom: 1px solid var(--border-color, #e9ecef);
+  }
+  .col-header {
+    padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; font-weight: 600; color: var(--text-dark, #1a1a1a);
+  }
+  .col-header:first-child {
+    border-right: 1px solid var(--border-color, #e9ecef);
+    background: #f0fdf9;
+  }
+  .col-header:last-child {
+    background: #fff8f8;
+  }
+  .col-meta { font-size: 11px; color: var(--text-gray, #9ca3af); margin-top: 2px; font-weight: 400; }
+  .badge-hist {
+    background: #e2e8f0; color: #475569;
+    padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .badge-curr {
+    background: var(--primary, #3b9d82); color: #fff;
+    padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+  }
+
+  /* Compare Area */
+  .compare-area {
+    display: grid; grid-template-columns: 1fr 1fr;
+    flex: 1; min-height: 0; overflow: hidden;
+  }
+  .compare-panel {
+    overflow-y: auto; padding: 24px 20px;
+    background: var(--bg-color, #f8fafc);
+  }
+  .compare-panel:first-child {
+    border-right: 2px solid var(--border-color, #e9ecef);
+  }
+
+  /* Page Divider */
+  .page-divider {
+    display: flex; align-items: center; gap: 10px;
+    margin: 28px 0 12px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--text-gray, #9ca3af);
+  }
+  .page-divider:first-child { margin-top: 0; }
+  .page-divider .divider-line { flex: 1; height: 1px; background: var(--border-color, #e9ecef); }
+  .page-divider .divider-label { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+
+  /* Diff badges inside divider */
+  .badge-mod { background: #fef3c7; color: #92400e; padding: 2px 7px; border-radius: 4px; font-size: 9px; font-weight: 700; }
+  .badge-add { background: #d1fae5; color: #065f46; padding: 2px 7px; border-radius: 4px; font-size: 9px; font-weight: 700; }
+  .badge-del { background: #fee2e2; color: #991b1b; padding: 2px 7px; border-radius: 4px; font-size: 9px; font-weight: 700; }
+
+  /* Page Sections */
+  .page-section {
+    background: #ffffff;
+    border: 1px solid var(--border-color, #e9ecef);
+    border-radius: 10px; padding: 20px;
+    margin-bottom: 12px;
+    font-size: 13px; line-height: 1.7;
+    color: var(--text-dark, #1a1a1a);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .section-modified { border-left: 4px solid #f59e0b !important; background: #fffdf5 !important; }
+  .section-added    { border-left: 4px solid #10b981 !important; background: #f0fdf9 !important; }
+  .section-removed  { border-left: 4px solid #ef4444 !important; background: #fff5f5 !important; opacity: 0.8; }
+
+  .section-placeholder-add,
+  .section-placeholder-del {
+    border-radius: 10px; padding: 28px 16px; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; border: 2px dashed; gap: 8px;
+    color: var(--text-gray, #9ca3af);
+  }
+  .section-placeholder-add { border-color: #6ee7b7; background: #f0fdf9; }
+  .section-placeholder-del { border-color: #fca5a5; background: #fff5f5; }
+  .empty-note { color: var(--text-gray, #9ca3af); font-style: italic; padding: 40px; text-align: center; }
+
+  /* Hide all interactive/action elements in preview */
+  .page-section button,
+  .page-section .fsd-add-btn,
+  .page-section .fsd-prototype-control,
+  .page-section .fsd-prototype-placeholder { display: none !important; }
+
+  /* FSD content normalisation inside panels */
+  .page-section h1, .page-section h2, .page-section h3,
+  .page-section h4, .page-section h5, .page-section h6 {
+    color: var(--text-dark, #1a1a1a); margin-bottom: 8px;
+  }
+  .page-section p { color: #374151; margin-bottom: 6px; }
+  .page-section table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 8px; }
+  .page-section th {
+    background: var(--bg-color, #f8fafc); color: var(--text-dark, #1a1a1a);
+    padding: 7px 12px; border: 1px solid var(--border-color, #e9ecef); font-weight: 600;
+  }
+  .page-section td { padding: 7px 12px; border: 1px solid var(--border-color, #e9ecef); color: #374151; vertical-align: top; }
+  .page-section input, .page-section select, .page-section textarea {
+    background: #f8fafc; color: #374151;
+    border: 1px solid #e2e8f0; border-radius: 6px;
+    padding: 5px 10px; width: 100%; font-size: 12px;
+    font-family: inherit;
+  }
+
+  /* Pagination */
+  .page-section .pagination {
+    display: flex; list-style: none; padding: 0; margin: 8px 0; flex-wrap: wrap; gap: 4px;
+  }
+  .page-section .pagination .page-item .page-link {
+    display: block; padding: 5px 11px;
+    border: 1px solid var(--border-color, #e9ecef); border-radius: 6px;
+    color: var(--primary, #3b9d82); text-decoration: none;
+    background: #fff; font-size: 12px; font-weight: 500;
+    transition: all 0.15s;
+  }
+  .page-section .pagination .page-item.active .page-link {
+    background: var(--primary, #3b9d82); color: #fff;
+    border-color: var(--primary, #3b9d82);
+  }
+  .page-section .pagination .page-item.disabled .page-link {
+    color: #9ca3af; pointer-events: none; background: #f8fafc;
+  }
+  .page-section .pagination .page-item .page-link:hover {
+    background: #edf7f4; color: var(--primary, #3b9d82);
+  }
+</style>
+</head>
+<body>
+
+<div class="compare-topbar">
+  <div class="brand">
+    <i class="fas fa-columns"></i>
+    FSD Compare &nbsp;<span class="meta">· ${projectName} · by ${version.author}</span>
+  </div>
+  <div style="display:flex; gap:8px; align-items:center; flex-shrink:0;">
+    <span style="font-size:12px; color:#9ca3af;">${version.timestamp}</span>
+    <button class="btn btn-sm btn-outline-secondary" onclick="window.close()">
+      <i class="fas fa-times me-1"></i>Close
+    </button>
+  </div>
+</div>
+
+<div class="compare-cols-header">
+  <div class="col-header">
+    <div>
+      <div>Current Version</div>
+      <div class="col-meta">Live working copy</div>
+    </div>
+    <span class="badge-curr">CURRENT</span>
+  </div>
+  <div class="col-header" style="border-left: 1px solid var(--border-color, #e9ecef);">
+    <div>
+      <div>${version.author}</div>
+      <div class="col-meta">${version.summary || 'Version snapshot'}</div>
+    </div>
+    <span class="badge-hist">HISTORY</span>
+  </div>
+</div>
+
+<div class="compare-area">
+  <div class="compare-panel" id="panelNew">${newHtml || '<p class="empty-note">No pages in current project.</p>'}</div>
+  <div class="compare-panel" id="panelOld">${oldHtml || '<p class="empty-note">No pages found in history.</p>'}</div>
+</div>
+
+<script>
+  const panelOld = document.getElementById('panelOld');
+  const panelNew = document.getElementById('panelNew');
+  let syncing = false;
+  panelOld.addEventListener('scroll', () => {
+    if (!syncing) { syncing = true; panelNew.scrollTop = panelOld.scrollTop; syncing = false; }
+  });
+  panelNew.addEventListener('scroll', () => {
+    if (!syncing) { syncing = true; panelOld.scrollTop = panelNew.scrollTop; syncing = false; }
+  });
+<\/script>
+</body>
+</html>`);
+        compareWin.document.close();
     }
 };
 
 window.FSD = FSD;
+

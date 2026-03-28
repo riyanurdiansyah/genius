@@ -121,6 +121,24 @@
     position: relative;
 }
 
+#panel-fsd,
+#panel-erd,
+#panel-flowchart {
+    background: #e2e8f0;
+}
+
+#fsdCanvas {
+    background: #fff;
+}
+
+#erdCanvas {
+    background: #fff;
+}
+
+#flowchartCanvas {
+    background: #fff;
+}
+
 .builder-toolbar {
     height: 50px;
     background: #fff;
@@ -914,34 +932,57 @@
 .compare-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    height: 100%;
 }
 
 .compare-column {
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background: #f8fafc;
+    border-right: 1px solid var(--border-color);
+    background: var(--bg-body);
     display: flex;
     flex-direction: column;
-    max-height: 70vh;
+    min-height: 0;
+}
+
+.compare-column:last-child {
+    border-right: none;
 }
 
 .compare-header {
-    padding: 12px 16px;
-    background: #fff;
+    padding: 12px 20px;
+    background: var(--dashboard-bg);
     border-bottom: 1px solid var(--border-color);
-    border-radius: 8px 8px 0 0;
     font-weight: 700;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .compare-body {
     padding: 20px;
     overflow-y: auto;
     flex: 1;
-    background: #fff;
+    background: var(--dashboard-bg);
+}
+
+.compare-page-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.compare-page-divider::before,
+.compare-page-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
 }
 
 .compare-page-item {
@@ -966,4 +1007,246 @@
     border-color: var(--primary);
     background: #f0fdf4;
     box-shadow: 0 0 0 2px rgba(59, 157, 130, 0.1);
+}
+
+/* =============================================
+   DARK MODE OVERRIDES FOR UI BUILDER
+   ============================================= */
+
+/* Project Dashboard */
+[data-theme="dark"] .project-dashboard {
+    background: var(--bg-body);
+}
+
+[data-theme="dark"] .project-dashboard .card {
+    background: var(--dashboard-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .project-dashboard .card-title {
+    color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .project-dashboard .card-footer {
+    background: var(--dashboard-bg) !important;
+}
+
+/* Builder Sidebar */
+[data-theme="dark"] .builder-sidebar {
+    background: var(--dashboard-bg);
+    border-right-color: var(--border-color);
+}
+
+[data-theme="dark"] .builder-sidebar-header {
+    background: var(--dashboard-bg);
+    border-bottom-color: var(--border-color);
+}
+
+/* Page item in sidebar */
+[data-theme="dark"] .page-item {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .page-item:hover {
+    background: rgba(59, 157, 130, 0.08);
+}
+
+[data-theme="dark"] .page-item.active {
+    background: rgba(59, 157, 130, 0.12);
+}
+
+/* Toolbar */
+[data-theme="dark"] .builder-toolbar {
+    background: var(--dashboard-bg);
+    border-bottom-color: var(--border-color);
+}
+
+/* Canvas wrapper & canvas */
+[data-theme="dark"] .builder-canvas-wrapper {
+    background: var(--bg-body);
+}
+
+[data-theme="dark"] .builder-canvas {
+    background: var(--bg-body);
+}
+
+[data-theme="dark"] .canvas-paper {
+    background: var(--dashboard-bg);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* Canvas element actions popup */
+[data-theme="dark"] .canvas-element-actions {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .action-btn {
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .action-btn.link-btn {
+    background: var(--bg-body);
+    color: var(--primary);
+}
+
+/* Workspace panels */
+[data-theme="dark"] #panel-fsd,
+[data-theme="dark"] #panel-erd,
+[data-theme="dark"] #panel-flowchart {
+    background: var(--bg-body) !important;
+}
+
+/* FSD Canvas Paper */
+[data-theme="dark"] .fsd-paper,
+[data-theme="dark"] #fsdCanvas {
+    background: var(--dashboard-bg) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ERD Canvas */
+[data-theme="dark"] #erdCanvas {
+    background: var(--dashboard-bg) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .erd-entity {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .erd-field-name input {
+    color: var(--text-dark);
+    background: transparent;
+}
+
+[data-theme="dark"] .erd-field-type select {
+    background: transparent;
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .erd-rel-label {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .erd-entity-list-item {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .erd-field-actions button:hover {
+    background: rgba(220, 53, 69, 0.15);
+}
+
+/* Flowchart Canvas */
+[data-theme="dark"] #flowchartCanvas {
+    background: var(--dashboard-bg) !important;
+    background-image: radial-gradient(rgba(59, 157, 130, 0.2) 1px, transparent 1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .fc-actions {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .fc-edge-label {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .fc-content textarea {
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .fc-shape-process {
+    background: linear-gradient(135deg, var(--dashboard-bg), #1a3a30);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .fc-shape-start {
+    background: linear-gradient(135deg, #0d1f35, #152b50);
+    border-color: #3b82f6;
+}
+
+[data-theme="dark"] .fc-shape-decision {
+    background: linear-gradient(135deg, #2a1f05, #3a2d08);
+    border-color: #fbbf24;
+}
+
+[data-theme="dark"] .fc-shape-data {
+    background: linear-gradient(135deg, #0a2a15, #103520);
+    border-color: #4ade80;
+}
+
+/* FSD Table */
+[data-theme="dark"] .fsd-req-table th {
+    background: rgba(59, 157, 130, 0.08);
+}
+
+[data-theme="dark"] .fsd-req-table td input:focus,
+[data-theme="dark"] .fsd-req-table td select:focus,
+[data-theme="dark"] .fsd-req-table td textarea:focus {
+    background: rgba(59, 157, 130, 0.05);
+}
+
+/* Version item */
+[data-theme="dark"] .version-item {
+    background: var(--dashboard-bg);
+    border-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+/* Compare modal */
+[data-theme="dark"] .compare-column {
+    background: var(--bg-body);
+    border-right-color: var(--border-color);
+}
+
+[data-theme="dark"] .compare-header {
+    background: var(--dashboard-bg);
+    border-bottom-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .compare-body {
+    background: var(--dashboard-bg);
+}
+
+[data-theme="dark"] .compare-page-divider {
+    border-color: var(--border-color);
+    color: var(--text-muted);
+}
+
+/* Workspace tabs */
+[data-theme="dark"] .ws-tab {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .ws-tab:hover {
+    background: rgba(59, 157, 130, 0.08);
+    color: var(--primary);
+}
+
+[data-theme="dark"] .ws-tab.active {
+    background: rgba(59, 157, 130, 0.15);
+    color: var(--primary);
+    border-color: rgba(59, 157, 130, 0.3);
+}
+
+/* Nav tabs in sidebar */
+[data-theme="dark"] .builder-sidebar-header .nav-link {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .builder-sidebar-header .nav-link.active {
+    color: var(--primary);
+    background: var(--bg-body);
+    border-color: var(--border-color) var(--border-color) var(--bg-body);
 }

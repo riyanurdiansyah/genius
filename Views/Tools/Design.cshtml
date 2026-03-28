@@ -4,9 +4,9 @@
 
 <link rel="stylesheet" href="/css/ui-builder.css" />
 
-<div class="project-dashboard" id="projectDashboard" style="padding: 40px; background: #f8fafc; min-height: calc(100vh - 65px);">
+<div class="project-dashboard" id="projectDashboard" style="padding: 40px; min-height: calc(100vh - 65px);">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-bold m-0 text-dark"><i class="fas fa-folder-open text-primary me-2"></i> Your Projects</h3>
+        <h3 class="fw-bold m-0"><i class="fas fa-folder-open text-primary me-2"></i> Your Projects</h3>
         <button class="btn btn-primary" onclick="createProject()"><i class="fas fa-plus shadow-sm me-1"></i> New Project</button>
     </div>
     <div class="row g-4" id="projectGrid">
@@ -219,25 +219,25 @@
             </div>
         </div>
 
-        <div class="workspace-panel" id="panel-fsd" style="background:#e2e8f0; overflow-y:auto;">
+        <div class="workspace-panel" id="panel-fsd" style="overflow-y:auto;">
             <div style="display:flex; justify-content:center; padding: 40px 20px;">
-                <div class="fsd-paper drop-zone fsd-drop-zone" id="fsdCanvas" ondrop="FSD.drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" style="background:white; padding:40px; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); width:100%; max-width:900px; min-height:1056px;">
+                <div class="fsd-paper drop-zone fsd-drop-zone" id="fsdCanvas" ondrop="FSD.drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" style="padding:40px; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); width:100%; max-width:900px; min-height:1056px;">
 
                 </div>
             </div>
         </div>
 
-        <div class="workspace-panel" id="panel-erd" style="background:#e2e8f0; overflow: auto;">
+        <div class="workspace-panel" id="panel-erd" style="overflow: auto;">
             <div style="display:flex; justify-content:center; align-items:flex-start; padding: 60px; min-width:min-content;">
-                <div class="erd-canvas-area" id="erdCanvas" style="position: relative; background:white; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:1200px; min-height:800px; height: 800px;">
+                <div class="erd-canvas-area" id="erdCanvas" style="position: relative; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:1200px; min-height:800px; height: 800px;">
                     <svg id="erdSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible;"></svg>
                 </div>
             </div>
         </div>
 
-        <div class="workspace-panel" id="panel-flowchart" style="background:#e2e8f0; overflow-y:auto; overflow-x:auto;">
+        <div class="workspace-panel" id="panel-flowchart" style="overflow-y:auto; overflow-x:auto;">
             <div style="display:flex; justify-content:center; align-items:flex-start; padding: 40px 20px; min-width:min-content;">
-                <div class="fc-paper border drop-zone" id="flowchartCanvas" ondrop="Flowchart.drop(event)" ondragover="Flowchart.allowDrop(event)" style="position: relative; background:white; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:794px; min-height:400px; height: 400px; overflow: hidden; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; transition: width 0.2s, height 0.2s;">
+                <div class="fc-paper border drop-zone" id="flowchartCanvas" ondrop="Flowchart.drop(event)" ondragover="Flowchart.allowDrop(event)" style="position: relative; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:794px; min-height:400px; height: 400px; overflow: hidden; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; transition: width 0.2s, height 0.2s;">
                     <svg id="flowchartSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible;"></svg>
                 </div>
             </div>
@@ -368,42 +368,28 @@
 </div>
 
 <div class="modal fade" id="compareFsdModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 95vw; width: 95vw;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Compare FSD Versions</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body p-4 bg-light">
-                <div class="row g-3">
-                    <div class="col-md-3">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-header bg-white fw-bold py-3">Page Changes</div>
-                            <div class="card-body p-0 overflow-y-auto" style="max-height: 70vh;" id="comparePageList">
-
-                            </div>
+            <div class="modal-body p-0">
+                <div class="compare-grid" style="height: 65vh; overflow: hidden;">
+                    <div class="compare-column">
+                        <div class="compare-header" id="compareOldTitle">
+                            <span>Selected Version</span>
+                            <span class="badge bg-secondary opacity-50">HISTORY</span>
+                        </div>
+                        <div class="compare-body" id="compareOldCanvas" style="overflow-y: auto; flex: 1;">
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="compare-grid">
-                            <div class="compare-column">
-                                <div class="compare-header" id="compareOldTitle">
-                                    <span>Selected Version</span>
-                                    <span class="badge bg-secondary opacity-50">HISTORY</span>
-                                </div>
-                                <div class="compare-body" id="compareOldCanvas">
-
-                                </div>
-                            </div>
-                            <div class="compare-column">
-                                <div class="compare-header" id="compareNewTitle">
-                                    <span>Current Version</span>
-                                    <span class="badge bg-primary">CURRENT</span>
-                                </div>
-                                <div class="compare-body" id="compareNewCanvas">
-
-                                </div>
-                            </div>
+                    <div class="compare-column">
+                        <div class="compare-header" id="compareNewTitle">
+                            <span>Current Version</span>
+                            <span class="badge bg-primary">CURRENT</span>
+                        </div>
+                        <div class="compare-body" id="compareNewCanvas" style="overflow-y: auto; flex: 1;">
                         </div>
                     </div>
                 </div>

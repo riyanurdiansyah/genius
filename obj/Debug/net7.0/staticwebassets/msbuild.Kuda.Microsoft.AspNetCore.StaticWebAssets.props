@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>1jpukidhtp</Fingerprint>
-      <Integrity>Q/ci27oo0cSVqOqNNEHjU7zucpK/V/ojMNqS3JKHAKo=</Integrity>
+      <Fingerprint>b2x5qrjg8m</Fingerprint>
+      <Integrity>XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components.css'))</OriginalItemSpec>
@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qot1cgx5bi</Fingerprint>
-      <Integrity>imhaqVgNcQcPNUJLUHot/KjVnO/M/9cLD3iI58EH+dQ=</Integrity>
+      <Fingerprint>sws702gi1b</Fingerprint>
+      <Integrity>5KkmHkFRFb7qi6LtA80Ek7QD3mdoZR2K+9AaUFY95YM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\kuda-kit.css'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>1e8ucqvjcs</Fingerprint>
-      <Integrity>B5bk25f0dcvQTYCId9JVuyxsz7gTBOcDnA54yrokBKo=</Integrity>
+      <Fingerprint>72dtzas9bk</Fingerprint>
+      <Integrity>X1IB+g1xWXoQm6ErwUIkCz1KATh/qFYjNSDmjucdtwg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\report.css'))</OriginalItemSpec>
@@ -1452,8 +1452,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8v0mcq468r</Fingerprint>
-      <Integrity>5KENhum28EQ2v2x0B/mQiKMwxFLWPB4PRjbmXKxI7QA=</Integrity>
+      <Fingerprint>sqrbvzsiw5</Fingerprint>
+      <Integrity>zHOOOpoG0jCtpNPQnce6PSp6PQIKo4zInz3JG7bZdKQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\app-system.js'))</OriginalItemSpec>
@@ -1470,8 +1470,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5z802t66qs</Fingerprint>
-      <Integrity>jxz+Pk9H/tTYAt0u2XmNqVDYGLvAiVfACw4UQE0n4HY=</Integrity>
+      <Fingerprint>18q2s72tn5</Fingerprint>
+      <Integrity>QWnAhfQCHQU8S2lc7iRsLGOrOtqUc5nx11xbsHKLJzY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\kuda-kit.js'))</OriginalItemSpec>
