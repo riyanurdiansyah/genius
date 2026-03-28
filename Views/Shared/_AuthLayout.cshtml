@@ -208,7 +208,11 @@ function openModal(id) {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('data-target');
-                    if(targetId) {
+                    const staticHtml = this.getAttribute('data-html');
+                    if (staticHtml) {
+                        document.getElementById('globalCopyHtmlTextarea').value = staticHtml;
+                        openModal('globalCopyHtmlModal');
+                    } else if(targetId) {
                         const targetEl = document.getElementById(targetId);
                         if(targetEl) {
                             document.getElementById('globalCopyHtmlTextarea').value = targetEl.outerHTML;

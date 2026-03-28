@@ -138,8 +138,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wwvgy7j7uq</Fingerprint>
-      <Integrity>cCzqVvWNMZHjOE2oDc/S8JHho6g14ioy3rf5L/NL+Ds=</Integrity>
+      <Fingerprint>8pbalgpdah</Fingerprint>
+      <Integrity>vJ7bxjxGh8EvGK0ePm/2j/xbr6+6EY7rPeyJ7Rb3ar0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ui-builder.css'))</OriginalItemSpec>
@@ -1440,6 +1440,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\image\kuda2.png'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\warehouse-marker.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Kuda</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Kuda</BasePath>
+      <RelativePath>images/warehouse-marker.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>nufcvcv8wk</Fingerprint>
+      <Integrity>wQXIFPRH1cu2KB7IDQNtjhZavDd/lJWXXe+CLJ7QJqc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\warehouse-marker.png'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\app-system.js'))">
       <SourceType>Package</SourceType>
       <SourceId>Kuda</SourceId>
@@ -1524,8 +1542,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>j0sh2cov29</Fingerprint>
-      <Integrity>E9oom/zspbYbGpz4pNVovC7JnSqBDYy9V999N+vvIew=</Integrity>
+      <Fingerprint>b1b5wb553q</Fingerprint>
+      <Integrity>H4M6Uz+djyQ+7CzbyRVy/RQdjpqDzKuT9J1r4/e3TEA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ui-builder-fsd.js'))</OriginalItemSpec>

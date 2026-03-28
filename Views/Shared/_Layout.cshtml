@@ -284,12 +284,16 @@ document.getElementById('toggleSidebar').addEventListener('click', function() {
                     e.preventDefault();
 
                     const targetId = this.getAttribute('data-target');
-                    if(targetId) {
+                    const staticHtml = this.getAttribute('data-html');
+
+                    if (staticHtml) {
+                        // Use pre-defined clean HTML (for dynamic sections like maps)
+                        document.getElementById('globalCopyHtmlTextarea').value = staticHtml;
+                        openModal('globalCopyHtmlModal');
+                    } else if(targetId) {
                         const targetEl = document.getElementById(targetId);
                         if(targetEl) {
-
                             let htmlContent = targetEl.outerHTML;
-
                             document.getElementById('globalCopyHtmlTextarea').value = htmlContent;
                             openModal('globalCopyHtmlModal');
                         }

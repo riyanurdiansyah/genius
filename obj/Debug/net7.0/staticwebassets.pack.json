@@ -321,6 +321,10 @@
       "PackagePath": "staticwebassets/image/kuda2.png"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/images/warehouse-marker.png",
+      "PackagePath": "staticwebassets/images/warehouse-marker.png"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
       "PackagePath": "staticwebassets/js/app-system.js"
     },

@@ -1,303 +1,846 @@
 @{ ViewData["Title"] = "Driver & Fleet Tracking"; }
 
+@section Styles {
+  <link rel="stylesheet" href="~/lib/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="~/lib/leaflet-routing-machine/leaflet-routing-machine.css" />
+}
+
+@section Scripts {
+  <script src="~/lib/leaflet/leaflet.js"></script>
+  <script src="~/lib/leaflet-routing-machine/leaflet-routing-machine.min.js"></script>
+}
+
 <style>
-.map-container {
-        position: relative;
-        height: 500px;
-        width: 100%;
-        border-radius: 20px;
-        overflow: hidden;
-        border: 1px solid rgba(0,0,0,0.1);
-        margin-bottom: 2rem;
-    }
-    .map-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        filter: invert(90%) hue-rotate(180deg) contrast(80%); 
-    }
-    .floating-glass-card {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-radius: 16px;
-        padding: 1.5rem;
-        width: 340px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        z-index: 10;
-        transition: transform 0.3s ease;
-    }
-    .floating-glass-card:hover { transform: translateY(-5px); }
+/* ── Layout ── */
+.tracking-header { margin-bottom: 2rem; }
+.tracking-header h4 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
 
-    .floating-glass-card.dark-mode {
-        background: rgba(15, 23, 42, 0.85);
-        border: 1px solid rgba(255,255,255,0.1);
-        color: white;
-    }
+/* ── Map ── */
+.map-wrapper {
+    position: relative; height: 540px; width: 100%;
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    border: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+#leafMap { width: 100%; height: 100%; }
+[data-theme="dark"] #leafMap { filter: invert(90%) hue-rotate(180deg) contrast(80%); }
 
-    .pulse-dot {
-        width: 12px;
-        height: 12px;
-        background: var(--success);
-        border-radius: 50%;
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-        animation: pulseAnimation 1.5s infinite;
-        display: inline-block;
-    @@keyframes pulseAnimation {
-        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-        70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-    .truck-list-item {
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 1rem;
-        margin-bottom: 0.75rem;
-        transition: all 0.2s;
-        cursor: pointer;
-        background: #fff;
-    }
-    .truck-list-item:hover, .truck-list-item.active {
-        border-color: var(--primary);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        background: var(--bg-card);
-    }
-    .speedometer {
-        width: 50px; height: 50px;
-        border-radius: 50%;
-        border: 4px solid #e2e8f0;
-        border-top-color: var(--primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 0.8rem;
-    }
+/* ── Hide LRM panel ── */
+.leaflet-routing-container { display: none !important; }
 
-    .telemetry-card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 1.5rem;
-        border: 1px solid var(--border-color);
-        position: relative;
-        overflow: hidden;
-    }
-    .telemetry-card::before {
-        content: ''; position: absolute; top:0; left:0; width: 4px; height: 100%;
-        background: var(--primary);
-    }
-    .telemetry-icon-wrap {
-        width: 45px; height: 45px;
-        border-radius: 12px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.25rem;
-    }
+/* ── Floating card ── */
+.float-card {
+    position: absolute; bottom: 24px; left: 24px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 20px; padding: 1.25rem; width: 300px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15); z-index: 1000;
+    transition: transform .3s ease;
+}
+.float-card:hover { transform: translateY(-4px); }
+[data-theme="dark"] .float-card { background: rgba(15,23,42,0.9); border-color: rgba(255,255,255,0.1); color:#f8fafc; }
 
-    [data-theme="dark"] .truck-list-item { background: var(--bg-card, #112e27); color: #f8fafc; }
-    [data-theme="dark"] .telemetry-card { background: var(--bg-card, #112e27); color: #f8fafc; }
-    [data-theme="dark"] .card-header,
-    [data-theme="dark"] .bg-white { background-color: transparent !important; }
-    [data-theme="dark"] .bg-light { background-color: rgba(255, 255, 255, 0.05) !important; color: #f8fafc; }
-    [data-theme="dark"] .text-dark { color: #f8fafc !important; }
-    [data-theme="dark"] .map-container { border-color: rgba(255,255,255,0.1); }
+/* ── Legend ── */
+.map-legend {
+    position: absolute; top: 20px; left: 20px;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+    border-radius: 14px; padding: .75rem 1rem; z-index: 1000;
+    font-size: .75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+}
+[data-theme="dark"] .map-legend { background: rgba(15,23,42,0.9); color:#f8fafc; border-color: rgba(255,255,255,0.1); }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
 
-    .text-muted { color: #64748b !important; }
-    [data-theme="dark"] .text-muted { color: #94a3b8 !important; }
+/* ── Pulse dot ── */
+.pulse-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #10b981; display: inline-block;
+    box-shadow: 0 0 0 0 rgba(16,185,129,.7);
+    animation: pulse 1.5s infinite;
+}
+@@keyframes pulse {
+    0%   { transform: scale(.95); box-shadow: 0 0 0 0 rgba(16,185,129,.7); }
+    70%  { transform: scale(1); box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+    100% { transform: scale(.95); box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+}
 
-    .badge-soft-success { background: #e2fbd7 !important; color: #198754 !important; }
-    .badge-soft-warning { background: #fef5cc !important; color: #d97706 !important; }
-    .badge-soft-danger { background: #fee2e2 !important; color: #dc3545 !important; }
+/* ── ETA Strip ── */
+.eta-strip {
+    display: flex; gap: .5rem; margin-top: .75rem;
+    flex-wrap: wrap;
+}
+.eta-badge {
+    padding: .25rem .7rem; border-radius: 20px; font-size: .7rem; font-weight: 700;
+    display: flex; align-items: center; gap: 5px;
+}
 
-    [data-theme="dark"] .badge-soft-success { background: rgba(25, 135, 84, 0.2) !important; color: #4ade80 !important; }
-    [data-theme="dark"] .badge-soft-warning { background: rgba(217, 119, 6, 0.2) !important; color: #fbbf24 !important; }
-    [data-theme="dark"] .badge-soft-danger { background: rgba(220, 53, 69, 0.2) !important; color: #f87171 !important; }
+/* ── Truck List ── */
+.truck-card {
+    border-radius: 16px; padding: 1rem 1.2rem;
+    border: 2px solid transparent; cursor: pointer;
+    transition: all .25s; background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: .75rem;
+}
+.truck-card:hover { transform: translateX(4px); }
+.truck-card.active { background: #f0f9ff; }
+[data-theme="dark"] .truck-card { background: var(--bg-card, #112e27); color: #f8fafc; }
+[data-theme="dark"] .truck-card.active { background: rgba(59,130,246,0.1); }
 
+.speed-ring {
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 4px solid #e2e8f0; border-top-color: var(--tc, #3b82f6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem; font-weight: 800; color: var(--tc, #3b82f6);
+    flex-shrink: 0;
+}
+
+/* ── Telemetry Cards ── */
+.tele-card {
+    border-radius: 18px; padding: 1.4rem;
+    border: 1px solid var(--border-color, #e2e8f0);
+    background: #fff; position: relative; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+.tele-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%; background: var(--accent, #3b82f6);
+}
+[data-theme="dark"] .tele-card { background: var(--bg-card, #112e27); color: #f8fafc; }
+.tele-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+
+/* ── Route Info Bar ── */
+.route-bar {
+    border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid var(--border-color, #e2e8f0);
+}
+[data-theme="dark"] .route-bar { border-color: rgba(255,255,255,0.08); }
+
+/* ── Glass Shipment Cards ── */
+.ship-card {
+    background: rgba(255,255,255,.75); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.4); border-radius: 20px;
+    transition: all .3s cubic-bezier(.4,0,.2,1); cursor: pointer; position: relative; overflow: hidden;
+}
+.ship-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+[data-theme="dark"] .ship-card { background: rgba(30,41,59,.75); border-color: rgba(255,255,255,.1); }
+
+.glow-green { border: 2px solid #10b981; box-shadow: 0 0 18px rgba(16,185,129,.25); }
+.glow-amber { border: 2px solid #f59e0b; box-shadow: 0 0 18px rgba(245,158,11,.25); }
+.glow-blue  { border: 2px solid #3b82f6; box-shadow: 0 0 18px rgba(59,130,246,.25); }
+.glow-red   { border: 2px solid #ef4444; box-shadow: 0 0 18px rgba(239,68,68,.25); }
+
+.mini-step { display: flex; align-items: center; gap: 8px; margin-top: .9rem; position: relative; }
+.mini-step::before { content:''; position:absolute; height:2px; background:#e2e8f0; width:100%; top:50%; transform:translateY(-50%); z-index:0; }
+[data-theme="dark"] .mini-step::before { background: rgba(255,255,255,.1); }
+.sdot { width: 9px; height: 9px; border-radius: 50%; background: #cbd5e1; z-index: 1; position: relative; }
+.sdot.done { background: #10b981; }
+.sdot.now  { background: var(--primary, #3b82f6); box-shadow: 0 0 6px var(--primary, #3b82f6); }
+
+/* ── Table ── */
+.fleet-table th { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; background: #f8fafc; }
+[data-theme="dark"] .fleet-table th { background: rgba(255,255,255,.04); color: #94a3b8; }
+.fleet-table td { vertical-align: middle; }
+
+/* ── Kanban ── */
+.pipeline { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 8px; scrollbar-width: none; }
+.pipeline::-webkit-scrollbar { display: none; }
+.pipe-col { min-width: 300px; flex: 0 0 300px; }
+.pipe-row {
+    background: #fff; border-radius: 12px; padding: .75rem 1rem;
+    border: 1px solid var(--border-color,#e2e8f0); margin-bottom: 8px;
+    transition: all .2s;
+}
+.pipe-row:hover { border-color: var(--primary,#3b82f6); transform: translateY(-2px); }
+[data-theme="dark"] .pipe-row { background: rgba(255,255,255,.04); }
+
+/* ── Badges ── */
+.bs-green { background: #e2fbd7 !important; color: #198754 !important; }
+.bs-amber { background: #fef5cc !important; color: #d97706 !important; }
+.bs-red   { background: #fee2e2 !important; color: #dc3545 !important; }
+.bs-blue  { background: #dbeafe !important; color: #1d4ed8 !important; }
+[data-theme="dark"] .bs-green { background: rgba(25,135,84,.2) !important; color: #4ade80 !important; }
+[data-theme="dark"] .bs-amber { background: rgba(217,119,6,.2)  !important; color: #fbbf24 !important; }
+[data-theme="dark"] .bs-red   { background: rgba(220,53,69,.2)  !important; color: #f87171 !important; }
+[data-theme="dark"] .bs-blue  { background: rgba(59,130,246,.2) !important; color: #93c5fd !important; }
+
+[data-theme="dark"] .bg-white { background-color: transparent !important; }
+[data-theme="dark"] .bg-light { background-color: rgba(255,255,255,.05) !important; color: #f8fafc; }
+[data-theme="dark"] .text-dark { color: #f8fafc !important; }
+.text-muted { color: #64748b !important; }
+[data-theme="dark"] .text-muted { color: #94a3b8 !important; }
 </style>
 
 <div class="row g-4 mb-5">
-    <div class="col-12">
-        <h4 class="fw-bold mb-1">Fleet & Driver Tracking</h4>
-        <p class="text-muted">Real-time GPS positioning, live telemetry, and routing variations.</p>
+
+  <!-- ═══ Header ═══ -->
+  <div class="col-12 tracking-header">
+    <div class="d-flex align-items-center gap-3 mb-1">
+      <div style="width:42px;height:42px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+        <i class="fas fa-satellite-dish text-white"></i>
+      </div>
+      <div>
+        <h4 class="mb-0">Fleet &amp; Driver Tracking</h4>
+        <p class="text-muted mb-0 small">Real-time GPS · OSRM road routing · Live ETA estimation</p>
+      </div>
     </div>
+  </div>
 
-    <div class="col-12">
-        <h6 class="fw-bold mb-3"><i class="fas fa-map-marked-alt text-primary me-2"></i>Live Tracker Overlay</h6>
-        <div class="map-container shadow-sm">
+  <!-- ═══ MAP ═══ -->
+  <div class="col-12">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h6 class="fw-bold mb-0"><i class="fas fa-map-marked-alt text-primary me-2"></i>Live Tracker — Road-snapped Routes</h6>
+      <button class="btn btn-sm btn-outline-primary copy-btn"
+        data-html="&lt;!-- Leaflet &amp; Routing sudah dibundle di kuda-kit.css / kuda-kit.js --&gt;&#10;&#10;&lt;style&gt;&#10;.map-wrapper { position:relative; height:540px; width:100%; border-radius:24px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.18); }&#10;#leafMap { width:100%; height:100%; }&#10;.leaflet-routing-container { display:none !important; }&#10;&lt;/style&gt;&#10;&#10;&lt;div class=&quot;map-wrapper&quot;&gt;&#10;  &lt;div id=&quot;leafMap&quot;&gt;&lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;script&gt;&#10;window.addEventListener('load', function() {&#10;  var map = L.map('leafMap', { zoomControl: false, attributionControl: false }).setView([-6.9, 108.5], 7);&#10;  L.control.zoom({ position: 'topright' }).addTo(map);&#10;  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {&#10;    subdomains: 'abcd', maxZoom: 19&#10;  }).addTo(map);&#10;&#10;  var warehouseIcon = L.divIcon({&#10;    className: '',&#10;    html: '&lt;div style=&quot;background:white;border-radius:12px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25);border:2px solid #e2e8f0;&quot;&gt;&lt;img src=&quot;/images/warehouse-marker.png&quot; style=&quot;width:42px;height:42px;object-fit:cover;&quot;&gt;&lt;/div&gt;',&#10;    iconSize: [48,48], iconAnchor: [24,48]&#10;  });&#10;&#10;  var truckFrom = [-6.2088, 106.8456]; // ganti koordinat asal&#10;  var truckTo   = [-6.9147, 107.6098]; // ganti koordinat tujuan&#10;  L.marker(truckTo, { icon: warehouseIcon }).addTo(map);&#10;&#10;  L.Routing.control({&#10;    waypoints: [L.latLng(truckFrom[0], truckFrom[1]), L.latLng(truckTo[0], truckTo[1])],&#10;    router: L.Routing.osrmv1({ serviceUrl: 'https://router.project-osrm.org/route/v1', profile: 'driving' }),&#10;    lineOptions: { styles: [{ color: '#3b82f6', weight: 5, opacity: 0.85 }] },&#10;    createMarker: () =&gt; null, addWaypoints: false, fitSelectedRoutes: true, showAlternatives: false&#10;  }).addTo(map);&#10;});&#10;&lt;/script&gt;"
+      ><i class="fa-regular fa-copy me-1"></i>Copy HTML</button>
+    </div>
+    <div class="map-wrapper" id="section-map">
+      <div id="leafMap"></div>
 
-            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-74.015,40.705,-73.985,40.725&layer=mapnik" loading="lazy"></iframe>
+      <!-- Legend -->
+      <div class="map-legend">
+        <div class="fw-bold mb-2" style="font-size:.8rem;letter-spacing:.04em;">FLEET ROUTES</div>
+        <div class="d-flex align-items-center mb-1"><span class="legend-dot" style="background:#3b82f6;"></span><span id="leg1">Hino 500</span></div>
+        <div class="d-flex align-items-center mb-1"><span class="legend-dot" style="background:#10b981;"></span><span id="leg2">Volvo FH16</span></div>
+        <div class="d-flex align-items-center mb-1"><span class="legend-dot" style="background:#f59e0b;"></span><span id="leg3">Isuzu Elf</span></div>
+        <div class="d-flex align-items-center"><span class="legend-dot" style="background:#8b5cf6;"></span><span id="leg4">Scania R450</span></div>
+      </div>
 
-            <div class="floating-glass-card">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="badge badge-soft-success rounded-pill px-3">
-                        <span class="pulse-dot me-2"></span>En Route
-                    </span>
-                    <span class="text-muted small fw-bold">ETA: 14:30 PM</span>
-                </div>
-
-                <div class="d-flex align-items-center mb-4">
-                    <img src="https://ui-avatars.com/api/?name=David+R&background=0D8ABC&color=fff" class="rounded-circle me-3 border border-2 border-white shadow-sm" width="55" height="55" alt="Driver">
-                    <div>
-                        <h6 class="fw-bold mb-0">David Robertson</h6>
-                        <span class="text-muted small">Truck #B-8291-KXA</span>
-                    </div>
-                </div>
-
-                <div class="row g-2">
-                    <div class="col-6">
-                        <div class="bg-light bg-opacity-75 rounded-3 p-2 text-center border border-white">
-                            <i class="fas fa-tachometer-alt text-primary mb-1"></i>
-                            <h6 class="fw-bold mb-0">65 km/h</h6>
-                            <small class="text-muted" style="font-size:0.7rem;">Current Speed</small>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="bg-light bg-opacity-75 rounded-3 p-2 text-center border border-white">
-                            <i class="fas fa-temperature-low text-info mb-1"></i>
-                            <h6 class="fw-bold mb-0">-4°C</h6>
-                            <small class="text-muted" style="font-size:0.7rem;">Cargo Temp</small>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-dark w-100 mt-3 rounded-pill py-2 shadow-sm"><i class="fas fa-phone-alt me-2"></i>Contact Driver</button>
-            </div>
-
-            <div class="position-absolute shadow-sm rounded-pill overflow-hidden" style="top: 20px; right: 20px; background: rgba(255,255,255,0.9); z-index:10;">
-                <button class="btn btn-light border-0"><i class="fas fa-layer-group text-muted"></i></button>
-                <div class="vr"></div>
-                <button class="btn btn-light border-0"><i class="fas fa-route text-muted"></i></button>
-            </div>
+      <!-- Floating Info Card -->
+      <div class="float-card">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="badge bs-green rounded-pill px-3" style="font-size:.72rem;">
+            <span class="pulse-dot me-1"></span> En Route — Clear
+          </span>
+          <small class="text-muted fw-bold" id="card-time">ETA —</small>
         </div>
-    </div>
-
-    <div class="col-12 mt-4">
-        <h6 class="fw-bold mb-3"><i class="fas fa-columns text-primary me-2"></i>Split Control Room View</h6>
-        <div class="row g-4">
-
-            <div class="col-lg-4 col-md-5">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-header border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
-                        <h6 class="fw-bold mb-0">Active Fleet (3)</h6>
-                        <button class="btn btn-sm btn-light rounded-circle"><i class="fas fa-filter"></i></button>
-                    </div>
-                    <div class="card-body">
-
-                        <div class="truck-list-item active">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-bold">Hino Ranger 500</span>
-                                <span class="badge badge-soft-success"><i class="fas fa-map-marker-alt me-1"></i> Moving</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="text-muted small">
-                                    <div><i class="fas fa-id-card me-2"></i>ALX-9012</div>
-                                    <div><i class="fas fa-gas-pump me-2"></i>78% Fuel</div>
-                                </div>
-                                <div class="speedometer text-primary">62</div>
-                            </div>
-                        </div>
-
-                        <div class="truck-list-item">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-bold">Volvo FH16</span>
-                                <span class="badge badge-soft-warning"><i class="fas fa-pause-circle me-1"></i> Idling</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="text-muted small">
-                                    <div><i class="fas fa-id-card me-2"></i>BRD-4451</div>
-                                    <div><i class="fas fa-gas-pump me-2"></i>32% Fuel</div>
-                                </div>
-                                <div class="speedometer text-warning" style="border-top-color: var(--warning);">0</div>
-                            </div>
-                        </div>
-
-                        <div class="truck-list-item">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-bold">Isuzu Elf</span>
-                                <span class="badge badge-soft-danger"><i class="fas fa-exclamation-triangle me-1"></i> Delay</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="text-muted small">
-                                    <div><i class="fas fa-id-card me-2"></i>CZT-8891</div>
-                                    <div><i class="fas fa-gas-pump me-2"></i>15% Fuel</div>
-                                </div>
-                                <div class="speedometer text-danger" style="border-top-color: var(--danger);">12</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-8 col-md-7">
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <div class="telemetry-card shadow-sm h-100" style="--primary: #3b82f6;">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <div>
-                                    <h6 class="text-muted small fw-bold text-uppercase mb-1">Engine Status</h6>
-                                    <h4 class="fw-bold mb-0">Running Optimal</h4>
-                                </div>
-                                <div class="telemetry-icon-wrap bg-primary bg-opacity-10 text-primary">
-                                    <i class="fas fa-cogs"></i>
-                                </div>
-                            </div>
-                            <div class="progress" style="height: 6px;">
-                                <div class="progress-bar bg-primary" style="width: 85%;"></div>
-                            </div>
-                            <p class="text-muted small mt-2 mb-0">85% Health Score • Last service 12 days ago</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="telemetry-card shadow-sm h-100" style="--primary: #8b5cf6;">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <div>
-                                    <h6 class="text-muted small fw-bold text-uppercase mb-1">Tire Pressure (TPMS)</h6>
-                                    <h4 class="fw-bold mb-0">98 PSI <span class="text-success fs-6"><i class="fas fa-arrow-up"></i></span></h4>
-                                </div>
-                                <div class="telemetry-icon-wrap bg-primary bg-opacity-10" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);">
-                                    <i class="fas fa-truck-monster"></i>
-                                </div>
-                            </div>
-                            <div class="d-flex gap-2">
-                                <span class="badge badge-soft-success rounded-pill">FL: Good</span>
-                                <span class="badge badge-soft-success rounded-pill">FR: Good</span>
-                            </div>
-                            <p class="text-muted small mt-2 mb-0">All 6 tires within nominal threshold</p>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="card border-0 shadow-sm mt-1">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-                                    <h6 class="fw-bold mb-0"><i class="fas fa-route text-success me-2"></i>Active Route Data</h6>
-                                    <span class="text-muted small">Updated 2m ago</span>
-                                </div>
-                                <div class="row text-center divide-x">
-                                    <div class="col-4 border-end">
-                                        <div class="text-muted small">Origin</div>
-                                        <div class="fw-bold mt-1">Jakarta Hub</div>
-                                        <small class="text-muted">Despatched 08:15</small>
-                                    </div>
-                                    <div class="col-4 border-end">
-                                        <div class="text-muted small">Distance Left</div>
-                                        <div class="fw-bold text-primary mt-1" style="font-size: 1.2rem;">142 km</div>
-                                        <small class="text-muted">~2h 15m remaining</small>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="text-muted small">Destination</div>
-                                        <div class="fw-bold mt-1">Bandung WH</div>
-                                        <small class="text-muted">Target ETA 14:30</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex align-items-center mb-3">
+          <img src="https://ui-avatars.com/api/?name=David+R&background=3b82f6&color=fff" class="rounded-circle me-3 border border-2 border-white shadow-sm" width="48" height="48" alt="Driver">
+          <div>
+            <h6 class="fw-bold mb-0 small" id="card-driver">David Robertson</h6>
+            <span class="text-muted" style="font-size:.72rem;" id="card-plate">Hino 500 · ALX-9012</span>
+          </div>
         </div>
+        <div class="row g-2 mb-2">
+          <div class="col-6">
+            <div class="bg-light rounded-3 p-2 text-center">
+              <div class="fw-bold small" id="card-speed">62 km/h</div>
+              <div class="text-muted" style="font-size:.65rem;">Speed</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="bg-light rounded-3 p-2 text-center">
+              <div class="fw-bold small" id="card-dist">—</div>
+              <div class="text-muted" style="font-size:.65rem;">Distance</div>
+            </div>
+          </div>
+        </div>
+        <div class="eta-strip" id="eta-strip"></div>
+      </div>
     </div>
+  </div>
+
+  <!-- ═══ Control Room ═══ -->
+  <div class="col-12 mt-2">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h6 class="fw-bold mb-0"><i class="fas fa-columns text-primary me-2"></i>Control Room View</h6>
+      <button class="btn btn-sm btn-outline-primary copy-btn" data-target="section-control-room"><i class="fa-regular fa-copy me-1"></i>Copy HTML</button>
+    </div>
+    <div class="row g-4" id="section-control-room">
+
+      <!-- Truck List -->
+      <div class="col-lg-4 col-md-5">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header border-0 pt-4 pb-0 d-flex justify-content-between">
+            <h6 class="fw-bold mb-0">Active Fleet (4)</h6>
+            <button class="btn btn-sm btn-light rounded-circle"><i class="fas fa-filter"></i></button>
+          </div>
+          <div class="card-body" id="truck-list">
+            <!-- JS rendered -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Telemetry + Route -->
+      <div class="col-lg-8 col-md-7">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <div class="tele-card h-100" style="--accent:#3b82f6;">
+              <div class="d-flex justify-content-between mb-3">
+                <div>
+                  <div class="text-muted small fw-bold text-uppercase mb-1">Engine Status</div>
+                  <h5 class="fw-bold mb-0">Running Optimal</h5>
+                </div>
+                <div class="tele-icon bg-primary bg-opacity-10 text-primary"><i class="fas fa-cogs"></i></div>
+              </div>
+              <div class="progress" style="height:6px;"><div class="progress-bar bg-primary" style="width:85%;"></div></div>
+              <p class="text-muted small mt-2 mb-0">85% Health · Serviced 12d ago</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="tele-card h-100" style="--accent:#8b5cf6;">
+              <div class="d-flex justify-content-between mb-3">
+                <div>
+                  <div class="text-muted small fw-bold text-uppercase mb-1">Tire Pressure (TPMS)</div>
+                  <h5 class="fw-bold mb-0">98 PSI <span class="text-success fs-6"><i class="fas fa-arrow-up"></i></span></h5>
+                </div>
+                <div class="tele-icon" style="background:rgba(139,92,246,.1);color:#8b5cf6;"><i class="fas fa-truck-monster"></i></div>
+              </div>
+              <div class="d-flex gap-2">
+                <span class="badge bs-green rounded-pill">FL: OK</span>
+                <span class="badge bs-green rounded-pill">FR: OK</span>
+              </div>
+              <p class="text-muted small mt-2 mb-0">All 6 tires nominal</p>
+            </div>
+          </div>
+
+          <!-- Route Data -->
+          <div class="col-12">
+            <div class="card border-0 shadow-sm route-bar">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                  <h6 class="fw-bold mb-0"><i class="fas fa-route text-success me-2"></i>Active Route — Hino 500</h6>
+                  <span class="text-muted small">OSRM Road Routing</span>
+                </div>
+                <div class="row text-center">
+                  <div class="col-4 border-end">
+                    <div class="text-muted small">Origin</div>
+                    <div class="fw-bold mt-1">Jakarta Hub</div>
+                    <small class="text-muted">Departed 08:15</small>
+                  </div>
+                  <div class="col-4 border-end">
+                    <div class="text-muted small">Remaining</div>
+                    <div class="fw-bold text-primary mt-1" style="font-size:1.2rem;" id="route-dist">—</div>
+                    <small class="text-muted" id="route-eta">Calculating…</small>
+                  </div>
+                  <div class="col-4">
+                    <div class="text-muted small">Destination</div>
+                    <div class="fw-bold mt-1">Bandung WH</div>
+                    <small class="text-muted" id="route-arr">ETA —</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Variant 1: Glass Grid ═══ -->
+  <div class="col-12 mt-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <h6 class="fw-bold mb-1"><i class="fas fa-th-large text-primary me-2"></i>Variant 1 — Modern Glass Grid</h6>
+        <p class="text-muted small mb-0">High-visibility cards with live telemetry &amp; progress indicators.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-primary copy-btn" data-target="section-glass-grid"><i class="fa-regular fa-copy me-1"></i>Copy HTML</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">View All</button>
+      </div>
+    </div>
+    <div class="row g-4" id="section-glass-grid">
+      <div class="col-lg-3 col-md-6">
+        <div class="ship-card p-4 glow-green">
+          <div class="d-flex justify-content-between mb-3">
+            <span class="badge bs-green rounded-pill">ON ROUTE</span>
+            <span class="fw-bold text-success">78%</span>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-success bg-opacity-10 text-success rounded-3 p-2 me-3"><i class="fas fa-truck-moving fs-4"></i></div>
+            <div><h6 class="fw-bold mb-0">Hino 500</h6><small class="text-muted">ALX-9012</small></div>
+          </div>
+          <div class="progress mb-2" style="height:6px;border-radius:10px;"><div class="progress-bar bg-success" style="width:78%;"></div></div>
+          <div class="d-flex justify-content-between small text-muted mb-1"><span>Jakarta</span><span>Bandung</span></div>
+          <div class="d-flex justify-content-between small"><span class="text-muted">Est. time:</span><span class="fw-bold text-success" id="eta-t1">~2h 15m</span></div>
+          <div class="mini-step"><div class="sdot done"></div><div class="sdot done"></div><div class="sdot now"></div><div class="sdot"></div></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="ship-card p-4 glow-amber">
+          <div class="d-flex justify-content-between mb-3">
+            <span class="badge bs-amber rounded-pill">DELAYED</span>
+            <span class="fw-bold text-warning">42%</span>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2 me-3"><i class="fas fa-truck fs-4"></i></div>
+            <div><h6 class="fw-bold mb-0">Volvo FH16</h6><small class="text-muted">BRD-4451</small></div>
+          </div>
+          <div class="progress mb-2" style="height:6px;border-radius:10px;"><div class="progress-bar bg-warning" style="width:42%;"></div></div>
+          <div class="d-flex justify-content-between small text-muted mb-1"><span>Surabaya</span><span>Malang</span></div>
+          <div class="d-flex justify-content-between small"><span class="text-muted">Est. time:</span><span class="fw-bold text-warning" id="eta-t2">~1h 05m</span></div>
+          <div class="mini-step"><div class="sdot done"></div><div class="sdot now"></div><div class="sdot"></div><div class="sdot"></div></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="ship-card p-4">
+          <div class="d-flex justify-content-between mb-3">
+            <span class="badge bs-blue rounded-pill">PENDING</span>
+            <span class="fw-bold text-muted">0%</span>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2 me-3"><i class="fas fa-boxes fs-4"></i></div>
+            <div><h6 class="fw-bold mb-0">Isuzu Elf</h6><small class="text-muted">CZT-8891</small></div>
+          </div>
+          <div class="progress mb-2" style="height:6px;border-radius:10px;"><div class="progress-bar bg-primary" style="width:0%;"></div></div>
+          <div class="d-flex justify-content-between small text-muted mb-1"><span>Semarang</span><span>Solo</span></div>
+          <div class="d-flex justify-content-between small"><span class="text-muted">Est. time:</span><span class="fw-bold" id="eta-t3">~45m</span></div>
+          <div class="mini-step"><div class="sdot now"></div><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="ship-card p-4 glow-blue">
+          <div class="d-flex justify-content-between mb-3">
+            <span class="badge bs-blue rounded-pill">QUEUED</span>
+            <span class="fw-bold text-primary">12%</span>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2 me-3"><i class="fas fa-trailer fs-4"></i></div>
+            <div><h6 class="fw-bold mb-0">Scania R450</h6><small class="text-muted">D-8890-WX</small></div>
+          </div>
+          <div class="progress mb-2" style="height:6px;border-radius:10px;"><div class="progress-bar bg-primary" style="width:12%;"></div></div>
+          <div class="d-flex justify-content-between small text-muted mb-1"><span>Jakarta</span><span>Tangerang</span></div>
+          <div class="d-flex justify-content-between small"><span class="text-muted">Est. time:</span><span class="fw-bold text-primary" id="eta-t4">~30m</span></div>
+          <div class="mini-step"><div class="sdot done"></div><div class="sdot now"></div><div class="sdot"></div><div class="sdot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Variant 2: Table ═══ -->
+  <div class="col-12 mt-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <h6 class="fw-bold mb-1"><i class="fas fa-list-ul text-primary me-2"></i>Variant 2 — Compact Dashboard</h6>
+        <p class="text-muted small mb-0">High-density fleet monitoring with quick action buttons.</p>
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <button class="btn btn-sm btn-outline-primary copy-btn" data-target="section-table"><i class="fa-regular fa-copy me-1"></i>Copy HTML</button>
+        <div class="input-group input-group-sm" style="width:200px;">
+        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+        <input type="text" class="form-control border-start-0" placeholder="Search fleet…">
+        </div>
+      </div>
+    </div>
+    <div class="card border-0 shadow-sm overflow-hidden" id="section-table">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 fleet-table">
+            <thead>
+              <tr>
+                <th class="ps-4 py-3 border-0">Shipment #</th>
+                <th class="py-3 border-0">Fleet</th>
+                <th class="py-3 border-0">Route</th>
+                <th class="py-3 border-0">Progress</th>
+                <th class="py-3 border-0">ETA</th>
+                <th class="py-3 border-0">Status</th>
+                <th class="pe-4 py-3 border-0 text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ps-4 fw-bold">SHP-7721</td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:8px;height:32px;border-radius:4px;background:#3b82f6;flex-shrink:0;"></div>
+                    <div><div class="fw-bold small">Hino 500</div><div class="text-muted" style="font-size:.72rem;">ALX-9012</div></div>
+                  </div>
+                </td>
+                <td><span class="fw-bold">Jakarta</span> <i class="fas fa-arrow-right text-muted mx-1 small"></i> <span class="fw-bold">Bandung WH</span></td>
+                <td style="min-width:160px;">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="progress flex-grow-1" style="height:5px;"><div class="progress-bar bg-success" style="width:65%;"></div></div>
+                    <small class="fw-bold">65%</small>
+                  </div>
+                </td>
+                <td><span class="fw-bold text-success small" id="tbl-eta1">~2h 15m</span></td>
+                <td><span class="badge bs-green">On Route</span></td>
+                <td class="pe-4 text-end">
+                  <button class="btn btn-sm btn-light rounded-circle me-1"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-light rounded-circle"><i class="fas fa-phone-alt"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="ps-4 fw-bold">SHP-7722</td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:8px;height:32px;border-radius:4px;background:#10b981;flex-shrink:0;"></div>
+                    <div><div class="fw-bold small">Volvo FH16</div><div class="text-muted" style="font-size:.72rem;">BRD-4451</div></div>
+                  </div>
+                </td>
+                <td><span class="fw-bold">Surabaya</span> <i class="fas fa-arrow-right text-muted mx-1 small"></i> <span class="fw-bold">Malang WH</span></td>
+                <td style="min-width:160px;">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="progress flex-grow-1" style="height:5px;"><div class="progress-bar bg-warning" style="width:30%;"></div></div>
+                    <small class="fw-bold">30%</small>
+                  </div>
+                </td>
+                <td><span class="fw-bold text-warning small" id="tbl-eta2">~1h 05m</span></td>
+                <td><span class="badge bs-amber">Traffic</span></td>
+                <td class="pe-4 text-end">
+                  <button class="btn btn-sm btn-light rounded-circle me-1"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-light rounded-circle"><i class="fas fa-phone-alt"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="ps-4 fw-bold">SHP-7723</td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:8px;height:32px;border-radius:4px;background:#f59e0b;flex-shrink:0;"></div>
+                    <div><div class="fw-bold small">Isuzu Elf</div><div class="text-muted" style="font-size:.72rem;">CZT-8891</div></div>
+                  </div>
+                </td>
+                <td><span class="fw-bold">Semarang</span> <i class="fas fa-arrow-right text-muted mx-1 small"></i> <span class="fw-bold">Solo WH</span></td>
+                <td style="min-width:160px;">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="progress flex-grow-1" style="height:5px;"><div class="progress-bar bg-danger" style="width:10%;"></div></div>
+                    <small class="fw-bold">10%</small>
+                  </div>
+                </td>
+                <td><span class="fw-bold text-danger small" id="tbl-eta3">~45m</span></td>
+                <td><span class="badge bs-red">Delay</span></td>
+                <td class="pe-4 text-end">
+                  <button class="btn btn-sm btn-light rounded-circle me-1"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-light rounded-circle"><i class="fas fa-phone-alt"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="ps-4 fw-bold">SHP-7724</td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div style="width:8px;height:32px;border-radius:4px;background:#8b5cf6;flex-shrink:0;"></div>
+                    <div><div class="fw-bold small">Scania R450</div><div class="text-muted" style="font-size:.72rem;">D-8890-WX</div></div>
+                  </div>
+                </td>
+                <td><span class="fw-bold">Jakarta</span> <i class="fas fa-arrow-right text-muted mx-1 small"></i> <span class="fw-bold">Tangerang WH</span></td>
+                <td style="min-width:160px;">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="progress flex-grow-1" style="height:5px;"><div class="progress-bar" style="width:12%;background:#8b5cf6;"></div></div>
+                    <small class="fw-bold">12%</small>
+                  </div>
+                </td>
+                <td><span class="fw-bold small" style="color:#8b5cf6;" id="tbl-eta4">~30m</span></td>
+                <td><span class="badge bs-blue">Queued</span></td>
+                <td class="pe-4 text-end">
+                  <button class="btn btn-sm btn-light rounded-circle me-1"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-light rounded-circle"><i class="fas fa-phone-alt"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Variant 3: Kanban ═══ -->
+  <div class="col-12 mt-5 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h6 class="fw-bold mb-0"><i class="fas fa-stream text-primary me-2"></i>Variant 3 — Logistics Pipeline (Kanban)</h6>
+      <button class="btn btn-sm btn-outline-primary copy-btn" data-target="section-kanban"><i class="fa-regular fa-copy me-1"></i>Copy HTML</button>
+    </div>
+    <div class="pipeline" id="section-kanban">
+      <div class="pipe-col">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="fw-bold small text-uppercase">Planning</span>
+          <span class="badge bg-light text-dark rounded-pill">4</span>
+        </div>
+        <div class="pipe-row">
+          <div class="d-flex justify-content-between mb-1"><small class="text-primary fw-bold">#ORD-001</small><small class="text-muted">High Priority</small></div>
+          <div class="fw-bold small mb-1">Jakarta → Surabaya</div>
+          <div class="text-muted" style="font-size:.72rem;">Scania R450 · D-8890-WX</div>
+        </div>
+        <div class="pipe-row">
+          <div class="d-flex justify-content-between mb-1"><small class="text-success fw-bold">#ORD-002</small><small class="text-muted">Standard</small></div>
+          <div class="fw-bold small mb-1">Bandung → Semarang</div>
+          <div class="text-muted" style="font-size:.72rem;">Volvo FH16 · BRD-4451</div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="fw-bold small text-uppercase">Loading</span>
+          <span class="badge bg-warning text-dark rounded-pill">2</span>
+        </div>
+        <div class="pipe-row border-start border-4 border-warning">
+          <div class="d-flex justify-content-between mb-1"><small class="text-warning fw-bold">#ORD-012</small><small class="text-muted">20m left</small></div>
+          <div class="fw-bold small mb-1">Depok → Jakarta Hub</div>
+          <div class="progress mb-1" style="height:3px;"><div class="progress-bar bg-warning" style="width:80%;"></div></div>
+          <div class="text-muted" style="font-size:.72rem;">Isuzu Elf · CZT-8891</div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="fw-bold small text-uppercase text-success">In Transit</span>
+          <span class="badge bg-success text-white rounded-pill">8</span>
+        </div>
+        <div class="pipe-row border-start border-4 border-success">
+          <div class="d-flex justify-content-between mb-1"><small class="text-success fw-bold">#ORD-045</small><small class="text-muted">En Route</small></div>
+          <div class="fw-bold small mb-1">Tangerang → Bogor</div>
+          <div class="progress mb-1" style="height:3px;"><div class="progress-bar bg-success" style="width:60%;"></div></div>
+          <div class="text-muted" style="font-size:.72rem;">Hino 500 · ALX-9012</div>
+        </div>
+      </div>
+      <div class="pipe-col">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="fw-bold small text-uppercase text-primary">Completed</span>
+          <span class="badge bg-primary text-white rounded-pill">12</span>
+        </div>
+        <div class="pipe-row bg-light bg-opacity-50">
+          <div class="d-flex justify-content-between mb-1"><small class="text-primary fw-bold">#ORD-099</small><small class="text-muted">Delivered</small></div>
+          <div class="fw-bold small text-muted mb-1">Jakarta → Bekasi</div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="text-muted" style="font-size:.72rem;">Done 15:45</div>
+            <i class="fas fa-check-circle text-primary small"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ─── Fleet Data ───────────────────────────────────────────────
+  const fleets = [
+    {
+      id: 1, name: 'Hino 500', plate: 'ALX-9012',
+      driver: 'David Robertson', color: '#3b82f6',
+      speed: 62, fuel: 78, status: 'Moving',
+      from: [-6.2088, 106.8456], // Jakarta
+      to:   [-6.9147, 107.6098], // Bandung
+      progress: 65
+    },
+    {
+      id: 2, name: 'Volvo FH16', plate: 'BRD-4451',
+      driver: 'Andi Pratama', color: '#10b981',
+      speed: 0, fuel: 32, status: 'Idling',
+      from: [-7.2575, 112.7521], // Surabaya
+      to:   [-7.9666, 112.6326], // Malang
+      progress: 42
+    },
+    {
+      id: 3, name: 'Isuzu Elf', plate: 'CZT-8891',
+      driver: 'Rudi Santoso', color: '#f59e0b',
+      speed: 12, fuel: 15, status: 'Delay',
+      from: [-6.9932, 110.4203], // Semarang
+      to:   [-7.5755, 110.8243], // Solo
+      progress: 10
+    },
+    {
+      id: 4, name: 'Scania R450', plate: 'D-8890-WX',
+      driver: 'Budi Setiawan', color: '#8b5cf6',
+      speed: 45, fuel: 90, status: 'Moving',
+      from: [-6.1751, 106.8272], // Jakarta Kota
+      to:   [-6.1781, 106.6297], // Tangerang
+      progress: 12
+    }
+  ];
+
+  const statusBadge = {
+    'Moving': '<span class="badge bs-green">Moving</span>',
+    'Idling': '<span class="badge bs-amber">Idling</span>',
+    'Delay':  '<span class="badge bs-red">Delay</span>'
+  };
+
+  // ─── Initialize Map ───────────────────────────────────────────
+  var map = L.map('leafMap', { zoomControl: false, attributionControl: false }).setView([-6.9, 108.5], 7);
+  L.control.zoom({ position: 'topright' }).addTo(map);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd', maxZoom: 19
+  }).addTo(map);
+
+  // ─── Warehouse Icon ───────────────────────────────────────────
+  const warehouseIcon = L.divIcon({
+    className: '',
+    html: `<div style="
+      background:white; border-radius:12px; width:48px; height:48px;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 20px rgba(0,0,0,0.25); border:2px solid #e2e8f0;
+      overflow:hidden;">
+      <img src="/images/warehouse-marker.png" style="width:42px;height:42px;object-fit:cover;border-radius:8px;">
+    </div>`,
+    iconSize: [48, 48], iconAnchor: [24, 48], popupAnchor: [0, -50]
+  });
+
+  // ─── Truck Icon factory ───────────────────────────────────────
+  function truckIcon(color, label) {
+    return L.divIcon({
+      className: '',
+      html: `<div style="position:relative;">
+        <div style="
+          background:${color}; color:white; border-radius:10px;
+          width:38px; height:38px; display:flex; align-items:center;
+          justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.3);
+          border:2px solid white; font-size:1rem;">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div style="
+          position:absolute; bottom:-22px; left:50%; transform:translateX(-50%);
+          background:${color}; color:white; padding:1px 7px; border-radius:4px;
+          font-size:0.6rem; font-weight:700; white-space:nowrap;
+          box-shadow:0 2px 6px rgba(0,0,0,0.2); border:1px solid white;">
+          ${label}
+        </div>
+      </div>`,
+      iconSize: [38, 50], iconAnchor: [19, 19], popupAnchor: [0, -30]
+    });
+  }
+
+  // ─── Format duration ──────────────────────────────────────────
+  function fmtDuration(seconds) {
+    if (!seconds) return '—';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    return h > 0 ? `~${h}h ${m}m` : `~${m}m`;
+  }
+  function fmtDist(meters) {
+    if (!meters) return '—';
+    return meters >= 1000 ? (meters/1000).toFixed(1)+' km' : meters+' m';
+  }
+  function arrivalTime(seconds) {
+    const now = new Date();
+    now.setSeconds(now.getSeconds() + seconds);
+    return now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'}) + ' WIB';
+  }
+
+  // ─── ETA storage ──────────────────────────────────────────────
+  const etaData = {};
+
+  // ─── Render Truck List ────────────────────────────────────────
+  function renderTruckList(activeId) {
+    const list = document.getElementById('truck-list');
+    list.innerHTML = '';
+    fleets.forEach(f => {
+      const isActive = f.id === activeId;
+      const eta = etaData[f.id];
+      const etaTxt = eta ? fmtDuration(eta.duration) : '—';
+      list.innerHTML += `
+        <div class="truck-card ${isActive ? 'active' : ''}" style="border-color:${isActive ? f.color : 'transparent'};" onclick="focusTruck(${f.id})">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <span class="fw-bold small">${f.name}</span>
+              <div class="text-muted" style="font-size:.7rem;"><i class="fas fa-id-card me-1"></i>${f.plate}</div>
+            </div>
+            ${statusBadge[f.status] || ''}
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="text-muted" style="font-size:.72rem;"><i class="fas fa-gas-pump me-1"></i>${f.fuel}% Fuel</div>
+              <div class="text-muted" style="font-size:.72rem;"><i class="fas fa-clock me-1"></i>ETA: <span class="fw-bold" style="color:${f.color};">${etaTxt}</span></div>
+            </div>
+            <div class="speed-ring" style="--tc:${f.color};border-top-color:${f.color};">${f.speed}</div>
+          </div>
+        </div>`;
+    });
+  }
+
+  // ─── ETA strip in floating card ───────────────────────────────
+  function updateEtaStrip() {
+    const strip = document.getElementById('eta-strip');
+    strip.innerHTML = fleets.map(f => {
+      const eta = etaData[f.id];
+      const txt = eta ? fmtDuration(eta.duration) : '…';
+      return `<div class="eta-badge" style="background:${f.color}18;color:${f.color};">
+        <span style="width:6px;height:6px;background:${f.color};border-radius:50%;display:inline-block;"></span>
+        ${f.name.split(' ')[0]}: ${txt}
+      </div>`;
+    }).join('');
+  }
+
+  // ─── Route control per truck ──────────────────────────────────
+  let activeId = 1;
+  const controls = {};
+
+  fleets.forEach(f => {
+    // Truck marker
+    const marker = L.marker(f.from, { icon: truckIcon(f.color, f.plate) })
+      .addTo(map)
+      .bindPopup(`<b style='color:${f.color}'>${f.name}</b><br>Driver: ${f.driver}<br>Plate: ${f.plate}<br>Speed: ${f.speed} km/h<br>Fuel: ${f.fuel}%`);
+
+    // Destination warehouse marker
+    L.marker(f.to, { icon: warehouseIcon })
+      .addTo(map)
+      .bindPopup(`<b>🏭 Warehouse Destination</b><br>Fleet: ${f.name}<br>Plate: ${f.plate}`);
+
+    // OSRM Routing
+    const ctrl = L.Routing.control({
+      waypoints: [
+        L.latLng(f.from[0], f.from[1]),
+        L.latLng(f.to[0],   f.to[1])
+      ],
+      router: L.Routing.osrmv1({
+        serviceUrl: 'https://router.project-osrm.org/route/v1',
+        profile: 'driving'
+      }),
+      lineOptions: {
+        styles: [{ color: f.color, weight: 5, opacity: 0.85 }],
+        extendToWaypoints: true,
+        missingRouteTolerance: 0
+      },
+      createMarker: () => null,   // hide default markers
+      addWaypoints: false,
+      fitSelectedRoutes: false,
+      showAlternatives: false
+    }).addTo(map);
+
+    controls[f.id] = ctrl;
+
+    ctrl.on('routesfound', function (e) {
+      const route = e.routes[0];
+      const dur   = route.summary.totalTime;
+      const dist  = route.summary.totalDistance;
+      etaData[f.id] = { duration: dur, distance: dist };
+
+      // Update glass cards
+      const elEta = document.getElementById('eta-t'+f.id);
+      if (elEta) elEta.textContent = fmtDuration(dur);
+      const elTbl = document.getElementById('tbl-eta'+f.id);
+      if (elTbl) elTbl.textContent = fmtDuration(dur);
+
+      // Update control room route bar for truck 1
+      if (f.id === 1) {
+        document.getElementById('route-dist').textContent = fmtDist(dist);
+        document.getElementById('route-eta').textContent  = fmtDuration(dur) + ' remaining';
+        document.getElementById('route-arr').textContent  = 'Arrive ' + arrivalTime(dur);
+      }
+
+      updateEtaStrip();
+      renderTruckList(activeId);
+    });
+
+    ctrl.on('routingerror', function () {
+      // Fallback straight polyline
+      L.polyline([f.from, f.to], {
+        color: f.color, weight: 5, opacity: 0.7, dashArray: '12, 8'
+      }).addTo(map);
+    });
+  });
+
+  // ─── Focus truck ──────────────────────────────────────────────
+  window.focusTruck = function(id) {
+    activeId = id;
+    const f = fleets.find(x => x.id === id);
+    document.getElementById('card-driver').textContent = f.driver;
+    document.getElementById('card-plate').textContent  = f.name + ' · ' + f.plate;
+    document.getElementById('card-speed').textContent  = f.speed + ' km/h';
+    const eta = etaData[id];
+    document.getElementById('card-dist').textContent   = eta ? fmtDist(eta.distance) : '—';
+    document.getElementById('card-time').textContent   = eta ? 'ETA ' + arrivalTime(eta.duration) : 'Calculating…';
+    map.setView(f.from, 11);
+    renderTruckList(id);
+  };
+
+  // ─── Initial render ───────────────────────────────────────────
+  renderTruckList(activeId);
+
+  // Fit all trucks
+  const allBounds = L.latLngBounds(fleets.map(f => f.from).concat(fleets.map(f => f.to)));
+  map.fitBounds(allBounds, { padding: [60, 60] });
+});
+</script>

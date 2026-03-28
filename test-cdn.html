@@ -406,28 +406,70 @@
                             </div>
                         </div>
 
-                        <div class="demo-card">
-                            <div class="card-body row" id="typographyInlineText">
-                                <div class="col-md-6">
-                                    <p>You can use the mark tag to <mark>highlight</mark> text.</p>
-                                    <p><del>This line of text is meant to be treated as deleted text.</del></p>
-                                    <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
-                                    <p><ins>This line of text is meant to be treated as an addition to the
-                                            document.</ins></p>
-                                    <p><u>This line of text will render as underlined.</u></p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><small>This line of text is meant to be treated as fine print.</small></p>
-                                    <p><strong>This line rendered as bold text.</strong></p>
-                                    <p><em>This line rendered as italicized text.</em></p>
-                                    <blockquote class="blockquote">
-                                        <p>A well-known quote, contained in a blockquote element.</p>
-                                        <footer class="blockquote-footer">Someone famous in <cite
-                                                title="Source Title">Source Title</cite></footer>
-                                    </blockquote>
-                                </div>
-                            </div>
+                        <style>
+                            .map-wrapper {
+                                position: relative;
+                                height: 540px;
+                                width: 100%;
+                                border-radius: 24px;
+                                overflow: hidden;
+                                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+                            }
+
+                            #leafMap {
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            .leaflet-routing-container {
+                                display: none !important;
+                            }
+                        </style>
+
+                        <div class="map-wrapper">
+                            <div id="leafMap"></div>
                         </div>
+
+                        <script>
+                            window.addEventListener('load', function () {
+                                // Fix Leaflet default icon path (broken di file://)
+                                delete L.Icon.Default.prototype._getIconUrl;
+                                L.Icon.Default.mergeOptions({ iconUrl: '', shadowUrl: '' });
+
+                                var map = L.map('leafMap', { zoomControl: false, attributionControl: false }).setView([-6.9, 108.5], 7);
+                                L.control.zoom({ position: 'topright' }).addTo(map);
+                                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                                    subdomains: 'abcd', maxZoom: 19
+                                }).addTo(map);
+
+                                // Warehouse icon (tujuan)
+                                var warehouseIcon = L.divIcon({
+                                    className: '',
+                                    html: '<div style="background:white;border-radius:12px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25);border:2px solid #e2e8f0;"><img src="./images/warehouse-marker.png" style="width:42px;height:42px;object-fit:cover;"></div>',
+                                    iconSize: [48, 48], iconAnchor: [24, 48]
+                                });
+
+                                // Truck icon (asal) — pakai FontAwesome yang sudah ada di kuda-kit
+                                var truckIcon = L.divIcon({
+                                    className: '',
+                                    html: '<div style="position:relative;"><div style="background:#3b82f6;color:white;border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.3);border:2px solid white;font-size:1rem;"><i class=\'fas fa-truck\'></i></div><div style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);background:#3b82f6;color:white;padding:1px 7px;border-radius:4px;font-size:0.6rem;font-weight:700;white-space:nowrap;border:1px solid white;">TRUCK-01</div></div>',
+                                    iconSize: [38, 50], iconAnchor: [19, 19]
+                                });
+
+                                var truckFrom = [-6.2088, 106.8456];
+                                var truckTo = [-6.9147, 107.6098];
+
+                                L.marker(truckFrom, { icon: truckIcon }).addTo(map);
+                                L.marker(truckTo, { icon: warehouseIcon }).addTo(map);
+
+                                L.Routing.control({
+                                    waypoints: [L.latLng(truckFrom[0], truckFrom[1]), L.latLng(truckTo[0], truckTo[1])],
+                                    router: L.Routing.osrmv1({ serviceUrl: 'https://router.project-osrm.org/route/v1', profile: 'driving' }),
+                                    lineOptions: { styles: [{ color: '#3b82f6', weight: 5, opacity: 0.85 }] },
+                                    createMarker: () => null, addWaypoints: false, fitSelectedRoutes: true, showAlternatives: false
+                                }).addTo(map);
+                            });
+                        </script>
                     </div>
                 </main>
             </div>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AqL3JzOpkl5ZbY0eKswkYIUc+3+5UIQ1q9Qts253cgA=",
+  "Hash": "PmXkzM1aSXsL5F53F6ovgr2/asKp+WDWV6NPtAFFFa4=",
   "Source": "Kuda",
   "BasePath": "_content/Kuda",
   "Mode": "Default",
@@ -178,8 +178,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "wwvgy7j7uq",
-      "Integrity": "cCzqVvWNMZHjOE2oDc/S8JHho6g14ioy3rf5L/NL+Ds=",
+      "Fingerprint": "8pbalgpdah",
+      "Integrity": "vJ7bxjxGh8EvGK0ePm/2j/xbr6+6EY7rPeyJ7Rb3ar0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/ui-builder.css"
@@ -1697,6 +1697,27 @@
       "OriginalItemSpec": "wwwroot/image/kuda2.png"
     },
     {
+      "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/images/warehouse-marker.png",
+      "SourceId": "Kuda",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/",
+      "BasePath": "_content/Kuda",
+      "RelativePath": "images/warehouse-marker#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "nufcvcv8wk",
+      "Integrity": "wQXIFPRH1cu2KB7IDQNtjhZavDd/lJWXXe+CLJ7QJqc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/warehouse-marker.png"
+    },
+    {
       "Identity": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
       "SourceId": "Kuda",
       "SourceType": "Discovered",
@@ -1795,8 +1816,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "j0sh2cov29",
-      "Integrity": "E9oom/zspbYbGpz4pNVovC7JnSqBDYy9V999N+vvIew=",
+      "Fingerprint": "b1b5wb553q",
+      "Integrity": "H4M6Uz+djyQ+7CzbyRVy/RQdjpqDzKuT9J1r4/e3TEA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/ui-builder-fsd.js"
@@ -2399,6 +2420,51 @@
       ]
     },
     {
+      "Route": "css/ui-builder.8pbalgpdah.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/ui-builder.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "25570"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vJ7bxjxGh8EvGK0ePm/2j/xbr6+6EY7rPeyJ7Rb3ar0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Mar 2026 14:56:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8pbalgpdah"
+        },
+        {
+          "Name": "label",
+          "Value": "css/ui-builder.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-vJ7bxjxGh8EvGK0ePm/2j/xbr6+6EY7rPeyJ7Rb3ar0="
+        }
+      ]
+    },
+    {
       "Route": "css/ui-builder.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/ui-builder.css",
       "Selectors": [],
@@ -2409,7 +2475,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18931"
+          "Value": "25570"
         },
         {
           "Name": "Content-Type",
@@ -2417,11 +2483,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"cCzqVvWNMZHjOE2oDc/S8JHho6g14ioy3rf5L/NL+Ds=\""
+          "Value": "\"vJ7bxjxGh8EvGK0ePm/2j/xbr6+6EY7rPeyJ7Rb3ar0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
+          "Value": "Sat, 28 Mar 2026 14:56:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2431,52 +2497,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-cCzqVvWNMZHjOE2oDc/S8JHho6g14ioy3rf5L/NL+Ds="
-        }
-      ]
-    },
-    {
-      "Route": "css/ui-builder.wwvgy7j7uq.css",
-      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/ui-builder.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "18931"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cCzqVvWNMZHjOE2oDc/S8JHho6g14ioy3rf5L/NL+Ds=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wwvgy7j7uq"
-        },
-        {
-          "Name": "label",
-          "Value": "css/ui-builder.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-cCzqVvWNMZHjOE2oDc/S8JHho6g14ioy3rf5L/NL+Ds="
+          "Value": "sha256-vJ7bxjxGh8EvGK0ePm/2j/xbr6+6EY7rPeyJ7Rb3ar0="
         }
       ]
     },
@@ -8385,6 +8406,88 @@
       ]
     },
     {
+      "Route": "images/warehouse-marker.nufcvcv8wk.png",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/images/warehouse-marker.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51334"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wQXIFPRH1cu2KB7IDQNtjhZavDd/lJWXXe+CLJ7QJqc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Mar 2026 20:18:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nufcvcv8wk"
+        },
+        {
+          "Name": "label",
+          "Value": "images/warehouse-marker.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wQXIFPRH1cu2KB7IDQNtjhZavDd/lJWXXe+CLJ7QJqc="
+        }
+      ]
+    },
+    {
+      "Route": "images/warehouse-marker.png",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/images/warehouse-marker.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51334"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wQXIFPRH1cu2KB7IDQNtjhZavDd/lJWXXe+CLJ7QJqc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 28 Mar 2026 20:18:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wQXIFPRH1cu2KB7IDQNtjhZavDd/lJWXXe+CLJ7QJqc="
+        }
+      ]
+    },
+    {
       "Route": "js/app-system.js",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/app-system.js",
       "Selectors": [],
@@ -8713,7 +8816,7 @@
       ]
     },
     {
-      "Route": "js/ui-builder-fsd.j0sh2cov29.js",
+      "Route": "js/ui-builder-fsd.b1b5wb553q.js",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-fsd.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -8723,7 +8826,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "38620"
+          "Value": "47037"
         },
         {
           "Name": "Content-Type",
@@ -8731,11 +8834,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"E9oom/zspbYbGpz4pNVovC7JnSqBDYy9V999N+vvIew=\""
+          "Value": "\"H4M6Uz+djyQ+7CzbyRVy/RQdjpqDzKuT9J1r4/e3TEA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
+          "Value": "Sat, 28 Mar 2026 15:14:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8745,7 +8848,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "j0sh2cov29"
+          "Value": "b1b5wb553q"
         },
         {
           "Name": "label",
@@ -8753,7 +8856,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-E9oom/zspbYbGpz4pNVovC7JnSqBDYy9V999N+vvIew="
+          "Value": "sha256-H4M6Uz+djyQ+7CzbyRVy/RQdjpqDzKuT9J1r4/e3TEA="
         }
       ]
     },
@@ -8768,7 +8871,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "38620"
+          "Value": "47037"
         },
         {
           "Name": "Content-Type",
@@ -8776,11 +8879,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"E9oom/zspbYbGpz4pNVovC7JnSqBDYy9V999N+vvIew=\""
+          "Value": "\"H4M6Uz+djyQ+7CzbyRVy/RQdjpqDzKuT9J1r4/e3TEA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
+          "Value": "Sat, 28 Mar 2026 15:14:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8790,7 +8893,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-E9oom/zspbYbGpz4pNVovC7JnSqBDYy9V999N+vvIew="
+          "Value": "sha256-H4M6Uz+djyQ+7CzbyRVy/RQdjpqDzKuT9J1r4/e3TEA="
         }
       ]
     },
