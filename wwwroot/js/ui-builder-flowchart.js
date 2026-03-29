@@ -81,25 +81,25 @@ const Flowchart = {
             alert('Cannot delete the last diagram.');
             return;
         }
-        if (confirm('Delete this diagram? This cannot be undone.')) {
+        showConfirm('Delete this diagram? This cannot be undone.', () => {
             this.diagrams = this.diagrams.filter(p => p.id !== id);
             if (this.currentPageId === id) {
                 this.switchPage(this.diagrams[0].id);
             } else {
                 this.renderPagesList();
             }
-        }
+        }, "Hapus Diagram");
     },
 
     clearCanvas() {
-        if (confirm('Clear all objects from this diagram?')) {
+        showConfirm('Clear all objects from this diagram?', () => {
             this.nodes = [];
             this.edges = [];
             document.querySelectorAll('.fc-node').forEach(n => n.remove());
             this._drawLines();
             this.renderSidebar();
             this._updateCanvasSize();
-        }
+        }, "Bersihkan Canvas");
     },
 
     renderPagesList() {
@@ -118,7 +118,10 @@ const Flowchart = {
     },
 
     drag(ev) {
-        ev.dataTransfer.setData("fc-type", ev.target.getAttribute('data-fc-type'));
+        const target = ev.target.closest('[data-fc-type]');
+        if (target) {
+            ev.dataTransfer.setData("fc-type", target.getAttribute('data-fc-type'));
+        }
     },
 
     allowDrop(ev) {
@@ -195,25 +198,25 @@ const Flowchart = {
             innerHtml = `
             <div class="fc-shape-decision"></div>
             <div class="fc-content">
-                <textarea onchange="Flowchart._updateText('${node.id}', this.value)" onclick="event.stopPropagation()">${node.text}</textarea>
+                <div contenteditable="true" onblur="Flowchart._updateText('${node.id}', this.innerText)" onclick="event.stopPropagation()">${node.text}</div>
             </div>`;
         } else if (node.type === 'data') {
             innerHtml = `
             <div class="fc-shape-data"></div>
             <div class="fc-content">
-                <textarea onchange="Flowchart._updateText('${node.id}', this.value)" onclick="event.stopPropagation()">${node.text}</textarea>
+                <div contenteditable="true" onblur="Flowchart._updateText('${node.id}', this.innerText)" onclick="event.stopPropagation()">${node.text}</div>
             </div>`;
         } else if (node.type === 'start') {
             innerHtml = `
             <div class="fc-shape-start"></div>
             <div class="fc-content">
-                <textarea onchange="Flowchart._updateText('${node.id}', this.value)" onclick="event.stopPropagation()">${node.text}</textarea>
+                <div contenteditable="true" onblur="Flowchart._updateText('${node.id}', this.innerText)" onclick="event.stopPropagation()">${node.text}</div>
             </div>`;
         } else {
             innerHtml = `
             <div class="fc-shape-process"></div>
             <div class="fc-content">
-                <textarea onchange="Flowchart._updateText('${node.id}', this.value)" onclick="event.stopPropagation()">${node.text}</textarea>
+                <div contenteditable="true" onblur="Flowchart._updateText('${node.id}', this.innerText)" onclick="event.stopPropagation()">${node.text}</div>
             </div>`;
         }
 
@@ -260,7 +263,7 @@ const Flowchart = {
             return;
         }
 
-        if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+        if (e.target.hasAttribute('contenteditable') || e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
 
         this.dragging = node;
         const el = document.getElementById(node.id);

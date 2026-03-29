@@ -3,7 +3,7 @@
     height: calc(100vh - 120px);
     margin: -20px -40px;
     background: var(--bg-body);
-    font-family: 'KalbeGeometric', sans-serif;
+    font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif;
 }
 
 .builder-container input,
@@ -22,7 +22,7 @@
 .builder-container table,
 .builder-container th,
 .builder-container td {
-    font-family: 'KalbeGeometric', sans-serif;
+    font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif;
 }
 
 .builder-sidebar {
@@ -722,22 +722,29 @@
     cursor: grab;
     user-select: none;
     z-index: 10;
+    
+    /* Override bleeding global styles from components.css */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
 }
 
 .fc-node:active {
     cursor: grabbing;
 }
 
-.fc-node.fc-selected {
+.fc-node.fc-selected>div[class^="fc-shape-"] {
     outline: 2px dashed var(--primary);
     outline-offset: 4px;
 }
 
-.fc-blink {
-    animation: fcBlink 0.3s ease-in-out 3 alternate;
+.fc-node.fc-blink>div[class^="fc-shape-"] {
+    animation: fcShapeBlink 0.3s ease-in-out 3 alternate;
 }
 
-@keyframes fcBlink {
+@keyframes fcShapeBlink {
     100% {
         outline: 3px solid var(--primary);
         outline-offset: 6px;
@@ -748,10 +755,10 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #ffffff, #f8fafc);
-    border: 2px solid #94a3b8;
+    background: #ffffff;
+    border: 2px solid #64748b;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease;
 }
 
@@ -759,47 +766,49 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #eff6ff, #dbeafe);
-    border: 2px solid #60a5fa;
-    border-radius: 30px;
-    box-shadow: 0 4px 15px rgba(96, 165, 250, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+    background: #f0fdf4;
+    border: 2px solid #22c55e;
+    border-radius: 999px; /* Modern pill shape */
+    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.15);
     transition: all 0.2s ease;
 }
 
 .fc-shape-decision {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #fffbeb, #fef3c7);
-    border: 2px solid #fbbf24;
+    width: 71%;
+    height: 71%;
+    top: 14.5%;
+    left: 14.5%;
+    background: #fffbeb;
+    border: 2px solid #eab308;
     transform: rotate(45deg);
-    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.15);
     transition: all 0.2s ease;
 }
 
 .fc-shape-data {
     position: absolute;
-    width: 120%;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-    border: 2px solid #4ade80;
-    transform: skew(-20deg);
-    left: -10%;
-    box-shadow: 0 4px 15px rgba(74, 222, 128, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+    background: #eff6ff;
+    border: 2px solid #3b82f6;
+    transform: skew(-15deg);
+    left: 0;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.15);
     transition: all 0.2s ease;
+    border-radius: 4px;
 }
 
 .fc-node:hover>div[class^="fc-shape-"] {
-    transform: scale(1.02) translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .fc-node:hover>.fc-shape-decision {
-    transform: rotate(45deg) scale(1.02) translateY(-2px);
+    transform: rotate(45deg) scale(1.02);
 }
 
 .fc-node:hover>.fc-shape-data {
-    transform: skew(-20deg) scale(1.02) translateY(-2px);
+    transform: skew(-15deg) scale(1.02);
 }
 
 .fc-content {
@@ -812,21 +821,23 @@
     justify-content: center;
 }
 
-.fc-content textarea {
+.fc-content div[contenteditable="true"] {
     width: 100%;
     height: 100%;
     border: none;
     background: transparent;
-    resize: none;
     text-align: center;
     font-size: 12px;
     font-family: inherit;
-    font-weight: 500;
+    font-weight: 600;
     color: #334155;
     outline: none;
     padding: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
+    word-break: break-word;
 }
 
 .fc-actions {

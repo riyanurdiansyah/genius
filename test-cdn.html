@@ -96,380 +96,40 @@
                 </header>
 
                 <main class="pb-3" style="flex:1; padding: 2rem;">
-
-                    <div class="page-header-bar mb-4">
-                        <div class="page-header-left">
-                            <h2 class="page-title mb-0">Component Integration Test</h2>
-                            <p class="text-muted small mt-1 mb-0">Testing <code>kuda-kit.js</code> dan
-                                <code>kuda-kit.css</code> dari folder lokal.
-                            </p>
+                    <div class="custom-chart-container">
+                        <div class="chart-header-flex">
+                            <div class="chart-header-title">
+                                <div class="chart-icon"><i class="fa-solid fa-water"></i></div>
+                                Spline Area Chart
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary copy-btn"><i class="fa-regular fa-copy"></i>
+                                Copy HTML</button>
                         </div>
+                        <div class="chart-canvas-wrapper" id="chart-spline"></div>
                     </div>
 
-                    <div class="container-fluid p-0">
-                        <!-- 1. Ajax / Server-Side DataTable -->
-                        <div class="demo-card">
-                            <h2><i class="fas fa-database text-primary"></i> Server-Side / Ajax DataTable</h2>
-                            <div class="table-responsive">
-                                <table id="table-ajax" class="table table-hover align-middle border-0"
-                                    style="width:100%">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Device Name</th>
-                                            <th>Data Array</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Populated via Ajax -->
-                                    </tbody>
-                                </table>
+                    <div class="custom-chart-container">
+                        <div class="chart-header-flex">
+                            <div class="chart-header-title">
+                                <div class="chart-icon"><i class="fa-solid fa-border-all"></i></div>
+                                Heatmap Chart
                             </div>
+                            <button class="btn btn-sm btn-outline-primary copy-btn"><i class="fa-regular fa-copy"></i>
+                                Copy HTML</button>
                         </div>
+                        <div class="chart-canvas-wrapper" id="chart-heatmap"></div>
+                    </div>
 
-                        <!-- 2. Accordion Integration -->
-                        <div class="demo-card">
-                            <h2><i class="fas fa-list-check text-primary"></i> Accordion Functional Test</h2>
-                            <div class="accordion floating-accordion" id="accordionFloating">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            <i class="fas fa-rocket text-primary me-3"></i> Deployment Strategy
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionFloating">
-                                        <div class="accordion-body">
-                                            <strong>Staging and Production environments.</strong> Deploy your code to a
-                                            staging environment first for testing, then promote to production and use
-                                            Blue/Green deployments to ensure zero downtime.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fas fa-shield-halved text-primary me-3"></i> Security Compliance
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                        aria-labelledby="headingTwo" data-bs-parent="#accordionFloating">
-                                        <div class="accordion-body">
-                                            <strong>ISO 27001 Certified.</strong> Our infrastructure follows the highest
-                                            security standards. All data is automatically backed up every hour and
-                                            encrypted with rotating keys.
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="custom-chart-container">
+                        <div class="chart-header-flex">
+                            <div class="chart-header-title">
+                                <div class="chart-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+                                Radar Variant
                             </div>
+                            <button class="btn btn-sm btn-outline-primary copy-btn"><i class="fa-regular fa-copy"></i>
+                                Copy HTML</button>
                         </div>
-
-                        <!-- 3. Font Awesome Native Test -->
-                        <div class="demo-card">
-                            <h2><i class="fa-solid fa-icons text-primary"></i> Native FontAwesome Built-in CDN</h2>
-                            <p class="text-secondary small mb-4">Ikon di bawah otomatis muncul murni dari
-                                <code>kuda-kit.css</code> (tanpa import FontAwesome manual atau trik gaya apa pun).
-                            </p>
-
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <div class="p-3 border rounded text-center bg-light">
-                                        <h6 class="fw-bold mb-3">Solid Icons (fas)</h6>
-                                        <div class="d-flex justify-content-center gap-3 fs-3 text-primary">
-                                            <i class="fas fa-home"></i>
-                                            <i class="fas fa-chart-pie"></i>
-                                            <i class="fas fa-shopping-cart"></i>
-                                            <i class="fa-solid fa-bell"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 border rounded text-center bg-light">
-                                        <h6 class="fw-bold mb-3">Regular Icons (far)</h6>
-                                        <div class="d-flex justify-content-center gap-3 fs-3 text-success">
-                                            <i class="far fa-user"></i>
-                                            <i class="far fa-calendar"></i>
-                                            <i class="far fa-folder"></i>
-                                            <i class="fa-regular fa-envelope"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 border rounded text-center bg-light">
-                                        <h6 class="fw-bold mb-3">Brand Icons (fab)</h6>
-                                        <div class="d-flex justify-content-center gap-3 fs-3 text-dark">
-                                            <i class="fab fa-whatsapp text-success"></i>
-                                            <i class="fa-brands fa-youtube text-danger"></i>
-                                            <i class="fab fa-google"></i>
-                                            <i class="fa-brands fa-github"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="demo-card">
-                            <div class="accordion gradient-accordion" id="accordionGradient">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="gradientHeadingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#gradientCollapseOne" aria-expanded="true"
-                                            aria-controls="gradientCollapseOne">
-                                            Team Workspace Limits
-                                        </button>
-                                    </h2>
-                                    <div id="gradientCollapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="gradientHeadingOne" data-bs-parent="#accordionGradient">
-                                        <div class="accordion-body text-muted">
-                                            Free tier covers up to 5 members per workspace. If your team scales beyond
-                                            that, you will be prompted to upgrade to the Starter Pack suitable for up to
-                                            25 members.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="gradientHeadingTwo">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#gradientCollapseTwo"
-                                            aria-expanded="false" aria-controls="gradientCollapseTwo">
-                                            API Rate Limiting
-                                        </button>
-                                    </h2>
-                                    <div id="gradientCollapseTwo" class="accordion-collapse collapse"
-                                        aria-labelledby="gradientHeadingTwo" data-bs-parent="#accordionGradient">
-                                        <div class="accordion-body text-muted">
-                                            By default, any API token generated is restricted to 100 requests per minute
-                                            to prevent system abuses. Contact support to raise this ceiling for
-                                            production apps.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="gradientHeadingThree">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#gradientCollapseThree"
-                                            aria-expanded="false" aria-controls="gradientCollapseThree">
-                                            Refund Policies
-                                        </button>
-                                    </h2>
-                                    <div id="gradientCollapseThree" class="accordion-collapse collapse"
-                                        aria-labelledby="gradientHeadingThree" data-bs-parent="#accordionGradient">
-                                        <div class="accordion-body text-muted">
-                                            We issue no questions asked refunds within the first 14 days of any
-                                            purchase. Beyond 14 days, refunds are evaluated strictly on a case-by-case
-                                            basis.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="demo-card">
-                            <div class="card-body" id="alertsGradient">
-                                <p class="text-muted small mb-4">Eye-catching alerts for major announcements or premium
-                                    features.</p>
-
-                                <div class="alert alert-gradient-primary rounded-3 shadow-sm d-flex align-items-center alert-dismissible fade show"
-                                    role="alert">
-                                    <i class="fas fa-rocket fa-2x me-3 opacity-75"></i>
-                                    <div>
-                                        <h6 class="mb-1 fw-bold text-white">Upgrade to Pro!</h6>
-                                        <p class="mb-0 small text-white text-opacity-75">Get access to premium features
-                                            and unlimited storage.</p>
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-
-                                <div class="alert alert-gradient-success rounded-3 shadow-sm d-flex align-items-center alert-dismissible fade show mb-0"
-                                    role="alert">
-                                    <i class="fas fa-gift fa-2x me-3 opacity-75"></i>
-                                    <div>
-                                        <h6 class="mb-1 fw-bold text-white">Holiday Promo Applied</h6>
-                                        <p class="mb-0 small text-white text-opacity-75">You get 50% off for the next 3
-                                            months.</p>
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="demo-card">
-                            <div class="card-body" id="tabsMinimalUnderline">
-                                <p class="text-muted small mb-4">Clean and spacious. Perfect for main page navigation
-                                    menus.</p>
-                                <ul class="nav nav-tabs-minimal" id="minimalTabs" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="min-overview-tab" data-bs-toggle="tab"
-                                            data-bs-target="#min-overview" type="button" role="tab"
-                                            aria-selected="true">Overview</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="min-activity-tab" data-bs-toggle="tab"
-                                            data-bs-target="#min-activity" type="button" role="tab"
-                                            aria-selected="false" tabindex="-1">Activity <span
-                                                class="badge bg-danger ms-1 rounded-pill">3</span></button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="min-settings-tab" data-bs-toggle="tab"
-                                            data-bs-target="#min-settings" type="button" role="tab"
-                                            aria-selected="false" tabindex="-1">Settings</button>
-                                    </li>
-                                </ul>
-                                <div class="tab-content mt-4" id="minimalTabsContent">
-                                    <div class="tab-pane fade show active" id="min-overview" role="tabpanel"
-                                        aria-labelledby="min-overview-tab">
-                                        <h6 class="fw-bold mb-2">Project Overview</h6>
-                                        <p class="text-muted small">This represents a clean material-style tab system.
-                                            It strips away borders and relies on a smooth bottom bar for active state
-                                            indication.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="min-activity" role="tabpanel"
-                                        aria-labelledby="min-activity-tab">
-                                        <h6 class="fw-bold mb-2">Recent Activity</h6>
-                                        <p class="text-muted small">You have 3 unread notifications in this section
-                                            representing recent changes applied by your team members.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="min-settings" role="tabpanel"
-                                        aria-labelledby="min-settings-tab">
-                                        <h6 class="fw-bold mb-2">General Settings</h6>
-                                        <p class="text-muted small">Configure application parameters, access control
-                                            lists, and other vital project preferences here.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 4. Segmented Controls -->
-                        <div class="demo-card">
-                            <h2><i class="fas fa-toggle-on text-primary"></i> Segmented Controls</h2>
-                            <ul class="nav nav-segmented mb-4" id="segmentedTabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#seg-monthly"
-                                        type="button" role="tab" aria-selected="true">Monthly</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#seg-annual"
-                                        type="button" role="tab" aria-selected="false">Annually</button>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="segmentedTabsContent">
-                                <div class="tab-pane fade show active" id="seg-monthly" role="tabpanel">
-                                    <div class="bg-light rounded-3 p-3 text-center border">
-                                        <h3 class="fw-bold text-dark mb-0">$29<span
-                                                class="fs-6 text-muted fw-normal">/mo</span></h3>
-                                        <p class="text-muted small mt-2 mb-0">Billed every month</p>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="seg-annual" role="tabpanel">
-                                    <div class="bg-light rounded-3 p-3 text-center border border-primary">
-                                        <span class="badge bg-success mb-2">Save 20%</span>
-                                        <h3 class="fw-bold text-dark mb-0">$290<span
-                                                class="fs-6 text-muted fw-normal">/yr</span></h3>
-                                        <p class="text-muted small mt-2 mb-0">Billed annually</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 5. Barcode Generator Integration -->
-                        <div class="demo-card">
-                            <h2><i class="fas fa-barcode text-primary"></i> Barcode Generator</h2>
-                            <div class="row g-3">
-                                <div class="col-md-8">
-                                    <input type="text" id="bcText" class="form-control"
-                                        placeholder="Enter barcode data..." value="https://kudakit.io"
-                                        oninput="debounceGenerate()">
-                                    <input type="hidden" id="bcid" value="qrcode">
-                                    <input type="hidden" id="bcScale" value="3">
-                                    <input type="hidden" id="bcHeight" value="10">
-                                    <input type="hidden" id="bcColor" value="#000000">
-                                    <input type="hidden" id="bcBgColor" value="#ffffff">
-                                    <input type="checkbox" id="bcIncludeText" class="d-none" checked>
-                                </div>
-                                <div class="col-md-4">
-                                    <div id="previewCard" class="p-2 border rounded bg-white text-center">
-                                        <canvas id="barcodeCanvas"></canvas>
-                                    </div>
-                                    <div id="emptyState" class="d-none"></div>
-                                    <div id="errorMsg" class="text-danger small d-none"></div>
-                                    <div id="previewActions" class="mt-2 text-center">
-                                        <button class="btn btn-sm btn-light border w-100"
-                                            onclick="downloadBarcode('png')">Download</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <style>
-                            .map-wrapper {
-                                position: relative;
-                                height: 540px;
-                                width: 100%;
-                                border-radius: 24px;
-                                overflow: hidden;
-                                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-                            }
-
-                            #leafMap {
-                                width: 100%;
-                                height: 100%;
-                            }
-
-                            .leaflet-routing-container {
-                                display: none !important;
-                            }
-                        </style>
-
-                        <div class="map-wrapper">
-                            <div id="leafMap"></div>
-                        </div>
-
-                        <script>
-                            window.addEventListener('load', function () {
-                                // Fix Leaflet default icon path (broken di file://)
-                                delete L.Icon.Default.prototype._getIconUrl;
-                                L.Icon.Default.mergeOptions({ iconUrl: '', shadowUrl: '' });
-
-                                var map = L.map('leafMap', { zoomControl: false, attributionControl: false }).setView([-6.9, 108.5], 7);
-                                L.control.zoom({ position: 'topright' }).addTo(map);
-                                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                                    subdomains: 'abcd', maxZoom: 19
-                                }).addTo(map);
-
-                                // Warehouse icon (tujuan)
-                                var warehouseIcon = L.divIcon({
-                                    className: '',
-                                    html: '<div style="background:white;border-radius:12px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25);border:2px solid #e2e8f0;"><img src="./images/warehouse-marker.png" style="width:42px;height:42px;object-fit:cover;"></div>',
-                                    iconSize: [48, 48], iconAnchor: [24, 48]
-                                });
-
-                                // Truck icon (asal) — pakai FontAwesome yang sudah ada di kuda-kit
-                                var truckIcon = L.divIcon({
-                                    className: '',
-                                    html: '<div style="position:relative;"><div style="background:#3b82f6;color:white;border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.3);border:2px solid white;font-size:1rem;"><i class=\'fas fa-truck\'></i></div><div style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);background:#3b82f6;color:white;padding:1px 7px;border-radius:4px;font-size:0.6rem;font-weight:700;white-space:nowrap;border:1px solid white;">TRUCK-01</div></div>',
-                                    iconSize: [38, 50], iconAnchor: [19, 19]
-                                });
-
-                                var truckFrom = [-6.2088, 106.8456];
-                                var truckTo = [-6.9147, 107.6098];
-
-                                L.marker(truckFrom, { icon: truckIcon }).addTo(map);
-                                L.marker(truckTo, { icon: warehouseIcon }).addTo(map);
-
-                                L.Routing.control({
-                                    waypoints: [L.latLng(truckFrom[0], truckFrom[1]), L.latLng(truckTo[0], truckTo[1])],
-                                    router: L.Routing.osrmv1({ serviceUrl: 'https://router.project-osrm.org/route/v1', profile: 'driving' }),
-                                    lineOptions: { styles: [{ color: '#3b82f6', weight: 5, opacity: 0.85 }] },
-                                    createMarker: () => null, addWaypoints: false, fitSelectedRoutes: true, showAlternatives: false
-                                }).addTo(map);
-                            });
-                        </script>
+                        <div class="chart-canvas-wrapper" id="chart-radar-apex" style="min-height: 365px;"></div>
                     </div>
                 </main>
             </div>
@@ -479,8 +139,37 @@
     <!-- HANYA IMPORT DARI KUDA KIT (jQuery, Bootstrap JS & DataTables sudah ada di dalam sini) -->
     <script src="./kuda-cdn/js/kuda-kit.js?v=1.5"></script>
 
+
     <script>
         $(document).ready(function () {
+
+            // --- CONTOH UPDATE DATA DARI API/DATABASE (Simulasi Ajax Request) ---
+            // Sengaja kita beri delay komputasi 2 detik, seolah-olah ambil data dari endpoint API
+            setTimeout(function () {
+
+                // Cara 1: Menggunakan instance dari window.KudaCharts (Sangat disarankan)
+                if (window.KudaCharts && window.KudaCharts['chart-heatmap']) {
+                    window.KudaCharts['chart-heatmap'].updateSeries([
+                        { name: 'Server Asia', data: [{ x: 'Senin', y: 12 }, { x: 'Selasa', y: 80 }, { x: 'Rabu', y: 45 }] },
+                        { name: 'Server Eropa', data: [{ x: 'Senin', y: 56 }, { x: 'Selasa', y: 24 }, { x: 'Rabu', y: 92 }] }
+                    ]);
+                }
+
+                // Cara 2: Menggunakan bawaan global ApexCharts.exec
+                // Format: ApexCharts.exec('ID-CHART', 'NAMA-METHOD', [DATA-BARU]);
+                ApexCharts.exec('chart-radar-apex', 'updateSeries', [{
+                    name: 'Target Penjualan (DB)',
+                    data: [100, 100, 100, 100, 100, 100]
+                }, {
+                    name: 'Aktual Penjualan (DB)',
+                    data: [80, 85, 90, 80, 60, 90]
+                }]);
+
+                console.log("Simulasi: Data chart berhasil ditimpa dengan data dari Database!");
+
+            }, 2000);
+            // ----------------------------------------------------------------------
+
 
             // Inisialisasi Ajax DataTable
             $('#table-ajax').DataTable({
@@ -509,6 +198,15 @@
 
         });
     </script>
+
+</body>
+
+</html> searchPlaceholder: "Search device..."
+}
+});
+
+});
+</script>
 
 </body>
 

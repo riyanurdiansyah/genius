@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sws702gi1b</Fingerprint>
-      <Integrity>5KkmHkFRFb7qi6LtA80Ek7QD3mdoZR2K+9AaUFY95YM=</Integrity>
+      <Fingerprint>xtbp0vxgyq</Fingerprint>
+      <Integrity>JfRabAVOqLtY4eO2LYPX61qFiUlvmFDJY+tseUTOi0w=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\kuda-kit.css'))</OriginalItemSpec>
@@ -66,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8u7vg17e8e</Fingerprint>
-      <Integrity>kCIU1Ajl7iuRm6k5Ci/NMAChqbxEOBqCpDT8OgPkauc=</Integrity>
+      <Fingerprint>iclfxyu70r</Fingerprint>
+      <Integrity>Lr2JW2TSUeqkvk+ygQ2StOKRzn5yBeQuDzysag1N6fI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\theme.css'))</OriginalItemSpec>
@@ -138,8 +138,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8pbalgpdah</Fingerprint>
-      <Integrity>vJ7bxjxGh8EvGK0ePm/2j/xbr6+6EY7rPeyJ7Rb3ar0=</Integrity>
+      <Fingerprint>sq48pzq6p8</Fingerprint>
+      <Integrity>BA+hxcwkdrMvGHCr16QUou8eW3c4gPBbFwFYH9RKTTM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ui-builder.css'))</OriginalItemSpec>
@@ -1470,8 +1470,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sqrbvzsiw5</Fingerprint>
-      <Integrity>zHOOOpoG0jCtpNPQnce6PSp6PQIKo4zInz3JG7bZdKQ=</Integrity>
+      <Fingerprint>wr8mcvghx2</Fingerprint>
+      <Integrity>7H2JC6uS4W8N7swjEGu+9PIIsYSolfqhb7O1elAzkv4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\app-system.js'))</OriginalItemSpec>
@@ -1488,8 +1488,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>18q2s72tn5</Fingerprint>
-      <Integrity>QWnAhfQCHQU8S2lc7iRsLGOrOtqUc5nx11xbsHKLJzY=</Integrity>
+      <Fingerprint>h0est1qzuo</Fingerprint>
+      <Integrity>8XZOQkcYE91e/RwQWObfaEo5rbpF0g3+0uZkFmkf9PU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\kuda-kit.js'))</OriginalItemSpec>
@@ -1524,8 +1524,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>tyb3101nh7</Fingerprint>
-      <Integrity>VdD/NAhgy6Z7P7oCf/D10PciOxJVabYXhUk5zo2JVvs=</Integrity>
+      <Fingerprint>muofm3h0mg</Fingerprint>
+      <Integrity>cgI7ZtV1mRS3Vke3d+/WyzNgT2uksJt7cSK8erZO1KM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ui-builder-flowchart.js'))</OriginalItemSpec>
@@ -1542,8 +1542,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>b1b5wb553q</Fingerprint>
-      <Integrity>H4M6Uz+djyQ+7CzbyRVy/RQdjpqDzKuT9J1r4/e3TEA=</Integrity>
+      <Fingerprint>jyoiuecom7</Fingerprint>
+      <Integrity>2+RvWMKh4p0b8E6IIb7cHSuyp1n16v1mKK7tWvl0Clc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ui-builder-fsd.js'))</OriginalItemSpec>
@@ -1565,6 +1565,78 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\kuda-starter.html'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet-routing-machine\leaflet-routing-machine.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Kuda</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Kuda</BasePath>
+      <RelativePath>lib/leaflet-routing-machine/leaflet-routing-machine.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>alhmg0k74n</Fingerprint>
+      <Integrity>cu3EeyAbdh7FZ58X4+oQz2g30Tw/U+3Utqmr1ETODqQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet-routing-machine\leaflet-routing-machine.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet-routing-machine\leaflet-routing-machine.min.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Kuda</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Kuda</BasePath>
+      <RelativePath>lib/leaflet-routing-machine/leaflet-routing-machine.min.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>y1ogvj9xxp</Fingerprint>
+      <Integrity>OqfsQXAGfyz0njzJEepuBcQwxXRnv2I3RW70XkpsIbk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet-routing-machine\leaflet-routing-machine.min.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet\leaflet.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Kuda</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Kuda</BasePath>
+      <RelativePath>lib/leaflet/leaflet.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>7888sfn8yc</Fingerprint>
+      <Integrity>p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet\leaflet.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet\leaflet.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Kuda</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Kuda</BasePath>
+      <RelativePath>lib/leaflet/leaflet.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>v78t325kt9</Fingerprint>
+      <Integrity>20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\leaflet\leaflet.js'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

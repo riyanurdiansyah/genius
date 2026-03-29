@@ -13,7 +13,8 @@ const FSD = {
         'datatable': `<div class="fsd-comp mb-4 border rounded bg-white p-3 table-comp"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-table text-primary me-2"></i>Data Table Grid Specifications</h5><table class="table table-sm table-bordered mb-0"><thead><tr class="table-light"><th>Column Label</th><th>Source Data / Model</th><th>Format Pattern</th><th>Search/Sort</th><th class="fsd-hide-pdf" style="width: 50px;">Act</th></tr></thead><tbody><tr><td contenteditable="true">Created Date</td><td contenteditable="true">DB.created_at</td><td contenteditable="true">dd-MM-yyyy HH:mm</td><td contenteditable="true">Both</td><td class="fsd-hide-pdf"><button class="btn btn-sm text-danger p-1" onclick="FSD.removeRow(this)"><i class="fas fa-trash"></i></button></td></tr></tbody></table><button class="btn btn-sm btn-outline-primary mt-2" onclick="FSD.addRow(this, 4)"><i class="fas fa-plus"></i> Add Grid Col</button></div>`,
         'prototype': `<div class="fsd-comp mb-4 border rounded bg-white p-3 fsd-page-break"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-desktop text-primary me-2"></i>Design</h5><div class="mb-3"><button class="btn btn-sm btn-outline-primary fsd-prototype-control" onclick="FSD.loadPrototype(this)"><i class="fa-solid fa-link"></i> Link to Prototype Page</button></div><div class="fsd-prototype-preview border bg-light p-3 rounded" style="min-height: 100px; pointer-events: none; overflow: hidden;"><i class="text-muted fsd-prototype-placeholder">Select a prototype page to render here...</i></div></div>`,
         'erd': `<div class="fsd-comp mb-4 border rounded bg-white p-3 fsd-page-break"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-project-diagram text-primary me-2"></i>Entity Relationship (ERD) Schema</h5><div class="mb-3"><button class="btn btn-sm btn-outline-primary" onclick="FSD.loadERD(this)"><i class="fa-solid fa-sync"></i> Refresh from ERD Canvas</button></div><div class="fsd-erd-preview p-2 rounded" style="min-height: 100px;"><i class="text-muted">Click refresh to fetch current ERD structure...</i></div></div>`,
-        'flowchart': `<div class="fsd-comp mb-4 border rounded bg-white p-3 fsd-page-break"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-sitemap text-primary me-2"></i>Flowchart Diagram</h5><div class="mb-3"><button class="btn btn-sm btn-outline-primary" onclick="FSD.loadFlowchart(this)"><i class="fa-solid fa-sync"></i> Refresh from Flowchart Canvas</button></div><div class="fsd-flowchart-preview p-2 rounded" style="min-height: 200px; position: relative; overflow: hidden; background: #f8f9fa; border: 1px dashed #ced4da;"><i class="text-muted">Click refresh to capture current flowchart diagram...</i></div></div>`
+        'flowchart': `<div class="fsd-comp mb-4 border rounded bg-white p-3 fsd-page-break"><h5 contenteditable="true" class="mb-3 border-bottom pb-2"><i class="fa-solid fa-sitemap text-primary me-2"></i>Flowchart Diagram</h5><div class="mb-3"><button class="btn btn-sm btn-outline-primary" onclick="FSD.loadFlowchart(this)"><i class="fa-solid fa-sync"></i> Refresh from Flowchart Canvas</button></div><div class="fsd-flowchart-preview p-2 rounded" style="min-height: 200px; position: relative; overflow: hidden; background: #f8f9fa; border: 1px dashed #ced4da;"><i class="text-muted">Click refresh to capture current flowchart diagram...</i></div></div>`,
+        'signature': `<div class="fsd-comp mb-4 bg-white p-5 fsd-page-break" style="min-height: 260mm; display:flex; flex-direction:column; position:relative; border: 1px solid transparent;"><div><h4 style="font-weight: 800; text-align: center; color: #0f172a; margin-bottom: 10px; outline:none;" contenteditable="true">Halaman Pengesahan</h4><p style="text-align: center; color: #64748b; font-size: 14px; margin-bottom: 30px; outline:none;" contenteditable="true">Dokumen ini telah disetujui dan ditandatangani oleh pihak-pihak yang terlibat di bawah ini.</p><table class="fsd-sig-table" style="width: 100%; border-collapse: collapse; margin: 0 auto; table-layout: fixed;"><tbody><tr class="fsd-sig-row"><td style="width: 50%; padding: 16px; border: 1px solid #cbd5e1; vertical-align: middle; position: relative;"><p style="font-weight: 700; margin: 0; font-size: 15px; outline:none;" contenteditable="true">Nama Lengkap</p><p style="color: #64748b; font-size: 13px; margin: 4px 0 0 0; outline:none;" contenteditable="true">Jabatan / Peran</p></td><td style="width: 50%; height: 100px; border: 1px solid #cbd5e1; position: relative; padding: 10px; vertical-align: bottom; text-align: center;"><button class="btn btn-xs btn-light border fsd-hide-pdf" style="position:absolute;top:6px;right:6px;padding:2px 6px;font-size:10px;color:#94a3b8;" onclick="FSD.uploadSignatureImage(this)" title="Upload Tanda Tangan"><i class="fas fa-upload"></i></button><button class="btn btn-xs btn-light border text-danger fsd-hide-pdf" style="position:absolute;top:6px;right:34px;padding:2px 6px;font-size:10px;display:none;" onclick="FSD.clearSignatureImage(this)" title="Hapus Tanda Tangan"><i class="fas fa-trash"></i></button><div class="sig-wrapper" style="height: 55px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;"></div><p style="font-size:12px; color:#94a3b8; outline:none; margin:0;" contenteditable="true">Kota, DD/MM/YYYY</p></td></tr><tr class="fsd-sig-row"><td style="width: 50%; padding: 16px; border: 1px solid #cbd5e1; vertical-align: middle; position: relative;"><button class="btn btn-xs text-danger fsd-hide-pdf" style="position:absolute;top:6px;right:6px;padding:2px 6px;font-size:11px;background:white;border:1px solid #fca5a5;" onclick="FSD.removeSignatory(this)" title="Hapus penandatangan"><i class="fas fa-times"></i></button><p style="font-weight: 700; margin: 0; font-size: 15px; outline:none;" contenteditable="true">Nama Lengkap</p><p style="color: #64748b; font-size: 13px; margin: 4px 0 0 0; outline:none;" contenteditable="true">Jabatan / Peran</p></td><td style="width: 50%; height: 100px; border: 1px solid #cbd5e1; position: relative; padding: 10px; vertical-align: bottom; text-align: center;"><button class="btn btn-xs btn-light border fsd-hide-pdf" style="position:absolute;top:6px;right:6px;padding:2px 6px;font-size:10px;color:#94a3b8;" onclick="FSD.uploadSignatureImage(this)" title="Upload Tanda Tangan"><i class="fas fa-upload"></i></button><button class="btn btn-xs btn-light border text-danger fsd-hide-pdf" style="position:absolute;top:6px;right:34px;padding:2px 6px;font-size:10px;display:none;" onclick="FSD.clearSignatureImage(this)" title="Hapus Tanda Tangan"><i class="fas fa-trash"></i></button><div class="sig-wrapper" style="height: 55px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;"></div><p style="font-size:12px; color:#94a3b8; outline:none; margin:0;" contenteditable="true">Kota, DD/MM/YYYY</p></td></tr></tbody></table><div class="text-center mt-4 fsd-hide-pdf"><button class="btn btn-sm btn-outline-primary" onclick="FSD.addSignatory(this)"><i class="fas fa-plus me-1"></i>Tambah Penandatangan</button></div></div><div style="margin-top: auto; display:flex; justify-content:space-between; align-items:flex-end; font-size: 12px; padding-top: 40px;"><span contenteditable="true" style="outline:none;">Company Confidential &copy;</span><span contenteditable="true" style="font-weight:bold; outline:none;">-</span></div></div>`
     },
 
     init() {
@@ -34,6 +35,8 @@ const FSD = {
             const numB = b.num ? b.num.toString().toLowerCase() : '';
             if (numA === 'cover') return -1;
             if (numB === 'cover') return 1;
+            if (numA === 'signature') return 1;
+            if (numB === 'signature') return -1;
             return numA.localeCompare(numB, undefined, { numeric: true, sensitivity: 'base' });
         });
 
@@ -44,9 +47,13 @@ const FSD = {
             item.className = `page-item ${isActive ? 'active' : ''}`;
             item.onclick = () => this.switchPage(page.id);
             const isCover = page.num && page.num.toString().toLowerCase() === 'cover';
-            const editableClass = isCover ? 'false' : isActive;
-            let html = `<span><i class="far fa-file-alt me-2 ${isCover ? 'text-warning' : 'text-primary'}"></i> <b contenteditable="${editableClass}" onblur="FSD.renamePageNum('${page.id}', this.innerText)" onclick="event.stopPropagation()">${page.num}</b> - <span contenteditable="${editableClass}" onblur="FSD.renamePageName('${page.id}', this.innerText)" onclick="event.stopPropagation()">${page.name}</span></span>`;
-            if (this.pages.length > 1 && !isCover) html += `<button class="btn btn-sm text-danger p-0" onclick="event.stopPropagation(); FSD.deletePage('${page.id}')"><i class="fas fa-trash"></i></button>`;
+            const isSignature = page.num && page.num.toString().toLowerCase() === 'signature';
+            const isSpecial = isCover || isSignature;
+            const editableClass = isSpecial ? 'false' : isActive;
+            const iconClass = isCover ? 'text-warning' : (isSignature ? 'text-success' : 'text-primary');
+            const iconName = isCover ? 'fa-file-signature' : (isSignature ? 'fa-pen-nib' : 'fa-file-alt');
+            let html = `<span><i class="${isSignature ? 'fa-solid' : 'far'} ${iconName} me-2 ${iconClass}"></i> <b contenteditable="${editableClass}" onblur="FSD.renamePageNum('${page.id}', this.innerText)" onclick="event.stopPropagation()">${page.num}</b> - <span contenteditable="${editableClass}" onblur="FSD.renamePageName('${page.id}', this.innerText)" onclick="event.stopPropagation()">${page.name}</span></span>`;
+            if (this.pages.length > 1 && !isSpecial) html += `<button class="btn btn-sm text-danger p-0" onclick="event.stopPropagation(); FSD.deletePage('${page.id}')"><i class="fas fa-trash"></i></button>`;
             item.innerHTML = html;
             list.appendChild(item);
         });
@@ -54,11 +61,18 @@ const FSD = {
 
     switchPage(id) {
         const canvas = document.getElementById('fsdCanvas');
-        if (id === this.currentPageId && canvas && canvas.innerHTML.trim() !== '' && !canvas.innerHTML.includes('<!-- FSD Content goes here -->')) return;
 
-        if (canvas) {
-            const cd = this.pages.find(p => p.id === this.currentPageId);
-            if (cd && !canvas.innerHTML.includes('<!-- FSD Content goes here -->')) cd.html = canvas.innerHTML;
+        if (id !== this.currentPageId) {
+            // Save current canvas HTML before switching, ONLY if it's not empty
+            if (canvas && canvas.innerHTML.trim() !== '') {
+                const cd = this.pages.find(p => p.id === this.currentPageId);
+                if (cd && !canvas.innerHTML.includes('<!-- FSD Content goes here -->')) {
+                    cd.html = canvas.innerHTML;
+                }
+            }
+        } else {
+            // If it's the same page and already rendered, do nothing to preserve focus
+            if (canvas && canvas.innerHTML.trim() !== '' && !canvas.innerHTML.includes('<!-- FSD Content goes here -->')) return;
         }
 
         this.currentPageId = id;
@@ -68,6 +82,8 @@ const FSD = {
         if (!targetHtml || targetHtml.trim() === '' || targetHtml.includes('<!-- FSD Content goes here -->')) {
             if (nd && nd.num && nd.num.toString().toLowerCase() === 'cover') {
                 targetHtml = this.compTemplates['cover'];
+            } else if (nd && nd.num && nd.num.toString().toLowerCase() === 'signature') {
+                targetHtml = this.compTemplates['signature'];
             } else {
 
                 targetHtml = `<div class="fsd-header mb-4" style="border-bottom: 2px solid var(--primary); padding-bottom: 16px;">
@@ -116,12 +132,16 @@ const FSD = {
             alert("The Cover page cannot be deleted.");
             return;
         }
+        if (page && page.num && page.num.toString().toLowerCase() === 'signature') {
+            alert("The Signature page cannot be deleted.");
+            return;
+        }
 
-        if (confirm("Delete this entire FSD Page?")) {
+        showConfirm("Delete this entire FSD Page?", () => {
             this.pages = this.pages.filter(p => p.id !== id);
             if (this.currentPageId === id) this.switchPage(this.pages[0].id);
             else this.renderPagesList();
-        }
+        }, "Hapus Halaman");
     },
 
     renamePageNum(id, newNum) { const p = this.pages.find(x => x.id === id); if (p) { p.num = newNum; this.renderPagesList(); } },
@@ -138,6 +158,10 @@ const FSD = {
         const currentPage = this.pages.find(p => p.id === this.currentPageId);
         if (currentPage && currentPage.num && currentPage.num.toString().toLowerCase() === 'cover') {
             alert("Components cannot be added to the Cover page.");
+            return;
+        }
+        if (currentPage && currentPage.num && currentPage.num.toString().toLowerCase() === 'signature') {
+            alert("Components cannot be added to the Signature page.");
             return;
         }
 
@@ -187,6 +211,89 @@ const FSD = {
 
     removeRow(btn) {
         btn.closest('tr').remove();
+    },
+
+    addSignatory(btn) {
+        const table = btn.closest('.fsd-comp')?.querySelector('.fsd-sig-table tbody');
+        if (!table) return;
+
+        const row = document.createElement('tr');
+        row.className = 'fsd-sig-row';
+        row.innerHTML = `
+            <td style="width: 50%; padding: 16px; border: 1px solid #cbd5e1; vertical-align: middle; position: relative;">
+                <button class="btn btn-xs text-danger fsd-hide-pdf" style="position:absolute;top:6px;right:6px;padding:2px 6px;font-size:11px;background:white;border:1px solid #fca5a5;" onclick="FSD.removeSignatory(this)" title="Hapus penandatangan"><i class="fas fa-times"></i></button>
+                <p style="font-weight: 700; margin: 0; font-size: 15px; outline:none;" contenteditable="true">Nama Lengkap</p>
+                <p style="color: #64748b; font-size: 13px; margin: 4px 0 0 0; outline:none;" contenteditable="true">Jabatan / Peran</p>
+            </td>
+            <td style="width: 50%; height: 100px; border: 1px solid #cbd5e1; position: relative; padding: 10px; vertical-align: bottom; text-align: center;">
+                <button class="btn btn-xs btn-light border fsd-hide-pdf" style="position:absolute;top:6px;right:6px;padding:2px 6px;font-size:10px;color:#94a3b8;" onclick="FSD.uploadSignatureImage(this)" title="Upload Tanda Tangan"><i class="fas fa-upload"></i></button>
+                <button class="btn btn-xs btn-light border text-danger fsd-hide-pdf" style="position:absolute;top:6px;right:34px;padding:2px 6px;font-size:10px;display:none;" onclick="FSD.clearSignatureImage(this)" title="Hapus Tanda Tangan"><i class="fas fa-trash"></i></button>
+                <div class="sig-wrapper" style="height: 55px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;"></div>
+                <p style="font-size:12px; color:#94a3b8; outline:none; margin:0;" contenteditable="true">Kota, DD/MM/YYYY</p>
+            </td>`;
+        table.appendChild(row);
+    },
+
+    removeSignatory(btn) {
+        const tr = btn.closest('.fsd-sig-row');
+        if (tr) tr.remove();
+    },
+
+    uploadSignatureImage(btn) {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = e => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 400;
+                    const MAX_HEIGHT = 200;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Gunakan png agar background transparan tanda tangan tetap terjaga
+                    // resolusi sangat kecil (max 400x200), ukurannya pasti hanya beberapa KB
+                    const dataUrl = canvas.toDataURL('image/png');
+
+                    const td = btn.closest('td');
+                    const wrapper = td.querySelector('.sig-wrapper');
+                    const delBtn = btn.nextElementSibling;
+                    wrapper.innerHTML = `<img src="${dataUrl}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
+                    if (delBtn) delBtn.style.display = 'inline-block';
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+        input.click();
+    },
+
+    clearSignatureImage(btn) {
+        const td = btn.closest('td');
+        const wrapper = td.querySelector('.sig-wrapper');
+        if (wrapper) wrapper.innerHTML = '';
+        btn.style.display = 'none';
     },
 
     loadPrototype(btn) {
@@ -401,7 +508,7 @@ const FSD = {
         const container = btn.closest('.fsd-comp').querySelector('.fsd-flowchart-preview');
         container.innerHTML = svgHtml;
         container.style.height = 'auto';
-        container.style.overflow = 'visible'; 
+        container.style.overflow = 'visible';
 
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-check"></i> Refreshed';
@@ -465,11 +572,11 @@ const FSD = {
             timestamp: new Date().toLocaleString(),
             author: author,
             summary: summary,
-            pagesSnapshot: JSON.parse(JSON.stringify(this.pages)) 
+            pagesSnapshot: JSON.parse(JSON.stringify(this.pages))
         };
 
         if (!currentProject.fsdVersions) currentProject.fsdVersions = [];
-        currentProject.fsdVersions.unshift(versionData); 
+        currentProject.fsdVersions.unshift(versionData);
 
         if (currentProject.fsdVersions.length > 20) {
             currentProject.fsdVersions = currentProject.fsdVersions.slice(0, 20);
@@ -524,13 +631,13 @@ const FSD = {
         const version = currentProject.fsdVersions.find(v => v.id === id);
         if (!version) return;
 
-        if (confirm(`View version by ${version.author} (${version.timestamp})?\nNote: This will replace your current FSD workspace content (unsaved changes will be lost).`)) {
+        showConfirm(`View version by ${version.author} (${version.timestamp})?\nNote: This will replace your current FSD workspace content (unsaved changes will be lost).`, () => {
             this.pages = JSON.parse(JSON.stringify(version.pagesSnapshot));
             this.currentPageId = this.pages[0].id;
             this.renderPagesList();
             this.switchPage(this.currentPageId);
             alert("Version loaded successfully.");
-        }
+        }, "Lihat Versi");
     },
 
     compareVersion(id) {
@@ -615,8 +722,8 @@ const FSD = {
             </div>`;
 
             const sectionClass = status === 'removed' ? 'section-removed'
-                               : status === 'added'   ? 'section-added'
-                               : status === 'modified' ? 'section-modified' : '';
+                : status === 'added' ? 'section-added'
+                    : status === 'modified' ? 'section-modified' : '';
 
             const oldContent = oldP
                 ? `<div class="page-section ${sectionClass}">${cleanHtml(oldP.html)}</div>`
@@ -647,7 +754,7 @@ const FSD = {
     height: 100%; margin: 0; padding: 0;
     background: var(--bg-color, #f8fafc);
     color: var(--text-dark, #1a1a1a);
-    font-family: 'KalbeGeometric', 'Segoe UI', system-ui, sans-serif;
+    font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif;
     overflow: hidden;
     display: flex; flex-direction: column;
   }

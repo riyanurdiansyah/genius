@@ -39,7 +39,7 @@
             <div class="tab-pane fade show active p-3" id="components-tab">
 
                 <div class="mb-3">
-                    <input type="text" id="componentSearch" class="form-control form-control-sm" placeholder="&#xF002; Search components..." style="font-family: 'Font Awesome 6 Free', sans-serif; font-size: 12px;" oninput="filterComponents(this.value)">
+                    <input type="text" id="componentSearch" class="form-control form-control-sm" placeholder="Search components..." style="font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', 'Font Awesome 6 Free', sans-serif; font-size: 12px;" oninput="filterComponents(this.value)">
                 </div>
 
                 <div class="component-group-title" data-group="layouts">Layouts</div>
@@ -243,6 +243,50 @@
     </div>
 </div>
 
+<!-- Generic Confirm Modal -->
+<div class="modal fade" id="genericConfirmModal" tabindex="-1" aria-hidden="true" style="z-index: 1060;">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fs-6 fw-bold text-danger"><i class="fas fa-exclamation-triangle me-2"></i> Konfirmasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <p id="genericConfirmMsg" class="mb-0 text-secondary" style="font-size: 14px;">Apakah Anda yakin?</p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center pt-0 pb-3">
+                <button type="button" class="btn btn-sm btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-sm btn-danger px-4" id="genericConfirmBtn">Ya</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentConfirmCallback = null;
+    function showConfirm(msg, callback, btnText = 'Ya') {
+        document.getElementById('genericConfirmMsg').innerText = msg;
+        document.getElementById('genericConfirmBtn').innerText = btnText;
+        currentConfirmCallback = callback;
+        
+        let modalEl = document.getElementById('genericConfirmModal');
+        let modal = bootstrap.Modal.getInstance(modalEl);
+        if (!modal) modal = new bootstrap.Modal(modalEl);
+        modal.show();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('genericConfirmBtn').addEventListener('click', function() {
+            if (currentConfirmCallback) {
+                currentConfirmCallback();
+                currentConfirmCallback = null;
+            }
+            const modal = bootstrap.Modal.getInstance(document.getElementById('genericConfirmModal'));
+            if(modal) modal.hide();
+        });
+    });
+</script>
+
 <div class="modal fade" id="htmlPreviewModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -406,7 +450,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
@@ -487,7 +530,10 @@ let pages = [];
             name: name,
             updatedAt: new Date().toLocaleTimeString(),
             prototypePages: [{ id: 'page-1', name: 'Home', html: '' }],
-            fsdPages: [{ id: 'fsd-cover', num: 'Cover', name: 'Halaman Utama', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['cover'] : '' }],
+            fsdPages: [
+                { id: 'fsd-cover', num: 'Cover', name: 'Halaman Utama', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['cover'] : '' },
+                { id: 'fsd-signature', num: 'Signature', name: 'Halaman Pengesahan', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['signature'] : '' }
+            ],
             erdEntities: [],
             erdRelationships: [],
             flowchartDiagrams: [{ id: 'fc-page-1', num: '1.0', name: 'Main Flow', nodes: [], edges: [] }]
@@ -504,7 +550,7 @@ let pages = [];
 
     async function deleteProject(id, ev) {
         if (ev) ev.stopPropagation();
-        if (confirm("Hapus proyek Cloud ini beserta seluruh isinya secara permanen dari Firebase?")) {
+        showConfirm("Hapus proyek Cloud ini beserta seluruh isinya secara permanen dari Firebase?", async () => {
             try {
                 await db.collection("projects").doc(id).delete();
                 AppData.projects = AppData.projects.filter(p => p.id !== id);
@@ -512,7 +558,7 @@ let pages = [];
             } catch (e) {
                 alert("Firebase Error: Gagal Menghapus Proyek.");
             }
-        }
+        }, "Hapus Proyek");
     }
 
     function loadProject(id) {
@@ -524,8 +570,35 @@ let pages = [];
         currentPageId = pages[0].id;
         const mainCanvas = document.getElementById('mainCanvas');
         if (mainCanvas) mainCanvas.innerHTML = pages[0].html || '';
+        
+        // Clear all other workspace canvases from previous projects to prevent HTML leakage
+        const fsdCanvas = document.getElementById('fsdCanvas');
+        if (fsdCanvas) fsdCanvas.innerHTML = '';
+        
+        const erdCanvas = document.getElementById('erdCanvas');
+        if (erdCanvas) {
+            erdCanvas.querySelectorAll('.erd-entity').forEach(e => e.remove());
+            const erdSvg = document.getElementById('erdSvg');
+            if (erdSvg) erdSvg.innerHTML = '';
+        }
+        
+        const fcCanvas = document.getElementById('flowchartCanvas');
+        if (fcCanvas) {
+            fcCanvas.querySelectorAll('.fc-node').forEach(n => n.remove());
+            fcCanvas.querySelectorAll('.fc-edge-label').forEach(n => n.remove());
+            const fcSvg = document.getElementById('flowchartSvg');
+            if (fcSvg) fcSvg.innerHTML = '';
+        }
 
-        FSD.pages = currentProject.fsdPages || [{ id: 'fsd-cover', num: 'Cover', name: 'Halaman Utama', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['cover'] : '' }];
+        FSD.pages = currentProject.fsdPages || [
+            { id: 'fsd-cover', num: 'Cover', name: 'Halaman Utama', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['cover'] : '' },
+            { id: 'fsd-signature', num: 'Signature', name: 'Halaman Pengesahan', html: typeof FSD !== 'undefined' && FSD.compTemplates ? FSD.compTemplates['signature'] : '' }
+        ];
+        // Auto-add signature page for older projects that don't have one yet
+        const hasSig = FSD.pages.some(p => p.num && p.num.toString().toLowerCase() === 'signature');
+        if (!hasSig && typeof FSD !== 'undefined' && FSD.compTemplates) {
+            FSD.pages.push({ id: 'fsd-signature-' + Date.now(), num: 'Signature', name: 'Halaman Pengesahan', html: FSD.compTemplates['signature'] });
+        }
         FSD.currentPageId = FSD.pages[0].id;
 
         ERD.entities = currentProject.erdEntities || [];
@@ -664,12 +737,11 @@ let pages = [];
         } else if (ws === 'fsd') {
             actions.innerHTML = `<button class="btn btn-sm btn-outline-success me-2" onclick="FSD.saveVersion()"><i class="fa-solid fa-cloud-upload-alt"></i> Simpan Version</button>
                 <button class="btn btn-sm btn-outline-danger me-2" onclick="FSD.deletePage(FSD.currentPageId)"><i class="fa-solid fa-trash"></i> Delete Page</button>
-                <button class="btn btn-sm btn-outline-primary" onclick="exportFSDPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>`;
+                // <button class="btn btn-sm btn-outline-primary" onclick="exportFSDPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>`;
         } else if (ws === 'erd') {
             actions.innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="exportERD()"><i class="fas fa-download"></i> Export SQL</button>`;
         } else if (ws === 'flowchart') {
             actions.innerHTML = `<button class="btn btn-sm btn-outline-danger me-2" onclick="Flowchart.deletePage(Flowchart.currentPageId)"><i class="fa-solid fa-trash"></i> Delete Diagram</button>
-                                 <button class="btn btn-sm btn-outline-warning me-2" onclick="FSD.compactDiagram()"><i class="fa-solid fa-compress-arrows-alt"></i> Fix Layout (A4)</button>
                                  <button class="btn btn-sm btn-outline-primary me-2" onclick="Flowchart.clearCanvas()"><i class="fa-solid fa-eraser"></i> Clear Canvas</button>
                                  <button class="btn btn-sm btn-outline-primary" onclick="exportFlowchartPDF()"><i class="fas fa-file-pdf"></i> Export PDF</button>`;
         }
@@ -793,9 +865,29 @@ let pages = [];
                 src: url('${baseUrl}/font/geometric/KalbeGeometric-Medium.woff2') format('woff2');
                 font-weight: 500; font-style: normal;
             }
+            @@font-face {
+                font-family: 'KalbeHelix';
+                src: url('${baseUrl}/font/helix/KalbeHelix-Regular.woff2') format('woff2');
+                font-weight: 400; font-style: normal;
+            }
+            @@font-face {
+                font-family: 'KalbeHelix';
+                src: url('${baseUrl}/font/helix/KalbeHelix-Bold.woff2') format('woff2');
+                font-weight: 700; font-style: normal;
+            }
+            @@font-face {
+                font-family: 'KalbeRounded';
+                src: url('${baseUrl}/font/rounded/KalbeRounded-Regular.woff2') format('woff2');
+                font-weight: 400; font-style: normal;
+            }
+            @@font-face {
+                font-family: 'KalbeRounded';
+                src: url('${baseUrl}/font/rounded/KalbeRounded-Bold.woff2') format('woff2');
+                font-weight: 700; font-style: normal;
+            }
 
             .fsd-paper, .fsd-comp, .fsd-comp *, table, th, td, h1, h2, h3, h4, h5, h6, p, span, div {
-                font-family: 'KalbeGeometric', sans-serif !important;
+                font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif !important;
             }
 
             i, .fa, .fas, .fa-solid, .fa-regular, .fab, .fal {
@@ -806,8 +898,7 @@ let pages = [];
 
         clone.querySelectorAll('*').forEach(el => {
             if (el.tagName.toLowerCase() !== 'i' && !el.classList.contains('fa') && !el.classList.contains('fas') && !el.classList.contains('fa-solid')) {
-
-                el.style.setProperty('font-family', "'KalbeGeometric', system-ui, sans-serif", 'important');
+                el.style.setProperty('font-family', "'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif", 'important');
 
                 const tag = el.tagName.toLowerCase();
                 if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag) || el.classList.contains('fsd-section-title')) {
@@ -934,11 +1025,11 @@ let pages = [];
     }
 
     function deletePage(id) {
-        if (confirm("Delete this page?")) {
+        showConfirm("Delete this page?", () => {
             pages = pages.filter(p => p.id !== id);
             if (currentPageId === id) switchPage(pages[0].id);
             else renderPages();
-        }
+        }, "Hapus Page");
     }
 
     function renamePage(id, newName) {
@@ -1505,7 +1596,7 @@ rAll();
         if (dir === -1 && el.previousElementSibling) p.insertBefore(el, el.previousElementSibling);
         else if (dir === 1 && el.nextElementSibling) p.insertBefore(el.nextElementSibling, el);
     }
-    function clearCanvas() { if (confirm("Clear the entire canvas?")) { document.getElementById('mainCanvas').innerHTML = ''; const cd = pages.find(p => p.id === currentPageId); if (cd) cd.html = ''; } }
+    function clearCanvas() { showConfirm("Clear the entire canvas?", () => { document.getElementById('mainCanvas').innerHTML = ''; const cd = pages.find(p => p.id === currentPageId); if (cd) cd.html = ''; }, "Clear Canvas"); }
 
     let currentLinkButton = null;
     function openLinkModal(btn) {

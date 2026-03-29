@@ -349,6 +349,22 @@
       "PackagePath": "staticwebassets/kuda-starter.html"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet-routing-machine/leaflet-routing-machine.css",
+      "PackagePath": "staticwebassets/lib/leaflet-routing-machine/leaflet-routing-machine.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet-routing-machine/leaflet-routing-machine.min.js",
+      "PackagePath": "staticwebassets/lib/leaflet-routing-machine/leaflet-routing-machine.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/leaflet.css",
+      "PackagePath": "staticwebassets/lib/leaflet/leaflet.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/leaflet.js",
+      "PackagePath": "staticwebassets/lib/leaflet/leaflet.js"
+    },
+    {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
