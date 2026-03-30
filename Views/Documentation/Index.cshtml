@@ -1,318 +1,465 @@
-@{ ViewData["Title"] = "Dokumentasi Tema"; }
+@{ ViewData["Title"] = "Developer Hub"; }
 
 @section Styles {
-    <style>
-.doc-section {
-            background: #fff;
-            border-radius: var(--radius-md);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            border: 1px solid var(--border-color);
-        }
-        .doc-title {
-            color: var(--color-1);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-        }
-        .doc-title i {
-            color: var(--primary);
-            margin-right: 12px;
-        }
-        .code-block {
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 1rem 1.5rem;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #d63384;
-            border: 1px solid #e2e8f0;
-            overflow-x: auto;
-            margin: 1rem 0;
-            line-height: 1.6;
-        }
-        .code-block.html-block { color: #0ea5e9; }
-        .code-block.css-block { color: #f59e0b; }
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --kd-primary: #3b9d82;
+        --kd-primary-rgb: 59, 157, 130;
+        --kd-secondary: #1e293b;
+        --kd-accent: #10b981;
+        --kd-bg: #f8fafc;
+        --kd-card-bg: #ffffff;
+        --kd-text: #334155;
+        --kd-text-light: #64748b;
+        --kd-border: #e2e8f0;
+        --kd-dark-bg: #0f172a;
+        --kd-code-bg: #011627;
+        --kd-font-stack: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif;
+    }
 
-        .lib-table th { background: #f8fafc; color: var(--text-gray); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
-        .lib-table td { vertical-align: middle; }
-        .lib-badge { font-family: monospace; font-size: 0.85rem; }
+    [data-theme="dark"] {
+        --kd-bg: #050b0a;
+        --kd-card-bg: #0d221d;
+        --kd-text: #e2e8f0;
+        --kd-text-light: #94a3b8;
+        --kd-border: rgba(59, 157, 130, 0.15);
+    }
 
-        .step-card {
-            border-left: 4px solid var(--primary);
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin-bottom: 1.5rem;
-        }
-        .step-number {
-            display: inline-flex;
-            width: 30px; height: 30px;
-            background: var(--primary);
-            color: white;
-            align-items: center; justify-content: center;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 10px;
-        }
+    body {
+        font-family: var(--kd-font-stack);
+        background-color: var(--kd-bg);
+        color: var(--kd-text);
+        scroll-behavior: smooth;
+    }
 
-        [data-theme="dark"] .code-block {
-            background: #0d221d;
-            border-color: rgba(59, 157, 130, 0.2);
-            color: #f472b6;
-        }
-        [data-theme="dark"] .step-card {
-            background: #112e27;
-        }
-        [data-theme="dark"] .lib-table th {
-            background: #0d221d;
-        }
+    /* ── Header Hero ── */
+    .hero-banner {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        padding: 4rem 2rem;
+        border-radius: 24px;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .hero-banner::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -20%;
+        width: 100%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(59, 157, 130, 0.1) 0%, transparent 70%);
+        transform: rotate(-15deg);
+    }
+
+    .hero-title {
+        font-family: var(--kd-font-stack);
+        font-weight: 800;
+        font-size: 2.8rem;
+        color: #fff;
+        margin-bottom: 1rem;
+        letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+        font-family: var(--kd-font-stack);
+        color: #94a3b8;
+        font-size: 1.1rem;
+        max-width: 600px;
+    }
+
+    /* ── Layout ── */
+    .doc-container {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 2.5rem;
+    }
+
+    /* ── Sticky Nav ── */
+    .sidebar-nav {
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+    }
+
+    .nav-group-label {
+        font-family: var(--kd-font-stack);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--kd-text-light);
+        margin: 1.5rem 0 0.75rem 0.5rem;
+    }
+
+    .doc-link {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        color: var(--kd-text);
+        text-decoration: none !important;
+        border-radius: 12px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
+        border: 1px solid transparent;
+    }
+
+    .doc-link i {
+        width: 20px;
+        margin-right: 12px;
+        font-size: 1rem;
+        color: var(--kd-text-light);
+        transition: color 0.2s;
+    }
+
+    .doc-link:hover {
+        background: rgba(59, 157, 130, 0.08);
+        color: var(--kd-primary);
+    }
+
+    .doc-link.active {
+        background: var(--kd-primary);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(59, 157, 130, 0.25);
+    }
+
+    .doc-link.active i {
+        color: #fff;
+    }
+
+    /* ── Sections & Cards ── */
+    .section-card {
+        background: var(--kd-card-bg);
+        border: 1px solid var(--kd-border);
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-bottom: 2.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(59, 157, 130, 0.1);
+        color: var(--kd-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        font-size: 1.25rem;
+    }
+
+    .section-title {
+        font-weight: 700;
+        font-size: 1.6rem;
+        margin: 0;
+    }
+
+    /* ── Setup Steps ── */
+    .step-box {
+        position: relative;
+        padding: 1.5rem;
+        background: #f1f5f9;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(0,0,0,0.03);
+    }
+    
+    [data-theme="dark"] .step-box { background: #050b0a; border-color: rgba(59, 157, 130, 0.1); }
+
+    .step-tag {
+        font-family: var(--kd-font-stack);
+        position: absolute;
+        top: -12px;
+        left: 1.5rem;
+        background: var(--kd-primary);
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.75rem;
+        padding: 4px 14px;
+        border-radius: 20px;
+        box-shadow: 4px 4px 10px rgba(59, 157, 130, 0.2);
+    }
+
+    /* ── Code Styling ── */
+    .code-container {
+        margin: 1.5rem 0;
+        background: var(--kd-code-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #1e293b;
+    }
+
+    .code-header {
+        background: #011221;
+        padding: 0.75rem 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #1e293b;
+    }
+
+    .code-lang {
+        font-family: 'Fira Code', monospace;
+        font-size: 0.7rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-copy {
+        background: transparent;
+        border: 1px solid #334155;
+        color: #94a3b8;
+        font-size: 0.75rem;
+        padding: 4px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-copy:hover {
+        background: #1e293b;
+        color: #fff;
+    }
+
+    pre {
+        margin: 0;
+        padding: 1.5rem;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #a5d6ff;
+        overflow-x: auto;
+    }
+
+    .t-tag { color: #7ee787; }
+    .t-attr { color: #79c0ff; }
+    .t-val { color: #f2cc60; }
+    .t-cm { color: #8b949e; font-style: italic; }
+
+    /* ── Feature Grid ── */
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background: rgba(59, 157, 130, 0.05);
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .feature-item i {
+        color: var(--kd-primary);
+        margin-right: 10px;
+    }
+
+    /* ── Responsive ── */
+    @@media (max-width: 992px) {
+        .doc-container { grid-template-columns: 1fr; }
+        .sidebar-nav { display: none; }
+    }
 
 </style>
 }
 
-<div class="row">
-    <div class="col-lg-12">
-        <h4 class="mb-4 fw-bold">Dokumentasi Developer</h4>
-        <p class="text-muted mb-4 text-lg">Panduan lengkap mengenai pustaka, struktur, dan langkah integrasi untuk Kuda Admin Template.</p>
-    </div>
-
-    <div class="col-12">
-        <div class="doc-section">
-            <h3 class="doc-title"><i class="fas fa-cubes"></i> Pustaka (Library) & Dependencies</h3>
-            <p class="text-muted mb-4">Template ini dibangun menggunakan teknologi web modern dan stabil. Berikut adalah daftar library utama yang terintegrasi di dalamnya.</p>
-
-            <div class="table-responsive">
-                <table class="table table-hover lib-table mb-0">
-                    <thead>
-                        <tr>
-                            <th>Dependency</th>
-                            <th>Versi</th>
-                            <th>Tipe</th>
-                            <th>Fungsi & Lokasi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="fw-bold text-dark"><i class="fab fa-bootstrap text-primary me-2"></i> Bootstrap</td>
-                            <td><span class="badge bg-light text-primary lib-badge border">v5.3.2</span></td>
-                            <td>CSS / JS Inti</td>
-                            <td class="text-muted small">Sistem layout grid, komponen UI dasar (Accordion, Modal). Dimuat via CDN di <code class="text-danger">_Layout.cshtml</code></td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-dark"><i class="fab fa-js text-warning me-2"></i> jQuery</td>
-                            <td><span class="badge bg-light text-primary lib-badge border">v3.7.0</span></td>
-                            <td>Utilitas JS</td>
-                            <td class="text-muted small">Dibutuhkan untuk DataTables dan beberapa animasi Sidebar kustom. Dimuat via CDN di <code class="text-danger">_Layout.cshtml</code></td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-dark"><i class="fas fa-table text-success me-2"></i> DataTables</td>
-                            <td><span class="badge bg-light text-primary lib-badge border">v1.13.6</span></td>
-                            <td>CSS / JS Plugin</td>
-                            <td class="text-muted small">Tabel tingkat lanjut dengan fitur pagination, sorting. Dimuat via CDN.</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-dark"><i class="fab fa-font-awesome text-info me-2"></i> FontAwesome</td>
-                            <td><span class="badge bg-light text-primary lib-badge border">v6.4.0</span></td>
-                            <td>CSS (Icons)</td>
-                            <td class="text-muted small">Ikon vektor yang dipakai di sidebar, card, dan tombol. Menggunakan Free tier via CDN.</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-dark"><i class="fas fa-chart-line text-danger me-2"></i> ApexCharts</td>
-                            <td><span class="badge bg-light text-primary lib-badge border">Latest</span></td>
-                            <td>JS Plugin</td>
-                            <td class="text-muted small">Grafik SVG interaktif. Biasanya hanya dimuat pada halaman yang membutuhkannya (mis. Dashboard, SEO).</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-dark"><i class="fas fa-font text-secondary me-2"></i> Fonts</td>
-                            <td><span class="badge bg-light text-primary lib-badge border">N/A</span></td>
-                            <td>Typography</td>
-                            <td class="text-muted small"><strong>KalbeGeometric</strong> (WOFF2 lokal di <code class="text-danger">wwwroot/font/</code> saja, tidak ada font eksternal)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-12">
-        <div class="doc-section">
-            <h3 class="doc-title"><i class="fas fa-folder-tree"></i> Arsitektur CSS & Aset Lokal</h3>
-            <p class="text-muted mb-4">Anda tidak perlu pusing menulis kode CSS tebal dari nol. Template ini menimpa desain bawaan Bootstrap melalui 2 file CSS utama yang dipanggil di akhir tag <code>&lt;head&gt;</code>:</p>
-
-            <div class="row g-4 mb-4">
-                <div class="col-md-6">
-                    <div class="card h-100 border-0 bg-light">
-                        <div class="card-body">
-                            <h5 class="fw-bold text-primary">1. theme.css</h5>
-                            <p class="small text-muted mb-3">Menyimpan seluruh variabel CSS global (warna, font), reset tipografi dasar, serta utilitas umum lainnya (termasuk kesiapan Dark Mode).</p>
-                            <code>wwwroot/css/theme.css</code>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-0 bg-light">
-                        <div class="card-body">
-                            <h5 class="fw-bold text-info">2. components.css</h5>
-                            <p class="small text-muted mb-3">Menyimpan desain yang spesifik untuk mekanika Tata Letak (Sidebar, Topbar) serta UI Widgets (Card, Modal, timpaan Forms).</p>
-                            <code>wwwroot/css/components.css</code>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="alert alert-warning border-0 shadow-sm align-items-center d-flex mt-2">
-                <i class="fas fa-exclamation-circle fa-2x pt-1 me-3 opacity-75 align-self-start"></i>
-                <div>
-                    <strong>Aturan Hirarki Penting:</strong><br/>
-                    Selalu pastikan <code>bootstrap.min.css</code> dimuat <strong>sebelum</strong> <code>theme.css</code> dan <code>components.css</code>. Ini krusial agar desain kustom kita bisa mereplace desain bawaan Bootstrap secara sempurna.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-12">
-        <div class="doc-section">
-            <h3 class="doc-title"><i class="fas fa-code-branch"></i> Cara Menggunakan (Panduan Pengembang)</h3>
-
-            <ul class="nav nav-pills mb-4 mt-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active fw-bold px-4 rounded-pill" id="pills-new-tab" data-bs-toggle="pill" data-bs-target="#pills-new" type="button" role="tab" aria-controls="pills-new" aria-selected="true">Proyek ASP.NET Baru</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link fw-bold px-4 rounded-pill" id="pills-existing-tab" data-bs-toggle="pill" data-bs-target="#pills-existing" type="button" role="tab" aria-controls="pills-existing" aria-selected="false">Migrasi Web Eksisting</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link fw-bold px-4 rounded-pill bg-primary bg-opacity-10 text-primary" id="pills-cdn-tab" data-bs-toggle="pill" data-bs-target="#pills-cdn" type="button" role="tab" aria-controls="pills-cdn" aria-selected="false"><i class="fas fa-server me-1"></i> Gunakan via CDN (External)</button>
-                </li>
-            </ul>
-
-            <div class="tab-content" id="pills-tabContent">
-
-                <div class="tab-pane fade show active" id="pills-new" role="tabpanel" aria-labelledby="pills-new-tab">
-                    <div class="step-card">
-                        <h5 class="fw-bold mb-3"><span class="step-number">1</span> Kopi Struktur Views/Shared</h5>
-                        <p class="text-muted mb-2">Pindahkan file struktur dasar berikut ke direktori MVC <code>Views/Shared/</code> Anda:</p>
-                        <ul class="text-muted mb-0 small">
-                            <li><code class="text-dark">_Layout.cshtml</code> (Halaman master yang memuat CDN link CSS/JS)</li>
-                            <li><code class="text-dark">_Sidebar.cshtml</code> (Logika komponen navigasi kiri)</li>
-                            <li><code class="text-dark">_Header.cshtml</code> (Komponen menu atas / topbar)</li>
-                        </ul>
-                    </div>
-
-                    <div class="step-card">
-                        <h5 class="fw-bold mb-3"><span class="step-number">2</span> Kopi Aset ke wwwroot</h5>
-                        <p class="text-muted mb-2">Salin file pemetaan CSS dan berkas Font luring ke <code>wwwroot/</code>:</p>
-                        <ul class="text-muted mb-0 small">
-                            <li><code class="text-dark">wwwroot/css/theme.css</code> dan <code class="text-dark">components.css</code></li>
-                            <li><code class="text-dark">wwwroot/font/geometric/</code> (Lokasi woff font Kalbe)</li>
-                        </ul>
-                    </div>
-
-                    <div class="step-card">
-                        <h5 class="fw-bold mb-3"><span class="step-number">3</span> Hubungkan _ViewStart.cshtml</h5>
-                        <p class="text-muted mb-2">Pastikan file <code>Views/_ViewStart.cshtml</code> Anda menarget layout baru:</p>
-                        <div class="code-block html-block">
-@{
-    Layout = "_Layout";
-}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="pills-existing" role="tabpanel" aria-labelledby="pills-existing-tab">
-                    <p class="text-muted mb-4">Apabila Anda sudah merajut proyek ASP.NET dan sekadar ingin "menyuntikkan" tema tanpa membongkar logika backend berjalan, ini caranya:</p>
-
-                    <div class="step-card">
-                        <h5 class="fw-bold mb-3"><span class="step-number">A</span> Suntik Tag CSS di Head</h5>
-                        <p class="text-muted mb-2">Buka file <code>Views/Shared/_Layout.cshtml</code> bawaan Anda. Timpa style head Anda dengan referensi di bawah ini:</p>
-                        <div class="code-block html-block">
-&lt;!-- Bootstrap 5.3 CDN --&gt;
-&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" /&gt;
-&lt;!-- FontAwesome 6.4 CDN --&gt;
-&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;
-&lt;!-- Custom Kuda Theme --&gt;
-&lt;link rel="stylesheet" href="~/css/theme.css" /&gt;
-&lt;link rel="stylesheet" href="~/css/components.css" /&gt;
-                        </div>
-                    </div>
-
-                    <div class="step-card border-warning">
-                        <h5 class="fw-bold mb-3"><span class="step-number bg-warning text-dark">B</span> Sesuaikan Struktur Flexbox</h5>
-                        <p class="text-muted mb-2">Template ini mewajibkan struktur <code>.wrapper</code> dan <code>.dashboard-container</code> agar pergerakan sidebar berfungsi mulus. <strong>Jangan menaruh RenderBody langsung di body</strong>. Posisikan seperti ini:</p>
-                        <div class="code-block html-block">
-&lt;div class="wrapper"&gt;
-    &lt;div class="dashboard-container"&gt;
-
-        &lt;!-- Suntik Komponen Sidebar --&gt;
-        &lt;partial name="_Sidebar" /&gt;
-
-        &lt;div class="main-content"&gt;
-            &lt;!-- Suntik Komponen Topbar --&gt;
-            &lt;partial name="_Header" /&gt;
-
-            &lt;main class="pb-3" style="flex:1;"&gt;
-                @@RenderBody()
-            &lt;/main&gt;
-        &lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-                        </div>
-                    </div>
-
-                    <div class="step-card text-success border-success">
-                        <h5 class="fw-bold mb-3"><span class="step-number bg-success">C</span> Lengkapi Javascript Penutup</h5>
-                        <p class="text-muted mb-2">Tepat sebelum tag penutup <code>&lt;/body&gt;</code>, load logika JS intinya:</p>
-                        <div class="code-block html-block">
-&lt;script src="https://code.jquery.com/jquery-3.7.0.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
-&lt;!-- Paste kode skrip Sidebar Toggle / LocalStorage Theme di sini --&gt;
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="pills-cdn" role="tabpanel" aria-labelledby="pills-cdn-tab">
-                    <div class="alert alert-info border-0 shadow-sm align-items-center d-flex mb-4">
-                        <i class="fas fa-server fa-2x pt-1 me-3 opacity-75 align-self-start"></i>
-                        <div>
-                            <strong>Iya, Tentu Saja Bisa!</strong><br/>
-                            Ketika aplikasi Dashboard Web Kuda ini telah <em>deploy</em> ke dalam peladen publik (misalnya: <code>https://kuda-dashboard.com</code>), Anda secara langsung mampu menerapkan pewarnaan CSS ini ke dalam platform eksternal lain (PHP Statis, Aplikasi Vue/React, dll) tanpa buang-buang waktu mengkopi file kasarnya.
-                        </div>
-                    </div>
-
-                    <div class="step-card border-primary">
-                        <h5 class="fw-bold mb-3"><span class="step-number bg-primary">1</span> CSS Imports via URL Penuh</h5>
-                        <p class="text-muted mb-2">Taruh saja baris tautan <code>&lt;link&gt;</code> berikut di dalam kepala tag HTML <code>&lt;head&gt;</code> di web lain yang anda kerjakan.</p>
-                        <div class="code-block html-block">
-&lt;!-- Anggap "https://kuda-dashboard.com" adalah URL hosting Anda --&gt;
-
-&lt;link rel="stylesheet" href="https://kuda-dashboard.com/css/theme.css" /&gt;
-
-&lt;link rel="stylesheet" href="https://kuda-dashboard.com/css/components.css" /&gt;
-                        </div>
-                    </div>
-
-                    <div class="step-card">
-                        <h5 class="fw-bold text-success mb-3"><span class="step-number bg-success">2</span> Rintangan CORS Font Teratasi!</h5>
-                        <p class="text-muted mb-2">Masalah utama dalam memanggil tautan aset eksternal biasanya terletak pada file ber-eksistensi Font (*WOFF2*) yang dijegal oleh parameter keamanan browser. <strong>Lupakan soal itu!</strong> Sistem landasan di <code>Program.cs</code> pada projek template ini sudah mendayagunakan fitur pelemahan izin CORS. Hasilnya, Chrome atau Safari tidak akan memblokir download Font KalbeGeometric sama sekali!</p>
-                        <div class="code-block csharp-block text-success border-success bg-success bg-opacity-10">
-// Bukti konfigurasi otomatis CDN statis pada server ASP.Net:
-app.UseStaticFiles(new StaticFileOptions {
-    OnPrepareResponse = ctx => {
-        ctx.Context.Response.Headers.Append("Access-Control-Allow-Origin", "*");
-    }
-});
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
+<div class="hero-banner">
+    <h1 class="hero-title">Kuda Kit Developer Hub</h1>
+    <p class="hero-subtitle">Membangun dashboard enterprise kelas industri dengan satu bundle CDN. Cepat, Berwarna, dan Siap Produksi.</p>
 </div>
+
+<div class="doc-container">
+    
+    <aside class="sidebar-nav">
+        <div class="nav-group-label">Memulai</div>
+        <a href="#quickstart" class="doc-link active"><i class="fas fa-bolt"></i> Quick Start</a>
+        <a href="#dependencies" class="doc-link"><i class="fas fa-layer-group"></i> Ecosystem</a>
+        
+        <div class="nav-group-label">Panduan Integrasi</div>
+        <a href="#setup" class="doc-link"><i class="fas fa-code"></i> Setup Script</a>
+        <a href="#layout" class="doc-link"><i class="fas fa-desktop"></i> Core Layout</a>
+        
+        <div class="nav-group-label">API Reference</div>
+        <a href="#api-datatable" class="doc-link"><i class="fas fa-table"></i> DataTables</a>
+        <a href="#api-charts" class="doc-link"><i class="fas fa-chart-line"></i> ApexCharts</a>
+        <a href="#api-maps" class="doc-link"><i class="fas fa-map"></i> Global Maps</a>
+    </aside>
+
+    <main class="content-wrapper">
+
+        <section id="quickstart" class="section-card">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-wind"></i></div>
+                <h2 class="section-title">Metode Integrasi Cepat</h2>
+            </div>
+            <p class="text-muted text-lg mb-4">Lupakan install puluhan npm packages. Kuda Kit memberikan semua yang Anda butuhkan (Bootstrap, DataTables, Apex, Leaflet, Select2) dalam **dua baris kode**.</p>
+            
+            <div class="step-box">
+                <span class="step-tag">Styles</span>
+                <p class="small text-muted mb-3 fw-semibold">Tambahkan di dalam tag <code>&lt;head&gt;</code>:</p>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">HTML</span>
+                        <button class="btn-copy">Copy</button>
+                    </div>
+                    <pre><code>&lt;<span class="t-tag">link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"/kuda-cdn/css/kuda-kit.css"</span>&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <span class="step-tag">Scripts</span>
+                <p class="small text-muted mb-3 fw-semibold">Tambahkan di akhir tag <code>&lt;body&gt;</code> sebelum penutup:</p>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">HTML</span>
+                        <button class="btn-copy">Copy</button>
+                    </div>
+                    <pre><code>&lt;<span class="t-tag">script</span> <span class="t-attr">src</span>=<span class="t-val">"/kuda-cdn/js/kuda-kit.js"</span>&gt;&lt;/<span class="t-tag">script</span>&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="dependencies" class="section-card">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-cubes"></i></div>
+                <h2 class="section-title">Ecosystem Bundle</h2>
+            </div>
+            <p class="text-muted mb-4">Setiap bundle Kuda Kit menyertakan library standar industri versi terbaru yang sudah di-bundle khusus untuk performa maksimal.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-item"><i class="fab fa-bootstrap"></i> Bootstrap 5.3.2</div>
+                <div class="feature-item"><i class="fas fa-table"></i> DataTables 1.13</div>
+                <div class="feature-item"><i class="fas fa-chart-area"></i> ApexCharts JS</div>
+                <div class="feature-item"><i class="fas fa-map"></i> Leaflet v1.9</div>
+                <div class="feature-item"><i class="fas fa-list"></i> Select2 Full</div>
+                <div class="feature-item"><i class="fas fa-code"></i> CodeMirror</div>
+                <div class="feature-item"><i class="fas fa-font-awesome"></i> FontAwesome 6</div>
+                <div class="feature-item"><i class="fas fa-arrows-to-dot"></i> Sortable JS</div>
+            </div>
+        </section>
+
+        <section id="layout" class="section-card">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-object-group"></i></div>
+                <h2 class="section-title">Anatomi Layout Kuda</h2>
+            </div>
+            <p class="text-muted mb-4">Kuda Kit bekerja secara optimal dengan struktur Flexbox wrapper berikut untuk menjaga sidebar tetap responsif dan transisi dark mode yang halus.</p>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">index.html</span>
+                    <button class="btn-copy">Copy Structure</button>
+                </div>
+                <pre><code>&lt;<span class="t-tag">body</span>&gt;
+    &lt;<span class="t-tag">div</span> <span class="t-attr">class</span>=<span class="t-val">"dashboard-container"</span>&gt;
+        
+        <span class="t-cm">&lt;!-- SIDEBAR NAVIGATION --&gt;</span>
+        &lt;<span class="t-tag">div</span> <span class="t-attr">class</span>=<span class="t-val">"sidebar-wrapper"</span>&gt;
+             <span class="t-cm">&lt;!-- ... sidebar content ... --&gt;</span>
+        &lt;/<span class="t-tag">div</span>&gt;
+
+        <span class="t-cm">&lt;!-- MAIN APP AREA --&gt;</span>
+        &lt;<span class="t-tag">main</span> <span class="t-attr">class</span>=<span class="t-val">"main-content"</span>&gt;
+            &lt;<span class="t-tag">div</span> <span class="t-attr">class</span>=<span class="t-val">"topbar"</span>&gt;...&lt;/<span class="t-tag">div</span>&gt;
+            &lt;<span class="t-tag">div</span> <span class="t-attr">class</span>=<span class="t-val">"content-area"</span>&gt;
+                 <span class="t-cm">&lt;!-- Halaman Anda Disini --&gt;</span>
+            &lt;/<span class="t-tag">div</span>&gt;
+        &lt;/<span class="t-tag">main</span>&gt;
+
+    &lt;/<span class="t-tag">div</span>&gt;
+&lt;/<span class="t-tag">body</span>&gt;</code></pre>
+            </div>
+        </section>
+
+        <section id="api-datatable" class="section-card">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-table-list"></i></div>
+                <h2 class="section-title">KudaKit: DataTables</h2>
+            </div>
+            <p class="text-muted mb-4">Gunakan helper <code>KudaKit.initDataTable()</code> untuk mendapatkan fitur filter kolom otomatis yang sudah disesuaikan dengan desain Kuda.</p>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">JavaScript</span>
+                </div>
+<pre><code><span class="t-cm">// Inisialisasi tabel dengan ID 'myTable'</span>
+KudaKit.initDataTable('myTable', {
+    pageLength: 25,
+    order: [[0, 'desc']]
+});</code></pre>
+            </div>
+            
+            <div class="alert alert-info border-0 mt-3 d-flex align-items-start gap-3" style="background: rgba(14, 165, 233, 0.1); color: #0ea5e9;">
+                <i class="fas fa-info-circle mt-1"></i>
+                <div class="small fw-semibold">Tips: Tambahkan tag attribute data-search="true" pada tag TH di thead Anda untuk mengaktifkan shortcut filter pencarian khusus pada kolom tersebut.</div>
+            </div>
+        </section>
+
+        <section id="api-charts" class="section-card">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-chart-pie"></i></div>
+                <h2 class="section-title">KudaKit: ApexCharts</h2>
+            </div>
+            <p class="text-muted mb-4">Rendering grafik yang mengikuti state dark/light mode secara dinamis melalui interface <code>initChart()</code>.</p>
+            <div class="code-container">
+                <div class="code-header"><span class="code-lang">JavaScript</span></div>
+<pre><code>KudaKit.initChart('#salesChart', {
+    chart: { type: 'area', height: 400 },
+    series: [{ name: 'Sales', data: [31, 40, 28, 51, 42] }],
+    xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] }
+});</code></pre>
+            </div>
+        </section>
+
+        <footer class="py-5 text-center text-muted">
+            <p class="small">&copy; 2026 Kuda Admin Framework. Designed for Performance & Aesthetics.</p>
+        </footer>
+
+    </main>
+</div>
+
+@section Scripts {
+<script>
+    // Simple Smooth Scroll Logic for Sidebar
+    document.querySelectorAll('.doc-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            document.querySelectorAll('.doc-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Observer to track current section
+    const observer = new IntersectionObserver((sections) => {
+        sections.forEach(section => {
+            if (section.isIntersecting) {
+                const id = section.target.getAttribute('id');
+                const link = document.querySelector(`.doc-link[href="#${id}"]`);
+                if (link) {
+                    document.querySelectorAll('.doc-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
+</script>
+}

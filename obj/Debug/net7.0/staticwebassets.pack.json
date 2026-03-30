@@ -349,6 +349,154 @@
       "PackagePath": "staticwebassets/kuda-starter.html"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/bootstrap/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/chartjs/chart.umd.js",
+      "PackagePath": "staticwebassets/lib/chartjs/chart.umd.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/codemirror.min.css",
+      "PackagePath": "staticwebassets/lib/codemirror/codemirror.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/codemirror.min.js",
+      "PackagePath": "staticwebassets/lib/codemirror/codemirror.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/dracula.min.css",
+      "PackagePath": "staticwebassets/lib/codemirror/dracula.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/mode/clike.min.js",
+      "PackagePath": "staticwebassets/lib/codemirror/mode/clike.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/mode/css.min.js",
+      "PackagePath": "staticwebassets/lib/codemirror/mode/css.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/mode/htmlmixed.min.js",
+      "PackagePath": "staticwebassets/lib/codemirror/mode/htmlmixed.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/mode/javascript.min.js",
+      "PackagePath": "staticwebassets/lib/codemirror/mode/javascript.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/codemirror/mode/xml.min.js",
+      "PackagePath": "staticwebassets/lib/codemirror/mode/xml.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/css/buttons.dataTables.min.css",
+      "PackagePath": "staticwebassets/lib/datatables/css/buttons.dataTables.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/css/dataTables.bootstrap5.min.css",
+      "PackagePath": "staticwebassets/lib/datatables/css/dataTables.bootstrap5.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/css/fixedColumns.dataTables.min.css",
+      "PackagePath": "staticwebassets/lib/datatables/css/fixedColumns.dataTables.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/css/jquery.dataTables.min.css",
+      "PackagePath": "staticwebassets/lib/datatables/css/jquery.dataTables.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/css/responsive.dataTables.min.css",
+      "PackagePath": "staticwebassets/lib/datatables/css/responsive.dataTables.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/css/select.bootstrap5.min.css",
+      "PackagePath": "staticwebassets/lib/datatables/css/select.bootstrap5.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/css/select.dataTables.min.css",
+      "PackagePath": "staticwebassets/lib/datatables/css/select.dataTables.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/js/jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/js/jquery.dataTables.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/buttons.html5.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/buttons.html5.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/buttons.print.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/buttons.print.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/dataTables.buttons.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/dataTables.buttons.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/dataTables.fixedColumns.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/dataTables.fixedColumns.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/dataTables.responsive.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/dataTables.responsive.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/dataTables.select.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/dataTables.select.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/jszip.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/jszip.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/pdfmake.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/pdfmake.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/vfs_fonts.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/vfs_fonts.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/datatables/plugins/xlsx.full.min.js",
+      "PackagePath": "staticwebassets/lib/datatables/plugins/xlsx.full.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/font-awesome/css/all.min.css",
+      "PackagePath": "staticwebassets/lib/font-awesome/css/all.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/font-awesome/webfonts/fa-brands-400.woff2",
+      "PackagePath": "staticwebassets/lib/font-awesome/webfonts/fa-brands-400.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/font-awesome/webfonts/fa-regular-400.woff2",
+      "PackagePath": "staticwebassets/lib/font-awesome/webfonts/fa-regular-400.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/font-awesome/webfonts/fa-solid-900.woff2",
+      "PackagePath": "staticwebassets/lib/font-awesome/webfonts/fa-solid-900.woff2"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/frappe-gantt/frappe-gantt.css",
+      "PackagePath": "staticwebassets/lib/frappe-gantt/frappe-gantt.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/frappe-gantt/frappe-gantt.min.js",
+      "PackagePath": "staticwebassets/lib/frappe-gantt/frappe-gantt.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/jquery/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/jquery.min.js"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet-routing-machine/leaflet-routing-machine.css",
       "PackagePath": "staticwebassets/lib/leaflet-routing-machine/leaflet-routing-machine.css"
     },
@@ -357,12 +505,40 @@
       "PackagePath": "staticwebassets/lib/leaflet-routing-machine/leaflet-routing-machine.min.js"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/css/leaflet-routing-machine.css",
+      "PackagePath": "staticwebassets/lib/leaflet/css/leaflet-routing-machine.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/css/leaflet.css",
+      "PackagePath": "staticwebassets/lib/leaflet/css/leaflet.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/images/marker-icon.png",
+      "PackagePath": "staticwebassets/lib/leaflet/images/marker-icon.png"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/images/marker-shadow.png",
+      "PackagePath": "staticwebassets/lib/leaflet/images/marker-shadow.png"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/leaflet.css",
       "PackagePath": "staticwebassets/lib/leaflet/leaflet.css"
     },
     {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/leaflet/leaflet.js",
       "PackagePath": "staticwebassets/lib/leaflet/leaflet.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/select2/css/select2.min.css",
+      "PackagePath": "staticwebassets/lib/select2/css/select2.min.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/select2/js/select2.min.js",
+      "PackagePath": "staticwebassets/lib/select2/js/select2.min.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/sortablejs/Sortable.min.js",
+      "PackagePath": "staticwebassets/lib/sortablejs/Sortable.min.js"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
