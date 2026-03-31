@@ -85,67 +85,86 @@
 </button>
 
 <script>
-document.getElementById('lv1-toggle-pw').addEventListener('click', function () {
-        const input = document.getElementById('lv1-password');
-        const icon  = document.getElementById('lv1-eye-icon');
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.replace('fa-eye-slash', 'fa-eye');
-        } else {
-            input.type = 'password';
-            icon.classList.replace('fa-eye', 'fa-eye-slash');
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('lv1-toggle-pw');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function () {
+                const input = document.getElementById('lv1-password');
+                const icon  = document.getElementById('lv1-eye-icon');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.replace('fa-eye-slash', 'fa-eye');
+                } else {
+                    input.type = 'password';
+                    icon.classList.replace('fa-eye', 'fa-eye-slash');
+                }
+            });
+        }
+
+        const captchaInput = document.getElementById('lv1-captcha-input');
+        if (captchaInput) {
+            captchaInput.addEventListener('input', function () {
+                const val = this.value.trim();
+                if (val.length === 6) verifyCaptcha();
+                else setStatus('', '');
+            });
+
+            captchaInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') verifyCaptcha();
+            });
         }
     });
 
     function refreshCaptcha() {
         const img = document.getElementById('lv1-captcha-img');
+        if (!img) return;
         img.style.opacity = '0.4';
         img.src = '/Captcha/Image?t=' + Date.now();
-        img.onload = () => img.style.opacity = '1';
-        document.getElementById('lv1-captcha-input').value = '';
+        img.onload = function() { img.style.opacity = '1'; };
+        const input = document.getElementById('lv1-captcha-input');
+        if (input) input.value = '';
         setStatus('', '');
     }
 
     function setStatus(msg, cls) {
         const el = document.getElementById('lv1-captcha-status');
+        if (!el) return;
         el.textContent = msg;
         el.className = 'lv1-captcha-status ' + cls;
     }
 
-    document.getElementById('lv1-captcha-input').addEventListener('input', function () {
-        const val = this.value.trim();
-        if (val.length === 6) verifyCaptcha();
-        else setStatus('', '');
-    });
-
-    document.getElementById('lv1-captcha-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') verifyCaptcha();
-    });
-
     async function verifyCaptcha() {
-        const code = document.getElementById('lv1-captcha-input').value.trim();
+        const input = document.getElementById('lv1-captcha-input');
+        if (!input) return false;
+        const code = input.value.trim();
         if (!code) { setStatus('Please enter the code above.', 'err'); return false; }
 
-        const res  = await fetch('/Captcha/Validate', {
-            method : 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body   : JSON.stringify({ code })
-        });
-        const json = await res.json();
+        try {
+            const res  = await fetch('/Captcha/Validate', {
+                method : 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body   : JSON.stringify({ code })
+            });
+            const json = await res.json();
 
-        if (json.success) {
-            setStatus('✓ Verified!', 'ok');
-            return true;
-        } else {
-            setStatus('✗ Wrong code — try again.', 'err');
-            document.getElementById('lv1-captcha-input').value = '';
-            refreshCaptcha();
+            if (json.success) {
+                setStatus('✓ Verified!', 'ok');
+                return true;
+            } else {
+                setStatus('✗ Wrong code — try again.', 'err');
+                input.value = '';
+                refreshCaptcha();
+                return false;
+            }
+        } catch (e) {
+            console.error('Captcha verification failed', e);
             return false;
         }
     }
 
     async function submitLogin() {
         const btn = document.getElementById('lv1-submit-btn');
+        if (!btn) return;
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Signing in...';
 
@@ -156,32 +175,31 @@ document.getElementById('lv1-toggle-pw').addEventListener('click', function () {
 
     /* --- COPY HTML KIT-READY SNIPPET --- */
     function copyLoginV1HTML() {
-        const htmlContent = document.querySelector('.lv1-page').outerHTML;
+        const pageEl = document.querySelector('.lv1-page');
+        if (!pageEl) return;
+        const htmlContent = pageEl.outerHTML;
 
-        const fullSnippet = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genius - Login V1 UI</title>
-    
-    <!-- KUDA KIT BUNDLE (Bootstrap, FontAwesome, and Brand Styles) -->
-    <link rel="stylesheet" href="./css/kuda-kit.css?v=1.6">
-
-    <style>
-        body { margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif; }
-    </style>
-</head>
-<body>
-
-${htmlContent}
-
-<script src="/lib/bootstrap/js/bootstrap.bundle.min.js"><\/script>
-
-</body>
-</html>
-        `.trim();
+        const fullSnippet = [
+            '<!DOCTYPE html>',
+            '<html lang="en">',
+            '<head>',
+            '    <meta charset="UTF-8">',
+            '    <meta name="viewport" content="width=device-width, initial-scale=1.0">',
+            '    <title>Genius - Login V1 UI</title>',
+            '    <link rel="stylesheet" href="/css/kuda-kit.css">',
+            '    <style>',
+            '        body { margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; font-family: sans-serif; }',
+            '    </style>',
+            '</head>',
+            '<body>',
+            '',
+            htmlContent,
+            '',
+            '<script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></scr' + 'ipt>',
+            '',
+            '</body>',
+            '</html>'
+        ].join('\n');
 
         copyToClipboard(fullSnippet);
     }
@@ -194,16 +212,18 @@ ${htmlContent}
         document.execCommand('copy');
         document.body.removeChild(tempInput);
 
-        // Animated Success Feedback
         const btn = document.querySelector('.btn-copy-code');
-        const originalHTML = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard!';
-        btn.style.background = '#3b9d82';
-        
-        setTimeout(() => {
-            btn.innerHTML = originalHTML;
-            btn.style.background = '#1a202c';
-        }, 2500);
+        if (btn) {
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard!';
+            btn.style.background = '#3b9d82';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.background = '#1a202c';
+            }, 2500);
+        }
     }
-
 </script>
+
+

@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>mrzzx2v4hn</Fingerprint>
-      <Integrity>Lmfa8UDlr6aNX7rrmloq6rwvcKI5Osh4qPCVIb+Bpjg=</Integrity>
+      <Fingerprint>x284sw3mev</Fingerprint>
+      <Integrity>6c3lM/c37iNUC2VtGrLSxd9pDVnqq0gvLZe1whptEZo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\kuda-kit.css'))</OriginalItemSpec>
