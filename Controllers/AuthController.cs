@@ -16,5 +16,11 @@ namespace Kuda.Controllers
             {
                 return View();
             }
+
+            [HttpGet("/Auth/LoginV2")]
+            public IActionResult LoginV2()
+            {
+                return View();
+            }
         }
 }

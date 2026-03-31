@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q8Z+F9dH2h/cLWEP5u53srs1k8U+k8bgc9dJ5tkB6Mg=",
+  "Hash": "lsYtPt70FltAOgVOH7wWEBXVCcUFxWRXVeI4ioHv7qQ=",
   "Source": "Kuda",
   "BasePath": "_content/Kuda",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "b2x5qrjg8m",
-      "Integrity": "XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0=",
+      "Fingerprint": "ucuy3wmeum",
+      "Integrity": "0u680NamIIbPms7FUfdsI2YHioUccSn7IS0XBZnCJsw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/components.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xtbp0vxgyq",
-      "Integrity": "JfRabAVOqLtY4eO2LYPX61qFiUlvmFDJY+tseUTOi0w=",
+      "Fingerprint": "mrzzx2v4hn",
+      "Integrity": "Lmfa8UDlr6aNX7rrmloq6rwvcKI5Osh4qPCVIb+Bpjg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/kuda-kit.css"
@@ -2854,51 +2854,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/components.b2x5qrjg8m.css",
-      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "66117"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 09:10:43 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "b2x5qrjg8m"
-        },
-        {
-          "Name": "label",
-          "Value": "css/components.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0="
-        }
-      ]
-    },
-    {
       "Route": "css/components.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
       "Selectors": [],
@@ -2909,7 +2864,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "66117"
+          "Value": "70631"
         },
         {
           "Name": "Content-Type",
@@ -2917,11 +2872,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0=\""
+          "Value": "\"0u680NamIIbPms7FUfdsI2YHioUccSn7IS0XBZnCJsw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 09:10:43 GMT"
+          "Value": "Sun, 29 Mar 2026 12:54:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2931,7 +2886,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-XfPfcPtk2oeUfbQ6J61Khq5kmBNKwpX+zbkTU1h24W0="
+          "Value": "sha256-0u680NamIIbPms7FUfdsI2YHioUccSn7IS0XBZnCJsw="
+        }
+      ]
+    },
+    {
+      "Route": "css/components.ucuy3wmeum.css",
+      "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "70631"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0u680NamIIbPms7FUfdsI2YHioUccSn7IS0XBZnCJsw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Mar 2026 12:54:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ucuy3wmeum"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0u680NamIIbPms7FUfdsI2YHioUccSn7IS0XBZnCJsw="
         }
       ]
     },
@@ -2946,7 +2946,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "75180"
+          "Value": "90540"
         },
         {
           "Name": "Content-Type",
@@ -2954,11 +2954,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JfRabAVOqLtY4eO2LYPX61qFiUlvmFDJY+tseUTOi0w=\""
+          "Value": "\"Lmfa8UDlr6aNX7rrmloq6rwvcKI5Osh4qPCVIb+Bpjg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 29 Mar 2026 07:08:22 GMT"
+          "Value": "Mon, 30 Mar 2026 16:50:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2968,12 +2968,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JfRabAVOqLtY4eO2LYPX61qFiUlvmFDJY+tseUTOi0w="
+          "Value": "sha256-Lmfa8UDlr6aNX7rrmloq6rwvcKI5Osh4qPCVIb+Bpjg="
         }
       ]
     },
     {
-      "Route": "css/kuda-kit.xtbp0vxgyq.css",
+      "Route": "css/kuda-kit.mrzzx2v4hn.css",
       "AssetFile": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-kit.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2983,7 +2983,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "75180"
+          "Value": "90540"
         },
         {
           "Name": "Content-Type",
@@ -2991,11 +2991,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JfRabAVOqLtY4eO2LYPX61qFiUlvmFDJY+tseUTOi0w=\""
+          "Value": "\"Lmfa8UDlr6aNX7rrmloq6rwvcKI5Osh4qPCVIb+Bpjg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 29 Mar 2026 07:08:22 GMT"
+          "Value": "Mon, 30 Mar 2026 16:50:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3005,7 +3005,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xtbp0vxgyq"
+          "Value": "mrzzx2v4hn"
         },
         {
           "Name": "label",
@@ -3013,7 +3013,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JfRabAVOqLtY4eO2LYPX61qFiUlvmFDJY+tseUTOi0w="
+          "Value": "sha256-Lmfa8UDlr6aNX7rrmloq6rwvcKI5Osh4qPCVIb+Bpjg="
         }
       ]
     },
@@ -9928,7 +9928,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
+          "Value": "Mon, 30 Mar 2026 17:11:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9965,7 +9965,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Mar 2026 02:46:42 GMT"
+          "Value": "Mon, 30 Mar 2026 17:11:16 GMT"
         },
         {
           "Name": "Cache-Control",

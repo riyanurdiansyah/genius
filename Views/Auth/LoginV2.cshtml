@@ -1,0 +1,292 @@
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewData["Title"] = "Workspace Login";
+}
+
+@section Styles {
+    <!-- Login V2 Styles moved to kuda-kit.css -->
+}
+
+<div class="lv2-page">
+    
+    <!-- Decorative Graphics -->
+    <div class="shape-circle"></div>
+    <div class="shape-circle-2"></div>
+    <div class="shape-circle-msg"></div>
+    
+
+
+    <!-- Main Graphic Content -->
+    <main class="lv2-main">
+        
+        <div class="lv2-hero">
+            <div class="hero-top">
+                <h1>44</h1>
+                <p>Years of<br>Nutrition Excellence</p>
+            </div>
+            
+            <div class="hero-badge">Enterprise Solutions</div>
+
+            <h2 class="hero-title" style="margin-bottom: 24px;">
+                The Kuda.<br>
+                <span class="hero-outline">Admin Workspace</span>
+            </h2>
+        </div>
+
+        <!-- The White Login Form -->
+        <div class="lv2-form-wrapper">
+            <div class="lv1-heading">
+                <h2>Hello again! 👋</h2>
+                <p>Sign in to continue to your workspace</p>
+            </div>
+
+            <div class="lv2-input-wrap">
+                <label class="lv2-label">Username</label>
+                <input type="email" id="email" class="lv2-input" value="admin@kuda.com" autocomplete="email">
+            </div>
+
+            <div class="lv2-input-wrap">
+                <label class="lv2-label">Password</label>
+                <div class="lv2-input-inner">
+                    <input type="password" id="password" class="lv2-input" placeholder="Enter Passcode" autocomplete="current-password" style="padding-right: 48px;">
+                    <button type="button" id="toggle-pw" class="lv2-toggle-btn" tabindex="-1">
+                        <i class="fas fa-eye-slash" id="eye-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mandatory Verification logic styled perfectly -->
+            <div class="lv2-input-wrap" style="margin-bottom: 16px;">
+                <div class="lv2-captcha-row">
+                    <div class="captcha-box" onclick="refreshCaptcha()" title="Refresh Security Sequence">
+                        <img id="captcha-img" src="/Captcha/Image" alt="CAPTCHA">
+                    </div>
+                    <input type="text" id="captcha-input" class="lv2-input" placeholder="Security Code" maxlength="6" autocomplete="off" style="text-transform: uppercase;">
+                </div>
+                <div class="lv2-captcha-status" id="captcha-status"></div>
+            </div>
+
+            <p class="lv2-terms">By login, you agree to our <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a></p>
+
+            <div class="form-actions">
+                <button class="btn-primary-login" type="button" id="submit-btn" onclick="submitLogin()">
+                    Login Now <i class="fas fa-arrow-right ms-2" style="font-size: 14px;"></i>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Terms & Conditions -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" data-bs-backdrop="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 20px; border: none; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);">
+                <div class="modal-header" style="background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 24px 32px;">
+                    <h5 class="modal-title" id="termsModalLabel" style="font-weight: 800; color: var(--color-1, #051F20); letter-spacing: -0.5px;">Terms & Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="termsBody" style="padding: 32px; font-size: 15px; line-height: 1.7; color: #4b5563; max-height: 45vh; overflow-y: auto;">
+                    <h6 style="color: var(--color-1, #051F20); font-weight: 700; margin-bottom: 16px;">1. Digital Workspace Access</h6>
+                    <p>Access to the Kuda Admin Workspace is strictly reserved for authorized personnel. Unauthorized attempts to access, manipulate, or extract data from this enterprise portal will result in immediate suspension and may lead to legal action.</p>
+                    
+                    <h6 style="color: var(--color-1, #051F20); font-weight: 700; margin-top: 24px; margin-bottom: 16px;">2. Data Privacy & Confidentiality</h6>
+                    <p>Users are expected to handle all corporate information with the highest degree of confidentiality. Any data shared within this portal is protected by our global privacy standards and must not be disclosed outside of the platform without proper authorization.</p>
+                    
+                    <h6 style="color: var(--color-1, #051F20); font-weight: 700; margin-top: 24px; margin-bottom: 16px;">3. Security Compliance</h6>
+                    <p>Passwords and security codes must remain confidential. You are responsible for maintaining the security of your account and for all activities that occur under your session. Multi-factor authentication is recommended for all strategic access points.</p>
+
+                    <h6 style="color: var(--color-1, #051F20); font-weight: 700; margin-top: 24px; margin-bottom: 16px;">4. Authorized Implementation</h6>
+                    <p>The implementation of this software solution is subject to continuous auditing. By accessing this platform, you acknowledge that all actions performed within the workspace are logged for debugging and security verification purposes.</p>
+
+                    <h2 style="height: 20px;"></h2> <!-- Spacer for scroll bottom trigger -->
+                </div>
+                <div class="modal-footer" style="padding: 20px 32px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: flex-start;">
+                    <div class="form-check mb-3" style="font-weight: 600; font-size: 14px; opacity: 0.5;" id="agreeCheckWrap">
+                        <input class="form-check-input" type="checkbox" id="termsAgreeCheck" disabled>
+                        <label class="form-check-label" for="termsAgreeCheck">
+                            I have read and agree to all the Terms and Conditions above.
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="btnAcceptTerms" disabled data-bs-dismiss="modal" style="background: var(--primary, #3b9d82); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; width: 100%; opacity: 0.5;">I Confirm My Acceptance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Restored -->
+    <footer class="lv2-footer">
+        <div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Floating Copy Button -->
+<button class="btn-copy-code" onclick="copyLoginV2HTML()">
+    <i class="fas fa-code"></i> Copy HTML V2
+</button>
+
+@section Scripts {
+    <script>
+        document.getElementById('toggle-pw').addEventListener('click', function () {
+            const input = document.getElementById('password');
+            const icon  = document.getElementById('eye-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            }
+        });
+
+        function refreshCaptcha() {
+            const img = document.getElementById('captcha-img');
+            img.style.opacity = '0.4';
+            img.src = '/Captcha/Image?t=' + Date.now();
+            img.onload = () => img.style.opacity = '1';
+            document.getElementById('captcha-input').value = '';
+            setStatus('', '');
+        }
+
+        function setStatus(msg, cls) {
+            const el = document.getElementById('captcha-status');
+            el.textContent = msg;
+            el.className = 'lv2-captcha-status ' + cls;
+        }
+
+        document.getElementById('captcha-input').addEventListener('input', function () {
+            const val = this.value.trim();
+            if (val.length === 6) verifyCaptcha();
+            else setStatus('', '');
+        });
+
+        document.getElementById('captcha-input').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                verifyCaptcha();
+            }
+        });
+
+        /* Terms Modal Logic */
+        const termsBody = document.getElementById('termsBody');
+        const termsCheck = document.getElementById('termsAgreeCheck');
+        const termsCheckWrap = document.getElementById('agreeCheckWrap');
+        const btnAccept = document.getElementById('btnAcceptTerms');
+
+        if (termsBody) {
+            termsBody.addEventListener('scroll', function() {
+                // Check if user has reached approximately the bottom
+                if (termsBody.scrollHeight - (termsBody.scrollTop + termsBody.clientHeight) <= 50) {
+                    termsCheck.disabled = false;
+                    termsCheckWrap.style.opacity = '1';
+                    termsCheckWrap.style.cursor = 'pointer';
+                }
+            });
+        }
+
+        if (termsCheck) {
+            termsCheck.addEventListener('change', function() {
+                if (this.checked) {
+                    btnAccept.disabled = false;
+                    btnAccept.style.opacity = '1';
+                } else {
+                    btnAccept.disabled = true;
+                    btnAccept.style.opacity = '0.5';
+                }
+            });
+        }
+
+        async function verifyCaptcha() {
+            const code = document.getElementById('captcha-input').value.trim();
+            if (!code) { setStatus('Code is required.', 'err'); return false; }
+
+            try {
+                const res = await fetch('/Captcha/Validate', {
+                    method : 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body   : JSON.stringify({ code })
+                });
+                const json = await res.json();
+
+                if (json.success) {
+                    setStatus('✓ Validated.', 'ok');
+                    return true;
+                } else {
+                    setStatus('✗ Invalid code.', 'err');
+                    document.getElementById('captcha-input').value = '';
+                    refreshCaptcha();
+                    return false;
+                }
+            } catch (e) {
+                 setStatus('✗ Server error.', 'err');
+                 return false;
+            }
+        }
+
+        async function submitLogin() {
+            const btn = document.getElementById('submit-btn');
+            const originalContent = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+            setTimeout(() => {
+                window.location.href = '/Home/Index';
+            }, 800);
+        }
+
+    /* --- COPY HTML KIT-READY SNIPPET --- */
+    function copyLoginV2HTML() {
+        // Extract core HTML structure (page div now includes shapes)
+        const htmlContent = document.querySelector('.lv2-page').outerHTML;
+
+        const fullSnippet = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genius - Login V2 UI</title>
+
+<!-- KUDA KIT BUNDLE (Bootstrap, FontAwesome, and Brand Styles) -->
+<link rel="stylesheet" href="./css/kuda-kit.css?v=1.6">
+
+<style>
+    body { margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif; }
+</style>
+</head>
+<body>
+
+${htmlContent}
+
+<!-- Bootstrap JS -->
+<script src="/lib/bootstrap/js/bootstrap.bundle.min.js"><\/script>
+
+</body>
+</html>
+        `.trim();
+
+        copyToClipboard(fullSnippet);
+    }
+
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Animated Success Feedback
+            const btn = document.querySelector('.btn-copy-code');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied V2 Code!';
+            btn.style.background = '#3b9d82';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.background = '#1a202c';
+            }, 2500);
+        }
+    </script>
+}

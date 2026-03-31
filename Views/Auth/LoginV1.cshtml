@@ -2,362 +2,12 @@
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
 
-<style>
-.lv1-page {
-        min-height: calc(100vh - 120px);
-        background: #e8ecf0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px 16px;
-        position: relative;
-        overflow: hidden;
-    }
+<div class="lv1-page">
+    <div class="lv1-blob lv1-blob-1"></div>
+    <div class="lv1-blob lv1-blob-2"></div>
+    <div class="lv1-blob lv1-blob-3"></div>
 
-    .lv1-blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(60px);
-        opacity: 0.18;
-        pointer-events: none;
-    }
-    .lv1-blob-1 {
-        width: 380px; height: 380px;
-        background: #3b9d82;
-        top: -80px; left: -80px;
-    }
-    .lv1-blob-2 {
-        width: 300px; height: 300px;
-        background: #6366f1;
-        bottom: -60px; right: -40px;
-    }
-    .lv1-blob-3 {
-        width: 200px; height: 200px;
-        background: #f59e0b;
-        top: 40%; right: 10%;
-    }
-
-    .lv1-card {
-        position: relative;
-        z-index: 2;
-        background: #e8ecf0;
-        border-radius: 30px;
-        padding: 48px 44px;
-        width: 100%;
-        max-width: 430px;
-        box-shadow:
-            16px 16px 40px rgba(163,177,198,0.6),
-            -16px -16px 40px rgba(255,255,255,0.85);
-    }
-
-    .lv1-brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 36px;
-    }
-    .lv1-logo {
-        width: 54px; height: 54px;
-        background: linear-gradient(145deg, #0d1f2d, #0a1628);
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow:
-            6px 6px 14px rgba(163,177,198,0.55),
-            -4px -4px 10px rgba(255,255,255,0.75),
-            inset 0 0 12px rgba(0,220,220,0.06);
-        flex-shrink: 0;
-    }
-    .lv1-logo img { width: 36px; height: 36px; object-fit: contain; }
-    .lv1-brand-text h5 {
-        font-weight: 900;
-        color: #2d3748;
-        font-size: 18px;
-        margin: 0;
-        letter-spacing: -0.3px;
-    }
-    .lv1-brand-text span {
-        font-size: 12px;
-        color: #a0aec0;
-        font-weight: 500;
-    }
-
-    .lv1-heading {
-        margin-bottom: 30px;
-    }
-    .lv1-heading h2 {
-        font-weight: 900;
-        color: #1a202c;
-        font-size: 28px;
-        letter-spacing: -0.5px;
-        margin-bottom: 6px;
-    }
-    .lv1-heading p {
-        color: #a0aec0;
-        font-size: 14px;
-        margin: 0;
-    }
-
-    .lv1-social-row {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 28px;
-    }
-    .lv1-social-btn {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 12px;
-        border: none;
-        border-radius: 14px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #4a5568;
-        cursor: pointer;
-        background: #e8ecf0;
-        box-shadow: 5px 5px 12px rgba(163,177,198,0.5), -5px -5px 12px rgba(255,255,255,0.8);
-        transition: all 0.2s ease;
-    }
-    .lv1-social-btn:hover {
-        box-shadow: 3px 3px 8px rgba(163,177,198,0.5), -3px -3px 8px rgba(255,255,255,0.8);
-        transform: translateY(1px);
-    }
-    .lv1-social-btn:active {
-        box-shadow: inset 3px 3px 8px rgba(163,177,198,0.5), inset -3px -3px 8px rgba(255,255,255,0.8);
-    }
-
-    .lv1-divider {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 24px;
-    }
-    .lv1-divider::before, .lv1-divider::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: #c8d0da;
-    }
-    .lv1-divider span {
-        font-size: 12px;
-        color: #a0aec0;
-        white-space: nowrap;
-        font-weight: 500;
-    }
-
-    .lv1-form-group {
-        margin-bottom: 20px;
-    }
-    .lv1-form-group label {
-        display: block;
-        font-size: 12px;
-        font-weight: 700;
-        color: #718096;
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        margin-bottom: 10px;
-    }
-    .lv1-input-wrap {
-        position: relative;
-    }
-    .lv1-input-icon {
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #a0aec0;
-        font-size: 14px;
-        pointer-events: none;
-    }
-    .lv1-input {
-        width: 100%;
-        padding: 14px 16px 14px 42px;
-        border: none;
-        border-radius: 14px;
-        font-size: 14px;
-        color: #2d3748;
-        background: #e8ecf0;
-        box-shadow: inset 5px 5px 12px rgba(163,177,198,0.55), inset -5px -5px 12px rgba(255,255,255,0.8);
-        transition: box-shadow 0.2s ease;
-        outline: none;
-    }
-    .lv1-input::placeholder { color: #b2bcc8; }
-    .lv1-input:focus {
-        box-shadow:
-            inset 5px 5px 12px rgba(163,177,198,0.6),
-            inset -5px -5px 12px rgba(255,255,255,0.85),
-            0 0 0 2.5px rgba(59,157,130,0.3);
-    }
-
-    .lv1-eye-btn {
-        position: absolute;
-        right: 14px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: #a0aec0;
-        cursor: pointer;
-        font-size: 14px;
-        padding: 4px;
-    }
-    .lv1-eye-btn:hover { color: #3b9d82; }
-
-    .lv1-forgot-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-    .lv1-forgot-row label {
-        margin-bottom: 0 !important;
-    }
-    .lv1-forgot-link {
-        font-size: 12px;
-        color: #3b9d82;
-        font-weight: 700;
-        text-decoration: none;
-        letter-spacing: 0;
-        text-transform: none;
-    }
-    .lv1-forgot-link:hover { color: #2d7a65; text-decoration: underline; }
-
-    .lv1-remember {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 28px;
-    }
-    .lv1-remember input[type="checkbox"] {
-        width: 18px; height: 18px;
-        border-radius: 6px;
-        accent-color: #3b9d82;
-        cursor: pointer;
-    }
-    .lv1-remember label {
-        font-size: 13px;
-        color: #718096;
-        font-weight: 500;
-        cursor: pointer;
-        margin: 0;
-    }
-
-    .lv1-submit {
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 16px;
-        font-size: 15px;
-        font-weight: 800;
-        color: #fff;
-        background: linear-gradient(135deg, #3b9d82 0%, #2d7a65 100%);
-        cursor: pointer;
-        box-shadow:
-            6px 6px 16px rgba(59,157,130,0.35),
-            -4px -4px 10px rgba(255,255,255,0.5);
-        transition: all 0.25s ease;
-        letter-spacing: 0.3px;
-        margin-bottom: 24px;
-    }
-    .lv1-submit:hover {
-        transform: translateY(-2px);
-        box-shadow: 8px 8px 20px rgba(59,157,130,0.4), -4px -4px 10px rgba(255,255,255,0.5);
-    }
-    .lv1-submit:active {
-        transform: translateY(0);
-        box-shadow: inset 4px 4px 10px rgba(0,0,0,0.15);
-    }
-
-    .lv1-footer {
-        text-align: center;
-        font-size: 13px;
-        color: #a0aec0;
-    }
-    .lv1-footer a {
-        color: #3b9d82;
-        font-weight: 700;
-        text-decoration: none;
-    }
-    .lv1-footer a:hover { text-decoration: underline; }
-
-    .lv1-pill-row {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-bottom: 28px;
-    }
-    .lv1-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding: 5px 14px;
-        border-radius: 50px;
-        font-size: 11px;
-        font-weight: 700;
-        color: #718096;
-        background: #e8ecf0;
-        box-shadow: 3px 3px 8px rgba(163,177,198,0.45), -3px -3px 8px rgba(255,255,255,0.75);
-    }
-    .lv1-pill i { font-size: 10px; }
-
-    .lv1-input.no-icon { padding-left: 16px; }
-
-    .lv1-captcha-wrap {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-    }
-    .lv1-captcha-img {
-        border-radius: 12px;
-        box-shadow: 4px 4px 10px rgba(163,177,198,0.5), -4px -4px 10px rgba(255,255,255,0.8);
-        cursor: pointer;
-        flex-shrink: 0;
-        height: 50px;
-        transition: opacity 0.2s;
-    }
-    .lv1-captcha-img:hover { opacity: 0.85; }
-    .lv1-captcha-refresh {
-        background: #e8ecf0;
-        border: none;
-        border-radius: 10px;
-        width: 38px; height: 38px;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 4px 4px 10px rgba(163,177,198,0.5), -4px -4px 10px rgba(255,255,255,0.8);
-        cursor: pointer;
-        color: #718096;
-        transition: all 0.2s;
-        flex-shrink: 0;
-    }
-    .lv1-captcha-refresh:hover { color: #3b9d82; transform: rotate(90deg); }
-    .lv1-captcha-refresh:active {
-        box-shadow: inset 3px 3px 8px rgba(163,177,198,0.5), inset -3px -3px 8px rgba(255,255,255,0.8);
-        transform: rotate(180deg);
-    }
-    .lv1-captcha-status {
-        font-size: 11px;
-        font-weight: 700;
-        height: 18px;
-        margin-bottom: 18px;
-    }
-    .lv1-captcha-status.ok  { color: #3b9d82; }
-    .lv1-captcha-status.err { color: #e53e3e; }
-
-    @@media (max-width: 480px) {
-        .lv1-card { padding: 36px 24px; }
-        .lv1-social-row { flex-direction: column; }
-    }
-
-</style>
-
-<div class="lv1-blob lv1-blob-1"></div>
-<div class="lv1-blob lv1-blob-2"></div>
-<div class="lv1-blob lv1-blob-3"></div>
-
-<div class="lv1-card">
+    <div class="lv1-card">
 
     <div class="lv1-brand">
         <div class="lv1-logo">
@@ -395,11 +45,6 @@
         </div>
     </div>
 
-    <div class="lv1-remember">
-        <input type="checkbox" id="lv1-remember" checked>
-        <label for="lv1-remember">Remember me on this device</label>
-    </div>
-
     <div class="lv1-form-group" style="margin-bottom:8px;">
         <label>Security Verification</label>
         <div class="lv1-captcha-wrap">
@@ -430,7 +75,14 @@
         <i class="fas fa-arrow-right me-2"></i> Sign In
     </button>
 
-</div>
+</div> <!-- End of .lv1-card -->
+
+</div> <!-- End of .lv1-page -->
+
+<!-- Floating Copy Button -->
+<button class="btn-copy-code" onclick="copyLoginV1HTML()">
+    <i class="fas fa-code"></i> Copy HTML (Kit)
+</button>
 
 <script>
 document.getElementById('lv1-toggle-pw').addEventListener('click', function () {
@@ -500,6 +152,58 @@ document.getElementById('lv1-toggle-pw').addEventListener('click', function () {
         setTimeout(() => {
             window.location.href = '/Home/Index';
         }, 500);
+    }
+
+    /* --- COPY HTML KIT-READY SNIPPET --- */
+    function copyLoginV1HTML() {
+        const htmlContent = document.querySelector('.lv1-page').outerHTML;
+
+        const fullSnippet = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genius - Login V1 UI</title>
+    
+    <!-- KUDA KIT BUNDLE (Bootstrap, FontAwesome, and Brand Styles) -->
+    <link rel="stylesheet" href="./css/kuda-kit.css?v=1.6">
+
+    <style>
+        body { margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; font-family: 'KalbeGeometric', 'KalbeHelix', 'KalbeRounded', sans-serif; }
+    </style>
+</head>
+<body>
+
+${htmlContent}
+
+<script src="/lib/bootstrap/js/bootstrap.bundle.min.js"><\/script>
+
+</body>
+</html>
+        `.trim();
+
+        copyToClipboard(fullSnippet);
+    }
+
+    function copyToClipboard(text) {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        // Animated Success Feedback
+        const btn = document.querySelector('.btn-copy-code');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied to Clipboard!';
+        btn.style.background = '#3b9d82';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.background = '#1a202c';
+        }, 2500);
     }
 
 </script>
