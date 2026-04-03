@@ -139,26 +139,83 @@
     }
     [data-theme="dark"] .invoice-footer { border-top-color: rgba(59, 157, 130, 0.2); }
 
-    .btn-print {
+    .btn-print, .btn-copy {
         display: inline-flex;
         align-items: center;
         gap: 8px;
         padding: 12px 24px;
-        background: #3b9d82;
-        color: white;
         border: none;
         border-radius: 12px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s;
-        box-shadow: 0 10px 20px rgba(59, 157, 130, 0.2);
         margin-bottom: 2rem;
+        text-decoration: none;
     }
-    .btn-print:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(59, 157, 130, 0.3); }
+    .btn-print {
+        background: #3b9d82;
+        color: white;
+        box-shadow: 0 10px 20px rgba(59, 157, 130, 0.2);
+    }
+    .btn-print:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(59, 157, 130, 0.3); color: white; }
+
+    .btn-copy {
+        background: #f1f5f9;
+        color: #475569;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    [data-theme="dark"] .btn-copy { background: #1e3a32; color: #94a3b8; }
+    .btn-copy:hover { transform: translateY(-2px); background: #e2e8f0; box-shadow: 0 10px 20px rgba(0,0,0,0.08); color: #1e293b; }
+    [data-theme="dark"] .btn-copy:hover { background: #243d35; color: #e2e8f0; }
+    .btn-copy.copied { background: #3b9d82; color: white; box-shadow: 0 10px 20px rgba(59, 157, 130, 0.25); }
+
+    /* Toast */
+    .copy-toast {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        background: #1e293b;
+        color: #fff;
+        padding: 14px 22px;
+        border-radius: 14px;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        z-index: 9999;
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        pointer-events: none;
+    }
+    .copy-toast.show { transform: translateY(0); opacity: 1; }
+    .copy-toast i { color: #3b9d82; font-size: 16px; }
+    [data-theme="dark"] .copy-toast { background: #1e3a32; }
 
     @@media print {
-        .btn-print, .sidebar-wrapper, .header-wrapper { display: none !important; }
-        .invoice-container { margin: 0; box-shadow: none; border: none; width: 100%; max-width: none; }
+        /* Sembunyikan SEMUA elemen di body */
+        body * { visibility: hidden !important; }
+
+        /* Tampilkan HANYA invoice container dan semua child-nya */
+        .invoice-container,
+        .invoice-container * { visibility: visible !important; }
+
+        /* Posisikan invoice di pojok kiri atas mengisi seluruh halaman */
+        .invoice-container {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 40px !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            background: white !important;
+        }
+
         body { background: white !important; }
     }
 
@@ -173,9 +230,18 @@
             </ol>
         </nav>
         <div class="d-flex gap-2">
-            <button class="btn-print" onclick="window.print()">
+            <button class="btn-copy" id="copyHtmlBtn" onclick="copyInvoiceHTML()">
+                <i class="fa-regular fa-copy"></i> Copy HTML
+            </button>
+            <button class="btn-print" id="printInvoiceBtn" onclick="printInvoice()">
                 <i class="fas fa-print"></i> Download PDF / Print
             </button>
+            <script>
+            function printInvoice() {
+                window.print();
+            }
+            window.addEventListener('afterprint', function() {});
+            </script>
         </div>
     </div>
 
@@ -279,3 +345,52 @@
         </div>
     </div>
 </div>
+
+<!-- Copy Toast -->
+<div class="copy-toast" id="copyToast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span>HTML copied to clipboard!</span>
+</div>
+
+@section Scripts {
+<script>
+function copyInvoiceHTML() {
+    const container = document.querySelector('.invoice-container');
+    if (!container) return;
+
+    const html = container.outerHTML;
+    navigator.clipboard.writeText(html).then(function() {
+        // Button feedback
+        const btn = document.getElementById('copyHtmlBtn');
+        const originalHTML = btn.innerHTML;
+        btn.classList.add('copied');
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+
+        // Toast
+        const toast = document.getElementById('copyToast');
+        toast.classList.add('show');
+
+        setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.innerHTML = originalHTML;
+            toast.classList.remove('show');
+        }, 2500);
+    }).catch(function() {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = container.outerHTML;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        const toast = document.getElementById('copyToast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    });
+}
+
+</script>
+}

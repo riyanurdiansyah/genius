@@ -8,7 +8,7 @@ namespace Kuda.Controllers
             [HttpGet("")]
             public IActionResult Login()
             {
-                return View("LoginV1");
+                return View("LoginV2");
             }
 
             [HttpGet("/Auth/LoginV1")]
