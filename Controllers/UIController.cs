@@ -9,6 +9,7 @@ public class UIController : Controller
     public IActionResult Badges() => View();
     public IActionResult BarcodeGenerator() => View();
     public IActionResult Buttons() => View();
+    public IActionResult Cards() => View();
     public IActionResult Carousel() => View();
     public IActionResult Collapse() => View();
     public IActionResult Dropdowns() => View();

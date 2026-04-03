@@ -22,5 +22,17 @@ namespace Kuda.Controllers
             {
                 return View();
             }
+
+            [HttpGet("/Auth/ChooseRoleV1")]
+            public IActionResult ChooseRoleV1()
+            {
+                return View();
+            }
+
+            [HttpGet("/Auth/ChooseRoleV2")]
+            public IActionResult ChooseRoleV2()
+            {
+                return View();
+            }
         }
 }

@@ -1,0 +1,263 @@
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewData["Title"] = "Choose Role";
+}
+
+<style>
+/* Card overrides to prevent touching screen edges */
+.lv1-card {
+    margin: auto; /* Fixes flex vertical cutoff */
+    padding: 36px 40px !important; /* Slightly smaller than default 48px */
+    max-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Role card — extends lv1 neumorphic style */
+.cr1-role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 8px 16px 16px; /* Allow shadows to render before clipping */
+    margin: -16px -8px 0 -16px;   /* Offset the padding visually */
+    margin-bottom: 16px;
+    overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll from shadows */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.cr1-role-list::-webkit-scrollbar { 
+    display: none; 
+}
+
+.cr1-role-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: #e8ecf0;
+    box-shadow: 5px 5px 12px rgba(163,177,198,0.5), -5px -5px 12px rgba(255,255,255,0.8);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 2px solid transparent;
+}
+
+.cr1-role-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px 10px 20px rgba(163,177,198,0.5), -8px -10px 20px rgba(255,255,255,0.9);
+}
+
+.cr1-role-item.active {
+    border-color: #3b9d82;
+    box-shadow: inset 4px 4px 10px rgba(163,177,198,0.4), inset -4px -4px 10px rgba(255,255,255,0.75), 0 0 0 2px rgba(59,157,130,0.2);
+}
+
+.cr1-role-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 3px 3px 8px rgba(163,177,198,0.4), -3px -3px 8px rgba(255,255,255,0.7);
+}
+
+.cr1-role-info { flex: 1; }
+.cr1-role-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1px;
+}
+.cr1-role-desc {
+    font-size: 11px;
+    color: #a0aec0;
+}
+
+.cr1-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e8ecf0;
+    box-shadow: inset 3px 3px 7px rgba(163,177,198,0.5), inset -3px -3px 7px rgba(255,255,255,0.8);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+.cr1-role-item.active .cr1-radio {
+    background: #3b9d82;
+    box-shadow: 0 0 0 3px rgba(59,157,130,0.2);
+}
+.cr1-radio::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.cr1-role-item.active .cr1-radio::after { opacity: 1; }
+
+/* User strip */
+.cr1-user-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: #e8ecf0;
+    box-shadow: inset 4px 4px 10px rgba(163,177,198,0.45), inset -4px -4px 10px rgba(255,255,255,0.75);
+    margin-bottom: 24px;
+}
+.cr1-user-strip img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #3b9d82; }
+.cr1-user-name { font-size: 13px; font-weight: 700; color: #2d3748; }
+.cr1-user-email { font-size: 11px; color: #a0aec0; }
+.cr1-change { margin-left: auto; font-size: 11px; font-weight: 700; color: #3b9d82; text-decoration: none; }
+.cr1-change:hover { text-decoration: underline; }
+</style>
+
+<div class="lv1-page">
+    <div class="lv1-blob lv1-blob-1"></div>
+    <div class="lv1-blob lv1-blob-2"></div>
+    <div class="lv1-blob lv1-blob-3"></div>
+
+    <div class="lv1-card">
+
+        <div class="lv1-brand">
+            <div class="lv1-logo">
+                <img src="/image/kuda-icon.png" alt="Kuda Logo">
+            </div>
+            <div class="lv1-brand-text">
+                <h5>Kuda Admin</h5>
+                <span>Premium Dashboard</span>
+            </div>
+        </div>
+
+        <div class="lv1-heading">
+            <h2>Select Your Role 🎭</h2>
+            <p>You have multiple access roles — choose one to continue.</p>
+        </div>
+
+        <!-- Logged-in user strip -->
+        <div class="cr1-user-strip">
+            <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff&size=80" alt="Avatar">
+            <div>
+                <div class="cr1-user-name">Admin User</div>
+                <div class="cr1-user-email">admin@kuda.com</div>
+            </div>
+            <a href="/Auth/LoginV1" class="cr1-change">Change Account</a>
+        </div>
+
+        <!-- Role selection -->
+        <div class="cr1-role-list" id="cr1RoleList">
+            <div class="cr1-role-item active" data-role="superadmin" onclick="cr1Select(this)">
+                <div class="cr1-role-icon bg-soft-primary text-primary"><i class="fas fa-crown"></i></div>
+                <div class="cr1-role-info">
+                    <div class="cr1-role-name">Super Administrator</div>
+                    <div class="cr1-role-desc">Full system access — all modules & settings</div>
+                </div>
+                <div class="cr1-radio"></div>
+            </div>
+
+            <div class="cr1-role-item" data-role="finance" onclick="cr1Select(this)">
+                <div class="cr1-role-icon bg-soft-success text-success"><i class="fas fa-chart-line"></i></div>
+                <div class="cr1-role-info">
+                    <div class="cr1-role-name">Finance Manager</div>
+                    <div class="cr1-role-desc">Financial reports, invoices & budgets</div>
+                </div>
+                <div class="cr1-radio"></div>
+            </div>
+
+            <div class="cr1-role-item" data-role="hr" onclick="cr1Select(this)">
+                <div class="cr1-role-icon bg-soft-warning text-warning"><i class="fas fa-users"></i></div>
+                <div class="cr1-role-info">
+                    <div class="cr1-role-name">HR Manager</div>
+                    <div class="cr1-role-desc">Employees, attendance & payroll</div>
+                </div>
+                <div class="cr1-radio"></div>
+            </div>
+
+            <div class="cr1-role-item" data-role="ops" onclick="cr1Select(this)">
+                <div class="cr1-role-icon bg-soft-info text-info"><i class="fas fa-gears"></i></div>
+                <div class="cr1-role-info">
+                    <div class="cr1-role-name">Operations Staff</div>
+                    <div class="cr1-role-desc">View-only access to operational data</div>
+                </div>
+                <div class="cr1-radio"></div>
+            </div>
+        </div>
+
+        <button class="lv1-submit" id="cr1Btn" onclick="cr1Continue()" style="display:flex; align-items:center; justify-content:space-between; padding:12px 20px;">
+            <div style="text-align:left;">
+                <div style="font-size:11px; font-weight:600; opacity:0.8; line-height:1; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">Continue as</div>
+                <div id="cr1Label" style="font-size:16px; font-weight:800; line-height:1;">Super Administrator</div>
+            </div>
+            <div style="width:36px; height:36px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </button>
+
+    </div>
+</div>
+
+<!-- Floating Copy Button -->
+<button class="btn-copy-code" onclick="copyHTML()">
+    <i class="fas fa-code"></i> Copy HTML (Kit)
+</button>
+
+@section Scripts {
+<script>
+    const roleNames = {
+        superadmin: 'Super Administrator',
+        finance: 'Finance Manager',
+        hr: 'HR Manager',
+        ops: 'Operations Staff'
+    };
+
+    function cr1Select(el) {
+        document.querySelectorAll('.cr1-role-item').forEach(r => r.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('cr1Label').textContent = roleNames[el.dataset.role];
+    }
+
+    function cr1Continue() {
+        const btn = document.getElementById('cr1Btn');
+        btn.disabled = true;
+        btn.style.justifyContent = 'center';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Loading workspace...';
+        setTimeout(() => { window.location.href = '/Home/Index'; }, 800);
+    }
+
+    function copyHTML() {
+        const pageEl = document.querySelector('.lv1-page');
+        if (!pageEl) return;
+        const snippet = ['<!DOCTYPE html>', '<html lang="en">', '<head>',
+            '    <meta charset="UTF-8">',
+            '    <meta name="viewport" content="width=device-width, initial-scale=1.0">',
+            '    <title>Kuda - Choose Role V1</title>',
+            '    <link rel="stylesheet" href="/css/kuda-kit.css">',
+            '</head>', '<body>', '', pageEl.outerHTML, '',
+            '<scr'+'ipt src="/lib/bootstrap/js/bootstrap.bundle.min.js"></scr'+'ipt>',
+            '</body>', '</html>'].join('\n');
+        const ta = document.createElement('textarea');
+        ta.value = snippet;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const btn = document.querySelector('.btn-copy-code');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        btn.style.background = '#3b9d82';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = '#1a202c'; }, 2500);
+    }
+</script>
+}

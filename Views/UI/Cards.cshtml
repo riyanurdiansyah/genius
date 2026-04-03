@@ -1,0 +1,559 @@
+@{
+    ViewData["Title"] = "Cards";
+}
+
+<style>
+.section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 6px; }
+.section-desc { font-size: 14px; color: #64748b; margin-bottom: 24px; }
+[data-theme="dark"] .section-desc { color: #94a3b8; }
+
+/* ── Base Card ── */
+.kuda-card { background: #fff; border-radius: 16px; border: 1px solid #f1f5f9; box-shadow: 0 2px 12px rgba(0,0,0,0.04); overflow: hidden; transition: all 0.3s ease; }
+[data-theme="dark"] .kuda-card { background: #112e27; border-color: var(--border-color); }
+.kuda-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+.kuda-card .card-body { padding: 24px; }
+.kuda-card .card-img { width: 100%; height: 180px; object-fit: cover; }
+
+/* ── Gradient Card ── */
+.card-gradient { border: none; color: #fff; }
+.card-gradient-primary { background: linear-gradient(135deg, #3b9d82 0%, #1a5c4e 100%); }
+.card-gradient-purple { background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%); }
+.card-gradient-orange { background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); }
+.card-gradient-rose { background: linear-gradient(135deg, #f43f5e 0%, #9f1239 100%); }
+.card-gradient .card-body { padding: 28px; }
+.card-gradient .card-icon { font-size: 2.5rem; opacity: 0.3; position: absolute; right: 20px; top: 20px; }
+
+/* ── Glass Card ── */
+.card-glass {
+    background: rgba(255,255,255,0.15) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+    color: #1e293b;
+}
+[data-theme="dark"] .card-glass { background: rgba(17,46,39,0.5) !important; border-color: rgba(59,157,130,0.2) !important; }
+
+/* ── Stats Card ── */
+.card-stats .stat-value { font-size: 2rem; font-weight: 800; line-height: 1; color: #1e293b; }
+[data-theme="dark"] .card-stats .stat-value { color: #f1f5f9; }
+.card-stats .stat-label { font-size: 12px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.card-stats .stat-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 20px; margin-top: 8px; }
+.stat-badge.up { background: rgba(16,185,129,0.1); color: #059669; }
+.stat-badge.down { background: rgba(239,68,68,0.1); color: #dc2626; }
+.card-stats .stat-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+
+/* ── Profile Card ── */
+.card-profile { text-align: center; }
+.card-profile .profile-cover { height: 90px; background: linear-gradient(135deg, #3b9d82, #1a5c4e); position: relative; }
+.card-profile .profile-avatar { width: 72px; height: 72px; border-radius: 50%; border: 4px solid #fff; margin: -36px auto 12px; position: relative; z-index: 1; object-fit: cover; }
+[data-theme="dark"] .card-profile .profile-avatar { border-color: #112e27; }
+.card-profile .profile-name { font-weight: 700; font-size: 15px; color: #1e293b; }
+[data-theme="dark"] .card-profile .profile-name { color: #f1f5f9; }
+.card-profile .profile-role { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
+.card-profile .profile-stat { font-size: 13px; font-weight: 700; color: #1e293b; }
+[data-theme="dark"] .card-profile .profile-stat { color: #e2e8f0; }
+.card-profile .profile-stat-label { font-size: 11px; color: #94a3b8; }
+.card-profile .btn-follow { background: #3b9d82; color: #fff; border: none; border-radius: 10px; padding: 8px 24px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.card-profile .btn-follow:hover { background: #2d7a65; transform: translateY(-1px); }
+
+/* ── Pricing Card ── */
+.card-pricing { text-align: center; }
+.card-pricing.featured { border-color: var(--primary) !important; box-shadow: 0 0 0 3px rgba(59,157,130,0.15), 0 12px 30px rgba(59,157,130,0.15) !important; }
+.card-pricing .price-badge { display: inline-block; background: rgba(59,157,130,0.1); color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+.card-pricing.featured .price-badge { background: var(--primary); color: #fff; }
+.card-pricing .price-amount { font-size: 3rem; font-weight: 800; color: #1e293b; line-height: 1; }
+[data-theme="dark"] .card-pricing .price-amount { color: #f1f5f9; }
+.card-pricing .price-period { font-size: 14px; color: #94a3b8; }
+.card-pricing .price-feature { font-size: 13px; color: #475569; padding: 8px 0; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 10px; }
+[data-theme="dark"] .card-pricing .price-feature { color: #94a3b8; border-bottom-color: rgba(255,255,255,0.05); }
+.card-pricing .price-feature i { color: #3b9d82; }
+.btn-plan { width: 100%; padding: 12px; border: 2px solid #3b9d82; border-radius: 12px; background: transparent; color: #3b9d82; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s; margin-top: 20px; }
+.btn-plan:hover, .featured .btn-plan { background: #3b9d82; color: #fff; }
+
+/* ── Horizontal Card ── */
+.card-horizontal { display: flex; gap: 0; }
+.card-horizontal .card-img-side { width: 130px; min-height: 130px; object-fit: cover; flex-shrink: 0; }
+
+/* ── Notification Card ── */
+.card-notification .notif-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+[data-theme="dark"] .card-notification .notif-item { border-color: rgba(255,255,255,0.05); }
+.card-notification .notif-item:last-child { border-bottom: none; }
+.card-notification .notif-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.card-notification .notif-text { font-size: 13px; color: #475569; line-height: 1.4; }
+[data-theme="dark"] .card-notification .notif-text { color: #94a3b8; }
+.card-notification .notif-time { font-size: 11px; color: #cbd5e1; margin-top: 2px; }
+
+/* ── Progress Card ── */
+.card-progress .prog-label { font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px; }
+[data-theme="dark"] .card-progress .prog-label { color: #94a3b8; }
+.card-progress .prog-bar-track { height: 6px; background: #f1f5f9; border-radius: 10px; overflow: hidden; }
+[data-theme="dark"] .card-progress .prog-bar-track { background: rgba(255,255,255,0.06); }
+.card-progress .prog-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; }
+
+/* ── Glassmorphism BG ── */
+.glass-bg { background: linear-gradient(135deg, #3b9d82 0%, #1a5c4e 50%, #7c3aed 100%); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; }
+.glass-bg::before { content: ''; position: absolute; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%; top: -60px; right: -60px; }
+.glass-bg::after { content: ''; position: absolute; width: 150px; height: 150px; background: rgba(255,255,255,0.05); border-radius: 50%; bottom: -40px; left: -40px; }
+</style>
+
+<div class="container-fluid py-4">
+
+    <!-- ── 1. Basic Cards ── -->
+    <div class="section-title">Basic Cards</div>
+    <p class="section-desc">Standard card variations with image, body, and action buttons.</p>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="kuda-card">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" class="card-img" alt="Card Image">
+                <div class="card-body">
+                    <span class="badge bg-soft-primary text-primary rounded-pill mb-2" style="font-size:11px;">Design</span>
+                    <h5 class="fw-700 mb-2" style="font-size:15px;">Crafting Modern UI Systems</h5>
+                    <p class="text-muted mb-3" style="font-size:13px;">A deep dive into building scalable, consistent design systems for enterprise applications.</p>
+                    <a href="#" class="btn btn-sm btn-primary rounded-pill px-4">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kuda-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" class="card-img" alt="Card Image">
+                <div class="card-body">
+                    <span class="badge bg-soft-success text-success rounded-pill mb-2" style="font-size:11px;">Finance</span>
+                    <h5 class="fw-700 mb-2" style="font-size:15px;">Q1 Revenue Report 2026</h5>
+                    <p class="text-muted mb-3" style="font-size:13px;">Overview of financial performance metrics and KPI achievements for the first quarter.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-sm btn-success rounded-pill px-3">Download</a>
+                        <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kuda-card">
+                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&q=80" class="card-img" alt="Card Image">
+                <div class="card-body">
+                    <span class="badge bg-soft-warning text-warning rounded-pill mb-2" style="font-size:11px;">Technology</span>
+                    <h5 class="fw-700 mb-2" style="font-size:15px;">AI in Enterprise Software</h5>
+                    <p class="text-muted mb-3" style="font-size:13px;">How artificial intelligence is reshaping workflows, automation and decision-making.</p>
+                    <a href="#" class="btn btn-sm btn-warning rounded-pill px-4 text-white">Explore</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 2. Stats Cards ── -->
+    <div class="section-title">Statistics Cards</div>
+    <p class="section-desc">At-a-glance KPI cards with trend indicators.</p>
+    <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-stats">
+                <div class="card-body d-flex align-items-center gap-4">
+                    <div class="stat-icon bg-soft-primary text-primary">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Total Revenue</div>
+                        <div class="stat-value">$48.2K</div>
+                        <div class="stat-badge up"><i class="fa-solid fa-arrow-trend-up"></i> +12.5%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-stats">
+                <div class="card-body d-flex align-items-center gap-4">
+                    <div class="stat-icon bg-soft-info text-info">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Active Users</div>
+                        <div class="stat-value">3,291</div>
+                        <div class="stat-badge up"><i class="fa-solid fa-arrow-trend-up"></i> +8.1%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-stats">
+                <div class="card-body d-flex align-items-center gap-4">
+                    <div class="stat-icon bg-soft-warning text-warning">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">New Orders</div>
+                        <div class="stat-value">1,840</div>
+                        <div class="stat-badge down"><i class="fa-solid fa-arrow-trend-down"></i> -3.2%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-stats">
+                <div class="card-body d-flex align-items-center gap-4">
+                    <div class="stat-icon bg-soft-success text-success">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Conversion</div>
+                        <div class="stat-value">5.74%</div>
+                        <div class="stat-badge up"><i class="fa-solid fa-arrow-trend-up"></i> +1.9%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 3. Gradient Cards ── -->
+    <div class="section-title">Gradient Cards</div>
+    <p class="section-desc">Vivid gradient cards for showcasing key highlights.</p>
+    <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-gradient card-gradient-primary position-relative overflow-hidden">
+                <div class="card-body">
+                    <i class="fa-solid fa-rocket card-icon"></i>
+                    <div style="font-size:12px;font-weight:700;opacity:.7;letter-spacing:1px;text-transform:uppercase;">Projects</div>
+                    <div style="font-size:2.2rem;font-weight:800;line-height:1.1;">124</div>
+                    <div style="font-size:12px;opacity:.7;margin-top:6px;">+14 this month</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-gradient card-gradient-purple position-relative overflow-hidden">
+                <div class="card-body">
+                    <i class="fa-solid fa-star card-icon"></i>
+                    <div style="font-size:12px;font-weight:700;opacity:.7;letter-spacing:1px;text-transform:uppercase;">Reviews</div>
+                    <div style="font-size:2.2rem;font-weight:800;line-height:1.1;">4.9</div>
+                    <div style="font-size:12px;opacity:.7;margin-top:6px;">from 2,480 ratings</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-gradient card-gradient-orange position-relative overflow-hidden">
+                <div class="card-body">
+                    <i class="fa-solid fa-bolt card-icon"></i>
+                    <div style="font-size:12px;font-weight:700;opacity:.7;letter-spacing:1px;text-transform:uppercase;">Speed</div>
+                    <div style="font-size:2.2rem;font-weight:800;line-height:1.1;">98ms</div>
+                    <div style="font-size:12px;opacity:.7;margin-top:6px;">avg. response time</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="kuda-card card-gradient card-gradient-rose position-relative overflow-hidden">
+                <div class="card-body">
+                    <i class="fa-solid fa-heart card-icon"></i>
+                    <div style="font-size:12px;font-weight:700;opacity:.7;letter-spacing:1px;text-transform:uppercase;">Engagement</div>
+                    <div style="font-size:2.2rem;font-weight:800;line-height:1.1;">87%</div>
+                    <div style="font-size:12px;opacity:.7;margin-top:6px;">retention rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 4. Profile Cards ── -->
+    <div class="section-title">Profile Cards</div>
+    <p class="section-desc">User profile cards with avatar, stats, and action buttons.</p>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4 col-xl-3">
+            <div class="kuda-card card-profile">
+                <div class="profile-cover"></div>
+                <div class="card-body pt-0">
+                    <img src="https://ui-avatars.com/api/?name=Riyan+Urdiansyah&background=3b9d82&color=fff&size=100" class="profile-avatar" alt="Avatar">
+                    <div class="profile-name">Riyan Urdiansyah</div>
+                    <div class="profile-role">Lead UI/UX Designer</div>
+                    <div class="d-flex justify-content-around mb-4">
+                        <div><div class="profile-stat">142</div><div class="profile-stat-label">Projects</div></div>
+                        <div><div class="profile-stat">8.4K</div><div class="profile-stat-label">Followers</div></div>
+                        <div><div class="profile-stat">320</div><div class="profile-stat-label">Following</div></div>
+                    </div>
+                    <button class="btn-follow w-100">Follow</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xl-3">
+            <div class="kuda-card card-profile">
+                <div class="profile-cover" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)"></div>
+                <div class="card-body pt-0">
+                    <img src="https://ui-avatars.com/api/?name=Alexia+Chen&background=7c3aed&color=fff&size=100" class="profile-avatar" alt="Avatar">
+                    <div class="profile-name">Alexia Chen</div>
+                    <div class="profile-role">Full-Stack Engineer</div>
+                    <div class="d-flex justify-content-around mb-4">
+                        <div><div class="profile-stat">98</div><div class="profile-stat-label">Projects</div></div>
+                        <div><div class="profile-stat">12.1K</div><div class="profile-stat-label">Followers</div></div>
+                        <div><div class="profile-stat">204</div><div class="profile-stat-label">Following</div></div>
+                    </div>
+                    <button class="btn-follow w-100" style="background:#7c3aed;">Follow</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xl-3">
+            <div class="kuda-card card-profile">
+                <div class="profile-cover" style="background:linear-gradient(135deg,#f43f5e,#9f1239)"></div>
+                <div class="card-body pt-0">
+                    <img src="https://ui-avatars.com/api/?name=Marco+Rivera&background=f43f5e&color=fff&size=100" class="profile-avatar" alt="Avatar">
+                    <div class="profile-name">Marco Rivera</div>
+                    <div class="profile-role">Product Manager</div>
+                    <div class="d-flex justify-content-around mb-4">
+                        <div><div class="profile-stat">67</div><div class="profile-stat-label">Projects</div></div>
+                        <div><div class="profile-stat">5.2K</div><div class="profile-stat-label">Followers</div></div>
+                        <div><div class="profile-stat">180</div><div class="profile-stat-label">Following</div></div>
+                    </div>
+                    <button class="btn-follow w-100" style="background:#f43f5e;">Follow</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xl-3">
+            <div class="kuda-card card-profile">
+                <div class="profile-cover" style="background:linear-gradient(135deg,#f59e0b,#b45309)"></div>
+                <div class="card-body pt-0">
+                    <img src="https://ui-avatars.com/api/?name=Lena+Adams&background=f59e0b&color=fff&size=100" class="profile-avatar" alt="Avatar">
+                    <div class="profile-name">Lena Adams</div>
+                    <div class="profile-role">Data Scientist</div>
+                    <div class="d-flex justify-content-around mb-4">
+                        <div><div class="profile-stat">213</div><div class="profile-stat-label">Projects</div></div>
+                        <div><div class="profile-stat">9.8K</div><div class="profile-stat-label">Followers</div></div>
+                        <div><div class="profile-stat">412</div><div class="profile-stat-label">Following</div></div>
+                    </div>
+                    <button class="btn-follow w-100" style="background:#f59e0b;">Follow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 5. Glassmorphism Cards ── -->
+    <div class="section-title">Glassmorphism Cards</div>
+    <p class="section-desc">Frosted-glass effect cards overlaid on a gradient background.</p>
+    <div class="glass-bg mb-5">
+        <div class="row g-4 position-relative" style="z-index:1">
+            <div class="col-md-4">
+                <div class="kuda-card card-glass">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;">🎯</div>
+                            <div>
+                                <div class="fw-700" style="font-size:14px;">Goals Tracker</div>
+                                <div class="text-muted" style="font-size:12px;">3 of 8 completed</div>
+                            </div>
+                        </div>
+                        <div style="height:6px;background:rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;">
+                            <div style="width:37.5%;height:100%;background:#3b9d82;border-radius:10px;"></div>
+                        </div>
+                        <div class="mt-2 text-muted" style="font-size:12px;">37.5% achieved</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kuda-card card-glass">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;">📊</div>
+                            <div>
+                                <div class="fw-700" style="font-size:14px;">Analytics</div>
+                                <div class="text-muted" style="font-size:12px;">Live dashboard</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div><div class="fw-700" style="font-size:1.4rem;">24.8K</div><div class="text-muted" style="font-size:11px;">Page Views</div></div>
+                            <div><div class="fw-700" style="font-size:1.4rem;">6.2K</div><div class="text-muted" style="font-size:11px;">Sessions</div></div>
+                            <div><div class="fw-700" style="font-size:1.4rem;">1.4K</div><div class="text-muted" style="font-size:11px;">Conversions</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kuda-card card-glass">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;">💎</div>
+                            <div>
+                                <div class="fw-700" style="font-size:14px;">Premium Plan</div>
+                                <div class="text-muted" style="font-size:12px;">Renews Apr 2027</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <span class="badge rounded-pill" style="background:rgba(59,157,130,0.15);color:#3b9d82;font-size:11px;">Unlimited Users</span>
+                            <span class="badge rounded-pill" style="background:rgba(59,157,130,0.15);color:#3b9d82;font-size:11px;">Priority Support</span>
+                            <span class="badge rounded-pill" style="background:rgba(59,157,130,0.15);color:#3b9d82;font-size:11px;">Custom Domain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 6. Pricing Cards ── -->
+    <div class="section-title">Pricing Cards</div>
+    <p class="section-desc">Clear pricing plans with feature lists.</p>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="kuda-card card-pricing">
+                <div class="card-body p-4">
+                    <div class="price-badge">Starter</div>
+                    <div class="price-amount">$9<span class="price-period">/mo</span></div>
+                    <div class="text-muted mb-4" style="font-size:13px;">Perfect for individuals and small teams</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> 5 Projects</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> 10GB Storage</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> Email Support</div>
+                    <div class="price-feature" style="opacity:.35;"><i class="fa-solid fa-xmark text-danger"></i> Custom Domain</div>
+                    <div class="price-feature" style="opacity:.35;"><i class="fa-solid fa-xmark text-danger"></i> Priority Queue</div>
+                    <button class="btn-plan">Get Started</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kuda-card card-pricing featured">
+                <div class="card-body p-4">
+                    <div class="price-badge">Pro — Most Popular</div>
+                    <div class="price-amount">$29<span class="price-period">/mo</span></div>
+                    <div class="text-muted mb-4" style="font-size:13px;">For growing businesses and agencies</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> Unlimited Projects</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> 100GB Storage</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> Priority Support</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> Custom Domain</div>
+                    <div class="price-feature" style="opacity:.35;"><i class="fa-solid fa-xmark text-danger"></i> White Label</div>
+                    <button class="btn-plan">Get Started</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kuda-card card-pricing">
+                <div class="card-body p-4">
+                    <div class="price-badge">Enterprise</div>
+                    <div class="price-amount">$99<span class="price-period">/mo</span></div>
+                    <div class="text-muted mb-4" style="font-size:13px;">For large-scale teams and organizations</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> Unlimited Projects</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> 1TB Storage</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> Dedicated Support</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> Custom Domain</div>
+                    <div class="price-feature"><i class="fa-solid fa-check"></i> White Label</div>
+                    <button class="btn-plan">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 7. Horizontal Cards ── -->
+    <div class="section-title">Horizontal Cards</div>
+    <p class="section-desc">Cards with side-by-side image and content layout.</p>
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="kuda-card card-horizontal">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=300&q=80" class="card-img-side" alt="">
+                <div class="card-body">
+                    <span class="badge bg-soft-primary text-primary rounded-pill mb-2" style="font-size:11px;">Dev</span>
+                    <h6 class="fw-700 mb-1">Building Scalable APIs</h6>
+                    <p class="text-muted mb-0" style="font-size:12px;">Best practices for REST and GraphQL architecture in modern backends.</p>
+                    <div class="mt-3"><a href="#" class="text-primary fw-600" style="font-size:12px;">Read More →</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="kuda-card card-horizontal">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=300&q=80" class="card-img-side" alt="">
+                <div class="card-body">
+                    <span class="badge bg-soft-success text-success rounded-pill mb-2" style="font-size:11px;">Growth</span>
+                    <h6 class="fw-700 mb-1">SaaS Marketing Playbook</h6>
+                    <p class="text-muted mb-0" style="font-size:12px;">Proven funnels and growth loops that power the fastest growing startups.</p>
+                    <div class="mt-3"><a href="#" class="text-primary fw-600" style="font-size:12px;">Read More →</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 8. Progress Cards ── -->
+    <div class="section-title">Progress Cards</div>
+    <p class="section-desc">Cards with progress bars for skill or task tracking.</p>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-xl-4">
+            <div class="kuda-card card-progress">
+                <div class="card-body">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <img src="https://ui-avatars.com/api/?name=Dev+Team&background=3b9d82&color=fff&size=48" class="rounded-circle" width="44" height="44" alt="">
+                        <div>
+                            <div class="fw-700" style="font-size:14px;">Sprint #12 Progress</div>
+                            <div class="text-muted" style="font-size:12px;">Development Team · Due Apr 10</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between prog-label"><span>Backend API</span><span>85%</span></div>
+                        <div class="prog-bar-track"><div class="prog-bar-fill" style="width:85%;background:#3b9d82;"></div></div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between prog-label"><span>Frontend UI</span><span>62%</span></div>
+                        <div class="prog-bar-track"><div class="prog-bar-fill" style="width:62%;background:#7c3aed;"></div></div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between prog-label"><span>QA Testing</span><span>40%</span></div>
+                        <div class="prog-bar-track"><div class="prog-bar-fill" style="width:40%;background:#f59e0b;"></div></div>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-between prog-label"><span>Documentation</span><span>20%</span></div>
+                        <div class="prog-bar-track"><div class="prog-bar-fill" style="width:20%;background:#f43f5e;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+            <div class="kuda-card card-notification">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="fw-700" style="font-size:14px;">Recent Activity</div>
+                        <span class="badge bg-soft-primary text-primary rounded-pill" style="font-size:11px;">4 New</span>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-dot bg-success"></div>
+                        <div><div class="notif-text">Invoice <strong>#INV-2026-0042</strong> paid by Alexia Chen.</div><div class="notif-time">2 min ago</div></div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-dot bg-primary"></div>
+                        <div><div class="notif-text">New user <strong>Marco Rivera</strong> registered.</div><div class="notif-time">14 min ago</div></div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-dot bg-warning"></div>
+                        <div><div class="notif-text">Server storage reaching <strong>85% capacity</strong>.</div><div class="notif-time">1 hr ago</div></div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-dot bg-danger"></div>
+                        <div><div class="notif-text">Deploy pipeline <strong>failed</strong> — needs review.</div><div class="notif-time">3 hr ago</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+            <div class="kuda-card">
+                <div class="card-body">
+                    <div class="fw-700 mb-4" style="font-size:14px;">Team Overview</div>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://ui-avatars.com/api/?name=Riyan+U&background=3b9d82&color=fff&size=36" class="rounded-circle" width="36" height="36" alt="">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between" style="font-size:13px;"><span class="fw-600">Riyan Urdiansyah</span><span class="text-muted">92%</span></div>
+                                <div class="prog-bar-track mt-1"><div class="prog-bar-fill" style="width:92%;background:#3b9d82;"></div></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://ui-avatars.com/api/?name=Alexia+C&background=7c3aed&color=fff&size=36" class="rounded-circle" width="36" height="36" alt="">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between" style="font-size:13px;"><span class="fw-600">Alexia Chen</span><span class="text-muted">78%</span></div>
+                                <div class="prog-bar-track mt-1"><div class="prog-bar-fill" style="width:78%;background:#7c3aed;"></div></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://ui-avatars.com/api/?name=Marco+R&background=f43f5e&color=fff&size=36" class="rounded-circle" width="36" height="36" alt="">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between" style="font-size:13px;"><span class="fw-600">Marco Rivera</span><span class="text-muted">65%</span></div>
+                                <div class="prog-bar-track mt-1"><div class="prog-bar-fill" style="width:65%;background:#f43f5e;"></div></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://ui-avatars.com/api/?name=Lena+A&background=f59e0b&color=fff&size=36" class="rounded-circle" width="36" height="36" alt="">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between" style="font-size:13px;"><span class="fw-600">Lena Adams</span><span class="text-muted">88%</span></div>
+                                <div class="prog-bar-track mt-1"><div class="prog-bar-fill" style="width:88%;background:#f59e0b;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,6 +44,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwcy9UcmFja2luZ1RyYW5zYWN0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/kn/Documents/project/UIUX/Genius/Views/Auth/ChooseRoleV1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9DaG9vc2VSb2xlVjEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kn/Documents/project/UIUX/Genius/Views/Auth/ChooseRoleV2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9DaG9vc2VSb2xlVjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/kn/Documents/project/UIUX/Genius/Views/Auth/LoginV1.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Mb2dpblYxLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -290,6 +298,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/kn/Documents/project/UIUX/Genius/Views/UI/Buttons.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVUkvQnV0dG9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kn/Documents/project/UIUX/Genius/Views/UI/Cards.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVUkvQ2FyZHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/kn/Documents/project/UIUX/Genius/Views/UI/Carousel.cshtml]

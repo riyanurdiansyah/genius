@@ -15,8 +15,9 @@
         <div class="design-pills">
             <div class="design-pill active" onclick="switchDesign('qa',this)">General</div>
         </div>
-        <div>
-            <button class="btn btn-outline-secondary me-1" onclick="printReport()"><i class="fas fa-print me-1"></i> Print</button>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary" onclick="printReport()"><i class="fas fa-print me-1"></i> Print</button>
+            <button class="btn btn-outline-secondary" id="copyReportBtn" onclick="copyReportHTML()"><i class="fa-regular fa-copy me-1"></i> Copy HTML</button>
             <button class="btn btn-primary" onclick="downloadPDF()"><i class="fas fa-download me-1"></i> Download PDF</button>
         </div>
     </div>
@@ -141,4 +142,59 @@ let currentDesign = 'qa';
 
     document.addEventListener('DOMContentLoaded', renderReport);
 
+    function copyReportHTML() {
+        const el = document.getElementById('actualPaperContent');
+        if (!el) return;
+
+        navigator.clipboard.writeText(el.outerHTML).then(function() {
+            const btn = document.getElementById('copyReportBtn');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check me-1"></i> Copied!';
+            btn.classList.add('btn-success');
+            btn.classList.remove('btn-outline-secondary');
+
+            showReportToast();
+
+            setTimeout(function() {
+                btn.innerHTML = orig;
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-outline-secondary');
+            }, 2500);
+        }).catch(function() {
+            const ta = document.createElement('textarea');
+            ta.value = el.outerHTML;
+            ta.style.cssText = 'position:fixed;opacity:0;';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showReportToast();
+        });
+    }
+
+    function showReportToast() {
+        const t = document.getElementById('reportCopyToast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
 </script>
+
+<!-- Toast -->
+<div id="reportCopyToast" style="
+    position:fixed;bottom:32px;right:32px;
+    background:#1e293b;color:#fff;
+    padding:14px 22px;border-radius:14px;
+    font-size:13px;font-weight:600;
+    display:flex;align-items:center;gap:10px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    z-index:9999;pointer-events:none;
+    transform:translateY(80px);opacity:0;
+    transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+">
+    <i class="fa-solid fa-circle-check" style="color:#3b9d82;font-size:16px;"></i>
+    <span>HTML copied to clipboard!</span>
+</div>
+<style>
+    #reportCopyToast.show { transform: translateY(0) !important; opacity: 1 !important; }
+</style>

@@ -1,0 +1,246 @@
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewData["Title"] = "Choose Role";
+}
+
+<style>
+/* Role items — extend lv2 input style */
+.cr2-role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.cr2-role-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #D1D5DB;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cr2-role-item:hover {
+    border-color: #3b9d82;
+    background: rgba(59,157,130,0.03);
+}
+
+.cr2-role-item.active {
+    border-color: #051F20;
+    background: #051F20;
+}
+.cr2-role-item.active .cr2-role-name { color: #fff; }
+.cr2-role-item.active .cr2-role-desc { color: rgba(255,255,255,0.5); }
+.cr2-role-item.active .cr2-radio { background: #3b9d82; border-color: #3b9d82; }
+.cr2-role-item.active .cr2-radio::after { opacity: 1; }
+.cr2-role-item.active .cr2-role-icon { background: rgba(255,255,255,0.1) !important; color: #fff !important; }
+
+.cr2-role-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.cr2-role-info { flex: 1; }
+.cr2-role-name { font-size: 13px; font-weight: 700; color: #051F20; margin-bottom: 1px; transition: color 0.2s; }
+.cr2-role-desc { font-size: 11px; color: #9CA3AF; transition: color 0.2s; }
+
+.cr2-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #D1D5DB;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background: #fff;
+}
+.cr2-radio::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* User strip */
+.cr2-user-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid #D1D5DB;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
+.cr2-user-strip img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #3b9d82; }
+.cr2-user-name { font-size: 13px; font-weight: 700; color: #051F20; }
+.cr2-user-email { font-size: 11px; color: #9CA3AF; }
+.cr2-change { margin-left: auto; font-size: 11px; font-weight: 700; color: #3b9d82; text-decoration: none; }
+.cr2-change:hover { text-decoration: underline; }
+</style>
+
+<div class="lv2-page">
+
+    <!-- Decorative shapes — identical to LoginV2 -->
+    <div class="shape-circle"></div>
+    <div class="shape-circle-2"></div>
+    <div class="shape-circle-msg"></div>
+
+    <main class="lv2-main">
+
+        <!-- Left hero — identical structure to LoginV2 -->
+        <div class="lv2-hero">
+            <div class="hero-top">
+                <h1>🎭</h1>
+                <p>Role-Based<br>Access Control</p>
+            </div>
+
+            <div class="hero-badge">Multi-Role Workspace</div>
+
+            <h2 class="hero-title" style="margin-bottom: 24px;">
+                The Kuda.<br>
+                <span class="hero-outline">Admin Workspace</span>
+            </h2>
+
+            <p style="font-size:15px; color:#163832; max-width:340px; line-height:1.6; font-weight:500;">
+                Select your access role to load the correct workspace permissions and dashboard modules.
+            </p>
+        </div>
+
+        <!-- Right form panel — uses lv2-form-wrapper -->
+        <div class="lv2-form-wrapper">
+
+            <div class="lv1-heading" style="margin-bottom:20px;">
+                <h2 style="font-size:22px;">Select Your Role</h2>
+                <p>You have multiple roles — pick one to continue.</p>
+            </div>
+
+            <!-- User strip -->
+            <div class="cr2-user-strip">
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=3b9d82&color=fff&size=80" alt="Avatar">
+                <div>
+                    <div class="cr2-user-name">Admin User</div>
+                    <div class="cr2-user-email">admin@kuda.com</div>
+                </div>
+                <a href="/Auth/LoginV2" class="cr2-change">Change</a>
+            </div>
+
+            <!-- Role list -->
+            <div class="cr2-role-list" id="cr2RoleList">
+                <div class="cr2-role-item active" data-role="superadmin" onclick="cr2Select(this)">
+                    <div class="cr2-role-icon bg-soft-primary text-primary"><i class="fas fa-crown"></i></div>
+                    <div class="cr2-role-info">
+                        <div class="cr2-role-name">Super Administrator</div>
+                        <div class="cr2-role-desc">Full system access — all modules</div>
+                    </div>
+                    <div class="cr2-radio"></div>
+                </div>
+
+                <div class="cr2-role-item" data-role="finance" onclick="cr2Select(this)">
+                    <div class="cr2-role-icon bg-soft-success text-success"><i class="fas fa-chart-line"></i></div>
+                    <div class="cr2-role-info">
+                        <div class="cr2-role-name">Finance Manager</div>
+                        <div class="cr2-role-desc">Financial reports & invoices</div>
+                    </div>
+                    <div class="cr2-radio"></div>
+                </div>
+
+                <div class="cr2-role-item" data-role="hr" onclick="cr2Select(this)">
+                    <div class="cr2-role-icon bg-soft-warning text-warning"><i class="fas fa-users"></i></div>
+                    <div class="cr2-role-info">
+                        <div class="cr2-role-name">HR Manager</div>
+                        <div class="cr2-role-desc">Employees, attendance & payroll</div>
+                    </div>
+                    <div class="cr2-radio"></div>
+                </div>
+
+                <div class="cr2-role-item" data-role="ops" onclick="cr2Select(this)">
+                    <div class="cr2-role-icon bg-soft-info text-info"><i class="fas fa-gears"></i></div>
+                    <div class="cr2-role-info">
+                        <div class="cr2-role-name">Operations Staff</div>
+                        <div class="cr2-role-desc">View-only operational data</div>
+                    </div>
+                    <div class="cr2-radio"></div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-primary-login" type="button" id="cr2Btn" onclick="cr2Continue()" style="display:flex; align-items:center; justify-content:space-between; padding:12px 24px;">
+                    <div style="text-align:left;">
+                        <div style="font-size:11px; font-weight:600; opacity:0.8; line-height:1; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px;">Continue as</div>
+                        <div id="cr2Label" style="font-size:16px; font-weight:800; line-height:1;">Super Administrator</div>
+                    </div>
+                    <div style="width:36px; height:36px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="lv2-footer"><div></div></footer>
+</div>
+
+<!-- Floating Copy Button -->
+<button class="btn-copy-code" onclick="copyHTML()">
+    <i class="fas fa-code"></i> Copy HTML V2
+</button>
+
+@section Scripts {
+<script>
+    const cr2Names = {
+        superadmin: 'Super Administrator',
+        finance: 'Finance Manager',
+        hr: 'HR Manager',
+        ops: 'Operations Staff'
+    };
+
+    function cr2Select(el) {
+        document.querySelectorAll('.cr2-role-item').forEach(r => r.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('cr2Label').textContent = cr2Names[el.dataset.role];
+    }
+
+    function cr2Continue() {
+        const btn = document.getElementById('cr2Btn');
+        btn.disabled = true;
+        btn.style.justifyContent = 'center';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Loading workspace...';
+        setTimeout(() => { window.location.href = '/Home/Index'; }, 800);
+    }
+
+    function copyHTML() {
+        const pageEl = document.querySelector('.lv2-page');
+        if (!pageEl) return;
+        const snippet = `<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Kuda - Choose Role V2</title>\n<link rel="stylesheet" href="/css/kuda-kit.css">\n</head>\n<body>\n${pageEl.outerHTML}\n<script src="/lib/bootstrap/js/bootstrap.bundle.min.js"><\/script>\n</body>\n</html>`;
+        const ta = document.createElement('textarea');
+        ta.value = snippet;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const btn = document.querySelector('.btn-copy-code');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied V2!';
+        btn.style.background = '#3b9d82';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = '#1a202c'; }, 2500);
+    }
+</script>
+}
