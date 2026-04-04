@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Riyan Urdiansyah",
+  "classifications": ["Web", "MVC", "Dashboard", "Admin"],
+  "name": "Kuda Admin Custom Template",
+  "identity": "Kuda.Admin.Template",
+  "shortName": "mvccustom",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Kuda",
+  "preferNameDirectory": true,
+  "exclude": [
+    ".git/**",
+    ".vscode/**",
+    "bin/**",
+    "obj/**",
+    "*.user",
+    "setup-template.sh"
+  ]
+}

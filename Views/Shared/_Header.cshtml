@@ -247,6 +247,50 @@
     }
     [data-theme="dark"] .profile-dropdown-item.logout:hover { background: rgba(239, 68, 68, 0.05); }
 
+    /* Mobile Responsive Header Overrides */
+    @@media (max-width: 768px) {
+        .topbar {
+            padding: 0 20px !important;
+            margin: 0 -20px 20px -20px !important;
+            min-height: 65px !important;
+            gap: 10px;
+        }
+
+        .search-container {
+            display: none; /* Hide large search on narrow screens */
+        }
+        
+        .user-actions {
+            gap: 8px !important;
+        }
+        
+        .icon-btn {
+            width: 38px !important;
+            height: 38px !important;
+        }
+        
+        .notification-dropdown {
+            position: fixed !important;
+            top: 70px !important;
+            left: 5% !important;
+            right: 5% !important;
+            width: 90% !important;
+            margin: 0 !important;
+        }
+        
+        .profile {
+            padding: 4px !important;
+        }
+        
+        .profile-dropdown {
+            position: fixed !important;
+            top: 70px !important;
+            left: 5% !important;
+            right: 5% !important;
+            width: 90% !important;
+            margin: 0 !important;
+        }
+    }
 </style>
 
 <div class="topbar">

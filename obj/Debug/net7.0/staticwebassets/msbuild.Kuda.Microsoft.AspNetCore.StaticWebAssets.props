@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>355z2ywuke</Fingerprint>
-      <Integrity>OXHgP3C4fAKOUsng1yyOTjLLZDZYpNuChd+oRgY43A0=</Integrity>
+      <Fingerprint>u0lzoqc49h</Fingerprint>
+      <Integrity>LtUfJbjIZYAFErybYM4LSxoOcC58pIyEKpzR9wnC7gY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components.css'))</OriginalItemSpec>
@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sd9g9372uy</Fingerprint>
-      <Integrity>gOfxNRdHQ7WyBQjYt015eZCNEyMa3UtJsw0gids1sQ4=</Integrity>
+      <Fingerprint>e4unas0vs9</Fingerprint>
+      <Integrity>wg27FEOE6hGJqhKPaRzhg3j7y/B96rh7TkeZNXVWAV4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\kuda-kit.css'))</OriginalItemSpec>
