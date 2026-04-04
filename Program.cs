@@ -2,6 +2,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+// Aktifkan GZIP/Brotli Compression untuk mengkompres aset statis dan API secara otomatis di level server
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+});
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -28,6 +33,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseResponseCompression(); // Gunakan middleware compression sebelum static files
+
 app.UseCors("AllowAllAssets");
 app.UseStaticFiles(new StaticFileOptions
 {

@@ -333,6 +333,10 @@
       "PackagePath": "staticwebassets/js/kuda-kit.js"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.min.js",
+      "PackagePath": "staticwebassets/js/kuda-kit.min.js"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/ui-builder-erd.js",
       "PackagePath": "staticwebassets/js/ui-builder-erd.js"
     },
