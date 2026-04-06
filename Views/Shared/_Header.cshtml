@@ -439,16 +439,10 @@ document.addEventListener('DOMContentLoaded', function() {
         /* — Init Bootstrap Dropdown dengan strategy fixed
              supaya tidak ter-clip oleh overflow-y:auto di .main-content — */
         document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(function(el) {
-            const dropdownInstance = new bootstrap.Dropdown(el, {
+            new bootstrap.Dropdown(el, {
                 popperConfig: function(defaultConfig) {
                     return Object.assign({}, defaultConfig, { strategy: 'fixed' });
                 }
-            });
-
-            el.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropdownInstance.toggle();
             });
         });
 

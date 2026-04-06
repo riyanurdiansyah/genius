@@ -486,9 +486,47 @@ let pages = [];
             renderProjects();
         } catch (error) {
             console.error("Firestore Error: ", error);
-            if (grid) grid.innerHTML = `<div class="col-12 text-center text-danger" style="padding:40px;"><i class="fas fa-exclamation-triangle fs-1 mb-3"></i><br>Gagal Terhubung ke Firebase!<br><small class="text-muted">Pastikan Anda telah mengisi 'firebaseConfig' di file Design.cshtml dan permission Firestore telah dibuka.</small></div>`;
+            const errorMsg = error.message.includes('permission') ? "Firestore Rules (Permission Denied)" : error.message;
+            
+            if (grid) grid.innerHTML = `
+                <div class="col-12 text-center text-danger" style="padding:40px;">
+                    <i class="fas fa-exclamation-triangle fs-1 mb-3"></i><br>
+                    <div class="fw-bold fs-5 mb-2">Gagal Terhubung ke Firebase!</div>
+                    <div class="badge bg-soft-danger text-danger mb-3 p-2">Error: ${errorMsg}</div>
+                    
+                    <div class="bg-light p-3 rounded text-start mx-auto mb-3" style="max-width:500px; font-size:12px; border:1px solid #fee2e2;">
+                        <h6 class="fw-bold mb-1"><i class="fas fa-info-circle me-1"></i> Cara Memperbaiki:</h6>
+                        1. Buka <b>Firebase Console</b> > <b>Firestore Database</b> > <b>Rules</b>.<br>
+                        2. Ubah rules menjadi: <code class="d-block bg-white border p-2 mt-1 rounded">allow read, write: if true;</code>
+                        3. Klik <b>Publish</b> dan refresh halaman ini.
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-primary btn-sm" onclick="fetchProjects()"><i class="fas fa-sync-alt me-1"></i> Coba Lagi</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="useLocalStorage()"><i class="fas fa-hdd me-1"></i> Gunakan Local Storage (Offline Mode)</button>
+                    </div>
+                </div>`;
         }
     }
+
+    function useLocalStorage() {
+        const localData = localStorage.getItem('kuda_designer_offline');
+        if (localData) {
+            AppData = JSON.parse(localData);
+        } else {
+            AppData = { projects: [] };
+        }
+        renderProjects();
+        // Override saveAllData to use local storage from now on
+        isOfflineMode = true; 
+        const grid = document.getElementById('projectGrid');
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-warning m-3 text-center';
+        alertDiv.style.fontSize = '12px';
+        alertDiv.innerHTML = '<i class="fas fa-wifi-slash me-2"></i><b>Offline Mode Aktif:</b> Data disimpan di browser lokal, bukan di Cloud.';
+        grid.prepend(alertDiv);
+    }
+    let isOfflineMode = false;
 
     function renderProjects() {
         const grid = document.getElementById('projectGrid');
@@ -540,23 +578,33 @@ let pages = [];
         };
 
         try {
-            await db.collection("projects").doc(newProj.id).set(newProj);
-            AppData.projects.push(newProj);
+            if (isOfflineMode) {
+                AppData.projects.push(newProj);
+                localStorage.setItem('kuda_designer_offline', JSON.stringify(AppData));
+            } else {
+                await db.collection("projects").doc(newProj.id).set(newProj);
+                AppData.projects.push(newProj);
+            }
             renderProjects();
         } catch (e) {
-            alert("Firebase Error: Gagal Membuat Proyek. \nPastikan Rules Firestore Anda (allow read, write: if true;)");
+            alert("Gagal Membuat Proyek. \n" + (isOfflineMode ? "Local Storage error." : "Firebase Permission Denied."));
         }
     }
 
     async function deleteProject(id, ev) {
         if (ev) ev.stopPropagation();
-        showConfirm("Hapus proyek Cloud ini beserta seluruh isinya secara permanen dari Firebase?", async () => {
+        showConfirm("Hapus proyek ini secara permanen?", async () => {
             try {
-                await db.collection("projects").doc(id).delete();
-                AppData.projects = AppData.projects.filter(p => p.id !== id);
+                if (isOfflineMode) {
+                    AppData.projects = AppData.projects.filter(p => p.id !== id);
+                    localStorage.setItem('kuda_designer_offline', JSON.stringify(AppData));
+                } else {
+                    await db.collection("projects").doc(id).delete();
+                    AppData.projects = AppData.projects.filter(p => p.id !== id);
+                }
                 renderProjects();
             } catch (e) {
-                alert("Firebase Error: Gagal Menghapus Proyek.");
+                alert("Gagal Menghapus Proyek.");
             }
         }, "Hapus Proyek");
     }
@@ -660,10 +708,15 @@ let pages = [];
         currentProject.updatedAt = new Date().toLocaleTimeString();
 
         try {
-            await db.collection("projects").doc(currentProject.id).set(currentProject);
-            console.log("Auto-saved to Cloud Firestore");
+            if (isOfflineMode) {
+                localStorage.setItem('kuda_designer_offline', JSON.stringify(AppData));
+                console.log("Auto-saved to Local Storage");
+            } else {
+                await db.collection("projects").doc(currentProject.id).set(currentProject);
+                console.log("Auto-saved to Cloud Firestore");
+            }
         } catch(e) {
-            console.error("Firebase Sync Error", e);
+            console.error("Sync Error", e);
         } finally {
             isSavingToCloud = false;
         }
