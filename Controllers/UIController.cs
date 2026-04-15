@@ -27,4 +27,5 @@ public class UIController : Controller
     public IActionResult Toasts() => View();
     public IActionResult TooltipsPopovers() => View();
     public IActionResult Typography() => View();
+    public IActionResult JsonToHtml() => View();
 }

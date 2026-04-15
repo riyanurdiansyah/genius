@@ -1,0 +1,1085 @@
+@{
+    ViewData["Title"] = "JSON to HTML Renderer";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/kuda-json-renderer.css" />
+}
+
+<div class="alert alert-primary mb-4 border-0 shadow-sm d-flex align-items-center p-4" style="background: var(--sb-primary-light); border-radius: 16px;">
+    <div class="flex-shrink-0 me-3">
+        <div class="bg-white rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 50px; height: 50px;">
+            <i class="fa-solid fa-code text-primary fs-4"></i>
+        </div>
+    </div>
+    <div>
+        <h5 class="alert-heading mb-1 fw-bold text-primary">JSON to HTML Renderer</h5>
+        <p class="mb-0 text-secondary" style="font-size: 14px;">
+            Paste complex JSON and transform it into structured, readable HTML. Supports nested objects, arrays, tables, and custom templates.
+        </p>
+    </div>
+</div>
+
+<!-- Top Controls -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+            <div class="card-body p-3 d-flex flex-wrap gap-2 align-items-center">
+                <span class="fw-semibold text-muted me-2" style="font-size: 13px;"><i class="fas fa-sliders-h me-1"></i> Render Mode:</span>
+                <div class="btn-group" role="group" id="renderModeGroup">
+                    <input type="radio" class="btn-check" name="renderMode" id="modeAuto" value="auto" checked>
+                    <label class="btn btn-sm btn-outline-primary" for="modeAuto"><i class="fas fa-magic me-1"></i>Auto</label>
+
+                    <input type="radio" class="btn-check" name="renderMode" id="modeTable" value="table">
+                    <label class="btn btn-sm btn-outline-primary" for="modeTable"><i class="fas fa-table me-1"></i>Table</label>
+
+                    <input type="radio" class="btn-check" name="renderMode" id="modeCard" value="card">
+                    <label class="btn btn-sm btn-outline-primary" for="modeCard"><i class="fas fa-id-card me-1"></i>Cards</label>
+
+                    <input type="radio" class="btn-check" name="renderMode" id="modeTree" value="tree">
+                    <label class="btn btn-sm btn-outline-primary" for="modeTree"><i class="fas fa-sitemap me-1"></i>Tree</label>
+
+                    <input type="radio" class="btn-check" name="renderMode" id="modeList" value="list">
+                    <label class="btn btn-sm btn-outline-primary" for="modeList"><i class="fas fa-list me-1"></i>List</label>
+
+                    <input type="radio" class="btn-check" name="renderMode" id="modeForm" value="form">
+                    <label class="btn btn-sm btn-outline-primary" for="modeForm"><i class="fas fa-clipboard-list me-1"></i>Form</label>
+                </div>
+
+                <div class="ms-auto d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" id="btnLoadSample">
+                        <i class="fas fa-database me-1"></i> Load Sample
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" id="btnClearAll">
+                        <i class="fas fa-trash-alt me-1"></i> Clear
+                    </button>
+                    <button class="btn btn-sm btn-primary" id="btnRender">
+                        <i class="fas fa-play me-1"></i> Render HTML
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Editor Layout -->
+<div class="row g-3">
+    <!-- Left: JSON Editor -->
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100" style="border-radius: 16px;">
+            <div class="card-header border-0 d-flex align-items-center justify-content-between px-4 py-3" style="background: transparent;">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:32px;height:32px;background:var(--sb-primary-light);">
+                        <i class="fas fa-file-code text-primary" style="font-size:13px;"></i>
+                    </div>
+                    <span class="fw-bold" style="font-size:14px;">JSON Input</span>
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <span id="jsonStatus" class="badge rounded-pill" style="font-size:11px; background:#e8f5e9; color:#2e7d32;">
+                        <i class="fas fa-circle me-1" style="font-size:8px;"></i>Ready
+                    </span>
+                    <button class="btn btn-sm btn-outline-secondary" id="btnFormatJson" title="Format JSON">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="btnCopyJson" title="Copy JSON">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div id="jsonEditorWrapper" style="position:relative;">
+                    <div id="lineNumbers" class="json-line-numbers" aria-hidden="true"></div>
+                    <textarea id="jsonInput" class="json-editor-textarea" placeholder='Paste your JSON here...&#10;{&#10;  "name": "example",&#10;  "items": [...]&#10;}'
+                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+                </div>
+            </div>
+            <div class="card-footer border-0 px-4 py-2" style="background:transparent;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted" id="jsonInfo">0 characters · 0 lines</small>
+                    <small class="text-danger" id="jsonError" style="display:none;"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: HTML Output -->
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100" style="border-radius: 16px;">
+            <div class="card-header border-0 d-flex align-items-center justify-content-between px-4 py-3" style="background: transparent;">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:32px;height:32px;background:#fff3e0;">
+                        <i class="fas fa-eye" style="font-size:13px; color:#e65100;"></i>
+                    </div>
+                    <span class="fw-bold" style="font-size:14px;">HTML Output</span>
+                </div>
+                <div class="d-flex gap-2 flex-wrap">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary active" id="btnPreviewMode" title="Preview">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary" id="btnCodeMode" title="View HTML Code">
+                            <i class="fas fa-code"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary" id="btnCopyHtml" title="Copy snippet (tanpa CSS)">
+                        <i class="fas fa-copy me-1"></i><span style="font-size:11px;">Snippet</span>
+                    </button>
+                    <button class="btn btn-sm btn-primary" id="btnCopyForWeb" title="Copy HTML lengkap siap pakai (dengan CSS embedded)">
+                        <i class="fas fa-globe me-1"></i><span style="font-size:11px;">Copy for Web</span>
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" id="btnDownloadHtml" title="Download sebagai file HTML standalone">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-3 d-flex flex-column" style="min-height:450px;">
+                <!-- Preview Panel -->
+                <div id="htmlPreview" class="html-output-wrapper flex-grow-1">
+                    <div class="empty-state-placeholder">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="placeholder-text">Your rendered output will appear here</div>
+                        <div class="placeholder-sub">Paste JSON on the left and click <strong>Render HTML</strong></div>
+                    </div>
+                </div>
+                <!-- Code Panel -->
+                <div id="htmlCodePanel" style="display:none; flex-grow:1;">
+                    <pre id="htmlCodeOutput" class="html-code-output"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Schema / Field Mapping Card -->
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+            <div class="card-header border-0 px-4 py-3 d-flex align-items-center justify-content-between" style="background:transparent;">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:32px;height:32px;background:#f3e5f5;">
+                        <i class="fas fa-sliders-h" style="font-size:13px; color:#7b1fa2;"></i>
+                    </div>
+                    <span class="fw-bold" style="font-size:14px;">Detected Schema & Field Options</span>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary" id="btnToggleSchema">
+                    <i class="fas fa-chevron-down" id="schemaChevron"></i>
+                </button>
+            </div>
+            <div id="schemaPanel" class="card-body px-4 pb-4 pt-0">
+                <div id="schemaContent" class="text-muted" style="font-size:14px;">
+                    <em>Render JSON to detect schema fields.</em>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Examples Gallery -->
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+            <div class="card-header border-0 px-4 py-3" style="background:transparent;">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:32px;height:32px;background:#e3f2fd;">
+                        <i class="fas fa-shapes" style="font-size:13px; color:#1565c0;"></i>
+                    </div>
+                    <span class="fw-bold" style="font-size:14px;">Sample Data Presets</span>
+                </div>
+            </div>
+            <div class="card-body px-4 pb-4 pt-0">
+                <div class="row g-3" id="samplePresets">
+                    <!-- filled by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* ─── Editor ─────────────────────────────────────────────── */
+    #jsonEditorWrapper {
+        display: flex;
+        position: relative;
+        background: #1e1e2e;
+        border-radius: 0 0 0 16px;
+        overflow: hidden;
+        height: 450px;
+    }
+
+    .json-line-numbers {
+        padding: 14px 8px 14px 14px;
+        font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 13px;
+        line-height: 1.7;
+        color: #555577;
+        text-align: right;
+        user-select: none;
+        min-width: 42px;
+        background: #1e1e2e;
+        border-right: 1px solid #2a2a3e;
+        overflow: hidden;
+    }
+
+    .json-editor-textarea {
+        flex: 1;
+        background: #1e1e2e;
+        color: #cdd6f4;
+        border: none;
+        outline: none;
+        resize: none;
+        padding: 14px 16px;
+        font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+        font-size: 13px;
+        line-height: 1.7;
+        tab-size: 2;
+        white-space: pre;
+        overflow-wrap: normal;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .json-editor-textarea::placeholder { color: #444466; }
+
+    /* ─── Output ─────────────────────────────────────────────── */
+    .html-output-wrapper {
+        overflow: auto;
+        padding: 8px;
+        background: #fafafa;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        min-height: 420px;
+    }
+
+    .html-code-output {
+        background: #1e1e2e;
+        color: #a6e3a1;
+        border-radius: 12px;
+        padding: 16px;
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 12px;
+        line-height: 1.6;
+        overflow: auto;
+        min-height: 420px;
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    /* ─── Placeholder ─────────────────────────────────────────── */
+    .empty-state-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        min-height: 380px;
+        color: #bbb;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .placeholder-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        color: var(--sb-primary);
+        margin-bottom: 8px;
+        animation: pulse-icon 2.5s ease-in-out infinite;
+    }
+
+    @@keyframes pulse-icon {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76,175,80,.3); }
+        50% { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(76,175,80,0); }
+    }
+
+    .placeholder-text { font-size: 15px; font-weight: 600; color: #888; }
+    .placeholder-sub  { font-size: 13px; color: #bbb; }
+
+    /* ─── Schema ─────────────────────────────────────────────── */
+    .schema-field-pill {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: #f5f5f5; border: 1px solid #e0e0e0;
+        border-radius: 20px; padding: 4px 12px;
+        font-size: 12px; font-weight: 600; cursor: default; margin: 3px;
+    }
+    .schema-field-pill .type-badge { padding: 1px 7px; border-radius: 12px; font-size: 10px; font-weight: 700; }
+    .type-string  { background:#fff8e1; color:#e65100; }
+    .type-number  { background:#e3f2fd; color:#1565c0; }
+    .type-boolean { background:#f3e5f5; color:#6a1b9a; }
+    .type-object  { background:#e8f5e9; color:#2e7d32; }
+    .type-array   { background:#fce4ec; color:#880e4f; }
+    .type-null    { background:#eceff1; color:#546e7a; }
+
+    /* ─── Sample Presets ─────────────────────────────────────── */
+    .preset-card {
+        border: 1px solid #e9ecef; border-radius: 12px; padding: 14px;
+        cursor: pointer; transition: all .2s; background: #fff;
+    }
+    .preset-card:hover { border-color: var(--sb-primary); box-shadow: 0 4px 14px rgba(0,0,0,.1); transform: translateY(-2px); }
+    .preset-card .preset-icon { font-size: 22px; margin-bottom: 8px; }
+    .preset-card .preset-name { font-weight: 700; font-size: 13px; color: #333; }
+    .preset-card .preset-desc { font-size: 11px; color: #888; margin-top: 4px; }
+</style>
+
+<script src="~/js/kuda-json-renderer.js"></script>
+<script>
+(function () {
+    /* ── sample presets ───────────────────────────────────────────── */
+    const SAMPLES = {
+        users: {
+            label: 'User List',
+            icon: '👥',
+            desc: 'Array of user objects with nested roles',
+            mode: 'table',
+            json: JSON.stringify({
+                total: 3,
+                page: 1,
+                users: [
+                    { id: 1, name: 'Alice Johnson', email: 'alice@@corp.com', role: 'Admin', active: true, score: 98.5, tags: ['vip', 'senior'] },
+                    { id: 2, name: 'Bob Smith',    email: 'bob@@corp.com',   role: 'Editor', active: true, score: 74.0, tags: ['junior'] },
+                    { id: 3, name: 'Carol White',  email: 'carol@@corp.com', role: 'Viewer', active: false, score: 55.2, tags: [] }
+                ]
+            }, null, 2)
+        },
+        product: {
+            label: 'Product Detail',
+            icon: '🛒',
+            desc: 'Nested product object with variants and specs',
+            mode: 'card',
+            json: JSON.stringify({
+                id: 'PRD-001',
+                name: 'Wireless Keyboard Pro',
+                brand: 'TechCo',
+                price: 129.99,
+                currency: 'USD',
+                inStock: true,
+                rating: 4.7,
+                category: { id: 5, name: 'Electronics', slug: 'electronics' },
+                specs: { battery: '6 months', connectivity: 'Bluetooth 5.0', weight: '680g' },
+                variants: [
+                    { color: 'Space Gray', sku: 'KB-SG-001', qty: 45 },
+                    { color: 'White',      sku: 'KB-WH-002', qty: 12 }
+                ],
+                tags: ['wireless', 'ergonomic', 'mechanical']
+            }, null, 2)
+        },
+        apiResponse: {
+            label: 'API Response',
+            icon: '🌐',
+            desc: 'Typical REST API response wrapper',
+            mode: 'tree',
+            json: JSON.stringify({
+                status: 'success',
+                code: 200,
+                message: 'Data retrieved successfully',
+                meta: { total: 2, page: 1, limit: 10, hasNext: false },
+                data: {
+                    orders: [
+                        { orderId: 'ORD-881', amount: 540000, status: 'paid',    createdAt: '2025-11-01T08:00:00Z' },
+                        { orderId: 'ORD-882', amount: 120000, status: 'pending', createdAt: '2025-11-02T09:30:00Z' }
+                    ]
+                },
+                errors: null
+            }, null, 2)
+        },
+        config: {
+            label: 'App Config',
+            icon: '⚙️',
+            desc: 'Deep nested config / settings object',
+            mode: 'tree',
+            json: JSON.stringify({
+                app: { name: 'Kuda Admin', version: '3.2.1', debug: false },
+                database: { host: 'db.internal', port: 5432, name: 'kuda_prod', ssl: true, pool: { min: 2, max: 10 } },
+                cache: { driver: 'redis', ttl: 3600, prefix: 'kuda_' },
+                features: { darkMode: true, analytics: true, notifications: false },
+                allowedOrigins: ['https://app.kuda.id', 'https://admin.kuda.id']
+            }, null, 2)
+        },
+        employees: {
+            label: 'Org Chart',
+            icon: '🏢',
+            desc: 'Hierarchical employee / department data',
+            mode: 'auto',
+            json: JSON.stringify([
+                { id: 101, name: 'Diana Prince', dept: 'Engineering', title: 'CTO', salary: 18000000, joined: '2019-03-15', subordinates: 12 },
+                { id: 102, name: 'Ethan Hunt',   dept: 'Operations', title: 'COO', salary: 16000000, joined: '2020-07-01', subordinates: 8 },
+                { id: 103, name: 'Fiona Green',  dept: 'Finance',    title: 'CFO', salary: 17000000, joined: '2018-11-22', subordinates: 5 }
+            ], null, 2)
+        },
+        timeline: {
+            label: 'Timeline',
+            icon: '📅',
+            desc: 'List of events with date and metadata',
+            mode: 'list',
+            json: JSON.stringify({
+                project: 'Kuda v3 Launch',
+                milestones: [
+                    { date: '2025-10-01', event: 'Kickoff Meeting',      status: 'done',        owner: 'PM Team' },
+                    { date: '2025-11-15', event: 'Design Handoff',       status: 'done',        owner: 'UI/UX' },
+                    { date: '2025-12-01', event: 'Backend Integration',  status: 'in-progress', owner: 'Backend Team' },
+                    { date: '2026-01-10', event: 'UAT Testing',          status: 'pending',     owner: 'QA Team' },
+                    { date: '2026-02-01', event: 'Production Deploy',    status: 'pending',     owner: 'DevOps' }
+                ]
+            }, null, 2)
+        },
+        questionnaire: {
+            label: 'Kuesioner',
+            icon: '📋',
+            desc: 'Form survei dengan 3 tipe soal: radio, checkbox, rating',
+            mode: 'form',
+            json: JSON.stringify({
+                form: {
+                    title: 'Survei Kepuasan Layanan Digital 2025',
+                    description: 'Bantu kami meningkatkan layanan dengan mengisi kuesioner ini. Semua jawaban bersifat anonim.',
+                    respondent: { name: '', department: '', date: '' },
+                    sections: [
+                        {
+                            id: 'S1',
+                            title: 'Pengalaman Pengguna',
+                            questions: [
+                                {
+                                    id: 'Q1',
+                                    type: 'radio',
+                                    required: true,
+                                    question: 'Seberapa mudah Anda menggunakan sistem kami?',
+                                    options: [
+                                        'Sangat Mudah',
+                                        'Mudah',
+                                        'Cukup',
+                                        'Sulit',
+                                        'Sangat Sulit'
+                                    ]
+                                },
+                                {
+                                    id: 'Q2',
+                                    type: 'rating',
+                                    required: true,
+                                    question: 'Berikan penilaian keseluruhan untuk antarmuka sistem kami.',
+                                    max: 5,
+                                    labels: { min: 'Sangat Buruk', max: 'Sangat Baik' }
+                                },
+                                {
+                                    id: 'Q3',
+                                    type: 'radio',
+                                    required: true,
+                                    question: 'Seberapa sering Anda menggunakan fitur laporan?',
+                                    options: [
+                                        'Setiap hari',
+                                        'Beberapa kali seminggu',
+                                        'Sekali seminggu',
+                                        'Jarang',
+                                        'Tidak pernah'
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 'S2',
+                            title: 'Fitur & Kebutuhan',
+                            questions: [
+                                {
+                                    id: 'Q4',
+                                    type: 'checkbox',
+                                    required: false,
+                                    question: 'Fitur apa saja yang paling sering Anda gunakan? (Boleh pilih lebih dari satu)',
+                                    options: [
+                                        'Dashboard Analytics',
+                                        'Manajemen Pengguna',
+                                        'Laporan & Ekspor Data',
+                                        'Notifikasi Real-time',
+                                        'Integrasi API',
+                                        'Manajemen File'
+                                    ]
+                                },
+                                {
+                                    id: 'Q5',
+                                    type: 'checkbox',
+                                    required: false,
+                                    question: 'Fitur apa yang ingin Anda lihat di versi berikutnya?',
+                                    options: [
+                                        'Dark Mode',
+                                        'Aplikasi Mobile',
+                                        'AI Assistant',
+                                        'Multi-bahasa',
+                                        'Audit Trail Lebih Detail',
+                                        'Custom Dashboard'
+                                    ]
+                                },
+                                {
+                                    id: 'Q6',
+                                    type: 'rating',
+                                    required: true,
+                                    question: 'Seberapa besar kemungkinan Anda merekomendasikan sistem ini kepada kolega?',
+                                    max: 10,
+                                    labels: { min: 'Tidak Mungkin', max: 'Sangat Mungkin' }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }, null, 2)
+        }
+    };
+
+    /* ── helpers ──────────────────────────────────────────────────── */
+    // All renderer helpers, renderers, and KudaRenderer are loaded from:
+    // /js/kuda-json-renderer.js
+    // Use KudaRenderer.render(data, mode) to render JSON data to HTML.
+
+    function typeBadge(v) {
+        const t = typeOf(v);
+        const cls = { string:'jr-tag-string', number:'jr-tag-number', boolean: v ? 'jr-tag-boolean-true' : 'jr-tag-boolean-false', null:'jr-tag-null' };
+        if (t === 'object' || t === 'array') return '';
+        return `<span class="jr-badge ${cls[t] || ''}">${escHtml(String(v))}</span>`;
+    }
+
+    function typeOf(v) {
+        if (v === null) return 'null';
+        if (Array.isArray(v)) return 'array';
+        return typeof v;
+    }
+
+    function collectSchema(obj, path, schema) {
+        schema = schema || {};
+        if (!obj || typeof obj !== 'object') return schema;
+        const arr = Array.isArray(obj) ? obj : [obj];
+        arr.forEach(item => {
+            if (item && typeof item === 'object' && !Array.isArray(item)) {
+                Object.keys(item).forEach(k => {
+                    const full = path ? `${path}.${k}` : k;
+                    const t = typeOf(item[k]);
+                    schema[full] = { type: t, example: item[k] };
+                    if (t === 'object' || t === 'array') collectSchema(item[k], full, schema);
+                });
+            }
+        });
+        return schema;
+    }
+
+    /* ── renderers ────────────────────────────────────────────────── */
+    function renderAuto(data) {
+        if (Array.isArray(data)) {
+            if (data.length && typeof data[0] === 'object' && data[0] !== null) return renderTable(data);
+            return renderList(data);
+        }
+        if (typeof data === 'object' && data !== null) {
+            // check if any value is an array of objects
+            for (const k of Object.keys(data)) {
+                if (Array.isArray(data[k]) && data[k].length && typeof data[k][0] === 'object') {
+                    let out = `<div class="jr-section-title">${escHtml(k)}</div>`;
+                    out += renderTable(data[k]);
+                    const rest = {};
+                    Object.keys(data).forEach(x => { if (x !== k) rest[x] = data[x]; });
+                    if (Object.keys(rest).length) out = renderKVTable(rest) + out;
+                    return out;
+                }
+            }
+            return renderKVTable(data);
+        }
+        return `<div class="jr-badge">${escHtml(String(data))}</div>`;
+    }
+
+    function renderTable(arr) {
+        if (!arr.length) return '<em class="text-muted">Empty array</em>';
+        const allKeys = [...new Set(arr.flatMap(r => (r && typeof r === 'object' ? Object.keys(r) : [])))];
+        let html = '<div style="overflow-x:auto"><table class="jr-table"><thead><tr>';
+        allKeys.forEach(k => { html += `<th>${escHtml(k)}</th>`; });
+        html += '</tr></thead><tbody>';
+        arr.forEach(row => {
+            html += '<tr>';
+            if (row && typeof row === 'object') {
+                allKeys.forEach(k => {
+                    const v = row[k];
+                    const t = typeOf(v);
+                    if (t === 'object' || t === 'array') {
+                        html += `<td><code style="font-size:11px; color:#666;">${escHtml(JSON.stringify(v))}</code></td>`;
+                    } else {
+                        html += `<td>${typeBadge(v)}</td>`;
+                    }
+                });
+            } else {
+                html += `<td colspan="${allKeys.length}">${escHtml(String(row))}</td>`;
+            }
+            html += '</tr>';
+        });
+        html += '</tbody></table></div>';
+        return html;
+    }
+
+    function renderKVTable(obj) {
+        const keys = Object.keys(obj);
+        if (!keys.length) return '<em class="text-muted">Empty object</em>';
+        let html = '<div style="overflow-x:auto"><table class="jr-table"><tbody>';
+        keys.forEach(k => {
+            const v = obj[k];
+            const t = typeOf(v);
+            html += `<tr><td class="key-col">${escHtml(k)}</td><td>`;
+            if (t === 'object') html += renderKVTable(v);
+            else if (t === 'array') html += renderTable(v);
+            else html += typeBadge(v);
+            html += '</td></tr>';
+        });
+        html += '</tbody></table></div>';
+        return html;
+    }
+
+    function renderCards(data) {
+        const arr = Array.isArray(data) ? data : [data];
+        if (!arr.length) return '<em class="text-muted">Empty</em>';
+        const titleKeys = ['name', 'title', 'label', 'id', 'orderId', 'sku'];
+        return arr.map((item, idx) => {
+            if (item === null || typeof item !== 'object') {
+                return `<div class="jr-card"><span class="jr-badge">${escHtml(String(item))}</span></div>`;
+            }
+            const titleKey = titleKeys.find(k => k in item);
+            const title = titleKey ? item[titleKey] : `Item ${idx + 1}`;
+            let html = `<div class="jr-card"><div class="jr-card-title">${escHtml(String(title))}</div>`;
+            Object.keys(item).forEach(k => {
+                if (k === titleKey) return;
+                const v = item[k];
+                const t = typeOf(v);
+                html += `<div class="jr-card-row"><span class="jr-card-key">${escHtml(k)}</span><span class="jr-card-val">`;
+                if (t === 'object') html += `<code style="font-size:11px;">${escHtml(JSON.stringify(v))}</code>`;
+                else if (t === 'array') html += `<code style="font-size:11px;">${escHtml(JSON.stringify(v))}</code>`;
+                else html += typeBadge(v);
+                html += '</span></div>';
+            });
+            html += '</div>';
+            return html;
+        }).join('');
+    }
+
+    function renderTree(data, depth) {
+        depth = depth || 0;
+        const t = typeOf(data);
+        if (t === 'object' && data !== null) {
+            const keys = Object.keys(data);
+            if (!keys.length) return '<span class="tree-val">{}</span>';
+            const id = 'tn_' + Math.random().toString(36).slice(2);
+            const toggle = depth > 0
+                ? `<span class="tree-toggle" onclick="var c=document.getElementById('${id}');c.classList.toggle('visible');this.classList.toggle('open');">{&hellip;}</span>`
+                : '';
+            let inner = `<ul id="${id}" class="collapsible${depth === 0 ? ' visible' : ''}">`;
+            keys.forEach(k => {
+                inner += `<li><span class="tree-key">${escHtml(k)}</span>: ${renderTree(data[k], depth + 1)}</li>`;
+            });
+            inner += '</ul>';
+            return toggle + inner;
+        }
+        if (t === 'array') {
+            if (!data.length) return '<span class="tree-val">[]</span>';
+            const id = 'tn_' + Math.random().toString(36).slice(2);
+            const toggle = `<span class="tree-toggle" onclick="var c=document.getElementById('${id}');c.classList.toggle('visible');this.classList.toggle('open');">[${data.length}]</span>`;
+            let inner = `<ul id="${id}" class="collapsible${depth === 0 ? ' visible' : ''}">`;
+            data.forEach((v, i) => { inner += `<li><span class="tree-key">${i}</span>: ${renderTree(v, depth + 1)}</li>`; });
+            inner += '</ul>';
+            return toggle + inner;
+        }
+        return typeBadge(data);
+    }
+
+    function renderList(data) {
+        const arr = Array.isArray(data) ? data : Object.entries(data).map(([k, v]) => ({ key: k, value: v }));
+        if (!arr.length) return '<em class="text-muted">Empty</em>';
+        const titleKeys = ['name', 'title', 'label', 'event', 'id', 'key'];
+        let html = '<ul class="jr-list">';
+        arr.forEach((item, i) => {
+            html += `<li><span class="li-bullet">${i + 1}</span><div class="li-content">`;
+            if (item && typeof item === 'object') {
+                const tk = titleKeys.find(k => k in item);
+                if (tk) html += `<div class="li-key">${escHtml(String(item[tk]))}</div>`;
+                const rest = Object.keys(item).filter(k => k !== tk);
+                const sub = rest.map(k => `<strong>${escHtml(k)}:</strong> ${escHtml(String(item[k]))}`).join(' &nbsp;·&nbsp; ');
+                if (sub) html += `<div class="li-val">${sub}</div>`;
+            } else {
+                html += `<div class="li-key">${escHtml(String(item))}</div>`;
+            }
+            html += '</div></li>';
+        });
+        html += '</ul>';
+        return html;
+    }
+
+    /* ── core render (delegates to KudaRenderer) ────────────────── */
+    function getMode() {
+        return document.querySelector('input[name="renderMode"]:checked').value;
+    }
+
+    function doRender(data) {
+        return KudaRenderer.render(data, getMode());
+    }
+
+    /* ── line numbers ─────────────────────────────────────────────── */
+    function updateLineNumbers() {
+        const ta = document.getElementById('jsonInput');
+        const ln = document.getElementById('lineNumbers');
+        const count = ta.value.split('\n').length;
+        ln.innerHTML = Array.from({ length: count }, (_, i) => i + 1).join('<br>');
+        ln.scrollTop = ta.scrollTop;
+    }
+
+    /* ── main logic ───────────────────────────────────────────────── */
+    function renderFromInput() {
+        const raw = document.getElementById('jsonInput').value.trim();
+        const errEl = document.getElementById('jsonError');
+        const status = document.getElementById('jsonStatus');
+        const preview = document.getElementById('htmlPreview');
+        const codePanel = document.getElementById('htmlCodePanel');
+        const codeOut = document.getElementById('htmlCodeOutput');
+
+        if (!raw) {
+            preview.innerHTML = `<div class="empty-state-placeholder"><div class="placeholder-icon"><i class="fas fa-magic"></i></div><div class="placeholder-text">Your rendered output will appear here</div><div class="placeholder-sub">Paste JSON on the left and click <strong>Render HTML</strong></div></div>`;
+            errEl.style.display = 'none';
+            return;
+        }
+
+        let parsed;
+        try {
+            parsed = JSON.parse(raw);
+            errEl.style.display = 'none';
+            status.innerHTML = '<i class="fas fa-circle me-1" style="font-size:8px;"></i>Valid';
+            status.style.background = '#e8f5e9'; status.style.color = '#2e7d32';
+        } catch (e) {
+            errEl.textContent = '✖ ' + e.message;
+            errEl.style.display = 'inline';
+            status.innerHTML = '<i class="fas fa-circle me-1" style="font-size:8px;"></i>Invalid';
+            status.style.background = '#ffebee'; status.style.color = '#c62828';
+            return;
+        }
+
+        const html = doRender(parsed);
+        preview.innerHTML = html;
+        codeOut.textContent = html.replace(/></g, '>\n<');
+
+        // schema
+        const schema = KudaRenderer.collectSchema(parsed, '');
+        renderSchema(schema);
+    }
+
+    /* ── embed CSS for export ─────────────────────────────────────── */
+    function getEmbedCSS() {
+        return `
+/* ── JSON to HTML Renderer output styles ── */
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Inter','Segoe UI',sans-serif;margin:0;padding:0;color:#222}
+.jr-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px}
+.jr-table th{background:#2e7d32;color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+.jr-table td{padding:9px 14px;border-bottom:1px solid #e9ecef;vertical-align:top}
+.jr-table tr:hover td{background:#f0f9f0}
+.jr-table tr:last-child td{border-bottom:none}
+.jr-table td.key-col{font-weight:600;color:#333;white-space:nowrap;width:1%}
+.jr-card{background:#fff;border:1px solid #e9ecef;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.jr-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.jr-card-title{font-size:15px;font-weight:700;color:#222;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #e8f5e9}
+.jr-card-row{display:flex;gap:8px;margin-bottom:6px;font-size:13px}
+.jr-card-key{font-weight:600;color:#555;min-width:130px}
+.jr-card-val{color:#333}
+.jr-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:#e8f5e9;color:#2e7d32}
+.jr-tag-number{background:#e3f2fd;color:#1565c0}
+.jr-tag-boolean-true{background:#e8f5e9;color:#2e7d32}
+.jr-tag-boolean-false{background:#ffebee;color:#c62828}
+.jr-tag-null{background:#f3e5f5;color:#6a1b9a}
+.jr-tag-string{background:#fff8e1;color:#e65100}
+.jr-tree{font-size:13px;font-family:monospace}
+.jr-tree ul{list-style:none;padding-left:20px;margin:0;border-left:2px solid #e9ecef}
+.jr-tree li{padding:3px 0}
+.jr-tree .tree-key{color:#2e7d32;font-weight:600}
+.jr-tree .tree-val{color:#555}
+.jr-tree .tree-toggle{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:4px}
+.jr-tree .tree-toggle::before{content:'\u25b6';font-size:9px;display:inline-block;transition:transform .2s;color:#aaa}
+.jr-tree .tree-toggle.open::before{transform:rotate(90deg)}
+.jr-tree .collapsible{display:none}
+.jr-tree .collapsible.visible{display:block}
+.jr-list{list-style:none;padding:0;margin:0}
+.jr-list li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.jr-list li:last-child{border-bottom:none}
+.jr-list .li-bullet{width:22px;height:22px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.jr-list .li-content{flex:1}
+.jr-list .li-key{font-weight:600;color:#333}
+.jr-list .li-val{color:#666;margin-top:2px}
+.jr-section-title{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#999;font-weight:700;margin:12px 0 6px}
+/* Form / Questionnaire */
+.jf-wrapper{font-family:'Inter','Segoe UI',sans-serif;max-width:720px;margin:0 auto}
+.jf-header{display:flex;align-items:flex-start;gap:14px;background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:18px}
+.jf-header-icon{width:44px;height:44px;background:rgba(255,255,255,.18);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.jf-title{font-size:16px;font-weight:800;line-height:1.3}
+.jf-desc{font-size:12px;opacity:.85;margin-top:5px;line-height:1.5}
+.jf-respondent{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:18px;background:#f9fbe7;border:1px solid #dcedc8;border-radius:12px;padding:16px}
+.jf-label{display:block;font-size:11px;font-weight:700;color:#555;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.jf-input{width:100%;border:1.5px solid #ddd;border-radius:8px;padding:7px 10px;font-size:13px;outline:none;transition:border .2s;background:#fff}
+.jf-input:focus{border-color:#2e7d32}
+.jf-section{background:#fff;border:1px solid #e9ecef;border-radius:14px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.jf-section-header{display:flex;align-items:center;gap:10px;padding:14px 18px;background:#f8fdf8;border-bottom:1px solid #e9ecef}
+.jf-section-num{width:28px;height:28px;background:#2e7d32;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0}
+.jf-section-title{font-weight:700;font-size:14px;color:#1a1a1a}
+.jf-question{padding:16px 18px;border-bottom:1px solid #f0f4f0}
+.jf-question:last-child{border-bottom:none}
+.jf-q-header{display:flex;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.jf-q-num{background:#e8f5e9;color:#2e7d32;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:800;flex-shrink:0;margin-top:2px}
+.jf-q-text{font-size:13px;font-weight:600;color:#222;flex:1;line-height:1.5}
+.jf-required{background:#ffebee;color:#c62828;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px}
+.jf-optional{background:#f3e5f5;color:#6a1b9a;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px}
+.jf-type-badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;border-radius:20px;padding:3px 10px;margin-bottom:12px}
+.jf-type-radio{background:#e3f2fd;color:#1565c0}
+.jf-type-checkbox{background:#f3e5f5;color:#6a1b9a}
+.jf-type-rating{background:#fff8e1;color:#e65100}
+.jf-options{display:flex;flex-direction:column;gap:8px}
+.jf-radio-label{display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 12px;border-radius:10px;border:1.5px solid #e9ecef;transition:all .18s;font-size:13px;background:#fff}
+.jf-radio-label:hover{border-color:#2e7d32;background:#f0faf0}
+.jf-radio{display:none}
+.jf-radio-circle{width:18px;height:18px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s}
+.jf-radio-label:has(.jf-radio:checked){border-color:#2e7d32;background:#f0faf0}
+.jf-radio-label:has(.jf-radio:checked) .jf-radio-circle{border-color:#2e7d32;background:#2e7d32;box-shadow:inset 0 0 0 3px #fff}
+.jf-check-label{display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 12px;border-radius:10px;border:1.5px solid #e9ecef;transition:all .18s;font-size:13px;background:#fff}
+.jf-check-label:hover{border-color:#7b1fa2;background:#fdf4ff}
+.jf-check{display:none}
+.jf-check-box{width:18px;height:18px;border-radius:5px;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;font-size:10px;color:transparent}
+.jf-check-label:has(.jf-check:checked){border-color:#7b1fa2;background:#fdf4ff}
+.jf-check-label:has(.jf-check:checked) .jf-check-box{background:#7b1fa2;border-color:#7b1fa2;color:#fff}
+.jf-opt-text{flex:1}
+.jf-rating-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.jf-rating-label-min,.jf-rating-label-max{font-size:11px;font-weight:600;color:#888;white-space:nowrap}
+.jf-rating-row{display:flex;gap:5px;flex-wrap:wrap}
+.jf-rating-btn{display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.jf-rating-radio{display:none}
+.jf-rating-num{width:36px;height:36px;border-radius:10px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#666;transition:all .18s;background:#fff}
+.jf-rating-btn:hover .jf-rating-num{border-color:#e65100;background:#fff8e1;color:#e65100}
+.jf-rating-btn:has(.jf-rating-radio:checked) .jf-rating-num{background:#e65100;border-color:#e65100;color:#fff;transform:scale(1.1)}
+.jf-footer{text-align:center;padding:18px 0 4px}
+.jf-submit{background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;border:none;border-radius:12px;padding:12px 36px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(46,125,50,.3)}
+.jf-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,125,50,.4)}
+.jf-footer-note{margin-top:10px;font-size:11px;color:#aaa}
+`;
+    }
+
+    function buildStandaloneSnippet(innerHtml) {
+        // snippet: inner HTML only (for embedding in existing page)
+        return innerHtml.replace(/></g, '>\n<');
+    }
+
+    function buildStandaloneHtml(innerHtml, title) {
+        title = title || 'JSON Rendered Output';
+        return `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>${css}</style>
+</head>
+<body style="background:#f5f5f5;padding:32px 16px;">
+  <div style="max-width:800px;margin:0 auto;">
+${innerHtml}
+  </div>
+</body>
+</html>`;
+    }
+
+    /* ── schema renderer ──────────────────────────────────────────── */
+    function renderSchema(schema) {
+        const el = document.getElementById('schemaContent');
+        const keys = Object.keys(schema);
+        if (!keys.length) { el.innerHTML = '<em class="text-muted">No fields detected.</em>'; return; }
+        el.innerHTML = keys.map(k => {
+            const { type } = schema[k];
+            return `<span class="schema-field-pill">${KudaRenderer.escHtml(k)}<span class="type-badge type-${type}">${type}</span></span>`;
+        }).join('');
+    }
+
+    /* ── schema toggle ────────────────────────────────────────────── */
+    document.getElementById('btnToggleSchema').addEventListener('click', function () {
+        const panel = document.getElementById('schemaPanel');
+        const chevron = document.getElementById('schemaChevron');
+        const isHidden = panel.style.display === 'none';
+        panel.style.display = isHidden ? '' : 'none';
+        chevron.className = isHidden ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+    });
+
+    /* ── preview / code toggle ────────────────────────────────────── */
+    document.getElementById('btnPreviewMode').addEventListener('click', function () {
+        document.getElementById('htmlPreview').style.display = '';
+        document.getElementById('htmlCodePanel').style.display = 'none';
+        this.classList.add('active');
+        document.getElementById('btnCodeMode').classList.remove('active');
+    });
+    document.getElementById('btnCodeMode').addEventListener('click', function () {
+        document.getElementById('htmlPreview').style.display = 'none';
+        document.getElementById('htmlCodePanel').style.display = 'flex';
+        this.classList.add('active');
+        document.getElementById('btnPreviewMode').classList.remove('active');
+    });
+
+    /* ── btn actions ──────────────────────────────────────────────── */
+    document.getElementById('btnRender').addEventListener('click', renderFromInput);
+
+    document.getElementById('btnFormatJson').addEventListener('click', function () {
+        const ta = document.getElementById('jsonInput');
+        try {
+            ta.value = JSON.stringify(JSON.parse(ta.value), null, 2);
+            updateLineNumbers();
+        } catch (e) { /* ignore */ }
+    });
+
+    document.getElementById('btnCopyJson').addEventListener('click', function () {
+        navigator.clipboard.writeText(document.getElementById('jsonInput').value);
+        showToast('JSON copied!');
+    });
+
+    document.getElementById('btnCopyHtml').addEventListener('click', function () {
+        // Copy raw snippet (inner HTML only, no CSS)
+        const snippet = document.getElementById('htmlPreview').innerHTML.replace(/></g, '>\n<');
+        navigator.clipboard.writeText(snippet);
+        showToast('✅ Snippet HTML disalin!');
+    });
+
+    document.getElementById('btnCopyForWeb').addEventListener('click', async function () {
+        const inner = document.getElementById('htmlPreview').innerHTML;
+        if (!inner || inner.includes('empty-state-placeholder')) {
+            showToast('⚠️ Render JSON dulu sebelum copy!'); return;
+        }
+        const full = await buildStandaloneHtml(inner);
+        navigator.clipboard.writeText(full);
+        const btn = this;
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check me-1"></i><span style="font-size:11px;">Tersalin!</span>';
+        btn.style.background = '#2e7d32';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 2200);
+        showToast('✅ Full HTML + CSS disalin — siap paste ke web lain!');
+    });
+
+    document.getElementById('btnDownloadHtml').addEventListener('click', async function () {
+        const inner = document.getElementById('htmlPreview').innerHTML;
+        if (!inner || inner.includes('empty-state-placeholder')) {
+            showToast('⚠️ Render JSON dulu sebelum download!'); return;
+        }
+        const full = await buildStandaloneHtml(inner, 'Form Output');
+        const blob = new Blob([full], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'output.html';
+        a.click();
+        showToast('📥 File output.html didownload!');
+    });
+
+    document.getElementById('btnClearAll').addEventListener('click', function () {
+        document.getElementById('jsonInput').value = '';
+        updateLineNumbers();
+        document.getElementById('jsonInfo').textContent = '0 characters · 0 lines';
+        document.getElementById('jsonError').style.display = 'none';
+        document.getElementById('htmlPreview').innerHTML = `<div class="empty-state-placeholder"><div class="placeholder-icon"><i class="fas fa-magic"></i></div><div class="placeholder-text">Your rendered output will appear here</div><div class="placeholder-sub">Paste JSON on the left and click <strong>Render HTML</strong></div></div>`;
+        document.getElementById('htmlCodeOutput').textContent = '';
+        document.getElementById('schemaContent').innerHTML = '<em class="text-muted">Render JSON to detect schema fields.</em>';
+        const status = document.getElementById('jsonStatus');
+        status.innerHTML = '<i class="fas fa-circle me-1" style="font-size:8px;"></i>Ready';
+        status.style.background = '#e8f5e9'; status.style.color = '#2e7d32';
+    });
+
+    document.getElementById('btnLoadSample').addEventListener('click', function () {
+        const keys = Object.keys(SAMPLES);
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        loadPreset(key);
+    });
+
+    /* ── textarea events ──────────────────────────────────────────── */
+    const ta = document.getElementById('jsonInput');
+    let autoRenderTimer = null;
+    ta.addEventListener('input', function () {
+        updateLineNumbers();
+        const c = this.value.length, l = this.value.split('\n').length;
+        document.getElementById('jsonInfo').textContent = `${c.toLocaleString()} characters · ${l.toLocaleString()} lines`;
+        // live validate
+        const errEl = document.getElementById('jsonError');
+        const status = document.getElementById('jsonStatus');
+        if (!this.value.trim()) {
+            errEl.style.display = 'none';
+            status.innerHTML = '<i class="fas fa-circle me-1" style="font-size:8px;"></i>Ready';
+            status.style.background = '#e8f5e9'; status.style.color = '#2e7d32';
+            return;
+        }
+        try {
+            JSON.parse(this.value);
+            errEl.style.display = 'none';
+            status.innerHTML = '<i class="fas fa-circle me-1" style="font-size:8px;"></i>Valid ⚡ Auto';
+            status.style.background = '#e8f5e9'; status.style.color = '#2e7d32';
+            // debounced auto-render (600ms after user stops typing)
+            clearTimeout(autoRenderTimer);
+            autoRenderTimer = setTimeout(() => renderFromInput(), 600);
+        } catch (e) {
+            status.innerHTML = '<i class="fas fa-circle me-1" style="font-size:8px;"></i>Invalid';
+            status.style.background = '#ffebee'; status.style.color = '#c62828';
+            errEl.textContent = '✖ ' + e.message;
+            errEl.style.display = 'inline';
+            clearTimeout(autoRenderTimer);
+        }
+    });
+
+    ta.addEventListener('scroll', function () {
+        document.getElementById('lineNumbers').scrollTop = this.scrollTop;
+    });
+
+    ta.addEventListener('keydown', function (e) {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const s = this.selectionStart, end = this.selectionEnd;
+            this.value = this.value.substring(0, s) + '  ' + this.value.substring(end);
+            this.selectionStart = this.selectionEnd = s + 2;
+        }
+    });
+
+    /* ── toast ────────────────────────────────────────────────────── */
+    function showToast(msg) {
+        let t = document.getElementById('jrToast');
+        if (!t) {
+            t = document.createElement('div');
+            t.id = 'jrToast';
+            t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#333;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;';
+            document.body.appendChild(t);
+        }
+        t.textContent = msg;
+        t.style.opacity = '1';
+        clearTimeout(t._to);
+        t._to = setTimeout(() => { t.style.opacity = '0'; }, 2000);
+    }
+
+    /* ── presets gallery ──────────────────────────────────────────── */
+    function loadPreset(key) {
+        const s = SAMPLES[key];
+        const ta = document.getElementById('jsonInput');
+        ta.value = s.json;
+        // set mode (includes 'form' mode)
+        const modeMap = { auto:'modeAuto', table:'modeTable', card:'modeCard', tree:'modeTree', list:'modeList', form:'modeForm' };
+        const radio = document.getElementById(modeMap[s.mode] || 'modeAuto');
+        if (radio) radio.checked = true;
+        updateLineNumbers();
+        ta.dispatchEvent(new Event('input'));
+        renderFromInput();
+    }
+
+    const presetContainer = document.getElementById('samplePresets');
+    Object.keys(SAMPLES).forEach(key => {
+        const s = SAMPLES[key];
+        const col = document.createElement('div');
+        col.className = 'col-6 col-md-4 col-lg-2';
+        col.innerHTML = `<div class="preset-card" id="preset-${key}">
+            <div class="preset-icon">${s.icon}</div>
+            <div class="preset-name">${s.label}</div>
+            <div class="preset-desc">${s.desc}</div>
+        </div>`;
+        col.querySelector('.preset-card').addEventListener('click', () => loadPreset(key));
+        presetContainer.appendChild(col);
+    });
+
+    /* ── init ─────────────────────────────────────────────────────── */
+    updateLineNumbers();
+})();
+</script>

@@ -1,8 +1,16 @@
 {
   "Files": [
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/components.css",
       "PackagePath": "staticwebassets/css/components.css"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-json-renderer.css",
+      "PackagePath": "staticwebassets/css/kuda-json-renderer.css"
     },
     {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/css/kuda-kit.css",
@@ -329,6 +337,14 @@
       "PackagePath": "staticwebassets/js/app-system.js"
     },
     {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-json-renderer.js",
+      "PackagePath": "staticwebassets/js/kuda-json-renderer.js"
+    },
+    {
+      "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-json-renderer.min.js",
+      "PackagePath": "staticwebassets/js/kuda-json-renderer.min.js"
+    },
+    {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/js/kuda-kit.js",
       "PackagePath": "staticwebassets/js/kuda-kit.js"
     },
@@ -543,10 +559,6 @@
     {
       "Id": "/Users/kn/Documents/project/UIUX/Genius/wwwroot/lib/sortablejs/Sortable.min.js",
       "PackagePath": "staticwebassets/lib/sortablejs/Sortable.min.js"
-    },
-    {
-      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
-      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Kuda.Microsoft.AspNetCore.StaticWebAssets.props",

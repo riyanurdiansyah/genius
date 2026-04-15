@@ -467,6 +467,18 @@
     <script>
 $(document).ready(function() {
 
+            // Global DataTables Defaults
+            $.extend(true, $.fn.dataTable.defaults, {
+                language: {
+                    search: "", 
+                    searchPlaceholder: "Cari data di sini...",
+                    paginate: {
+                        previous: '<i class="fa-solid fa-chevron-left"></i>',
+                        next: '<i class="fa-solid fa-chevron-right"></i>'
+                    }
+                }
+            });
+
             $('.custom-dt-container').each(function() {
                 var btn = $(this).find('.copy-btn');
                 if (btn.length) {
